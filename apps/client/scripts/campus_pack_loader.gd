@@ -29,8 +29,18 @@ func start(id: String) -> void:
 		failure_reason = "Campus missing from manifest"
 		completed.emit(false)
 		return
-	entry = manifest[id]
+	start_entry(id, manifest[id])
+
+func start_entry(id: String, description: Dictionary) -> void:
+	cancel()
+	failure_reason = ""
+	entry = description
 	campus_id = id
+	if mounted.has(id):
+		downloaded = int(entry.bytes)
+		total = downloaded
+		completed.emit(true)
+		return
 	total = int(entry.bytes)
 	downloaded = 0
 	active = true
@@ -48,6 +58,7 @@ func start(id: String) -> void:
 		request.download_file = temporary
 	request.request_completed.connect(_download_completed)
 	if request.request(base_url + str(entry.url)) != OK:
+		failure_reason = "Cannot start HTTP request"
 		finish(false)
 
 func _process(_delta: float) -> void:
