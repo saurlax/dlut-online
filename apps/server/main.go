@@ -2,11 +2,13 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log/slog"
 	"mime"
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"time"
 
@@ -40,10 +42,29 @@ func router(webDir string) http.Handler {
 	return r
 }
 
+func listenAddress(port string) (string, error) {
+	if port == "" {
+		port = "8060"
+	}
+	n, err := strconv.Atoi(port)
+	if err != nil || n < 1 || n > 65535 {
+		return "", fmt.Errorf("invalid PORT %q: expected 1-65535", port)
+	}
+	return ":" + strconv.Itoa(n), nil
+}
+
 func main() {
-	addr := flag.String("addr", "127.0.0.1:8060", "HTTP listen address")
+	addr := flag.String("addr", "", "HTTP listen address (overrides PORT)")
 	webDir := flag.String("web-dir", "../client/build/web", "Godot Web export directory")
 	flag.Parse()
+	if *addr == "" {
+		var err error
+		*addr, err = listenAddress(os.Getenv("PORT"))
+		if err != nil {
+			slog.Error("Invalid listener configuration", "error", err)
+			os.Exit(1)
+		}
+	}
 	info, err := os.Stat(filepath.Join(*webDir, "index.html"))
 	if err != nil || info.IsDir() {
 		slog.Error("Godot Web export missing", "directory", *webDir)
