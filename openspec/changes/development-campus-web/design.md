@@ -79,3 +79,7 @@ Go 使用 PORT 环境变量（空值默认 8060），监听所有网卡；显式
 空格绑定 jump，角色仅在控制激活且落地时响应新按键，初速度 7 m/s，沿用 20 m/s² 重力，不支持空中连跳或按住自动连跳。暂停、封面和地图期间不能起跳。
 
 官方 html/head_include 增加只读进度展示脚本，观察官方 progress 的 value/max 与显示状态，不替换引擎启动或错误处理。初始总量读取官方导出 fileSizes，后续以官方进度为准；MB 按 1,000,000 字节换算，展示已加载/总量及百分比。总量未知时使用占位，不伪造进度；错误时隐藏计数，启动后随官方加载层移除。计数反映 WASM/PCK 加载字节，不代表压缩网络流量或内存占用。
+
+## 桌面服务器配置
+
+运行时 DesktopConfig 提供配置读取入口。未导出项目默认 development/http://localhost:8060；桌面导出默认 production/https://dlut.online（含调试导出），由 EditorExportPlugin 将配置 JSON 直接加入包，不写入工作区。构建进程的 DO_ENV / DO_SERVER_URL 可覆盖默认值，CI 显式指定生产配置。运行时进程变量优先于包内配置：显式 DO_ENV 重新选择该环境默认地址，DO_SERVER_URL 优先级最高；空变量按未设置处理。只接受 development/production 和 HTTP(S) 根地址，末尾斜杠归一化。Web 不注入桌面配置，桌面读取入口在 Web 返回空字典，本轮不实现 Web 同源解析或网络连接。不使用 .env 自动加载。

@@ -45,9 +45,13 @@ jobs:
           mkdir -p "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
           mv "$RUNNER_TEMP/godot-templates/templates/"* "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable/"
       - name: Export Web, Windows and macOS
+        env:
+          DO_ENV: production
+          DO_SERVER_URL: https://dlut.online
         working-directory: apps/client
         run: |
           godot --headless --editor --quit
+          godot --headless --script tests/desktop_config.gd
           mkdir -p build/web build/windows build/macos
           godot --headless --export-release Web build/web/index.html
           godot --headless --export-release Windows "build/windows/DLUT Online.exe"

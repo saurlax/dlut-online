@@ -29,6 +29,10 @@ window/size/window_height_override=800
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://tools/desktop_export/plugin.cfg")
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
