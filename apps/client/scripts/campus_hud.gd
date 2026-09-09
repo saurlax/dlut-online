@@ -19,6 +19,14 @@ var enter_button: Button
 var has_entered := false
 var capture_pending := false
 var capture_elapsed := 0.0
+var pack_loader: Node
+var transfer_panel: VBoxContainer
+var transfer_status: Label
+var transfer_progress: ProgressBar
+var retry_button: Button
+var transfer_target := ""
+var transfer_failed := false
+var transfer_generation := 0
 var root_control: Control
 
 func build(body: CharacterBody3D, world: Node3D) -> void:
@@ -83,6 +91,9 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	enter_button.add_theme_color_override("font_pressed_color",Color("243d30"))
 	enter_button.pressed.connect(enter_campus)
 	column.add_child(enter_button)
+	pack_loader = preload("res://scripts/campus_pack_loader.gd").new()
+	add_child(pack_loader)
+	pack_loader.completed.connect(_pack_completed)
 	network = PlayerNetwork.new()
 	campus.add_child(network)
 	network.configure(player, campus.campus_id)
@@ -127,7 +138,12 @@ func pause_exploration() -> void:
 	overlay.visible = not Catalog.started
 
 func _input(event: InputEvent) -> void:
-	if switching or not Catalog.started:
+	if not Catalog.started:
+		return
+	if switching:
+		if event.is_action_pressed("ui_cancel") or (event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_M):
+			cancel_transfer()
+			get_viewport().set_input_as_handled()
 		return
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_M:
 		toggle_map()
@@ -143,10 +159,19 @@ func _input(event: InputEvent) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and is_instance_valid(player):
-		pause_exploration()
+		if switching:
+			map_was_playing = false
+			player.stop()
+		else:
+			pause_exploration()
 
 func _process(delta: float) -> void:
 	if not is_instance_valid(player):
+		return
+	if switching:
+		if not transfer_failed:
+			transfer_progress.value = 100.0 * pack_loader.downloaded / maxi(1, pack_loader.total)
+			transfer_status.text = "加载中  %.2f / %.2f MB" % [pack_loader.downloaded / 1000000.0, pack_loader.total / 1000000.0]
 		return
 	if capture_pending:
 		capture_elapsed += delta
@@ -213,9 +238,36 @@ func build_map() -> void:
 	connection_status.offset_bottom = -20
 	connection_status.text = network.status_text
 	network.status_changed.connect(func(value: String): connection_status.text = value)
+	transfer_panel = VBoxContainer.new()
+	transfer_panel.name = "CampusDownload"
+	map_overlay.add_child(transfer_panel)
+	transfer_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	transfer_panel.offset_left = -180
+	transfer_panel.offset_right = 180
+	transfer_panel.offset_top = -160
+	transfer_panel.offset_bottom = -24
+	transfer_panel.add_theme_constant_override("separation", 8)
+	transfer_status = Label.new()
+	transfer_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	transfer_panel.add_child(transfer_status)
+	transfer_progress = ProgressBar.new()
+	transfer_progress.custom_minimum_size.y = 16
+	transfer_panel.add_child(transfer_progress)
+	retry_button = Button.new()
+	retry_button.text = "重试"
+	retry_button.pressed.connect(retry_transfer)
+	transfer_panel.add_child(retry_button)
+	var cancel_button := Button.new()
+	cancel_button.text = "取消"
+	cancel_button.pressed.connect(cancel_transfer)
+	transfer_panel.add_child(cancel_button)
+	transfer_panel.hide()
 	map_overlay.hide()
 
 func toggle_map() -> void:
+	if switching:
+		cancel_transfer()
+		return
 	if map_overlay.visible:
 		close_map()
 		return
@@ -237,18 +289,68 @@ func close_map() -> void:
 func teleport(id: String) -> void:
 	if switching or not Catalog.CAMPUSES.has(id) or id == campus.campus_id:
 		return
+	if not map_overlay.visible:
+		map_was_playing = player.playing or capture_pending
 	switching = true
+	transfer_target = id
 	player.stop()
 	capture_pending = false
+	if pack_loader.is_available(id):
+		# Preserve the direct gesture for already available campuses.
+		_finish_travel()
+		return
+	map_overlay.show()
+	overlay.hide()
+	crosshair.hide()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	transfer_panel.show()
+	retry_transfer()
+
+func retry_transfer() -> void:
+	transfer_generation += 1
+	transfer_failed = false
+	retry_button.hide()
+	transfer_progress.value = 0
+	transfer_status.text = "加载中"
+	pack_loader.start(transfer_target)
+
+func cancel_transfer() -> void:
+	transfer_generation += 1
+	pack_loader.cancel()
+	switching = false
+	transfer_panel.hide()
+	transfer_target = ""
+	close_map()
+
+func _pack_completed(success: bool) -> void:
+	if not switching:
+		return
+	if success:
+		var generation := transfer_generation
+		transfer_progress.value = 100
+		# Let the final progress frame render before scene parsing/instantiation.
+		await get_tree().process_frame
+		if switching and generation == transfer_generation:
+			_finish_travel()
+	else:
+		_show_transfer_error()
+
+func _show_transfer_error() -> void:
+	transfer_failed = true
+	transfer_panel.show()
+	map_overlay.show()
+	transfer_status.text = "加载失败"
+	retry_button.show()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _finish_travel() -> void:
 	Catalog.arriving = true
-	# Request capture during the button gesture; embedded browsers retain drag fallback.
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	var error := get_tree().change_scene_to_file(Catalog.CAMPUSES[id].scene)
+	var error := get_tree().change_scene_to_file(Catalog.CAMPUSES[transfer_target].scene)
 	if error != OK:
 		Catalog.arriving = false
-		switching = false
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		push_error("Campus scene transition failed: "+str(error))
+		_show_transfer_error()
+		push_error("Campus scene transition failed: " + str(error))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Catalog.started and not switching and not player.playing and not map_overlay.visible:

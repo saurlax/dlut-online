@@ -16,3 +16,5 @@
 ## Git LFS
 
 模型目录中的 TSCN、GLB/Blender 文件、图片和字体由 Git LFS 管理，规则见根目录 .gitattributes。普通场景、脚本及 JSON 保持 Git 文本文件。克隆前安装 Git LFS 并执行 `git lfs install`；已有克隆执行 `git lfs pull`，确保资源不是指针文本后再打开 Godot 或构建。CI checkout 必须启用 `lfs: true`。忽略的生成产物仍不提交。
+
+Web 导出时，开发区完整 TSCN 转为压缩二进制场景并与本校区数据打入独立 PCK，盘锦场景另打一个包。此步骤由 tools/campus_packs 完成，不修改源模型或官方 Feature ID。独立包写入 build/web/campuses/，不提交构建产物；首包保留共享字体与默认凌水场景。
