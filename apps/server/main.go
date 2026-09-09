@@ -17,6 +17,7 @@ import (
 
 func router(webDir string) http.Handler {
 	r := chi.NewRouter()
+	r.Get("/ws", newPlayerHub().serve)
 	r.Get("/web", func(w http.ResponseWriter, req *http.Request) {
 		http.Redirect(w, req, "/web/", http.StatusPermanentRedirect)
 	})

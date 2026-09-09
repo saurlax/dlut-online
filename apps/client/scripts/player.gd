@@ -5,6 +5,8 @@ const RUN_SPEED := 13.0
 const JUMP_SPEED := 7.0
 const EYE_HEIGHT := 1.7
 const SPAWN := Vector3(12,0.35,387)
+var guest_id := ""
+var username := ""
 var spawn_position := SPAWN
 var camera: Camera3D
 var playing := false
