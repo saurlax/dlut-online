@@ -1,0 +1,9 @@
+{
+  "77386": {"style":"main", "height":25.2, "floors":6, "color":"c4b9a1", "edges":[0,21,23,25,27,28,29,30,31,32], "primary_edge":27, "photos":["77386-0.jpg","77386-1.jpg","77386-4.jpg"], "note":"南立面浅色竖向石材分隔、六层窗、屋檐和门廊。楼高与柱距为照片比例估计；不制作入口通道和后侧立面细节。"},
+  "77395": {"style":"stone", "height":21, "floors":5, "color":"b9ab94", "edges":[15,16], "photos":["77395-0.jpg","77395-3.jpg"], "note":"东侧朝向主楼庭院及南侧端头的浅色框、竖向窗；其余边未精修。"},
+  "77396": {"style":"stone", "height":21, "floors":5, "color":"b9ab94", "edges":[0,9,10], "photos":["77396-1.jpg","77396-2.jpg"], "note":"西侧朝向庭院及南侧端头的石材和竖向窗；其余边未精修。"},
+  "77357": {"style":"lingxi", "height":27, "floors":5, "color":"984b3c", "edges":[0], "primary_edge":0, "photos":["77357-7.jpg","77357-8.jpg","77357-10.jpg"], "note":"西向主立面红砖框架、窄竖窗及中部玻璃立面。高度与深度为估计，未复制背面；官方轮廓不提供中庭平面，不生成内部。"},
+  "77447": {"style":"bochuan", "height":26, "floors":6, "color":"9f9c8e", "edges":[12,13,15,17], "primary_edge":15, "photos":["77447-5.jpg","77447-4.jpg","77447-0.jpg"], "note":"南面主立面和照片可见东面：灰色砖材、浅色竖向框、前部窄竖构件与高窗；入口仅封闭外观，不建楼梯或内部。"},
+  "77385": {"style":"stone", "height":21, "floors":5, "color":"b8aa91", "edges":[0,12], "photos":["77385-0.jpg","77385-1.jpg","77385-3.jpg"], "note":"照片可见南侧及西侧的竖向石材窗框；米制楼高估计。"},
+  "77378": {"style":"teaching", "height":23, "floors":6, "color":"c7b69b", "edges":[33,34], "photos":["77378-7.jpg","77378-2.jpg"], "note":"南侧窗带和浅色立面；不从照片推断未提供的内院边界。"}
+}

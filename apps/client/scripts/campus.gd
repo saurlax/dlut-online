@@ -52,7 +52,10 @@ func _add_collisions() -> void:
 	for feature in manifest.features:
 		if feature.kind not in ["building","hill","gate"]:
 			continue
-		var group := model.get_node("Feature_"+feature.id)
+		var node_name: String = "Feature_"+feature.id
+		if feature.has("part"):
+			node_name += "_"+str(int(feature.part))
+		var group := model.get_node(node_name)
 		for child in group.get_children():
 			if child is MeshInstance3D and (child.get_meta("walk_collision",false) or child.name in ["Building", "Roof", "HillBase", "SchematicTerrain", "GateFootprint", "Gate"]):
 				_collider(child)
@@ -62,7 +65,15 @@ func _add_collisions() -> void:
 		[Vector3(0,80,-405),Vector3(1280,160,2)],
 		[Vector3(0,80,515),Vector3(1280,160,2)],
 	]
-	if campus_id != "eda":
+	if manifest.has("bounds"):
+		var b: Array = manifest.bounds
+		boundaries = [
+			[Vector3(b[0],80,b[1]+b[3]/2.0),Vector3(2,160,b[3])],
+			[Vector3(b[0]+b[2],80,b[1]+b[3]/2.0),Vector3(2,160,b[3])],
+			[Vector3(b[0]+b[2]/2.0,80,b[1]),Vector3(b[2],160,2)],
+			[Vector3(b[0]+b[2]/2.0,80,b[1]+b[3]),Vector3(b[2],160,2)],
+		]
+	elif campus_id != "eda":
 		boundaries = [
 			[Vector3(-89,20,0),Vector3(2,40,180)],
 			[Vector3(89,20,0),Vector3(2,40,180)],

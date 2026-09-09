@@ -33,7 +33,7 @@
 - **THEN** 仅显示准星和圆形小地图，不显示说明性文本
 
 ### Requirement: 三校区场景传送
-系统 SHALL 提供 lingshui（凌水主校区）、eda（开发区校区）、panjin（盘锦校区）三个独立场景，界面使用上述完整中文名称，默认 lingshui；eda 保留现有模型，其他两处使用明确的简单占位。
+系统 SHALL 提供 lingshui（凌水主校区）、eda（开发区校区）、panjin（盘锦校区）三个独立场景，界面使用上述完整中文名称，默认 lingshui；eda 保留现有模型，lingshui 使用官方主校区轮廓及已核对的局部照片立面，panjin 使用明确的简单占位。
 
 #### Scenario: 选择目标校区
 - **WHEN** 玩家在地图面板选择其他校区

@@ -1,0 +1,139 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 13,
+  "result": [
+    {
+      "id": 839990,
+      "name": "176322149365315790",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20191017163121453.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20191017163121453.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20191017163121453.jpg"
+    },
+    {
+      "id": 839991,
+      "name": "81768251516478153",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20191017163121906.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20191017163121906.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20191017163121906.jpg"
+    },
+    {
+      "id": 839992,
+      "name": "284793924866974348",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20191017163121524.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20191017163121524.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20191017163121524.jpg"
+    },
+    {
+      "id": 839993,
+      "name": "602371157726877068",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20191017163121956.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20191017163121956.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20191017163121956.jpg"
+    },
+    {
+      "id": 839994,
+      "name": "525403736542866543",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20191017163121954.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20191017163121954.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20191017163121954.jpg"
+    },
+    {
+      "id": 839995,
+      "name": "452376367865295647",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_2019101716312225.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_2019101716312225.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_2019101716312225.jpg"
+    },
+    {
+      "id": 839996,
+      "name": "836060659922408533",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20191017163122512.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20191017163122512.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20191017163122512.jpg"
+    },
+    {
+      "id": 875235,
+      "name": "令希图书馆",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20200108082812827.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20200108082812827.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20200108082812827.png"
+    },
+    {
+      "id": 875236,
+      "name": "41a25940d86c0e7b059f52e08bd8757",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20200108082827797.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20200108082827797.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20200108082827797.png"
+    },
+    {
+      "id": 875237,
+      "name": "b7944deb1a26c37942ed3bfded26880",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20200108082841346.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20200108082841346.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20200108082841346.png"
+    },
+    {
+      "id": 875238,
+      "name": "ca486df9270a0f7c583943d9f394edd",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20200108082858955.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20200108082858955.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20200108082858955.png"
+    },
+    {
+      "id": 875240,
+      "name": "07fa4fbba6b9d01693f8f7427795408",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20200108083243123.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20200108083243123.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20200108083243123.png"
+    },
+    {
+      "id": 875242,
+      "name": "ce38515a60a1de7715a3961dc7177cc",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77357_20200108083253168.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77357_20200108083253168.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77357_20200108083253168.png"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77357",
+  "retrieved": "2026-09-09"
+}
