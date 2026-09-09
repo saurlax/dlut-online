@@ -12,3 +12,7 @@
 `tools/prepare_campus.py`、`tools/add_roads.py`、`tools/build_model.gd` 目前仅生成 eda；不生成其他校区。原始参考资料位于 `references/`，不打入 Web。
 
 本文客户端路径均相对 apps/client/；references/ 指仓库根目录的原始参考资料。
+
+## Git LFS
+
+模型目录中的 TSCN、GLB/Blender 文件、图片和字体由 Git LFS 管理，规则见根目录 .gitattributes。普通场景、脚本及 JSON 保持 Git 文本文件。克隆前安装 Git LFS 并执行 `git lfs install`；已有克隆执行 `git lfs pull`，确保资源不是指针文本后再打开 Godot 或构建。CI checkout 必须启用 `lfs: true`。忽略的生成产物仍不提交。
