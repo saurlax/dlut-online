@@ -1,0 +1,61 @@
+name: Release DLUT Online
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate version tag
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z]+([.-][0-9A-Za-z]+)*)?$ ]] || {
+            echo 'Expected vMAJOR.MINOR.PATCH or vMAJOR.MINOR.PATCH-prerelease'
+            exit 1
+          }
+  build:
+    needs: validate
+    uses: ./.github/workflows/server-image.yml
+    with:
+      release: true
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: client-windows-${{ github.sha }}
+          path: dist/windows
+      - uses: actions/download-artifact@v4
+        with:
+          name: client-macos-${{ github.sha }}
+          path: dist/macos
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          mv 'dist/macos/DLUT Online.zip' dist/DLUT-Online-macOS.zip
+          mv dist/windows/DLUT-Online-Windows.zip dist/DLUT-Online-Windows.zip
+          image="ghcr.io/${GH_REPO,,}:$TAG"
+          printf 'Docker: `%s`\n\nWindows x86_64 and macOS universal clients are attached. Desktop builds are unsigned and macOS builds are not notarized.\n' "$image" > notes.md
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            args=(--verify-tag --title "$TAG" --notes-file notes.md)
+            if [[ "$TAG" == *-* ]]; then
+              args+=(--prerelease --latest=false)
+            else
+              args+=(--latest)
+            fi
+            gh release create "$TAG" "${args[@]}"
+          fi
+          gh release upload "$TAG" dist/*.zip --clobber

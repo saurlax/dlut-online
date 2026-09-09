@@ -87,3 +87,8 @@
 - [x] 16.2 配置 Web/Windows/macOS 与桌面产物上传；本地完成三端导出、Go 测试、macOS 启动和内置资源容器 PORT 验证。
 
 验证限制：正式多阶段 Docker 构建受本地 Docker Hub 认证接口超时阻塞；以本机交叉编译的 Go 程序验证了相同 scratch 运行层。GitHub Actions 完整运行及产物上传待推送后确认，Windows 包未在 Windows 系统启动实测。
+
+## 17. Build 与 Release 发布
+
+- [x] 17.1 为 build 添加 GHCR 发布，新增标签 release 并复用构建、发布桌面附件。
+- [x] 17.2 校验工作流与规范并提交发布配置。

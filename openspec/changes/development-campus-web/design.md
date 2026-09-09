@@ -67,4 +67,9 @@ apps/server 使用独立 Go 模块与 Chi，读取客户端 Web 导出目录。/
 
 ## 服务镜像与 CI
 
-Go 使用 PORT 环境变量（空值默认 8060），监听所有网卡；显式 -addr 优先。无效端口启动失败。多阶段 Dockerfile 生成非 root 的 Go 镜像，将 Godot Web 导出一并复制到 /web，无需资源挂载。GitHub push/PR/手动触发测试、Web/Windows x86_64/macOS universal 导出、镜像构建及容器自定义端口验证。上传镜像 tar 和两种桌面 ZIP，保留 7 天，不发布 registry。构建上下文为仓库根目录，由 .dockerignore 仅允许服务器源码及 Web 导出资源。桌面产物不签名、不公证。
+Go 使用 PORT 环境变量（空值默认 8060），监听所有网卡；显式 -addr 优先。无效端口启动失败。多阶段 Dockerfile 生成非 root 的 Go 镜像，将 Godot Web 导出一并复制到 /web，无需资源挂载。GitHub push/PR/手动触发测试、Web/Windows x86_64/macOS universal 导出、镜像构建及容器自定义端口验证。上传镜像 tar 和两种桌面 ZIP，保留 7 天，并在非 PR 构建检查成功后发布 GHCR。构建上下文为仓库根目录，由 .dockerignore 仅允许服务器源码及 Web 导出资源。桌面产物不签名、不公证。
+
+
+## Build 与 Release
+
+分支 push 的 build 发布 ghcr.io/<owner>/<repo>:sha-<SHA>，默认分支额外更新 edge。vMAJOR.MINOR.PATCH（可带预发布后缀）标签触发独立 release 工作流，复用 build，再创建 GitHub Release 并上传 Windows/macOS ZIP；正式版本更新 latest，预发布不更新。PR 不登录或推送 GHCR；发布使用 GITHUB_TOKEN 和最小对应权限。首次包可见性不主动修改。
