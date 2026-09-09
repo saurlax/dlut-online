@@ -24,6 +24,38 @@ func _run() -> void:
 		await physics_frame
 	Input.action_release("move_forward")
 	assert(player.position.distance_to(before)<0.05,"Pause must prevent movement")
+	Input.action_press("jump")
+	for i in 3:
+		await physics_frame
+	Input.action_release("jump")
+	assert(player.is_on_floor(),"Paused jump must be ignored")
+	player.drag_look = true
+	player.playing = true
+	var ground_y: float = player.position.y
+	Input.action_press("jump")
+	for i in 8:
+		await physics_frame
+	assert(player.position.y > ground_y + 0.4,"Space must lift the capsule")
+	Input.action_release("jump")
+	await physics_frame
+	var rising_speed: float = player.velocity.y
+	Input.action_press("jump")
+	for i in 3:
+		await physics_frame
+	assert(player.velocity.y < rising_speed,"Airborne input must not reset jump velocity")
+	for i in 65:
+		await physics_frame
+	assert(player.is_on_floor(),"Holding Space must land without automatically jumping again")
+	assert(absf(player.position.y-ground_y)<0.05,"Jump must return to the ground")
+	Input.action_release("jump")
+	await physics_frame
+	Input.action_press("jump")
+	for i in 4:
+		await physics_frame
+	assert(player.velocity.y > 0,"A fresh press after landing must jump again")
+	Input.action_release("jump")
+	for i in 60:
+		await physics_frame
 	# Exercise the same input-driven controller in the embedded-browser fallback.
 	player.drag_look = true
 	player.playing = true

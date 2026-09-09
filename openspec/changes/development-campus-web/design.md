@@ -15,7 +15,7 @@ Godot 4.7.2 / GDScript / Compatibility，27 个官方轮廓已生成静态模型
 - 初始位置在南门内侧，朝向信息楼。初始界面只保留进入按钮以满足浏览器 Pointer Lock 用户手势要求。
 - Escape 释放鼠标并显示 Godot 原生暂停提示；点击继续重新捕获。失焦或已成功捕获后浏览器退出 Pointer Lock 时停止移动。
 - 使用 Control/CanvasLayer 和嵌入 Noto Sans SC 字体，呈现必要按钮、准星、圆形小地图及主动打开的校区选择面板。
-- 不使用自定义 HTML/CSS/业务 JS 或 JavaScriptBridge；Godot 官方导出页只用于启动引擎和加载/错误提示。
+- 不使用自定义 HTML 产品 UI、业务 JS 或 JavaScriptBridge；Godot 官方导出页只用于启动引擎和加载/错误提示，允许通过 html/head_include 定制加载样式和只读资源计数。
 
 ## Risks / Trade-offs
 
@@ -73,3 +73,9 @@ Go 使用 PORT 环境变量（空值默认 8060），监听所有网卡；显式
 ## Build 与 Release
 
 分支 push 的 build 发布 ghcr.io/<owner>/<repo>:sha-<SHA>，默认分支额外更新 edge。vMAJOR.MINOR.PATCH（可带预发布后缀）标签触发独立 release 工作流，复用 build，再创建 GitHub Release 并上传 Windows/macOS ZIP；正式版本更新 latest，预发布不更新。PR 不登录或推送 GHCR；发布使用 GITHUB_TOKEN 和最小对应权限。首次包可见性不主动修改。
+
+## 跳跃与资源计数
+
+空格绑定 jump，角色仅在控制激活且落地时响应新按键，初速度 7 m/s，沿用 20 m/s² 重力，不支持空中连跳或按住自动连跳。暂停、封面和地图期间不能起跳。
+
+官方 html/head_include 增加只读进度展示脚本，观察官方 progress 的 value/max 与显示状态，不替换引擎启动或错误处理。初始总量读取官方导出 fileSizes，后续以官方进度为准；MB 按 1,000,000 字节换算，展示已加载/总量及百分比。总量未知时使用占位，不伪造进度；错误时隐藏计数，启动后随官方加载层移除。计数反映 WASM/PCK 加载字节，不代表压缩网络流量或内存占用。

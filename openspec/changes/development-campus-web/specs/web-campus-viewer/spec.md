@@ -12,7 +12,7 @@
 - **THEN** 默认进入 lingshui 的第一人称场景，首次显示封面与进入校园按钮，进入后显示圆形小地图
 
 ### Requirement: 第一人称控制
-系统 SHALL 支持 WASD、Shift 奔跑、鼠标环视、地面和建筑碰撞，眼高约 1.7 米。无法锁定鼠标时 SHALL 支持原生拖动环视。
+系统 SHALL 支持 WASD、Shift 奔跑、空格跳跃、鼠标环视、地面和建筑碰撞，眼高约 1.7 米。无法锁定鼠标时 SHALL 支持原生拖动环视。
 
 #### Scenario: 行走
 - **WHEN** 玩家进入后按 W 或 Shift 与 W
@@ -115,3 +115,17 @@ CI SHALL 在每次 push 导出 Godot Web、Windows x86_64 和 macOS universal �
 #### Scenario: 版本标签
 - **WHEN** 推送合法 vMAJOR.MINOR.PATCH 或其预发布标签
 - **THEN** 复用完整构建与容器检查，发布版本镜像及对应 GitHub Release
+
+### Requirement: 落地跳跃
+角色 SHALL 仅在探索控制激活且落地时响应空格新按键起跳，受重力和碰撞约束；空中、暂停、封面或地图期间 SHALL 不允许起跳，按住空格不连续起跳。
+
+#### Scenario: 起跳与落地
+- **WHEN** 玩家在地面按空格并在空中再次按空格
+- **THEN** 仅首次起跳生效，随后落回地面，落地后重新按空格可再跳
+
+### Requirement: 加载资源计数
+Web 官方加载页 SHALL 展示已加载和总资源量（十进制 MB）及百分比，沿用官方真实字节进度与错误反馈；已知导出资源总量在下载开始时即可显示，未知总量显示占位。
+
+#### Scenario: 下载与启动
+- **WHEN** 浏览器下载游戏资源
+- **THEN** 计数随官方进度更新，错误时隐藏计数并保留错误提示，引擎启动后移除加载层
