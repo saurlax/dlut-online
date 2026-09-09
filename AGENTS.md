@@ -55,7 +55,8 @@
 - 临时验收报告、过程日志、截图、一次性检查/截图脚本和本机代理生成配置不提交；放入已忽略的 `.local/` 或系统临时目录。现有 docs/verification.md 与 tests/capture.gd 仅供本地使用。
 - Godot 缓存、Web 构建包、可重建的离线 GLB 及其配套纹理不提交；运行时 TSCN、实际依赖的资源与 Godot UID/导入配置按需保留，不一概忽略。
 - README 和长期文档不得依赖未提交的验收文件；验证结果简要写入交付说明，不为每轮工作新增验收 docs。OpenSpec 继续维护需求和任务状态，避免重复过程记录。
-- 提交前检查 git status、diff 和暂存文件清单，逐项确认与当前需求相关；按明确文件路径暂存，不使用 git add . 混入无关内容。未获提交指令时不自行创建提交。
+- 提交前检查 git status、diff 和暂存文件清单，逐项确认与当前需求相关；按明确文件路径暂存，不使用 git add . 混入无关内容。用户已授权每次任务完成并通过相关检查后及时创建提交；按独立、可审查的任务拆分，不跨任务堆积未提交改动，不混入他人的未完成工作。
+- 所有提交信息遵循 Conventional Commits：`type(scope): description`，例如 `feat(server): support PORT environment variable`、`ci: build Docker and desktop clients`；scope 可省略，破坏性变更使用 `!` 或 BREAKING CHANGE 说明。推送包含的提交同样遵循此规范。提交与推送分开：及时提交，用户要求推送时再推送。
 - 纯文档、忽略规则或仓库整理不改运行内容时，只做引用和文件清单检查；仅当资源、构建或运行行为受影响时执行相应测试、Web 导出及浏览器验证。
 
 ## Monorepo 目录
@@ -66,3 +67,5 @@
 - 各应用独立管理依赖和构建产物，客户端导出位于 apps/client/build/web/。后续 Go 统一提供 / 首页、/web/ 在线游戏、/api/v1/ 接口及 /ws 长连接；本次目录迁移不实现这些服务。
 
 - Go HTTP 服务位于 apps/server/，使用 Chi；本地资源预览统一走 Go 的 /web/，不再维护 Python 静态托管脚本。服务启动和参数见 apps/server/README.md。仅按需求添加后端功能，静态托管不等于多人游戏服务器。
+
+- CI 在每次 push 构建内置 Godot Web 的 Go 镜像，并导出 Windows x86_64 与 macOS universal ZIP；不提交构建产物。服务 PORT 默认 8060，显式 -addr 优先。Docker 构建上下文为根目录，先完成客户端 Web 导出；桌面签名、公证未配置时须如实说明。
