@@ -22,7 +22,7 @@ jobs:
           }
   build:
     needs: validate
-    uses: ./.github/workflows/server-image.yml
+    uses: ./.github/workflows/build.yml
     with:
       release: true
   release:
