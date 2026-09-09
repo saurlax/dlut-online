@@ -23,6 +23,14 @@ GitHub Actions 在每次 push、PR 或手动触发时测试 Go，并使用 Godot
 - Windows x86_64 客户端 ZIP。
 - macOS 通用客户端 ZIP（Intel 与 Apple Silicon）。
 
-产物作为 Actions artifacts 保留 7 天，名称包含提交 SHA。镜像可用 `docker load -i server-image.tar` 导入，不自动发布到镜像仓库。Windows/macOS 包暂不签名，macOS 不公证；下载运行时可能触发系统安全提示。
+产物作为 Actions artifacts 保留 7 天，名称包含提交 SHA。镜像可用 `docker load -i server-image.tar` 导入，push 构建通过后自动发布到 `ghcr.io/saurlax/dlut-online`；PR 只构建验证，不发布镜像。Windows/macOS 包暂不签名，macOS 不公证；下载运行时可能触发系统安全提示。
 
 构建镜像前 CI 会先导出 Web，并在容器中使用 PORT=9090 验证首页及 PCK 资源；不会用临时占位文件替代真实游戏资源。
+
+## Build 与 Release 发布
+
+- 分支 push：发布 `sha-<完整提交 SHA>`；默认分支额外更新 `edge`。
+- 推送 `vMAJOR.MINOR.PATCH` 标签：复用完整构建，发布同名版本镜像及 `latest`，创建 GitHub Release 并附 Windows/macOS ZIP。
+- `vMAJOR.MINOR.PATCH-rc.1` 等预发布标签：发布版本镜像和预发布 Release，不覆盖 `latest`。
+
+镜像只在容器资源检查成功后发布，使用仓库自带 GITHUB_TOKEN，不需要配置个人访问令牌。GHCR 包的可见性由 GitHub 包设置管理，不自动改为公开。重复运行会重新上传同名 Release 附件。

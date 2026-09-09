@@ -2,11 +2,18 @@ name: Build DLUT Online
 
 on:
   push:
+    branches: ["**"]
   pull_request:
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      release:
+        type: boolean
+        default: false
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   build:
@@ -67,6 +74,9 @@ jobs:
           file: apps/server/Dockerfile
           platforms: linux/amd64
           tags: dlut-online-server:${{ github.sha }}
+          labels: |
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.revision=${{ github.sha }}
           outputs: type=docker,dest=${{ runner.temp }}/server-image.tar
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -89,3 +99,32 @@ jobs:
           path: ${{ runner.temp }}/server-image.tar
           retention-days: 7
           if-no-files-found: error
+      - name: Log in to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish tested image to GHCR
+        if: github.event_name != 'pull_request'
+        env:
+          REPOSITORY: ${{ github.repository }}
+          COMMIT_SHA: ${{ github.sha }}
+          REF_NAME: ${{ github.ref_name }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          RELEASE_BUILD: ${{ inputs.release || false }}
+        run: |
+          image="ghcr.io/${REPOSITORY,,}"
+          source="dlut-online-server:$COMMIT_SHA"
+          tags=("sha-$COMMIT_SHA")
+          if [[ "$RELEASE_BUILD" == "true" ]]; then
+            tags+=("$REF_NAME")
+            if [[ "$REF_NAME" != *-* ]]; then tags+=(latest); fi
+          elif [[ "$REF_NAME" == "$DEFAULT_BRANCH" ]]; then
+            tags+=(edge)
+          fi
+          for tag in "${tags[@]}"; do
+            docker tag "$source" "$image:$tag"
+            docker push "$image:$tag"
+          done

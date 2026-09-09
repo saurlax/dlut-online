@@ -108,3 +108,10 @@ CI SHALL 在每次 push 导出 Godot Web、Windows x86_64 和 macOS universal �
 #### Scenario: 下载构建产物
 - **WHEN** 一次构建成功
 - **THEN** 对应提交提供 Go+Web 镜像 tar、Windows ZIP、macOS ZIP；镜像无需额外挂载即可访问 /web/
+
+### Requirement: 镜像与版本发布
+分支 build 和标签 release SHALL 在验证成功后发布 GHCR 镜像；PR SHALL 不发布。release SHALL 提供 Windows/macOS 附件，正式版本更新 latest，预发布不覆盖 latest。
+
+#### Scenario: 版本标签
+- **WHEN** 推送合法 vMAJOR.MINOR.PATCH 或其预发布标签
+- **THEN** 复用完整构建与容器检查，发布版本镜像及对应 GitHub Release
