@@ -18,7 +18,12 @@ config/name="DLUT Online"
 boot_splash/show_image=false
 boot_splash/bg_color=Color(0.066667, 0.105882, 0.12549, 1)
 run/main_scene="res://scenes/main.tscn"
+run/main_scene.dedicated_server="res://scenes/server.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+GameNetwork="*res://scripts/player_network.gd"
 
 [display]
 
@@ -31,7 +36,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://tools/desktop_export/plugin.cfg", "res://tools/campus_packs/plugin.cfg")
+enabled=PackedStringArray("res://tools/desktop_export/plugin.cfg", "res://tools/campus_packs/plugin.cfg", "res://tools/server_export/plugin.cfg")
 
 [rendering]
 

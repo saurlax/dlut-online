@@ -8,6 +8,7 @@ class DesktopExport extends EditorExportPlugin:
 		return "DODesktopConfig"
 
 	func _export_begin(features: PackedStringArray, _is_debug: bool, _path: String, _flags: int) -> void:
+		if features.has("dedicated_server"): return
 		if not features.has("windows") and not features.has("macos") and not features.has("linux"):
 			return
 		var config := Config.resolve(

@@ -1,44 +1,98 @@
-# Go 服务
+# Go 服务与 Godot 游戏服
 
-在此目录运行 `go run .`，默认读取 `../client/build/web`，默认监听 `:8060`（所有网卡），可用 `PORT` 环境变量设置端口，游戏入口为 `/web/`。先运行客户端导出工具生成资源。
+Go 使用 Chi，负责首页、`/web/` 静态资源、入场票据、在线查询和 `/ws` 反向代理。Godot 独立进程负责权威移动、校园碰撞与同校区玩家同步。没有真实 SSO、数据库、持久账号或历史分析；游客 ID 不是账户凭据。
 
-`PORT` 须为 1–65535，未设置或为空时使用 8060；`-addr` 优先于 `PORT`，本机限定访问可用 `-addr 127.0.0.1:8060`。可通过 `-web-dir` 指定资源目录；相对路径以工作目录为准。构建使用 `go build -o build/server .`，测试使用 `go test ./...`。
+## 本地运行
 
-提供 Godot 静态资源及 `/ws` 游客联机；首页和 `/api/v1/` 尚未实现，对应路径返回 404。资源使用重新验证缓存策略，缺失文件返回 404，不回退到首页。不将游戏资源嵌入 Go 二进制。
-
-## 游客联机协议
-
-WebSocket 首条消息须在 5 秒内发送：`{"type":"hello","id":"32位小写十六进制随机ID","campus":"lingshui","position":[0,0,0],"yaw":0}`。校区仅接受 `lingshui`、`eda`、`panjin`。服务端返回 `welcome`（id、username），之后每秒 10 次发送 `snapshot`，其 `players` 数组含同校区玩家的 id、username、campus、position、yaw，包括自己。
-
-客户端每秒 10 次发送 `{"type":"state","position":[0,0,0],"yaw":0}`，坐标单位为米，朝向为弧度（-2π 至 2π）。服务器根据 ID 前八位十六进制数模 1000000 生成六位游客昵称，不接受客户端指定昵称。单消息上限 1024 字节，每秒最多 40 条状态，坐标绝对值不超过 10000，15 秒无状态则关闭。玩家退出或连接替换后从快照移除；同 ID 新连接替换旧连接，旧连接收到关闭码 4001 后须停止重连。
-
-浏览器 Origin 须与请求 Host 相同，反向代理须保留 Host 并支持 WebSocket Upgrade；桌面可不发送 Origin。当前为单进程内存同步，重启清空在线状态，多实例部署尚不共享房间。此游客协议不提供账户鉴权或防作弊，不能用游客 ID 作为后续敏感接口的凭证。
-
-## Docker 与 CI
-
-先从客户端目录用 Godot 导出 Web 到 build/web/，再从仓库根目录构建镜像：
+从仓库根目录准备资源：
 
 ```sh
-docker build -f apps/server/Dockerfile -t dlut-online-server .
-docker run --rm -p 8060:8060 -e PORT=8060 dlut-online-server
+godot --headless --path apps/client --script tools/server_export/build_worlds.gd
+godot --headless --path apps/client --export-release Web build/web/index.html
 ```
 
-镜像同时包含 Go 服务与 Web 客户端，以非 root 用户运行，不需要额外挂载资源。客户端资源作为镜像文件保存，不嵌入 Go 二进制。
+生成两个不同的随机凭据，分别设置 `DO_GAME_SERVICE_TOKEN` 和 `DO_ADMIN_API_TOKEN`，至少 32 个字符，例如使用 `openssl rand -hex 32`。仅在服务端环境中设置，不保存到源码或客户端导出。
 
-GitHub Actions 在每次 push、PR 或手动触发时测试 Go，并使用 Godot 4.7.2 导出三个平台：
+Go 终端（继承上述两个变量）：
 
-- Linux amd64 Go 镜像，内置 Web 客户端，提供镜像 tar。
-- Windows x86_64 客户端 ZIP。
-- macOS 通用客户端 ZIP（Intel 与 Apple Silicon）。
+```sh
+cd apps/server
+go run .
+```
 
-产物作为 Actions artifacts 保留 7 天，名称包含提交 SHA。镜像可用 `docker load -i server-image.tar` 导入，push 构建通过后自动发布到 `ghcr.io/saurlax/dlut-online`；PR 只构建验证，不发布镜像。Windows/macOS 包暂不签名，macOS 不公证；下载运行时可能触发系统安全提示。
+Godot 终端（继承相同的 `DO_GAME_SERVICE_TOKEN`）：
 
-构建镜像前 CI 会先导出 Web，并在容器中使用 PORT=9090 验证首页及 PCK 资源；不会用临时占位文件替代真实游戏资源。
+```sh
+godot --headless --path apps/client scenes/server.tscn
+```
 
-## Build 与 Release 发布
+打开 `http://localhost:8060/` 或 `/web/`。Go `PORT` 默认 8060；`-addr` 优先，可用 `-addr 127.0.0.1:8060` 限定本机。`-web-dir` 默认 `../client/build/web`，相对路径按 Go 进程工作目录解析。不自动加载 `.env`。
 
-- 分支 push：发布 `sha-<完整提交 SHA>`；默认分支额外更新 `edge`。
-- 推送 `vMAJOR.MINOR.PATCH` 标签：复用完整构建，发布同名版本镜像及 `latest`，创建 GitHub Release 并附 Windows/macOS ZIP。
-- `vMAJOR.MINOR.PATCH-rc.1` 等预发布标签：发布版本镜像和预发布 Release，不覆盖 `latest`。
+| 环境变量 | 所属进程 | 默认或要求 |
+|---|---|---|
+| DO_GAME_SERVER_URL | Go | `http://127.0.0.1:8061`，内网 HTTP(S) 根地址 |
+| DO_GAME_SERVICE_TOKEN | 两个服务 | 相同的服务凭据，至少 32 字符 |
+| DO_ADMIN_API_TOKEN | Go | 独立的只读管理凭据，至少 32 字符 |
+| DO_API_SERVER_URL | Godot | `http://127.0.0.1:8060`，Go 内网 HTTP(S) 根地址 |
+| DO_GAME_LISTEN_ADDR | Godot | `127.0.0.1`，容器设为 `0.0.0.0` |
+| DO_GAME_PORT | Godot | `8061` |
+| DO_GAME_INSTANCE_ID | Godot | `main`，当前支持单游戏实例 |
 
-镜像只在容器资源检查成功后发布，使用仓库自带 GITHUB_TOKEN，不需要配置个人访问令牌。GHCR 包的可见性由 GitHub 包设置管理，不自动改为公开。重复运行会重新上传同名 Release 附件。
+客户端继续使用 `DO_SERVER_URL` 或浏览器同源根地址，不能收到服务端凭据。公开部署使用 HTTPS/WSS，游戏端口只在内网可见。反向代理须保留 Host、支持 Upgrade，并允许心跳维持长连接。
+
+## HTTP 接口
+
+- `GET /`：简单游戏入口。
+- `/web/`：完整 Godot Web 资源目录，缺失资源返回 404，不回退到首页。
+- `POST /api/v1/game/tickets`：正文 `{"id":"32位小写十六进制游客ID","version":2}`，返回 201 与 `ticket`、`expires_in:30`、`ws_path:"/ws"`。不提交校区。
+- `POST /internal/v1/game/tickets/consume`：服务凭据，正文 `{"ticket":"..."}`；原子消费，返回 id、username、kind、admission_id。
+- `POST /internal/v1/game/register`：服务凭据，正文 instance_id、boot_id；返回 epoch，同启动标识重试幂等，旧启动不可重新注册。
+- `POST /internal/v1/game/presence`：服务凭据，正文 instance_id、epoch、递增 seq、players；每位玩家含 id、username、kind、campus、joined_at（Unix 秒）。
+- `GET /api/v1/game/online`：公开聚合人数，status 为 live/stale/unavailable；失联超过 15 秒当前 total/campuses 为 null，不伪装成零人，保留最后观测时间及 last_total。
+- `GET /api/v1/admin/game/players`：管理凭据，附当前玩家列表与相同的时效语义；失联时 players 为 null。
+
+受保护接口使用 `Authorization: Bearer <对应凭据>`。游戏服务凭据与管理凭据不可互换。票据有效期 30 秒、只能兑换一次；每身份每秒最多签发一次，全局每秒最多 100 次、待兑换票据最多 512 张。票据仅放消息正文，不放 URL 或日志。Go 重启丢失未兑换票据和在线缓存，客户端可重新取票，游戏服自动重新注册上报。
+
+未来 SSO 在 Go 建立身份，再沿用入场票据；未来持久化通过受认证数据接口处理，重要操作采用事务和幂等 ID，位置按周期保存，不逐 tick 写数据库。当前在线快照不能用于声称已提供历史在线时长、DAU 或留存。
+
+## 游戏协议版本 2
+
+首条消息 5 秒内发送 `{"type":"hello","version":2,"ticket":"...","campus":"lingshui"}`。三个校区均开放；游戏服只检查地图 ID，出生位置由服务端决定。欢迎消息包含身份、admission_id、map_epoch、权威位置/速度、朝向和名册。
+
+客户端每秒至多 20 次发送 input：seq、axis（二维）、yaw、run、jump（按键递增序号）、map_epoch。服务端不接受 position、speed、delta，不信任客户端物理结果。服务端以 60 Hz 模拟，10 Hz 同校区快照，包含本机权威状态；昵称通过名册同步。碰撞仅玩家对校园，不新增玩家间碰撞。
+
+单消息最多 2 KiB，每秒最多 40 条；500 ms 无有效输入停止水平移动。heartbeat 每 5 秒发送，15 秒无有效消息断开。应用层只保留最新待发快照，传输缓存持续拥堵会断开慢连接。关闭码：4001 身份被替换并停止重试；4002 协议/输入错误；4003 超时或暂时不可用；4004 满员。不同玩家上限 50，身份替换不额外占名额。
+
+客户端 Autoload 跨场景保留 WebSocket。切图通过 change_map(request_id,campus) → map_prepare(transfer_id) → 场景异步加载 → map_ready → map_entered 完成，不重新取票、登录或统计退出。加载期间角色冻结且心跳继续，目标就绪后原子迁移。map_cancel/map_status/map_resume 处理取消、结果查询和原场景恢复；准备超时 180 秒。map_epoch 隔离旧输入及快照，重复请求不重复迁移。真实断线才重新取票，连接代次与入场时间重建。
+
+Go 内部数据接口不可用时，不阻塞现有世界模拟；新入场不能绕过验证。Go 网关进程重启仍会断开代理连接，随后客户端自动重连。客户端使用共享规则预测和权威纠正，弱网仍可能发生回拉，不承诺完全确定性物理或通用反外挂。
+
+## 导出、Docker 与 CI
+
+服务端碰撞场景位于 `apps/client/scenes/server/`，由现有校园数据生成并保留为可打开的运行资源；修改碰撞来源后重新生成，不手工维护第二套模型。
+
+```sh
+mkdir -p apps/client/build/server
+godot --headless --path apps/client --script tools/server_export/build_worlds.gd
+godot --headless --path apps/client --export-release Server build/server/dlut-game-server.x86_64
+docker compose build
+docker compose up -d
+```
+
+先完成 Web 导出，再构建。Compose 将两个服务放在内部网络，仅映射 Go 端口；默认宿主机绑定 127.0.0.1:8060，可通过 DO_HTTP_BIND、DO_HTTP_PORT 调整。生产通过已有 HTTPS 网关接入。镜像以非 root 用户运行；正式 Godot 镜像仅包含服务端 PCK 和程序，PCK 排除视觉资源与客户端 UI。
+
+CI 每次 push/PR 构建内置 Web 的 Go 镜像和独立 Linux amd64 Godot 镜像，同时导出 Windows x86_64、macOS universal ZIP。测试真实双服务入场、切图与资源请求。非 PR 构建发布 `ghcr.io/saurlax/dlut-online` 和 `ghcr.io/saurlax/dlut-online-game`：提交使用 sha 标签，默认分支更新 edge，正式版本更新版本标签及 latest，预发布不更新 latest。桌面没有签名/公证。所有构建产物不提交。
+
+回滚须同时回滚客户端、Go 和 Godot 镜像；版本 2 输入客户端不能与旧位置转发服务混用。当前没有数据库迁移，重启不保存玩家位置。
+
+## 验证
+
+Go 目录运行 `go test -race ./...`、`go vet ./...`。联机测试需先启动两服务：
+
+```sh
+DO_TEST_SERVER_URL=http://127.0.0.1:8060 go test -run TestGameProtocol -v
+DO_TEST_GODOT_PROJECT=../client DO_TEST_SERVER_URL=http://127.0.0.1:8060 go test -run 'TestGodot' -timeout 3m -v
+DO_TEST_SERVER_URL=http://127.0.0.1:8060 DO_TEST_LOAD_SECONDS=600 go test -run TestGameLoad -timeout 12m -v
+```
+
+50 人压测需要空闲测试游戏实例。Godot 目录运行 `godot --headless --script tests/server_physics.gd`，以及带 DO_SERVER_URL 的 `tests/campus_travel.gd`。真实 Web 检查登录、移动、M 地图、三校区切换和失焦停止。客户端仍使用已有建筑与碰撞精度，不因新增服务器提高校园建模精度。

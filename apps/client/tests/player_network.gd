@@ -1,50 +1,44 @@
 extends SceneTree
 
-const Network = preload("res://scripts/player_network.gd")
-const Player = preload("res://scripts/player.gd")
-var world: Node3D
-
-func _initialize() -> void:
-	_run.call_deferred()
-
-func peer(id: String, campus: String) -> Node:
-	var body := Player.new()
-	body.guest_id = id
-	world.add_child(body)
-	body.set_physics_process(false)
-	body.position = Vector3.ZERO
-	var network := Network.new()
-	world.add_child(network)
-	network.configure(body, campus)
-	network.start()
-	return network
-
+func _initialize() -> void: _run.call_deferred()
 func _run() -> void:
-	create_timer(20).timeout.connect(func(): quit(2))
-	world = Node3D.new()
-	root.add_child(world)
-	var a := peer("a".repeat(32), "lingshui")
-	var b := peer("b".repeat(32), "lingshui")
-	var c := peer("c".repeat(32), "panjin")
-	await create_timer(1.0).timeout
-	assert(a.welcomed and b.welcomed and c.welcomed)
-	assert(a.remotes.size() == 1 and b.remotes.size() == 1 and c.remotes.is_empty())
-	b.player.position = Vector3(3, 0, -5)
-	b.player.rotation.y = 1.2
-	await create_timer(0.8).timeout
-	var remote: Node3D = a.remotes["b".repeat(32)]
-	assert(remote.position.distance_to(b.player.position) < 0.1)
-	assert(absf(remote.rotation.y - 1.2) < 0.05)
-	b.socket.close()
-	await create_timer(0.4).timeout
-	assert(a.remotes.is_empty())
-	await create_timer(2.0).timeout
-	assert(b.welcomed and a.remotes.size() == 1)
-	var replacement := peer("b".repeat(32), "panjin")
-	await create_timer(0.8).timeout
-	assert(not b.active and a.remotes.is_empty())
-	assert(replacement.welcomed and c.remotes.size() == 1)
-	print("PASS: two-way sync, interpolation, campus isolation, removal, reconnect, replacement")
-	world.queue_free()
+	create_timer(60).timeout.connect(func(): quit(2))
+	change_scene_to_file("res://scenes/campuses/eda.tscn")
 	await process_frame
+	await process_frame
+	current_scene.hud.enter_campus()
+	var net: Node = root.get_node("GameNetwork")
+	for frame in 300:
+		await process_frame
+		if net.welcomed: break
+	assert(net.welcomed)
+	for frame in 90: await physics_frame
+	var body: CharacterBody3D = current_scene.player
+	body.playing = true
+	body.drag_look = true
+	var before: Vector3 = body.position
+	Input.action_press("move_forward")
+	for frame in 6: await physics_frame
+	assert(body.position.distance_to(before)>0.2,"Prediction must start without a network round trip")
+	for frame in 90: await physics_frame
+	Input.action_release("move_forward")
+	for frame in 45: await physics_frame
+	assert(body.position.distance_to(before)>5,"Authoritative forward movement must progress under latency")
+	var stable: Vector3 = body.position
+	body.position += Vector3(30,0,0)
+	for frame in 120: await physics_frame
+	assert(body.position.distance_to(stable)<0.5,"Server must correct a forged local position")
+	Input.action_press("jump")
+	for frame in 6: await physics_frame
+	Input.action_release("jump")
+	assert(body.position.y>stable.y+0.2,"Jump prediction must respond")
+	for frame in 150: await physics_frame
+	assert(absf(body.position.y-stable.y)<0.1,"Authoritative jump must settle")
+	current_scene.hud.pause_exploration()
+	var stopped: Vector3 = body.position
+	Input.action_press("move_forward")
+	for frame in 60: await physics_frame
+	Input.action_release("move_forward")
+	assert(body.position.distance_to(stopped)<0.1,"Paused input must stay stopped")
+	print("PASS: delayed input prediction, authoritative correction, jump and pause")
 	quit()

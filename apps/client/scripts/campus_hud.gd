@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 const GuestSession = preload("res://scripts/guest_session.gd")
-const PlayerNetwork = preload("res://scripts/player_network.gd")
 var identity_label: Label
 var network: Node
 
@@ -97,9 +96,11 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	pack_loader = preload("res://scripts/campus_pack_loader.gd").new()
 	add_child(pack_loader)
 	pack_loader.completed.connect(_pack_completed)
-	network = PlayerNetwork.new()
-	campus.add_child(network)
+	network = get_node("/root/GameNetwork")
 	network.configure(player, campus.campus_id)
+	network.map_prepared.connect(_network_map_prepared)
+	network.map_failed.connect(_network_map_failed)
+	network.map_finished.connect(_network_map_finished)
 	build_map()
 	minimap.visible = Catalog.started
 	if Catalog.started or Catalog.arriving:
@@ -245,7 +246,7 @@ func build_map() -> void:
 	connection_status.offset_top = -44
 	connection_status.offset_bottom = -20
 	connection_status.text = network.status_text
-	network.status_changed.connect(func(value: String): connection_status.text = value)
+	network.status_changed.connect(_connection_status_changed)
 	grid_panel = VBoxContainer.new()
 	grid_panel.name = "GridDownload"
 	map_overlay.add_child(grid_panel)
@@ -321,8 +322,19 @@ func teleport(id: String) -> void:
 	transfer_target = id
 	player.stop()
 	capture_pending = false
+	if not network.request_map(id, true):
+		_network_map_failed()
+		return
+	map_overlay.show()
+	overlay.hide()
+	crosshair.hide()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	transfer_panel.show()
+	transfer_status.text = "加载中"
+
+func _network_map_prepared(id: String) -> void:
+	if not switching or transfer_target != id: return
 	if pack_loader.is_available(id):
-		# Preserve the direct gesture for already available campuses.
 		_finish_travel()
 		return
 	map_overlay.show()
@@ -341,6 +353,7 @@ func retry_transfer() -> void:
 	pack_loader.start(transfer_target)
 
 func cancel_transfer() -> void:
+	network.cancel_map()
 	transfer_generation += 1
 	pack_loader.cancel()
 	campus.streamer.resume()
@@ -360,6 +373,7 @@ func _pack_completed(success: bool) -> void:
 		if switching and generation == transfer_generation:
 			_finish_travel()
 	else:
+		network.cancel_map()
 		_show_transfer_error()
 
 func _show_transfer_error() -> void:
@@ -371,16 +385,33 @@ func _show_transfer_error() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _finish_travel() -> void:
-	Catalog.arriving = true
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	var error := get_tree().change_scene_to_file(Catalog.CAMPUSES[transfer_target].scene)
-	if error != OK:
-		Catalog.arriving = false
-		_show_transfer_error()
-		push_error("Campus scene transition failed: " + str(error))
+	network.load_target(transfer_target)
+
+func _network_map_failed() -> void:
+	pack_loader.cancel()
+	campus.streamer.resume()
+	switching = false
+	transfer_panel.hide()
+	transfer_target = ""
+
+func _network_map_finished() -> void:
+	_network_map_failed()
+	if network.restore_playing:
+		enter_campus()
+	else:
+		pause_exploration()
+
+func _exit_tree() -> void:
+	if is_instance_valid(network) and network.player == player:
+		network.player = null
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Catalog.started and not switching and not player.playing and not map_overlay.visible:
 		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			enter_campus()
 			get_viewport().set_input_as_handled()
+
+func _connection_status_changed(value: String) -> void:
+	var label: Label = map_overlay.get_node("ConnectionStatus")
+	label.text = value

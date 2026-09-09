@@ -65,11 +65,19 @@
 
 ## Monorepo 目录
 
-- 应用按 apps/ 组织：现有 Godot 项目位于 apps/client/；Go 服务与首页实际开发时分别放 apps/server/、apps/site/，不预建空壳或引入 monorepo 框架。
+- 应用按 apps/ 组织：共享 Godot 工程位于 apps/client/；Go 服务与当前简洁站点入口位于 apps/server/，不另建空的 apps/site/ 或引入 monorepo 框架。
 - 本文中的 scenes/、scripts/、assets/、tests/、tools/ 均相对 apps/client/；Godot res:// 也以此为根。编辑器打开 apps/client/project.godot。
 - references/、openspec/、AGENTS.md 和 README.md 保留仓库根目录。原始参考路径相对仓库根目录记录，生成工具须从自身位置解析路径，不能依赖调用者工作目录。
-- 各应用独立管理依赖和构建产物，客户端导出位于 apps/client/build/web/。后续 Go 统一提供 / 首页、/web/ 在线游戏、/api/v1/ 接口及 /ws 长连接；本次目录迁移不实现这些服务。
+- 各应用独立管理依赖和构建产物，客户端导出位于 apps/client/build/web/。Go 统一提供 / 首页、/web/ 在线游戏、/api/v1/ 接口及 /ws 网关；实时世界逻辑在独立 Godot 服务端。
 
-- Go HTTP 服务位于 apps/server/，使用 Chi；本地资源预览统一走 Go 的 /web/，不再维护 Python 静态托管脚本。服务启动和参数见 apps/server/README.md。仅按需求添加后端功能，静态托管不等于多人游戏服务器。
+- Go HTTP 服务位于 apps/server/，使用 Chi；本地资源预览统一走 Go 的 /web/，不再维护 Python 静态托管脚本。服务启动和参数见 apps/server/README.md。Go 不承担世界模拟，当前多人游戏服务器为独立 Godot 进程。
 
 - CI 在每次 push 构建内置 Godot Web 的 Go 镜像，并导出 Windows x86_64 与 macOS universal ZIP；不提交构建产物。服务 PORT 默认 8060，显式 -addr 优先。Docker 构建上下文为根目录，先完成客户端 Web 导出；桌面签名、公证未配置时须如实说明。
+
+## 权威游戏服务
+
+- Godot 无头服务端与客户端共享 apps/client/ 工程，入口为 scenes/server.tscn，专属逻辑放 scripts/server/，共享运动与碰撞规则放 scripts/shared/。Go apps/server/ 负责站点、票据、在线查询及 /ws 网关，不执行玩家物理或广播。
+- 客户端 GameNetwork Autoload 跨场景保留连接；同实例切图不重新取票、不重登，加载期间继续心跳且停止移动，场景就绪后迁移角色。三个校区是对所有玩家开放的地图，不设校区访问权限。
+- 服务端通过独立 World3D 同时持有三校区碰撞世界，不能同时加载三个视觉校园模型；客户端仍只加载一个校园。服务端静态碰撞从现有场景和标记生成，保留可直接打开的场景，修改来源后重新生成，不能手工复制第二套模型。
+- 服务端凭据只在进程环境读取，不导出到客户端。真实 SSO、数据库和历史分析尚未接入，不用游客 ID 访问敏感数据。线上人数必须标记时效，失联不能报告为零人。
+- CI 同时构建内置 Web 的 Go 镜像与独立 Godot Linux amd64 镜像，继续导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
