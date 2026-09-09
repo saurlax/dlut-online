@@ -1,24 +1,7 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/campus.gd" id="1"]
-[sub_resource type="StandardMaterial3D" id="GroundMaterial"]
-albedo_color = Color(0.34, 0.38, 0.32, 1)
-roughness = 0.9
-
-[sub_resource type="BoxMesh" id="GroundMesh"]
-size = Vector3(180, 2, 180)
-material = SubResource("GroundMaterial")
-
-[sub_resource type="StandardMaterial3D" id="BlockMaterial"]
-albedo_color = Color(0.57, 0.57, 0.54, 1)
-
-[sub_resource type="BoxMesh" id="BlockMesh"]
-size = Vector3(28, 10, 18)
-material = SubResource("BlockMaterial")
-
-[sub_resource type="BoxMesh" id="PathMesh"]
-size = Vector3(10, 0.08, 150)
-material = SubResource("BlockMaterial")
+[ext_resource type="PackedScene" path="res://assets/campuses/lingshui/models/lingshui_campus.tscn" id="2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="CampusSkyMaterial"]
 sky_top_color = Color(0.529412, 0.619608, 0.682353, 1)
@@ -39,22 +22,9 @@ ambient_light_energy = 0.42
 [node name="Campus" type="Node3D"]
 script = ExtResource("1")
 campus_id = "lingshui"
-spawn_position = Vector3(0, 0.35, 55)
+spawn_position = Vector3(96, 0.35, 28)
 
-[node name="CampusModel" type="Node3D" parent="."]
-metadata/is_placeholder = true
-
-[node name="CampusBase" type="MeshInstance3D" parent="CampusModel"]
-position = Vector3(0, -1, 0)
-mesh = SubResource("GroundMesh")
-
-[node name="PlaceholderBlock" type="MeshInstance3D" parent="CampusModel"]
-position = Vector3(-28, 5, -12)
-mesh = SubResource("BlockMesh")
-metadata/walk_collision = true
-
-[node name="PlaceholderPath" type="MeshInstance3D" parent="CampusModel"]
-mesh = SubResource("PathMesh")
+[node name="CampusModel" parent="." instance=ExtResource("2")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("CampusEnvironment")

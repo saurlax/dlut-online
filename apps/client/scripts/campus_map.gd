@@ -40,7 +40,7 @@ func configure(world: Node3D, circular: bool) -> void:
 	clip_contents = true
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if circular else Control.CURSOR_ARROW
-	if campus.campus_id == "eda":
+	if not campus.manifest.features.is_empty():
 		roads = campus.roads
 		map_bounds = Rect2(Vector2(campus.spawn_position.x,campus.spawn_position.z),Vector2.ZERO)
 		for feature in campus.manifest.features:
@@ -102,14 +102,19 @@ func _draw() -> void:
 			var normal := (b-a).normalized().orthogonal()*float(road.width)*0.5
 			paint(PackedVector2Array([a+normal,b+normal,b-normal,a-normal]),origin,scale_factor,clip,Color("778177"))
 	for feature in campus.manifest.features:
-		var poly := PackedVector2Array()
-		for p in feature.points:
-			poly.append(Vector2(p[0],p[1]))
+		if feature.kind == "reference":
+			continue
 		var color := Color("a8ad9e") if feature.kind=="building" else Color("51684e")
 		if feature.kind=="water":
 			color = Color("456e7a")
-		paint(poly,origin,scale_factor,clip,color)
-	if campus.campus_id != "eda":
+		elif feature.kind=="road" or feature.kind=="plaza" or feature.kind=="gate":
+			color = Color("778177")
+		for polygon_points in feature.get("render_polygons",[feature.points]):
+			var poly := PackedVector2Array()
+			for p in polygon_points:
+				poly.append(Vector2(p[0],p[1]))
+			paint(poly,origin,scale_factor,clip,color)
+	if campus.manifest.features.is_empty():
 		paint(PackedVector2Array([Vector2(-5,-75),Vector2(5,-75),Vector2(5,75),Vector2(-5,75)]),origin,scale_factor,clip,Color("778177"))
 		paint(PackedVector2Array([Vector2(-42,-21),Vector2(-14,-21),Vector2(-14,-3),Vector2(-42,-3)]),origin,scale_factor,clip,Color("a8ad9e"))
 	var marker := center+(player_point-origin)*scale_factor
@@ -123,6 +128,22 @@ func paint(poly: PackedVector2Array, origin: Vector2, scale_factor: float, clip:
 	var transformed := PackedVector2Array()
 	for p in poly:
 		transformed.append(size*0.5+(p-origin)*scale_factor)
-	for piece in Geometry2D.intersect_polygons(transformed,clip):
+	for piece in clipped_polygons(transformed,clip):
 		if piece.size() >= 3:
 			draw_colored_polygon(piece,color)
+
+static func clipped_polygons(poly: PackedVector2Array, clip: PackedVector2Array) -> Array[PackedVector2Array]:
+	var pieces := Geometry2D.intersect_polygons(poly,clip)
+	for piece in pieces:
+		if piece.size() >= 3 and Geometry2D.triangulate_polygon(piece).is_empty():
+			# Clipping a concave footprint can create a ring touching itself at a vertex.
+			# Clip its source triangles instead, preserving the visible area without a convex hull.
+			var triangles := Geometry2D.triangulate_polygon(poly)
+			var result: Array[PackedVector2Array] = []
+			for i in range(0,triangles.size(),3):
+				var triangle := PackedVector2Array([poly[triangles[i]],poly[triangles[i+1]],poly[triangles[i+2]]])
+				for part in Geometry2D.intersect_polygons(triangle,clip):
+					if part.size() >= 3 and not Geometry2D.triangulate_polygon(part).is_empty():
+						result.append(part)
+			return result
+	return pieces

@@ -36,5 +36,5 @@
 校区专属数据和模型 SHALL 按 assets/campuses/<campus_id>/data/ 和 models/ 组织，由校区注册表声明数据路径；字体保持共享。
 
 #### Scenario: 加载占位校区
-- **WHEN** 打开凌水或盘锦占位场景
+- **WHEN** 打开盘锦占位场景
 - **THEN** 不读取开发区数据，不复制或伪造该校区地图资产

@@ -54,6 +54,6 @@ func _run() -> void:
 		assert(current_scene.player.is_on_floor(),"Arrival must be grounded")
 		assert(current_scene.find_children("*","Camera3D",true,false).size()==1)
 		assert(InputMap.action_get_events("move_forward").size()==1,"Travel must not duplicate bindings")
-		assert(current_scene.manifest.features.size()==(27 if destination=="eda" else 0))
+		assert(current_scene.manifest.features.size()==({"eda":27,"lingshui":313,"panjin":0}[destination]))
 	print("PASS: default lingshui; M/click map; paused movement; resume; eda/panjin/lingshui travel; old scene freed; grounded arrival; no duplicate controls")
 	quit()
