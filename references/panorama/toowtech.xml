@@ -1,0 +1,32 @@
+﻿<krpano version="1.20.9" title="TOOWTECH.COM" bgcolor="0xFFFFFF" onstart="startup();">
+
+    <include url="https://360.toowtech.com/dalian/DUT/cssjs/tongji.xml" />
+    <include url="skin/ui.xml" />
+    <include url="skin/info_part.xml" />
+    <include url="skin/info.xml" />
+
+    <style name="buttom_style" type="text" autowidth="true" autoheight="true" 
+       enabled="false" background="false" backgroundcolor="0x000000" backgroundalpha="0.4" 
+       border="false" 
+       css="text-align:left; color:#FFFFFF;font-family:微软雅黑;font-size:15px;letter-spacing:3px;" 
+       textshadow="1"
+    />
+
+    <layer name="skin_tong" style="buttom_style" keep="true" align="lefttop" y="60" x="5" 
+           onloaded="shujutongji()"/>
+    <!--人气-->
+    <action name="shujutongji">
+        txtadd(layer[skin_tong].html,'人气:',get(skin_settings.shujutongjistr),'次',);        
+    </action>
+
+  	<!-- startup action - load the first scene -->
+  	<action name="startup">
+        delayedcall(0.1,playbgsound(););
+        delayedcall(0.2,pausesound(bgm));
+        set(languageflag,cn);
+  	</action>
+
+    <action name="playbgsound">playsound(bgm,%VIEWER%/snd/bgm.mp3,0,0.5);</action> 
+
+	
+</krpano>

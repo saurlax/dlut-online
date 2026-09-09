@@ -1,0 +1,30 @@
+{
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77933",
+  "retrieved": "2026-09-09",
+  "name": "学生宿舍2舍",
+  "status": 0,
+  "message": "ok",
+  "total": 2,
+  "result": [
+    {
+      "id": 79702,
+      "name": "IMG_0664",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77933_20160302113452567.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77933_20160302113452567.jpg"
+    },
+    {
+      "id": 79704,
+      "name": "IMG_0674",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77933_20160302113604487.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77933_20160302113604487.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77933_20160302113604487.jpg"
+    }
+  ]
+}

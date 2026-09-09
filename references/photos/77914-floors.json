@@ -1,0 +1,9 @@
+{
+  "source": "http://map.dlut.edu.cn/openmap/mapi/indoor/floor/v1/simple?buildingId=77914",
+  "response": {
+    "status": 0,
+    "message": "ok",
+    "total": 0,
+    "result": []
+  }
+}

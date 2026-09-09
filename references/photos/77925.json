@@ -1,0 +1,20 @@
+{
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77925",
+  "retrieved": "2026-09-09",
+  "name": "教学楼A区",
+  "status": 0,
+  "message": "ok",
+  "total": 1,
+  "result": [
+    {
+      "id": 79686,
+      "name": "IMG_0751",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77925_20160302105742896.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77925_20160302105742896.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77925_20160302105742896.jpg"
+    }
+  ]
+}

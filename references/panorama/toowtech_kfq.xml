@@ -1,0 +1,304 @@
+﻿<krpano version="1.20.9" title="TOOWTECH.COM" bgcolor="0xFFFFFF">
+
+  	<include url="skin/vtourskin.xml" />
+    <include url="skin/visited.xml" />
+
+    <!-- 导航 -->
+    <layer name="ui7" keep="true" type="container" align="center" x="0" y="40" width="55" height="70" maskchildren="true" scalechildren="true" parent="buttombg">
+        <layer name="ui-img7" align="top" height="45" width="45" url="skin/btn_nav.png" onclick="openurl('http://apis.map.qq.com/uri/v1/marker?marker=coord:39.082624,121.818159;title:大连理工大学(开发区校区)西区图书馆;addr:辽宁省大连市金州区开发区图强街321号大连理工大学软件学院教学区');"/>
+        <layer name="ui-text7" style="btn_text_style" html="导 航" />
+    </layer>
+
+    <!-- 介绍 -->
+    <layer name="ui8" keep="true" type="container" align="center" x="0" y="115" width="55" height="70" maskchildren="true" scalechildren="true" parent="buttombg">
+        <layer name="ui-img8" align="top" height="45" width="45" url="skin/btn_intro.png" onclick="loadtxtinfo(kaifaqu);set(autorotate.enabled,false);"/>
+        <layer name="ui-text8" style="btn_text_style" html="简 介" />
+    </layer>
+	
+	<scene name="scene_DUT_KFQ00" title="鸟瞰图（西门）" onstart="" infoid="DUT_KFQ00" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ00.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="-0.784" vlookat="10.773" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ00.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ00.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,640,1152,2304,4608,9216" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ00.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_dm" ath="0.828" atv="25.147" distorted="false" zoom="false" linkedscene="scene_dut_kfq01" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ01" title="西门" onstart="" infoid="false" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ01.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ01.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ01.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ01.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="0.196" atv="17.908" distorted="false" zoom="false" linkedscene="scene_dut_kfq02" />
+		<hotspot name="spot2" style="skin_hotspotstyle_air" ath="180.098" atv="-45.293" distorted="false" zoom="false" linkedscene="scene_dut_kfq00" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ02" title="一楼大厅" onstart="" infoid="DUT_KFQ02" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ02.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ02.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ02.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ02.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-57.321" atv="8.454" distorted="false" zoom="false" linkedscene="scene_dut_kfq03" />
+		<hotspot name="spot2" style="skin_hs_ld" ath="-105.557" atv="-7.937" html="朗读亭" onclick="loadtxtinfo(langdu);"/>
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ03" title="二楼大厅" onstart="" infoid="DUT_KFQ03" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ03.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ03.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ03.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ03.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="163.566" atv="12.884" distorted="false" zoom="false" linkedscene="scene_dut_kfq04" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ04" title="二楼阅览室" onstart="" infoid="DUT_KFQ04" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ04.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ04.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ04.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ04.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-35.917" atv="10.678" distorted="false" zoom="false" linkedscene="scene_dut_kfq05" />
+		<hotspot name="spot2" style="skin_hotspotstyle_l" ath="67.600" atv="4.315" distorted="false" zoom="false" linkedscene="scene_dut_kfq09" />
+		<hotspot name="spot3" style="skin_hs_dy" ath="15.175" atv="-4.893" html="自助打印" onclick="loadtxtinfo(dayin);"/>
+		<hotspot name="spot4" style="skin_hs_cx" ath="28.798" atv="2.179" html="OPAC查询" onclick="loadtxtinfo(chaxun);"/>
+		<hotspot name="spot5" style="skin_hs_jh" ath="52.376" atv="-0.460" html="自助借还" onclick="loadtxtinfo(jiehuan);"/>
+		<hotspot name="spot6" style="skin_hs_yy" ath="-68.182" atv="4.535" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+		<hotspot name="spot7" style="skin_hs_sjj" ath="45.557" atv="0.437" html="杀菌机" onclick="loadtxtinfo(shajunji);"/>
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ05" title="二楼阅览室（图书阅览区）" onstart="" infoid="false" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ05.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ05.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ05.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ05.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-9.093" atv="11.338" distorted="false" zoom="false" linkedscene="scene_dut_kfq06" />
+		<hotspot name="spot2" style="skin_hs_yy" ath="-54.940" atv="9.955" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ06" title="二楼阅览室（图书阅览区）" onstart="" infoid="false" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ06.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ06.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ06.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ06.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="2.193" atv="12.037" distorted="false" zoom="false" linkedscene="scene_dut_kfq07" />
+		<hotspot name="spot2" style="skin_hs_yy" ath="-27.114" atv="8.781" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ07" title="二楼阅览室（图书阅览区）" onstart="" infoid="false" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ07.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ07.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ07.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ07.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-48.871" atv="12.620" distorted="false" zoom="false" linkedscene="scene_dut_kfq08" />
+		<hotspot name="spot2" style="skin_hs_yy" ath="110.039" atv="13.041" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ08" title="二楼阅览室（图书阅览区）" onstart="" infoid="false" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ08.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ08.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ08.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ08.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_r" ath="49.080" atv="12.606" distorted="false" zoom="false" linkedscene="scene_dut_kfq09" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="30.236" atv="10.609" distorted="false" zoom="false" linkedscene="scene_dut_kfq04" />
+		<hotspot name="spot3" style="skin_hs_yy" ath="-8.927" atv="10.386" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ09" title="三楼阅览室" onstart="" infoid="DUT_KFQ09" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ09.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ09.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ09.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ09.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-1.507" atv="9.485" distorted="false" zoom="false" linkedscene="scene_dut_kfq10" />
+		<hotspot name="spot2" style="skin_hs_yy" ath="-68.628" atv="6.929" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ10" title="三楼阅览室（报纸阅览区）" onstart="" infoid="false" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ10.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ10.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ10.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ10.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="38.854" atv="9.825" distorted="false" zoom="false" linkedscene="scene_dut_kfq11" />
+		<hotspot name="spot2" style="skin_hs_yy" ath="-11.498" atv="7.761" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ11" title="三楼阅览室（图书阅览区）" onstart="" infoid="false" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ11.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ11.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ11.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ11.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="42.485" atv="11.947" distorted="false" zoom="false" linkedscene="scene_dut_kfq12" />
+		<hotspot name="spot2" style="skin_hs_yy" ath="-2.016" atv="11.328" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ12" title="三楼阅览室（图书阅览区）" onstart="" infoid="false" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ12.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ12.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ12.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ12.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-5.438" atv="13.134" distorted="false" zoom="false" linkedscene="scene_dut_kfq13" />
+		<hotspot name="spot2" style="skin_hs_yy" ath="170.720" atv="15.826" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+
+	</scene>
+
+	<scene name="scene_DUT_KFQ13" title="三楼阅览室（期刊阅览区）" onstart="" infoid="false" group="c1" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUT_KFQ13.tiles/thumb.jpg" lat="" lng="" heading="">
+		
+		<control bouncinglimits="calc:image.cube ? true : false" />
+
+		<view hlookat="0.0" vlookat="0.0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUT_KFQ13.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUT_KFQ13.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg" multires="512,768,1664,3200,6400" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUT_KFQ13.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle_r" ath="4.038" atv="7.439" distorted="false" zoom="false" linkedscene="scene_dut_kfq04" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-10.101" atv="5.674" distorted="false" zoom="false" linkedscene="scene_dut_kfq09" />
+		<hotspot name="spot3" style="skin_hs_yy" ath="-66.448" atv="7.651" html="欢迎预约" onclick="loadtxtinfo(zuow);" />
+
+	</scene>
+
+
+</krpano>

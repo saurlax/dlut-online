@@ -1,0 +1,22 @@
+.godot/
+build/
+.DS_Store
+
+# Local acceptance notes and one-off capture scripts
+/docs/verification.md
+/apps/client/tests/capture.gd
+/apps/client/tests/capture.gd.uid
+/.local/
+
+# Generated local agent setup
+/.agents/
+
+# Reproducible offline model exchange outputs (runtime uses TSCN)
+/apps/client/assets/campuses/*/models/*.glb
+/apps/client/assets/campuses/*/models/*.glb.import
+/apps/client/assets/campuses/*/models/*_albedo.png
+/apps/client/assets/campuses/*/models/*_albedo.png.import
+
+# Python caches
+__pycache__/
+*.pyc
