@@ -1,0 +1,27 @@
+extends SceneTree
+func _initialize() -> void:
+	var map := preload("res://scripts/campus_map.gd").new()
+	root.add_child(map)
+	map.size = Vector2(800,600)
+	map.map_bounds = Rect2(-500,-500,1000,1000)
+	assert(map.map_scale == 2.0)
+	map.view_center = Vector2.ZERO
+	var pointer := Vector2(530,260)
+	var anchor := map.view_center+(pointer-map.size*0.5)/map.map_scale
+	map.zoom_at(pointer,1.2)
+	assert(anchor.is_equal_approx(map.view_center+(pointer-map.size*0.5)/map.map_scale))
+	map.pan_by(Vector2(100000,-100000))
+	var half := map.size/(map.map_scale*2)
+	assert(map.view_center.is_equal_approx(Vector2(-500+half.x,500-half.y)))
+	map.pan_by(Vector2(-200000,200000))
+	assert(map.view_center.is_equal_approx(Vector2(500-half.x,-500+half.y)))
+	map.zoom_at(pointer,1000)
+	assert(map.map_scale == map.MAX_SCALE)
+	map.zoom_at(pointer,0.00001)
+	assert(map.map_scale == map.MIN_SCALE)
+	assert(map.view_center == Vector2.ZERO)
+	map.size = Vector2(1600,900)
+	map.constrain_view()
+	assert(map.map_scale == map.MIN_SCALE and map.view_center==Vector2.ZERO)
+	print("PASS: fixed scale, cursor zoom anchor, zoom limits, pan bounds, oversized viewport centering")
+	quit()

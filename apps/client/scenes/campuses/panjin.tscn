@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/campus.gd" id="1"]
+[sub_resource type="StandardMaterial3D" id="GroundMaterial"]
+albedo_color = Color(0.34, 0.38, 0.32, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="GroundMesh"]
+size = Vector3(180, 2, 180)
+material = SubResource("GroundMaterial")
+
+[sub_resource type="StandardMaterial3D" id="BlockMaterial"]
+albedo_color = Color(0.57, 0.57, 0.54, 1)
+
+[sub_resource type="BoxMesh" id="BlockMesh"]
+size = Vector3(28, 10, 18)
+material = SubResource("BlockMaterial")
+
+[sub_resource type="BoxMesh" id="PathMesh"]
+size = Vector3(10, 0.08, 150)
+material = SubResource("BlockMaterial")
+
+[sub_resource type="ProceduralSkyMaterial" id="CampusSkyMaterial"]
+sky_top_color = Color(0.529412, 0.619608, 0.682353, 1)
+sky_horizon_color = Color(0.839216, 0.87451, 0.866667, 1)
+ground_horizon_color = Color(0.839216, 0.87451, 0.866667, 1)
+ground_bottom_color = Color(0.486275, 0.556863, 0.482353, 1)
+
+[sub_resource type="Sky" id="CampusSky"]
+sky_material = SubResource("CampusSkyMaterial")
+
+[sub_resource type="Environment" id="CampusEnvironment"]
+background_mode = 2
+sky = SubResource("CampusSky")
+ambient_light_source = 2
+ambient_light_color = Color(0.964706, 0.945098, 0.901961, 1)
+ambient_light_energy = 0.42
+
+[node name="Campus" type="Node3D"]
+script = ExtResource("1")
+campus_id = "panjin"
+spawn_position = Vector3(0, 0.35, 55)
+
+[node name="CampusModel" type="Node3D" parent="."]
+metadata/is_placeholder = true
+
+[node name="CampusBase" type="MeshInstance3D" parent="CampusModel"]
+position = Vector3(0, -1, 0)
+mesh = SubResource("GroundMesh")
+
+[node name="PlaceholderBlock" type="MeshInstance3D" parent="CampusModel"]
+position = Vector3(-28, 5, -12)
+mesh = SubResource("BlockMesh")
+metadata/walk_collision = true
+
+[node name="PlaceholderPath" type="MeshInstance3D" parent="CampusModel"]
+mesh = SubResource("PathMesh")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("CampusEnvironment")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-48, -28, 0)
+light_energy = 0.85
+shadow_enabled = true
+directional_shadow_max_distance = 250.0

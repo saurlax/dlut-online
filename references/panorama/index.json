@@ -1,0 +1,179 @@
+{
+  "source": "https://360.toowtech.com/dalian/DUT/",
+  "scene_config": "https://imgs.toowtech.com/dalian/DUT/toowtech_kfq.xml",
+  "retrieved": "2026-09-09",
+  "scenes": [
+    {
+      "id": "scene_DUT_KFQ00",
+      "title": "鸟瞰图（西门）",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,640,1152,2304,4608,9216",
+      "links": [
+        "scene_dut_kfq01"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ01",
+      "title": "西门",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ01.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq02",
+        "scene_dut_kfq00"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ02",
+      "title": "一楼大厅",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ02.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq03"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ03",
+      "title": "二楼大厅",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ03.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq04"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ04",
+      "title": "二楼阅览室",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ04.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq05",
+        "scene_dut_kfq09"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ05",
+      "title": "二楼阅览室（图书阅览区）",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ05.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq06"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ06",
+      "title": "二楼阅览室（图书阅览区）",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ06.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq07"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ07",
+      "title": "二楼阅览室（图书阅览区）",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ07.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq08"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ08",
+      "title": "二楼阅览室（图书阅览区）",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ08.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq09",
+        "scene_dut_kfq04"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ09",
+      "title": "三楼阅览室",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ09.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq10"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ10",
+      "title": "三楼阅览室（报纸阅览区）",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ10.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq11"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ11",
+      "title": "三楼阅览室（图书阅览区）",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ11.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq12"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ12",
+      "title": "三楼阅览室（图书阅览区）",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ12.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq13"
+      ]
+    },
+    {
+      "id": "scene_DUT_KFQ13",
+      "title": "三楼阅览室（期刊阅览区）",
+      "latitude": "",
+      "longitude": "",
+      "heading": "",
+      "cube_tiles": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ13.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+      "multires": "512,768,1664,3200,6400",
+      "links": [
+        "scene_dut_kfq04",
+        "scene_dut_kfq09"
+      ]
+    }
+  ]
+}
