@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 const WALK_SPEED := 6.0
 const RUN_SPEED := 13.0
+const JUMP_SPEED := 7.0
 const EYE_HEIGHT := 1.7
 const SPAWN := Vector3(12,0.35,387)
 var spawn_position := SPAWN
@@ -51,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= 20*delta
 	else:
-		velocity.y = 0
+		velocity.y = JUMP_SPEED if active and Input.is_action_just_pressed("jump") else 0.0
 	move_and_slide()
 	if position.y < -30:
 		position = spawn_position

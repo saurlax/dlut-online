@@ -27,7 +27,7 @@ func _ready() -> void:
 	hud.build(player, self)
 
 func _setup_input() -> void:
-	var keys := {"move_forward":KEY_W,"move_back":KEY_S,"move_left":KEY_A,"move_right":KEY_D,"run":KEY_SHIFT}
+	var keys := {"move_forward":KEY_W,"move_back":KEY_S,"move_left":KEY_A,"move_right":KEY_D,"run":KEY_SHIFT,"jump":KEY_SPACE}
 	for action in keys:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
