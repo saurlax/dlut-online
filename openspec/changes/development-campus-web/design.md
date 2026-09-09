@@ -64,3 +64,7 @@ Godot 项目整体迁移至 apps/client/，其内部 res:// 引用保持不变�
 ## Go 静态托管
 
 apps/server 使用独立 Go 模块与 Chi，读取客户端 Web 导出目录。/web 重定向至 /web/；文件缺失返回 404，不回退到首页，不开放目录列表，稳定文件名采用 no-cache 重新验证。首页、API、WebSocket 暂不实现。Go 验证通过后替换 Python 预览服务并删除旧脚本。
+
+## 服务镜像与 CI
+
+Go 使用 PORT 环境变量（空值默认 8060），监听所有网卡；显式 -addr 优先。无效端口启动失败。多阶段 Dockerfile 生成非 root 的 Go 镜像，将 Godot Web 导出一并复制到 /web，无需资源挂载。GitHub push/PR/手动触发测试、Web/Windows x86_64/macOS universal 导出、镜像构建及容器自定义端口验证。上传镜像 tar 和两种桌面 ZIP，保留 7 天，不发布 registry。构建上下文为仓库根目录，由 .dockerignore 仅允许服务器源码及 Web 导出资源。桌面产物不签名、不公证。

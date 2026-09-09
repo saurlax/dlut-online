@@ -1,4 +1,4 @@
-import urllib.request,struct,zlib,pathlib,json
+import urllib.request,struct,zlib,pathlib,json,sys
 meta=json.load(urllib.request.urlopen('https://api.github.com/repos/godotengine/godot-builds/releases/tags/4.7.2-stable', timeout=30))
 asset=next(a for a in meta['assets'] if a['name']=='Godot_v4.7.2-stable_export_templates.tpz')
 url=asset['browser_download_url']
@@ -11,11 +11,14 @@ def read_range(start,end):
 size=asset['size']; tail=read_range(size-65536,size-1)
 pos=tail.rfind(b'PK\x05\x06'); e=struct.unpack_from('<4s4H2LH',tail,pos)
 cd=read_range(e[6],e[6]+e[5]-1); p=0
-out=pathlib.Path.home()/'Library/Application Support/Godot/export_templates/4.7.2.stable';out.mkdir(parents=True,exist_ok=True)
+base = pathlib.Path.home()/('Library/Application Support' if sys.platform == 'darwin' else '.local/share')
+out=base/'Godot/export_templates/4.7.2.stable' if sys.platform == 'darwin' else base/'godot/export_templates/4.7.2.stable'
+out.mkdir(parents=True,exist_ok=True)
 while p<len(cd):
  h=struct.unpack_from('<4s6H3L5H2L',cd,p)
  name=cd[p+46:p+46+h[10]].decode();p+=46+h[10]+h[11]+h[12]
- if name.split('/')[-1] not in ('web_nothreads_release.zip','web_nothreads_debug.zip','version.txt'): continue
+ if name.split('/')[-1] not in ('web_nothreads_release.zip','web_nothreads_debug.zip','windows_release_x86_64.exe','macos.zip','version.txt'): continue
+ if (out/name.split('/')[-1]).exists(): continue
  print('Downloading',name,h[8],flush=True)
  local=read_range(h[16],h[16]+29);lh=struct.unpack('<4s5H3L2H',local)
  start=h[16]+30+lh[9]+lh[10];raw=read_range(start,start+h[8]-1)
