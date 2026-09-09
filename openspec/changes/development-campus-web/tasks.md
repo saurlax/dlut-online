@@ -80,3 +80,10 @@
 
 - [x] 15.1 添加 Go/Chi 资源托管及路由测试，替换 Python 服务与脚本。
 - [x] 15.2 验证 HTTP 资源和浏览器 /web/ 渲染。
+
+## 16. Docker 与 GitHub CI
+
+- [x] 16.1 实现 PORT 默认值及覆盖规则，添加多阶段 Dockerfile 和每次 push 的镜像构建工作流。
+- [x] 16.2 配置 Web/Windows/macOS 与桌面产物上传；本地完成三端导出、Go 测试、macOS 启动和内置资源容器 PORT 验证。
+
+验证限制：正式多阶段 Docker 构建受本地 Docker Hub 认证接口超时阻塞；以本机交叉编译的 Go 程序验证了相同 scratch 运行层。GitHub Actions 完整运行及产物上传待推送后确认，Windows 包未在 Windows 系统启动实测。

@@ -1,0 +1,91 @@
+name: Build DLUT Online
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GODOT_VERSION: 4.7.2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: apps/server/go.mod
+          cache-dependency-path: apps/server/go.sum
+      - name: Test and vet server
+        working-directory: apps/server
+        run: |
+          go test ./...
+          go vet ./...
+      - name: Install Godot and export templates
+        run: |
+          release="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
+          curl -fL --retry 3 "$release/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" -o "$RUNNER_TEMP/godot.zip"
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
+          sudo install "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
+          curl -fL --retry 3 "$release/Godot_v${GODOT_VERSION}-stable_export_templates.tpz" -o "$RUNNER_TEMP/templates.tpz"
+          unzip -q "$RUNNER_TEMP/templates.tpz" -d "$RUNNER_TEMP/godot-templates"
+          mkdir -p "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          mv "$RUNNER_TEMP/godot-templates/templates/"* "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable/"
+      - name: Export Web, Windows and macOS
+        working-directory: apps/client
+        run: |
+          godot --headless --editor --quit
+          mkdir -p build/web build/windows build/macos
+          godot --headless --export-release Web build/web/index.html
+          godot --headless --export-release Windows "build/windows/DLUT Online.exe"
+          godot --headless --export-release macOS "build/macos/DLUT Online.zip"
+          cd build/windows
+          zip -r "../DLUT-Online-Windows.zip" .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: client-windows-${{ github.sha }}
+          path: apps/client/build/DLUT-Online-Windows.zip
+          retention-days: 7
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: client-macos-${{ github.sha }}
+          path: apps/client/build/macos/DLUT Online.zip
+          retention-days: 7
+          if-no-files-found: error
+      - uses: docker/setup-buildx-action@v3
+      - name: Build server with Web client
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: apps/server/Dockerfile
+          platforms: linux/amd64
+          tags: dlut-online-server:${{ github.sha }}
+          outputs: type=docker,dest=${{ runner.temp }}/server-image.tar
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Check bundled Web client and PORT
+        env:
+          IMAGE: dlut-online-server:${{ github.sha }}
+        run: |
+          docker load --input "$RUNNER_TEMP/server-image.tar"
+          docker run -d --name server-check -e PORT=9090 -p 127.0.0.1:9090:9090 "$IMAGE"
+          trap 'docker logs server-check; docker rm -f server-check' EXIT
+          curl --fail --retry 10 --retry-connrefused --retry-delay 1 \
+            http://127.0.0.1:9090/web/ -o "$RUNNER_TEMP/response"
+          cmp "$RUNNER_TEMP/response" apps/client/build/web/index.html
+          curl --fail http://127.0.0.1:9090/web/index.pck -o "$RUNNER_TEMP/game.pck"
+          cmp "$RUNNER_TEMP/game.pck" apps/client/build/web/index.pck
+          curl --fail -I http://127.0.0.1:9090/web/index.wasm
+      - uses: actions/upload-artifact@v4
+        with:
+          name: server-image-${{ github.sha }}
+          path: ${{ runner.temp }}/server-image.tar
+          retention-days: 7
+          if-no-files-found: error

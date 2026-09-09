@@ -94,3 +94,17 @@ Godot 项目 SHALL 位于 apps/client/，内部资源引用保持以 project.god
 #### Scenario: 请求游戏资源
 - **WHEN** 浏览器访问 /web 或请求不存在的资源
 - **THEN** /web 重定向至 /web/，缺失资源返回 404，WASM 使用 application/wasm，目录不展示文件列表
+
+### Requirement: 服务容器与持续集成
+Go 服务 SHALL 支持 PORT 环境变量，默认 8060，显式 -addr 优先；CI SHALL 在每次 push 构建 Docker 镜像并提供下载产物。
+
+#### Scenario: 容器指定端口
+- **WHEN** 容器设置 PORT=9090 且镜像内置 Web 导出资源
+- **THEN** 服务在 9090 提供 /web/ 资源；未设置 PORT 使用 8060，无效端口启动失败
+
+### Requirement: 多平台构建产物
+CI SHALL 在每次 push 导出 Godot Web、Windows x86_64 和 macOS universal 客户端；Web SHALL 包含在 Go 镜像中，桌面客户端 SHALL 以 ZIP 上传为 Actions artifacts。
+
+#### Scenario: 下载构建产物
+- **WHEN** 一次构建成功
+- **THEN** 对应提交提供 Go+Web 镜像 tar、Windows ZIP、macOS ZIP；镜像无需额外挂载即可访问 /web/

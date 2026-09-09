@@ -40,3 +40,5 @@ Godot 客户端、角色物理碰撞、原生 UI 和 Web 导出配置；无需�
 仓库采用 apps/ 组织：现有 Godot 项目整体移入 apps/client/，同步工具、忽略规则和编辑器入口说明；本次不新增服务端或首页功能。
 
 资源托管改由 apps/server 的 Go/Chi 服务提供 /web/，删除 Python 预览脚本；首页及多人后端不在本轮范围。
+
+新增每次 push 的多平台构建：Go 支持 PORT（默认 8060），镜像内置 Godot Web，另提供 Windows x86_64 与 macOS universal 客户端 ZIP。
