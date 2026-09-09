@@ -129,3 +129,14 @@ Web 官方加载页 SHALL 展示已加载和总资源量（十进制 MB）及百
 #### Scenario: 下载与启动
 - **WHEN** 浏览器下载游戏资源
 - **THEN** 计数随官方进度更新，错误时隐藏计数并保留错误提示，引擎启动后移除加载层
+
+### Requirement: 桌面服务器配置
+桌面客户端 SHALL 使用 DO_ENV 和 DO_SERVER_URL，项目运行默认 development/http://localhost:8060，桌面导出默认 production/https://dlut.online。构建进程变量 SHALL 写入包内配置，运行时非空变量 SHALL 覆盖包内配置；显式环境选择其默认地址，显式服务器地址优先。Web SHALL 不注入桌面地址，本次 SHALL 不发起网络请求。
+
+#### Scenario: 本地与发布
+- **WHEN** 开发者运行项目或导出桌面客户端，且未提供覆盖变量
+- **THEN** 分别读取本地开发地址或包内生产地址，无需修改源码，导出不产生工作区配置残留
+
+#### Scenario: 自定义服务器
+- **WHEN** 构建或启动桌面客户端时指定 DO_SERVER_URL
+- **THEN** 配置入口返回指定的 HTTP(S) 根地址，运行时覆盖优先于构建值
