@@ -44,3 +44,19 @@ func TestWebRoutes(t *testing.T) {
 		})
 	}
 }
+
+func TestListenAddress(t *testing.T) {
+	for _, tc := range []struct{ port, want string }{
+		{"", ":8060"}, {"9090", ":9090"}, {"65535", ":65535"},
+	} {
+		got, err := listenAddress(tc.port)
+		if err != nil || got != tc.want {
+			t.Fatalf("PORT=%q: got %q, %v; want %q", tc.port, got, err, tc.want)
+		}
+	}
+	for _, port := range []string{"0", "65536", "-1", "abc", "127.0.0.1:8060"} {
+		if _, err := listenAddress(port); err == nil {
+			t.Errorf("accepted invalid PORT %q", port)
+		}
+	}
+}
