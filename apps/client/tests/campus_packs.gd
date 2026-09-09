@@ -1,6 +1,7 @@
 extends SceneTree
 
 const Loader = preload("res://scripts/campus_pack_loader.gd")
+const Streamer = preload("res://scripts/campus_streamer.gd")
 const Catalog = preload("res://scripts/campus_catalog.gd")
 var finished := false
 var succeeded := false
@@ -60,6 +61,7 @@ func _run() -> void:
 	check(await download(loader, "panjin"), "Already mounted pack must work without network")
 	loader.base_url = OS.get_cmdline_user_args()[0]
 	check(await download(loader, "eda"), "EDA pack must load")
+	Streamer.resource_base_url = OS.get_cmdline_user_args()[0]
 	change_scene_to_file(Catalog.CAMPUSES.eda.scene)
 	for i in 60:
 		await physics_frame

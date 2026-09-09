@@ -99,6 +99,8 @@ jobs:
           curl --fail -I http://127.0.0.1:9090/web/index.wasm
           godot --headless --main-pack "$GITHUB_WORKSPACE/apps/client/build/web/index.pck" \
             --script "$GITHUB_WORKSPACE/apps/client/tests/campus_packs.gd" -- http://127.0.0.1:9090/web/
+          godot --headless --main-pack "$GITHUB_WORKSPACE/apps/client/build/web/index.pck" \
+            --script "$GITHUB_WORKSPACE/apps/client/tests/campus_grid.gd" -- http://127.0.0.1:9090/web/
       - uses: actions/upload-artifact@v4
         with:
           name: server-image-${{ github.sha }}

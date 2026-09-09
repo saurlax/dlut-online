@@ -24,6 +24,9 @@ var transfer_panel: VBoxContainer
 var transfer_status: Label
 var transfer_progress: ProgressBar
 var retry_button: Button
+var grid_panel: VBoxContainer
+var grid_status: Label
+var grid_retry: Button
 var transfer_target := ""
 var transfer_failed := false
 var transfer_generation := 0
@@ -173,6 +176,11 @@ func _process(delta: float) -> void:
 			transfer_progress.value = 100.0 * pack_loader.downloaded / maxi(1, pack_loader.total)
 			transfer_status.text = "加载中  %.2f / %.2f MB" % [pack_loader.downloaded / 1000000.0, pack_loader.total / 1000000.0]
 		return
+	if is_instance_valid(grid_panel):
+		var stream: Node = campus.streamer
+		grid_panel.visible = stream.active and not switching and (stream.pending_count > 0 or stream.has_failures())
+		grid_status.text = ("加载失败  " if stream.has_failures() else "加载中  ") + "%.2f / %.2f MB" % [stream.downloaded / 1000000.0, stream.total / 1000000.0]
+		grid_retry.visible = stream.has_failures()
 	if capture_pending:
 		capture_elapsed += delta
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -238,6 +246,22 @@ func build_map() -> void:
 	connection_status.offset_bottom = -20
 	connection_status.text = network.status_text
 	network.status_changed.connect(func(value: String): connection_status.text = value)
+	grid_panel = VBoxContainer.new()
+	grid_panel.name = "GridDownload"
+	map_overlay.add_child(grid_panel)
+	grid_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	grid_panel.offset_left = -180
+	grid_panel.offset_right = 180
+	grid_panel.offset_top = -100
+	grid_panel.offset_bottom = -24
+	grid_status = Label.new()
+	grid_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	grid_panel.add_child(grid_status)
+	grid_retry = Button.new()
+	grid_retry.text = "重试"
+	grid_retry.pressed.connect(func(): campus.streamer.retry())
+	grid_panel.add_child(grid_retry)
+	grid_panel.hide()
 	transfer_panel = VBoxContainer.new()
 	transfer_panel.name = "CampusDownload"
 	map_overlay.add_child(transfer_panel)
@@ -292,6 +316,8 @@ func teleport(id: String) -> void:
 	if not map_overlay.visible:
 		map_was_playing = player.playing or capture_pending
 	switching = true
+	grid_panel.hide()
+	campus.streamer.suspend()
 	transfer_target = id
 	player.stop()
 	capture_pending = false
@@ -317,6 +343,7 @@ func retry_transfer() -> void:
 func cancel_transfer() -> void:
 	transfer_generation += 1
 	pack_loader.cancel()
+	campus.streamer.resume()
 	switching = false
 	transfer_panel.hide()
 	transfer_target = ""
