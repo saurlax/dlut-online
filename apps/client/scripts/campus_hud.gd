@@ -1,5 +1,10 @@
 extends CanvasLayer
 
+const GuestSession = preload("res://scripts/guest_session.gd")
+const PlayerNetwork = preload("res://scripts/player_network.gd")
+var identity_label: Label
+var network: Node
+
 const Catalog = preload("res://scripts/campus_catalog.gd")
 const MapView = preload("res://scripts/campus_map.gd")
 var campus: Node3D
@@ -56,9 +61,14 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	cover_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	cover_title.add_theme_font_size_override("font_size",48)
 	column.add_child(cover_title)
+	identity_label = Label.new()
+	identity_label.name = "GuestIdentity"
+	identity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	column.add_child(identity_label)
+	_prepare_guest()
 	enter_button = Button.new()
 	enter_button.name = "EnterCampus"
-	enter_button.text = "进入校园"
+	enter_button.text = "游客登录"
 	enter_button.custom_minimum_size.y = 52
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color("d3e1bb")
@@ -73,13 +83,26 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	enter_button.add_theme_color_override("font_pressed_color",Color("243d30"))
 	enter_button.pressed.connect(enter_campus)
 	column.add_child(enter_button)
+	network = PlayerNetwork.new()
+	campus.add_child(network)
+	network.configure(player, campus.campus_id)
 	build_map()
 	minimap.visible = Catalog.started
 	if Catalog.started or Catalog.arriving:
 		Catalog.arriving = false
 		enter_campus()
 
+func _prepare_guest() -> bool:
+	var ready := GuestSession.prepare()
+	identity_label.text = GuestSession.username if ready else "无法保存游客身份，请允许会话存储后重试"
+	return ready
+
 func enter_campus() -> void:
+	if not _prepare_guest():
+		return
+	player.guest_id = GuestSession.guest_id
+	player.username = GuestSession.username
+	network.start()
 	Catalog.started = true
 	has_entered = true
 	overlay.hide()
@@ -180,6 +203,16 @@ func build_map() -> void:
 		button.disabled = id == campus.campus_id
 		button.pressed.connect(teleport.bind(id))
 		campuses.add_child(button)
+	var connection_status := Label.new()
+	connection_status.name = "ConnectionStatus"
+	map_overlay.add_child(connection_status)
+	connection_status.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
+	connection_status.offset_left = 24
+	connection_status.offset_right = 440
+	connection_status.offset_top = -44
+	connection_status.offset_bottom = -20
+	connection_status.text = network.status_text
+	network.status_changed.connect(func(value: String): connection_status.text = value)
 	map_overlay.hide()
 
 func toggle_map() -> void:
