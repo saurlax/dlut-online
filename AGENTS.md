@@ -18,6 +18,8 @@
 
 ## 技术与代码规范
 
+- 项目自定义环境变量统一使用 `DO_` 前缀和大写下划线命名（DO 为 DLUT Online 简称）。环境名称使用 `DO_ENV`（`development` / `production`），服务器根地址使用 `DO_SERVER_URL`，不使用含义模糊的 `ENV`、`BASE_URL` 或 `BASEURL`。平台约定变量（如现有 `PORT`）保留其兼容用途，不作为项目自定义变量命名范例。
+- `DO_SERVER_URL` 包含协议、主机和可选端口，不含末尾斜杠及 `/api/v1/`、`/ws` 等接口路径；开发默认 `http://localhost:8060`，生产默认 `https://dlut.online`。Web 客户端默认使用同源服务器地址；环境变量的读取或注入须按平台实现，不能假定浏览器可读取服务端进程环境变量。
 - 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。Web 使用 Compatibility 渲染器和官方导出外壳。允许通过 html/head_include 定制加载标识和进度条样式，保留官方真实进度及错误处理；游戏内界面仍全部用 Godot。
 - 不引入外部前端框架、自定义 HTML 产品 UI 或 JavaScriptBridge 业务桥接。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
