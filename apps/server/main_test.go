@@ -24,7 +24,7 @@ func TestWebRoutes(t *testing.T) {
 		status int
 	}{
 		{"/web", 308}, {"/web/", 200}, {"/web/index.wasm", 200},
-		{"/web/missing.wasm", 404}, {"/web/empty/", 404}, {"/", 404}, {"/api/v1/missing", 404},
+		{"/web/missing.wasm", 404}, {"/web/empty/", 404}, {"/", 200}, {"/api/v1/missing", 404},
 	} {
 		t.Run(tc.path, func(t *testing.T) {
 			w := httptest.NewRecorder()

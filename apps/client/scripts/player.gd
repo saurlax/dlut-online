@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+const Movement = preload("res://scripts/shared/movement.gd")
 const WALK_SPEED := 6.0
 const RUN_SPEED := 13.0
 const JUMP_SPEED := 7.0
@@ -10,21 +11,16 @@ var username := ""
 var spawn_position := SPAWN
 var camera: Camera3D
 var playing := false
+var network_ready := false
+var jump_sequence := 0
+var visual_offset := Vector3.ZERO
 var drag_look := false
 var pitch := 0.0
 
 func _ready() -> void:
 	name = "Player"
 	position = spawn_position
-	floor_snap_length = 0.35
-	floor_max_angle = deg_to_rad(46)
-	var capsule := CapsuleShape3D.new()
-	capsule.radius = 0.35
-	capsule.height = 1.8
-	var shape := CollisionShape3D.new()
-	shape.shape = capsule
-	shape.position.y = 0.9
-	add_child(shape)
+	Movement.setup(self)
 	camera = Camera3D.new()
 	camera.name = "Eyes"
 	camera.position.y = EYE_HEIGHT
@@ -46,21 +42,20 @@ func movement_direction(input: Vector2) -> Vector3:
 	return (global_basis * Vector3(input.x,0,input.y)).normalized()
 
 func _physics_process(delta: float) -> void:
-	var active := playing and (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or drag_look)
-	var direction := movement_direction(Input.get_vector("move_left","move_right","move_forward","move_back")) if active else Vector3.ZERO
-	var speed := RUN_SPEED if active and Input.is_action_pressed("run") else WALK_SPEED
-	velocity.x = direction.x*speed
-	velocity.z = direction.z*speed
-	if not is_on_floor():
-		velocity.y -= 20*delta
-	else:
-		velocity.y = JUMP_SPEED if active and Input.is_action_just_pressed("jump") else 0.0
-	move_and_slide()
-	if position.y < -30:
-		position = spawn_position
-		velocity = Vector3.ZERO
+	var active := network_ready and playing and (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or drag_look)
+	var axis := Input.get_vector("move_left","move_right","move_forward","move_back") if active else Vector2.ZERO
+	var jumping := active and Input.is_action_just_pressed("jump")
+	if jumping: jump_sequence += 1
+	Movement.step(self, axis, active and Input.is_action_pressed("run"), jumping, delta, spawn_position)
+	visual_offset = visual_offset.lerp(Vector3.ZERO, minf(1.0, delta * 12))
+	camera.position = Vector3(0, EYE_HEIGHT, 0) + basis.inverse() * visual_offset
 
 func stop() -> void:
 	playing = false
 	drag_look = false
 	velocity = Vector3.ZERO
+
+func correct_position(offset: Vector3) -> void:
+	position += offset
+	if offset.length() < 2.0: visual_offset -= offset
+	else: visual_offset = Vector3.ZERO

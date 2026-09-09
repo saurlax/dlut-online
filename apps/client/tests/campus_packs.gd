@@ -28,6 +28,8 @@ func write_manifest(data: Dictionary, path: String) -> void:
 
 func _run() -> void:
 	create_timer(90).timeout.connect(func(): quit(2))
+	check(not ResourceLoader.exists("res://scripts/server/game_server.gd"), "Web must exclude game server code")
+	check(not ResourceLoader.exists("res://scenes/server.tscn"), "Web must exclude game server scene")
 	check(FileAccess.file_exists(Loader.MANIFEST), "Run against the exported Web PCK")
 	check(not FileAccess.file_exists(Catalog.CAMPUSES.eda.scene), "EDA scene must be absent from initial pack")
 	check(not FileAccess.file_exists(Catalog.CAMPUSES.eda.manifest), "EDA data must be absent from initial pack")
@@ -68,11 +70,19 @@ func _run() -> void:
 	check(current_scene.manifest.features.size() == 27, "Downloaded EDA must retain all features")
 	check(current_scene.player.is_on_floor(), "Downloaded campus spawn must be grounded")
 	current_scene.hud.enter_campus()
+	var network := root.get_node("GameNetwork")
+	while not network.welcomed:
+		await process_frame
+	var socket: WebSocketPeer = network.socket
+	var admission_id: String = network.admission_id
 	for id in ["lingshui", "panjin", "eda"]:
 		var previous: WeakRef = weakref(current_scene)
 		current_scene.hud.teleport(id)
-		for i in 45:
+		while current_scene == null or current_scene.campus_id != id or not network.transfer_phase.is_empty():
+			await process_frame
+		for i in 60:
 			await physics_frame
+		check(network.socket == socket and network.admission_id == admission_id, "Pack travel must preserve the authenticated connection")
 		check(previous.get_ref() == null, "Old campus must unload")
 		check(current_scene.campus_id == id, "Travel must arrive at destination")
 		check(current_scene.player.is_on_floor(), "Destination must be grounded")

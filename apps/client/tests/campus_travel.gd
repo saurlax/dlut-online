@@ -14,10 +14,12 @@ func _run() -> void:
 	assert(current_scene.campus_id == "lingshui")
 	assert(current_scene.player.is_on_floor())
 	assert(current_scene.has_node("CampusModel"))
+	var network := root.get_node("GameNetwork")
 	var world := current_scene
 	world.hud.enter_campus()
 	await create_timer(1.7).timeout
 	assert(world.player.playing)
+	assert(network.welcomed)
 	assert(not world.hud.overlay.visible)
 	world.hud.pause_exploration()
 	assert(not world.hud.overlay.visible and not world.player.playing)
@@ -43,10 +45,16 @@ func _run() -> void:
 	assert(world.hud.map_overlay.visible)
 	assert(not world.hud.minimap._has_point(Vector2.ZERO))
 	assert(world.hud.minimap._has_point(Vector2(74,74)))
+	var connection_id: String = network.admission_id
+	var socket: WebSocketPeer = network.socket
 	for destination in ["eda","panjin","lingshui","eda","lingshui"]:
 		var old: WeakRef = weakref(current_scene)
 		current_scene.hud.teleport(destination)
-		await settle(45)
+		for attempt in 600:
+			await process_frame
+			if current_scene != null and current_scene.campus_id == destination and network.transfer_phase.is_empty(): break
+		await settle(60)
+		assert(network.socket == socket and network.admission_id == connection_id,"Map change must preserve authenticated connection")
 		assert(old.get_ref()==null,"Old campus must unload")
 		assert(current_scene.campus_id==destination)
 		assert(not current_scene.hud.overlay.visible,"Travel must never show the cover again")

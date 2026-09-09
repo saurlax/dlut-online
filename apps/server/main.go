@@ -15,9 +15,13 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func router(webDir string) http.Handler {
+func router(webDir string, configs ...gameConfig) http.Handler {
 	r := chi.NewRouter()
-	r.Get("/ws", newPlayerHub().serve)
+	config := gameConfig{}
+	if len(configs) > 0 {
+		config = configs[0]
+	}
+	newGameAPI(config).routes(r)
 	r.Get("/web", func(w http.ResponseWriter, req *http.Request) {
 		http.Redirect(w, req, "/web/", http.StatusPermanentRedirect)
 	})
@@ -72,7 +76,15 @@ func main() {
 		os.Exit(1)
 	}
 	_ = mime.AddExtensionType(".wasm", "application/wasm")
-	server := &http.Server{Addr: *addr, Handler: router(*webDir), ReadHeaderTimeout: 5 * time.Second, IdleTimeout: 60 * time.Second}
+	config := gameConfig{upstream: os.Getenv("DO_GAME_SERVER_URL"), serviceToken: os.Getenv("DO_GAME_SERVICE_TOKEN"), adminToken: os.Getenv("DO_ADMIN_API_TOKEN")}
+	if config.upstream == "" {
+		config.upstream = "http://127.0.0.1:8061"
+	}
+	if len(config.serviceToken) < 32 || len(config.adminToken) < 32 || config.serviceToken == config.adminToken {
+		slog.Error("Set distinct DO_GAME_SERVICE_TOKEN and DO_ADMIN_API_TOKEN, at least 32 characters each")
+		os.Exit(1)
+	}
+	server := &http.Server{Addr: *addr, Handler: router(*webDir, config), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 10 * time.Second, MaxHeaderBytes: 16 * 1024, IdleTimeout: 60 * time.Second}
 	slog.Info("DLUT Online HTTP server", "address", *addr, "game", "/web/", "resources", *webDir)
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		slog.Error("HTTP server stopped", "error", err)

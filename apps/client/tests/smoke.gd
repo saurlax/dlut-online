@@ -29,6 +29,7 @@ func _run() -> void:
 		await physics_frame
 	Input.action_release("jump")
 	assert(player.is_on_floor(),"Paused jump must be ignored")
+	player.network_ready = true
 	player.drag_look = true
 	player.playing = true
 	var ground_y: float = player.position.y
@@ -57,6 +58,7 @@ func _run() -> void:
 	for i in 60:
 		await physics_frame
 	# Exercise the same input-driven controller in the embedded-browser fallback.
+	player.network_ready = true
 	player.drag_look = true
 	player.playing = true
 	Input.action_press("move_forward")

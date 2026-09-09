@@ -23,6 +23,8 @@
 
 ## Multiplayer Protocol
 
+以下为初始位置转发协议的历史记录。当前实现由 `godot-authoritative-server` 取代：客户端发送输入，Godot 计算权威运动，Go 签发不绑定校区的票据；切图保留连接。当前运行约定以 apps/server/README.md 和该变更为准。
+
 Go 使用 Gorilla WebSocket，在 `/ws` 接收 hello（id、campus、position、yaw），返回 welcome 和每秒 10 次同校区快照。服务器派生昵称，校验 ID、校区、有限位置和朝向、消息大小和发送频率；同 ID 新连接替换旧连接。浏览器校验同源 Origin，桌面允许无 Origin。客户端每秒发送 10 次状态，用插值显示其他玩家，切换场景关闭旧连接、清除旧代理。断线后自动退避重连，地图显示连接状态。游客 ID 不是认证凭证，当前同步为客户端位置上报，不提供防作弊或玩家间碰撞。
 
 远端角色为自然比例的简洁人形代理（头、躯干、四肢），仅用于表示联机玩家，独立于世界模型和本地胶囊碰撞。Web 使用原生 WebSocketPeer 和浏览器同源地址读取；桌面使用现有服务器配置。

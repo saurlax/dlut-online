@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/server/game_server.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/server/lingshui.scn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/server/eda.scn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/server/panjin.scn" id="4"]
+
+[node name="GameServer" type="Node"]
+script = ExtResource("1")
+
+[node name="lingshui" type="SubViewport" parent="."]
+own_world_3d = true
+size = Vector2i(2, 2)
+render_target_update_mode = 0
+
+[node name="World" parent="lingshui" instance=ExtResource("2")]
+
+[node name="eda" type="SubViewport" parent="."]
+own_world_3d = true
+size = Vector2i(2, 2)
+render_target_update_mode = 0
+
+[node name="World" parent="eda" instance=ExtResource("3")]
+
+[node name="panjin" type="SubViewport" parent="."]
+own_world_3d = true
+size = Vector2i(2, 2)
+render_target_update_mode = 0
+
+[node name="World" parent="panjin" instance=ExtResource("4")]
