@@ -9,7 +9,7 @@
 Go SHALL 提供简洁站点入口、现有 `/web/` 资源、版本化 HTTP API 和 `/ws` 游戏代理，保持 Web 同源与桌面根地址约定，不再承担玩家模拟或状态广播。
 
 #### Scenario: 浏览器及桌面访问
-- **WHEN** 浏览器访问首页并进入游戏，或桌面客户端使用 DO_SERVER_URL
+- **WHEN** 浏览器访问首页并进入游戏，或桌面客户端使用 DO_API_SERVER_URL
 - **THEN** 使用同一公开 HTTP(S) 根地址完成资源、票据和 WebSocket 请求，HTTPS 页面使用 WSS，跨源浏览器握手被拒绝
 
 ### Requirement: 一次性入场票据

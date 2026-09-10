@@ -18,12 +18,20 @@ func apiHandler(api *gameAPI, withSite bool) http.Handler {
 	return mux
 }
 
-func router(config gameConfig) http.Handler {
-	return apiHandler(newGameAPI(config), true)
+func testGameAPI(config gameConfig, endpoint string) *gameAPI {
+	api := newGameAPI(config)
+	if endpoint != "" {
+		api.resolveGameEndpoint = func() (string, bool) { return endpoint, true }
+	}
+	return api
+}
+
+func router(config gameConfig, endpoint string) http.Handler {
+	return apiHandler(testGameAPI(config, endpoint), true)
 }
 
 func TestDesktopRoutes(t *testing.T) {
-	handler := router(gameConfig{})
+	handler := router(gameConfig{}, "")
 	for _, path := range []string{"/web", "/web/", "/web/index.wasm", "/ws", "/api/v1/missing", "/assets/missing.js", "/assets/"} {
 		w := httptest.NewRecorder()
 		handler.ServeHTTP(w, httptest.NewRequest(http.MethodGet, path, nil))
@@ -57,12 +65,12 @@ func TestListenAddress(t *testing.T) {
 	} {
 		got, err := listenAddress(tc.port)
 		if err != nil || got != tc.want {
-			t.Fatalf("PORT=%q: got %q, %v; want %q", tc.port, got, err, tc.want)
+			t.Fatalf("API server port %q: got %q, %v; want %q", tc.port, got, err, tc.want)
 		}
 	}
 	for _, port := range []string{"0", "65536", "-1", "abc", "127.0.0.1:8415"} {
 		if _, err := listenAddress(port); err == nil {
-			t.Errorf("accepted invalid PORT %q", port)
+			t.Errorf("accepted invalid API server port %q", port)
 		}
 	}
 }
@@ -72,7 +80,7 @@ func TestEmbeddedAssets(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	handler := router(gameConfig{})
+	handler := router(gameConfig{}, "")
 	foundJS := false
 	for _, entry := range entries {
 		if !strings.HasSuffix(entry.Name(), ".js") {

@@ -11,7 +11,7 @@ import (
 )
 
 func TestAdmissionAndPresence(t *testing.T) {
-	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", apiKey: "service"})
+	g := testGameAPI(gameConfig{apiKey: "service"}, "enet://game.example.com:1949")
 	now := time.Now()
 	g.now = func() time.Time { return now }
 	r := apiHandler(g, false)
@@ -111,7 +111,7 @@ func TestAdmissionAndPresence(t *testing.T) {
 }
 
 func TestOriginAndTicketLimits(t *testing.T) {
-	g := newGameAPI(gameConfig{})
+	g := testGameAPI(gameConfig{}, "enet://game.example.com:1949")
 	r := apiHandler(g, false)
 	for _, path := range []string{"/api/v1/game/tickets"} {
 		method := "POST"
@@ -139,7 +139,7 @@ func TestOriginAndTicketLimits(t *testing.T) {
 }
 
 func TestAccountTicketUsesResolvedIdentity(t *testing.T) {
-	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", apiKey: "service"})
+	g := testGameAPI(gameConfig{apiKey: "service"}, "enet://game.example.com:1949")
 	g.resolveAccount = func(token string) (admission, bool) {
 		if token != "valid" {
 			return admission{}, false

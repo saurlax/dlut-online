@@ -4,7 +4,7 @@ func request(path: String) -> Dictionary:
 	var http := HTTPRequest.new()
 	root.add_child(http)
 	http.timeout = 5
-	assert(http.request(OS.get_environment("DO_SERVER_URL")+path) == OK)
+	assert(http.request(OS.get_environment("DO_API_SERVER_URL")+path) == OK)
 	var result: Array = await http.request_completed
 	http.queue_free()
 	assert(result[1] == 200)

@@ -4,12 +4,12 @@ services:
       context: .
       dockerfile: apps/api/Dockerfile
     ports:
-      - "127.0.0.1:${DO_HTTP_PORT:-8415}:8415"
+      - "127.0.0.1:${DO_API_SERVER_PORT:-8415}:${DO_API_SERVER_PORT:-8415}"
     environment:
       DO_ENV: ${DO_ENV:-development}
-      PORT: "8415"
-      DO_GAME_SERVER_URL: ${DO_GAME_SERVER_URL:-enet://127.0.0.1:1949}
+      DO_API_SERVER_PORT: ${DO_API_SERVER_PORT:-8415}
       DO_API_KEY: ${DO_API_KEY:?set a random API key}
+      PB_DATA_DIR: ${PB_DATA_DIR:-/data/pb_data}
       PB_ENCRYPTION_KEY: ${PB_ENCRYPTION_KEY:-}
     volumes:
       - web-data:/data
@@ -19,14 +19,15 @@ services:
     restart: unless-stopped
   game:
     ports:
-      - "127.0.0.1:${DO_GAME_PUBLIC_PORT:-1949}:1949/udp"
+      - "127.0.0.1:${DO_GAME_SERVER_PORT:-1949}:${DO_GAME_SERVER_PORT:-1949}/udp"
     build:
       context: .
       dockerfile: apps/game/tools/server_export/Dockerfile
     environment:
       DO_ENV: ${DO_ENV:-development}
-      DO_API_SERVER_URL: http://web.internal:8415
+      DO_API_SERVER_URL: http://web.internal:${DO_API_SERVER_PORT:-8415}
       DO_API_KEY: ${DO_API_KEY:?set the same API key as web}
+      DO_GAME_SERVER_PORT: ${DO_GAME_SERVER_PORT:-1949}
       DO_GAME_TLS_CERT: ${DO_GAME_TLS_CERT:-}
       DO_GAME_TLS_KEY: ${DO_GAME_TLS_KEY:-}
     volumes:

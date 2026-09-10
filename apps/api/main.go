@@ -5,7 +5,6 @@ import (
 	"log/slog"
 	"os"
 	"strconv"
-	"strings"
 
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
@@ -21,7 +20,7 @@ func listenAddress(port string) (string, error) {
 	}
 	n, err := strconv.Atoi(port)
 	if err != nil || n < 1 || n > 65535 {
-		return "", fmt.Errorf("invalid PORT %q: expected 1-65535", port)
+		return "", fmt.Errorf("invalid API server port %q: expected 1-65535", port)
 	}
 	return ":" + strconv.Itoa(n), nil
 }
@@ -44,24 +43,25 @@ func newApplication(dataDir string, config gameConfig) *pocketbase.PocketBase {
 }
 
 func main() {
-	addr, err := listenAddress(os.Getenv("PORT"))
+	port := os.Getenv("DO_API_SERVER_PORT")
+	if port == "" {
+		port = os.Getenv("PORT")
+	}
+	addr, err := listenAddress(port)
 	if err != nil {
 		slog.Error("Invalid listener configuration", "error", err)
 		os.Exit(1)
 	}
-	config := gameConfig{endpoint: os.Getenv("DO_GAME_SERVER_URL"), apiKey: os.Getenv("DO_API_KEY")}
-	if config.endpoint == "" {
-		config.endpoint = "enet://127.0.0.1:1949"
-	}
-	if !validGameEndpoint(config.endpoint) || (os.Getenv("DO_ENV") == "production" && !strings.HasPrefix(config.endpoint, "enets://")) {
-		slog.Error("DO_GAME_SERVER_URL must be an enet:// or enets:// host:port; production requires enets://")
+	config := gameConfig{environment: os.Getenv("DO_ENV"), apiKey: os.Getenv("DO_API_KEY")}
+	if config.environment != "" && config.environment != "development" && config.environment != "production" {
+		slog.Error("DO_ENV must be development or production")
 		os.Exit(1)
 	}
 	if len(config.apiKey) < 32 {
 		slog.Error("Set DO_API_KEY to a random value of at least 32 characters")
 		os.Exit(1)
 	}
-	dataDir := os.Getenv("DO_DATA_DIR")
+	dataDir := os.Getenv("PB_DATA_DIR")
 	if dataDir == "" {
 		dataDir = "pb_data"
 	}

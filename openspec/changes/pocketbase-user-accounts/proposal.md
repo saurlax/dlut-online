@@ -13,6 +13,7 @@
 
 ### New Capabilities
 - `user-accounts`: PocketBase 用户身份及账户生命周期。
+- `game-server-configuration`: PocketBase 管理的游戏服发现配置。
 
 ### Modified Capabilities
 

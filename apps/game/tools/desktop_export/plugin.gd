@@ -13,10 +13,10 @@ class DesktopExport extends EditorExportPlugin:
 			return
 		var config := Config.resolve(
 			{"environment": "production", "server_url": Config.DEFAULT_URLS.production},
-			OS.get_environment("DO_ENV"), OS.get_environment("DO_SERVER_URL"))
+			OS.get_environment("DO_ENV"), OS.get_environment("DO_API_SERVER_URL"))
 		if config.is_empty():
 			get_export_platform().add_message(EditorExportPlatform.EXPORT_MESSAGE_ERROR,
-				"Desktop configuration", "Invalid DO_ENV or DO_SERVER_URL.")
+				"Desktop configuration", "Invalid DO_ENV or DO_API_SERVER_URL.")
 			return
 		add_file(Config.CONFIG_PATH, JSON.stringify(config).to_utf8_buffer(), false)
 
