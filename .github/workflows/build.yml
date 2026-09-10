@@ -131,7 +131,7 @@ jobs:
           pb_test_password="$(openssl rand -base64 24)"
           docker exec web-check /dlut-online-web superuser upsert "$pb_test_email" "$pb_test_password"
           pb_token="$(curl --fail --silent --show-error http://127.0.0.1:9090/api/collections/_superusers/auth-with-password -H 'Content-Type: application/json' --data \"{\\\"identity\\\":\\\"$pb_test_email\\\",\\\"password\\\":\\\"$pb_test_password\\\"}\" | jq -r .token)"
-          curl --fail --silent --show-error http://127.0.0.1:9090/api/collections/game_servers/records -H 'Content-Type: application/json' -H "Authorization: Bearer $pb_token" --data '{"name":"ci","endpoint":"enet://127.0.0.1:9061","enabled":true}'
+          curl --fail --silent --show-error http://127.0.0.1:9090/api/collections/servers/records -H 'Content-Type: application/json' -H "Authorization: Bearer $pb_token" --data '{"name":"ci","endpoint":"enet://127.0.0.1:9061","enabled":true}'
           DO_API_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/enet_protocol.gd
           DO_API_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_travel.gd
           DO_API_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_transfer.gd

@@ -27,7 +27,7 @@ Godot 终端（继承相同的 `DO_API_KEY`）：
 godot --headless --path apps/game scenes/server.tscn
 ```
 
-Go `DO_API_SERVER_PORT` 默认 8415，也兼容部署平台提供的 `PORT`。PocketBase 数据默认写入 `apps/api/pb_data`；编译前需要构建 Vue 网站，运行时静态资源已嵌入 Go。首次启动后从 `/_/` 创建 PocketBase superuser，配置 SMTP、邮件模板、OAuth2/OIDC 提供方和 `game_servers` 游戏服端点。
+Go `DO_API_SERVER_PORT` 默认 8415，也兼容部署平台提供的 `PORT`。PocketBase 数据默认写入 `apps/api/pb_data`；编译前需要构建 Vue 网站，运行时静态资源已嵌入 Go。首次启动后从 `/_/` 创建 PocketBase superuser，配置 SMTP、邮件模板、OAuth2/OIDC 提供方和 `servers` 游戏服端点。
 
 | 环境变量 | 所属进程 | 默认或要求 |
 |---|---|---|
@@ -45,7 +45,7 @@ Go `DO_API_SERVER_PORT` 默认 8415，也兼容部署平台提供的 `PORT`。Po
 
 游戏服固定监听 `*`，单实例标识固定为 `main`。Compose 默认仅发布到宿主机回环地址；公网部署按实际网络配置修改绑定地址。
 
-客户端用 DO_API_SERVER_URL 访问 Go HTTP API，游戏端点由票据响应返回。DO_API_KEY 不进入客户端。游戏端点不是环境变量：在 PocketBase `game_servers` Collection 中创建记录，填写 `name`、客户端可达的 `endpoint` 并启用；同一时刻只允许一条启用记录。没有有效启用记录时，票据接口返回 503 `game_server_unavailable`。
+客户端用 DO_API_SERVER_URL 访问 Go HTTP API，游戏端点由票据响应返回。DO_API_KEY 不进入客户端。游戏端点不是环境变量：在 PocketBase `servers` Collection 中创建记录，填写 `name`、客户端可达的 `endpoint` 并启用；同一时刻只允许一条启用记录。没有有效启用记录时，票据接口返回 503 `game_server_unavailable`。
 
 ## HTTP 接口
 
@@ -91,7 +91,7 @@ Compose 服务名为 `web` 和 `game`，游戏服通过 `http://web.internal:841
 
 Compose 默认将 Go TCP 8415 和游戏 UDP 1949 绑定宿主机 127.0.0.1，用于本地开发；DO_API_SERVER_PORT 和 DO_GAME_SERVER_PORT 同时调整进程监听端口与宿主机映射，绑定地址直接修改 Compose 的 ports。Go 镜像不需要客户端文件。正式发布桌面包默认 production，编辑器默认 development；DO_API_SERVER_URL 显式覆盖 Go API 根地址，DO_ENV 显式指定环境，否则使用包内配置，不读取 .env。
 
-生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。在 PocketBase `game_servers.endpoint` 填写客户端可达地址，例如 enets://game.example.com:1949；不能填容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。开发 enet:// 为明文，只用于受控本地环境。Compose 固定将 ./.local/game-tls 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
+生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。在 PocketBase `servers.endpoint` 填写客户端可达地址，例如 enets://game.example.com:1949；不能填容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。开发 enet:// 为明文，只用于受控本地环境。Compose 固定将 ./.local/game-tls 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
 CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布游戏服 ghcr.io/saurlax/dlut-online 与 Go HTTP ghcr.io/saurlax/dlut-online-web 配套镜像；桌面未签名、macOS 未公证。
 

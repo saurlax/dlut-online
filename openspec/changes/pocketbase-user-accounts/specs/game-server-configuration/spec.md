@@ -2,7 +2,7 @@
 
 ### Requirement: 动态游戏服发现
 
-系统 SHALL 将客户端可达的游戏服端点保存于 PocketBase `game_servers` Collection，不使用环境变量保存或下发该端点。同一时刻 SHALL 最多启用一条记录；票据签发时 SHALL 读取当前启用端点并校验协议、主机和端口，生产环境 SHALL 只接受 `enets://`。
+系统 SHALL 将客户端可达的游戏服端点保存于 PocketBase `servers` Collection，不使用环境变量保存或下发该端点。同一时刻 SHALL 最多启用一条记录；票据签发时 SHALL 读取当前启用端点并校验协议、主机和端口，生产环境 SHALL 只接受 `enets://`。
 
 #### Scenario: 下发启用端点
 - **WHEN** 管理员配置一条有效启用记录且客户端请求入场票据

@@ -35,7 +35,7 @@ Go 保留 `apps/api/`，避免无必要迁移。Godot 服务端使用 `apps/game
 
 Go `/ws` 使用标准反向代理支持 Upgrade，继续执行浏览器同源 Origin 校验，桌面允许无 Origin。Godot 监听内网，生产以网络策略阻止外部直连，但自身仍验证票据及消息。不用 Godot 高层多人协议，继续 JSON，方便协议版本管理和独立自动化测试。
 
-新增项目配置统一 `DO_`：桌面客户端和 Godot 游戏服用 `DO_API_SERVER_URL` 访问 Go；`DO_GAME_SERVER_PORT` 配置游戏服 UDP 监听端口，监听地址固定为 `*`，实例标识固定为 `main`。客户端可达的 ENet 游戏端点存入 PocketBase `game_servers` Collection，由票据接口动态下发。Go、Godot 游戏服和后续可信平台使用 `DO_API_KEY`，通过 `Authorization: Bearer <DO_API_KEY>` 调用受保护的 `/api/v1/` 接口。API Key 仅由可信服务读取，不导出到客户端、不写入镜像或日志；生产缺失时拒绝启动，开发使用显式本地配置，不设置通用默认密钥。Go 优先使用 `DO_API_SERVER_PORT`，并兼容平台 `PORT`。
+新增项目配置统一 `DO_`：桌面客户端和 Godot 游戏服用 `DO_API_SERVER_URL` 访问 Go；`DO_GAME_SERVER_PORT` 配置游戏服 UDP 监听端口，监听地址固定为 `*`，实例标识固定为 `main`。客户端可达的 ENet 游戏端点存入 PocketBase `servers` Collection，由票据接口动态下发。Go、Godot 游戏服和后续可信平台使用 `DO_API_KEY`，通过 `Authorization: Bearer <DO_API_KEY>` 调用受保护的 `/api/v1/` 接口。API Key 仅由可信服务读取，不导出到客户端、不写入镜像或日志；生产缺失时拒绝启动，开发使用显式本地配置，不设置通用默认密钥。Go 优先使用 `DO_API_SERVER_PORT`，并兼容平台 `PORT`。
 
 ### 入场与游客身份
 

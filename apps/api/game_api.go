@@ -128,7 +128,7 @@ func newGameAPI(c gameConfig, apps ...core.App) *gameAPI {
 	if len(apps) > 0 && apps[0] != nil {
 		app := apps[0]
 		g.resolveGameEndpoint = func() (string, bool) {
-			record, err := app.FindFirstRecordByFilter("game_servers", "enabled = true")
+			record, err := app.FindFirstRecordByFilter("servers", "enabled = true")
 			if err != nil {
 				return "", false
 			}
