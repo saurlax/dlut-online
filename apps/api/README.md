@@ -101,14 +101,18 @@ CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布游戏服 ghcr.io/s
 
 ## 验证
 
-Go 目录运行 go test -race ./... 和 go vet ./...。启动空闲双服务后，在仓库根目录运行：
+Go 目录运行 `go test -race ./...` 和 `go vet ./...`。需要检查基础联通时，在完成网站构建后从仓库根运行：
 
 ```sh
-DO_API_SERVER_URL=http://127.0.0.1:8415 godot --headless --path apps/game --script tests/enet_protocol.gd
-DO_API_SERVER_URL=http://127.0.0.1:8415 godot --headless --path apps/game --script tests/campus_travel.gd
-DO_API_SERVER_URL=http://127.0.0.1:8415 godot --headless --path apps/game --script tests/campus_transfer.gd
-DO_API_SERVER_URL=http://127.0.0.1:8415 godot --headless --path apps/game --script tests/player_network.gd
-godot --headless --path apps/game --script tests/server_physics.gd
+(cd apps/api && go test -tags=integration -run '^TestENetSmoke$' -timeout 1m -v)
 ```
 
-协议测试包含 50 个真实 ENet 客户端，须独占测试游戏实例，不与其他联机检查并行。
+该 smoke 检查自动启动临时 API 和 Godot 游戏服，只连接两个客户端，验证取票入场、切图、两秒输入及快照确认；客户端限时 30 秒，进程限时 45 秒。不做满员或持续压测，不加入 CI 构建前置步骤。需要本机安装 Godot，游戏资源须已完成导入。
+
+已有空闲测试双服务时，也可直接运行同一 smoke 脚本：
+
+```sh
+DO_API_SERVER_URL=http://127.0.0.1:8415 python3 apps/game/tools/run_godot.py --headless --path apps/game --script tests/enet_protocol.gd
+```
+
+`campus_travel.gd`、`campus_transfer.gd`、`player_network.gd` 和 Go 的弱网、HTTP 故障恢复、DTLS 集成测试仅用于对应改动的专项检查，不作为每轮任务的必跑清单。碰撞改动仍运行 `server_physics.gd` 等相关物理检查。50 人容量是服务端上限，不要求每次验证都进行 50 人压测；容量压测仅在明确需要性能验收时另行安排。

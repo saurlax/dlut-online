@@ -4,6 +4,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
@@ -22,6 +23,47 @@ import (
 	"testing"
 	"time"
 )
+
+// Optional two-client smoke check; no capacity or sustained-load scenario.
+func TestENetSmoke(t *testing.T) {
+	ctx, cancel := context.WithTimeout(context.Background(), 45*time.Second)
+	defer cancel()
+	project, err := filepath.Abs("../game")
+	if err != nil {
+		t.Fatal(err)
+	}
+	reserved, err := net.ListenPacket("udp", "127.0.0.1:0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	address := reserved.LocalAddr().String()
+	reserved.Close()
+	_, port, _ := net.SplitHostPort(address)
+	service := randomID()
+	api := httptest.NewServer(router(gameConfig{apiKey: service}, "enet://"+address))
+	defer api.Close()
+	server := exec.CommandContext(ctx, "godot", "--headless", "--path", project, "scenes/server.tscn")
+	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_SERVER_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
+	var serverOutput bytes.Buffer
+	server.Stdout, server.Stderr = &serverOutput, &serverOutput
+	if err = server.Start(); err != nil {
+		t.Fatal(err)
+	}
+	defer func() {
+		server.Process.Kill()
+		server.Wait()
+		if t.Failed() {
+			t.Log(serverOutput.String())
+		}
+	}()
+	client := exec.CommandContext(ctx, "godot", "--headless", "--path", project, "--script", "tests/enet_protocol.gd")
+	client.Env = append(os.Environ(), "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
+	output, err := client.CombinedOutput()
+	if err != nil || bytes.Contains(output, []byte("SCRIPT ERROR")) || !bytes.Contains(output, []byte("PASS: ENet smoke")) {
+		t.Fatalf("smoke: %v\n%s", err, output)
+	}
+	t.Log(string(output))
+}
 
 // Runs the real Godot transport through a bounded UDP relay with delay, loss and reordering.
 func TestENetClientUnderLoss(t *testing.T) {
