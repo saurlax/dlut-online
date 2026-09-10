@@ -11,19 +11,26 @@ import {
 } from "naive-ui";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { campuses, isLive, parseOnline, type Online } from "./online";
+import mainBuilding from "./assets/main-building.jpg";
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
-    primaryColor: "#244d40",
-    primaryColorHover: "#173c2e",
-    primaryColorPressed: "#102f24",
-    primaryColorSuppl: "#315f50",
-    successColor: "#43865c",
-    borderRadius: "4px",
-    bodyColor: "#f4f5f0",
-    textColorBase: "#203b35",
-    fontFamily: 'Inter, "PingFang SC", "Microsoft YaHei", sans-serif',
+    primaryColor: "#0041b7",
+    primaryColorHover: "#245cce",
+    primaryColorPressed: "#00338f",
+    primaryColorSuppl: "#0041b7",
+    successColor: "#32745f",
+    borderRadius: "2px",
+    bodyColor: "#f6f5f1",
+    textColorBase: "#192b40",
+    textColor2: "#5c6877",
+    borderColor: "#d6dade",
+    fontFamily: '"PingFang SC", "Microsoft YaHei", sans-serif',
   },
+  Button: { heightLarge: "56px", fontSizeLarge: "15px", fontWeight: "500" },
+  Card: { color: "transparent", paddingMedium: "24px 32px" },
+  Statistic: { labelFontSize: "12px", valueFontSize: "36px", valueTextColor: "#192b40" },
+  Tag: { borderRadius: "2px" },
 };
 
 const data = ref<Online | null>(null);
@@ -96,96 +103,68 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <n-config-provider
-    :locale="zhCN"
-    :theme-overrides="themeOverrides"
-  >
+  <n-config-provider :locale="zhCN" :theme-overrides="themeOverrides">
     <n-global-style />
     <div class="site-shell">
       <header class="site-header">
-        <a class="brand" href="/" aria-label="DLUT Online 首页"
-          ><span class="brand-mark" aria-hidden="true">D</span>DLUT Online</a
-        >
-        <n-button
-          text
-          tag="a"
-          class="header-link"
-          href="https://github.com/saurlax/dlut-online"
-          >GitHub <span class="external" aria-hidden="true">↗</span></n-button
-        >
+        <a class="brand" href="/" aria-label="DLUT Online 首页">
+          <span class="brand-mark" aria-hidden="true">D<span>O</span></span>
+          <span>DLUT <span class="brand-light">Online</span></span>
+        </a>
+        <nav aria-label="主导航">
+          <a class="nav-link" href="#online">此刻校园</a>
+          <n-button text tag="a" class="header-link" href="https://github.com/saurlax/dlut-online">
+            GitHub <span class="external" aria-hidden="true">↗</span>
+          </n-button>
+        </nav>
       </header>
       <main>
-        <section class="intro" aria-labelledby="intro-title">
-          <p class="eyebrow">校园世界，正在连接</p>
-          <h1 id="intro-title">在熟悉的校园，<br />遇见新的日常。</h1>
-          <p class="intro-copy">
-            以大连理工大学为主题的第一人称校园世界。<br
-              class="desktop-break"
-            />走进校园，与此刻在线的同伴相遇。
-          </p>
-          <n-button
-            tag="a"
-            type="primary"
-            size="large"
-            class="download"
-            href="https://github.com/saurlax/dlut-online/releases"
-            >下载客户端 <span aria-hidden="true">↗</span></n-button
-          >
-          <p class="platforms">支持 Windows 与 macOS</p>
-        </section>
-        <section class="online-section" aria-labelledby="online-title">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">此刻的校园</p>
-              <h2 id="online-title">在线情况</h2>
-            </div>
-            <n-tag
-              round
-              size="small"
-              :type="live ? 'success' : 'default'"
-              class="status"
-              role="status"
-              ><span class="status-dot" />{{ status }}</n-tag
-            >
+        <section class="hero" aria-labelledby="intro-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line" /> 大连理工大学主题校园世界</p>
+            <h1 id="intro-title">重返校园，<br /><span>相逢此刻。</span></h1>
+            <p class="intro-copy">那些走过的路，还想再走一遍。<br />以第一人称走进大工，与在线的同伴相遇。</p>
+            <n-button tag="a" type="primary" size="large" class="download" href="https://github.com/saurlax/dlut-online/releases">
+              下载客户端 <span aria-hidden="true">↗</span>
+            </n-button>
+            <p class="platforms">Windows x86_64 <span>/</span> macOS universal</p>
           </div>
-          <div class="overview">
-            <n-statistic
-              class="total-value"
-              :value="live ? (data?.total ?? 0) : '—'"
-            >
-              <template #label>总在线人数</template>
-              <template v-if="live" #suffix><span>人</span></template>
-            </n-statistic>
-            <div class="status-copy">
-              <p>{{ explanation }}</p>
-              <p class="timestamp">最后上报：{{ updated }}</p>
+          <figure class="hero-visual">
+            <div class="photo-frame">
+              <img :src="mainBuilding" alt="阳光下的大连理工大学主楼，石材立面与门廊" width="1280" height="960" fetchpriority="high" />
+              <span class="photo-wordmark" aria-hidden="true">DLUT</span>
             </div>
+            <figcaption><span>主楼 / 校园实景</span><span aria-hidden="true">DALIAN UNIVERSITY OF TECHNOLOGY</span></figcaption>
+          </figure>
+          <div class="hero-bottom" aria-hidden="true"><span>熟悉的风景，新的相遇</span><span>向下探索 ↓</span></div>
+        </section>
+        <section id="online" class="online-section" aria-labelledby="online-title">
+          <div class="section-heading">
+            <div class="section-title"><span class="section-index" aria-hidden="true">01 /</span><h2 id="online-title">此刻，校园里</h2></div>
+            <n-tag size="small" :bordered="false" :type="live ? 'success' : 'default'" class="status" role="status">
+              <span class="status-dot" :class="{ 'is-live': live }" />{{ status }}
+            </n-tag>
           </div>
           <div class="campus-grid">
-            <n-card
-              v-for="campus in campuses"
-              :key="campus.id"
-              :bordered="false"
-              class="campus-card"
-            >
-              <div class="campus-top">
-                <span class="campus-number">{{ campus.number }}</span
-                ><span class="campus-state">{{
-                  live ? "当前在线" : "等待更新"
-                }}</span>
-              </div>
-              <h3>{{ campus.name }}</h3>
-              <n-statistic
-                class="campus-count"
-                :value="live ? (data?.campuses?.[campus.id] ?? 0) : '—'"
-              >
-                <template v-if="live" #suffix><span>人</span></template>
+            <n-card :bordered="false" class="campus-card total-card">
+              <div class="campus-top"><h3>总在线人数</h3><span aria-hidden="true">↗</span></div>
+              <n-statistic :value="live ? (data?.total ?? 0) : '—'">
+                <template v-if="live" #suffix><span class="count-unit">人</span></template>
               </n-statistic>
+              <span class="campus-caption">此刻同行</span>
+            </n-card>
+            <n-card v-for="campus in campuses" :key="campus.id" :bordered="false" class="campus-card">
+              <div class="campus-top"><h3>{{ campus.name }}</h3><span class="campus-number">{{ campus.number }}</span></div>
+              <n-statistic :value="live ? (data?.campuses?.[campus.id] ?? 0) : '—'">
+                <template v-if="live" #suffix><span class="count-unit">人</span></template>
+              </n-statistic>
+              <span class="campus-caption">{{ live ? '当前在线' : '等待更新' }}</span>
             </n-card>
           </div>
+          <div class="status-copy"><p>{{ explanation }}</p><p>最后上报：{{ updated }}</p></div>
         </section>
       </main>
-      <footer><span>DLUT Online</span><span>校园探索，从这里开始。</span></footer>
+      <footer><span class="footer-brand">DLUT Online</span><span>校园探索，从这里开始。</span><a href="https://github.com/saurlax/dlut-online">开源校园世界 <span aria-hidden="true">↗</span></a></footer>
     </div>
   </n-config-provider>
 </template>
