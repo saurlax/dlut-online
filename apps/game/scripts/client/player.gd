@@ -47,7 +47,12 @@ func _physics_process(delta: float) -> void:
 	var jumping := active and Input.is_action_just_pressed("jump")
 	if jumping: jump_sequence += 1
 	Movement.step(self, axis, active and Input.is_action_pressed("run"), jumping, delta, spawn_position)
-	visual_offset = visual_offset.lerp(Vector3.ZERO, minf(1.0, delta * 12))
+
+func _process(delta: float) -> void:
+	visual_offset *= exp(-12.0 * delta)
+	_update_camera_offset()
+
+func _update_camera_offset() -> void:
 	camera.position = Vector3(0, EYE_HEIGHT, 0) + basis.inverse() * visual_offset
 
 func stop() -> void:
@@ -59,3 +64,5 @@ func correct_position(offset: Vector3) -> void:
 	position += offset
 	if offset.length() < 2.0: visual_offset -= offset
 	else: visual_offset = Vector3.ZERO
+	# Position and its visual compensation must change atomically, before rendering.
+	_update_camera_offset()

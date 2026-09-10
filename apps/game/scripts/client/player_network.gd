@@ -48,6 +48,29 @@ var restore_playing := true
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	# Record the completed player step, not the position before its physics update.
+	process_physics_priority = 100
+
+func _physics_process(_delta: float) -> void:
+	if not welcomed or not transfer_phase.is_empty() or not is_instance_valid(player) or not history.has(sequence): return
+	var sample: Dictionary = history[sequence]
+	if sample.points.size() < 32:
+		sample.points.append(player.position)
+		sample.end_velocity = player.velocity
+
+func prediction_error(authoritative: Vector3, sample: Dictionary) -> Vector3:
+	var points: PackedVector3Array = sample.points.duplicate()
+	# An input sequence identifies an interval, not a single simulation instant.
+	# Allow only one fixed-step boundary of uncertainty, independent of RTT.
+	var step := 1.0 / Engine.physics_ticks_per_second
+	points.insert(0, points[0] - sample.start_velocity * step)
+	points.append(points[-1] + sample.end_velocity * step)
+	var closest := points[0]
+	for i in range(1, points.size()):
+		var candidate := Geometry3D.get_closest_point_to_segment(authoritative, points[i - 1], points[i])
+		if candidate.distance_squared_to(authoritative) < closest.distance_squared_to(authoritative):
+			closest = candidate
+	return authoritative - closest
 
 func configure(body: CharacterBody3D, campus: String) -> void:
 	_clear_remotes()
@@ -213,7 +236,8 @@ func _process(delta: float) -> void:
 	if elapsed >= 0.05 or (was_active and not moving):
 		elapsed = 0
 		sequence += 1
-		history[sequence] = player.position
+		history[sequence] = {"points":PackedVector3Array([player.position]),
+			"start_velocity":player.velocity, "end_velocity":player.velocity}
 		while history.size() > 80: history.erase(history.keys()[0])
 		var axis := Input.get_vector("move_left", "move_right", "move_forward", "move_back") if moving else Vector2.ZERO
 		_send({"type":"input", "seq":sequence, "axis":[axis.x,axis.y], "yaw":wrapf(player.rotation.y,-PI,PI),
@@ -292,14 +316,19 @@ func apply_self(m: Dictionary, reset: bool) -> void:
 		player.position = p
 		player.velocity = v
 		player.rotation.y = float(m.yaw)
+		player.visual_offset = Vector3.ZERO
+		player.correct_position(Vector3.ZERO)
 	else:
 		var ack := int(m.seq)
 		if history.has(ack):
-			var correction: Vector3 = p - history[ack]
+			var correction := prediction_error(p, history[ack])
 			player.correct_position(correction)
 			for key in history.keys():
-				if key <= ack: history.erase(key)
-				else: history[key] += correction
+				if key < ack: history.erase(key)
+				else:
+					var points: PackedVector3Array = history[key].points
+					for i in points.size(): points[i] += correction
+					history[key].points = points
 	player.network_ready = true
 
 func _apply_snapshot(states: Array) -> void:

@@ -23,7 +23,9 @@ func _run() -> void:
 	for frame in 90: await physics_frame
 	Input.action_release("move_forward")
 	for frame in 45: await physics_frame
-	assert(body.position.distance_to(before)>5,"Authoritative forward movement must progress under latency")
+	var distance := body.position.distance_to(before)
+	assert(distance > 8.0 and distance < 11.5,
+		"1.6 seconds of walking must stay near 9.6 metres, including bounded network start/stop delay")
 	var stable: Vector3 = body.position
 	body.position += Vector3(30,0,0)
 	for frame in 120: await physics_frame
