@@ -7,7 +7,7 @@ import (
 
 func init() {
 	m.Register(func(app core.App) error {
-		collection := core.NewBaseCollection("game_servers")
+		collection := core.NewBaseCollection("servers")
 		collection.Fields.Add(
 			&core.TextField{
 				Name:        "name",
@@ -26,8 +26,8 @@ func init() {
 				Name: "enabled",
 			},
 		)
-		collection.AddIndex("idx_game_servers_name", true, "name", "")
-		collection.AddIndex("idx_game_servers_one_enabled", true, "enabled", "enabled = TRUE")
+		collection.AddIndex("idx_servers_name", true, "name", "")
+		collection.AddIndex("idx_servers_one_enabled", true, "enabled", "enabled = TRUE")
 		return app.Save(collection)
 	}, func(app core.App) error { return nil })
 }

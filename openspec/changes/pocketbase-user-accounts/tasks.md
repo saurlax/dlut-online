@@ -7,4 +7,4 @@
 - [x] 1.5 验证 PocketBase Collection 与认证规则、游戏票据、Go/Vue 测试、Docker 构建和 OpenSpec，然后提交。
 - [x] 1.6 移除 Chi，将业务 API 和 Vue 站点直接注册到 PocketBase Router，并完成回归验证。
 - [x] 1.7 将服务接口统一到 `/api/v1/`，使用 DO_API_KEY 的 Bearer Auth，并清理旧凭据配置。
-- [x] 1.8 统一 API、游戏服端口和 PocketBase 数据目录变量，由 game_servers Collection 动态下发游戏服地址，并移除测试专用环境变量。
+- [x] 1.8 统一 API、游戏服端口和 PocketBase 数据目录变量，由 servers Collection 动态下发游戏服地址，并移除测试专用环境变量。

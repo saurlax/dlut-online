@@ -35,13 +35,13 @@ func TestPocketBaseUsersCollection(t *testing.T) {
 	if users.CreateRule == nil || !strings.Contains(*users.CreateRule, "disabled:isset = false") || users.UpdateRule == nil || !strings.Contains(*users.UpdateRule, "disabled:changed = false") {
 		t.Fatal("disabled field is not protected by API rules")
 	}
-	gameServers, err := app.FindCollectionByNameOrId("game_servers")
+	servers, err := app.FindCollectionByNameOrId("servers")
 	if err != nil {
 		t.Fatal(err)
 	}
 	for _, field := range []string{"name", "endpoint", "enabled"} {
-		if gameServers.Fields.GetByName(field) == nil {
-			t.Fatalf("missing game_servers field %q", field)
+		if servers.Fields.GetByName(field) == nil {
+			t.Fatalf("missing servers field %q", field)
 		}
 	}
 
@@ -87,11 +87,11 @@ func TestPocketBaseAccountTicket(t *testing.T) {
 	if err := app.Save(record); err != nil {
 		t.Fatal(err)
 	}
-	gameServers, err := app.FindCollectionByNameOrId("game_servers")
+	servers, err := app.FindCollectionByNameOrId("servers")
 	if err != nil {
 		t.Fatal(err)
 	}
-	server := core.NewRecord(gameServers)
+	server := core.NewRecord(servers)
 	server.Set("name", "main")
 	server.Set("endpoint", "enet://game.example.com:1949")
 	server.Set("enabled", true)
