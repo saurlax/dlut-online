@@ -21,7 +21,7 @@ func router(config gameConfig) http.Handler {
 
 func listenAddress(port string) (string, error) {
 	if port == "" {
-		port = "8060"
+		port = "8415"
 	}
 	n, err := strconv.Atoi(port)
 	if err != nil || n < 1 || n > 65535 {
@@ -43,7 +43,7 @@ func main() {
 	}
 	config := gameConfig{endpoint: os.Getenv("DO_GAME_SERVER_URL"), serviceToken: os.Getenv("DO_GAME_SERVICE_TOKEN"), adminToken: os.Getenv("DO_ADMIN_API_TOKEN")}
 	if config.endpoint == "" {
-		config.endpoint = "enet://127.0.0.1:8061"
+		config.endpoint = "enet://127.0.0.1:1949"
 	}
 	if !validGameEndpoint(config.endpoint) || (os.Getenv("DO_ENV") == "production" && !strings.HasPrefix(config.endpoint, "enets://")) {
 		slog.Error("DO_GAME_SERVER_URL must be an enet:// or enets:// host:port; production requires enets://")

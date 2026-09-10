@@ -110,7 +110,7 @@ jobs:
           export DO_ADMIN_API_TOKEN="$(openssl rand -hex 32)"
           docker network create game-check
           docker load --input "$RUNNER_TEMP/game-image.tar"
-          docker run -d --name game-check --network game-check -e DO_GAME_SERVICE_TOKEN -e DO_API_SERVER_URL=http://server-check:9090 -p 127.0.0.1:9061:8061/udp "dlut-online-game:${{ github.sha }}"
+          docker run -d --name game-check --network game-check -e DO_GAME_SERVICE_TOKEN -e DO_API_SERVER_URL=http://server-check:9090 -p 127.0.0.1:9061:1949/udp "dlut-online-game:${{ github.sha }}"
           docker run -d --name server-check --network game-check -e PORT=9090 -e DO_GAME_SERVICE_TOKEN -e DO_ADMIN_API_TOKEN -e DO_GAME_SERVER_URL=enet://127.0.0.1:9061 -p 127.0.0.1:9090:9090 "$IMAGE"
           trap 'docker logs server-check; docker logs game-check; docker rm -f server-check game-check; docker network rm game-check' EXIT
           curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:9090/

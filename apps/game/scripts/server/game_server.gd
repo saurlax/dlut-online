@@ -26,7 +26,7 @@ func _ready() -> void:
 	for id: String in MAPS:
 		worlds[id] = get_node(id + "/World")
 	var port_text := OS.get_environment("DO_GAME_PORT")
-	var port := 8061 if port_text.is_empty() else port_text.to_int()
+	var port := 1949 if port_text.is_empty() else port_text.to_int()
 	var address := OS.get_environment("DO_GAME_LISTEN_ADDR")
 	if address.is_empty(): address = "127.0.0.1"
 	if port < 1 or port > 65535 or listener.create_host_bound(address, port, MAX_CONNECTIONS, 2) != OK:

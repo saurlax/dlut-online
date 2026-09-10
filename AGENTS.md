@@ -19,7 +19,7 @@
 ## 技术与代码规范
 
 - 项目自定义环境变量统一使用 `DO_` 前缀和大写下划线命名（DO 为 DLUT Online 简称）。环境名称使用 `DO_ENV`（`development` / `production`），服务器根地址使用 `DO_SERVER_URL`，不使用含义模糊的 `ENV`、`BASE_URL` 或 `BASEURL`。平台约定变量（如现有 `PORT`）保留其兼容用途，不作为项目自定义变量命名范例。
-- `DO_SERVER_URL` 是 Go HTTP API 根地址，包含协议、主机和可选端口，不含末尾斜杠或接口路径；开发默认 `http://localhost:8060`，生产默认 `https://dlut.online`。客户端从 Go 获取一次性票据和游戏服公网地址后直连游戏服。
+- `DO_SERVER_URL` 是 Go HTTP API 根地址，包含协议、主机和可选端口，不含末尾斜杠或接口路径；开发默认 `http://localhost:8415`，生产默认 `https://dlut.online`。客户端从 Go 获取一次性票据和游戏服公网地址后直连游戏服。
 - 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。当前保留 Compatibility 渲染器，不因取消 Web 顺带变更渲染管线。
 - 不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，游客身份仅保留在客户端进程中。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
@@ -73,7 +73,7 @@
 
 - Go HTTP 服务位于 apps/web/，使用 Chi；负责站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/web/README.md。
 
-- CI 在每次 push 构建 Go HTTP 和 Godot 游戏服镜像，并导出 Windows x86_64 与 macOS universal ZIP；不构建或提交 Web 产物。Go PORT 默认 8060，显式 -addr 优先。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
+- CI 在每次 push 构建 Go HTTP 和 Godot 游戏服镜像，并导出 Windows x86_64 与 macOS universal ZIP；不构建或提交 Web 产物。Go PORT 默认 8415，显式 -addr 优先。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
 
 ## 权威游戏服务
 

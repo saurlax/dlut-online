@@ -3,7 +3,7 @@ extends RefCounted
 
 const CONFIG_PATH := "res://desktop_config.json"
 const DEFAULT_URLS := {
-	"development": "http://localhost:8060",
+	"development": "http://localhost:8415",
 	"production": "https://dlut.online",
 }
 

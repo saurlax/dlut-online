@@ -10,5 +10,5 @@ FROM scratch
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=build /out/server /server
 USER 65532:65532
-EXPOSE 8060
+EXPOSE 8415
 ENTRYPOINT ["/server"]

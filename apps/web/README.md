@@ -25,16 +25,16 @@ Godot 终端（继承相同的 `DO_GAME_SERVICE_TOKEN`）：
 godot --headless --path apps/game scenes/server.tscn
 ```
 
-Go `PORT` 默认 8060，`-addr` 优先；启动不需要 Web 导出目录。另开客户端使用 `godot --path apps/game`，不自动加载 `.env`。
+Go `PORT` 默认 8415，`-addr` 优先；启动不需要 Web 导出目录。另开客户端使用 `godot --path apps/game`，不自动加载 `.env`。
 
 | 环境变量 | 所属进程 | 默认或要求 |
 |---|---|---|
-| DO_GAME_SERVER_URL | Go | `enet://127.0.0.1:8061`，客户端可达的游戏端点；生产为 `enets://` |
+| DO_GAME_SERVER_URL | Go | `enet://127.0.0.1:1949`，客户端可达的游戏端点；生产为 `enets://` |
 | DO_GAME_SERVICE_TOKEN | 两个服务 | 相同的服务凭据，至少 32 字符 |
 | DO_ADMIN_API_TOKEN | Go | 独立的只读管理凭据，至少 32 字符 |
-| DO_API_SERVER_URL | Godot | `http://127.0.0.1:8060`，Go 内网 HTTP(S) 根地址 |
+| DO_API_SERVER_URL | Godot | `http://127.0.0.1:8415`，Go 内网 HTTP(S) 根地址 |
 | DO_GAME_LISTEN_ADDR | Godot | `127.0.0.1`，容器设为 `*`（IPv4/IPv6） |
-| DO_GAME_PORT | Godot | `8061` |
+| DO_GAME_PORT | Godot | `1949` |
 | DO_GAME_INSTANCE_ID | Godot | `main`，当前支持单游戏实例 |
 
 客户端用 DO_SERVER_URL 访问 Go HTTP API，游戏端点由票据响应返回。服务凭据不进入客户端。
@@ -77,9 +77,9 @@ docker compose build
 docker compose up -d
 ```
 
-Compose 默认将 Go TCP 8060 和游戏 UDP 8061 绑定宿主机 127.0.0.1，用于本地开发；DO_HTTP_BIND/DO_HTTP_PORT 和 DO_GAME_BIND/DO_GAME_PUBLIC_PORT 调整映射。Go 镜像不需要客户端文件。正式发布桌面包默认 production，编辑器默认 development；DO_SERVER_URL 显式覆盖 Go API 根地址，DO_ENV 显式指定环境，否则使用包内配置，不读取 .env。
+Compose 默认将 Go TCP 8415 和游戏 UDP 1949 绑定宿主机 127.0.0.1，用于本地开发；DO_HTTP_BIND/DO_HTTP_PORT 和 DO_GAME_BIND/DO_GAME_PUBLIC_PORT 调整映射。Go 镜像不需要客户端文件。正式发布桌面包默认 production，编辑器默认 development；DO_SERVER_URL 显式覆盖 Go API 根地址，DO_ENV 显式指定环境，否则使用包内配置，不读取 .env。
 
-生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。Go 的 DO_GAME_SERVER_URL 必须是客户端可达地址，例如 enets://game.example.com:8061；不要填 game:8061 等容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。开发 enet:// 为明文，只用于受控本地环境。Compose 使用 DO_GAME_TLS_DIR 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
+生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。Go 的 DO_GAME_SERVER_URL 必须是客户端可达地址，例如 enets://game.example.com:1949；不要填 game:1949 等容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。开发 enet:// 为明文，只用于受控本地环境。Compose 使用 DO_GAME_TLS_DIR 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
 CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布 ghcr.io/saurlax/dlut-online 和 ghcr.io/saurlax/dlut-online-game 配套镜像；桌面未签名、macOS 未公证。客户端与游戏服版本 3 不兼容旧 WebSocket 版本 2，迁移和回滚须协调三个组件。
 
@@ -88,10 +88,10 @@ CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布 ghcr.io/saurlax/dl
 Go 目录运行 go test -race ./... 和 go vet ./...。启动空闲双服务后，在仓库根目录运行：
 
 ```sh
-DO_SERVER_URL=http://127.0.0.1:8060 godot --headless --path apps/game --script tests/enet_protocol.gd
-DO_SERVER_URL=http://127.0.0.1:8060 godot --headless --path apps/game --script tests/campus_travel.gd
-DO_SERVER_URL=http://127.0.0.1:8060 godot --headless --path apps/game --script tests/campus_transfer.gd
-DO_SERVER_URL=http://127.0.0.1:8060 godot --headless --path apps/game --script tests/player_network.gd
+DO_SERVER_URL=http://127.0.0.1:8415 godot --headless --path apps/game --script tests/enet_protocol.gd
+DO_SERVER_URL=http://127.0.0.1:8415 godot --headless --path apps/game --script tests/campus_travel.gd
+DO_SERVER_URL=http://127.0.0.1:8415 godot --headless --path apps/game --script tests/campus_transfer.gd
+DO_SERVER_URL=http://127.0.0.1:8415 godot --headless --path apps/game --script tests/player_network.gd
 godot --headless --path apps/game --script tests/server_physics.gd
 ```
 
