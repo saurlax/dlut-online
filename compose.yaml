@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: apps/web/Dockerfile
+      dockerfile: apps/api/Dockerfile
     ports:
       - "${DO_HTTP_BIND:-127.0.0.1}:${DO_HTTP_PORT:-8415}:8415"
     environment:

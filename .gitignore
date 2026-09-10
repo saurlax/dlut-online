@@ -20,3 +20,8 @@ build/
 # Python caches
 __pycache__/
 *.pyc
+
+# Website dependencies and generated embedded assets
+/apps/web/node_modules/
+/apps/web/dist/
+/apps/api/static/

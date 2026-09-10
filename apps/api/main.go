@@ -16,6 +16,7 @@ import (
 func router(config gameConfig) http.Handler {
 	r := chi.NewRouter()
 	newGameAPI(config).routes(r)
+	r.Get("/*", siteHandler().ServeHTTP)
 	return r
 }
 

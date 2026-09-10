@@ -10,7 +10,7 @@
 
 apps/game 是一个 Godot 项目，scripts/client 放客户端交互、UI、预测联网与桌面配置；scripts/server 放权威服务和 Go 内部接口适配；scripts/shared 放运动、碰撞、协议和校区注册表。scenes/campuses 保留完整客户端地图，scenes/server 保留生成的碰撞世界，入口场景不做额外重命名。
 
-apps/web 保留当前 Go 源码布局，负责站点及 HTTP API；程序构建为 dlut-online-web，现有 Go 模块名保持兼容，不因目录名称增加 package 分层。
+apps/api 保留当前 Go 源码布局，负责站点及 HTTP API；程序构建为 dlut-online-web，现有 Go 模块名保持兼容，不因目录名称增加 package 分层。
 
 references、openspec、AGENTS.md、Compose 与 CI 保留根目录职责。本地 .local、docs/verification.md、Godot 缓存和 build 仅为工作区资料，不提交也不删除。历史变更内的路径引用同步新位置，保留历史行为描述。
 

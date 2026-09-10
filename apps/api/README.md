@@ -1,6 +1,6 @@
 # Go 服务与 Godot 游戏服
 
-Go 使用 Chi，负责首页、入场票据和在线查询。Godot 独立进程负责权威移动、校园碰撞与同校区玩家同步。没有真实 SSO、数据库、持久账号或历史分析；游客 ID 不是账户凭据。
+Go 位于 apps/api，使用 Chi，负责网站托管、入场票据和在线查询。Vue 3 + TypeScript + Vite 网站位于 apps/web，展示公开在线人数与客户端入口。Godot 独立进程负责权威移动、校园碰撞与同校区玩家同步。没有真实 SSO、数据库、持久账号或历史分析；游客 ID 不是账户凭据。
 
 ## 本地运行
 
@@ -15,7 +15,9 @@ godot --headless --path apps/game --script tools/server_export/build_worlds.gd
 Go 终端（继承上述两个变量）：
 
 ```sh
-cd apps/web
+pnpm --dir apps/web install --frozen-lockfile
+pnpm --dir apps/web build
+cd apps/api
 go run .
 ```
 
@@ -25,7 +27,7 @@ Godot 终端（继承相同的 `DO_GAME_SERVICE_TOKEN`）：
 godot --headless --path apps/game scenes/server.tscn
 ```
 
-Go `PORT` 默认 8415，`-addr` 优先；启动不需要 Web 导出目录。另开客户端使用 `godot --path apps/game`，不自动加载 `.env`。
+Go `PORT` 默认 8415，`-addr` 优先；编译前需要构建 Vue 网站，运行时静态资源已嵌入 Go。另开客户端使用 `godot --path apps/game`，不自动加载 `.env`。
 
 | 环境变量 | 所属进程 | 默认或要求 |
 |---|---|---|
@@ -84,6 +86,10 @@ Compose 默认将 Go TCP 8415 和游戏 UDP 1949 绑定宿主机 127.0.0.1，用
 生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。Go 的 DO_GAME_SERVER_URL 必须是客户端可达地址，例如 enets://game.example.com:1949；不要填 game:1949 等容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。开发 enet:// 为明文，只用于受控本地环境。Compose 使用 DO_GAME_TLS_DIR 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
 CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布游戏服 ghcr.io/saurlax/dlut-online 与 Go HTTP ghcr.io/saurlax/dlut-online-web 配套镜像；桌面未签名、macOS 未公证。客户端与游戏服版本 3 不兼容旧 WebSocket 版本 2，迁移和回滚须协调三个组件。
+
+## 网站开发
+
+在仓库根运行 `pnpm --dir apps/web dev`，Vite 将 `/api` 代理至本机 Go 8415。网站构建输出 `apps/api/static/`，该目录不提交。Go 的测试与编译需要先完成前端构建；Docker 会自动完成。仅公开总人数、校区人数与时效，不请求管理员接口。生产仍只运行 `game`、`web` 两个容器，不额外运行 Node。
 
 ## 验证
 
