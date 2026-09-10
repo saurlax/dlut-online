@@ -33,7 +33,6 @@ h1 { font-size: clamp(58px, 7.5vw, 112px); line-height: 1.2; margin: 0 0 30px; t
 .hero-description { font-size: 14px; line-height: 2; margin: 0 0 38px; color: #f0f2f6; }
 .primary-cta.n-button { min-width: 246px; padding-inline: 28px; }
 .primary-cta .n-button__content { width: 100%; justify-content: space-between; gap: 38px; }
-.platforms { font-size: 10px; color: #d0daea; margin: 16px 0 0; }
 .world-section { padding: 120px max(6%, calc((100% - 1280px) / 2)); background: var(--paper); }
 .world-heading { align-items: center; }
 h2 { font-size: clamp(36px, 4vw, 56px); line-height: 1.4; margin: 0; }
@@ -55,10 +54,6 @@ h2 { font-size: clamp(36px, 4vw, 56px); line-height: 1.4; margin: 0; }
 .scene-number { font-family: Georgia, serif; font-size: 76px; line-height: 1; color: #8295b1; margin-bottom: 24px; }
 .scene-copy h3 { font-family: var(--serif); font-size: 30px; font-weight: 400; margin: 0 0 14px; }
 .scene-copy p { font-size: 12px; line-height: 1.9; color: #afbccd; margin: 0; min-height: 48px; }
-.download-section { padding: 100px 24px; text-align: center; color: white; background: #003ca9; border-top: 1px solid #ffffff1a; }
-.download-section .eyebrow { color: #c2d5fa; }
-.download-section h2 { font-size: clamp(44px, 5vw, 68px); }
-.download-copy { margin: 24px 0 32px; color: #e0e9fa; font-size: 13px; }
 footer { padding: 36px 6%; background: #091321; color: #c1cbda; font-size: 11px; }
 footer .brand { font-size: 20px; color: white; }
 @media (max-width: 1000px) {
@@ -89,8 +84,6 @@ footer .brand { font-size: 20px; color: white; }
   .scene-number { position: absolute; right: 0; top: 28px; font-size: 48px; opacity: .6; }
   .scene-copy { padding-right: 60px; }
   .scene-copy h3 { font-size: 28px; }
-  .download-section { padding: 72px 24px; }
-  .download-section h2 { font-size: 44px; }
   footer { padding: 28px 24px; flex-wrap: wrap; font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -123,3 +116,16 @@ footer .brand { font-size: 20px; color: white; }
 .scene-picker { margin-top: auto; }
 .world-notes .n-list-item { padding: 24px 0; }
 .site-header > .n-flex, footer > .n-flex { width: 100%; }
+
+.news-section { padding: 88px max(6%, calc((100% - 1280px) / 2)); }
+.events-section { background: #eeeee9; }
+.updates-section { background: var(--paper); }
+.section-content { margin-top: 40px; }
+.event-calendar { height: 420px; }
+.event-empty { padding: 48px 0 24px; }
+@media (max-width: 700px) {
+  .news-section { padding: 64px 24px; }
+  .event-calendar { height: 360px; }
+  .event-calendar .n-calendar-date { flex-direction: column; height: auto; gap: 6px; }
+  .event-calendar .n-calendar-date__day { white-space: nowrap; font-size: 11px; }
+}
