@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NButton, NConfigProvider, NGlobalStyle, zhCN, type GlobalThemeOverrides } from "naive-ui";
+import { NButton, NCard, NConfigProvider, NFlex, NGlobalStyle, NGrid, NGi, NImage, NList, NListItem, NPageHeader, NP, NRadioButton, NRadioGroup, NTag, NText, NThing, zhCN, type GlobalThemeOverrides } from "naive-ui";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import mainBuilding from "./assets/main-building.jpg";
 import library from "./assets/library.jpg";
@@ -12,9 +12,12 @@ const themeOverrides: GlobalThemeOverrides = {
   common: {
     primaryColor: "#0041b7", primaryColorHover: "#245cce",
     primaryColorPressed: "#00338f", primaryColorSuppl: "#0041b7",
-    borderRadius: "0px", bodyColor: "#f6f5f1", textColorBase: "#142338",
+    borderRadius: "4px", bodyColor: "#f6f5f1", textColorBase: "#142338",
     textColor2: "#586371", fontFamily: '"PingFang SC", "Microsoft YaHei", sans-serif',
   },
+  Card: { borderRadius: "8px" },
+  PageHeader: { titleFontSize: "28px" },
+  List: { color: "transparent" },
   Button: { heightLarge: "56px", fontSizeLarge: "14px", fontWeight: "500" },
 };
 const isDownloadPage = /^\/download\/?$/.test(window.location.pathname);
@@ -22,6 +25,7 @@ const platform = detectDesktopPlatform(navigator.userAgent, navigator.platform, 
 const recommended = platform ? downloads[platform] : null;
 const downloadUrl = recommended?.url ?? "/download";
 const downloadLabel = recommended?.button ?? "选择桌面版本";
+function goHome() { window.location.assign("/"); }
 if (isDownloadPage) document.title = "下载客户端 | DLUT Online";
 const video = ref<HTMLVideoElement | null>(null);
 const videoFailed = ref(false);
@@ -59,26 +63,29 @@ const currentScene = computed(() => scenes[selected.value]!);
   <n-config-provider :locale="zhCN" :theme-overrides="themeOverrides">
     <n-global-style />
     <div class="landing" :class="{ 'download-page': isDownloadPage }">
-      <header class="site-header">
+      <header class="site-header"><n-flex justify="space-between" align="center" :wrap="false">
         <a class="brand" href="/" aria-label="DLUT Online 首页">DLUT <span>Online</span></a>
         <nav aria-label="主导航">
           <n-button tag="a" href="/download" ghost color="#ffffff" class="nav-download">下载客户端 <span aria-hidden="true">↗</span></n-button>
         </nav>
-      </header>
+      </n-flex></header>
       <main v-if="isDownloadPage" class="download-content">
-        <p class="eyebrow">DLUT Online</p>
-        <h1>选择你的桌面版本</h1>
-        <p class="download-intro">支持 Windows x86_64 和 macOS Universal。</p>
-        <div class="download-options">
-          <section v-for="(item, key) in downloads" :key="key" class="download-option" :class="{ recommended: platform === key }" :aria-labelledby="'platform-' + key">
-            <p class="recommendation">{{ platform === key ? '适用于当前系统' : '桌面客户端' }}</p>
-            <h2 :id="'platform-' + key">{{ item.label }}</h2>
-            <p>{{ item.architecture }}</p>
-            <n-button tag="a" :href="item.url" type="primary" size="large">{{ item.button }} <span aria-hidden="true">↗</span></n-button>
-          </section>
-        </div>
-        <p class="download-help">通过 GitHub Releases 获取对应系统的客户端安装包。</p>
-        <a class="back-home" href="/">返回首页 ↗</a>
+        <n-page-header @back="goHome">
+          <template #back><n-button text aria-label="返回首页">←</n-button></template>
+          <template #title><h1 class="download-title">选择你的桌面版本</h1></template>
+          <template #header><n-text depth="3">DLUT Online</n-text></template>
+          <template #footer><n-text depth="3">支持 Windows x86_64 和 macOS Universal。</n-text></template>
+        </n-page-header>
+        <n-grid cols="1 m:2" responsive="screen" :x-gap="24" :y-gap="24" class="download-options">
+          <n-gi v-for="(item, key) in downloads" :key="key">
+            <n-card size="large" :title="item.label" :class="{ recommended: platform === key }" class="download-option">
+              <template #header-extra><n-tag v-if="platform === key" type="primary" size="small" :bordered="false">当前系统</n-tag></template>
+              <n-text depth="3">{{ item.architecture }}</n-text>
+              <template #action><n-button tag="a" :href="item.url" type="primary" size="large" block>{{ item.button }} <span aria-hidden="true">↗</span></n-button></template>
+            </n-card>
+          </n-gi>
+        </n-grid>
+        <n-p depth="3" class="download-help">通过 GitHub Releases 获取对应系统的客户端安装包。</n-p>
       </main>
       <main v-else>
         <section id="home" class="hero" aria-labelledby="hero-title">
@@ -91,41 +98,43 @@ const currentScene = computed(() => scenes[selected.value]!);
             <h1 id="hero-title">大工，再相逢</h1>
             <p class="hero-description">探索校园、查看地图，与其他玩家一同漫游。</p>
             <n-button tag="a" :href="downloadUrl" type="primary" size="large" class="primary-cta">{{ downloadLabel }} <span aria-hidden="true">↗</span></n-button>
-            <a class="other-downloads" href="/download">其他下载</a>
+            <n-button text tag="a" class="other-downloads" color="#e0e9fa" href="/download">其他下载</n-button>
           </div>
         </section>
 
         <section id="world" class="world-section" aria-labelledby="world-title">
-          <div class="world-heading">
-            <p class="eyebrow">01 / 游戏介绍</p>
+          <p class="eyebrow">01 / 游戏介绍</p>
+          <n-grid cols="1 m:2" responsive="screen" :x-gap="64" :y-gap="28" class="world-heading"><n-gi>
             <h2 id="world-title">第一人称<br />校园探索</h2>
-            <div class="world-copy">
+            </n-gi><n-gi><div class="world-copy">
               <p>DLUT Online 是以大连理工大学为主题的多人在线校园游戏。你将以第一人称进入校园，在教学楼、广场与道路之间自由行走，观察身边的建筑与环境。</p>
               <p>通过校园地图查看位置与建筑分布，选择校区进行传送。进入校园后，你可以看到同校区的其他玩家，在共同的场景中探索。</p>
-            </div>
-          </div>
-          <div class="world-details">
-            <figure class="garden-photo"><img :src="garden" alt="校园小路上的阳光与树影" width="1280" height="960" loading="lazy" /><figcaption>主楼旁的步行空间<span>校园实景</span></figcaption></figure>
-            <div class="world-notes">
-              <div><span class="note-number">01</span><h3>自由漫游</h3><p>自由行走与奔跑，<br />转动视角观察校园环境。</p></div>
-              <div><span class="note-number">02</span><h3>校园地图</h3><p>查看位置与建筑分布，<br />通过地图切换校区。</p></div>
-              <div><span class="note-number">03</span><h3>多人同游</h3><p>实时看到同校区玩家，<br />在同一场景中自由探索。</p></div>
-            </div>
-          </div>
+            </div></n-gi>
+          </n-grid>
+          <n-grid cols="1 m:2" responsive="screen" :x-gap="64" :y-gap="32" class="world-details"><n-gi>
+            <figure class="garden-photo"><n-image :src="garden" alt="校园小路上的阳光与树影" object-fit="cover" lazy preview-disabled /><figcaption>主楼旁的步行空间<span>校园实景</span></figcaption></figure>
+            </n-gi><n-gi>
+              <n-list class="world-notes">
+                <n-list-item><n-thing title="自由漫游" description="自由行走与奔跑，转动视角观察校园环境。"><template #avatar><n-tag :bordered="false" type="primary">01</n-tag></template></n-thing></n-list-item>
+                <n-list-item><n-thing title="校园地图" description="查看位置与建筑分布，通过地图切换校区。"><template #avatar><n-tag :bordered="false" type="primary">02</n-tag></template></n-thing></n-list-item>
+                <n-list-item><n-thing title="多人同游" description="实时看到同校区玩家，在同一场景中自由探索。"><template #avatar><n-tag :bordered="false" type="primary">03</n-tag></template></n-thing></n-list-item>
+              </n-list>
+            </n-gi>
+          </n-grid>
         </section>
 
         <section id="landscapes" class="landscapes" aria-labelledby="landscapes-title">
-          <div class="landscapes-heading"><div><p class="eyebrow light">02 / 场景介绍</p><h2 id="landscapes-title">校园建筑与环境</h2></div><p class="landscapes-intro">以大工校园的建筑、道路和公共空间为场景主题。<br />以下实景展示校园的建筑特征与空间环境。</p></div>
-          <div class="scene-layout">
-            <figure class="scene-photo"><img :src="currentScene.image" :alt="currentScene.alt" width="1280" height="960" loading="lazy" /><figcaption>大连理工大学 / 校园实景</figcaption></figure>
-            <div class="scene-details">
+          <n-flex class="landscapes-heading" justify="space-between" align="end" :size="32"><div><p class="eyebrow light">02 / 场景介绍</p><h2 id="landscapes-title">校园建筑与环境</h2></div><p class="landscapes-intro">以大工校园的建筑、道路和公共空间为场景主题。<br />以下实景展示校园的建筑特征与空间环境。</p></n-flex>
+          <n-grid cols="1 m:3" responsive="screen" :x-gap="40" :y-gap="28" class="scene-layout" item-responsive><n-gi span="1 m:2">
+            <figure class="scene-photo"><n-image :src="currentScene.image" :alt="currentScene.alt" object-fit="cover" lazy preview-disabled /><figcaption>大连理工大学 / 校园实景</figcaption></figure>
+            </n-gi><n-gi><n-flex vertical class="scene-details" :size="24">
               <span class="scene-number" aria-hidden="true">{{ currentScene.number }}</span>
               <div class="scene-copy" aria-live="polite"><h3>{{ currentScene.title }}</h3><p>{{ currentScene.caption }}</p></div>
-              <div class="scene-picker" role="group" aria-label="选择校园实景">
-                <n-button v-for="(scene, index) in scenes" :key="scene.number" text :color="selected === index ? '#ffffff' : '#aeb9c9'" :aria-pressed="selected === index" :class="{ selected: selected === index }" @click="selected = index"><span class="picker-number">{{ scene.number }}</span>{{ scene.title }}<span class="picker-arrow" aria-hidden="true">↗</span></n-button>
-              </div>
-            </div>
-          </div>
+              <n-radio-group v-model:value="selected" name="campus-scene" aria-label="选择校园实景" class="scene-picker" :theme-overrides="{ buttonColor: '#0b1727', buttonColorActive: '#233b60', buttonTextColor: '#cad5e6', buttonTextColorActive: '#ffffff', buttonBorderColor: '#51627a', buttonBorderColorActive: '#8aafff' }">
+                <n-flex :size="8"><n-radio-button v-for="(scene, index) in scenes" :key="scene.number" :value="index">{{ scene.title }}</n-radio-button></n-flex>
+              </n-radio-group>
+            </n-flex></n-gi>
+          </n-grid>
         </section>
 
         <section id="download" class="download-section" aria-labelledby="download-title">
@@ -136,7 +145,7 @@ const currentScene = computed(() => scenes[selected.value]!);
           <p class="platforms">Windows x86_64 / macOS universal</p>
         </section>
       </main>
-      <footer><a class="brand" href="/">DLUT <span>Online</span></a><a href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></a></footer>
+      <footer><n-flex justify="space-between" align="center"><a class="brand" href="/">DLUT <span>Online</span></a><n-button text tag="a" color="#c1cbda" href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></n-button></n-flex></footer>
     </div>
   </n-config-provider>
 </template>
