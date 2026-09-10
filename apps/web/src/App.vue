@@ -1,170 +1,110 @@
 <script setup lang="ts">
-import {
-  NButton,
-  NCard,
-  NConfigProvider,
-  NGlobalStyle,
-  NStatistic,
-  NTag,
-  zhCN,
-  type GlobalThemeOverrides,
-} from "naive-ui";
-import { computed, onMounted, onUnmounted, ref } from "vue";
-import { campuses, isLive, parseOnline, type Online } from "./online";
+import { NButton, NConfigProvider, NGlobalStyle, zhCN, type GlobalThemeOverrides } from "naive-ui";
+import { computed, ref } from "vue";
 import mainBuilding from "./assets/main-building.jpg";
+import library from "./assets/library.jpg";
+import garden from "./assets/campus-garden.jpg";
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
-    primaryColor: "#0041b7",
-    primaryColorHover: "#245cce",
-    primaryColorPressed: "#00338f",
-    primaryColorSuppl: "#0041b7",
-    successColor: "#32745f",
-    borderRadius: "2px",
-    bodyColor: "#f6f5f1",
-    textColorBase: "#192b40",
-    textColor2: "#5c6877",
-    borderColor: "#d6dade",
-    fontFamily: '"PingFang SC", "Microsoft YaHei", sans-serif',
+    primaryColor: "#0041b7", primaryColorHover: "#245cce",
+    primaryColorPressed: "#00338f", primaryColorSuppl: "#0041b7",
+    borderRadius: "0px", bodyColor: "#f6f5f1", textColorBase: "#142338",
+    textColor2: "#586371", fontFamily: '"PingFang SC", "Microsoft YaHei", sans-serif',
   },
-  Button: { heightLarge: "56px", fontSizeLarge: "15px", fontWeight: "500" },
-  Card: { color: "transparent", paddingMedium: "24px 32px" },
-  Statistic: { labelFontSize: "12px", valueFontSize: "36px", valueTextColor: "#192b40" },
-  Tag: { borderRadius: "2px" },
+  Button: { heightLarge: "56px", fontSizeLarge: "14px", fontWeight: "500" },
 };
-
-const data = ref<Online | null>(null);
-const failed = ref(false);
-const loading = ref(true);
-const now = ref(Date.now());
-const live = computed(() => isLive(data.value, failed.value, now.value));
-const status = computed(() =>
-  loading.value ? "正在获取状态" : live.value ? "游戏服在线" : "状态未知",
-);
-const explanation = computed(() =>
-  loading.value
-    ? "正在获取校园在线情况。"
-    : failed.value
-      ? "暂时无法获取在线情况，稍后自动重试。"
-      : live.value
-        ? "当前在线人数，每 10 秒自动更新。"
-        : data.value?.received_at
-          ? "游戏服数据已过期，等待新的状态上报。"
-          : "尚未收到游戏服状态，稍后自动更新。",
-);
-const updated = computed(() =>
-  data.value?.received_at
-    ? new Date(data.value.received_at).toLocaleString("zh-CN", {
-        hour12: false,
-      })
-    : "暂无更新",
-);
-let refreshTimer: ReturnType<typeof setTimeout> | undefined;
-let clockTimer: ReturnType<typeof setInterval> | undefined;
-let controller: AbortController | undefined;
-let disposed = false;
-
-async function refresh() {
-  controller = new AbortController();
-  const timeout = setTimeout(() => controller?.abort(), 5000);
-  try {
-    const response = await fetch("/api/v1/game/online", {
-      signal: controller.signal,
-      cache: "no-store",
-    });
-    if (!response.ok) throw new Error("Online request failed");
-    const next = parseOnline(await response.json());
-    if (disposed) return;
-    data.value = next;
-    failed.value = false;
-  } catch {
-    if (!disposed) failed.value = true;
-  } finally {
-    clearTimeout(timeout);
-    if (!disposed) {
-      loading.value = false;
-      now.value = Date.now();
-      refreshTimer = setTimeout(refresh, 10000);
-    }
-  }
-}
-onMounted(() => {
-  void refresh();
-  clockTimer = setInterval(() => {
-    now.value = Date.now();
-  }, 1000);
-});
-onUnmounted(() => {
-  disposed = true;
-  controller?.abort();
-  clearTimeout(refreshTimer);
-  clearInterval(clockTimer);
-});
+const downloadUrl = "https://github.com/saurlax/dlut-online/releases";
+const paused = ref(false);
+const scenes = [
+  { title: "主楼", image: mainBuilding, alt: "仰望阳光下的大工主楼石材立面与门廊", caption: "从熟悉的轮廓，认出心里的校园。", number: "01" },
+  { title: "令希图书馆", image: library, alt: "蓝天下令希图书馆的红砖立面与宽阔台阶", caption: "走过长长的台阶，再赴一场与知识的约定。", number: "02" },
+  { title: "校园一隅", image: garden, alt: "主楼旁的绿荫和洒满阳光的石板小路", caption: "不必赶路，在树影里多停留一会儿。", number: "03" },
+];
+const selected = ref(0);
+const currentScene = computed(() => scenes[selected.value]!);
 </script>
 
 <template>
   <n-config-provider :locale="zhCN" :theme-overrides="themeOverrides">
     <n-global-style />
-    <div class="site-shell">
+    <div class="landing">
       <header class="site-header">
-        <a class="brand" href="/" aria-label="DLUT Online 首页">
-          <span class="brand-mark" aria-hidden="true">D<span>O</span></span>
-          <span>DLUT <span class="brand-light">Online</span></span>
-        </a>
+        <a class="brand" href="#home" aria-label="DLUT Online 首页">DLUT <span>Online</span></a>
         <nav aria-label="主导航">
-          <a class="nav-link" href="#online">此刻校园</a>
-          <n-button text tag="a" class="header-link" href="https://github.com/saurlax/dlut-online">
-            GitHub <span class="external" aria-hidden="true">↗</span>
-          </n-button>
+          <a href="#world">走进大工</a>
+          <a href="#landscapes">校园印象</a>
+          <n-button tag="a" href="#download" ghost color="#ffffff" class="nav-download">下载客户端 <span aria-hidden="true">↗</span></n-button>
         </nav>
       </header>
       <main>
-        <section class="hero" aria-labelledby="intro-title">
-          <div class="hero-copy">
-            <p class="eyebrow"><span class="eyebrow-line" /> 大连理工大学主题校园世界</p>
-            <h1 id="intro-title">重返校园，<br /><span>相逢此刻。</span></h1>
-            <p class="intro-copy">那些走过的路，还想再走一遍。<br />以第一人称走进大工，与在线的同伴相遇。</p>
-            <n-button tag="a" type="primary" size="large" class="download" href="https://github.com/saurlax/dlut-online/releases">
-              下载客户端 <span aria-hidden="true">↗</span>
-            </n-button>
-            <p class="platforms">Windows x86_64 <span>/</span> macOS universal</p>
+        <section id="home" class="hero" aria-labelledby="hero-title">
+          <div class="hero-background" :class="{ 'is-paused': paused }" aria-hidden="true">
+            <img :src="mainBuilding" width="1280" height="960" alt="" fetchpriority="high" />
           </div>
-          <figure class="hero-visual">
-            <div class="photo-frame">
-              <img :src="mainBuilding" alt="阳光下的大连理工大学主楼，石材立面与门廊" width="1280" height="960" fetchpriority="high" />
-              <span class="photo-wordmark" aria-hidden="true">DLUT</span>
+          <div class="hero-shade" />
+          <div class="hero-content">
+            <p class="eyebrow light">DALIAN UNIVERSITY OF TECHNOLOGY</p>
+            <p class="hero-category">第一人称校园 MMORPG</p>
+            <h1 id="hero-title">大工，再相逢。</h1>
+            <p class="hero-description">那些走过的路，那些遇见的人。<br class="mobile-break" />在这里，续写我们的校园故事。</p>
+            <n-button tag="a" :href="downloadUrl" type="primary" size="large" class="primary-cta">走进 DLUT Online <span aria-hidden="true">↗</span></n-button>
+            <p class="platforms">Windows / macOS 桌面客户端</p>
+          </div>
+          <div class="hero-bottom">
+            <a href="#world" class="scroll-link"><span class="scroll-line" aria-hidden="true" />向下探索</a>
+            <div class="motion-tools">
+              <span>校园实景</span>
+              <n-button text color="#ffffff" class="motion-toggle" :aria-pressed="paused" :aria-label="paused ? '播放背景动效' : '暂停背景动效'" @click="paused = !paused">
+                <span aria-hidden="true">{{ paused ? '▷' : 'Ⅱ' }}</span>{{ paused ? '播放动效' : '暂停动效' }}
+              </n-button>
             </div>
-            <figcaption><span>主楼 / 校园实景</span><span aria-hidden="true">DALIAN UNIVERSITY OF TECHNOLOGY</span></figcaption>
-          </figure>
-          <div class="hero-bottom" aria-hidden="true"><span>熟悉的风景，新的相遇</span><span>向下探索 ↓</span></div>
+          </div>
         </section>
-        <section id="online" class="online-section" aria-labelledby="online-title">
-          <div class="section-heading">
-            <div class="section-title"><span class="section-index" aria-hidden="true">01 /</span><h2 id="online-title">此刻，校园里</h2></div>
-            <n-tag size="small" :bordered="false" :type="live ? 'success' : 'default'" class="status" role="status">
-              <span class="status-dot" :class="{ 'is-live': live }" />{{ status }}
-            </n-tag>
+
+        <section id="world" class="world-section" aria-labelledby="world-title">
+          <div class="world-heading">
+            <p class="eyebrow">01 / 一个关于大工的世界</p>
+            <h2 id="world-title">熟悉的校园，<br />未完的故事。</h2>
+            <div class="world-copy">
+              <p>一条走过无数次的小路，一栋抬头就能认出的楼。<br />关于大工的记忆，总有一个具体的坐标。</p>
+              <p>DLUT Online 希望把这些坐标连接成一个可以共同走进的世界。以整个大连理工大学为主题，让校园里的探索与相逢，延续到屏幕的另一端。</p>
+            </div>
           </div>
-          <div class="campus-grid">
-            <n-card :bordered="false" class="campus-card total-card">
-              <div class="campus-top"><h3>总在线人数</h3><span aria-hidden="true">↗</span></div>
-              <n-statistic :value="live ? (data?.total ?? 0) : '—'">
-                <template v-if="live" #suffix><span class="count-unit">人</span></template>
-              </n-statistic>
-              <span class="campus-caption">此刻同行</span>
-            </n-card>
-            <n-card v-for="campus in campuses" :key="campus.id" :bordered="false" class="campus-card">
-              <div class="campus-top"><h3>{{ campus.name }}</h3><span class="campus-number">{{ campus.number }}</span></div>
-              <n-statistic :value="live ? (data?.campuses?.[campus.id] ?? 0) : '—'">
-                <template v-if="live" #suffix><span class="count-unit">人</span></template>
-              </n-statistic>
-              <span class="campus-caption">{{ live ? '当前在线' : '等待更新' }}</span>
-            </n-card>
+          <div class="world-details">
+            <figure class="garden-photo"><img :src="garden" alt="校园小路上的阳光与树影" width="1280" height="960" loading="lazy" /><figcaption>光影之间，都是校园日常。<span>校园实景</span></figcaption></figure>
+            <div class="world-notes">
+              <div><span class="note-number">01</span><h3>以你的视角</h3><p>第一人称走进校园，<br />重新发现熟悉的风景。</p></div>
+              <div><span class="note-number">02</span><h3>让相遇继续</h3><p>一个共同在线的世界，<br />让独自漫步也有相逢的可能。</p></div>
+              <div><span class="note-number">03</span><h3>一起慢慢建成</h3><p>从一处风景到一座校园，<br />让这个开源世界不断生长。</p></div>
+            </div>
           </div>
-          <div class="status-copy"><p>{{ explanation }}</p><p>最后上报：{{ updated }}</p></div>
+        </section>
+
+        <section id="landscapes" class="landscapes" aria-labelledby="landscapes-title">
+          <div class="landscapes-heading"><div><p class="eyebrow light">02 / 校园印象</p><h2 id="landscapes-title">总有一处风景，<br />让你想起大工。</h2></div><p class="landscapes-intro">目光所及，皆是回忆。<br />从真实的校园，寻找这个世界的灵感。</p></div>
+          <div class="scene-layout">
+            <figure class="scene-photo"><img :src="currentScene.image" :alt="currentScene.alt" width="1280" height="960" loading="lazy" /><figcaption>大连理工大学 / 校园实景</figcaption></figure>
+            <div class="scene-details">
+              <span class="scene-number" aria-hidden="true">{{ currentScene.number }}</span>
+              <div class="scene-copy" aria-live="polite"><h3>{{ currentScene.title }}</h3><p>{{ currentScene.caption }}</p></div>
+              <div class="scene-picker" role="group" aria-label="选择校园实景">
+                <n-button v-for="(scene, index) in scenes" :key="scene.number" text :color="selected === index ? '#ffffff' : '#aeb9c9'" :aria-pressed="selected === index" :class="{ selected: selected === index }" @click="selected = index"><span class="picker-number">{{ scene.number }}</span>{{ scene.title }}<span class="picker-arrow" aria-hidden="true">↗</span></n-button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="download" class="download-section" aria-labelledby="download-title">
+          <p class="eyebrow light">属于我们的校园世界</p>
+          <h2 id="download-title">下一次相逢，<br />就在大工。</h2>
+          <p class="download-copy">下载 DLUT Online，开启你的校园漫步。</p>
+          <n-button tag="a" :href="downloadUrl" size="large" color="#ffffff" text-color="#0041b7" class="primary-cta">下载桌面客户端 <span aria-hidden="true">↗</span></n-button>
+          <p class="platforms">Windows x86_64 / macOS universal</p>
+          <p class="development-note">项目持续建设中，欢迎体验当前版本。</p>
         </section>
       </main>
-      <footer><span class="footer-brand">DLUT Online</span><span>校园探索，从这里开始。</span><a href="https://github.com/saurlax/dlut-online">开源校园世界 <span aria-hidden="true">↗</span></a></footer>
+      <footer><a class="brand" href="#home">DLUT <span>Online</span></a><p>让校园里的故事，继续发生。</p><a href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></a></footer>
     </div>
   </n-config-provider>
 </template>
