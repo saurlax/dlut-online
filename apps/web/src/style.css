@@ -39,11 +39,6 @@ h1 { font-size: clamp(58px, 7.5vw, 112px); line-height: 1.2; margin: 0 0 30px; t
 .primary-cta.n-button { min-width: 246px; padding-inline: 28px; }
 .primary-cta .n-button__content { width: 100%; justify-content: space-between; gap: 38px; }
 .platforms { font-size: 10px; color: #d0daea; margin: 16px 0 0; }
-.hero-bottom { position: absolute; bottom: 32px; left: 5%; right: 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1; }
-.scroll-link { display: flex; align-items: center; gap: 14px; font-size: 10px; }
-.scroll-line { width: 1px; height: 38px; background: #ffffff80; }
-.motion-tools { display: flex; align-items: center; gap: 24px; font-size: 10px; color: #d0daea; }
-.motion-toggle .n-button__content { gap: 10px; font-size: 11px; }
 .world-section { padding: 120px max(6%, calc((100% - 1280px) / 2)); background: var(--paper); }
 .world-heading { display: grid; grid-template-columns: 1fr 1fr; column-gap: 80px; align-items: center; }
 .world-heading .eyebrow { grid-column: 1/-1; }
@@ -110,9 +105,6 @@ footer > a:last-child span { margin-left: 16px; }
   h1 { font-size: clamp(38px, 8.5vw, 58px); margin-bottom: 24px; }
   .hero-description { font-size: 12px; margin-bottom: 30px; }
   .mobile-break { display: initial; }
-  .hero-bottom { left: 24px; right: 24px; bottom: 24px; }
-  .motion-tools { gap: 16px; font-size: 9px; }
-  .motion-toggle .n-button__content { font-size: 10px; }
   .world-section, .landscapes { padding: 72px 24px; }
   .world-heading, .world-details { display: block; }
   .eyebrow { font-size: 10px; margin-bottom: 24px; }
@@ -142,5 +134,34 @@ footer > a:last-child span { margin-left: 16px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .motion-toggle { display: none; }
+}
+
+@font-face {
+  font-family: "Ma Shan Zheng";
+  src: url("./assets/fonts/ma-shan-zheng-title.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+#hero-title { font-family: "Ma Shan Zheng", var(--serif); font-weight: 400; }
+.other-downloads { display: block; width: fit-content; margin: 18px auto 0; font-size: 12px; color: #e0e9fa; text-decoration: underline; text-underline-offset: 4px; }
+.download-page { min-height: 100svh; display: flex; flex-direction: column; }
+.download-page .site-header { position: relative; background: var(--ink); }
+.download-content { width: min(100%, 1080px); margin: auto; padding: 80px 32px; flex: 1; }
+.download-content h1 { font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); margin-bottom: 24px; }
+.download-intro { color: var(--muted); font-size: 14px; }
+.download-options { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 40px 0 24px; }
+.download-option { padding: 32px; border: 1px solid #cbd2db; }
+.download-option.recommended { border-color: var(--blue); background: #edf1f8; }
+.download-option h2 { font-family: inherit; font-size: 32px; }
+.download-option > p { font-size: 12px; color: var(--muted); }
+.download-option .recommendation { color: var(--blue); margin-top: 0; }
+.download-option .n-button { margin-top: 20px; }
+.download-option .n-button__content { gap: 24px; }
+.download-help { font-size: 12px; line-height: 1.8; color: var(--muted); }
+.back-home { display: inline-block; margin-top: 24px; font-size: 13px; color: var(--blue); }
+@media (max-width: 700px) {
+  .download-content { padding: 48px 24px; }
+  .download-options { grid-template-columns: 1fr; }
+  .download-option { padding: 24px; }
 }

@@ -19,3 +19,5 @@
 ## Impact
 
 Go 代码移动到 apps/api，Vue 位于 apps/web；网站后续承载 Landing、账户管理与数据工具，影响网站首页与构建，不改变 Godot 客户端、游戏服或 API 协议。仍部署 game/web 两个服务。
+
+- 首屏标题采用 Google Fonts 毛笔楷书，精简导航及底部控制，新增 /download 平台选择页和可替换来源的系统下载配置。

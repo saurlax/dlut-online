@@ -39,10 +39,12 @@ func TestDesktopRoutes(t *testing.T) {
 			t.Fatalf("%s: %d", path, w.Code)
 		}
 	}
-	w := httptest.NewRecorder()
-	handler.ServeHTTP(w, httptest.NewRequest(http.MethodGet, "/", nil))
-	if w.Code != 200 || !strings.Contains(w.Body.String(), "id=\"app\"") {
-		t.Fatal("missing Vue application entry")
+	for _, path := range []string{"/", "/download", "/download/"} {
+		w := httptest.NewRecorder()
+		handler.ServeHTTP(w, httptest.NewRequest(http.MethodGet, path, nil))
+		if w.Code != 200 || !strings.Contains(w.Body.String(), "id=\"app\"") {
+			t.Fatalf("%s: missing Vue application entry, status %d", path, w.Code)
+		}
 	}
 }
 
