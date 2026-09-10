@@ -84,11 +84,11 @@ jobs:
           context: .
           file: apps/web/Dockerfile
           platforms: linux/amd64
-          tags: dlut-online-server:${{ github.sha }}
+          tags: dlut-online-web:${{ github.sha }}
           labels: |
             org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
-          outputs: type=docker,dest=${{ runner.temp }}/server-image.tar
+          outputs: type=docker,dest=${{ runner.temp }}/web-image.tar
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Build Godot game server
@@ -97,20 +97,20 @@ jobs:
           context: .
           file: apps/game/tools/server_export/Dockerfile
           platforms: linux/amd64
-          tags: dlut-online-game:${{ github.sha }}
+          tags: dlut-online:${{ github.sha }}
           outputs: type=docker,dest=${{ runner.temp }}/game-image.tar
           cache-from: type=gha,scope=game
           cache-to: type=gha,mode=max,scope=game
       - name: Check desktop ENet clients and two services
         env:
-          IMAGE: dlut-online-server:${{ github.sha }}
+          IMAGE: dlut-online-web:${{ github.sha }}
         run: |
-          docker load --input "$RUNNER_TEMP/server-image.tar"
+          docker load --input "$RUNNER_TEMP/web-image.tar"
           export DO_GAME_SERVICE_TOKEN="$(openssl rand -hex 32)"
           export DO_ADMIN_API_TOKEN="$(openssl rand -hex 32)"
           docker network create game-check
           docker load --input "$RUNNER_TEMP/game-image.tar"
-          docker run -d --name game-check --network game-check -e DO_GAME_SERVICE_TOKEN -e DO_API_SERVER_URL=http://server-check:9090 -p 127.0.0.1:9061:1949/udp "dlut-online-game:${{ github.sha }}"
+          docker run -d --name game-check --network game-check -e DO_GAME_SERVICE_TOKEN -e DO_API_SERVER_URL=http://server-check:9090 -p 127.0.0.1:9061:1949/udp "dlut-online:${{ github.sha }}"
           docker run -d --name server-check --network game-check -e PORT=9090 -e DO_GAME_SERVICE_TOKEN -e DO_ADMIN_API_TOKEN -e DO_GAME_SERVER_URL=enet://127.0.0.1:9061 -p 127.0.0.1:9090:9090 "$IMAGE"
           trap 'docker logs server-check; docker logs game-check; docker rm -f server-check game-check; docker network rm game-check' EXIT
           curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:9090/
@@ -122,8 +122,8 @@ jobs:
           test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:9090/web/)" = 404
       - uses: actions/upload-artifact@v4
         with:
-          name: server-image-${{ github.sha }}
-          path: ${{ runner.temp }}/server-image.tar
+          name: web-image-${{ github.sha }}
+          path: ${{ runner.temp }}/web-image.tar
           retention-days: 7
           if-no-files-found: error
       - uses: actions/upload-artifact@v4
@@ -149,7 +149,7 @@ jobs:
           RELEASE_BUILD: ${{ inputs.release || false }}
         run: |
           image="ghcr.io/${REPOSITORY,,}"
-          source="dlut-online-server:$COMMIT_SHA"
+          source="dlut-online-web:$COMMIT_SHA"
           tags=("sha-$COMMIT_SHA")
           if [[ "$RELEASE_BUILD" == "true" ]]; then
             tags+=("$REF_NAME")
@@ -158,8 +158,8 @@ jobs:
             tags+=(edge)
           fi
           for tag in "${tags[@]}"; do
-            docker tag "$source" "$image:$tag"
+            docker tag "$source" "${image}-web:$tag"
+            docker push "${image}-web:$tag"
+            docker tag "dlut-online:$COMMIT_SHA" "$image:$tag"
             docker push "$image:$tag"
-            docker tag "dlut-online-game:$COMMIT_SHA" "$image-game:$tag"
-            docker push "$image-game:$tag"
           done
