@@ -160,3 +160,21 @@ footer .brand { font-size: 20px; color: white; }
   .updates-section::before { width: 280px; height: 310px; right: -105px; top: -85px; opacity: .28; }
   .landscapes::before { width: 300px; height: 400px; right: -100px; top: -100px; }
 }
+
+.world-section { background: radial-gradient(ellipse at 0 100%, #dfe9ec 0, transparent 52%), radial-gradient(ellipse at 95% 0, #e3eaf6 0, transparent 45%), var(--paper); }
+.events-section { background: radial-gradient(ellipse at 100% 10%, #dce9e4 0, transparent 60%), linear-gradient(145deg, #f1f3ee, #e9efed); }
+.updates-section { background: radial-gradient(ellipse at 5% 95%, #e1eaf6 0, transparent 55%), linear-gradient(120deg, #f6f5f1, #f2eee5); }
+.landscapes { background: radial-gradient(ellipse at 95% 10%, #183546 0, transparent 65%), linear-gradient(150deg, #0b1727, #101f36); }
+.world-section::after, .updates-section::after, .landscapes::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: url("./assets/decor/contours.svg") no-repeat center bottom / cover; opacity: .45;
+}
+.landscapes::after { opacity: .12; }
+footer { background: radial-gradient(ellipse at 50% 100%, #142b40, #091321 75%); }
+.healthy-gaming { margin-top: 28px; padding-top: 24px; border-top: 1px solid #ffffff14; color: #9eacbe; text-align: center; font-size: 12px; line-height: 1.8; }
+.healthy-gaming .healthy-title { color: #c1cbda; margin: 0 0 12px; font-size: 12px; }
+.healthy-gaming > .n-flex + .n-flex { margin-top: 6px; }
+@media (max-width: 480px) {
+  .healthy-gaming { font-size: 11px; }
+  .healthy-gaming > .n-flex > span { flex-basis: calc(50% - 8px); }
+}
