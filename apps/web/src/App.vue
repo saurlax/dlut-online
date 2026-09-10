@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { NButton, NConfigProvider, NGlobalStyle, zhCN, type GlobalThemeOverrides } from "naive-ui";
-import { computed, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import mainBuilding from "./assets/main-building.jpg";
 import library from "./assets/library.jpg";
 import garden from "./assets/campus-garden.jpg";
+import campusFilm from "./assets/campus-film.mp4";
+import filmPoster from "./assets/campus-film-poster.jpg";
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -15,7 +17,34 @@ const themeOverrides: GlobalThemeOverrides = {
   Button: { heightLarge: "56px", fontSizeLarge: "14px", fontWeight: "500" },
 };
 const downloadUrl = "https://github.com/saurlax/dlut-online/releases";
-const paused = ref(false);
+const video = ref<HTMLVideoElement | null>(null);
+const paused = ref(true);
+const videoFailed = ref(false);
+let userPaused = false;
+let motionPreference: MediaQueryList | undefined;
+
+function syncPlayback() {
+  if (!video.value) return;
+  if (userPaused || motionPreference?.matches || document.hidden) {
+    video.value.pause();
+  } else {
+    void video.value.play().catch(() => { paused.value = true; });
+  }
+}
+function togglePlayback() {
+  userPaused = !paused.value;
+  syncPlayback();
+}
+onMounted(() => {
+  motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  motionPreference.addEventListener("change", syncPlayback);
+  document.addEventListener("visibilitychange", syncPlayback);
+  syncPlayback();
+});
+onUnmounted(() => {
+  motionPreference?.removeEventListener("change", syncPlayback);
+  document.removeEventListener("visibilitychange", syncPlayback);
+});
 const scenes = [
   { title: "主楼", image: mainBuilding, alt: "仰望阳光下的大工主楼石材立面与门廊", caption: "从熟悉的轮廓，认出心里的校园。", number: "01" },
   { title: "令希图书馆", image: library, alt: "蓝天下令希图书馆的红砖立面与宽阔台阶", caption: "走过长长的台阶，再赴一场与知识的约定。", number: "02" },
@@ -39,8 +68,9 @@ const currentScene = computed(() => scenes[selected.value]!);
       </header>
       <main>
         <section id="home" class="hero" aria-labelledby="hero-title">
-          <div class="hero-background" :class="{ 'is-paused': paused }" aria-hidden="true">
-            <img :src="mainBuilding" width="1280" height="960" alt="" fetchpriority="high" />
+          <div class="hero-background" aria-hidden="true">
+            <img v-if="videoFailed" :src="filmPoster" width="856" height="480" alt="" />
+            <video v-else ref="video" :src="campusFilm" :poster="filmPoster" muted loop playsinline preload="metadata" @play="paused = false" @pause="paused = true" @error="videoFailed = true; paused = true" />
           </div>
           <div class="hero-shade" />
           <div class="hero-content">
@@ -55,8 +85,8 @@ const currentScene = computed(() => scenes[selected.value]!);
             <a href="#world" class="scroll-link"><span class="scroll-line" aria-hidden="true" />向下探索</a>
             <div class="motion-tools">
               <span>校园实景</span>
-              <n-button text color="#ffffff" class="motion-toggle" :aria-pressed="paused" :aria-label="paused ? '播放背景动效' : '暂停背景动效'" @click="paused = !paused">
-                <span aria-hidden="true">{{ paused ? '▷' : 'Ⅱ' }}</span>{{ paused ? '播放动效' : '暂停动效' }}
+              <n-button v-if="!videoFailed" text color="#ffffff" class="motion-toggle" :aria-pressed="paused" :aria-label="paused ? '播放背景视频' : '暂停背景视频'" @click="togglePlayback">
+                <span aria-hidden="true">{{ paused ? '▷' : 'Ⅱ' }}</span>{{ paused ? '播放视频' : '暂停视频' }}
               </n-button>
             </div>
           </div>
