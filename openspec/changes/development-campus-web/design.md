@@ -67,7 +67,7 @@ apps/web 使用独立 Go 模块与 Chi，读取客户端 Web 导出目录。/web
 
 ## 服务镜像与 CI
 
-Go 使用 PORT 环境变量（空值默认 8060），监听所有网卡；显式 -addr 优先。无效端口启动失败。多阶段 Dockerfile 生成非 root 的 Go 镜像，将 Godot Web 导出一并复制到 /web，无需资源挂载。GitHub push/PR/手动触发测试、Web/Windows x86_64/macOS universal 导出、镜像构建及容器自定义端口验证。上传镜像 tar 和两种桌面 ZIP，保留 7 天，并在非 PR 构建检查成功后发布 GHCR。构建上下文为仓库根目录，由 .dockerignore 仅允许服务器源码及 Web 导出资源。桌面产物不签名、不公证。
+Go 使用 PORT 环境变量（空值默认 8415），监听所有网卡；显式 -addr 优先。无效端口启动失败。多阶段 Dockerfile 生成非 root 的 Go 镜像，将 Godot Web 导出一并复制到 /web，无需资源挂载。GitHub push/PR/手动触发测试、Web/Windows x86_64/macOS universal 导出、镜像构建及容器自定义端口验证。上传镜像 tar 和两种桌面 ZIP，保留 7 天，并在非 PR 构建检查成功后发布 GHCR。构建上下文为仓库根目录，由 .dockerignore 仅允许服务器源码及 Web 导出资源。桌面产物不签名、不公证。
 
 
 ## Build 与 Release
@@ -82,4 +82,4 @@ Go 使用 PORT 环境变量（空值默认 8060），监听所有网卡；显式
 
 ## 桌面服务器配置
 
-运行时 DesktopConfig 提供配置读取入口。未导出项目默认 development/http://localhost:8060；桌面导出默认 production/https://dlut.online（含调试导出），由 EditorExportPlugin 将配置 JSON 直接加入包，不写入工作区。构建进程的 DO_ENV / DO_SERVER_URL 可覆盖默认值，CI 显式指定生产配置。运行时进程变量优先于包内配置：显式 DO_ENV 重新选择该环境默认地址，DO_SERVER_URL 优先级最高；空变量按未设置处理。只接受 development/production 和 HTTP(S) 根地址，末尾斜杠归一化。Web 不注入桌面配置，桌面读取入口在 Web 返回空字典，本轮不实现 Web 同源解析或网络连接。不使用 .env 自动加载。
+运行时 DesktopConfig 提供配置读取入口。未导出项目默认 development/http://localhost:8415；桌面导出默认 production/https://dlut.online（含调试导出），由 EditorExportPlugin 将配置 JSON 直接加入包，不写入工作区。构建进程的 DO_ENV / DO_SERVER_URL 可覆盖默认值，CI 显式指定生产配置。运行时进程变量优先于包内配置：显式 DO_ENV 重新选择该环境默认地址，DO_SERVER_URL 优先级最高；空变量按未设置处理。只接受 development/production 和 HTTP(S) 根地址，末尾斜杠归一化。Web 不注入桌面配置，桌面读取入口在 Web 返回空字典，本轮不实现 Web 同源解析或网络连接。不使用 .env 自动加载。

@@ -12,7 +12,7 @@ import (
 )
 
 func TestAdmissionAndPresence(t *testing.T) {
-	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:8061", serviceToken: "service", adminToken: "admin"})
+	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", serviceToken: "service", adminToken: "admin"})
 	now := time.Now()
 	g.now = func() time.Time { return now }
 	r := chi.NewRouter()
@@ -34,7 +34,7 @@ func TestAdmissionAndPresence(t *testing.T) {
 	if c != 201 {
 		t.Fatal(c, v)
 	}
-	if v["game_server_url"] != "enet://game.example.com:8061" || v["version"] != float64(3) {
+	if v["game_server_url"] != "enet://game.example.com:1949" || v["version"] != float64(3) {
 		t.Fatal("missing trusted game endpoint", v)
 	}
 	if _, ok := v["ws_path"]; ok {

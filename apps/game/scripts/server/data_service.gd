@@ -12,7 +12,7 @@ var retry_delay := 1.0
 
 func configure() -> bool:
 	base_url = OS.get_environment("DO_API_SERVER_URL").trim_suffix("/")
-	if base_url.is_empty(): base_url = "http://127.0.0.1:8060"
+	if base_url.is_empty(): base_url = "http://127.0.0.1:8415"
 	token = OS.get_environment("DO_GAME_SERVICE_TOKEN")
 	instance_id = OS.get_environment("DO_GAME_INSTANCE_ID")
 	if instance_id.is_empty(): instance_id = "main"

@@ -15,11 +15,11 @@ func _initialize() -> void:
 		return
 	var production := {"environment": "production", "server_url": "https://dlut.online"}
 	assert(Config.resolve(production, "", "") == production)
-	assert(Config.resolve(production, "development", "").server_url == "http://localhost:8060")
+	assert(Config.resolve(production, "development", "").server_url == "http://localhost:8415")
 	assert(Config.resolve(production, "development", "http://localhost:9000/").server_url == "http://localhost:9000")
 	var custom := {"environment": "production", "server_url": "https://test.example.com"}
 	assert(Config.resolve(custom, "", "") == custom)
-	assert(Config.resolve(custom, "development", "").server_url == "http://localhost:8060")
+	assert(Config.resolve(custom, "development", "").server_url == "http://localhost:8415")
 	assert(Config.resolve(custom, "", "https://override.example.com").server_url == "https://override.example.com")
 	assert(Config.resolve(production, "invalid", "").is_empty())
 	for invalid in ["/", "dlut.online", "https://dlut.online/api/v1", "https://user:pass@dlut.online", "https://dlut.online?x=1", "http://localhost:0", "http://localhost:65536"]:
