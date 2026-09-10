@@ -81,7 +81,7 @@ Compose 默认将 Go TCP 8415 和游戏 UDP 1949 绑定宿主机 127.0.0.1，用
 
 生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。Go 的 DO_GAME_SERVER_URL 必须是客户端可达地址，例如 enets://game.example.com:1949；不要填 game:1949 等容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。开发 enet:// 为明文，只用于受控本地环境。Compose 使用 DO_GAME_TLS_DIR 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
-CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布 ghcr.io/saurlax/dlut-online 和 ghcr.io/saurlax/dlut-online-game 配套镜像；桌面未签名、macOS 未公证。客户端与游戏服版本 3 不兼容旧 WebSocket 版本 2，迁移和回滚须协调三个组件。
+CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布游戏服 ghcr.io/saurlax/dlut-online 与 Go HTTP ghcr.io/saurlax/dlut-online-web 配套镜像；桌面未签名、macOS 未公证。客户端与游戏服版本 3 不兼容旧 WebSocket 版本 2，迁移和回滚须协调三个组件。
 
 ## 验证
 
