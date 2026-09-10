@@ -1,11 +1,13 @@
 extends Node
 
 signal status_changed(value: String)
+signal login_required()
+signal connected()
 signal map_prepared(campus: String)
 signal map_failed()
 signal map_finished()
 const RemotePlayer = preload("res://scripts/client/remote_player.gd")
-const Guest = preload("res://scripts/client/guest_session.gd")
+const Account = preload("res://scripts/client/account_session.gd")
 const Catalog = preload("res://scripts/shared/campus_catalog.gd")
 var player: CharacterBody3D
 var campus_id := "lingshui"
@@ -84,7 +86,11 @@ func configure(body: CharacterBody3D, campus: String) -> void:
 
 func start() -> void:
 	if started: return
+	if Account.token.is_empty(): return
 	started = true
+	retry_in = 0
+	retry_delay = 1
+	close_code = 0
 	active = true
 	_connect()
 
@@ -105,12 +111,15 @@ func _connect() -> void:
 	request.timeout = 5
 	request.body_size_limit = 4096
 	add_child(request)
-	var error := request.request(url + "/api/v1/game/tickets", ["Content-Type: application/json"], HTTPClient.METHOD_POST,
-		JSON.stringify({"id":Guest.guest_id, "version":Protocol.VERSION}))
+	var error := request.request(url + "/api/v1/game/tickets", ["Content-Type: application/json", "Authorization: Bearer " + Account.token], HTTPClient.METHOD_POST,
+		JSON.stringify({"version":Protocol.VERSION}))
 	var result: Array = []
 	if error == OK: result = await request.request_completed
 	request.queue_free()
 	connecting = false
+	if not result.is_empty() and result[1] in [401, 403]:
+		require_login()
+		return
 	if result.is_empty() or result[0] != HTTPRequest.RESULT_SUCCESS or result[1] != 201:
 		_disconnected()
 		return
@@ -170,15 +179,39 @@ func _disconnected() -> void:
 		host.destroy()
 		host = null
 	socket = null
-	if code in [4001,4002,4004]:
+	if code == 4001:
+		require_login("账号已在另一客户端登录，请重新登录")
+		return
+	if code in [4002,4004]:
+		started = false
 		active = false
-		set_status({4001:"游客身份已在另一客户端连接",4002:"版本不兼容，请更新客户端",4004:"服务器人数已满"}[code])
+		set_status({4002:"版本不兼容，请更新客户端",4004:"服务器人数已满"}[code])
 		map_failed.emit()
 		return
 	retry_in = retry_delay
 	retry_delay = minf(10.0, retry_delay * 2)
 	set_status("连接断开，正在重连")
 	map_failed.emit()
+
+func require_login(reason := "登录已失效，请重新登录") -> void:
+	active = false
+	started = false
+	welcomed = false
+	retry_in = 0
+	if host != null: host.destroy()
+	host = null
+	socket = null
+	_clear_remotes()
+	load_generation += 1
+	transfer_id = ""
+	transfer_phase = ""
+	history.clear()
+	if is_instance_valid(player): player.network_ready = false
+	Account.clear()
+	Catalog.started = false
+	Catalog.arriving = false
+	set_status(reason)
+	login_required.emit()
 
 func _send(message: Dictionary) -> void:
 	if socket == null or socket.get_state() != ENetPacketPeer.STATE_CONNECTED: return
@@ -247,7 +280,7 @@ func _process(delta: float) -> void:
 func message(m: Dictionary) -> void:
 	match m.get("type"):
 		"welcome":
-			if m.get("id") != Guest.guest_id: return
+			if m.get("id") != Account.player_id: return
 			welcomed = true
 			retry_delay = 1
 			admission_id = m.admission_id
@@ -255,6 +288,7 @@ func message(m: Dictionary) -> void:
 			apply_roster(m.get("roster", []))
 			apply_self(m, true)
 			set_status("已连接")
+			connected.emit()
 		"roster":
 			if m.get("campus") == campus_id and int(m.get("server_tick", -1)) > roster_tick:
 				roster_tick = int(m.server_tick)
@@ -289,7 +323,7 @@ func receive_snapshot(packet: PackedByteArray) -> void:
 	# Snapshot and reliable control use independent channels: verify local epoch first.
 	var own := false
 	for state: Dictionary in states:
-		if state.id == Guest.guest_id:
+		if state.id == Account.player_id:
 			if state.map_epoch != epoch: return
 			own = true
 	if not own: return
@@ -334,7 +368,7 @@ func apply_self(m: Dictionary, reset: bool) -> void:
 func _apply_snapshot(states: Array) -> void:
 	var present := {}
 	for entry: Dictionary in states:
-		if entry.id == Guest.guest_id:
+		if entry.id == Account.player_id:
 			if transfer_phase.is_empty() and entry.map_epoch == epoch: apply_self(entry, false)
 			continue
 		if not transfer_phase.is_empty() or not is_instance_valid(player): continue

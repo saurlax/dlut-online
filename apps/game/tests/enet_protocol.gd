@@ -31,7 +31,7 @@ func http(path: String, payload: Dictionary) -> Dictionary:
 	var request := HTTPRequest.new()
 	root.add_child(request)
 	request.timeout = 5
-	assert(request.request(base_url+path, ["Content-Type: application/json"], HTTPClient.METHOD_POST, JSON.stringify(payload)) == OK)
+	assert(request.request(base_url+path, ["Content-Type: application/json", "Authorization: Bearer " + OS.get_environment("DO_TEST_ACCOUNT_TOKEN_" + str(id_counter))], HTTPClient.METHOD_POST, JSON.stringify(payload)) == OK)
 	var result: Array = await request.request_completed
 	request.queue_free()
 	assert(result[1] == 201)
@@ -39,7 +39,7 @@ func http(path: String, payload: Dictionary) -> Dictionary:
 
 func connect_client() -> Dictionary:
 	id_counter += 1
-	var id := ("%015x" % (1000 + id_counter)).to_upper()
+	var id := OS.get_environment("DO_TEST_ACCOUNT_ID_" + str(id_counter))
 	var issued := await http("/api/v1/game/tickets", {"id":id, "version":4})
 	var destination := Protocol.endpoint(issued.game_server_url)
 	var host := ENetConnection.new()

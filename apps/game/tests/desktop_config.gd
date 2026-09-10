@@ -22,7 +22,7 @@ func _initialize() -> void:
 	assert(Config.resolve(custom, "development", "").server_url == "http://localhost:8415")
 	assert(Config.resolve(custom, "", "https://override.example.com").server_url == "https://override.example.com")
 	assert(Config.resolve(production, "invalid", "").is_empty())
-	for invalid in ["/", "dlut.online", "https://dlut.online/api/v1", "https://user:pass@dlut.online", "https://dlut.online?x=1", "http://localhost:0", "http://localhost:65536"]:
+	for invalid in ["http://dlut.online", "/", "dlut.online", "https://dlut.online/api/v1", "https://user:pass@dlut.online", "https://dlut.online?x=1", "http://localhost:0", "http://localhost:65536"]:
 		assert(Config.resolve(production, "", invalid).is_empty(), invalid)
 	print("PASS: environment defaults, URL overrides, normalization and invalid configuration")
 	quit()

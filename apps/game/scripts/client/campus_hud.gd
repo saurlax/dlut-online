@@ -1,6 +1,8 @@
 extends CanvasLayer
 
-const GuestSession = preload("res://scripts/client/guest_session.gd")
+const Account = preload("res://scripts/client/account_session.gd")
+var account_login: Node
+var cancel_login: Button
 var identity_label: Label
 var network: Node
 
@@ -64,13 +66,15 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	cover_title.add_theme_font_size_override("font_size",48)
 	column.add_child(cover_title)
 	identity_label = Label.new()
-	identity_label.name = "GuestIdentity"
+	identity_label.name = "AccountIdentity"
+	identity_label.custom_minimum_size.x = 360
+	identity_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	identity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	column.add_child(identity_label)
-	_prepare_guest()
+	identity_label.text = "在官网登录后返回游戏"
 	enter_button = Button.new()
 	enter_button.name = "EnterCampus"
-	enter_button.text = "游客登录"
+	enter_button.text = "登录"
 	enter_button.custom_minimum_size.y = 52
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color("d3e1bb")
@@ -83,10 +87,26 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	enter_button.add_theme_color_override("font_color",Color("243d30"))
 	enter_button.add_theme_color_override("font_hover_color",Color("243d30"))
 	enter_button.add_theme_color_override("font_pressed_color",Color("243d30"))
-	enter_button.pressed.connect(enter_campus)
+	enter_button.pressed.connect(_begin_login)
 	column.add_child(enter_button)
+	account_login = Account.new()
+	add_child(account_login)
+	account_login.status_changed.connect(_login_status)
+	account_login.authenticated.connect(_account_authenticated)
+	cancel_login = Button.new()
+	cancel_login.text = "取消登录"
+	cancel_login.flat = true
+	cancel_login.hide()
+	cancel_login.pressed.connect(func():
+		account_login.cancel()
+		_login_status("已取消，可重新登录")
+	)
+	column.add_child(cancel_login)
 	network = get_node("/root/GameNetwork")
 	network.configure(player, campus.campus_id)
+	network.status_changed.connect(_network_status)
+	network.connected.connect(_network_connected)
+	network.login_required.connect(_show_login)
 	network.map_prepared.connect(_network_map_prepared)
 	network.map_failed.connect(_network_map_failed)
 	network.map_finished.connect(_network_map_finished)
@@ -96,17 +116,49 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 		Catalog.arriving = false
 		enter_campus()
 
-func _prepare_guest() -> bool:
-	var ready := GuestSession.prepare()
-	identity_label.text = GuestSession.username if ready else "请重试"
-	return ready
+func _begin_login() -> void:
+	if not Account.token.is_empty():
+		_account_authenticated()
+	else:
+		account_login.begin()
+
+func _login_status(value: String) -> void:
+	identity_label.text = value
+	enter_button.disabled = account_login.waiting
+	cancel_login.visible = account_login.waiting
+
+func _account_authenticated() -> void:
+	cancel_login.hide()
+	enter_button.disabled = true
+	player.player_id = Account.player_id
+	player.username = Account.username
+	network.start()
+
+func _network_status(value: String) -> void:
+	if not Catalog.started:
+		identity_label.text = value
+		enter_button.disabled = network.active
+
+func _network_connected() -> void:
+	# A reconnect must not resume a paused or unfocused player.
+	if Catalog.started: return
+	enter_campus()
+	if DisplayServer.get_name() != "headless" and not DisplayServer.window_is_focused():
+		pause_exploration()
+
+func _show_login() -> void:
+	switching = false
+	transfer_panel.hide()
+	pause_exploration()
+	minimap.hide()
+	enter_button.disabled = false
+	cancel_login.hide()
+	identity_label.text = network.status_text
 
 func enter_campus() -> void:
-	if not _prepare_guest():
-		return
-	player.guest_id = GuestSession.guest_id
-	player.username = GuestSession.username
-	network.start()
+	if Account.token.is_empty() or not network.welcomed: return
+	player.player_id = Account.player_id
+	player.username = Account.username
 	Catalog.started = true
 	has_entered = true
 	overlay.hide()

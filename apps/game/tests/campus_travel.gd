@@ -8,6 +8,11 @@ func settle(frames := 12) -> void:
 		await physics_frame
 
 func _run() -> void:
+	var account = load("res://scripts/client/account_session.gd")
+	account.token = OS.get_environment("DO_TEST_ACCOUNT_TOKEN")
+	account.player_id = OS.get_environment("DO_TEST_ACCOUNT_ID")
+	account.username = "Test player"
+	assert(not account.token.is_empty())
 	create_timer(90).timeout.connect(func(): quit(2))
 	change_scene_to_file("res://scenes/main.tscn")
 	await settle(45)
@@ -16,7 +21,7 @@ func _run() -> void:
 	assert(current_scene.has_node("CampusModel"))
 	var network := root.get_node("GameNetwork")
 	var world := current_scene
-	world.hud.enter_campus()
+	world.hud._account_authenticated()
 	await create_timer(1.7).timeout
 	assert(world.player.playing)
 	assert(network.welcomed)

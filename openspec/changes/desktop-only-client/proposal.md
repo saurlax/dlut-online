@@ -1,3 +1,5 @@
+> 现行登录要求由 [account-only-login](../account-only-login/specs/account-only-login/spec.md) 取代：所有玩家必须绑定 PocketBase 已验证账号，通过官网认证后返回游戏。本文中的游客入口、游客 ID 与游客入场描述仅记录历史，不再作为当前实现要求。
+
 ## Why
 
 用户取消 Web 游戏支持，产品只发布 Windows/macOS 客户端。移除浏览器专用构建与运行路径，减少快速迭代中的维护成本，并评估更适合实时游戏的传输协议。

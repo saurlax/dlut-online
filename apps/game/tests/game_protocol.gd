@@ -1,12 +1,12 @@
 extends SceneTree
 const Protocol = preload("res://scripts/shared/game_protocol.gd")
-const Guest = preload("res://scripts/client/guest_session.gd")
+const Account = preload("res://scripts/client/account_session.gd")
 func _initialize() -> void: _run.call_deferred()
 func _run() -> void:
-	assert(Guest.prepare())
+	Account.player_id = "account12345678"
 	var states: Array = []
 	for i in 50:
-		states.append({"id":Guest.guest_id if i == 0 else ("%015x" % i).to_upper(), "position":[float(i),0.0,0.0], "velocity":[0.0,0.0,0.0], "yaw":0.25, "seq":-1, "jump":0, "map_epoch":1})
+		states.append({"id":Account.player_id if i == 0 else "%015x" % i, "position":[float(i),0.0,0.0], "velocity":[0.0,0.0,0.0], "yaw":0.25, "seq":-1, "jump":0, "map_epoch":1})
 	var packets := Protocol.snapshots("lingshui",10,states)
 	assert(packets.size() == 5)
 	var decoded: Array = []
@@ -15,7 +15,7 @@ func _run() -> void:
 		var part := Protocol.read_snapshot(packet)
 		decoded.append_array(part.players)
 		assert(Protocol.read_snapshot(packet.slice(0,packet.size()-1)).is_empty())
-	assert(decoded.size() == 50 and decoded[0].id == Guest.guest_id and decoded[49].position[0] == 49)
+	assert(decoded.size() == 50 and decoded[0].id == Account.player_id and decoded[49].position[0] == 49)
 	assert(decoded[0].seq == -1 and decoded[0].yaw == 0.25)
 	var network := root.get_node("GameNetwork")
 	network.welcomed = true

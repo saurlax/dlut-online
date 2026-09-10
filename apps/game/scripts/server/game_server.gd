@@ -144,6 +144,9 @@ func authenticate(c: Dictionary, m: Dictionary) -> void:
 		close(c, 4003, "admission unavailable")
 		return
 	var identity: Dictionary = result.body
+	if identity.get("kind") != "account":
+		close(c, 4003, "account required")
+		return
 	if not players.has(identity.id) and players.size() >= MAX_PLAYERS:
 		close(c, 4004, "server full")
 		return

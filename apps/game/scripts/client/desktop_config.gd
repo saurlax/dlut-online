@@ -18,6 +18,8 @@ static func resolve(defaults: Dictionary, environment: String, server_url: Strin
 	if selected_url.is_empty():
 		selected_url = DEFAULT_URLS[selected_env] if not environment.strip_edges().is_empty() else defaults.server_url
 	selected_url = selected_url.trim_suffix("/")
+	if selected_env == "production" and not selected_url.begins_with("https://"):
+		return {}
 	var pattern := RegEx.new()
 	pattern.compile("^https?://(?:[A-Za-z0-9.-]+|\\[[0-9A-Fa-f:]+\\])(?::([0-9]+))?$")
 	var matched := pattern.search(selected_url)

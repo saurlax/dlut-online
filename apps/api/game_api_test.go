@@ -27,8 +27,8 @@ func TestAdmissionAndPresence(t *testing.T) {
 		_ = json.Unmarshal(w.Body.Bytes(), &v)
 		return w.Code, v
 	}
-	id := "0123456789ABCDE"
-	c, v := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 4})
+	id := "0123456789abcde"
+	c, v := request("POST", "/api/v1/game/tickets", id, map[string]any{"id": id, "version": 4})
 	if c != 201 {
 		t.Fatal(c, v)
 	}
@@ -61,12 +61,12 @@ func TestAdmissionAndPresence(t *testing.T) {
 		t.Fatal(c)
 	}
 	now = now.Add(time.Second)
-	_, v = request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 4})
+	_, v = request("POST", "/api/v1/game/tickets", id, map[string]any{"id": id, "version": 4})
 	now = now.Add(31 * time.Second)
 	if c, _ := request("POST", "/api/v1/game/tickets/consume", "service", map[string]any{"ticket": v["ticket"]}); c != 401 {
 		t.Fatal("expired", c)
 	}
-	if c, _ := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 4, "campus": "eda"}); c != 400 {
+	if c, _ := request("POST", "/api/v1/game/tickets", id, map[string]any{"id": id, "version": 4, "campus": "eda"}); c != 400 {
 		t.Fatal("campus must not bind ticket")
 	}
 	_, v = request("GET", "/api/v1/game/online", "", nil)
@@ -124,8 +124,9 @@ func TestOriginAndTicketLimits(t *testing.T) {
 		}
 	}
 	for i := 0; i < 101; i++ {
-		b, _ := json.Marshal(map[string]any{"id": fmt.Sprintf("%015X", i), "version": 4})
+		b, _ := json.Marshal(map[string]any{"id": fmt.Sprintf("%015x", i), "version": 4})
 		q := httptest.NewRequest("POST", "/api/v1/game/tickets", bytes.NewReader(b))
+		q.Header.Set("Authorization", "Bearer "+fmt.Sprintf("%015x", i))
 		w := httptest.NewRecorder()
 		r.ServeHTTP(w, q)
 		want := 201

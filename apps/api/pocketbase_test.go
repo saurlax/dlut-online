@@ -129,6 +129,14 @@ func TestPocketBaseAccountTicket(t *testing.T) {
 	if status != 200 || identity["id"] != record.Id || identity["username"] != "测试玩家" || identity["kind"] != "account" {
 		t.Fatal(status, identity)
 	}
+	record.Set("verified", false)
+	if err := app.Save(record); err != nil {
+		t.Fatal(err)
+	}
+	if status, _ := request("/api/v1/game/tickets", token, map[string]any{"version": 4}); status != 401 {
+		t.Fatal("unverified account received ticket", status)
+	}
+	record.Set("verified", true)
 
 	record.Set("disabled", true)
 	if err := app.Save(record); err != nil {

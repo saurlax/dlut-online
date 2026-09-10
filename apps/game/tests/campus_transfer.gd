@@ -6,11 +6,16 @@ func wait_transfer(net: Node) -> void:
 		if net.transfer_phase.is_empty(): return
 	assert(false,"transfer did not finish")
 func _run() -> void:
+	var account = load("res://scripts/client/account_session.gd")
+	account.token = OS.get_environment("DO_TEST_ACCOUNT_TOKEN")
+	account.player_id = OS.get_environment("DO_TEST_ACCOUNT_ID")
+	account.username = "Test player"
+	assert(not account.token.is_empty())
 	create_timer(70).timeout.connect(func(): quit(2))
 	change_scene_to_file("res://scenes/campuses/panjin.tscn")
 	await process_frame
 	await process_frame
-	current_scene.hud.enter_campus()
+	current_scene.hud._account_authenticated()
 	var net := root.get_node("GameNetwork")
 	for frame in 300:
 		await process_frame
