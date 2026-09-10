@@ -35,9 +35,9 @@ Go `PORT` 默认 8415，`-addr` 优先；编译前需要构建 Vue 网站，运�
 | DO_GAME_SERVICE_TOKEN | 两个服务 | 相同的服务凭据，至少 32 字符 |
 | DO_ADMIN_API_TOKEN | Go | 独立的只读管理凭据，至少 32 字符 |
 | DO_API_SERVER_URL | Godot | `http://127.0.0.1:8415`，Go 内网 HTTP(S) 根地址 |
-| DO_GAME_LISTEN_ADDR | Godot | `127.0.0.1`，容器设为 `*`（IPv4/IPv6） |
 | DO_GAME_PORT | Godot | `1949` |
-| DO_GAME_INSTANCE_ID | Godot | `main`，当前支持单游戏实例 |
+
+游戏服固定监听 `*`，单实例标识固定为 `main`。Compose 默认仅发布到宿主机回环地址；公网部署按实际网络配置修改绑定地址。
 
 客户端用 DO_SERVER_URL 访问 Go HTTP API，游戏端点由票据响应返回。服务凭据不进入客户端。
 
@@ -81,9 +81,9 @@ docker compose up -d
 
 Compose 服务名为 `web` 和 `game`，游戏服通过 `http://web.internal:8415` 访问 Go。游戏服导出 `dlut-online-server.x86_64` 与同名 `.pck`，容器运行 `/game/dlut-online-server`；Go 容器运行 `/dlut-online-web`。
 
-Compose 默认将 Go TCP 8415 和游戏 UDP 1949 绑定宿主机 127.0.0.1，用于本地开发；DO_HTTP_BIND/DO_HTTP_PORT 和 DO_GAME_BIND/DO_GAME_PUBLIC_PORT 调整映射。Go 镜像不需要客户端文件。正式发布桌面包默认 production，编辑器默认 development；DO_SERVER_URL 显式覆盖 Go API 根地址，DO_ENV 显式指定环境，否则使用包内配置，不读取 .env。
+Compose 默认将 Go TCP 8415 和游戏 UDP 1949 绑定宿主机 127.0.0.1，用于本地开发；DO_HTTP_PORT 和 DO_GAME_PUBLIC_PORT 调整宿主机端口，绑定地址直接修改 Compose 的 ports。Go 镜像不需要客户端文件。正式发布桌面包默认 production，编辑器默认 development；DO_SERVER_URL 显式覆盖 Go API 根地址，DO_ENV 显式指定环境，否则使用包内配置，不读取 .env。
 
-生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。Go 的 DO_GAME_SERVER_URL 必须是客户端可达地址，例如 enets://game.example.com:1949；不要填 game:1949 等容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。开发 enet:// 为明文，只用于受控本地环境。Compose 使用 DO_GAME_TLS_DIR 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
+生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。Go 的 DO_GAME_SERVER_URL 必须是客户端可达地址，例如 enets://game.example.com:1949；不要填 game:1949 等容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。开发 enet:// 为明文，只用于受控本地环境。Compose 固定将 ./.local/game-tls 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
 CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布游戏服 ghcr.io/saurlax/dlut-online 与 Go HTTP ghcr.io/saurlax/dlut-online-web 配套镜像；桌面未签名、macOS 未公证。客户端与游戏服版本 3 不兼容旧 WebSocket 版本 2，迁移和回滚须协调三个组件。
 

@@ -236,7 +236,7 @@ func TestENetDTLS(t *testing.T) {
 	api := httptest.NewServer(router(gameConfig{endpoint: "enets://localhost:" + port, serviceToken: service, adminToken: randomID()}))
 	defer api.Close()
 	server := exec.Command("godot", "--headless", "--path", project, "scenes/server.tscn")
-	server.Env = append(os.Environ(), "DO_ENV=production", "DO_GAME_LISTEN_ADDR=*", "DO_GAME_TLS_CERT="+certPath, "DO_GAME_TLS_KEY="+keyPath, "DO_GAME_PORT="+port, "DO_GAME_SERVICE_TOKEN="+service, "DO_API_SERVER_URL="+api.URL)
+	server.Env = append(os.Environ(), "DO_ENV=production", "DO_GAME_TLS_CERT="+certPath, "DO_GAME_TLS_KEY="+keyPath, "DO_GAME_PORT="+port, "DO_GAME_SERVICE_TOKEN="+service, "DO_API_SERVER_URL="+api.URL)
 	var output bytes.Buffer
 	server.Stdout = &output
 	server.Stderr = &output
