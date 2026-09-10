@@ -1,7 +1,7 @@
 ## ADDED Requirements
 
 ### Requirement: Vue 网站
-网站 SHALL 使用 Vue 3、TypeScript 和 Vite，通过 Go 嵌入静态构建产物并同域提供 API，运行时不依赖 Node。
+网站 SHALL 使用 Vue 3、TypeScript、Vite 和 Naive UI，通过 Go 嵌入静态构建产物并同域提供 API，运行时不依赖 Node。Naive UI SHALL 提供统一主题及可复用的按钮、状态、卡片和数据展示组件，为后续账户管理与数据工具复用。
 
 #### Scenario: 访问网站
 - **WHEN** 用户打开 Go Web 首页

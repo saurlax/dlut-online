@@ -67,7 +67,7 @@
 
 ## Monorepo 目录
 
-- 应用按 apps/ 组织：共享 Godot 工程位于 apps/game/；Go HTTP 服务位于 apps/api/，Vue 3 + TypeScript + Vite 网站位于 apps/web/，不另建空的 apps/site/ 或引入 monorepo 框架。
+- 应用按 apps/ 组织：共享 Godot 工程位于 apps/game/；Go HTTP 服务位于 apps/api/，Vue 3 + TypeScript + Vite + Naive UI 网站位于 apps/web/，不另建空的 apps/site/ 或引入 monorepo 框架。
 - 本文中的 scenes/、scripts/、assets/、tests/、tools/ 均相对 apps/game/；Godot res:// 也以此为根。编辑器打开 apps/game/project.godot。
 - references/、openspec/、AGENTS.md 和 README.md 保留仓库根目录。原始参考路径相对仓库根目录记录，生成工具须从自身位置解析路径，不能依赖调用者工作目录。
 - 各应用独立管理依赖和构建产物，桌面客户端导出位于 apps/game/build/windows/ 与 macos/，游戏服位于 server/。Go 提供首页和 /api/v1/ 接口，不再托管 /web/ 或代理 /ws；客户端直连独立 Godot 游戏服。

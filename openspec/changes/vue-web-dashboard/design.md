@@ -1,14 +1,14 @@
 ## Context
 
-Go 已有公开在线人数接口，未接入 SSO、数据库或历史分析。用户已授权网站使用 Vue，游戏 UI 继续只使用 Godot。
+Go 已有公开在线人数接口和 PocketBase 账户能力。网站定位为游戏官网 Landing、账户管理与数据工具，当前仍只有首页；游戏 UI 继续只使用 Godot。
 
 ## Goals / Non-Goals
 
-提供可维护的前端工程与真实在线状态展示。不添加账号、玩家隐私数据、虚构统计或 SSR。
+提供可维护的前端工程、统一组件主题与真实在线状态展示，为后续账户管理和数据工具建立 UI 基础。本轮不新增账户页面、玩家隐私数据、虚构统计或 SSR。
 
 ## Decisions
 
-Vue 3 + TypeScript + Vite，源码放 apps/web/src；构建结果 apps/api/static 被 Go embed 打入二进制且不提交。开发时 Vite 代理 /api 至 Go 8415，生产不运行 Node。只为首页和实际存在的静态文件提供响应，不将未知 API 或旧 /web 路由回退为 HTML。
+Vue 3 + TypeScript + Vite + Naive UI，源码放 apps/web/src；构建结果 apps/api/static 被 Go embed 打入二进制且不提交。Naive UI 使用全局中文 locale 与 DLUT Online 主题变量，按需导入现有页面所用组件。开发时 Vite 代理 /api 至 Go 8415，生产不运行 Node。只为首页和实际存在的静态文件提供响应，不将未知 API 或旧 /web 路由回退为 HTML。
 
 每 10 秒串行请求公开在线接口，设超时并在组件卸载时取消请求。按 received_at 判断 15 秒有效期，错误或失效展示未知状态及最后更新时间，不将 last_total 作为当前人数。页面保留客户端下载入口，适配桌面与移动屏幕。
 
