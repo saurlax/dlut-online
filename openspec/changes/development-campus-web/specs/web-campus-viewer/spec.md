@@ -82,14 +82,14 @@
 - **THEN** 比例尺在限定范围内变化，视口不能继续向地图边界外拖动；调整窗口不自动改变比例尺
 
 ### Requirement: 客户端应用目录
-Godot 项目 SHALL 位于 apps/client/，内部资源引用保持以 project.godot 为根；原始参考与 OpenSpec SHALL 保留仓库根目录。
+Godot 项目 SHALL 位于 apps/game/，内部资源引用保持以 project.godot 为根；原始参考与 OpenSpec SHALL 保留仓库根目录。
 
 #### Scenario: 迁移后构建
-- **WHEN** 开发者打开 apps/client/project.godot 或调用客户端导出工具
-- **THEN** 三校区可加载，工具可定位根目录参考，Web 导出写入 apps/client/build/web/
+- **WHEN** 开发者打开 apps/game/project.godot 或调用客户端导出工具
+- **THEN** 三校区可加载，工具可定位根目录参考，Web 导出写入 apps/game/build/web/
 
 ### Requirement: Go Web 资源托管
-系统 SHALL 使用 apps/server 中的 Go 服务托管 /web/ 下的 Godot 导出资源，替换 Python 静态服务；资源目录 SHALL 可配置。
+系统 SHALL 使用 apps/web 中的 Go 服务托管 /web/ 下的 Godot 导出资源，替换 Python 静态服务；资源目录 SHALL 可配置。
 
 #### Scenario: 请求游戏资源
 - **WHEN** 浏览器访问 /web 或请求不存在的资源
