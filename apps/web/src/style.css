@@ -20,7 +20,6 @@ a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline
 .brand { font-size: 24px; font-weight: 650; white-space: nowrap; }
 .brand span { font-weight: 350; }
 nav { display: flex; align-items: center; gap: 36px; font-size: 12px; }
-.nav-download .n-button__content { gap: 24px; }
 .hero { position: relative; min-height: 760px; height: 100svh; max-height: 1200px; display: grid; place-items: center; color: white; background: var(--ink); }
 .hero-background, .hero-shade { position: absolute; inset: 0; overflow: hidden; }
 .hero-background img, .hero-background video { width: 100%; height: 100%; object-fit: cover; object-position: center; }
@@ -32,7 +31,6 @@ h1, h2 { font-family: var(--serif); font-weight: 500; }
 h1 { font-size: clamp(58px, 7.5vw, 112px); line-height: 1.2; margin: 0 0 30px; text-shadow: 0 2px 24px #07162c33; }
 .hero-description { font-size: 14px; line-height: 2; margin: 0 0 38px; color: #f0f2f6; }
 .primary-cta.n-button { min-width: 246px; padding-inline: 28px; }
-.primary-cta .n-button__content { width: 100%; justify-content: space-between; gap: 38px; }
 .world-section { padding: 120px max(6%, calc((100% - 1280px) / 2)); background: var(--paper); }
 .world-heading { align-items: center; }
 h2 { font-size: clamp(36px, 4vw, 56px); line-height: 1.4; margin: 0; }
@@ -63,7 +61,7 @@ footer .brand { font-size: 20px; color: white; }
   .site-header { padding: 22px 24px; }
   .brand { font-size: 19px; }
   nav { gap: 16px; font-size: 11px; }
-  .nav-download .n-button__content { gap: 16px; font-size: 11px; }
+  .nav-download .n-button__content { font-size: 11px; }
   .hero { min-height: 680px; max-height: 960px; }
   .hero-background img, .hero-background video { object-position: center; }
   .hero-shade { background: linear-gradient(#071629a3, #071a3066 45%, #071222eb); }

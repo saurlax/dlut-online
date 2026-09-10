@@ -68,7 +68,7 @@ const currentScene = computed(() => scenes[selected.value]!);
       <header class="site-header"><n-flex justify="space-between" align="center" :wrap="false">
         <a class="brand" href="/" aria-label="DLUT Online 首页">DLUT <span>Online</span></a>
         <nav aria-label="主导航">
-          <n-button tag="a" href="/download" ghost color="#ffffff" class="nav-download">下载客户端 <span aria-hidden="true">↗</span></n-button>
+          <n-button tag="a" href="/download" ghost color="#ffffff" class="nav-download">下载客户端</n-button>
         </nav>
       </n-flex></header>
       <main v-if="isDownloadPage" class="download-content">
@@ -83,7 +83,7 @@ const currentScene = computed(() => scenes[selected.value]!);
             <n-card size="large" :title="item.label" :class="{ recommended: platform === key }" class="download-option">
               <template #header-extra><n-tag v-if="platform === key" type="primary" size="small" :bordered="false">当前系统</n-tag></template>
               <n-text depth="3">{{ item.architecture }}</n-text>
-              <template #action><n-button tag="a" :href="item.url" type="primary" size="large" block>{{ item.button }} <span aria-hidden="true">↗</span></n-button></template>
+              <template #action><n-button tag="a" :href="item.url" type="primary" size="large" block>{{ item.button }}</n-button></template>
             </n-card>
           </n-gi>
         </n-grid>
@@ -99,7 +99,7 @@ const currentScene = computed(() => scenes[selected.value]!);
           <div class="hero-content">
             <h1 id="hero-title">大工，再相逢</h1>
             <p class="hero-description">探索校园、查看地图，与其他玩家一同漫游。</p>
-            <n-button tag="a" :href="downloadUrl" type="primary" size="large" class="primary-cta">{{ downloadLabel }} <span aria-hidden="true">↗</span></n-button>
+            <n-button tag="a" :href="downloadUrl" type="primary" size="large" class="primary-cta">{{ downloadLabel }}</n-button>
             <n-button text tag="a" class="other-downloads" color="#e0e9fa" href="/download">其他下载</n-button>
           </div>
         </section>
@@ -150,7 +150,7 @@ const currentScene = computed(() => scenes[selected.value]!);
             <template #action>
               <n-flex justify="space-between" align="center" :size="16">
                 <n-text depth="3">GitHub Releases</n-text>
-                <n-button tag="a" href="https://github.com/saurlax/dlut-online/releases" type="primary">查看发布记录 <span aria-hidden="true">↗</span></n-button>
+                <n-button tag="a" href="https://github.com/saurlax/dlut-online/releases" type="primary">查看发布记录</n-button>
               </n-flex>
             </template>
           </n-card>
@@ -170,7 +170,7 @@ const currentScene = computed(() => scenes[selected.value]!);
           </n-grid>
         </section>
       </main>
-      <footer><n-flex justify="space-between" align="center"><a class="brand" href="/">DLUT <span>Online</span></a><n-button text tag="a" color="#c1cbda" href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></n-button></n-flex>
+      <footer><n-flex justify="space-between" align="center"><a class="brand" href="/">DLUT <span>Online</span></a><n-button text tag="a" color="#c1cbda" href="https://github.com/saurlax/dlut-online">GitHub 开源项目</n-button></n-flex>
         <div class="healthy-gaming" aria-label="健康游戏忠告">
           <n-p class="healthy-title">健康游戏忠告</n-p>
           <n-flex justify="center" :size="[16, 6]">
