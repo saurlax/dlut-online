@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="700" viewBox="0 0 640 700" fill="none">
+  <defs>
+    <linearGradient id="petal" x1="0" y1="-95" x2="20" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#fffefa"/><stop offset=".55" stop-color="#e6edf4"/><stop offset="1" stop-color="#89a9cf"/></linearGradient>
+    <linearGradient id="stem" x1="70" y1="660" x2="500" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#527b9b"/><stop offset="1" stop-color="#a5b8c4"/></linearGradient>
+    <g id="flower" stroke="#9bb2c8" stroke-width="1.2">
+      <path d="M0 18C-48 1-73-30-64-67C-28-64-8-32 0 18Z" fill="url(#petal)"/>
+      <path d="M0 18C-9-27 1-66 35-86C52-53 39-12 0 18Z" fill="url(#petal)"/>
+      <path d="M0 18C21-28 51-45 84-40C77-7 46 17 0 18Z" fill="url(#petal)"/>
+      <path d="M0 18C-23-25-22-70-3-108C26-76 30-27 0 18Z" fill="url(#petal)"/>
+      <path d="M0 18C-27 19-56 4-79-25C-39-30-10-12 0 18Z" fill="url(#petal)"/>
+      <path d="M0 18C17-8 43-14 65-7C51 16 28 27 0 18Z" fill="url(#petal)"/>
+      <path d="M0 18C-8-5-8-32-3-55M0 18C16 2 32-6 49-7M0 18C-25 6-44-6-58-17" stroke="#afc1d0" stroke-width=".7"/>
+    </g>
+  </defs>
+  <g stroke="url(#stem)" stroke-linecap="round">
+    <path d="M-28 704C91 623 96 486 202 410C286 349 318 254 414 194C466 159 485 108 517 48" stroke-width="8"/>
+    <path d="M120 496C112 399 64 336 46 244M200 411C260 441 341 407 393 352M295 311C299 226 271 168 254 99M382 215C447 232 504 206 561 164" stroke-width="4"/>
+    <path d="M76 354L132 290M252 430L286 482M465 219L481 274M289 231L345 167" stroke-width="2"/>
+  </g>
+  <use href="#flower" transform="translate(48 244) rotate(-26) scale(1.05)"/>
+  <use href="#flower" transform="translate(256 105) rotate(-12) scale(.92)"/>
+  <use href="#flower" transform="translate(392 354) rotate(38) scale(.86)"/>
+  <use href="#flower" transform="translate(518 51) rotate(20) scale(.7)"/>
+  <use href="#flower" transform="translate(562 166) rotate(50) scale(.64)"/>
+  <g fill="#b6c9d9" stroke="#8da9bf" stroke-width="1">
+    <path d="M132 290C112 268 126 241 149 226C152 256 147 275 132 290Z"/>
+    <path d="M345 167C327 149 342 129 365 113C366 139 359 156 345 167Z"/>
+    <path d="M481 274C466 295 477 316 497 327C500 303 493 285 481 274Z"/>
+  </g>
+  <g fill="#d6e2eb">
+    <path d="M507 440C521 417 545 421 551 436C533 444 520 449 507 440Z"/>
+    <path d="M354 563C374 550 392 562 390 580C371 579 361 574 354 563Z"/>
+    <path d="M587 332C591 310 610 305 621 316C610 333 602 338 587 332Z"/>
+  </g>
+</svg>

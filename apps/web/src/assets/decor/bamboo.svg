@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="720" viewBox="0 0 540 720" fill="none">
+  <defs><g id="leaves" fill="#658b88">
+    <path d="M0 0C21-21 44-32 73-34C53-10 29-2 0 0Z"/>
+    <path d="M24-9C21-39 32-66 43-79C49-47 41-25 24-9Z"/>
+    <path d="M43-20C65-52 87-57 113-56C93-36 70-23 43-20Z"/>
+    <path d="M-5 1C19 13 28 39 27 64C9 47-2 26-5 1Z"/>
+    <path d="M36-12C61-5 80 17 85 41C61 29 44 10 36-12Z"/>
+    <path d="M-20 10C-22-17-38-41-61-49C-53-20-39-2-20 10Z"/>
+    <path d="M-26 14C-49 9-69 17-87 35C-60 36-40 28-26 14Z"/>
+  </g></defs>
+  <g stroke="#75958f" stroke-linecap="round">
+    <path d="M428 747C412 534 370 299 354-28" stroke-width="9"/>
+    <path d="M505 744C469 519 481 297 452 22" stroke-width="6"/>
+    <path d="M363 724C302 536 301 329 246 125" stroke-width="5"/>
+    <path d="M381 281C320 228 252 205 167 216M396 413C322 365 253 354 168 381M420 619C362 573 281 545 194 554M469 295C497 248 527 219 563 211M333 556C263 494 193 470 96 491M365 120C304 83 261 72 188 84" stroke-width="2"/>
+  </g>
+  <g stroke="#527c75" stroke-width="3"><path d="M351 102L367 101M363 276L382 274M388 411L404 409M408 609L423 608M462 292L479 290M464 471L481 469M293 354L308 351M325 552L341 550"/></g>
+  <use href="#leaves" transform="translate(216 215) rotate(173) scale(1.1)"/>
+  <use href="#leaves" transform="translate(322 250) rotate(207) scale(.85)"/>
+  <use href="#leaves" transform="translate(242 366) rotate(169) scale(1.15)"/>
+  <use href="#leaves" transform="translate(336 389) rotate(220) scale(.82)"/>
+  <use href="#leaves" transform="translate(187 483) rotate(174) scale(1.15)"/>
+  <use href="#leaves" transform="translate(272 522) rotate(223) scale(.9)"/>
+  <use href="#leaves" transform="translate(276 566) rotate(171)"/>
+  <use href="#leaves" transform="translate(255 86) rotate(173) scale(.88)"/>
+  <use href="#leaves" transform="translate(507 250) rotate(-30)"/>
+</svg>

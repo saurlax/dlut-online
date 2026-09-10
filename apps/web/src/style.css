@@ -130,3 +130,33 @@ footer .brand { font-size: 20px; color: white; }
   .event-calendar .n-calendar-date { flex-direction: column; height: auto; gap: 6px; }
   .event-calendar .n-calendar-date__day { white-space: nowrap; font-size: 11px; }
 }
+
+/* Botanical ornaments stay behind content and never intercept interaction. */
+.world-section, .news-section, .landscapes { position: relative; isolation: isolate; overflow: hidden; }
+.world-section::before, .news-section::before, .landscapes::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  background-repeat: no-repeat; background-size: contain;
+}
+.world-section::before {
+  background-image: url("./assets/decor/magnolia.svg");
+  width: 440px; height: 485px; right: -95px; top: -60px; opacity: .4;
+  transform: scaleX(-1);
+}
+.events-section::before {
+  background-image: url("./assets/decor/bamboo.svg");
+  width: 460px; height: 615px; right: -90px; top: -80px; opacity: .2;
+}
+.updates-section::before {
+  background-image: url("./assets/decor/magnolia.svg");
+  width: 410px; height: 450px; right: -50px; top: -110px; opacity: .35;
+}
+.landscapes::before {
+  background-image: url("./assets/decor/bamboo.svg");
+  width: 500px; height: 670px; right: -100px; top: -200px; opacity: .12;
+}
+@media (max-width: 700px) {
+  .world-section::before { width: 270px; height: 300px; right: -90px; top: -35px; opacity: .28; }
+  .events-section::before { width: 290px; height: 390px; right: -115px; top: -60px; opacity: .15; }
+  .updates-section::before { width: 280px; height: 310px; right: -105px; top: -85px; opacity: .28; }
+  .landscapes::before { width: 300px; height: 400px; right: -100px; top: -100px; }
+}

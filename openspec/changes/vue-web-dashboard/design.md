@@ -79,3 +79,7 @@ Go 源码迁移至 apps/api，Vue 位于 apps/web。应用技术文档与合并�
 ### 前端验证约定
 
 按用户要求移除 apps/web 的测试文件与 package.json test 脚本，CI 网站步骤仅安装依赖并执行包含 TypeScript 检查的生产构建。常规前端改动不新增自动化测试文件或框架，按需进行浏览器检查；Go 与 Godot 检查不受影响。
+
+### 植物背景装饰
+
+2026-09-10 参考大工官网 https://www.dlut.edu.cn/ 与 https://www.dlut.edu.cn/css/index20230317.css。官网正在引用的 images/new/zs222.jpg 和 zs223.jpg 使用浅蓝玉兰、柔和渐变与边缘装饰；本次只借鉴其植物主题与位置层级，不使用官网校徽或 DUT 字样图片。apps/web/src/assets/decor/magnolia.svg 和 bamboo.svg 为本次手绘矢量装饰，竹影为用户指定元素，不声称取自官网。玉兰用于玩法和版本区，竹影用于活动及演示区，低透明度放置于边缘，CSS 伪元素不进入可访问内容、不拦截点击。窄屏缩小并降低浓度，保留 Naive UI、四区布局、视频、默认字间距。
