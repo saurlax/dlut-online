@@ -6,8 +6,9 @@ services:
     ports:
       - "${DO_HTTP_BIND:-127.0.0.1}:${DO_HTTP_PORT:-8060}:8060"
     environment:
+      DO_ENV: ${DO_ENV:-development}
       PORT: "8060"
-      DO_GAME_SERVER_URL: http://game:8061
+      DO_GAME_SERVER_URL: ${DO_GAME_SERVER_URL:-enet://127.0.0.1:8061}
       DO_GAME_SERVICE_TOKEN: ${DO_GAME_SERVICE_TOKEN:?set a random service token}
       DO_ADMIN_API_TOKEN: ${DO_ADMIN_API_TOKEN:?set a different random admin token}
     networks:
@@ -15,11 +16,18 @@ services:
         aliases: [api.internal]
     restart: unless-stopped
   game:
+    ports:
+      - "${DO_GAME_BIND:-127.0.0.1}:${DO_GAME_PUBLIC_PORT:-8061}:8061/udp"
     build:
       context: .
       dockerfile: apps/client/tools/server_export/Dockerfile
     environment:
+      DO_ENV: ${DO_ENV:-development}
       DO_API_SERVER_URL: http://api.internal:8060
       DO_GAME_SERVICE_TOKEN: ${DO_GAME_SERVICE_TOKEN:?set a random service token}
       DO_GAME_INSTANCE_ID: main
+      DO_GAME_TLS_CERT: ${DO_GAME_TLS_CERT:-}
+      DO_GAME_TLS_KEY: ${DO_GAME_TLS_KEY:-}
+    volumes:
+      - "${DO_GAME_TLS_DIR:-./.local/game-tls}:/run/game-tls:ro"
     restart: unless-stopped

@@ -46,7 +46,7 @@ func _run() -> void:
 	assert(not world.hud.minimap._has_point(Vector2.ZERO))
 	assert(world.hud.minimap._has_point(Vector2(74,74)))
 	var connection_id: String = network.admission_id
-	var socket: WebSocketPeer = network.socket
+	var socket: ENetPacketPeer = network.socket
 	for destination in ["eda","panjin","lingshui","eda","lingshui"]:
 		var old: WeakRef = weakref(current_scene)
 		current_scene.hud.teleport(destination)

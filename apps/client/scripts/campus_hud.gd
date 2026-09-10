@@ -18,17 +18,9 @@ var enter_button: Button
 var has_entered := false
 var capture_pending := false
 var capture_elapsed := 0.0
-var pack_loader: Node
 var transfer_panel: VBoxContainer
 var transfer_status: Label
-var transfer_progress: ProgressBar
-var retry_button: Button
-var grid_panel: VBoxContainer
-var grid_status: Label
-var grid_retry: Button
 var transfer_target := ""
-var transfer_failed := false
-var transfer_generation := 0
 var root_control: Control
 
 func build(body: CharacterBody3D, world: Node3D) -> void:
@@ -93,9 +85,6 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	enter_button.add_theme_color_override("font_pressed_color",Color("243d30"))
 	enter_button.pressed.connect(enter_campus)
 	column.add_child(enter_button)
-	pack_loader = preload("res://scripts/campus_pack_loader.gd").new()
-	add_child(pack_loader)
-	pack_loader.completed.connect(_pack_completed)
 	network = get_node("/root/GameNetwork")
 	network.configure(player, campus.campus_id)
 	network.map_prepared.connect(_network_map_prepared)
@@ -109,7 +98,7 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 
 func _prepare_guest() -> bool:
 	var ready := GuestSession.prepare()
-	identity_label.text = GuestSession.username if ready else "无法保存游客身份，请允许会话存储后重试"
+	identity_label.text = GuestSession.username if ready else "请重试"
 	return ready
 
 func enter_campus() -> void:
@@ -125,7 +114,6 @@ func enter_campus() -> void:
 	crosshair.show()
 	map_overlay.hide()
 	player.playing = true
-	# Must run directly from the button gesture for browser Pointer Lock.
 	player.drag_look = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	capture_pending = true
@@ -172,16 +160,7 @@ func _notification(what: int) -> void:
 func _process(delta: float) -> void:
 	if not is_instance_valid(player):
 		return
-	if switching:
-		if not transfer_failed:
-			transfer_progress.value = 100.0 * pack_loader.downloaded / maxi(1, pack_loader.total)
-			transfer_status.text = "加载中  %.2f / %.2f MB" % [pack_loader.downloaded / 1000000.0, pack_loader.total / 1000000.0]
-		return
-	if is_instance_valid(grid_panel):
-		var stream: Node = campus.streamer
-		grid_panel.visible = stream.active and not switching and (stream.pending_count > 0 or stream.has_failures())
-		grid_status.text = ("加载失败  " if stream.has_failures() else "加载中  ") + "%.2f / %.2f MB" % [stream.downloaded / 1000000.0, stream.total / 1000000.0]
-		grid_retry.visible = stream.has_failures()
+	if switching: return
 	if capture_pending:
 		capture_elapsed += delta
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -192,8 +171,6 @@ func _process(delta: float) -> void:
 			overlay.hide()
 			crosshair.show()
 		elif capture_elapsed > 1.5:
-			# Embedded browsers can reject Pointer Lock. Keep exploration usable
-			# with native right-button dragging, without adding a JS dependency.
 			capture_pending = false
 			has_entered = true
 			player.drag_look = true
@@ -247,24 +224,8 @@ func build_map() -> void:
 	connection_status.offset_bottom = -20
 	connection_status.text = network.status_text
 	network.status_changed.connect(_connection_status_changed)
-	grid_panel = VBoxContainer.new()
-	grid_panel.name = "GridDownload"
-	map_overlay.add_child(grid_panel)
-	grid_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
-	grid_panel.offset_left = -180
-	grid_panel.offset_right = 180
-	grid_panel.offset_top = -100
-	grid_panel.offset_bottom = -24
-	grid_status = Label.new()
-	grid_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	grid_panel.add_child(grid_status)
-	grid_retry = Button.new()
-	grid_retry.text = "重试"
-	grid_retry.pressed.connect(func(): campus.streamer.retry())
-	grid_panel.add_child(grid_retry)
-	grid_panel.hide()
 	transfer_panel = VBoxContainer.new()
-	transfer_panel.name = "CampusDownload"
+	transfer_panel.name = "CampusTransfer"
 	map_overlay.add_child(transfer_panel)
 	transfer_panel.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 	transfer_panel.offset_left = -180
@@ -275,13 +236,6 @@ func build_map() -> void:
 	transfer_status = Label.new()
 	transfer_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	transfer_panel.add_child(transfer_status)
-	transfer_progress = ProgressBar.new()
-	transfer_progress.custom_minimum_size.y = 16
-	transfer_panel.add_child(transfer_progress)
-	retry_button = Button.new()
-	retry_button.text = "重试"
-	retry_button.pressed.connect(retry_transfer)
-	transfer_panel.add_child(retry_button)
 	var cancel_button := Button.new()
 	cancel_button.text = "取消"
 	cancel_button.pressed.connect(cancel_transfer)
@@ -317,8 +271,6 @@ func teleport(id: String) -> void:
 	if not map_overlay.visible:
 		map_was_playing = player.playing or capture_pending
 	switching = true
-	grid_panel.hide()
-	campus.streamer.suspend()
 	transfer_target = id
 	player.stop()
 	capture_pending = false
@@ -334,62 +286,16 @@ func teleport(id: String) -> void:
 
 func _network_map_prepared(id: String) -> void:
 	if not switching or transfer_target != id: return
-	if pack_loader.is_available(id):
-		_finish_travel()
-		return
-	map_overlay.show()
-	overlay.hide()
-	crosshair.hide()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	transfer_panel.show()
-	retry_transfer()
-
-func retry_transfer() -> void:
-	transfer_generation += 1
-	transfer_failed = false
-	retry_button.hide()
-	transfer_progress.value = 0
-	transfer_status.text = "加载中"
-	pack_loader.start(transfer_target)
+	network.load_target(id)
 
 func cancel_transfer() -> void:
 	network.cancel_map()
-	transfer_generation += 1
-	pack_loader.cancel()
-	campus.streamer.resume()
 	switching = false
 	transfer_panel.hide()
 	transfer_target = ""
 	close_map()
 
-func _pack_completed(success: bool) -> void:
-	if not switching:
-		return
-	if success:
-		var generation := transfer_generation
-		transfer_progress.value = 100
-		# Let the final progress frame render before scene parsing/instantiation.
-		await get_tree().process_frame
-		if switching and generation == transfer_generation:
-			_finish_travel()
-	else:
-		network.cancel_map()
-		_show_transfer_error()
-
-func _show_transfer_error() -> void:
-	transfer_failed = true
-	transfer_panel.show()
-	map_overlay.show()
-	transfer_status.text = "加载失败"
-	retry_button.show()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-func _finish_travel() -> void:
-	network.load_target(transfer_target)
-
 func _network_map_failed() -> void:
-	pack_loader.cancel()
-	campus.streamer.resume()
 	switching = false
 	transfer_panel.hide()
 	transfer_target = ""

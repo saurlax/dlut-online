@@ -10,7 +10,6 @@ var manifest: Dictionary
 var model: Node3D
 var player: CharacterBody3D
 var hud: CanvasLayer
-var streamer: Node3D
 
 func _ready() -> void:
 	Engine.max_fps = 60
@@ -25,9 +24,6 @@ func _ready() -> void:
 	add_child(player)
 	hud = preload("res://scripts/campus_hud.gd").new()
 	add_child(hud)
-	streamer = preload("res://scripts/campus_streamer.gd").new()
-	add_child(streamer)
-	streamer.configure(player, campus_id)
 	hud.build(player, self)
 
 func _setup_input() -> void:

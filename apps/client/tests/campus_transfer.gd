@@ -16,19 +16,19 @@ func _run() -> void:
 		await process_frame
 		if net.welcomed: break
 	assert(net.welcomed)
-	var ws: WebSocketPeer = net.socket
+	var ws: ENetPacketPeer = net.socket
 	var admission: String = net.admission_id
 	var world := current_scene
-	# Hold resource completion to exercise the real transfer state independently of download speed.
+	# Hold resource completion to exercise the real transfer state independently of disk speed.
 	net.map_prepared.disconnect(world.hud._network_map_prepared)
 	world.hud.teleport("eda")
 	for frame in 300:
 		await process_frame
 		if net.transfer_phase == "preparing": break
 	assert(net.transfer_phase == "preparing")
-	world.hud._pack_completed(false)
+	net.cancel_map()
 	await wait_transfer(net)
-	assert(current_scene == world and net.player.network_ready,"Failed download must return to original scene")
+	assert(current_scene == world and net.player.network_ready,"Failed load must return to original scene")
 	world.hud.teleport("eda")
 	world.hud.cancel_transfer()
 	await wait_transfer(net)

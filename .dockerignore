@@ -7,8 +7,6 @@
 !apps/server/*.go
 !apps/client/
 !apps/client/build/
-!apps/client/build/web/
-!apps/client/build/web/**
 !apps/client/build/server/
 !apps/client/build/server/dlut-game-server.x86_64
 !apps/client/build/server/dlut-game-server.pck

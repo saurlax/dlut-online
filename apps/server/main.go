@@ -4,10 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"log/slog"
-	"mime"
 	"net/http"
 	"os"
-	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
@@ -15,35 +13,9 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func router(webDir string, configs ...gameConfig) http.Handler {
+func router(config gameConfig) http.Handler {
 	r := chi.NewRouter()
-	config := gameConfig{}
-	if len(configs) > 0 {
-		config = configs[0]
-	}
 	newGameAPI(config).routes(r)
-	r.Get("/web", func(w http.ResponseWriter, req *http.Request) {
-		http.Redirect(w, req, "/web/", http.StatusPermanentRedirect)
-	})
-	files := http.StripPrefix("/web", http.FileServer(http.Dir(webDir)))
-	r.Handle("/web/*", http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
-		if req.Method != http.MethodGet && req.Method != http.MethodHead {
-			w.Header().Set("Allow", "GET, HEAD")
-			w.WriteHeader(http.StatusMethodNotAllowed)
-			return
-		}
-		// Export filenames are stable across builds; revalidate to avoid stale clients.
-		w.Header().Set("Cache-Control", "no-cache")
-		rel := strings.TrimPrefix(req.URL.Path, "/web/")
-		target := filepath.Join(webDir, filepath.FromSlash(rel))
-		if info, err := os.Stat(target); err == nil && info.IsDir() {
-			if _, err := os.Stat(filepath.Join(target, "index.html")); err != nil {
-				http.NotFound(w, req)
-				return
-			}
-		}
-		files.ServeHTTP(w, req)
-	}))
 	return r
 }
 
@@ -60,7 +32,6 @@ func listenAddress(port string) (string, error) {
 
 func main() {
 	addr := flag.String("addr", "", "HTTP listen address (overrides PORT)")
-	webDir := flag.String("web-dir", "../client/build/web", "Godot Web export directory")
 	flag.Parse()
 	if *addr == "" {
 		var err error
@@ -70,22 +41,20 @@ func main() {
 			os.Exit(1)
 		}
 	}
-	info, err := os.Stat(filepath.Join(*webDir, "index.html"))
-	if err != nil || info.IsDir() {
-		slog.Error("Godot Web export missing", "directory", *webDir)
-		os.Exit(1)
+	config := gameConfig{endpoint: os.Getenv("DO_GAME_SERVER_URL"), serviceToken: os.Getenv("DO_GAME_SERVICE_TOKEN"), adminToken: os.Getenv("DO_ADMIN_API_TOKEN")}
+	if config.endpoint == "" {
+		config.endpoint = "enet://127.0.0.1:8061"
 	}
-	_ = mime.AddExtensionType(".wasm", "application/wasm")
-	config := gameConfig{upstream: os.Getenv("DO_GAME_SERVER_URL"), serviceToken: os.Getenv("DO_GAME_SERVICE_TOKEN"), adminToken: os.Getenv("DO_ADMIN_API_TOKEN")}
-	if config.upstream == "" {
-		config.upstream = "http://127.0.0.1:8061"
+	if !validGameEndpoint(config.endpoint) || (os.Getenv("DO_ENV") == "production" && !strings.HasPrefix(config.endpoint, "enets://")) {
+		slog.Error("DO_GAME_SERVER_URL must be an enet:// or enets:// host:port; production requires enets://")
+		os.Exit(1)
 	}
 	if len(config.serviceToken) < 32 || len(config.adminToken) < 32 || config.serviceToken == config.adminToken {
 		slog.Error("Set distinct DO_GAME_SERVICE_TOKEN and DO_ADMIN_API_TOKEN, at least 32 characters each")
 		os.Exit(1)
 	}
-	server := &http.Server{Addr: *addr, Handler: router(*webDir, config), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 10 * time.Second, MaxHeaderBytes: 16 * 1024, IdleTimeout: 60 * time.Second}
-	slog.Info("DLUT Online HTTP server", "address", *addr, "game", "/web/", "resources", *webDir)
+	server := &http.Server{Addr: *addr, Handler: router(config), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 10 * time.Second, MaxHeaderBytes: 16 * 1024, IdleTimeout: 60 * time.Second}
+	slog.Info("DLUT Online HTTP server", "address", *addr)
 	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		slog.Error("HTTP server stopped", "error", err)
 		os.Exit(1)

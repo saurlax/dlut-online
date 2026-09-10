@@ -12,7 +12,7 @@ import (
 )
 
 func TestAdmissionAndPresence(t *testing.T) {
-	g := newGameAPI(gameConfig{serviceToken: "service", adminToken: "admin"})
+	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:8061", serviceToken: "service", adminToken: "admin"})
 	now := time.Now()
 	g.now = func() time.Time { return now }
 	r := chi.NewRouter()
@@ -30,10 +30,17 @@ func TestAdmissionAndPresence(t *testing.T) {
 		return w.Code, v
 	}
 	id := "0123456789abcdef0123456789abcdef"
-	c, v := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 2})
+	c, v := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 3})
 	if c != 201 {
 		t.Fatal(c, v)
 	}
+	if v["game_server_url"] != "enet://game.example.com:8061" || v["version"] != float64(3) {
+		t.Fatal("missing trusted game endpoint", v)
+	}
+	if _, ok := v["ws_path"]; ok {
+		t.Fatal("legacy gateway endpoint")
+	}
+
 	ticket := v["ticket"]
 	var wg sync.WaitGroup
 	results := make(chan int, 2)
@@ -56,12 +63,12 @@ func TestAdmissionAndPresence(t *testing.T) {
 		t.Fatal(c)
 	}
 	now = now.Add(time.Second)
-	_, v = request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 2})
+	_, v = request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 3})
 	now = now.Add(31 * time.Second)
 	if c, _ := request("POST", "/internal/v1/game/tickets/consume", "service", map[string]any{"ticket": v["ticket"]}); c != 401 {
 		t.Fatal("expired", c)
 	}
-	if c, _ := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 2, "campus": "eda"}); c != 400 {
+	if c, _ := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 3, "campus": "eda"}); c != 400 {
 		t.Fatal("campus must not bind ticket")
 	}
 	_, v = request("GET", "/api/v1/game/online", "", nil)
@@ -109,11 +116,8 @@ func TestOriginAndTicketLimits(t *testing.T) {
 	g := newGameAPI(gameConfig{})
 	r := chi.NewRouter()
 	g.routes(r)
-	for _, path := range []string{"/ws", "/api/v1/game/tickets"} {
-		method := "GET"
-		if path != "/ws" {
-			method = "POST"
-		}
+	for _, path := range []string{"/api/v1/game/tickets"} {
+		method := "POST"
 		q := httptest.NewRequest(method, path, nil)
 		q.Header.Set("Origin", "https://other.example")
 		w := httptest.NewRecorder()
@@ -123,7 +127,7 @@ func TestOriginAndTicketLimits(t *testing.T) {
 		}
 	}
 	for i := 0; i < 101; i++ {
-		b, _ := json.Marshal(map[string]any{"id": fmt.Sprintf("%032x", i), "version": 2})
+		b, _ := json.Marshal(map[string]any{"id": fmt.Sprintf("%032x", i), "version": 3})
 		q := httptest.NewRequest("POST", "/api/v1/game/tickets", bytes.NewReader(b))
 		w := httptest.NewRecorder()
 		r.ServeHTTP(w, q)

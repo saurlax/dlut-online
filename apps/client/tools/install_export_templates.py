@@ -17,7 +17,7 @@ out.mkdir(parents=True,exist_ok=True)
 while p<len(cd):
  h=struct.unpack_from('<4s6H3L5H2L',cd,p)
  name=cd[p+46:p+46+h[10]].decode();p+=46+h[10]+h[11]+h[12]
- if name.split('/')[-1] not in ('web_nothreads_release.zip','web_nothreads_debug.zip','windows_release_x86_64.exe','macos.zip','linux_release.x86_64','linux_debug.x86_64','version.txt'): continue
+ if name.split('/')[-1] not in ('windows_release_x86_64.exe','macos.zip','linux_release.x86_64','linux_debug.x86_64','version.txt'): continue
  if (out/name.split('/')[-1]).exists(): continue
  print('Downloading',name,h[8],flush=True)
  local=read_range(h[16],h[16]+29);lh=struct.unpack('<4s5H3L2H',local)

@@ -10,7 +10,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"net/http/httputil"
 	"net/url"
 	"strconv"
 	"sync"
@@ -19,7 +18,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-type gameConfig struct{ upstream, serviceToken, adminToken string }
+type gameConfig struct{ endpoint, serviceToken, adminToken string }
 type admission struct {
 	ID          string    `json:"id"`
 	Username    string    `json:"username"`
@@ -63,6 +62,14 @@ func guestName(id string) (string, bool) {
 	return fmt.Sprintf("游客%06d", n%1000000), true
 }
 func campusValid(s string) bool { return s == "lingshui" || s == "eda" || s == "panjin" }
+func validGameEndpoint(raw string) bool {
+	u, err := url.Parse(raw)
+	if err != nil || (u.Scheme != "enet" && u.Scheme != "enets") || u.Hostname() == "" || u.User != nil || u.Path != "" || u.RawQuery != "" || u.Fragment != "" {
+		return false
+	}
+	p, err := strconv.Atoi(u.Port())
+	return err == nil && p > 0 && p <= 65535
+}
 func sameOrigin(r *http.Request) bool {
 	o := r.Header.Get("Origin")
 	if o == "" {
@@ -111,7 +118,7 @@ func (g *gameAPI) auth(token string, next http.HandlerFunc) http.HandlerFunc {
 func (g *gameAPI) routes(r chi.Router) {
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		_, _ = io.WriteString(w, `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>DLUT Online</title><body><h1>DLUT Online</h1><p><a href="/web/">进入游戏</a></p></body></html>`)
+		_, _ = io.WriteString(w, `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>DLUT Online</title><body><h1>DLUT Online</h1><p><a href="https://github.com/saurlax/dlut-online/releases">下载客户端</a></p></body></html>`)
 	})
 	r.Post("/api/v1/game/tickets", g.issue)
 	r.Post("/internal/v1/game/tickets/consume", g.auth(g.config.serviceToken, g.consume))
@@ -119,20 +126,7 @@ func (g *gameAPI) routes(r chi.Router) {
 	r.Post("/internal/v1/game/presence", g.auth(g.config.serviceToken, g.presence))
 	r.Get("/api/v1/game/online", g.online)
 	r.Get("/api/v1/admin/game/players", g.auth(g.config.adminToken, g.details))
-	upstream, err := url.Parse(g.config.upstream)
-	r.Get("/ws", func(w http.ResponseWriter, r *http.Request) {
-		if !sameOrigin(r) {
-			reject(w, 403, "origin_rejected")
-			return
-		}
-		if err != nil || upstream.Host == "" {
-			reject(w, 503, "game_unavailable")
-			return
-		}
-		proxy := httputil.NewSingleHostReverseProxy(upstream)
-		proxy.ErrorHandler = func(w http.ResponseWriter, r *http.Request, e error) { reject(w, 502, "game_unavailable") }
-		proxy.ServeHTTP(w, r)
-	})
+
 }
 func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 	if !sameOrigin(r) {
@@ -147,7 +141,7 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	name, ok := guestName(q.ID)
-	if !ok || q.Version != 2 {
+	if !ok || q.Version != 3 {
 		reject(w, 400, "invalid_identity_or_version")
 		return
 	}
@@ -175,7 +169,7 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 	ticket := randomID()
 	g.tickets[sha256.Sum256([]byte(ticket))] = admission{ID: q.ID, Username: name, Kind: "guest", AdmissionID: randomID(), Expires: now.Add(30 * time.Second)}
 	g.issued[q.ID] = now
-	respond(w, 201, map[string]any{"ticket": ticket, "expires_in": 30, "ws_path": "/ws", "version": 2})
+	respond(w, 201, map[string]any{"ticket": ticket, "expires_in": 30, "game_server_url": g.config.endpoint, "version": 3})
 }
 func (g *gameAPI) consume(w http.ResponseWriter, r *http.Request) {
 	var q struct {
