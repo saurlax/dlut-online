@@ -47,9 +47,9 @@ onUnmounted(() => {
   document.removeEventListener("visibilitychange", syncPlayback);
 });
 const scenes = [
-  { title: "主楼", image: mainBuilding, alt: "仰望阳光下的大工主楼石材立面与门廊", caption: "从熟悉的轮廓，认出心里的校园。", number: "01" },
-  { title: "令希图书馆", image: library, alt: "蓝天下令希图书馆的红砖立面与宽阔台阶", caption: "走过长长的台阶，再赴一场与知识的约定。", number: "02" },
-  { title: "校园一隅", image: garden, alt: "主楼旁的绿荫和洒满阳光的石板小路", caption: "不必赶路，在树影里多停留一会儿。", number: "03" },
+  { title: "主楼", image: mainBuilding, alt: "仰望阳光下的大工主楼石材立面与门廊", caption: "主楼以浅色石材立面、连续窗列和入口门廊形成鲜明的建筑轮廓。", number: "01" },
+  { title: "令希图书馆", image: library, alt: "蓝天下令希图书馆的红砖立面与宽阔台阶", caption: "红砖与玻璃构成令希图书馆的正面，宽阔台阶连接馆前广场。", number: "02" },
+  { title: "校园一隅", image: garden, alt: "主楼旁的绿荫和洒满阳光的石板小路", caption: "主楼旁的石板步道与绿化相接，树荫和建筑共同构成校园的步行空间。", number: "03" },
 ];
 const selected = ref(0);
 const currentScene = computed(() => scenes[selected.value]!);
@@ -68,7 +68,7 @@ const currentScene = computed(() => scenes[selected.value]!);
       <main v-if="isDownloadPage" class="download-content">
         <p class="eyebrow">DLUT Online</p>
         <h1>选择你的桌面版本</h1>
-        <p class="download-intro">在 Windows 或 macOS 上，开启校园漫步。</p>
+        <p class="download-intro">支持 Windows x86_64 和 macOS Universal。</p>
         <div class="download-options">
           <section v-for="(item, key) in downloads" :key="key" class="download-option" :class="{ recommended: platform === key }" :aria-labelledby="'platform-' + key">
             <p class="recommendation">{{ platform === key ? '适用于当前系统' : '桌面客户端' }}</p>
@@ -77,7 +77,7 @@ const currentScene = computed(() => scenes[selected.value]!);
             <n-button tag="a" :href="item.url" type="primary" size="large">{{ item.button }} <span aria-hidden="true">↗</span></n-button>
           </section>
         </div>
-        <p class="download-help">当前通过 GitHub Releases 获取安装包。项目持续建设中，欢迎体验当前版本。</p>
+        <p class="download-help">通过 GitHub Releases 获取对应系统的客户端安装包。</p>
         <a class="back-home" href="/">返回首页 ↗</a>
       </main>
       <main v-else>
@@ -89,7 +89,7 @@ const currentScene = computed(() => scenes[selected.value]!);
           <div class="hero-shade" />
           <div class="hero-content">
             <h1 id="hero-title">大工，再相逢</h1>
-            <p class="hero-description">那些走过的路，那些遇见的人。<br class="mobile-break" />在这里，续写我们的校园故事。</p>
+            <p class="hero-description">探索校园、查看地图，与其他玩家一同漫游。</p>
             <n-button tag="a" :href="downloadUrl" type="primary" size="large" class="primary-cta">{{ downloadLabel }} <span aria-hidden="true">↗</span></n-button>
             <a class="other-downloads" href="/download">其他下载</a>
           </div>
@@ -97,25 +97,25 @@ const currentScene = computed(() => scenes[selected.value]!);
 
         <section id="world" class="world-section" aria-labelledby="world-title">
           <div class="world-heading">
-            <p class="eyebrow">01 / 一个关于大工的世界</p>
-            <h2 id="world-title">熟悉的校园，<br />未完的故事。</h2>
+            <p class="eyebrow">01 / 游戏介绍</p>
+            <h2 id="world-title">第一人称<br />校园探索</h2>
             <div class="world-copy">
-              <p>一条走过无数次的小路，一栋抬头就能认出的楼。<br />关于大工的记忆，总有一个具体的坐标。</p>
-              <p>DLUT Online 希望把这些坐标连接成一个可以共同走进的世界。以整个大连理工大学为主题，让校园里的探索与相逢，延续到屏幕的另一端。</p>
+              <p>DLUT Online 是以大连理工大学为主题的多人在线校园游戏。你将以第一人称进入校园，在教学楼、广场与道路之间自由行走，观察身边的建筑与环境。</p>
+              <p>通过校园地图查看位置与建筑分布，选择校区进行传送。进入校园后，你可以看到同校区的其他玩家，在共同的场景中探索。</p>
             </div>
           </div>
           <div class="world-details">
-            <figure class="garden-photo"><img :src="garden" alt="校园小路上的阳光与树影" width="1280" height="960" loading="lazy" /><figcaption>光影之间，都是校园日常。<span>校园实景</span></figcaption></figure>
+            <figure class="garden-photo"><img :src="garden" alt="校园小路上的阳光与树影" width="1280" height="960" loading="lazy" /><figcaption>主楼旁的步行空间<span>校园实景</span></figcaption></figure>
             <div class="world-notes">
-              <div><span class="note-number">01</span><h3>以你的视角</h3><p>第一人称走进校园，<br />重新发现熟悉的风景。</p></div>
-              <div><span class="note-number">02</span><h3>让相遇继续</h3><p>一个共同在线的世界，<br />让独自漫步也有相逢的可能。</p></div>
-              <div><span class="note-number">03</span><h3>一起慢慢建成</h3><p>从一处风景到一座校园，<br />让这个开源世界不断生长。</p></div>
+              <div><span class="note-number">01</span><h3>自由漫游</h3><p>自由行走与奔跑，<br />转动视角观察校园环境。</p></div>
+              <div><span class="note-number">02</span><h3>校园地图</h3><p>查看位置与建筑分布，<br />通过地图切换校区。</p></div>
+              <div><span class="note-number">03</span><h3>多人同游</h3><p>实时看到同校区玩家，<br />在同一场景中自由探索。</p></div>
             </div>
           </div>
         </section>
 
         <section id="landscapes" class="landscapes" aria-labelledby="landscapes-title">
-          <div class="landscapes-heading"><div><p class="eyebrow light">02 / 校园印象</p><h2 id="landscapes-title">总有一处风景，<br />让你想起大工。</h2></div><p class="landscapes-intro">目光所及，皆是回忆。<br />从真实的校园，寻找这个世界的灵感。</p></div>
+          <div class="landscapes-heading"><div><p class="eyebrow light">02 / 场景介绍</p><h2 id="landscapes-title">校园建筑与环境</h2></div><p class="landscapes-intro">以大工校园的建筑、道路和公共空间为场景主题。<br />以下实景展示校园的建筑特征与空间环境。</p></div>
           <div class="scene-layout">
             <figure class="scene-photo"><img :src="currentScene.image" :alt="currentScene.alt" width="1280" height="960" loading="lazy" /><figcaption>大连理工大学 / 校园实景</figcaption></figure>
             <div class="scene-details">
@@ -129,15 +129,14 @@ const currentScene = computed(() => scenes[selected.value]!);
         </section>
 
         <section id="download" class="download-section" aria-labelledby="download-title">
-          <p class="eyebrow light">属于我们的校园世界</p>
-          <h2 id="download-title">下一次相逢，<br />就在大工。</h2>
-          <p class="download-copy">下载 DLUT Online，开启你的校园漫步。</p>
+          <p class="eyebrow light">客户端下载</p>
+          <h2 id="download-title">下载 DLUT Online</h2>
+          <p class="download-copy">选择适合你设备的桌面客户端。</p>
           <n-button tag="a" href="/download" size="large" color="#ffffff" text-color="#0041b7" class="primary-cta">下载桌面客户端 <span aria-hidden="true">↗</span></n-button>
           <p class="platforms">Windows x86_64 / macOS universal</p>
-          <p class="development-note">项目持续建设中，欢迎体验当前版本。</p>
         </section>
       </main>
-      <footer><a class="brand" href="/">DLUT <span>Online</span></a><p>让校园里的故事，继续发生。</p><a href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></a></footer>
+      <footer><a class="brand" href="/">DLUT <span>Online</span></a><a href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></a></footer>
     </div>
   </n-config-provider>
 </template>

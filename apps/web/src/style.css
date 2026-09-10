@@ -33,7 +33,6 @@ nav > a:hover { opacity: 1; }
 h1, h2 { font-family: var(--serif); font-weight: 500; }
 h1 { font-size: clamp(58px, 7.5vw, 112px); line-height: 1.2; margin: 0 0 30px; text-shadow: 0 2px 24px #07162c33; }
 .hero-description { font-size: 14px; line-height: 2; margin: 0 0 38px; color: #f0f2f6; }
-.mobile-break { display: none; }
 .primary-cta.n-button { min-width: 246px; padding-inline: 28px; }
 .primary-cta .n-button__content { width: 100%; justify-content: space-between; gap: 38px; }
 .platforms { font-size: 10px; color: #d0daea; margin: 16px 0 0; }
@@ -76,7 +75,6 @@ h2 { font-size: clamp(36px, 4vw, 56px); line-height: 1.4; margin: 0; }
 .download-section .eyebrow { color: #c2d5fa; }
 .download-section h2 { font-size: clamp(44px, 5vw, 68px); }
 .download-copy { margin: 24px 0 32px; color: #e0e9fa; font-size: 13px; }
-.development-note { font-size: 11px; color: #c2d5fa; margin: 28px 0 0; }
 footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 36px 6%; background: #091321; color: #c1cbda; font-size: 11px; }
 footer .brand { font-size: 20px; color: white; }
 footer p { margin: 0; }
@@ -100,7 +98,6 @@ footer > a:last-child span { margin-left: 16px; }
   .hero-content { padding: 140px 20px; }
   h1 { font-size: clamp(38px, 8.5vw, 58px); margin-bottom: 24px; }
   .hero-description { font-size: 12px; margin-bottom: 30px; }
-  .mobile-break { display: initial; }
   .world-section, .landscapes { padding: 72px 24px; }
   .world-heading, .world-details { display: block; }
   .eyebrow { font-size: 10px; margin-bottom: 24px; }
