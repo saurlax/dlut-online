@@ -11,6 +11,9 @@ services:
       DO_GAME_SERVER_URL: ${DO_GAME_SERVER_URL:-enet://127.0.0.1:1949}
       DO_GAME_SERVICE_TOKEN: ${DO_GAME_SERVICE_TOKEN:?set a random service token}
       DO_ADMIN_API_TOKEN: ${DO_ADMIN_API_TOKEN:?set a different random admin token}
+      PB_ENCRYPTION_KEY: ${PB_ENCRYPTION_KEY:-}
+    volumes:
+      - web-data:/data
     networks:
       default:
         aliases: [web.internal]
@@ -30,3 +33,6 @@ services:
     volumes:
       - "./.local/game-tls:/run/game-tls:ro"
     restart: unless-stopped
+
+volumes:
+  web-data:

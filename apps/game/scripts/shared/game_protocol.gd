@@ -1,10 +1,11 @@
 extends RefCounted
 
-const VERSION := 3
+const VERSION := 4
 const CONTROL := 0
 const REALTIME := 1
 const MAPS := ["lingshui", "eda", "panjin"]
-const RECORD_SIZE := 68
+const ID_SIZE := 15
+const RECORD_SIZE := 67
 const HEADER_SIZE := 16
 const PER_PACKET := 12
 
@@ -33,15 +34,16 @@ static func snapshots(campus: String, tick: int, states: Array) -> Array[PackedB
 		for i in count:
 			var state: Dictionary = states[part * PER_PACKET + i]
 			var offset := HEADER_SIZE + i * RECORD_SIZE
-			var id: PackedByteArray = state.id.hex_decode()
-			for j in 16: packet[offset + j] = id[j]
+			var id: PackedByteArray = state.id.to_ascii_buffer()
+			if id.size() != ID_SIZE: return []
+			for j in ID_SIZE: packet[offset + j] = id[j]
 			for j in 3:
-				packet.encode_float(offset + 16 + j * 4, state.position[j])
-				packet.encode_float(offset + 28 + j * 4, state.velocity[j])
-			packet.encode_float(offset + 40, state.yaw)
-			packet.encode_s64(offset + 44, state.seq)
-			packet.encode_u64(offset + 52, state.jump)
-			packet.encode_u64(offset + 60, state.map_epoch)
+				packet.encode_float(offset + 15 + j * 4, state.position[j])
+				packet.encode_float(offset + 27 + j * 4, state.velocity[j])
+			packet.encode_float(offset + 39, state.yaw)
+			packet.encode_s64(offset + 43, state.seq)
+			packet.encode_u64(offset + 51, state.jump)
+			packet.encode_u64(offset + 59, state.map_epoch)
 		packets.append(packet)
 	return packets
 
@@ -55,9 +57,11 @@ static func read_snapshot(packet: PackedByteArray) -> Dictionary:
 		var position: Array = []
 		var velocity: Array = []
 		for j in 3:
-			position.append(packet.decode_float(offset + 16 + j * 4))
-			velocity.append(packet.decode_float(offset + 28 + j * 4))
-		states.append({"id":packet.slice(offset,offset+16).hex_encode(), "position":position, "velocity":velocity,
-			"yaw":packet.decode_float(offset+40), "seq":packet.decode_s64(offset+44),
-			"jump":packet.decode_u64(offset+52), "map_epoch":packet.decode_u64(offset+60)})
+			position.append(packet.decode_float(offset + 15 + j * 4))
+			velocity.append(packet.decode_float(offset + 27 + j * 4))
+		var id := packet.slice(offset, offset + ID_SIZE).get_string_from_ascii()
+		if id.length() != ID_SIZE: return {}
+		states.append({"id":id, "position":position, "velocity":velocity,
+			"yaw":packet.decode_float(offset+39), "seq":packet.decode_s64(offset+43),
+			"jump":packet.decode_u64(offset+51), "map_epoch":packet.decode_u64(offset+59)})
 	return {"campus":MAPS[packet[1]], "tick":packet.decode_u64(4), "part":packet[2], "parts":packet[3], "players":states}

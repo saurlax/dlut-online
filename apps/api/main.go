@@ -1,16 +1,20 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"log/slog"
 	"net/http"
 	"os"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/pocketbase/pocketbase"
+	"github.com/pocketbase/pocketbase/apis"
+	"github.com/pocketbase/pocketbase/core"
+	"github.com/pocketbase/pocketbase/plugins/migratecmd"
+
+	_ "dlut-online/server/migrations"
 )
 
 func router(config gameConfig) http.Handler {
@@ -31,16 +35,32 @@ func listenAddress(port string) (string, error) {
 	return ":" + strconv.Itoa(n), nil
 }
 
+func newApplication(dataDir string, config gameConfig) *pocketbase.PocketBase {
+	app := pocketbase.NewWithConfig(pocketbase.Config{
+		DefaultDataDir:       dataDir,
+		DefaultEncryptionEnv: "PB_ENCRYPTION_KEY",
+	})
+	migratecmd.MustRegister(app, app.RootCmd, migratecmd.Config{})
+	api := newGameAPI(config, app)
+	app.OnServe().BindFunc(func(event *core.ServeEvent) error {
+		event.Router.Any("/{path...}", apis.WrapStdHandler(routerWithAPI(api)))
+		return event.Next()
+	})
+	return app
+}
+
+func routerWithAPI(api *gameAPI) http.Handler {
+	r := chi.NewRouter()
+	api.routes(r)
+	r.Get("/*", siteHandler().ServeHTTP)
+	return r
+}
+
 func main() {
-	addr := flag.String("addr", "", "HTTP listen address (overrides PORT)")
-	flag.Parse()
-	if *addr == "" {
-		var err error
-		*addr, err = listenAddress(os.Getenv("PORT"))
-		if err != nil {
-			slog.Error("Invalid listener configuration", "error", err)
-			os.Exit(1)
-		}
+	addr, err := listenAddress(os.Getenv("PORT"))
+	if err != nil {
+		slog.Error("Invalid listener configuration", "error", err)
+		os.Exit(1)
 	}
 	config := gameConfig{endpoint: os.Getenv("DO_GAME_SERVER_URL"), serviceToken: os.Getenv("DO_GAME_SERVICE_TOKEN"), adminToken: os.Getenv("DO_ADMIN_API_TOKEN")}
 	if config.endpoint == "" {
@@ -54,9 +74,15 @@ func main() {
 		slog.Error("Set distinct DO_GAME_SERVICE_TOKEN and DO_ADMIN_API_TOKEN, at least 32 characters each")
 		os.Exit(1)
 	}
-	server := &http.Server{Addr: *addr, Handler: router(config), ReadHeaderTimeout: 5 * time.Second, ReadTimeout: 10 * time.Second, MaxHeaderBytes: 16 * 1024, IdleTimeout: 60 * time.Second}
-	slog.Info("DLUT Online HTTP server", "address", *addr)
-	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+	dataDir := os.Getenv("DO_DATA_DIR")
+	if dataDir == "" {
+		dataDir = "pb_data"
+	}
+	app := newApplication(dataDir, config)
+	if len(os.Args) == 1 {
+		os.Args = append(os.Args, "serve", "--http=0.0.0.0"+addr)
+	}
+	if err := app.Start(); err != nil {
 		slog.Error("HTTP server stopped", "error", err)
 		os.Exit(1)
 	}

@@ -13,14 +13,14 @@ func _process(_delta: float) -> bool:
 			var event: Array = c.host.service(0)
 			if event[0] == ENetConnection.EVENT_NONE: break
 			if event[0] == ENetConnection.EVENT_CONNECT:
-				c.peer.send(0, JSON.stringify({"type":"hello", "version":3, "ticket":c.ticket, "campus":"panjin"}).to_utf8_buffer(), ENetPacketPeer.FLAG_RELIABLE)
+				c.peer.send(0, JSON.stringify({"type":"hello", "version":4, "ticket":c.ticket, "campus":"panjin"}).to_utf8_buffer(), ENetPacketPeer.FLAG_RELIABLE)
 			elif event[0] == ENetConnection.EVENT_DISCONNECT:
 				c.code = event[2]
 			elif event[0] == ENetConnection.EVENT_RECEIVE:
 				var packet: PackedByteArray = c.peer.get_packet()
 				if event[3] == 1:
 					var snapshot := Protocol.read_snapshot(packet)
-					assert(not snapshot.is_empty() and packet.size() <= 832)
+					assert(not snapshot.is_empty() and packet.size() <= 820)
 					c.snapshots += 1
 					c.bytes += packet.size()
 					c.last_snapshot = snapshot
@@ -40,8 +40,8 @@ func http(path: String, payload: Dictionary) -> Dictionary:
 
 func connect_client(id := "", ticket_override := "") -> Dictionary:
 	id_counter += 1
-	if id.is_empty(): id = "%032x" % (1000 + id_counter)
-	var issued := await http("/api/v1/game/tickets", {"id":id, "version":3})
+	if id.is_empty(): id = ("%015x" % (1000 + id_counter)).to_upper()
+	var issued := await http("/api/v1/game/tickets", {"id":id, "version":4})
 	var destination := Protocol.endpoint(issued.game_server_url)
 	var host := ENetConnection.new()
 	assert(host.create_host(1,2) == OK)

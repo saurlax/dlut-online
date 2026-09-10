@@ -11,7 +11,7 @@ func _run() -> void:
 	var username: String = Session.username
 	assert(Session.valid_id(id))
 	assert(not Session.valid_id("invalid"))
-	assert(not Session.valid_id("A".repeat(32)))
+	assert(not Session.valid_id("G".repeat(15)))
 	assert(username.begins_with("游客") and username.length() == 8)
 	assert(Session.prepare() and Session.guest_id == id)
 	change_scene_to_file("res://scenes/main.tscn")

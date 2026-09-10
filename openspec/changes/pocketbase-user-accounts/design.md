@@ -1,0 +1,23 @@
+## Context
+
+系统使用 PocketBase embed、SQLite 和 PocketBase record ID。username 必填，允许 0-9 a-z A-Z - _ 并大小写不敏感唯一；display_name 必填、允许重复和中文。
+
+## Goals / Non-Goals
+
+使用 PocketBase 提供注册、邮箱验证、密码认证与重置、邮箱修改、OAuth2 外部身份和管理界面。本轮保持 Godot 游客 UI，但后端游戏票据已接受 PocketBase auth token。
+
+## Decisions
+
+Go 使用 `pocketbase.NewWithConfig` 创建应用，通过 Go 代码定义 `users` Auth Collection。集合内置 ID、email、password、verified、tokenKey 作为权威认证数据，额外字段为 username、display_name 和 disabled。
+
+username 保留用户输入大小写，使用 SQLite `lower(username)` 唯一索引判断冲突；密码登录仅使用 email。AuthRule 要求 `verified = true && disabled = false`，用户更新规则禁止修改 disabled，管理员通过 PocketBase 管理界面管理账号。
+
+PocketBase 负责密码哈希、邮箱验证与重置、token 签发、外部身份记录和 API 限流。SMTP 与 OAuth2/OIDC 提供方通过 PocketBase 设置配置；生产使用 `PB_ENCRYPTION_KEY` 加密数据库内的机密设置。PocketBase auth token 是无状态 JWT，改变 record tokenKey 可使该用户已签发 token 失效。
+
+SQLite 目录默认为 `pb_data`，容器固定为 `/data/pb_data` 并挂载命名持久卷。Go Web 保持单实例写入；Godot 游戏服不打开 SQLite 文件，持久化和查询继续经过 Go 内部 HTTP API。
+
+游戏票据在 Authorization 为有效 PocketBase `users` token 时使用 record ID 和 display_name，否则只接受合法游客身份。身份 ID 统一为 15 位 ASCII：账号使用 PocketBase 小写字母数字 ID，游客使用大写十六进制进程 ID，两个命名空间不重叠。游戏协议版本为 4。
+
+## Risks / Trade-offs
+
+PocketBase 在 1.0 前可能调整 API，升级依赖前必须先备份并验证。SQLite 单写入者限制了 Go Web 水平扩容，但对当前 50 人规模充足。备份必须覆盖完整 pb_data，不能只复制正在写入的 data.db。

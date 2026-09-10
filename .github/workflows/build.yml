@@ -125,7 +125,7 @@ jobs:
           docker network create game-check
           docker load --input "$RUNNER_TEMP/game-image.tar"
           docker run -d --name game-check --network game-check -e DO_GAME_SERVICE_TOKEN -e DO_API_SERVER_URL=http://web-check:9090 -p 127.0.0.1:9061:1949/udp "dlut-online:${{ github.sha }}"
-          docker run -d --name web-check --network game-check -e PORT=9090 -e DO_GAME_SERVICE_TOKEN -e DO_ADMIN_API_TOKEN -e DO_GAME_SERVER_URL=enet://127.0.0.1:9061 -p 127.0.0.1:9090:9090 "$IMAGE"
+          docker run -d --name web-check --network game-check -e PORT=9090 -e DO_GAME_SERVICE_TOKEN -e DO_ADMIN_API_TOKEN -e DO_GAME_SERVER_URL=enet://127.0.0.1:9061 -v web-check-data:/data -p 127.0.0.1:9090:9090 "$IMAGE"
           trap 'docker logs web-check; docker logs game-check; docker rm -f web-check game-check; docker network rm game-check' EXIT
           curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:9090/
           DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/enet_protocol.gd
