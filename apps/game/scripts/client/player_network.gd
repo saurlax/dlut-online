@@ -128,8 +128,7 @@ func _connect() -> void:
 		_disconnected()
 		return
 	var destination := Protocol.endpoint(str(payload.get("game_server_url", "")))
-	var config := preload("res://scripts/client/desktop_config.gd").read()
-	if destination.is_empty() or (config.get("environment") == "production" and not destination.secure):
+	if destination.is_empty():
 		close_code = 4002
 		_disconnected()
 		return

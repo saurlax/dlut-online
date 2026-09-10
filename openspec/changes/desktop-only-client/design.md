@@ -14,7 +14,7 @@
 
 快照显式二进制编码，每个玩家 68 字节，16 字节包头，每包最多 12 人，共 832 字节；不依赖对象反序列化。每 tick 按地图复用分包，客户端只保留最新 tick 的最多 5 包，齐全后应用；丢包跳过该帧，后续帧继续。可靠名册与快照独立，未获得昵称前不生成对应远端角色。服务器不保留待重发的历史快照，连接、输入工作量和握手超时有界。
 
-客户端可达的 enet:// 或 enets:// 主机:端口存入 PocketBase `servers` Collection；票据响应同时返回 game_server_url 与 version:4。DO_API_SERVER_URL 专指 Go HTTP 根地址。生产 Go 和客户端拒绝明文 enet://，游戏服 DO_ENV=production 要求 DO_GAME_TLS_CERT/DO_GAME_TLS_KEY，使用 ENet 原生 DTLS。客户端默认验证系统信任链和端点主机名，可通过 DO_GAME_TLS_CA 配置自有 CA，不提供禁用验证模式。证书通过部署平台只读挂载，源码与镜像不包含私钥。
+客户端可达的 enet:// 或 enets:// 主机:端口存入 PocketBase `servers` Collection；票据响应同时返回 game_server_url 与 version:4。DO_API_SERVER_URL 专指 Go HTTP 根地址。生产 Go 拒绝明文 enet://；客户端按 account-only-login 后续要求在两种环境均接受 enet:// 和 enets://，游戏服 DO_ENV=production 要求 DO_GAME_TLS_CERT/DO_GAME_TLS_KEY，使用 ENet 原生 DTLS。客户端默认验证系统信任链和端点主机名，可通过 DO_GAME_TLS_CA 配置自有 CA，不提供禁用验证模式。证书通过部署平台只读挂载，源码与镜像不包含私钥。
 
 选择 ENet 避免自行实现 UDP 连接与可靠重传；原始 TCP 仍有队头阻塞，QUIC 集成需要额外依赖。已有的 50 人 WebSocket 性能数字不作为 ENet 验收，重新测试真实 ENet 连接、二进制快照、丢包乱序和 API 重启隔离。
 
