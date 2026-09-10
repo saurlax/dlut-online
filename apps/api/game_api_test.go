@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/go-chi/chi/v5"
 	"net/http/httptest"
 	"sync"
 	"testing"
@@ -15,8 +14,7 @@ func TestAdmissionAndPresence(t *testing.T) {
 	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", serviceToken: "service", adminToken: "admin"})
 	now := time.Now()
 	g.now = func() time.Time { return now }
-	r := chi.NewRouter()
-	g.routes(r)
+	r := apiHandler(g, false)
 	request := func(method, path, token string, body any) (int, map[string]any) {
 		b, _ := json.Marshal(body)
 		q := httptest.NewRequest(method, path, bytes.NewReader(b))
@@ -114,8 +112,7 @@ func TestAdmissionAndPresence(t *testing.T) {
 
 func TestOriginAndTicketLimits(t *testing.T) {
 	g := newGameAPI(gameConfig{})
-	r := chi.NewRouter()
-	g.routes(r)
+	r := apiHandler(g, false)
 	for _, path := range []string{"/api/v1/game/tickets"} {
 		method := "POST"
 		q := httptest.NewRequest(method, path, nil)
@@ -149,8 +146,7 @@ func TestAccountTicketUsesResolvedIdentity(t *testing.T) {
 		}
 		return admission{ID: "account12345678", Username: "王同学", Kind: "account"}, true
 	}
-	r := chi.NewRouter()
-	g.routes(r)
+	r := apiHandler(g, false)
 	body, _ := json.Marshal(map[string]any{"id": "forged12345678", "version": 4})
 	req := httptest.NewRequest("POST", "/api/v1/game/tickets", bytes.NewReader(body))
 	req.Header.Set("Authorization", "Bearer valid")

@@ -7,6 +7,21 @@ import (
 	"testing"
 )
 
+func apiHandler(api *gameAPI, withSite bool) http.Handler {
+	mux := http.NewServeMux()
+	for _, route := range api.routes() {
+		mux.Handle(route.method+" "+route.path, route.handler)
+	}
+	if withSite {
+		mux.Handle("GET /", siteHandler())
+	}
+	return mux
+}
+
+func router(config gameConfig) http.Handler {
+	return apiHandler(newGameAPI(config), true)
+}
+
 func TestDesktopRoutes(t *testing.T) {
 	handler := router(gameConfig{})
 	for _, path := range []string{"/web", "/web/", "/web/index.wasm", "/ws", "/api/v1/missing", "/assets/missing.js", "/assets/"} {

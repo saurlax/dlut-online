@@ -15,7 +15,6 @@ import (
 	"sync"
 	"time"
 
-	"github.com/go-chi/chi/v5"
 	"github.com/pocketbase/pocketbase/core"
 )
 
@@ -33,6 +32,11 @@ type onlinePlayer struct {
 	Kind     string `json:"kind"`
 	Campus   string `json:"campus"`
 	JoinedAt int64  `json:"joined_at"`
+}
+type apiRoute struct {
+	method  string
+	path    string
+	handler http.Handler
 }
 type gameAPI struct {
 	mu                    sync.Mutex
@@ -147,14 +151,15 @@ func (g *gameAPI) auth(token string, next http.HandlerFunc) http.HandlerFunc {
 		next(w, r)
 	}
 }
-func (g *gameAPI) routes(r chi.Router) {
-	r.Post("/api/v1/game/tickets", g.issue)
-	r.Post("/internal/v1/game/tickets/consume", g.auth(g.config.serviceToken, g.consume))
-	r.Post("/internal/v1/game/register", g.auth(g.config.serviceToken, g.register))
-	r.Post("/internal/v1/game/presence", g.auth(g.config.serviceToken, g.presence))
-	r.Get("/api/v1/game/online", g.online)
-	r.Get("/api/v1/admin/game/players", g.auth(g.config.adminToken, g.details))
-
+func (g *gameAPI) routes() []apiRoute {
+	return []apiRoute{
+		{http.MethodPost, "/api/v1/game/tickets", http.HandlerFunc(g.issue)},
+		{http.MethodPost, "/internal/v1/game/tickets/consume", http.HandlerFunc(g.auth(g.config.serviceToken, g.consume))},
+		{http.MethodPost, "/internal/v1/game/register", http.HandlerFunc(g.auth(g.config.serviceToken, g.register))},
+		{http.MethodPost, "/internal/v1/game/presence", http.HandlerFunc(g.auth(g.config.serviceToken, g.presence))},
+		{http.MethodGet, "/api/v1/game/online", http.HandlerFunc(g.online)},
+		{http.MethodGet, "/api/v1/admin/game/players", http.HandlerFunc(g.auth(g.config.adminToken, g.details))},
+	}
 }
 func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 	if !sameOrigin(r) {

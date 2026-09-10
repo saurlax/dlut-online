@@ -71,7 +71,7 @@
 - references/、openspec/、AGENTS.md 和 README.md 保留仓库根目录。原始参考路径相对仓库根目录记录，生成工具须从自身位置解析路径，不能依赖调用者工作目录。
 - 各应用独立管理依赖和构建产物，桌面客户端导出位于 apps/game/build/windows/ 与 macos/，游戏服位于 server/。Go 提供首页和 /api/v1/ 接口，不再托管 /web/ 或代理 /ws；客户端直连独立 Godot 游戏服。
 
-- Go HTTP 服务位于 apps/api/，嵌入 PocketBase 并保留 Chi 业务路由；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
+- Go HTTP 服务位于 apps/api/，自定义业务接口和 Vue 站点直接注册到 PocketBase Router；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
 - CI 在每次 push 构建 Go HTTP 和 Godot 游戏服镜像，并导出 Windows x86_64 与 macOS universal ZIP；不构建 Godot Web 游戏产物；Vue 网站构建后嵌入 Go，生成产物不提交。Go PORT 默认 8415，容器将 PocketBase 数据保存在 `/data/pb_data` 持久卷。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
 

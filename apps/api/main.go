@@ -3,12 +3,10 @@ package main
 import (
 	"fmt"
 	"log/slog"
-	"net/http"
 	"os"
 	"strconv"
 	"strings"
 
-	"github.com/go-chi/chi/v5"
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
@@ -16,13 +14,6 @@ import (
 
 	_ "dlut-online/server/migrations"
 )
-
-func router(config gameConfig) http.Handler {
-	r := chi.NewRouter()
-	newGameAPI(config).routes(r)
-	r.Get("/*", siteHandler().ServeHTTP)
-	return r
-}
 
 func listenAddress(port string) (string, error) {
 	if port == "" {
@@ -43,17 +34,13 @@ func newApplication(dataDir string, config gameConfig) *pocketbase.PocketBase {
 	migratecmd.MustRegister(app, app.RootCmd, migratecmd.Config{})
 	api := newGameAPI(config, app)
 	app.OnServe().BindFunc(func(event *core.ServeEvent) error {
-		event.Router.Any("/{path...}", apis.WrapStdHandler(routerWithAPI(api)))
+		for _, route := range api.routes() {
+			event.Router.Route(route.method, route.path, apis.WrapStdHandler(route.handler))
+		}
+		event.Router.GET("/{path...}", apis.WrapStdHandler(siteHandler()))
 		return event.Next()
 	})
 	return app
-}
-
-func routerWithAPI(api *gameAPI) http.Handler {
-	r := chi.NewRouter()
-	api.routes(r)
-	r.Get("/*", siteHandler().ServeHTTP)
-	return r
 }
 
 func main() {
