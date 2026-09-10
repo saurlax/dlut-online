@@ -65,3 +65,7 @@
 #### Scenario: 下载页面直达与刷新
 - **WHEN** 用户直接访问或刷新 /download 或 /download/
 - **THEN** Go 返回应用入口，展示 Windows x86_64 与 macOS Universal 下载选项，未知路径仍返回 404
+
+#### Scenario: 精简首屏标题
+- **WHEN** 用户打开首页
+- **THEN** 标题为“大工，再相逢”，不显示标题上方的英文校名或“第一人称校园 MMORPG”说明
