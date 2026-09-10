@@ -40,4 +40,4 @@
 
 ## 再生成
 
-在仓库根目录依次运行 `python3 apps/game/tools/prepare_lingshui.py`、`godot --headless --path apps/game --script tools/build_lingshui.gd` 和 `godot --headless --path apps/game --script tools/server_export/build_worlds.gd`。工具从自身路径解析资料，只读取已归档数据，不依赖在线接口。桌面与服务端导出方式见 [应用技术文档](../../apps/web/README.md)。
+在仓库根目录依次运行 `python3 apps/game/tools/prepare_lingshui.py`、`godot --headless --path apps/game --script tools/build_lingshui.gd` 和 `godot --headless --path apps/game --script tools/server_export/build_worlds.gd`。工具从自身路径解析资料，只读取已归档数据，不依赖在线接口。桌面与服务端导出方式见 [应用技术文档](../../apps/api/README.md)。

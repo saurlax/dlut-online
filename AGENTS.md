@@ -21,7 +21,7 @@
 - 项目自定义环境变量统一使用 `DO_` 前缀和大写下划线命名（DO 为 DLUT Online 简称）。环境名称使用 `DO_ENV`（`development` / `production`），服务器根地址使用 `DO_SERVER_URL`，不使用含义模糊的 `ENV`、`BASE_URL` 或 `BASEURL`。平台约定变量（如现有 `PORT`）保留其兼容用途，不作为项目自定义变量命名范例。
 - `DO_SERVER_URL` 是 Go HTTP API 根地址，包含协议、主机和可选端口，不含末尾斜杠或接口路径；开发默认 `http://localhost:8415`，生产默认 `https://dlut.online`。客户端从 Go 获取一次性票据和游戏服公网地址后直连游戏服。
 - 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。当前保留 Compatibility 渲染器，不因取消 Web 顺带变更渲染管线。
-- 不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，游客身份仅保留在客户端进程中。
+- Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，游客身份仅保留在客户端进程中。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
 - 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，运行时资源放 assets/。
 - 按职责拆分模型生成器，避免把建筑内部、植被和 UI 混入同一模块。GDScript 使用 snake_case，常量 UPPER_SNAKE_CASE；类型推断不明确时显式标注类型。
@@ -66,20 +66,22 @@
 
 ## Monorepo 目录
 
-- 应用按 apps/ 组织：共享 Godot 工程位于 apps/game/；Go 服务与当前简洁站点入口位于 apps/web/，不另建空的 apps/site/ 或引入 monorepo 框架。
+- 应用按 apps/ 组织：共享 Godot 工程位于 apps/game/；Go HTTP 服务位于 apps/api/，Vue 3 + TypeScript + Vite 网站位于 apps/web/，不另建空的 apps/site/ 或引入 monorepo 框架。
 - 本文中的 scenes/、scripts/、assets/、tests/、tools/ 均相对 apps/game/；Godot res:// 也以此为根。编辑器打开 apps/game/project.godot。
 - references/、openspec/、AGENTS.md 和 README.md 保留仓库根目录。原始参考路径相对仓库根目录记录，生成工具须从自身位置解析路径，不能依赖调用者工作目录。
 - 各应用独立管理依赖和构建产物，桌面客户端导出位于 apps/game/build/windows/ 与 macos/，游戏服位于 server/。Go 提供首页和 /api/v1/ 接口，不再托管 /web/ 或代理 /ws；客户端直连独立 Godot 游戏服。
 
-- Go HTTP 服务位于 apps/web/，使用 Chi；负责站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/web/README.md。
+- Go HTTP 服务位于 apps/api/，使用 Chi；负责站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
-- CI 在每次 push 构建 Go HTTP 和 Godot 游戏服镜像，并导出 Windows x86_64 与 macOS universal ZIP；不构建或提交 Web 产物。Go PORT 默认 8415，显式 -addr 优先。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
+- CI 在每次 push 构建 Go HTTP 和 Godot 游戏服镜像，并导出 Windows x86_64 与 macOS universal ZIP；不构建 Godot Web 游戏产物；Vue 网站构建后嵌入 Go，生成产物不提交。Go PORT 默认 8415，显式 -addr 优先。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
 
 ## 权威游戏服务
 
-- Godot 无头服务端与客户端共享 apps/game/ 工程，入口为 scenes/server.tscn，客户端逻辑放 scripts/client/，服务端专属逻辑放 scripts/server/，共享运动、碰撞、校区注册表和协议规则放 scripts/shared/。Go apps/web/ 负责站点、票据和在线查询，不执行玩家物理或广播。
+- Godot 无头服务端与客户端共享 apps/game/ 工程，入口为 scenes/server.tscn，客户端逻辑放 scripts/client/，服务端专属逻辑放 scripts/server/，共享运动、碰撞、校区注册表和协议规则放 scripts/shared/。Go apps/api/ 负责站点、票据和在线查询，不执行玩家物理或广播。
 - 客户端 GameNetwork Autoload 跨场景保留 ENet 连接；同实例切图不重新取票、不重登，加载期间继续心跳且停止移动，场景就绪后迁移角色。三个校区对所有玩家开放。
 - 服务端通过独立 World3D 同时持有三校区碰撞世界，不能同时加载三个视觉校园模型；客户端仍只加载一个校园。服务端静态碰撞从现有场景和标记生成，保留可直接打开的场景，修改来源后重新生成，不能手工复制第二套模型。
 - 服务端凭据只在进程环境读取，不导出到客户端。真实 SSO、数据库和历史分析尚未接入，不用游客 ID 访问敏感数据。线上人数必须标记时效，失联不能报告为零人。
 - CI 同时构建 Go HTTP 镜像与独立 Godot Linux amd64 镜像，继续导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
 - 游戏协议版本 3 使用 ENet/UDP：控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。DO_GAME_SERVER_URL 在 Go 配置为客户端可达的 enet:// 或 enets:// 主机:端口，不能填容器内部地址。生产使用 enets:// 与游戏服 DTLS 证书，客户端校验证书；游戏服 UDP 端口独立暴露。
+
+- 网站构建从 apps/web 输出到 apps/api/static/，Go 编译和测试前先运行 pnpm install --frozen-lockfile、pnpm build。apps/api/Dockerfile 构建前端并嵌入 Go，Compose 仍只部署 game 与 web，网站不需要 Node 运行服务。网站可以使用 Vue，游戏 UI 仍限 Godot。

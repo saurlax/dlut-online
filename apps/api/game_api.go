@@ -116,10 +116,6 @@ func (g *gameAPI) auth(token string, next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 func (g *gameAPI) routes(r chi.Router) {
-	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		_, _ = io.WriteString(w, `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>DLUT Online</title><body><h1>DLUT Online</h1><p><a href="https://github.com/saurlax/dlut-online/releases">下载客户端</a></p></body></html>`)
-	})
 	r.Post("/api/v1/game/tickets", g.issue)
 	r.Post("/internal/v1/game/tickets/consume", g.auth(g.config.serviceToken, g.consume))
 	r.Post("/internal/v1/game/register", g.auth(g.config.serviceToken, g.register))
