@@ -65,6 +65,7 @@ jobs:
           godot --headless --script tools/server_export/build_worlds.gd
           godot --headless --script tests/server_physics.gd
           godot --headless --script tests/game_protocol.gd
+          godot --headless --script tests/player_prediction.gd
           mkdir -p build/windows build/macos build/server
           godot --headless --export-release Server build/server/dlut-online-server.x86_64
           mkdir -p "$RUNNER_TEMP/pack-check"
