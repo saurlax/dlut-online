@@ -5,3 +5,4 @@
 - [x] 1.3 让游戏票据使用 PocketBase auth token 的权威 ID 和显示名，并将网络身份切换到 PocketBase ID 格式。
 - [x] 1.4 更新容器、Compose、环境参数和 apps/api 技术文档，使用 PocketBase 持久卷。
 - [x] 1.5 验证 PocketBase Collection 与认证规则、游戏票据、Go/Vue 测试、Docker 构建和 OpenSpec，然后提交。
+- [x] 1.6 移除 Chi，将业务 API 和 Vue 站点直接注册到 PocketBase Router，并完成回归验证。

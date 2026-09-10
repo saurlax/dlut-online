@@ -1,6 +1,6 @@
 # Go 服务与 Godot 游戏服
 
-Go 位于 apps/api，嵌入 PocketBase 并保留 Chi 业务路由，负责用户认证、SQLite 持久化、网站托管、入场票据和在线查询。Vue 3 + TypeScript + Vite 网站位于 apps/web。Godot 独立进程负责权威移动、校园碰撞与同校区玩家同步。
+Go 位于 apps/api，自定义业务接口和 Vue 站点直接注册到 PocketBase Router，负责用户认证、SQLite 持久化、网站托管、入场票据和在线查询。Vue 3 + TypeScript + Vite 网站位于 apps/web。Godot 独立进程负责权威移动、校园碰撞与同校区玩家同步。
 
 ## 本地运行
 

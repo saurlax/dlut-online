@@ -7,7 +7,6 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/go-chi/chi/v5"
 	"github.com/pocketbase/pocketbase/core"
 )
 
@@ -85,8 +84,7 @@ func TestPocketBaseAccountTicket(t *testing.T) {
 	}
 
 	api := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", serviceToken: "service"}, app)
-	router := chi.NewRouter()
-	api.routes(router)
+	router := apiHandler(api, false)
 	request := func(path, bearer string, body any) (int, map[string]any) {
 		payload, _ := json.Marshal(body)
 		req := httptest.NewRequest("POST", path, bytes.NewReader(payload))
