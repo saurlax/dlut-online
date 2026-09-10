@@ -85,11 +85,15 @@ Go SHALL 仅向具备有效 API Key 的调用者提供当前在线玩家标识�
 - **THEN** 无虚构 SSO 登录、历史 DAU、留存或持久化成功响应，未来数据流程和当前仅内存能力可区分
 
 ### Requirement: 按应用范围构建
-CI SHALL 使用独立 Web 与 Game 工作流按路径触发，网站变更不得触发游戏导出；API 变更 SHALL 触发两者以验证联调兼容性。版本发布 SHALL 等待两者成功。
+CI SHALL 使用独立 Web 与 Game 工作流按路径触发，网站变更不得触发游戏导出；API 变更 SHALL 触发两者以验证各自构建。版本发布 SHALL 等待两者成功。
 
 #### Scenario: 网站改动
 - **WHEN** 仅修改 apps/web 下运行文件
 - **THEN** 只运行 Web 构建与镜像检查，不安装 Godot 或导出客户端
+
+#### Scenario: 构建不依赖端到端联调
+- **WHEN** 运行 Game 构建或版本发布
+- **THEN** 保留物理、协议和导出包校验，不执行 Go ENet 进程集成测试或容器双服务联调，不在 Game 工作流重复构建网站/API；已有联调脚本可按需本地运行
 
 #### Scenario: 导出包校验失败
 - **WHEN** 检查已导出的 PCK 或 Godot 报告脚本错误

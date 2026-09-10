@@ -76,7 +76,7 @@
 
 - Go HTTP 服务位于 apps/api/，自定义业务接口和 Vue 站点直接注册到 PocketBase Router；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
-- CI 按路径分别触发 build-web.yml 与 build-game.yml：网站/API 变更构建 Go HTTP 镜像；游戏/API 变更构建 Godot 游戏服镜像、导出 Windows x86_64 与 macOS universal ZIP 并执行双服务联调；不构建 Godot Web 游戏产物；Vue 网站构建后嵌入 Go，生成产物不提交。Go `DO_API_SERVER_PORT` 默认 8415，并兼容部署平台提供的 `PORT`；容器将 PocketBase 数据保存在 `/data/pb_data` 持久卷。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
+- CI 按路径分别触发 build-web.yml 与 build-game.yml：网站/API 变更构建 Go HTTP 镜像；游戏/API 变更构建 Godot 游戏服镜像、导出 Windows x86_64 与 macOS universal ZIP 并保留物理、协议和导出包校验；构建流程不执行端到端双服务联调，按需本地运行已有联调脚本；不构建 Godot Web 游戏产物；Vue 网站构建后嵌入 Go，生成产物不提交。Go `DO_API_SERVER_PORT` 默认 8415，并兼容部署平台提供的 `PORT`；容器将 PocketBase 数据保存在 `/data/pb_data` 持久卷。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
 
 ## 权威游戏服务
 
