@@ -1,5 +1,5 @@
 services:
-  api:
+  web:
     build:
       context: .
       dockerfile: apps/web/Dockerfile
@@ -13,7 +13,7 @@ services:
       DO_ADMIN_API_TOKEN: ${DO_ADMIN_API_TOKEN:?set a different random admin token}
     networks:
       default:
-        aliases: [api.internal]
+        aliases: [web.internal]
     restart: unless-stopped
   game:
     ports:
@@ -23,7 +23,7 @@ services:
       dockerfile: apps/game/tools/server_export/Dockerfile
     environment:
       DO_ENV: ${DO_ENV:-development}
-      DO_API_SERVER_URL: http://api.internal:8415
+      DO_API_SERVER_URL: http://web.internal:8415
       DO_GAME_SERVICE_TOKEN: ${DO_GAME_SERVICE_TOKEN:?set a random service token}
       DO_GAME_INSTANCE_ID: main
       DO_GAME_TLS_CERT: ${DO_GAME_TLS_CERT:-}

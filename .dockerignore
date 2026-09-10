@@ -8,5 +8,5 @@
 !apps/game/
 !apps/game/build/
 !apps/game/build/server/
-!apps/game/build/server/dlut-game-server.x86_64
-!apps/game/build/server/dlut-game-server.pck
+!apps/game/build/server/dlut-online-server.x86_64
+!apps/game/build/server/dlut-online-server.pck
