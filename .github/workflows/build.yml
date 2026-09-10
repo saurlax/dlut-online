@@ -29,7 +29,7 @@ jobs:
         with:
           go-version-file: apps/web/go.mod
           cache-dependency-path: apps/web/go.sum
-      - name: Test and vet server
+      - name: Test and vet Go Web
         working-directory: apps/web
         run: |
           go test -race ./...
@@ -57,8 +57,8 @@ jobs:
           godot --headless --script tests/game_protocol.gd
           (cd ../web && DO_TEST_GODOT_PROJECT=../game go test -race -run TestENet -timeout 3m -v)
           mkdir -p build/windows build/macos build/server
-          godot --headless --export-release Server build/server/dlut-game-server.x86_64
-          godot --headless --main-pack build/server/dlut-game-server.pck --script "$GITHUB_WORKSPACE/apps/game/tests/server_export.gd"
+          godot --headless --export-release Server build/server/dlut-online-server.x86_64
+          godot --headless --main-pack build/server/dlut-online-server.pck --script "$GITHUB_WORKSPACE/apps/game/tests/server_export.gd"
           godot --headless --export-release Windows "build/windows/DLUT Online.exe"
           godot --headless --export-release macOS "build/macos/DLUT Online.zip"
           unzip -p 'build/macos/DLUT Online.zip' 'DLUT Online.app/Contents/Resources/DLUT Online.pck' > "$RUNNER_TEMP/desktop.pck"
@@ -78,7 +78,7 @@ jobs:
           retention-days: 7
           if-no-files-found: error
       - uses: docker/setup-buildx-action@v3
-      - name: Build Go HTTP server
+      - name: Build Go Web
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -110,9 +110,9 @@ jobs:
           export DO_ADMIN_API_TOKEN="$(openssl rand -hex 32)"
           docker network create game-check
           docker load --input "$RUNNER_TEMP/game-image.tar"
-          docker run -d --name game-check --network game-check -e DO_GAME_SERVICE_TOKEN -e DO_API_SERVER_URL=http://server-check:9090 -p 127.0.0.1:9061:1949/udp "dlut-online:${{ github.sha }}"
-          docker run -d --name server-check --network game-check -e PORT=9090 -e DO_GAME_SERVICE_TOKEN -e DO_ADMIN_API_TOKEN -e DO_GAME_SERVER_URL=enet://127.0.0.1:9061 -p 127.0.0.1:9090:9090 "$IMAGE"
-          trap 'docker logs server-check; docker logs game-check; docker rm -f server-check game-check; docker network rm game-check' EXIT
+          docker run -d --name game-check --network game-check -e DO_GAME_SERVICE_TOKEN -e DO_API_SERVER_URL=http://web-check:9090 -p 127.0.0.1:9061:1949/udp "dlut-online:${{ github.sha }}"
+          docker run -d --name web-check --network game-check -e PORT=9090 -e DO_GAME_SERVICE_TOKEN -e DO_ADMIN_API_TOKEN -e DO_GAME_SERVER_URL=enet://127.0.0.1:9061 -p 127.0.0.1:9090:9090 "$IMAGE"
+          trap 'docker logs web-check; docker logs game-check; docker rm -f web-check game-check; docker network rm game-check' EXIT
           curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:9090/
           DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/enet_protocol.gd
           DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_travel.gd
@@ -139,7 +139,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish tested image to GHCR
+      - name: Publish tested images to GHCR
         if: github.event_name != 'pull_request'
         env:
           REPOSITORY: ${{ github.repository }}

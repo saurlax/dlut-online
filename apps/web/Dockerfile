@@ -4,11 +4,11 @@ WORKDIR /src
 COPY apps/web/go.mod apps/web/go.sum ./
 RUN go mod download
 COPY apps/web/*.go ./
-RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/server .
+RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/dlut-online-web .
 
 FROM scratch
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
-COPY --from=build /out/server /server
+COPY --from=build /out/dlut-online-web /dlut-online-web
 USER 65532:65532
 EXPOSE 8415
-ENTRYPOINT ["/server"]
+ENTRYPOINT ["/dlut-online-web"]

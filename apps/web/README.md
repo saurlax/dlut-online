@@ -70,12 +70,14 @@ Go `PORT` 默认 8415，`-addr` 优先；启动不需要 Web 导出目录。另�
 ```sh
 mkdir -p apps/game/build/server apps/game/build/windows apps/game/build/macos
 godot --headless --path apps/game --script tools/server_export/build_worlds.gd
-godot --headless --path apps/game --export-release Server build/server/dlut-game-server.x86_64
+godot --headless --path apps/game --export-release Server build/server/dlut-online-server.x86_64
 godot --headless --path apps/game --export-release Windows 'build/windows/DLUT Online.exe'
 godot --headless --path apps/game --export-release macOS 'build/macos/DLUT Online.zip'
 docker compose build
 docker compose up -d
 ```
+
+Compose 服务名为 `web` 和 `game`，游戏服通过 `http://web.internal:8415` 访问 Go。游戏服导出 `dlut-online-server.x86_64` 与同名 `.pck`，容器运行 `/game/dlut-online-server`；Go 容器运行 `/dlut-online-web`。
 
 Compose 默认将 Go TCP 8415 和游戏 UDP 1949 绑定宿主机 127.0.0.1，用于本地开发；DO_HTTP_BIND/DO_HTTP_PORT 和 DO_GAME_BIND/DO_GAME_PUBLIC_PORT 调整映射。Go 镜像不需要客户端文件。正式发布桌面包默认 production，编辑器默认 development；DO_SERVER_URL 显式覆盖 Go API 根地址，DO_ENV 显式指定环境，否则使用包内配置，不读取 .env。
 
