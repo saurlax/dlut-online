@@ -36,7 +36,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://tools/desktop_export/plugin.cfg", "res://tools/campus_packs/plugin.cfg", "res://tools/server_export/plugin.cfg")
+enabled=PackedStringArray("res://tools/desktop_export/plugin.cfg", "res://tools/server_export/plugin.cfg")
 
 [rendering]
 

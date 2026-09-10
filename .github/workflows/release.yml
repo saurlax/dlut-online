@@ -48,7 +48,7 @@ jobs:
           mv 'dist/macos/DLUT Online.zip' dist/DLUT-Online-macOS.zip
           mv dist/windows/DLUT-Online-Windows.zip dist/DLUT-Online-Windows.zip
           image="ghcr.io/${GH_REPO,,}:$TAG"
-          printf 'API/Web Docker: `%s`\nGodot game Docker: `%s`\n\nWindows x86_64 and macOS universal clients are attached. Desktop builds are unsigned and macOS builds are not notarized.\n' "$image" "ghcr.io/${GH_REPO,,}-game:$TAG" > notes.md
+          printf 'Go HTTP Docker: `%s`\nGodot game Docker: `%s`\n\nWindows x86_64 and macOS universal clients are attached. Desktop builds are unsigned and macOS builds are not notarized.\n' "$image" "ghcr.io/${GH_REPO,,}-game:$TAG" > notes.md
           if ! gh release view "$TAG" >/dev/null 2>&1; then
             args=(--verify-tag --title "$TAG" --notes-file notes.md)
             if [[ "$TAG" == *-* ]]; then

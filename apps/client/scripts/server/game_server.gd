@@ -5,8 +5,8 @@ const DataService = preload("res://scripts/server/data_service.gd")
 const MAPS := ["lingshui", "eda", "panjin"]
 const MAX_CONNECTIONS := 100
 const MAX_PLAYERS := 50
-const MAX_BUFFER := 262144
-var listener := TCPServer.new()
+const Protocol = preload("res://scripts/shared/game_protocol.gd")
+var listener := ENetConnection.new()
 var data: Node
 var connections: Array[Dictionary] = []
 var players := {}
@@ -29,66 +29,61 @@ func _ready() -> void:
 	var port := 8061 if port_text.is_empty() else port_text.to_int()
 	var address := OS.get_environment("DO_GAME_LISTEN_ADDR")
 	if address.is_empty(): address = "127.0.0.1"
-	if port < 1 or port > 65535 or listener.listen(port, address) != OK:
+	if port < 1 or port > 65535 or listener.create_host_bound(address, port, MAX_CONNECTIONS, 2) != OK:
 		push_error("Cannot listen for game connections")
 		get_tree().quit(1)
 		return
-	print("Game server listening ", address, ":", port)
+	var certificate_path := OS.get_environment("DO_GAME_TLS_CERT")
+	var key_path := OS.get_environment("DO_GAME_TLS_KEY")
+	if OS.get_environment("DO_ENV") == "production" or not certificate_path.is_empty() or not key_path.is_empty():
+		var certificate := X509Certificate.new()
+		var key := CryptoKey.new()
+		if certificate.load(certificate_path) != OK or key.load(key_path) != OK or listener.dtls_server_setup(TLSOptions.server(key, certificate)) != OK:
+			push_error("Game DTLS certificate/key configuration failed")
+			get_tree().quit(1)
+			return
+	print("Game ENet server listening ", address, ":", port)
 
 func _process(delta: float) -> void:
-	while listener.is_connection_available():
-		var stream := listener.take_connection()
-		if connections.size() >= MAX_CONNECTIONS:
-			stream.disconnect_from_host()
-			continue
-		var ws := WebSocketPeer.new()
-		ws.inbound_buffer_size = 8192
-		ws.outbound_buffer_size = MAX_BUFFER
-		ws.max_queued_packets = 64
-		ws.accept_stream(stream)
-		var now := Time.get_ticks_msec()
-		connections.append({"ws":ws, "created":now, "last":now, "window":now, "messages":0,
-			"identity":{}, "authenticating":false, "closing":false, "body":null, "campus":"", "epoch":1,
-			"seq":-1, "jump":0, "axis":Vector2.ZERO, "run":false, "yaw":0.0, "last_input":now,
-			"transfer":{}, "results":{}, "request_high":0, "frozen":false, "pending":"", "slow_since":0})
-	for c in connections.duplicate():
-		var ws: WebSocketPeer = c.ws
-		ws.poll()
-		var now := Time.get_ticks_msec()
-		if ws.get_ready_state() == WebSocketPeer.STATE_CLOSED:
-			remove(c)
-			continue
-		if c.closing:
-			if now - c.last > 1000: remove(c)
-			continue
-		if c.identity.is_empty() and now - c.created > 5000:
-			close(c, 4003, "handshake timeout")
-			continue
-		if now - c.last > 15000:
-			close(c, 4003, "idle timeout")
-			continue
-		while ws.get_available_packet_count() > 0 and not c.closing:
-			var packet := ws.get_packet()
-			if now - c.window >= 1000:
-				c.window = now
-				c.messages = 0
-			c.messages += 1
-			if packet.size() > 2048 or c.messages > 40:
-				close(c, 4002, "message limit")
-				break
-			var message: Variant = JSON.parse_string(packet.get_string_from_utf8())
-			if not message is Dictionary:
-				close(c, 4002, "invalid message")
-				break
-			handle(c, message)
-		if ws.get_current_outbound_buffered_amount() > MAX_BUFFER / 2:
-			if c.slow_since == 0: c.slow_since = now
-			if now - c.slow_since > 3000: close(c, 4003, "slow connection")
+	# Bound per-frame work even when a peer floods incoming packets.
+	for event_index in 4096:
+		var event := listener.service(0)
+		if event[0] == ENetConnection.EVENT_NONE: break
+		var peer: ENetPacketPeer = event[1]
+		if event[0] == ENetConnection.EVENT_CONNECT:
+			var now := Time.get_ticks_msec()
+			peer.set_timeout(8, 3000, 15000)
+			connections.append({"peer":peer, "created":now, "last":now, "window":now, "messages":0,
+				"identity":{}, "authenticating":false, "closing":false, "body":null, "campus":"", "epoch":1,
+				"seq":-1, "jump":0, "axis":Vector2.ZERO, "run":false, "yaw":0.0, "last_input":now,
+				"transfer":{}, "results":{}, "request_high":0, "frozen":false})
 		else:
-			c.slow_since = 0
-			if not c.pending.is_empty():
-				ws.send_text(c.pending)
-				c.pending = ""
+			var c := connection_for(peer)
+			if event[0] == ENetConnection.EVENT_RECEIVE:
+				var packet := peer.get_packet()
+				if c.is_empty() or c.closing: continue
+				var now := Time.get_ticks_msec()
+				if now - c.window >= 1000:
+					c.window = now
+					c.messages = 0
+				c.messages += 1
+				if packet.size() > 2048 or c.messages > 40:
+					close(c, 4002, "message limit")
+					continue
+				var message: Variant = JSON.parse_string(packet.get_string_from_utf8())
+				if not message is Dictionary or (event[3] == Protocol.REALTIME) != (message.get("type") == "input"):
+					close(c, 4002, "invalid message or channel")
+					continue
+				handle(c, message)
+			elif event[0] == ENetConnection.EVENT_DISCONNECT and not c.is_empty(): remove(c)
+	for c in connections.duplicate():
+		var now := Time.get_ticks_msec()
+		if c.closing:
+			if now - c.last > 1000:
+				c.peer.reset()
+				remove(c)
+		elif c.identity.is_empty() and now - c.created > 5000: close(c, 4003, "handshake timeout")
+		elif now - c.last > 15000: close(c, 4003, "idle timeout")
 	var online: Array = []
 	for c: Dictionary in players.values():
 		var identity: Dictionary = c.identity
@@ -96,11 +91,11 @@ func _process(delta: float) -> void:
 			"campus":c.campus, "joined_at":c.joined_at})
 	data.report(delta, online)
 
-func close(c: Dictionary, code: int, reason: String) -> void:
+func close(c: Dictionary, code: int, _reason: String) -> void:
 	if c.closing: return
 	c.closing = true
 	c.last = Time.get_ticks_msec()
-	c.ws.close(code, reason)
+	c.peer.peer_disconnect(code)
 	remove_player(c)
 
 func remove_player(c: Dictionary) -> void:
@@ -115,14 +110,20 @@ func remove(c: Dictionary) -> void:
 	remove_player(c)
 	connections.erase(c)
 
+func connection_for(peer: ENetPacketPeer) -> Dictionary:
+	for c in connections:
+		if c.peer == peer: return c
+	return {}
+
 func send(c: Dictionary, value: Dictionary) -> void:
 	if c.closing: return
-	if c.ws.send_text(JSON.stringify(value)) != OK: close(c, 4003, "send limit")
+	if c.peer.send(Protocol.CONTROL, JSON.stringify(value).to_utf8_buffer(), ENetPacketPeer.FLAG_RELIABLE) != OK:
+		close(c, 4003, "send limit")
 
 func handle(c: Dictionary, m: Dictionary) -> void:
 	var kind: String = str(m.get("type", ""))
 	if c.identity.is_empty():
-		if kind != "hello" or c.authenticating or m.get("version") != 2 or not m.get("ticket") is String or not m.get("campus", "lingshui") in MAPS:
+		if kind != "hello" or c.authenticating or m.get("version") != Protocol.VERSION or not m.get("ticket") is String or not m.get("campus", "lingshui") in MAPS:
 			close(c, 4002, "invalid hello or version")
 			return
 		c.authenticating = true
@@ -159,7 +160,7 @@ func authenticate(c: Dictionary, m: Dictionary) -> void:
 	c.last = Time.get_ticks_msec()
 	roster_dirty = true
 	var welcome := state(c)
-	welcome.merge({"type":"welcome", "version":2, "username":identity.username, "admission_id":identity.admission_id, "roster":roster(c.campus)})
+	welcome.merge({"type":"welcome", "version":Protocol.VERSION, "username":identity.username, "admission_id":identity.admission_id, "roster":roster(c.campus)})
 	send(c, welcome)
 
 func finite_number(value: Variant) -> bool:
@@ -205,11 +206,12 @@ func _physics_process(delta: float) -> void:
 			var states: Array = []
 			for c: Dictionary in players.values():
 				if c.campus == campus: states.append(state(c))
-			var message := {"type":"snapshot", "campus":campus, "server_tick":tick, "players":states}
-			if roster_dirty or tick % 60 == 0: message.roster = roster(campus)
-			var encoded := JSON.stringify(message)
+			var packets := Protocol.snapshots(campus, tick, states)
 			for c: Dictionary in players.values():
-				if c.campus == campus: c.pending = encoded
+				if c.campus != campus: continue
+				if roster_dirty: send(c, {"type":"roster", "campus":campus, "server_tick":tick, "roster":roster(campus)})
+				# No reliable retransmission or queued historical snapshots.
+				for packet in packets: c.peer.send(Protocol.REALTIME, packet, 0)
 		roster_dirty = false
 	tick_samples.append(Time.get_ticks_usec() - begin)
 	if tick_samples.size() >= 3600:

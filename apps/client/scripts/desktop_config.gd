@@ -29,8 +29,6 @@ static func resolve(defaults: Dictionary, environment: String, server_url: Strin
 	return {"environment": selected_env, "server_url": selected_url}
 
 static func read() -> Dictionary:
-	if OS.has_feature("web"):
-		return {}
 	var defaults := {"environment": "development", "server_url": DEFAULT_URLS.development}
 	if not OS.has_feature("editor"):
 		if not FileAccess.file_exists(CONFIG_PATH):
