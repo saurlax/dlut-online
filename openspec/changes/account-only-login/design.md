@@ -17,6 +17,8 @@ Go 已嵌入 PocketBase，Godot 目前只有游客登录。最新决定为全部
 - 未来 iOS 用 ASWebAuthenticationSession，Android 用 Custom Tabs 与验证过的 App Links，通过平台注册的固定回调适配同一授权请求与兑换机制；不把桌面 loopback 用作移动端验收方案。未来增加移动端时才扩展允许的回调白名单，并处理进程重建与安全保存待完成授权。不依赖 PocketBase all-in-one OAuth2 的后台实时连接。
 - 将来 OIDC 的 provider secret 与身份校验留在服务器；网站完成 OIDC 后仍使用相同的用户确认与客户端一次性兑换流程。新身份必填字段和可信邮箱映射在实际接入提供方时处理。
 
+- 客户端不按 DO_ENV 强制游戏 DTLS，按票据中的 enet:// 或 enets:// 选择传输；enets:// 始终校验信任链与主机名且不自动降级。Go 与游戏服的 production 限制保留，明文测试部署使用 development。
+
 ## Risks / Trade-offs
 
 - SMTP 未配置 → 注册成功与发信失败分开提示，允许重发；本地检查不能证明外网邮件投递。

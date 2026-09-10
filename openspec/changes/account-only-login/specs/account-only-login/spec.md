@@ -40,3 +40,14 @@
 #### Scenario: 网站登录
 - **WHEN** 用户提交有效账号或退出
 - **THEN** 登录后展示账号显示名，退出后恢复登录和注册入口；密码及 token 不写入 URL
+
+### Requirement: 客户端按游戏端点选择传输
+客户端 SHALL 在 development 和 production 均接受 API 下发的 enet:// 和 enets:// 端点；前者使用明文 ENet，后者启用 DTLS 并校验证书信任链与主机名，不自动降级。生产客户端账号 API 仍 SHALL 使用 HTTPS。
+
+#### Scenario: 正式客户端连接明文测试服
+- **WHEN** production 客户端通过 HTTPS API 收到有效的 enet:// 端点和账号票据
+- **THEN** 客户端建立普通 ENet 连接，不因构建环境拒绝连接
+
+#### Scenario: DTLS 证书校验失败
+- **WHEN** 下发 enets:// 端点且证书无效
+- **THEN** 拒绝连接，不跳过校验或自动改为明文

@@ -85,7 +85,7 @@
 - 服务端通过独立 World3D 同时持有三校区碰撞世界，不能同时加载三个视觉校园模型；客户端仍只加载一个校园。服务端静态碰撞从现有场景和标记生成，保留可直接打开的场景，修改来源后重新生成，不能手工复制第二套模型。
 - DO_API_KEY 只在可信服务进程环境读取，不导出到客户端。PocketBase Auth Collection 和 SQLite 是用户权威数据源，OIDC/SSO 提供方按部署配置；无有效账号凭据不能申请游戏票据。线上人数必须标记时效，失联不能报告为零人。
 - 版本标签发布同时调用 Web 和 Game 工作流，构建 Go HTTP 镜像与独立 Godot Linux amd64 镜像，并导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
-- 游戏协议版本 4 使用 ENet/UDP，玩家 ID 为 15 字节 ASCII：统一使用 PocketBase 小写账号 ID。控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。客户端可达的 `enet://` 或 `enets://` 端点存入 PocketBase `servers` Collection，由票据接口动态下发；生产只接受 `enets://`。游戏服使用 `DO_GAME_SERVER_PORT` 监听 UDP，生产使用 DTLS 证书，客户端校验证书。
+- 游戏协议版本 4 使用 ENet/UDP，玩家 ID 为 15 字节 ASCII：统一使用 PocketBase 小写账号 ID。控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。客户端可达的 `enet://` 或 `enets://` 端点存入 PocketBase `servers` Collection，由票据接口动态下发；客户端不按环境限制协议，`enet://` 使用明文，`enets://` 启用 DTLS 并校验证书；Go API 的 production 配置仍只下发 `enets://`。游戏服使用 `DO_GAME_SERVER_PORT` 监听 UDP，生产使用 DTLS 证书，客户端校验证书。
 
 - 网站构建从 apps/web 输出到 apps/api/static/，Go 编译和测试前先运行 pnpm install --frozen-lockfile、pnpm build。apps/api/Dockerfile 构建前端并嵌入 Go，Compose 仍只部署 game 与 web，网站不需要 Node 运行服务。网站可以使用 Vue，游戏 UI 仍限 Godot。
 

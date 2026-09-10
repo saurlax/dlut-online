@@ -91,7 +91,7 @@ Compose 服务名为 `web` 和 `game`，游戏服通过 `http://web.internal:841
 
 Compose 默认将 Go TCP 8415 和游戏 UDP 1949 绑定宿主机 127.0.0.1，用于本地开发；DO_API_SERVER_PORT 和 DO_GAME_SERVER_PORT 同时调整进程监听端口与宿主机映射，绑定地址直接修改 Compose 的 ports。Go 镜像不需要客户端文件。正式发布桌面包默认 production，编辑器默认 development；DO_API_SERVER_URL 显式覆盖 Go API 根地址，DO_ENV 显式指定环境，否则使用包内配置，不读取 .env。
 
-生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。在 PocketBase `servers.endpoint` 填写客户端可达地址，例如 enets://game.example.com:1949；不能填容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。开发 enet:// 为明文，只用于受控本地环境。Compose 固定将 ./.local/game-tls 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
+生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。在 PocketBase `servers.endpoint` 填写客户端可达地址，例如 enets://game.example.com:1949；不能填容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。客户端在 development 和 production 均接受 enet://（明文）与 enets://（DTLS），按下发协议连接，不在 DTLS 失败后自动降级。临时无 DTLS 测试时，Go 与游戏服需设置 DO_ENV=development，游戏服清空 DO_GAME_TLS_CERT/DO_GAME_TLS_KEY，servers.endpoint 使用 enet://公网地址:公网UDP端口；正式客户端无需切换 development。Compose 固定将 ./.local/game-tls 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
 CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布游戏服 ghcr.io/saurlax/dlut-online 与 Go HTTP ghcr.io/saurlax/dlut-online-web 配套镜像；桌面未签名、macOS 未公证。
 
