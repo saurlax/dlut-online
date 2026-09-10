@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "vue-tsc --noEmit && vite build",
-    "test": "node --experimental-strip-types --test src/online.test.ts src/downloads.test.ts"
+    "build": "vue-tsc --noEmit && vite build"
   },
   "dependencies": {
     "naive-ui": "^2.45.3",
