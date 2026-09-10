@@ -96,11 +96,11 @@ Godot 项目 SHALL 位于 apps/game/，内部资源引用保持以 project.godot
 - **THEN** /web 重定向至 /web/，缺失资源返回 404，WASM 使用 application/wasm，目录不展示文件列表
 
 ### Requirement: 服务容器与持续集成
-Go 服务 SHALL 支持 PORT 环境变量，默认 8415，显式 -addr 优先；CI SHALL 在每次 push 构建 Docker 镜像并提供下载产物。
+Go 服务 SHALL 支持 DO_API_SERVER_PORT 环境变量，默认 8415，并在未设置时兼容平台 PORT；显式 -addr 优先。CI SHALL 在每次 push 构建 Docker 镜像并提供下载产物。
 
 #### Scenario: 容器指定端口
-- **WHEN** 容器设置 PORT=9090 且镜像内置 Web 导出资源
-- **THEN** 服务在 9090 提供 /web/ 资源；未设置 PORT 使用 8415，无效端口启动失败
+- **WHEN** 容器设置 DO_API_SERVER_PORT=9090
+- **THEN** 服务在 9090 提供站点；未设置项目端口和平台 PORT 时使用 8415，无效端口启动失败
 
 ### Requirement: 多平台构建产物
 CI SHALL 在每次 push 导出 Godot Web、Windows x86_64 和 macOS universal 客户端；Web SHALL 包含在 Go 镜像中，桌面客户端 SHALL 以 ZIP 上传为 Actions artifacts。
@@ -131,12 +131,12 @@ Web 官方加载页 SHALL 展示已加载和总资源量（十进制 MB）及百
 - **THEN** 计数随官方进度更新，错误时隐藏计数并保留错误提示，引擎启动后移除加载层
 
 ### Requirement: 桌面服务器配置
-桌面客户端 SHALL 使用 DO_ENV 和 DO_SERVER_URL，项目运行默认 development/http://localhost:8415，桌面导出默认 production/https://dlut.online。构建进程变量 SHALL 写入包内配置，运行时非空变量 SHALL 覆盖包内配置；显式环境选择其默认地址，显式服务器地址优先。Web SHALL 不注入桌面地址，本次 SHALL 不发起网络请求。
+桌面客户端 SHALL 使用 DO_ENV 和 DO_API_SERVER_URL，项目运行默认 development/http://localhost:8415，桌面导出默认 production/https://dlut.online。构建进程变量 SHALL 写入包内配置，运行时非空变量 SHALL 覆盖包内配置；显式环境选择其默认地址，显式服务器地址优先。Web SHALL 不注入桌面地址，本次 SHALL 不发起网络请求。
 
 #### Scenario: 本地与发布
 - **WHEN** 开发者运行项目或导出桌面客户端，且未提供覆盖变量
 - **THEN** 分别读取本地开发地址或包内生产地址，无需修改源码，导出不产生工作区配置残留
 
 #### Scenario: 自定义服务器
-- **WHEN** 构建或启动桌面客户端时指定 DO_SERVER_URL
+- **WHEN** 构建或启动桌面客户端时指定 DO_API_SERVER_URL
 - **THEN** 配置入口返回指定的 HTTP(S) 根地址，运行时覆盖优先于构建值

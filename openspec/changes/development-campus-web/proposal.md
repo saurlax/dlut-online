@@ -41,8 +41,8 @@ Godot 客户端、角色物理碰撞、原生 UI 和 Web 导出配置；无需�
 
 资源托管改由 apps/web 的 Go/Chi 服务提供 /web/，删除 Python 预览脚本；首页及多人后端不在本轮范围。
 
-新增每次 push 的多平台构建：Go 支持 PORT（默认 8415），镜像内置 Godot Web，另提供 Windows x86_64 与 macOS universal 客户端 ZIP。
+新增每次 push 的多平台构建：Go 的 API 端口默认 8415，并兼容部署平台 PORT，另提供 Windows x86_64 与 macOS universal 客户端 ZIP。
 
 本轮补充空格跳跃与 Web 加载资源的 MB 计数和百分比。
 
-本轮为桌面客户端增加 DO_ENV / DO_SERVER_URL 配置读取和原生导出注入，不实现网络请求。
+本轮为桌面客户端增加 DO_ENV / DO_API_SERVER_URL 配置读取和原生导出注入，不实现网络请求。

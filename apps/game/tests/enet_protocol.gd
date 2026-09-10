@@ -83,11 +83,11 @@ func wait_close(c: Dictionary, code: int) -> void:
 
 func _run() -> void:
 	create_timer(180).timeout.connect(func(): quit(2))
-	base_url = OS.get_environment("DO_SERVER_URL")
+	base_url = OS.get_environment("DO_API_SERVER_URL")
 	assert(not base_url.is_empty())
 	var a := await connect_client()
 	var welcome := await wait_message(a,"welcome")
-	assert(welcome.version == 3)
+	assert(welcome.version == 4)
 	# A spent ticket cannot authenticate another peer.
 	var replay := await connect_client("", a.ticket)
 	await wait_close(replay,4003)

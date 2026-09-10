@@ -39,7 +39,7 @@ static func read() -> Dictionary:
 			push_error("Invalid packaged desktop configuration.")
 			return {}
 		defaults = parsed
-	var result := resolve(defaults, OS.get_environment("DO_ENV"), OS.get_environment("DO_SERVER_URL"))
+	var result := resolve(defaults, OS.get_environment("DO_ENV"), OS.get_environment("DO_API_SERVER_URL"))
 	if result.is_empty():
-		push_error("Invalid DO_ENV or DO_SERVER_URL: expected development/production and an HTTP(S) server root.")
+		push_error("Invalid DO_ENV or DO_API_SERVER_URL: expected development/production and an HTTP(S) server root.")
 	return result

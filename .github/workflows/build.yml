@@ -61,7 +61,7 @@ jobs:
       - name: Export game server, Windows and macOS
         env:
           DO_ENV: production
-          DO_SERVER_URL: https://dlut.online
+          DO_API_SERVER_URL: https://dlut.online
         working-directory: apps/game
         run: |
           godot --headless --editor --quit
@@ -69,7 +69,7 @@ jobs:
           godot --headless --script tools/server_export/build_worlds.gd
           godot --headless --script tests/server_physics.gd
           godot --headless --script tests/game_protocol.gd
-          (cd ../api && DO_TEST_GODOT_PROJECT=../game go test -race -run TestENet -timeout 3m -v)
+          (cd ../api && go test -tags=integration -race -run TestENet -timeout 3m -v)
           mkdir -p build/windows build/macos build/server
           godot --headless --export-release Server build/server/dlut-online-server.x86_64
           godot --headless --main-pack build/server/dlut-online-server.pck --script "$GITHUB_WORKSPACE/apps/game/tests/server_export.gd"
@@ -123,14 +123,19 @@ jobs:
           export DO_API_KEY="$(openssl rand -hex 32)"
           docker network create game-check
           docker load --input "$RUNNER_TEMP/game-image.tar"
-          docker run -d --name game-check --network game-check -e DO_API_KEY -e DO_API_SERVER_URL=http://web-check:9090 -p 127.0.0.1:9061:1949/udp "dlut-online:${{ github.sha }}"
-          docker run -d --name web-check --network game-check -e PORT=9090 -e DO_API_KEY -e DO_GAME_SERVER_URL=enet://127.0.0.1:9061 -v web-check-data:/data -p 127.0.0.1:9090:9090 "$IMAGE"
+          docker run -d --name game-check --network game-check -e DO_API_KEY -e DO_API_SERVER_URL=http://web-check:9090 -e DO_GAME_SERVER_PORT=1949 -p 127.0.0.1:9061:1949/udp "dlut-online:${{ github.sha }}"
+          docker run -d --name web-check --network game-check -e DO_API_SERVER_PORT=9090 -e DO_API_KEY -v web-check-data:/data -p 127.0.0.1:9090:9090 "$IMAGE"
           trap 'docker logs web-check; docker logs game-check; docker rm -f web-check game-check; docker network rm game-check' EXIT
-          curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:9090/
-          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/enet_protocol.gd
-          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_travel.gd
-          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_transfer.gd
-          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/player_network.gd
+          curl --fail --retry 10 --retry-all-errors --retry-delay 1 http://127.0.0.1:9090/
+          pb_test_email="ci@example.invalid"
+          pb_test_password="$(openssl rand -base64 24)"
+          docker exec web-check /dlut-online-web superuser upsert "$pb_test_email" "$pb_test_password"
+          pb_token="$(curl --fail --silent --show-error http://127.0.0.1:9090/api/collections/_superusers/auth-with-password -H 'Content-Type: application/json' --data \"{\\\"identity\\\":\\\"$pb_test_email\\\",\\\"password\\\":\\\"$pb_test_password\\\"}\" | jq -r .token)"
+          curl --fail --silent --show-error http://127.0.0.1:9090/api/collections/game_servers/records -H 'Content-Type: application/json' -H "Authorization: Bearer $pb_token" --data '{"name":"ci","endpoint":"enet://127.0.0.1:9061","enabled":true}'
+          DO_API_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/enet_protocol.gd
+          DO_API_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_travel.gd
+          DO_API_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_transfer.gd
+          DO_API_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/player_network.gd
           curl --fail http://127.0.0.1:9090/api/v1/game/online
           test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:9090/web/)" = 404
       - uses: actions/upload-artifact@v4

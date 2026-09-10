@@ -8,7 +8,7 @@
 
 ## Decisions
 
-游戏服监听 *，实例标识 main。Compose 仍仅发布在 127.0.0.1，证书源目录固定为 ./.local/game-tls；需要不同绑定或路径时修改部署文件。删除旧环境变量的读取、注入和文档入口。保留 DO_HTTP_PORT 与 DO_GAME_PUBLIC_PORT 的映射能力。
+游戏服监听 *，实例标识 main。Compose 仍仅发布在 127.0.0.1，证书源目录固定为 ./.local/game-tls；需要不同绑定或路径时修改部署文件。删除旧环境变量的读取、注入和文档入口。DO_API_SERVER_PORT 和 DO_GAME_SERVER_PORT 同时控制进程监听端口与 Compose 映射，Go 兼容平台 PORT。游戏服公网端点存入 PocketBase，不再由环境变量配置。
 
 ## Risks / Trade-offs
 

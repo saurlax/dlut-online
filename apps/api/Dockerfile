@@ -20,7 +20,7 @@ COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certifica
 COPY --from=build /out/dlut-online-web /dlut-online-web
 COPY --from=build --chown=65532:65532 /out/data /data
 USER 65532:65532
-ENV DO_DATA_DIR=/data/pb_data
+ENV PB_DATA_DIR=/data/pb_data
 EXPOSE 8415
 VOLUME ["/data"]
 ENTRYPOINT ["/dlut-online-web"]

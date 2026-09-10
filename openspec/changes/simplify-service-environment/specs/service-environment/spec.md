@@ -8,5 +8,5 @@
 - **THEN** Web 和游戏服默认在宿主机 127.0.0.1 发布 8415/TCP、1949/UDP，游戏服以 main 上报
 
 #### Scenario: 自定义端口
-- **WHEN** 配置 DO_HTTP_PORT 和 DO_GAME_PUBLIC_PORT
-- **THEN** 按显式宿主机端口映射，内部端口不变
+- **WHEN** 配置 DO_API_SERVER_PORT 和 DO_GAME_SERVER_PORT
+- **THEN** Web 与游戏服按显式端口监听并映射到相同的宿主机端口

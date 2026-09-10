@@ -3,7 +3,9 @@ func _initialize() -> void: _run.call_deferred()
 func _run() -> void:
 	var certificate := X509Certificate.new()
 	assert(certificate.load(OS.get_environment("DO_GAME_TLS_CA")) == OK)
-	var port := OS.get_environment("DO_TEST_GAME_PORT").to_int()
+	var arguments := OS.get_cmdline_user_args()
+	assert(arguments.size() == 1)
+	var port := arguments[0].to_int()
 	assert(port > 0)
 	for hostname in ["localhost", "wrong.example"]:
 		var host := ENetConnection.new()

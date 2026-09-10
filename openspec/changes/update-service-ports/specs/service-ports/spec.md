@@ -8,5 +8,5 @@
 - **THEN** 客户端从 8415 获取票据并通过 UDP 1949 进入游戏
 
 #### Scenario: 显式覆盖
-- **WHEN** 配置 PORT、-addr、DO_GAME_PORT 或相应连接地址
+- **WHEN** 配置 DO_API_SERVER_PORT、平台 PORT、-addr、DO_GAME_SERVER_PORT 或相应连接地址
 - **THEN** 系统按既有优先级采用显式值

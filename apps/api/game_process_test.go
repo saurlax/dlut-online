@@ -1,3 +1,5 @@
+//go:build integration
+
 package main
 
 import (
@@ -23,11 +25,7 @@ import (
 
 // Runs the real Godot transport through a bounded UDP relay with delay, loss and reordering.
 func TestENetClientUnderLoss(t *testing.T) {
-	project := os.Getenv("DO_TEST_GODOT_PROJECT")
-	if project == "" {
-		t.Skip("set DO_TEST_GODOT_PROJECT")
-	}
-	project, _ = filepath.Abs(project)
+	project, _ := filepath.Abs("../game")
 	reserved, err := net.ListenPacket("udp", "127.0.0.1:0")
 	if err != nil {
 		t.Fatal(err)
@@ -44,11 +42,11 @@ func TestENetClientUnderLoss(t *testing.T) {
 	}
 	defer relay.Close()
 	service := randomID()
-	api := httptest.NewServer(router(gameConfig{endpoint: "enet://" + relay.LocalAddr().String(), apiKey: service}))
+	api := httptest.NewServer(router(gameConfig{apiKey: service}, "enet://"+relay.LocalAddr().String()))
 	defer api.Close()
 	_, port, _ := net.SplitHostPort(address)
 	server := exec.Command("godot", "--headless", "--path", project, "scenes/server.tscn")
-	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
+	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_SERVER_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
 	var serverOutput bytes.Buffer
 	server.Stdout = &serverOutput
 	server.Stderr = &serverOutput
@@ -132,7 +130,7 @@ func TestENetClientUnderLoss(t *testing.T) {
 	}()
 	// ENet connection attempts retry while the server starts.
 	client := exec.Command("godot", "--headless", "--path", project, "--script", "tests/player_network.gd")
-	client.Env = append(os.Environ(), "DO_ENV=development", "DO_SERVER_URL="+api.URL)
+	client.Env = append(os.Environ(), "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
 	output, err := client.CombinedOutput()
 	if err != nil || bytes.Contains(output, []byte("SCRIPT ERROR")) || !bytes.Contains(output, []byte("PASS:")) {
 		t.Fatalf("client: %v\n%s", err, output)
@@ -141,11 +139,7 @@ func TestENetClientUnderLoss(t *testing.T) {
 }
 
 func TestENetHTTPRestart(t *testing.T) {
-	project := os.Getenv("DO_TEST_GODOT_PROJECT")
-	if project == "" {
-		t.Skip("set DO_TEST_GODOT_PROJECT")
-	}
-	project, _ = filepath.Abs(project)
+	project, _ := filepath.Abs("../game")
 	reserved, err := net.ListenPacket("udp", "127.0.0.1:0")
 	if err != nil {
 		t.Fatal(err)
@@ -153,9 +147,9 @@ func TestENetHTTPRestart(t *testing.T) {
 	address := reserved.LocalAddr().String()
 	reserved.Close()
 	service := randomID()
-	config := gameConfig{endpoint: "enet://" + address, apiKey: service}
+	config := gameConfig{apiKey: service}
 	var current atomic.Value
-	current.Store(router(config))
+	current.Store(router(config, "enet://"+address))
 	var outage atomic.Bool
 	api := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/test/outage" {
@@ -164,7 +158,7 @@ func TestENetHTTPRestart(t *testing.T) {
 			return
 		}
 		if r.URL.Path == "/test/restart" {
-			current.Store(router(config))
+			current.Store(router(config, "enet://"+address))
 			outage.Store(false)
 			io.WriteString(w, `{}`)
 			return
@@ -178,7 +172,7 @@ func TestENetHTTPRestart(t *testing.T) {
 	defer api.Close()
 	_, port, _ := net.SplitHostPort(address)
 	server := exec.Command("godot", "--headless", "--path", project, "scenes/server.tscn")
-	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
+	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_SERVER_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
 	var output bytes.Buffer
 	server.Stdout = &output
 	server.Stderr = &output
@@ -193,7 +187,7 @@ func TestENetHTTPRestart(t *testing.T) {
 		}
 	}()
 	client := exec.Command("godot", "--headless", "--path", project, "--script", "tests/enet_http_fault.gd")
-	client.Env = append(os.Environ(), "DO_ENV=development", "DO_SERVER_URL="+api.URL)
+	client.Env = append(os.Environ(), "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
 	result, err := client.CombinedOutput()
 	if err != nil || bytes.Contains(result, []byte("SCRIPT ERROR")) || !bytes.Contains(result, []byte("PASS:")) {
 		t.Fatalf("%v\n%s", err, result)
@@ -201,11 +195,7 @@ func TestENetHTTPRestart(t *testing.T) {
 }
 
 func TestENetDTLS(t *testing.T) {
-	project := os.Getenv("DO_TEST_GODOT_PROJECT")
-	if project == "" {
-		t.Skip("set DO_TEST_GODOT_PROJECT")
-	}
-	project, _ = filepath.Abs(project)
+	project, _ := filepath.Abs("../game")
 	reserved, err := net.ListenPacket("udp", "127.0.0.1:0")
 	if err != nil {
 		t.Fatal(err)
@@ -232,10 +222,10 @@ func TestENetDTLS(t *testing.T) {
 		t.Fatal(err)
 	}
 	service := randomID()
-	api := httptest.NewServer(router(gameConfig{endpoint: "enets://localhost:" + port, apiKey: service}))
+	api := httptest.NewServer(router(gameConfig{environment: "production", apiKey: service}, "enets://localhost:"+port))
 	defer api.Close()
 	server := exec.Command("godot", "--headless", "--path", project, "scenes/server.tscn")
-	server.Env = append(os.Environ(), "DO_ENV=production", "DO_GAME_TLS_CERT="+certPath, "DO_GAME_TLS_KEY="+keyPath, "DO_GAME_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
+	server.Env = append(os.Environ(), "DO_ENV=production", "DO_GAME_TLS_CERT="+certPath, "DO_GAME_TLS_KEY="+keyPath, "DO_GAME_SERVER_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
 	var output bytes.Buffer
 	server.Stdout = &output
 	server.Stderr = &output
@@ -250,8 +240,12 @@ func TestENetDTLS(t *testing.T) {
 		}
 	}()
 	for _, script := range []string{"tests/campus_travel.gd", "tests/enet_dtls.gd"} {
-		client := exec.Command("godot", "--headless", "--path", project, "--script", script)
-		client.Env = append(os.Environ(), "DO_ENV=production", "DO_SERVER_URL="+api.URL, "DO_GAME_TLS_CA="+certPath, "DO_TEST_GAME_PORT="+port)
+		args := []string{"--headless", "--path", project, "--script", script}
+		if script == "tests/enet_dtls.gd" {
+			args = append(args, "--", port)
+		}
+		client := exec.Command("godot", args...)
+		client.Env = append(os.Environ(), "DO_ENV=production", "DO_API_SERVER_URL="+api.URL, "DO_GAME_TLS_CA="+certPath)
 		result, err := client.CombinedOutput()
 		if err != nil || bytes.Contains(result, []byte("SCRIPT ERROR")) || !bytes.Contains(result, []byte("PASS:")) {
 			t.Fatalf("%s: %v\n%s", script, err, result)

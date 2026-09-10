@@ -18,7 +18,7 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-type gameConfig struct{ endpoint, apiKey string }
+type gameConfig struct{ environment, apiKey string }
 type admission struct {
 	ID          string    `json:"id"`
 	Username    string    `json:"username"`
@@ -50,6 +50,7 @@ type gameAPI struct {
 	received              time.Time
 	players               []onlinePlayer
 	resolveAccount        func(string) (admission, bool)
+	resolveGameEndpoint   func() (string, bool)
 }
 
 func randomID() string {
@@ -126,6 +127,17 @@ func newGameAPI(c gameConfig, apps ...core.App) *gameAPI {
 	g := &gameAPI{config: c, tickets: make(map[[32]byte]admission), issued: make(map[string]time.Time), retired: make(map[string]bool), now: time.Now, seq: -1}
 	if len(apps) > 0 && apps[0] != nil {
 		app := apps[0]
+		g.resolveGameEndpoint = func() (string, bool) {
+			record, err := app.FindFirstRecordByFilter("game_servers", "enabled = true")
+			if err != nil {
+				return "", false
+			}
+			endpoint := strings.TrimSpace(record.GetString("endpoint"))
+			if !validGameEndpoint(endpoint) || (c.environment == "production" && !strings.HasPrefix(endpoint, "enets://")) {
+				return "", false
+			}
+			return endpoint, true
+		}
 		g.resolveAccount = func(token string) (admission, bool) {
 			record, err := app.FindAuthRecordByToken(token, core.TokenTypeAuth)
 			if err != nil || record.Collection().Name != "users" || !record.Verified() || record.GetBool("disabled") || !validPlayerID(record.Id) {
@@ -199,6 +211,15 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 		}
 		identity = admission{ID: q.ID, Username: name, Kind: "guest"}
 	}
+	if g.resolveGameEndpoint == nil {
+		reject(w, 503, "game_server_unavailable")
+		return
+	}
+	endpoint, ok := g.resolveGameEndpoint()
+	if !ok {
+		reject(w, 503, "game_server_unavailable")
+		return
+	}
 	g.mu.Lock()
 	defer g.mu.Unlock()
 	now := g.now()
@@ -225,7 +246,7 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 	identity.Expires = now.Add(30 * time.Second)
 	g.tickets[sha256.Sum256([]byte(ticket))] = identity
 	g.issued[identity.ID] = now
-	respond(w, 201, map[string]any{"ticket": ticket, "expires_in": 30, "game_server_url": g.config.endpoint, "version": 4})
+	respond(w, 201, map[string]any{"ticket": ticket, "expires_in": 30, "game_server_url": endpoint, "version": 4})
 }
 func (g *gameAPI) consume(w http.ResponseWriter, r *http.Request) {
 	var q struct {

@@ -35,6 +35,15 @@ func TestPocketBaseUsersCollection(t *testing.T) {
 	if users.CreateRule == nil || !strings.Contains(*users.CreateRule, "disabled:isset = false") || users.UpdateRule == nil || !strings.Contains(*users.UpdateRule, "disabled:changed = false") {
 		t.Fatal("disabled field is not protected by API rules")
 	}
+	gameServers, err := app.FindCollectionByNameOrId("game_servers")
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, field := range []string{"name", "endpoint", "enabled"} {
+		if gameServers.Fields.GetByName(field) == nil {
+			t.Fatalf("missing game_servers field %q", field)
+		}
+	}
 
 	create := func(email, username string) error {
 		record := core.NewRecord(users)
@@ -78,12 +87,23 @@ func TestPocketBaseAccountTicket(t *testing.T) {
 	if err := app.Save(record); err != nil {
 		t.Fatal(err)
 	}
+	gameServers, err := app.FindCollectionByNameOrId("game_servers")
+	if err != nil {
+		t.Fatal(err)
+	}
+	server := core.NewRecord(gameServers)
+	server.Set("name", "main")
+	server.Set("endpoint", "enet://game.example.com:1949")
+	server.Set("enabled", true)
+	if err := app.Save(server); err != nil {
+		t.Fatal(err)
+	}
 	token, err := record.NewAuthToken()
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	api := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", apiKey: "service"}, app)
+	api := newGameAPI(gameConfig{apiKey: "service"}, app)
 	router := apiHandler(api, false)
 	request := func(path, bearer string, body any) (int, map[string]any) {
 		payload, _ := json.Marshal(body)

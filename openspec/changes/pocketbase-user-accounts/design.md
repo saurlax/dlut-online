@@ -20,6 +20,8 @@ PocketBase 负责密码哈希、邮箱验证与重置、token 签发、外部身
 
 SQLite 目录默认为 `pb_data`，容器固定为 `/data/pb_data` 并挂载命名持久卷。Go Web 保持单实例写入；Godot 游戏服不打开 SQLite 文件，持久化和查询继续经过 Go 内部 HTTP API。
 
+桌面客户端和 Godot 游戏服统一通过 `DO_API_SERVER_URL` 定位 Go。Go 使用 `DO_API_SERVER_PORT`，游戏服使用 `DO_GAME_SERVER_PORT`，PocketBase 数据目录使用 `PB_DATA_DIR`。客户端可达的 ENet 端点存入 `game_servers` Collection；票据签发时读取当前启用记录，生产仅接受 `enets://`，没有有效记录时返回服务不可用。测试工程路径和临时端口通过固定仓库布局及命令行参数传入，不占用环境变量。
+
 游戏票据在 Authorization 为有效 PocketBase `users` token 时使用 record ID 和 display_name，否则只接受合法游客身份。身份 ID 统一为 15 位 ASCII：账号使用 PocketBase 小写字母数字 ID，游客使用大写十六进制进程 ID，两个命名空间不重叠。游戏协议版本为 4。
 
 ## Risks / Trade-offs
