@@ -88,9 +88,7 @@ const currentScene = computed(() => scenes[selected.value]!);
           </div>
           <div class="hero-shade" />
           <div class="hero-content">
-            <p class="eyebrow light">DALIAN UNIVERSITY OF TECHNOLOGY</p>
-            <p class="hero-category">第一人称校园 MMORPG</p>
-            <h1 id="hero-title">大工，再相逢。</h1>
+            <h1 id="hero-title">大工，再相逢</h1>
             <p class="hero-description">那些走过的路，那些遇见的人。<br class="mobile-break" />在这里，续写我们的校园故事。</p>
             <n-button tag="a" :href="downloadUrl" type="primary" size="large" class="primary-cta">{{ downloadLabel }} <span aria-hidden="true">↗</span></n-button>
             <a class="other-downloads" href="/download">其他下载</a>

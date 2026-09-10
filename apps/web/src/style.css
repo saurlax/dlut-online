@@ -30,8 +30,6 @@ nav > a:hover { opacity: 1; }
 .hero-content { position: relative; z-index: 1; text-align: center; padding: 140px 24px 150px; }
 .eyebrow { font-size: 11px; color: var(--blue); margin: 0 0 28px; }
 .eyebrow.light { color: #cad5e6; }
-.hero-content .eyebrow { font-size: 10px; margin-bottom: 26px; }
-.hero-category { font-size: 13px; margin: 0 0 20px; color: #e1e7f1; }
 h1, h2 { font-family: var(--serif); font-weight: 500; }
 h1 { font-size: clamp(58px, 7.5vw, 112px); line-height: 1.2; margin: 0 0 30px; text-shadow: 0 2px 24px #07162c33; }
 .hero-description { font-size: 14px; line-height: 2; margin: 0 0 38px; color: #f0f2f6; }
@@ -100,8 +98,6 @@ footer > a:last-child span { margin-left: 16px; }
   .hero-background img, .hero-background video { object-position: center; }
   .hero-shade { background: linear-gradient(#071629a3, #071a3066 45%, #071222eb); }
   .hero-content { padding: 140px 20px; }
-  .hero-content .eyebrow { font-size: 8px; }
-  .hero-category { font-size: 11px; }
   h1 { font-size: clamp(38px, 8.5vw, 58px); margin-bottom: 24px; }
   .hero-description { font-size: 12px; margin-bottom: 30px; }
   .mobile-break { display: initial; }

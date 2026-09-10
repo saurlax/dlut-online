@@ -59,3 +59,5 @@ Go 源码迁移至 apps/api，Vue 位于 apps/web。应用技术文档与合并�
 顶部只保留前往 /download 的下载导航；首屏主按钮按浏览器系统识别 Windows / macOS，分别显示对应下载文案，未知系统、Linux、Android、iPhone、iPad（包括桌面模式）进入 /download 选择页。系统检测只影响建议，不限制下载页访问。平台链接集中维护在 apps/web/src/downloads.ts；目前两个平台均使用用户接受的 GitHub Releases 页面，未发现可核实的 latest 安装包，不构造虚假直链。以后替换平台 URL 为 OSS 即可，检测与组件无需改动。
 
 首屏“其他下载”及页末下载入口均进入 /download。下载页用 Naive UI 按钮列出 Windows x86_64、macOS Universal，当前系统标注推荐。原生链接跳转及浏览器前进/后退，不为两个页面引入路由依赖；Go 仅对 /、/download、/download/ 返回应用入口，其他未知路径继续 404。
+
+首屏标题固定为“大工，再相逢”（无句号），移除标题上方英文校名和“第一人称校园 MMORPG”说明。既有字体子集包含全部剩余字符，仅删除句号不需重新生成字体文件。
