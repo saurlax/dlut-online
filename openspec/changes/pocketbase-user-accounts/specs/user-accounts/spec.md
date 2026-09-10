@@ -23,7 +23,7 @@
 - **THEN** PocketBase API rule 拒绝请求
 
 ### Requirement: SQLite 运行边界
-系统 SHALL 将所有持久数据保存于 PocketBase SQLite 数据目录，容器部署 SHALL 使用持久卷。Go Web SHALL 作为唯一 SQLite 写入者，Godot 游戏服 SHALL 仅通过内部 HTTP API 访问持久数据。
+系统 SHALL 将所有持久数据保存于 PocketBase SQLite 数据目录，容器部署 SHALL 使用持久卷。Go Web SHALL 作为唯一 SQLite 写入者，Godot 游戏服 SHALL 仅通过受保护的 HTTP API 访问持久数据。
 
 #### Scenario: Web 容器重建
 - **WHEN** Go Web 容器重建并继续挂载原命名卷

@@ -11,7 +11,7 @@ import (
 )
 
 func TestAdmissionAndPresence(t *testing.T) {
-	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", serviceToken: "service", adminToken: "admin"})
+	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", apiKey: "service"})
 	now := time.Now()
 	g.now = func() time.Time { return now }
 	r := apiHandler(g, false)
@@ -44,7 +44,7 @@ func TestAdmissionAndPresence(t *testing.T) {
 	results := make(chan int, 2)
 	for i := 0; i < 2; i++ {
 		wg.Go(func() {
-			c, _ := request("POST", "/internal/v1/game/tickets/consume", "service", map[string]any{"ticket": ticket})
+			c, _ := request("POST", "/api/v1/game/tickets/consume", "service", map[string]any{"ticket": ticket})
 			results <- c
 		})
 	}
@@ -57,13 +57,13 @@ func TestAdmissionAndPresence(t *testing.T) {
 	if sum != 601 {
 		t.Fatal("ticket not single use", sum)
 	}
-	if c, _ := request("POST", "/internal/v1/game/tickets/consume", "admin", map[string]any{"ticket": ticket}); c != 401 {
+	if c, _ := request("POST", "/api/v1/game/tickets/consume", "wrong", map[string]any{"ticket": ticket}); c != 401 {
 		t.Fatal(c)
 	}
 	now = now.Add(time.Second)
 	_, v = request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 4})
 	now = now.Add(31 * time.Second)
-	if c, _ := request("POST", "/internal/v1/game/tickets/consume", "service", map[string]any{"ticket": v["ticket"]}); c != 401 {
+	if c, _ := request("POST", "/api/v1/game/tickets/consume", "service", map[string]any{"ticket": v["ticket"]}); c != 401 {
 		t.Fatal("expired", c)
 	}
 	if c, _ := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 4, "campus": "eda"}); c != 400 {
@@ -73,21 +73,21 @@ func TestAdmissionAndPresence(t *testing.T) {
 	if v["status"] != "unavailable" || v["total"] != nil {
 		t.Fatal(v)
 	}
-	_, v = request("POST", "/internal/v1/game/register", "service", map[string]any{"instance_id": "main", "boot_id": "0123456789abcdef"})
+	_, v = request("POST", "/api/v1/game/register", "service", map[string]any{"instance_id": "main", "boot_id": "0123456789abcdef"})
 	epoch := v["epoch"]
-	_, again := request("POST", "/internal/v1/game/register", "service", map[string]any{"instance_id": "main", "boot_id": "0123456789abcdef"})
+	_, again := request("POST", "/api/v1/game/register", "service", map[string]any{"instance_id": "main", "boot_id": "0123456789abcdef"})
 	if again["epoch"] != epoch {
 		t.Fatal("registration not idempotent")
 	}
 	p := map[string]any{"instance_id": "main", "epoch": epoch, "seq": 0, "players": []any{}}
-	if c, _ := request("POST", "/internal/v1/game/presence", "service", p); c != 200 {
+	if c, _ := request("POST", "/api/v1/game/presence", "service", p); c != 200 {
 		t.Fatal(c)
 	}
 	_, v = request("GET", "/api/v1/game/online", "", nil)
 	if v["total"] != float64(0) || v["status"] != "live" {
 		t.Fatal(v)
 	}
-	if c, _ := request("POST", "/internal/v1/game/presence", "service", p); c != 409 {
+	if c, _ := request("POST", "/api/v1/game/presence", "service", p); c != 409 {
 		t.Fatal("old sequence accepted")
 	}
 	now = now.Add(16 * time.Second)
@@ -98,14 +98,14 @@ func TestAdmissionAndPresence(t *testing.T) {
 	if c, _ := request("GET", "/api/v1/admin/game/players", "", nil); c != 401 {
 		t.Fatal(c)
 	}
-	_, v = request("POST", "/internal/v1/game/register", "service", map[string]any{"instance_id": "main", "boot_id": "fedcba9876543210"})
+	_, v = request("POST", "/api/v1/game/register", "service", map[string]any{"instance_id": "main", "boot_id": "fedcba9876543210"})
 	if v["epoch"] == epoch {
 		t.Fatal("epoch reused")
 	}
-	if c, _ := request("POST", "/internal/v1/game/presence", "service", p); c != 409 {
+	if c, _ := request("POST", "/api/v1/game/presence", "service", p); c != 409 {
 		t.Fatal("old boot accepted")
 	}
-	if c, _ := request("POST", "/internal/v1/game/register", "service", map[string]any{"instance_id": "main", "boot_id": "0123456789abcdef"}); c != 409 {
+	if c, _ := request("POST", "/api/v1/game/register", "service", map[string]any{"instance_id": "main", "boot_id": "0123456789abcdef"}); c != 409 {
 		t.Fatal("retired boot accepted")
 	}
 }
@@ -139,7 +139,7 @@ func TestOriginAndTicketLimits(t *testing.T) {
 }
 
 func TestAccountTicketUsesResolvedIdentity(t *testing.T) {
-	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", serviceToken: "service"})
+	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", apiKey: "service"})
 	g.resolveAccount = func(token string) (admission, bool) {
 		if token != "valid" {
 			return admission{}, false
@@ -158,8 +158,8 @@ func TestAccountTicketUsesResolvedIdentity(t *testing.T) {
 	issued := map[string]any{}
 	_ = json.Unmarshal(w.Body.Bytes(), &issued)
 	consumeBody, _ := json.Marshal(map[string]any{"ticket": issued["ticket"]})
-	consume := httptest.NewRequest("POST", "/internal/v1/game/tickets/consume", bytes.NewReader(consumeBody))
-	consume.Header.Set("Authorization", "Bearer "+g.config.serviceToken)
+	consume := httptest.NewRequest("POST", "/api/v1/game/tickets/consume", bytes.NewReader(consumeBody))
+	consume.Header.Set("Authorization", "Bearer "+g.config.apiKey)
 	w = httptest.NewRecorder()
 	r.ServeHTTP(w, consume)
 	identity := map[string]any{}

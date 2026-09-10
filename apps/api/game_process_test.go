@@ -16,7 +16,6 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strconv"
-	"strings"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -45,11 +44,11 @@ func TestENetClientUnderLoss(t *testing.T) {
 	}
 	defer relay.Close()
 	service := randomID()
-	api := httptest.NewServer(router(gameConfig{endpoint: "enet://" + relay.LocalAddr().String(), serviceToken: service, adminToken: randomID()}))
+	api := httptest.NewServer(router(gameConfig{endpoint: "enet://" + relay.LocalAddr().String(), apiKey: service}))
 	defer api.Close()
 	_, port, _ := net.SplitHostPort(address)
 	server := exec.Command("godot", "--headless", "--path", project, "scenes/server.tscn")
-	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_PORT="+port, "DO_GAME_SERVICE_TOKEN="+service, "DO_API_SERVER_URL="+api.URL)
+	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
 	var serverOutput bytes.Buffer
 	server.Stdout = &serverOutput
 	server.Stderr = &serverOutput
@@ -154,7 +153,7 @@ func TestENetHTTPRestart(t *testing.T) {
 	address := reserved.LocalAddr().String()
 	reserved.Close()
 	service := randomID()
-	config := gameConfig{endpoint: "enet://" + address, serviceToken: service, adminToken: randomID()}
+	config := gameConfig{endpoint: "enet://" + address, apiKey: service}
 	var current atomic.Value
 	current.Store(router(config))
 	var outage atomic.Bool
@@ -170,7 +169,7 @@ func TestENetHTTPRestart(t *testing.T) {
 			io.WriteString(w, `{}`)
 			return
 		}
-		if outage.Load() && strings.HasPrefix(r.URL.Path, "/internal/") {
+		if outage.Load() && (r.URL.Path == "/api/v1/game/tickets/consume" || r.URL.Path == "/api/v1/game/register" || r.URL.Path == "/api/v1/game/presence") {
 			http.Error(w, "unavailable", 503)
 			return
 		}
@@ -179,7 +178,7 @@ func TestENetHTTPRestart(t *testing.T) {
 	defer api.Close()
 	_, port, _ := net.SplitHostPort(address)
 	server := exec.Command("godot", "--headless", "--path", project, "scenes/server.tscn")
-	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_PORT="+port, "DO_GAME_SERVICE_TOKEN="+service, "DO_API_SERVER_URL="+api.URL)
+	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
 	var output bytes.Buffer
 	server.Stdout = &output
 	server.Stderr = &output
@@ -233,10 +232,10 @@ func TestENetDTLS(t *testing.T) {
 		t.Fatal(err)
 	}
 	service := randomID()
-	api := httptest.NewServer(router(gameConfig{endpoint: "enets://localhost:" + port, serviceToken: service, adminToken: randomID()}))
+	api := httptest.NewServer(router(gameConfig{endpoint: "enets://localhost:" + port, apiKey: service}))
 	defer api.Close()
 	server := exec.Command("godot", "--headless", "--path", project, "scenes/server.tscn")
-	server.Env = append(os.Environ(), "DO_ENV=production", "DO_GAME_TLS_CERT="+certPath, "DO_GAME_TLS_KEY="+keyPath, "DO_GAME_PORT="+port, "DO_GAME_SERVICE_TOKEN="+service, "DO_API_SERVER_URL="+api.URL)
+	server.Env = append(os.Environ(), "DO_ENV=production", "DO_GAME_TLS_CERT="+certPath, "DO_GAME_TLS_KEY="+keyPath, "DO_GAME_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
 	var output bytes.Buffer
 	server.Stdout = &output
 	server.Stderr = &output

@@ -83,7 +83,7 @@ func TestPocketBaseAccountTicket(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	api := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", serviceToken: "service"}, app)
+	api := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", apiKey: "service"}, app)
 	router := apiHandler(api, false)
 	request := func(path, bearer string, body any) (int, map[string]any) {
 		payload, _ := json.Marshal(body)
@@ -105,7 +105,7 @@ func TestPocketBaseAccountTicket(t *testing.T) {
 	if status != 201 {
 		t.Fatal(status, issued)
 	}
-	status, identity := request("/internal/v1/game/tickets/consume", "service", map[string]any{"ticket": issued["ticket"]})
+	status, identity := request("/api/v1/game/tickets/consume", "service", map[string]any{"ticket": issued["ticket"]})
 	if status != 200 || identity["id"] != record.Id || identity["username"] != "测试玩家" || identity["kind"] != "account" {
 		t.Fatal(status, identity)
 	}

@@ -10,7 +10,9 @@
 
 Go 使用 `pocketbase.NewWithConfig` 创建应用，通过 Go 代码定义 `users` Auth Collection。集合内置 ID、email、password、verified、tokenKey 作为权威认证数据，额外字段为 username、display_name 和 disabled。
 
-游戏 API、内部 API 和 Vue 静态站点均在 `OnServe` 中直接注册到 PocketBase Router。标准 HTTP handler 通过 PocketBase 官方 `apis.WrapStdHandler` 适配，不保留第二套路由框架。
+游戏 API、受保护服务 API 和 Vue 静态站点均在 `OnServe` 中直接注册到 PocketBase Router。标准 HTTP handler 通过 PocketBase 官方 `apis.WrapStdHandler` 适配，不保留第二套路由框架。
+
+服务间接口统一位于 `/api/v1/`，使用 `Authorization: Bearer <DO_API_KEY>`。Go、Godot 游戏服和后续可信平台通过部署环境取得同一 API Key；PocketBase 用户 auth token 仅用于用户身份接口。
 
 username 保留用户输入大小写，使用 SQLite `lower(username)` 唯一索引判断冲突；密码登录仅使用 email。AuthRule 要求 `verified = true && disabled = false`，用户更新规则禁止修改 disabled，管理员通过 PocketBase 管理界面管理账号。
 
