@@ -6,7 +6,7 @@
 
 `bounds.json` 保存 [公开轮廓接口](http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound) 的 438 条主校区及周边记录：所有顶点位于经度 (121.50,121.55)、纬度 (38.86,38.90)。全站原响应总数为 550。此筛选框不是官方校区红线。
 
-`apps/client/tools/prepare_lingshui.py` 按明确名称排除周边文萃、文荟、新新园住宅、文静街与凌水路沿街住宅、中国大连高级经理学院及少量周边商铺，共 125 段；逐项列于 `excluded.json`。保留校园教学、生活、东山家属区及官方西校区范围，不复制其他校区数据。
+`apps/game/tools/prepare_lingshui.py` 按明确名称排除周边文萃、文荟、新新园住宅、文静街与凌水路沿街住宅、中国大连高级经理学院及少量周边商铺，共 125 段；逐项列于 `excluded.json`。保留校园教学、生活、东山家属区及官方西校区范围，不复制其他校区数据。
 
 模型数据保留 282 个 Feature ID、313 段轮廓：209 段建筑、48 段道路、22 段停车/广场、13 段运动场地、9 段校门地面轮廓、2 段水体、4 段规划用地，以及 6 段仅保留来源节点的桥梁/雕像记录。后两类没有被误生成现状建筑。道路直接使用官方占地多边形，不自行添加道路网。
 
@@ -40,4 +40,4 @@
 
 ## 再生成
 
-在任意工作目录执行仓库中的 `apps/client/tools/export_web.sh`。工具从自身路径解析资料，只读取已归档数据；不依赖在线接口。单独再生成凌水时先运行 `python3 apps/client/tools/prepare_lingshui.py`，再运行 `godot --headless --path apps/client --script tools/build_lingshui.gd`。
+在仓库根目录依次运行 `python3 apps/game/tools/prepare_lingshui.py`、`godot --headless --path apps/game --script tools/build_lingshui.gd` 和 `godot --headless --path apps/game --script tools/server_export/build_worlds.gd`。工具从自身路径解析资料，只读取已归档数据，不依赖在线接口。桌面与服务端导出方式见 [应用技术文档](../../apps/web/README.md)。

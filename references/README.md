@@ -6,7 +6,7 @@
 
 - `campuses.json`：`/openmap/mapi/campus/v1` 的公开返回。开发区校区 ID 77298，中心为 (121.816326506145, 39.084522240291)。
 - `development-campus-bounds.json`：`/openmap/mapi/bd/v1/bound` 中筛选到开发区的 27 个轮廓。源站全部 550 条记录按每个点位于经度 121.80–121.83、纬度 39.07–39.10 筛选，不含其他校区。
-- `tiles/`：官方二维底图 `/map?lyrs=lm30&x={x}&y={y}&z=16` 的局部参考瓦片，用于人工描摹道路中心线；瓦片不包含在 Web 成品中。
+- `tiles/`：官方二维底图 `/map?lyrs=lm30&x={x}&y={y}&z=16` 的局部参考瓦片，用于人工描摹道路中心线；瓦片不包含在客户端成品中。
 
 ## 精度边界
 
@@ -18,4 +18,4 @@
 
 ## 更新
 
-修改原始来源数据或 `apps/client/tools/prepare_campus.py` 中的高度估计，然后执行 `./apps/client/tools/export_web.sh`。精细建筑可以以相同 Feature ID 替换，保持 Feature ID 和空间坐标一致。
+修改原始来源数据或 `apps/game/tools/prepare_campus.py` 中的高度估计，然后在仓库根目录依次执行 `python3 apps/game/tools/prepare_campus.py`和 `godot --headless --path apps/game --script tools/build_model.gd`，最后运行 `godot --headless --path apps/game --script tools/server_export/build_worlds.gd` 更新服务端碰撞。精细建筑可以以相同 Feature ID 替换，保持 Feature ID 和空间坐标一致。

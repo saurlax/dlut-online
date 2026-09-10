@@ -59,11 +59,11 @@ Godot 4.7.2 / GDScript / Compatibility，27 个官方轮廓已生成静态模型
 
 ## Apps 目录组织
 
-Godot 项目整体迁移至 apps/client/，其内部 res:// 引用保持不变。本文客户端目录均相对 apps/client/；references/ 与 openspec/ 保留仓库根目录。离线生成器从脚本路径定位参考资料，Web 构建产物保留在客户端 build/web/。未来服务端与首页分别使用 apps/server/ 和 apps/site/，本次不创建空目录或实现后端。
+Godot 项目整体迁移至 apps/game/，其内部 res:// 引用保持不变。本文客户端目录均相对 apps/game/；references/ 与 openspec/ 保留仓库根目录。离线生成器从脚本路径定位参考资料，Web 构建产物保留在客户端 build/web/。未来服务端与首页分别使用 apps/web/ 和 apps/site/，本次不创建空目录或实现后端。
 
 ## Go 静态托管
 
-apps/server 使用独立 Go 模块与 Chi，读取客户端 Web 导出目录。/web 重定向至 /web/；文件缺失返回 404，不回退到首页，不开放目录列表，稳定文件名采用 no-cache 重新验证。首页、API、WebSocket 暂不实现。Go 验证通过后替换 Python 预览服务并删除旧脚本。
+apps/web 使用独立 Go 模块与 Chi，读取客户端 Web 导出目录。/web 重定向至 /web/；文件缺失返回 404，不回退到首页，不开放目录列表，稳定文件名采用 no-cache 重新验证。首页、API、WebSocket 暂不实现。Go 验证通过后替换 Python 预览服务并删除旧脚本。
 
 ## 服务镜像与 CI
 

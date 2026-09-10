@@ -2,7 +2,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: apps/server/Dockerfile
+      dockerfile: apps/web/Dockerfile
     ports:
       - "${DO_HTTP_BIND:-127.0.0.1}:${DO_HTTP_PORT:-8060}:8060"
     environment:
@@ -20,7 +20,7 @@ services:
       - "${DO_GAME_BIND:-127.0.0.1}:${DO_GAME_PUBLIC_PORT:-8061}:8061/udp"
     build:
       context: .
-      dockerfile: apps/client/tools/server_export/Dockerfile
+      dockerfile: apps/game/tools/server_export/Dockerfile
     environment:
       DO_ENV: ${DO_ENV:-development}
       DO_API_SERVER_URL: http://api.internal:8060

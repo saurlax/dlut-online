@@ -23,7 +23,7 @@
 - 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。当前保留 Compatibility 渲染器，不因取消 Web 顺带变更渲染管线。
 - 不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，游客身份仅保留在客户端进程中。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
-- 工具代码放 tools/，运行时代码放 scripts/，原始参考放 references/，运行时资源放 assets/。
+- 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，运行时资源放 assets/。
 - 按职责拆分模型生成器，避免把建筑内部、植被和 UI 混入同一模块。GDScript 使用 snake_case，常量 UPPER_SNAKE_CASE；类型推断不明确时显式标注类型。
 - 静态世界模型、环境和灯光必须挂入 .tscn 主场景，打开编辑器即可查看；不要只在 _ready() 中实例化静态世界。运行时逻辑不得重复创建已挂载的节点。
 - 场景保留官方 Feature ID 和轮廓。建筑应有独立可替换的模型；改变形状、高度和入口时记录依据。
@@ -66,18 +66,18 @@
 
 ## Monorepo 目录
 
-- 应用按 apps/ 组织：共享 Godot 工程位于 apps/client/；Go 服务与当前简洁站点入口位于 apps/server/，不另建空的 apps/site/ 或引入 monorepo 框架。
-- 本文中的 scenes/、scripts/、assets/、tests/、tools/ 均相对 apps/client/；Godot res:// 也以此为根。编辑器打开 apps/client/project.godot。
+- 应用按 apps/ 组织：共享 Godot 工程位于 apps/game/；Go 服务与当前简洁站点入口位于 apps/web/，不另建空的 apps/site/ 或引入 monorepo 框架。
+- 本文中的 scenes/、scripts/、assets/、tests/、tools/ 均相对 apps/game/；Godot res:// 也以此为根。编辑器打开 apps/game/project.godot。
 - references/、openspec/、AGENTS.md 和 README.md 保留仓库根目录。原始参考路径相对仓库根目录记录，生成工具须从自身位置解析路径，不能依赖调用者工作目录。
-- 各应用独立管理依赖和构建产物，桌面客户端导出位于 apps/client/build/windows/ 与 macos/，游戏服位于 server/。Go 提供首页和 /api/v1/ 接口，不再托管 /web/ 或代理 /ws；客户端直连独立 Godot 游戏服。
+- 各应用独立管理依赖和构建产物，桌面客户端导出位于 apps/game/build/windows/ 与 macos/，游戏服位于 server/。Go 提供首页和 /api/v1/ 接口，不再托管 /web/ 或代理 /ws；客户端直连独立 Godot 游戏服。
 
-- Go HTTP 服务位于 apps/server/，使用 Chi；负责站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/server/README.md。
+- Go HTTP 服务位于 apps/web/，使用 Chi；负责站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/web/README.md。
 
 - CI 在每次 push 构建 Go HTTP 和 Godot 游戏服镜像，并导出 Windows x86_64 与 macOS universal ZIP；不构建或提交 Web 产物。Go PORT 默认 8060，显式 -addr 优先。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
 
 ## 权威游戏服务
 
-- Godot 无头服务端与客户端共享 apps/client/ 工程，入口为 scenes/server.tscn，专属逻辑放 scripts/server/，共享运动、碰撞和协议规则放 scripts/shared/。Go apps/server/ 负责站点、票据和在线查询，不执行玩家物理或广播。
+- Godot 无头服务端与客户端共享 apps/game/ 工程，入口为 scenes/server.tscn，客户端逻辑放 scripts/client/，服务端专属逻辑放 scripts/server/，共享运动、碰撞、校区注册表和协议规则放 scripts/shared/。Go apps/web/ 负责站点、票据和在线查询，不执行玩家物理或广播。
 - 客户端 GameNetwork Autoload 跨场景保留 ENet 连接；同实例切图不重新取票、不重登，加载期间继续心跳且停止移动，场景就绪后迁移角色。三个校区对所有玩家开放。
 - 服务端通过独立 World3D 同时持有三校区碰撞世界，不能同时加载三个视觉校园模型；客户端仍只加载一个校园。服务端静态碰撞从现有场景和标记生成，保留可直接打开的场景，修改来源后重新生成，不能手工复制第二套模型。
 - 服务端凭据只在进程环境读取，不导出到客户端。真实 SSO、数据库和历史分析尚未接入，不用游客 ID 访问敏感数据。线上人数必须标记时效，失联不能报告为零人。

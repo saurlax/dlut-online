@@ -27,10 +27,10 @@ jobs:
           lfs: true
       - uses: actions/setup-go@v5
         with:
-          go-version-file: apps/server/go.mod
-          cache-dependency-path: apps/server/go.sum
+          go-version-file: apps/web/go.mod
+          cache-dependency-path: apps/web/go.sum
       - name: Test and vet server
-        working-directory: apps/server
+        working-directory: apps/web
         run: |
           go test -race ./...
           go vet ./...
@@ -48,33 +48,33 @@ jobs:
         env:
           DO_ENV: production
           DO_SERVER_URL: https://dlut.online
-        working-directory: apps/client
+        working-directory: apps/game
         run: |
           godot --headless --editor --quit
           godot --headless --script tests/desktop_config.gd
           godot --headless --script tools/server_export/build_worlds.gd
           godot --headless --script tests/server_physics.gd
           godot --headless --script tests/game_protocol.gd
-          (cd ../server && DO_TEST_GODOT_PROJECT=../client go test -race -run TestENet -timeout 3m -v)
+          (cd ../web && DO_TEST_GODOT_PROJECT=../game go test -race -run TestENet -timeout 3m -v)
           mkdir -p build/windows build/macos build/server
           godot --headless --export-release Server build/server/dlut-game-server.x86_64
-          godot --headless --main-pack build/server/dlut-game-server.pck --script "$GITHUB_WORKSPACE/apps/client/tests/server_export.gd"
+          godot --headless --main-pack build/server/dlut-game-server.pck --script "$GITHUB_WORKSPACE/apps/game/tests/server_export.gd"
           godot --headless --export-release Windows "build/windows/DLUT Online.exe"
           godot --headless --export-release macOS "build/macos/DLUT Online.zip"
           unzip -p 'build/macos/DLUT Online.zip' 'DLUT Online.app/Contents/Resources/DLUT Online.pck' > "$RUNNER_TEMP/desktop.pck"
-          godot --headless --main-pack "$RUNNER_TEMP/desktop.pck" --script "$GITHUB_WORKSPACE/apps/client/tests/desktop_export.gd"
+          godot --headless --main-pack "$RUNNER_TEMP/desktop.pck" --script "$GITHUB_WORKSPACE/apps/game/tests/desktop_export.gd"
           cd build/windows
           zip -r "../DLUT-Online-Windows.zip" .
       - uses: actions/upload-artifact@v4
         with:
           name: client-windows-${{ github.sha }}
-          path: apps/client/build/DLUT-Online-Windows.zip
+          path: apps/game/build/DLUT-Online-Windows.zip
           retention-days: 7
           if-no-files-found: error
       - uses: actions/upload-artifact@v4
         with:
           name: client-macos-${{ github.sha }}
-          path: apps/client/build/macos/DLUT Online.zip
+          path: apps/game/build/macos/DLUT Online.zip
           retention-days: 7
           if-no-files-found: error
       - uses: docker/setup-buildx-action@v3
@@ -82,7 +82,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: apps/server/Dockerfile
+          file: apps/web/Dockerfile
           platforms: linux/amd64
           tags: dlut-online-server:${{ github.sha }}
           labels: |
@@ -95,7 +95,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: apps/client/tools/server_export/Dockerfile
+          file: apps/game/tools/server_export/Dockerfile
           platforms: linux/amd64
           tags: dlut-online-game:${{ github.sha }}
           outputs: type=docker,dest=${{ runner.temp }}/game-image.tar
@@ -114,10 +114,10 @@ jobs:
           docker run -d --name server-check --network game-check -e PORT=9090 -e DO_GAME_SERVICE_TOKEN -e DO_ADMIN_API_TOKEN -e DO_GAME_SERVER_URL=enet://127.0.0.1:9061 -p 127.0.0.1:9090:9090 "$IMAGE"
           trap 'docker logs server-check; docker logs game-check; docker rm -f server-check game-check; docker network rm game-check' EXIT
           curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:9090/
-          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/client --script tests/enet_protocol.gd
-          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/client --script tests/campus_travel.gd
-          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/client --script tests/campus_transfer.gd
-          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/client --script tests/player_network.gd
+          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/enet_protocol.gd
+          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_travel.gd
+          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_transfer.gd
+          DO_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/player_network.gd
           curl --fail http://127.0.0.1:9090/api/v1/game/online
           test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:9090/web/)" = 404
       - uses: actions/upload-artifact@v4

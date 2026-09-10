@@ -37,9 +37,9 @@ Godot 客户端、角色物理碰撞、原生 UI 和 Web 导出配置；无需�
 
 开发区资产统一归入 assets/campuses/eda/{data,models}，校区注册表声明数据路径，更新生成及导出流程；共享字体保留 assets/fonts。另两校区占位直接存于各自场景，不创建无依据的数据。GLB 与配套纹理保留为离线模型交换产物，游戏使用 TSCN。
 
-仓库采用 apps/ 组织：现有 Godot 项目整体移入 apps/client/，同步工具、忽略规则和编辑器入口说明；本次不新增服务端或首页功能。
+仓库采用 apps/ 组织：现有 Godot 项目整体移入 apps/game/，同步工具、忽略规则和编辑器入口说明；本次不新增服务端或首页功能。
 
-资源托管改由 apps/server 的 Go/Chi 服务提供 /web/，删除 Python 预览脚本；首页及多人后端不在本轮范围。
+资源托管改由 apps/web 的 Go/Chi 服务提供 /web/，删除 Python 预览脚本；首页及多人后端不在本轮范围。
 
 新增每次 push 的多平台构建：Go 支持 PORT（默认 8060），镜像内置 Godot Web，另提供 Windows x86_64 与 macOS universal 客户端 ZIP。
 

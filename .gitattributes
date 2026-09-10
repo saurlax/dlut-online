@@ -1,4 +1,4 @@
-apps/client/assets/campuses/*/models/*.tscn filter=lfs diff=lfs merge=lfs -text
+apps/game/assets/campuses/*/models/*.tscn filter=lfs diff=lfs merge=lfs -text
 *.glb filter=lfs diff=lfs merge=lfs -text
 *.blend filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
