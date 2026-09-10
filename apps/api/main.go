@@ -49,7 +49,7 @@ func main() {
 		slog.Error("Invalid listener configuration", "error", err)
 		os.Exit(1)
 	}
-	config := gameConfig{endpoint: os.Getenv("DO_GAME_SERVER_URL"), serviceToken: os.Getenv("DO_GAME_SERVICE_TOKEN"), adminToken: os.Getenv("DO_ADMIN_API_TOKEN")}
+	config := gameConfig{endpoint: os.Getenv("DO_GAME_SERVER_URL"), apiKey: os.Getenv("DO_API_KEY")}
 	if config.endpoint == "" {
 		config.endpoint = "enet://127.0.0.1:1949"
 	}
@@ -57,8 +57,8 @@ func main() {
 		slog.Error("DO_GAME_SERVER_URL must be an enet:// or enets:// host:port; production requires enets://")
 		os.Exit(1)
 	}
-	if len(config.serviceToken) < 32 || len(config.adminToken) < 32 || config.serviceToken == config.adminToken {
-		slog.Error("Set distinct DO_GAME_SERVICE_TOKEN and DO_ADMIN_API_TOKEN, at least 32 characters each")
+	if len(config.apiKey) < 32 {
+		slog.Error("Set DO_API_KEY to a random value of at least 32 characters")
 		os.Exit(1)
 	}
 	dataDir := os.Getenv("DO_DATA_DIR")

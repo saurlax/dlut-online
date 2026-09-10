@@ -18,7 +18,7 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-type gameConfig struct{ endpoint, serviceToken, adminToken string }
+type gameConfig struct{ endpoint, apiKey string }
 type admission struct {
 	ID          string    `json:"id"`
 	Username    string    `json:"username"`
@@ -140,11 +140,11 @@ func newGameAPI(c gameConfig, apps ...core.App) *gameAPI {
 	}
 	return g
 }
-func (g *gameAPI) auth(token string, next http.HandlerFunc) http.HandlerFunc {
+func (g *gameAPI) apiKeyAuth(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		got := r.Header.Get("Authorization")
-		want := "Bearer " + token
-		if token == "" || subtle.ConstantTimeCompare([]byte(got), []byte(want)) != 1 {
+		want := "Bearer " + g.config.apiKey
+		if g.config.apiKey == "" || subtle.ConstantTimeCompare([]byte(got), []byte(want)) != 1 {
 			reject(w, 401, "unauthorized")
 			return
 		}
@@ -154,11 +154,11 @@ func (g *gameAPI) auth(token string, next http.HandlerFunc) http.HandlerFunc {
 func (g *gameAPI) routes() []apiRoute {
 	return []apiRoute{
 		{http.MethodPost, "/api/v1/game/tickets", http.HandlerFunc(g.issue)},
-		{http.MethodPost, "/internal/v1/game/tickets/consume", http.HandlerFunc(g.auth(g.config.serviceToken, g.consume))},
-		{http.MethodPost, "/internal/v1/game/register", http.HandlerFunc(g.auth(g.config.serviceToken, g.register))},
-		{http.MethodPost, "/internal/v1/game/presence", http.HandlerFunc(g.auth(g.config.serviceToken, g.presence))},
+		{http.MethodPost, "/api/v1/game/tickets/consume", http.HandlerFunc(g.apiKeyAuth(g.consume))},
+		{http.MethodPost, "/api/v1/game/register", http.HandlerFunc(g.apiKeyAuth(g.register))},
+		{http.MethodPost, "/api/v1/game/presence", http.HandlerFunc(g.apiKeyAuth(g.presence))},
 		{http.MethodGet, "/api/v1/game/online", http.HandlerFunc(g.online)},
-		{http.MethodGet, "/api/v1/admin/game/players", http.HandlerFunc(g.auth(g.config.adminToken, g.details))},
+		{http.MethodGet, "/api/v1/admin/game/players", http.HandlerFunc(g.apiKeyAuth(g.details))},
 	}
 }
 func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {

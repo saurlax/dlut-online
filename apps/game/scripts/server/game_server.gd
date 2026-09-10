@@ -20,7 +20,7 @@ func _ready() -> void:
 	data = DataService.new()
 	add_child(data)
 	if not data.configure():
-		push_error("Invalid DO_API_SERVER_URL or missing DO_GAME_SERVICE_TOKEN")
+		push_error("Invalid DO_API_SERVER_URL or missing DO_API_KEY")
 		get_tree().quit(1)
 		return
 	for id: String in MAPS:
@@ -138,7 +138,7 @@ func handle(c: Dictionary, m: Dictionary) -> void:
 		_: close(c, 4002, "unknown message")
 
 func authenticate(c: Dictionary, m: Dictionary) -> void:
-	var result: Dictionary = await data.post("/internal/v1/game/tickets/consume", {"ticket":m.ticket})
+	var result: Dictionary = await data.post("/api/v1/game/tickets/consume", {"ticket":m.ticket})
 	if not connections.has(c) or c.closing: return
 	if result.get("status") != 200:
 		close(c, 4003, "admission unavailable")

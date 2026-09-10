@@ -10,9 +10,9 @@ Go 位于 apps/api，自定义业务接口和 Vue 站点直接注册到 PocketBa
 godot --headless --path apps/game --script tools/server_export/build_worlds.gd
 ```
 
-生成两个不同的随机凭据，分别设置 `DO_GAME_SERVICE_TOKEN` 和 `DO_ADMIN_API_TOKEN`，至少 32 个字符，例如使用 `openssl rand -hex 32`。仅在服务端环境中设置，不保存到源码或客户端导出。
+生成一个随机 `DO_API_KEY`，至少 32 个字符，例如使用 `openssl rand -hex 32`。Go、Godot 游戏服及其他可信服务调用方使用各自部署环境中的同一值，不保存到源码或客户端导出。
 
-Go 终端（继承上述两个变量）：
+Go 终端（继承上述变量）：
 
 ```sh
 pnpm --dir apps/web install --frozen-lockfile
@@ -21,7 +21,7 @@ cd apps/api
 go run .
 ```
 
-Godot 终端（继承相同的 `DO_GAME_SERVICE_TOKEN`）：
+Godot 终端（继承相同的 `DO_API_KEY`）：
 
 ```sh
 godot --headless --path apps/game scenes/server.tscn
@@ -31,17 +31,24 @@ Go `PORT` 默认 8415，PocketBase 数据默认写入 `apps/api/pb_data`；编�
 
 | 环境变量 | 所属进程 | 默认或要求 |
 |---|---|---|
+| DO_ENV | Go、Godot、桌面客户端构建/运行 | `development` 或 `production`；Compose 默认 development，桌面包默认 production |
+| DO_SERVER_URL | 桌面客户端构建/运行 | Go HTTP API 根地址；开发默认 `http://localhost:8415`，生产默认 `https://dlut.online` |
 | DO_GAME_SERVER_URL | Go | `enet://127.0.0.1:1949`，客户端可达的游戏端点；生产为 `enets://` |
-| DO_GAME_SERVICE_TOKEN | 两个服务 | 相同的服务凭据，至少 32 字符 |
-| DO_ADMIN_API_TOKEN | Go | 独立的只读管理凭据，至少 32 字符 |
+| DO_API_KEY | Go、Godot 及可信服务调用方 | API Bearer Key，各进程配置相同值，至少 32 字符 |
 | DO_API_SERVER_URL | Godot | `http://127.0.0.1:8415`，Go 内网 HTTP(S) 根地址 |
 | DO_GAME_PORT | Godot | `1949` |
+| DO_GAME_TLS_CERT | Godot | 生产环境 DTLS PEM 证书链路径 |
+| DO_GAME_TLS_KEY | Godot | 生产环境 DTLS PEM 私钥路径 |
+| DO_GAME_TLS_CA | 桌面客户端构建/运行 | 可选，自有 DTLS CA 证书路径 |
 | DO_DATA_DIR | Go | PocketBase SQLite 数据目录，本地默认 `pb_data`，容器为 `/data/pb_data` |
 | PB_ENCRYPTION_KEY | Go | 生产使用的 32 字符 PocketBase 设置加密密钥 |
+| PORT | Go | HTTP 监听端口，默认 `8415` |
+| DO_HTTP_PORT | Compose | Go 映射到宿主机的端口，默认 `8415` |
+| DO_GAME_PUBLIC_PORT | Compose | 游戏服映射到宿主机的 UDP 端口，默认 `1949` |
 
 游戏服固定监听 `*`，单实例标识固定为 `main`。Compose 默认仅发布到宿主机回环地址；公网部署按实际网络配置修改绑定地址。
 
-客户端用 DO_SERVER_URL 访问 Go HTTP API，游戏端点由票据响应返回。服务凭据不进入客户端。
+客户端用 DO_SERVER_URL 访问 Go HTTP API，游戏端点由票据响应返回。DO_API_KEY 不进入客户端。
 
 ## HTTP 接口
 
@@ -49,19 +56,19 @@ Go `PORT` 默认 8415，PocketBase 数据默认写入 `apps/api/pb_data`；编�
 - `POST /api/collections/users/records`：PocketBase 用户注册，必填 email、password、passwordConfirm、username 和 display_name。
 - `/api/collections/users/request-verification`、`confirm-verification`、`auth-with-password`、`request-password-reset`、`confirm-password-reset`、`request-email-change`、`confirm-email-change` 与 `auth-refresh`：PocketBase 标准认证流程。
 - `POST /api/v1/game/tickets`：游客正文为 `{"id":"15位大写十六进制ID","version":4}`；账号用户额外提交 `Authorization: Bearer <PocketBase auth token>`，服务端忽略客户端 id 并使用 record ID 与 display_name。大写游客 ID 与小写 PocketBase ID 使用不重叠的身份空间。
-- `POST /internal/v1/game/tickets/consume`：服务凭据，正文 `{"ticket":"..."}`；原子消费，返回 id、username、kind、admission_id。
-- `POST /internal/v1/game/register`：服务凭据，正文 instance_id、boot_id；返回 epoch，同启动标识重试幂等，旧启动不可重新注册。
-- `POST /internal/v1/game/presence`：服务凭据，正文 instance_id、epoch、递增 seq、players；每位玩家含 id、username、kind、campus、joined_at（Unix 秒）。
+- `POST /api/v1/game/tickets/consume`：API Key 鉴权，正文 `{"ticket":"..."}`；原子消费，返回 id、username、kind、admission_id。
+- `POST /api/v1/game/register`：API Key 鉴权，正文 instance_id、boot_id；返回 epoch，同启动标识重试幂等，旧启动不可重新注册。
+- `POST /api/v1/game/presence`：API Key 鉴权，正文 instance_id、epoch、递增 seq、players；每位玩家含 id、username、kind、campus、joined_at（Unix 秒）。
 - `GET /api/v1/game/online`：公开聚合人数，status 为 live/stale/unavailable；失联超过 15 秒当前 total/campuses 为 null，不伪装成零人，保留最后观测时间及 last_total。
-- `GET /api/v1/admin/game/players`：管理凭据，附当前玩家列表与相同的时效语义；失联时 players 为 null。
+- `GET /api/v1/admin/game/players`：API Key 鉴权，附当前玩家列表与相同的时效语义；失联时 players 为 null。
 
-受保护接口使用 `Authorization: Bearer <对应凭据>`。游戏服务凭据与管理凭据不可互换。票据有效期 30 秒、只能兑换一次；每身份每秒最多签发一次，全局每秒最多 100 次、待兑换票据最多 512 张。票据仅放消息正文，不放 URL 或日志。Go 重启丢失未兑换票据和在线缓存，客户端可重新取票，游戏服自动重新注册上报。
+受保护的服务接口统一使用 `Authorization: Bearer <DO_API_KEY>`。后续可信平台沿用相同路径版本和 Bearer Auth 流程。玩家登录接口中的 Bearer 值仍为 PocketBase 用户 auth token。票据有效期 30 秒、只能兑换一次；每身份每秒最多签发一次，全局每秒最多 100 次、待兑换票据最多 512 张。票据仅放消息正文，不放 URL 或日志。Go 重启丢失未兑换票据和在线缓存，客户端可重新取票，游戏服自动重新注册上报。
 
 所有持久化通过 Go/PocketBase 处理，Godot 游戏服不直接打开 SQLite。重要操作采用事务和幂等 ID，位置按周期保存，不逐 tick 写数据库。
 
 ## 游戏协议版本 4
 
-客户端先向 Go 获取票据与 `game_server_url`，然后直连 Godot ENet/UDP。Go 不代理游戏流量；游戏服使用内部 HTTP 兑换票据、上报在线状态。首次连接和真实断线重连时取票，切图不重新认证。
+客户端先向 Go 获取票据与 `game_server_url`，然后直连 Godot ENet/UDP。Go 不代理游戏流量；游戏服使用 API Key 保护的 HTTP API 兑换票据、上报在线状态。首次连接和真实断线重连时取票，切图不重新认证。
 
 控制通道 0 可靠有序传输 JSON：hello、welcome、heartbeat、roster 和切图消息。首条 hello 在 5 秒内发送，包含 version:4、ticket 和 campus。通道 1 不可靠有序传输输入与二进制位置快照；输入仍为 JSON，每秒最多 20 次，服务器不接受客户端位置、速度或帧时长。服务端 60 Hz 物理、10 Hz 同地图快照，客户端预测并纠正。
 
@@ -69,7 +76,7 @@ Go `PORT` 默认 8415，PocketBase 数据默认写入 `apps/api/pb_data`；编�
 
 输入累计跳跃序号抗丢包，500 ms 无有效输入停止水平移动；心跳每 5 秒，15 秒无有效消息断开。切图继续使用 change_map/prepare/ready/entered 和 cancel/status/resume，准备超时 180 秒；本地场景加载时保留连接、停止控制，确认后原子迁移。
 
-关闭原因数据：4001 同身份替换并停止重试，4002 协议错误，4003 暂时不可用或超时，4004 满员。当前最多 50 人、100 个待认证/关闭中的连接。内部 API 故障不阻塞现有玩家，Go 进程重启也不再断开 ENet 连接，但期间无法新入场且在线数据需要重新注册。
+关闭原因数据：4001 同身份替换并停止重试，4002 协议错误，4003 暂时不可用或超时，4004 满员。当前最多 50 人、100 个待认证/关闭中的连接。Go API 故障不阻塞现有玩家，Go 进程重启也不再断开 ENet 连接，但期间无法新入场且在线数据需要重新注册。
 
 ## 导出与部署
 
