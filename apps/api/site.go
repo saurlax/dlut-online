@@ -21,8 +21,10 @@ func siteHandler() http.Handler {
 	server := http.FileServer(http.FS(files))
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		name := strings.TrimPrefix(r.URL.Path, "/")
-		if name == "" {
+		if name == "" || name == "download" || name == "download/" {
 			name = "index.html"
+			r = r.Clone(r.Context())
+			r.URL.Path = "/"
 		}
 		if !fs.ValidPath(name) || path.Clean(name) != name {
 			http.NotFound(w, r)

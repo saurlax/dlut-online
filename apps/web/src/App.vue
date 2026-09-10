@@ -6,6 +6,7 @@ import library from "./assets/library.jpg";
 import garden from "./assets/campus-garden.jpg";
 import campusFilm from "./assets/campus-film.mp4";
 import filmPoster from "./assets/campus-film-poster.jpg";
+import { downloads, detectDesktopPlatform } from "./downloads";
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -16,25 +17,25 @@ const themeOverrides: GlobalThemeOverrides = {
   },
   Button: { heightLarge: "56px", fontSizeLarge: "14px", fontWeight: "500" },
 };
-const downloadUrl = "https://github.com/saurlax/dlut-online/releases";
+const isDownloadPage = /^\/download\/?$/.test(window.location.pathname);
+const platform = detectDesktopPlatform(navigator.userAgent, navigator.platform, navigator.maxTouchPoints);
+const recommended = platform ? downloads[platform] : null;
+const downloadUrl = recommended?.url ?? "/download";
+const downloadLabel = recommended?.button ?? "选择桌面版本";
+if (isDownloadPage) document.title = "下载客户端 | DLUT Online";
 const video = ref<HTMLVideoElement | null>(null);
-const paused = ref(true);
 const videoFailed = ref(false);
-let userPaused = false;
 let motionPreference: MediaQueryList | undefined;
 
 function syncPlayback() {
   if (!video.value) return;
-  if (userPaused || motionPreference?.matches || document.hidden) {
+  if (motionPreference?.matches || document.hidden) {
     video.value.pause();
   } else {
-    void video.value.play().catch(() => { paused.value = true; });
+    void video.value.play().catch(() => { /* Keep a still frame when autoplay is unavailable. */ });
   }
 }
-function togglePlayback() {
-  userPaused = !paused.value;
-  syncPlayback();
-}
+
 onMounted(() => {
   motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
   motionPreference.addEventListener("change", syncPlayback);
@@ -57,20 +58,33 @@ const currentScene = computed(() => scenes[selected.value]!);
 <template>
   <n-config-provider :locale="zhCN" :theme-overrides="themeOverrides">
     <n-global-style />
-    <div class="landing">
+    <div class="landing" :class="{ 'download-page': isDownloadPage }">
       <header class="site-header">
-        <a class="brand" href="#home" aria-label="DLUT Online 首页">DLUT <span>Online</span></a>
+        <a class="brand" href="/" aria-label="DLUT Online 首页">DLUT <span>Online</span></a>
         <nav aria-label="主导航">
-          <a href="#world">走进大工</a>
-          <a href="#landscapes">校园印象</a>
-          <n-button tag="a" href="#download" ghost color="#ffffff" class="nav-download">下载客户端 <span aria-hidden="true">↗</span></n-button>
+          <n-button tag="a" href="/download" ghost color="#ffffff" class="nav-download">下载客户端 <span aria-hidden="true">↗</span></n-button>
         </nav>
       </header>
-      <main>
+      <main v-if="isDownloadPage" class="download-content">
+        <p class="eyebrow">DLUT Online</p>
+        <h1>选择你的桌面版本</h1>
+        <p class="download-intro">在 Windows 或 macOS 上，开启校园漫步。</p>
+        <div class="download-options">
+          <section v-for="(item, key) in downloads" :key="key" class="download-option" :class="{ recommended: platform === key }" :aria-labelledby="'platform-' + key">
+            <p class="recommendation">{{ platform === key ? '适用于当前系统' : '桌面客户端' }}</p>
+            <h2 :id="'platform-' + key">{{ item.label }}</h2>
+            <p>{{ item.architecture }}</p>
+            <n-button tag="a" :href="item.url" type="primary" size="large">{{ item.button }} <span aria-hidden="true">↗</span></n-button>
+          </section>
+        </div>
+        <p class="download-help">当前通过 GitHub Releases 获取安装包。项目持续建设中，欢迎体验当前版本。</p>
+        <a class="back-home" href="/">返回首页 ↗</a>
+      </main>
+      <main v-else>
         <section id="home" class="hero" aria-labelledby="hero-title">
           <div class="hero-background" aria-hidden="true">
             <img v-if="videoFailed" :src="filmPoster" width="856" height="480" alt="" />
-            <video v-else ref="video" :src="campusFilm" :poster="filmPoster" muted loop playsinline preload="metadata" @play="paused = false" @pause="paused = true" @error="videoFailed = true; paused = true" />
+            <video v-else ref="video" :src="campusFilm" :poster="filmPoster" muted loop playsinline preload="metadata" @error="videoFailed = true" />
           </div>
           <div class="hero-shade" />
           <div class="hero-content">
@@ -78,17 +92,8 @@ const currentScene = computed(() => scenes[selected.value]!);
             <p class="hero-category">第一人称校园 MMORPG</p>
             <h1 id="hero-title">大工，再相逢。</h1>
             <p class="hero-description">那些走过的路，那些遇见的人。<br class="mobile-break" />在这里，续写我们的校园故事。</p>
-            <n-button tag="a" :href="downloadUrl" type="primary" size="large" class="primary-cta">走进 DLUT Online <span aria-hidden="true">↗</span></n-button>
-            <p class="platforms">Windows / macOS 桌面客户端</p>
-          </div>
-          <div class="hero-bottom">
-            <a href="#world" class="scroll-link"><span class="scroll-line" aria-hidden="true" />向下探索</a>
-            <div class="motion-tools">
-              <span>校园实景</span>
-              <n-button v-if="!videoFailed" text color="#ffffff" class="motion-toggle" :aria-pressed="paused" :aria-label="paused ? '播放背景视频' : '暂停背景视频'" @click="togglePlayback">
-                <span aria-hidden="true">{{ paused ? '▷' : 'Ⅱ' }}</span>{{ paused ? '播放视频' : '暂停视频' }}
-              </n-button>
-            </div>
+            <n-button tag="a" :href="downloadUrl" type="primary" size="large" class="primary-cta">{{ downloadLabel }} <span aria-hidden="true">↗</span></n-button>
+            <a class="other-downloads" href="/download">其他下载</a>
           </div>
         </section>
 
@@ -129,12 +134,12 @@ const currentScene = computed(() => scenes[selected.value]!);
           <p class="eyebrow light">属于我们的校园世界</p>
           <h2 id="download-title">下一次相逢，<br />就在大工。</h2>
           <p class="download-copy">下载 DLUT Online，开启你的校园漫步。</p>
-          <n-button tag="a" :href="downloadUrl" size="large" color="#ffffff" text-color="#0041b7" class="primary-cta">下载桌面客户端 <span aria-hidden="true">↗</span></n-button>
+          <n-button tag="a" href="/download" size="large" color="#ffffff" text-color="#0041b7" class="primary-cta">下载桌面客户端 <span aria-hidden="true">↗</span></n-button>
           <p class="platforms">Windows x86_64 / macOS universal</p>
           <p class="development-note">项目持续建设中，欢迎体验当前版本。</p>
         </section>
       </main>
-      <footer><a class="brand" href="#home">DLUT <span>Online</span></a><p>让校园里的故事，继续发生。</p><a href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></a></footer>
+      <footer><a class="brand" href="/">DLUT <span>Online</span></a><p>让校园里的故事，继续发生。</p><a href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></a></footer>
     </div>
   </n-config-provider>
 </template>

@@ -8,7 +8,7 @@ Go 已有公开在线人数接口和 PocketBase 账户能力。网站定位为�
 
 ## Decisions
 
-Vue 3 + TypeScript + Vite + Naive UI，源码放 apps/web/src；构建结果 apps/api/static 被 Go embed 打入二进制且不提交。Naive UI 使用全局中文 locale 与 DLUT Online 主题变量，按需导入现有页面所用组件。开发时 Vite 代理 /api 至 Go 8415，生产不运行 Node。只为首页和实际存在的静态文件提供响应，不将未知 API 或旧 /web 路由回退为 HTML。
+Vue 3 + TypeScript + Vite + Naive UI，源码放 apps/web/src；构建结果 apps/api/static 被 Go embed 打入二进制且不提交。Naive UI 使用全局中文 locale 与 DLUT Online 主题变量，按需导入现有页面所用组件。开发时 Vite 代理 /api 至 Go 8415，生产不运行 Node。只为首页、/download（含末尾斜杠）和实际存在的静态文件提供响应，不将未知 API 或旧 /web 路由回退为 HTML。
 
 首页不请求在线接口，移除轮询、人数和服务状态展示。Go 公开在线接口保持原有行为；页面只承载产品介绍、校园实景与客户端下载。
 
@@ -24,9 +24,9 @@ Go 源码迁移至 apps/api，Vue 位于 apps/web。应用技术文档与合并�
 
 本次按用户要求重做布局：全屏实景动态首屏、纸白叙事介绍、深墨色校园实景展示、蓝色下载收尾。首屏覆盖式轻导航、居中宋体大标题与单一主要下载入口，采用 MMORPG 官网的沉浸式节奏，不保留仪表盘布局。
 
-品牌蓝 #0041B7，纸白 #F6F5F1，深墨色 #0B1727。宋体用于主标题，无衬线体用于正文与交互。Naive UI NConfigProvider 与 GlobalThemeOverrides 统一按钮风格，不新增字体或依赖。窄屏垂直编排，按钮可换行，保留清晰的键盘焦点。
+品牌蓝 #0041B7，纸白 #F6F5F1，深墨色 #0B1727。首页主标题使用 Google Fonts Ma Shan Zheng 毛笔楷书，其他标题保留宋体，正文与交互使用无衬线体。Naive UI NConfigProvider 与 GlobalThemeOverrides 统一按钮风格，不新增框架依赖。窄屏垂直编排，按钮可换行，保留清晰的键盘焦点。
 
-背景改用大工英文官网发布的真实校园视频，静音、循环、内联播放。提供暂停/播放按钮，用户暂停后不自动恢复；系统偏好减少动态效果或页面隐藏时暂停，自动播放被拒绝时保留可点击的播放按钮，资源失败时显示静态封面。删除照片平移缩放动画，不使用游戏素材。
+背景改用大工英文官网发布的真实校园视频，静音、循环、内联播放。按用户要求移除首屏底部的向下探索、校园实景标签及播放/暂停控制；系统偏好减少动态效果或页面隐藏时暂停，自动播放被拒绝时保留静态画面，资源失败时显示静态封面。删除照片平移缩放动画，不使用游戏素材。
 
 校园展示提供三个实景视角的手动切换，标题和图像由同一对象驱动，不自动轮播。页面标明校园实景；下载区提示项目持续建设中，避免把照片等同于已完成的游戏质量。
 
@@ -51,3 +51,11 @@ Go 源码迁移至 apps/api，Vue 位于 apps/web。应用技术文档与合并�
 2026-09-10 从 https://en.dlut.edu.cn/ 首页读取视频源 https://en.dlut.edu.cn/video/ssdg.mp4 （首页图片对象 78290）。截取 22.0–23.2 秒及 26.0–29.2 秒的校园航拍、校名石、主楼与图书馆实景片段，按原时间顺序拼接、以 2/3 速度播放，移除音轨，转为 H.264/yuv420p、25fps、faststart MP4。保留原始 856×480 分辨率，不声称高清视频。展示文件 apps/web/src/assets/campus-film.mp4，第一帧封面 campus-film-poster.jpg；原始完整片与临时处理产物仅留在忽略目录 .local/landing/。影片不进入游戏客户端。
 
 遵循 AGENTS.md：所有文字使用字体默认字间距，禁止设置 letter-spacing、tracking 或等效字符间距，也不插入空格模拟字距。
+
+### 手写标题与下载入口
+
+首页 h1 单独使用 Google Fonts 的 Ma Shan Zheng（马善政毛笔楷书），字体权重 400、font-display: swap。2026-09-10 从 https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng 获取 text=大工，再相逢。 的标题子集（7 个唯一字符），本地保存 apps/web/src/assets/fonts/ma-shan-zheng-title.ttf，并保留 apps/web/public/licenses/ma-shan-zheng-OFL.txt，构建后随字体一并分发（来源 https://github.com/google/fonts/tree/main/ofl/mashanzheng ）。新增或修改标题字符时重新获取子集；不改字间距，不依赖运行时 Google Fonts 网络请求。字体通过 Vite 引用并进入 Go 静态嵌入产物，仅用于网站。
+
+顶部只保留前往 /download 的下载导航；首屏主按钮按浏览器系统识别 Windows / macOS，分别显示对应下载文案，未知系统、Linux、Android、iPhone、iPad（包括桌面模式）进入 /download 选择页。系统检测只影响建议，不限制下载页访问。平台链接集中维护在 apps/web/src/downloads.ts；目前两个平台均使用用户接受的 GitHub Releases 页面，未发现可核实的 latest 安装包，不构造虚假直链。以后替换平台 URL 为 OSS 即可，检测与组件无需改动。
+
+首屏“其他下载”及页末下载入口均进入 /download。下载页用 Naive UI 按钮列出 Windows x86_64、macOS Universal，当前系统标注推荐。原生链接跳转及浏览器前进/后退，不为两个页面引入路由依赖；Go 仅对 /、/download、/download/ 返回应用入口，其他未知路径继续 404。
