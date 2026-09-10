@@ -122,6 +122,7 @@ footer .brand { font-size: 20px; color: white; }
 .updates-section { background: var(--paper); }
 .section-content { margin-top: 40px; }
 .event-calendar { height: 420px; }
+.event-calendar .n-calendar-date__date { flex-shrink: 0; }
 .event-empty { padding: 48px 0 24px; }
 @media (max-width: 700px) {
   .news-section { padding: 64px 24px; }
