@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: apps/api/Dockerfile
     ports:
-      - "${DO_HTTP_BIND:-127.0.0.1}:${DO_HTTP_PORT:-8415}:8415"
+      - "127.0.0.1:${DO_HTTP_PORT:-8415}:8415"
     environment:
       DO_ENV: ${DO_ENV:-development}
       PORT: "8415"
@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
   game:
     ports:
-      - "${DO_GAME_BIND:-127.0.0.1}:${DO_GAME_PUBLIC_PORT:-1949}:1949/udp"
+      - "127.0.0.1:${DO_GAME_PUBLIC_PORT:-1949}:1949/udp"
     build:
       context: .
       dockerfile: apps/game/tools/server_export/Dockerfile
@@ -25,9 +25,8 @@ services:
       DO_ENV: ${DO_ENV:-development}
       DO_API_SERVER_URL: http://web.internal:8415
       DO_GAME_SERVICE_TOKEN: ${DO_GAME_SERVICE_TOKEN:?set a random service token}
-      DO_GAME_INSTANCE_ID: main
       DO_GAME_TLS_CERT: ${DO_GAME_TLS_CERT:-}
       DO_GAME_TLS_KEY: ${DO_GAME_TLS_KEY:-}
     volumes:
-      - "${DO_GAME_TLS_DIR:-./.local/game-tls}:/run/game-tls:ro"
+      - "./.local/game-tls:/run/game-tls:ro"
     restart: unless-stopped
