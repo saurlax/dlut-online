@@ -1,6 +1,30 @@
 <script setup lang="ts">
+import {
+  NButton,
+  NCard,
+  NConfigProvider,
+  NGlobalStyle,
+  NStatistic,
+  NTag,
+  zhCN,
+  type GlobalThemeOverrides,
+} from "naive-ui";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { campuses, isLive, parseOnline, type Online } from "./online";
+
+const themeOverrides: GlobalThemeOverrides = {
+  common: {
+    primaryColor: "#244d40",
+    primaryColorHover: "#173c2e",
+    primaryColorPressed: "#102f24",
+    primaryColorSuppl: "#315f50",
+    successColor: "#43865c",
+    borderRadius: "4px",
+    bodyColor: "#f4f5f0",
+    textColorBase: "#203b35",
+    fontFamily: 'Inter, "PingFang SC", "Microsoft YaHei", sans-serif',
+  },
+};
 
 const data = ref<Online | null>(null);
 const failed = ref(false);
@@ -72,74 +96,96 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="site-shell">
-    <header class="site-header">
-      <a class="brand" href="/" aria-label="DLUT Online 首页"
-        ><span class="brand-mark" aria-hidden="true">D</span>DLUT Online</a
-      >
-      <a class="header-link" href="https://github.com/saurlax/dlut-online"
-        >GitHub <span aria-hidden="true">↗</span></a
-      >
-    </header>
-    <main>
-      <section class="intro" aria-labelledby="intro-title">
-        <p class="eyebrow">校园世界，正在连接</p>
-        <h1 id="intro-title">在熟悉的校园，<br />遇见新的日常。</h1>
-        <p class="intro-copy">
-          以大连理工大学为主题的第一人称校园世界。<br
-            class="desktop-break"
-          />走进校园，与此刻在线的同伴相遇。
-        </p>
-        <a
-          class="download"
-          href="https://github.com/saurlax/dlut-online/releases"
-          >下载客户端 <span aria-hidden="true">↗</span></a
+  <n-config-provider
+    :locale="zhCN"
+    :theme-overrides="themeOverrides"
+  >
+    <n-global-style />
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="DLUT Online 首页"
+          ><span class="brand-mark" aria-hidden="true">D</span>DLUT Online</a
         >
-        <p class="platforms">支持 Windows 与 macOS</p>
-      </section>
-      <section class="online-section" aria-labelledby="online-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">此刻的校园</p>
-            <h2 id="online-title">在线情况</h2>
-          </div>
-          <span class="status" :class="{ live }" role="status"
-            ><span class="status-dot" />{{ status }}</span
+        <n-button
+          text
+          tag="a"
+          class="header-link"
+          href="https://github.com/saurlax/dlut-online"
+          >GitHub <span class="external" aria-hidden="true">↗</span></n-button
+        >
+      </header>
+      <main>
+        <section class="intro" aria-labelledby="intro-title">
+          <p class="eyebrow">校园世界，正在连接</p>
+          <h1 id="intro-title">在熟悉的校园，<br />遇见新的日常。</h1>
+          <p class="intro-copy">
+            以大连理工大学为主题的第一人称校园世界。<br
+              class="desktop-break"
+            />走进校园，与此刻在线的同伴相遇。
+          </p>
+          <n-button
+            tag="a"
+            type="primary"
+            size="large"
+            class="download"
+            href="https://github.com/saurlax/dlut-online/releases"
+            >下载客户端 <span aria-hidden="true">↗</span></n-button
           >
-        </div>
-        <div class="overview">
-          <div class="total-block">
-            <p class="metric-label">总在线人数</p>
-            <div class="total-value">
-              {{ live ? data?.total : "—" }}<span v-if="live">人</span>
+          <p class="platforms">支持 Windows 与 macOS</p>
+        </section>
+        <section class="online-section" aria-labelledby="online-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">此刻的校园</p>
+              <h2 id="online-title">在线情况</h2>
+            </div>
+            <n-tag
+              round
+              size="small"
+              :type="live ? 'success' : 'default'"
+              class="status"
+              role="status"
+              ><span class="status-dot" />{{ status }}</n-tag
+            >
+          </div>
+          <div class="overview">
+            <n-statistic
+              class="total-value"
+              :value="live ? (data?.total ?? 0) : '—'"
+            >
+              <template #label>总在线人数</template>
+              <template v-if="live" #suffix><span>人</span></template>
+            </n-statistic>
+            <div class="status-copy">
+              <p>{{ explanation }}</p>
+              <p class="timestamp">最后上报：{{ updated }}</p>
             </div>
           </div>
-          <div class="status-copy">
-            <p>{{ explanation }}</p>
-            <p class="timestamp">最后上报：{{ updated }}</p>
+          <div class="campus-grid">
+            <n-card
+              v-for="campus in campuses"
+              :key="campus.id"
+              :bordered="false"
+              class="campus-card"
+            >
+              <div class="campus-top">
+                <span class="campus-number">{{ campus.number }}</span
+                ><span class="campus-state">{{
+                  live ? "当前在线" : "等待更新"
+                }}</span>
+              </div>
+              <h3>{{ campus.name }}</h3>
+              <n-statistic
+                class="campus-count"
+                :value="live ? (data?.campuses?.[campus.id] ?? 0) : '—'"
+              >
+                <template v-if="live" #suffix><span>人</span></template>
+              </n-statistic>
+            </n-card>
           </div>
-        </div>
-        <div class="campus-grid">
-          <article
-            v-for="campus in campuses"
-            :key="campus.id"
-            class="campus-card"
-          >
-            <div class="campus-top">
-              <span class="campus-number">{{ campus.number }}</span
-              ><span class="campus-state">{{
-                live ? "当前在线" : "等待更新"
-              }}</span>
-            </div>
-            <h3>{{ campus.name }}</h3>
-            <p class="campus-count">
-              {{ live ? data?.campuses?.[campus.id] : "—"
-              }}<span v-if="live">人</span>
-            </p>
-          </article>
-        </div>
-      </section>
-    </main>
-    <footer><span>DLUT Online</span><span>校园探索，从这里开始。</span></footer>
-  </div>
+        </section>
+      </main>
+      <footer><span>DLUT Online</span><span>校园探索，从这里开始。</span></footer>
+    </div>
+  </n-config-provider>
 </template>

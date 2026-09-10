@@ -54,7 +54,7 @@ a:focus-visible {
 .header-link {
   font-size: 14px;
 }
-.header-link span {
+.header-link .external {
   margin-left: 12px;
 }
 .intro {
@@ -80,19 +80,11 @@ h1 {
   line-height: 1.9;
   margin: 0 0 28px;
 }
-.download {
-  display: inline-flex;
-  align-items: center;
-  gap: 38px;
-  background: #244d40;
-  color: #fff;
-  padding: 15px 22px;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background 0.15s;
+.download.n-button {
+  padding: 0 22px;
 }
-.download:hover {
-  background: #173c2e;
+.download .n-button__content {
+  gap: 38px;
 }
 .platforms {
   font-size: 11px;
@@ -118,14 +110,12 @@ h2 {
   letter-spacing: -0.5px;
 }
 .status {
+  font-size: 12px;
+}
+.status .n-tag__content {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
-  padding: 8px 12px;
-  border: 1px solid #d7dbd2;
-  border-radius: 30px;
-  color: #6b7167;
 }
 .status-dot {
   width: 6px;
@@ -133,12 +123,7 @@ h2 {
   border-radius: 50%;
   background: #919589;
 }
-.status.live {
-  color: #2c6449;
-  border-color: #bfd1be;
-  background: #eaf0e5;
-}
-.live .status-dot {
+.status.n-tag--success .status-dot {
   background: #43865c;
 }
 .overview {
@@ -150,20 +135,19 @@ h2 {
   border-top: 2px solid #406b50;
   border-radius: 2px 2px 0 0;
 }
-.metric-label {
-  font-size: 13px;
-  margin: 0 0 6px;
-  color: #61705f;
-}
 .total-value {
-  font-size: 64px;
+  --n-label-font-size: 13px !important;
+  --n-label-text-color: #61705f !important;
+  --n-value-font-size: 64px !important;
+  --n-value-font-weight: 450 !important;
+}
+.total-value .n-statistic-value__content {
   line-height: 1.15;
   font-variant-numeric: tabular-nums;
   letter-spacing: -3px;
-  font-weight: 450;
 }
-.total-value span,
-.campus-count span {
+.total-value .n-statistic-value__suffix span,
+.campus-count .n-statistic-value__suffix span {
   font-size: 12px;
   margin-left: 12px;
   letter-spacing: 0;
@@ -189,8 +173,10 @@ h2 {
   border-top: 0;
 }
 .campus-card {
-  padding: 22px 28px;
   background: #f9faf6;
+}
+.campus-card > .n-card__content {
+  padding: 22px 28px;
 }
 .campus-card + .campus-card {
   border-left: 1px solid #d9dfd1;
@@ -212,9 +198,10 @@ h3 {
   margin: 21px 0 15px;
 }
 .campus-count {
-  font-size: 32px;
+  --n-value-font-size: 32px !important;
+}
+.campus-count .n-statistic-value__content {
   line-height: 1;
-  margin: 0;
   font-variant-numeric: tabular-nums;
 }
 footer {
@@ -270,16 +257,16 @@ footer span:first-child {
     padding: 24px;
   }
   .total-value {
-    font-size: 56px;
+    --n-value-font-size: 56px !important;
   }
   .campus-grid {
     grid-template-columns: 1fr;
   }
-  .campus-card {
-    padding: 20px 24px;
+  .campus-card > .n-card__content {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 10px;
+    padding: 20px 24px;
   }
   .campus-card + .campus-card {
     border-left: 0;
@@ -292,7 +279,9 @@ footer span:first-child {
     margin: 7px 0;
   }
   .campus-count {
-    font-size: 28px;
+    --n-value-font-size: 28px !important;
+  }
+  .campus-count .n-statistic-value__content {
     margin-top: 6px;
   }
   footer {
