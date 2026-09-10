@@ -6,6 +6,8 @@ import library from "./assets/library.jpg";
 import garden from "./assets/campus-garden.jpg";
 import campusFilm from "./assets/campus-film.mp4";
 import filmPoster from "./assets/campus-film-poster.jpg";
+import AccountPage from "./AccountPage.vue";
+import { account, logout, restoreSession } from "./auth";
 import { downloads, detectDesktopPlatform } from "./downloads";
 
 const themeOverrides: GlobalThemeOverrides = {
@@ -20,6 +22,11 @@ const themeOverrides: GlobalThemeOverrides = {
   List: { color: "transparent" },
   Button: { heightLarge: "56px", fontSizeLarge: "14px", fontWeight: "500" },
 };
+const isAccountPage = /^\/(login|register)\/?$/.test(window.location.pathname);
+const isRegisterPage = /^\/register\/?$/.test(window.location.pathname);
+const gameRequest = isAccountPage ? new URLSearchParams(location.search).get("request") : null;
+const authSuffix = gameRequest ? `?request=${encodeURIComponent(gameRequest)}` : "";
+if (isAccountPage) document.title = `${isRegisterPage ? '注册' : '登录'} | DLUT Online`;
 const isDownloadPage = /^\/download\/?$/.test(window.location.pathname);
 const platform = detectDesktopPlatform(navigator.userAgent, navigator.platform, navigator.maxTouchPoints);
 const recommended = platform ? downloads[platform] : null;
@@ -41,6 +48,7 @@ function syncPlayback() {
 }
 
 onMounted(() => {
+  void restoreSession();
   motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
   motionPreference.addEventListener("change", syncPlayback);
   document.addEventListener("visibilitychange", syncPlayback);
@@ -64,14 +72,25 @@ const currentScene = computed(() => scenes[selected.value]!);
 <template>
   <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme-overrides="themeOverrides">
     <n-global-style />
-    <div class="landing" :class="{ 'download-page': isDownloadPage }">
+    <div class="landing" :class="{ 'download-page': isDownloadPage || isAccountPage }">
       <header class="site-header"><n-flex justify="space-between" align="center" :wrap="false">
         <a class="brand" href="/" aria-label="DLUT Online 首页">DLUT <span>Online</span></a>
         <nav aria-label="主导航">
-          <n-button tag="a" href="/download" ghost color="#ffffff" class="nav-download">下载客户端</n-button>
+          <n-flex align="center" :size="16">
+            <n-button text tag="a" href="/download" color="#ffffff">下载客户端</n-button>
+            <template v-if="account">
+              <n-button text tag="a" :href="'/login' + authSuffix" color="#ffffff" class="nav-account">{{ account.display_name }}</n-button>
+              <n-button ghost color="#ffffff" @click="logout">退出</n-button>
+            </template>
+            <template v-else>
+              <n-button text tag="a" :href="'/login' + authSuffix" color="#ffffff">登录</n-button>
+              <n-button tag="a" :href="'/register' + authSuffix" ghost color="#ffffff">注册</n-button>
+            </template>
+          </n-flex>
         </nav>
       </n-flex></header>
-      <main v-if="isDownloadPage" class="download-content">
+      <AccountPage v-if="isAccountPage" :register="isRegisterPage" />
+      <main v-else-if="isDownloadPage" class="download-content">
         <n-page-header @back="goHome">
           <template #back><n-button text aria-label="返回首页">←</n-button></template>
           <template #title><h1 class="download-title">选择你的桌面版本</h1></template>

@@ -1,3 +1,5 @@
+> 现行登录要求由 [account-only-login](../../../account-only-login/specs/account-only-login/spec.md) 取代：所有玩家必须绑定 PocketBase 已验证账号，通过官网认证后返回游戏。本文中的游客入口、游客 ID 与游客入场描述仅记录历史，不再作为当前实现要求。
+
 ## Purpose
 
 为 DLUT Online 提供与客户端共享运动和碰撞依据的权威校园世界，保证玩家移动、校区隔离和出生位置由服务器决定，同时保持现有第一人称操作及浏览器部署方式，明确容量与网络故障下的行为。

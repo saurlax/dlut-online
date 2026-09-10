@@ -1,3 +1,5 @@
+> 现行登录要求由 [account-only-login](../../../account-only-login/specs/account-only-login/spec.md) 取代：所有玩家必须绑定 PocketBase 已验证账号，通过官网认证后返回游戏。本文中的游客入口、游客 ID 与游客入场描述仅记录历史，不再作为当前实现要求。
+
 ## Purpose
 
 定义 DLUT Online 从浏览器与桌面共同发布收敛为仅发布桌面游戏客户端后的分发与运行行为，确保客户端具备完整本地地图、保持原有权威会话与地图交互，并使网站和接口服务摆脱浏览器资源依赖。

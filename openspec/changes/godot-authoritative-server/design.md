@@ -1,3 +1,5 @@
+> 现行登录要求由 [account-only-login](../account-only-login/specs/account-only-login/spec.md) 取代：所有玩家必须绑定 PocketBase 已验证账号，通过官网认证后返回游戏。本文中的游客入口、游客 ID 与游客入场描述仅记录历史，不再作为当前实现要求。
+
 ## Context
 
 动机见 proposal.md。现有 Go `players.go` 每连接独立生成 10 Hz 同校区快照；Godot 使用原生 WebSocketPeer 和 JSON，并直接上报位置。`player.gd` 混合输入、相机和运动，`campus.gd` 混合碰撞生成与 UI 初始化。没有数据库、真实 SSO 或站点首页。

@@ -22,6 +22,8 @@ import (
 	"sync/atomic"
 	"testing"
 	"time"
+
+	"github.com/pocketbase/pocketbase/core"
 )
 
 // Optional two-client smoke check; no capacity or sustained-load scenario.
@@ -39,8 +41,35 @@ func TestENetSmoke(t *testing.T) {
 	address := reserved.LocalAddr().String()
 	reserved.Close()
 	_, port, _ := net.SplitHostPort(address)
-	service := randomID()
-	api := httptest.NewServer(router(gameConfig{apiKey: service}, "enet://"+address))
+	service := "ssssssssssssssssssssssssssssssss"
+	app, handler := accountTestApp(t)
+	servers, _ := app.FindCollectionByNameOrId("servers")
+	endpoint := core.NewRecord(servers)
+	endpoint.Set("name", "test")
+	endpoint.Set("endpoint", "enet://"+address)
+	endpoint.Set("enabled", true)
+	if err := app.Save(endpoint); err != nil {
+		t.Fatal(err)
+	}
+	users, _ := app.FindCollectionByNameOrId("users")
+	var accountEnv []string
+	for i := 1; i <= 2; i++ {
+		record := core.NewRecord(users)
+		record.Set("email", "smoke"+strconv.Itoa(i)+"@example.com")
+		record.Set("username", "smoke"+strconv.Itoa(i))
+		record.Set("display_name", "Smoke player")
+		record.Set("verified", true)
+		record.SetPassword(randomID())
+		if err := app.Save(record); err != nil {
+			t.Fatal(err)
+		}
+		token, err := record.NewAuthToken()
+		if err != nil {
+			t.Fatal(err)
+		}
+		accountEnv = append(accountEnv, "DO_TEST_ACCOUNT_TOKEN_"+strconv.Itoa(i)+"="+token, "DO_TEST_ACCOUNT_ID_"+strconv.Itoa(i)+"="+record.Id)
+	}
+	api := httptest.NewServer(handler)
 	defer api.Close()
 	server := exec.CommandContext(ctx, "godot", "--headless", "--path", project, "scenes/server.tscn")
 	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_SERVER_PORT="+port, "DO_API_KEY="+service, "DO_API_SERVER_URL="+api.URL)
@@ -58,6 +87,7 @@ func TestENetSmoke(t *testing.T) {
 	}()
 	client := exec.CommandContext(ctx, "godot", "--headless", "--path", project, "--script", "tests/enet_protocol.gd")
 	client.Env = append(os.Environ(), "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
+	client.Env = append(client.Env, accountEnv...)
 	output, err := client.CombinedOutput()
 	if err != nil || bytes.Contains(output, []byte("SCRIPT ERROR")) || !bytes.Contains(output, []byte("PASS: ENet smoke")) {
 		t.Fatalf("smoke: %v\n%s", err, output)
@@ -172,7 +202,7 @@ func TestENetClientUnderLoss(t *testing.T) {
 	}()
 	// ENet connection attempts retry while the server starts.
 	client := exec.Command("godot", "--headless", "--path", project, "--script", "tests/player_network.gd")
-	client.Env = append(os.Environ(), "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
+	client.Env = append(os.Environ(), "DO_TEST_ACCOUNT_TOKEN=account12345678", "DO_TEST_ACCOUNT_ID=account12345678", "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
 	output, err := client.CombinedOutput()
 	if err != nil || bytes.Contains(output, []byte("SCRIPT ERROR")) || !bytes.Contains(output, []byte("PASS:")) {
 		t.Fatalf("client: %v\n%s", err, output)
@@ -229,7 +259,7 @@ func TestENetHTTPRestart(t *testing.T) {
 		}
 	}()
 	client := exec.Command("godot", "--headless", "--path", project, "--script", "tests/enet_http_fault.gd")
-	client.Env = append(os.Environ(), "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
+	client.Env = append(os.Environ(), "DO_TEST_ACCOUNT_TOKEN=account12345678", "DO_TEST_ACCOUNT_ID=account12345678", "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
 	result, err := client.CombinedOutput()
 	if err != nil || bytes.Contains(result, []byte("SCRIPT ERROR")) || !bytes.Contains(result, []byte("PASS:")) {
 		t.Fatalf("%v\n%s", err, result)
@@ -287,7 +317,7 @@ func TestENetDTLS(t *testing.T) {
 			args = append(args, "--", port)
 		}
 		client := exec.Command("godot", args...)
-		client.Env = append(os.Environ(), "DO_ENV=production", "DO_API_SERVER_URL="+api.URL, "DO_GAME_TLS_CA="+certPath)
+		client.Env = append(os.Environ(), "DO_TEST_ACCOUNT_TOKEN=account12345678", "DO_TEST_ACCOUNT_ID=account12345678", "DO_ENV=development", "DO_API_SERVER_URL="+api.URL, "DO_GAME_TLS_CA="+certPath)
 		result, err := client.CombinedOutput()
 		if err != nil || bytes.Contains(result, []byte("SCRIPT ERROR")) || !bytes.Contains(result, []byte("PASS:")) {
 			t.Fatalf("%s: %v\n%s", script, err, result)

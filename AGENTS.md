@@ -4,7 +4,7 @@
 
 - 产品名固定为 **DLUT Online**：以整个大连理工大学为主题的第一人称 MMORPG。
 - 仅支持 Windows x86_64 和 macOS universal 桌面客户端，共用 Godot 项目与交互；不支持或导出 Web 游戏。
-- 当前建设可行走的校园世界、PocketBase 账号、游客身份和 ENet 玩家同步；室内必须先具备实景照片或有效平面数据再建设，不自行增加活动、战斗、任务或奖励功能。
+- 当前建设可行走的校园世界、PocketBase 账号和 ENet 玩家同步，所有玩家必须使用真实账号；室内必须先具备实景照片或有效平面数据再建设，不自行增加活动、战斗、任务或奖励功能。
 - 第一批地域素材来自开发区校区。地域名称用于资产、数据与来源记录，不反复出现在产品主界面。
 - 美术采用真实比例、自然材质和实景参考。不得用卡通锥体树、统一盒子立面或随意色块冒充精细建模。
 
@@ -15,7 +15,7 @@
 - 界面文案、文档与回复中慎用“·”，不将其作为默认分隔符；优先使用自然语句、逗号或换行，仅在确有必要时使用。
 - 每次只增加用户当前要求所必需的内容，优先改进已有场景，不添加无关功能或装饰性产品界面。
 - 探索时保持画面干净：不显示项目定位、操作教程、地区标签、技术说明、建模免责声明、参考链接或调试文本。
-- 首次启动显示 Godot 封面、游客昵称及游客登录按钮；进入后不再显示登录或继续按钮，传送直接回到游戏。暂停/失焦停止行走，点击世界或 Escape 恢复。操作与数据精度写入文档。
+- 首次启动显示 Godot 封面和登录按钮，打开官网完成账号登录，通过一次性授权回调返回游戏，游戏服确认后进入；正常进入后不再显示登录或继续按钮，认证失效时返回登录封面，传送直接回到游戏。暂停/失焦停止行走，点击世界或 Escape 恢复。操作与数据精度写入文档。
 - 保持第一人称行走、环视、奔跑、暂停、失焦停止与碰撞。不增加地标搜索和无关导览工具。用户已授权左上圆形小地图、M/点击打开地图及三校区场景传送。
 
 ## 技术与代码规范
@@ -24,7 +24,7 @@
 - `DO_API_SERVER_URL` 是 Go HTTP API 根地址，包含协议、主机和可选端口，不含末尾斜杠或接口路径；开发默认 `http://localhost:8415`，生产默认 `https://dlut.online`。客户端从 Go 获取一次性票据和游戏服公网地址后直连游戏服。
 - `DO_API_KEY` 是 Go、Godot 游戏服及其他可信服务调用方共享的 API Bearer Key，至少 32 字符；受保护服务接口统一使用 `Authorization: Bearer <DO_API_KEY>`。该变量不进入桌面客户端。
 - 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。当前保留 Compatibility 渲染器，不因取消 Web 顺带变更渲染管线。
-- Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，游客身份仅保留在客户端进程中。
+- Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，账号 token 仅保留在客户端进程中；游戏不提供密码表单或游客入口，网站承担登录注册。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
 - 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，运行时资源放 assets/。
 - 按职责拆分模型生成器，避免把建筑内部、植被和 UI 混入同一模块。GDScript 使用 snake_case，常量 UPPER_SNAKE_CASE；类型推断不明确时显式标注类型。
@@ -83,10 +83,12 @@
 - Godot 无头服务端与客户端共享 apps/game/ 工程，入口为 scenes/server.tscn，客户端逻辑放 scripts/client/，服务端专属逻辑放 scripts/server/，共享运动、碰撞、校区注册表和协议规则放 scripts/shared/。Go apps/api/ 负责站点、票据和在线查询，不执行玩家物理或广播。
 - 客户端 GameNetwork Autoload 跨场景保留 ENet 连接；同实例切图不重新取票、不重登，加载期间继续心跳且停止移动，场景就绪后迁移角色。三个校区对所有玩家开放。
 - 服务端通过独立 World3D 同时持有三校区碰撞世界，不能同时加载三个视觉校园模型；客户端仍只加载一个校园。服务端静态碰撞从现有场景和标记生成，保留可直接打开的场景，修改来源后重新生成，不能手工复制第二套模型。
-- DO_API_KEY 只在可信服务进程环境读取，不导出到客户端。PocketBase Auth Collection 和 SQLite 是用户权威数据源，OIDC/SSO 提供方按部署配置；不用游客 ID 访问敏感数据。线上人数必须标记时效，失联不能报告为零人。
+- DO_API_KEY 只在可信服务进程环境读取，不导出到客户端。PocketBase Auth Collection 和 SQLite 是用户权威数据源，OIDC/SSO 提供方按部署配置；无有效账号凭据不能申请游戏票据。线上人数必须标记时效，失联不能报告为零人。
 - 版本标签发布同时调用 Web 和 Game 工作流，构建 Go HTTP 镜像与独立 Godot Linux amd64 镜像，并导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
-- 游戏协议版本 4 使用 ENet/UDP，玩家 ID 为 15 字节 ASCII：账号使用 PocketBase 小写 ID，游客使用大写十六进制进程 ID。控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。客户端可达的 `enet://` 或 `enets://` 端点存入 PocketBase `servers` Collection，由票据接口动态下发；生产只接受 `enets://`。游戏服使用 `DO_GAME_SERVER_PORT` 监听 UDP，生产使用 DTLS 证书，客户端校验证书。
+- 游戏协议版本 4 使用 ENet/UDP，玩家 ID 为 15 字节 ASCII：统一使用 PocketBase 小写账号 ID。控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。客户端可达的 `enet://` 或 `enets://` 端点存入 PocketBase `servers` Collection，由票据接口动态下发；生产只接受 `enets://`。游戏服使用 `DO_GAME_SERVER_PORT` 监听 UDP，生产使用 DTLS 证书，客户端校验证书。
 
 - 网站构建从 apps/web 输出到 apps/api/static/，Go 编译和测试前先运行 pnpm install --frozen-lockfile、pnpm build。apps/api/Dockerfile 构建前端并嵌入 Go，Compose 仍只部署 game 与 web，网站不需要 Node 运行服务。网站可以使用 Vue，游戏 UI 仍限 Godot。
 
 - Web 前端（apps/web）默认不新增或维护测试文件、测试脚本及测试框架；常规改动以 TypeScript 类型检查、生产构建和必要的浏览器检查为主，避免过度测试。仅在用户明确要求前端自动化测试时增加；此约定不影响 Go 服务和 Godot 的必要检查。
+
+- 桌面网页登录回调只监听 127.0.0.1 随机端口，以 state 和客户端随机密钥绑定一次性兑换；长期 token 不进入 URL。未来移动端采用系统认证窗口及已注册回调，不依赖后台轮询或实时连接，本轮不增加移动端导出。

@@ -23,6 +23,12 @@ func testGameAPI(config gameConfig, endpoint string) *gameAPI {
 	if endpoint != "" {
 		api.resolveGameEndpoint = func() (string, bool) { return endpoint, true }
 	}
+	api.resolveAccount = func(token string) (admission, bool) {
+		if !validPlayerID(token) {
+			return admission{}, false
+		}
+		return admission{ID: token, Username: "Test player", Kind: "account"}, true
+	}
 	return api
 }
 
@@ -39,7 +45,7 @@ func TestDesktopRoutes(t *testing.T) {
 			t.Fatalf("%s: %d", path, w.Code)
 		}
 	}
-	for _, path := range []string{"/", "/download", "/download/"} {
+	for _, path := range []string{"/", "/download", "/download/", "/login", "/register", "/login/", "/register/"} {
 		w := httptest.NewRecorder()
 		handler.ServeHTTP(w, httptest.NewRequest(http.MethodGet, path, nil))
 		if w.Code != 200 || !strings.Contains(w.Body.String(), "id=\"app\"") {

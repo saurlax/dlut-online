@@ -52,7 +52,7 @@ Go `DO_API_SERVER_PORT` 默认 8415，也兼容部署平台提供的 `PORT`。Po
 - `GET /`：客户端发布页链接。
 - `POST /api/collections/users/records`：PocketBase 用户注册，必填 email、password、passwordConfirm、username 和 display_name。
 - `/api/collections/users/request-verification`、`confirm-verification`、`auth-with-password`、`request-password-reset`、`confirm-password-reset`、`request-email-change`、`confirm-email-change` 与 `auth-refresh`：PocketBase 标准认证流程。
-- `POST /api/v1/game/tickets`：游客正文为 `{"id":"15位大写十六进制ID","version":4}`；账号用户额外提交 `Authorization: Bearer <PocketBase auth token>`，服务端忽略客户端 id 并使用 record ID 与 display_name。大写游客 ID 与小写 PocketBase ID 使用不重叠的身份空间。
+- `POST /api/v1/game/tickets`：正文 `{"version":4}`，必须提交 `Authorization: Bearer <PocketBase auth token>`；服务端使用已验证且未禁用账号的 record ID 与 display_name，忽略旧客户端 id；无账号或游客请求返回 401。
 - `POST /api/v1/game/tickets/consume`：API Key 鉴权，正文 `{"ticket":"..."}`；原子消费，返回 id、username、kind、admission_id。
 - `POST /api/v1/game/register`：API Key 鉴权，正文 instance_id、boot_id；返回 epoch，同启动标识重试幂等，旧启动不可重新注册。
 - `POST /api/v1/game/presence`：API Key 鉴权，正文 instance_id、epoch、递增 seq、players；每位玩家含 id、username、kind、campus、joined_at（Unix 秒）。
@@ -109,10 +109,24 @@ Go 目录运行 `go test -race ./...` 和 `go vet ./...`。需要检查基础联
 
 该 smoke 检查自动启动临时 API 和 Godot 游戏服，只连接两个客户端，验证取票入场、切图、两秒输入及快照确认；客户端限时 30 秒，进程限时 45 秒。不做满员或持续压测，不加入 CI 构建前置步骤。需要本机安装 Godot，游戏资源须已完成导入。
 
-已有空闲测试双服务时，也可直接运行同一 smoke 脚本：
+已有空闲测试双服务时，先通过测试账号认证取得两个已验证用户的 ID/token，分别设置 `DO_TEST_ACCOUNT_ID_1`、`DO_TEST_ACCOUNT_TOKEN_1`、`DO_TEST_ACCOUNT_ID_2`、`DO_TEST_ACCOUNT_TOKEN_2`，再运行同一 smoke 脚本（不要把 token 写进版本库或日志）：
 
 ```sh
 DO_API_SERVER_URL=http://127.0.0.1:8415 python3 apps/game/tools/run_godot.py --headless --path apps/game --script tests/enet_protocol.gd
 ```
 
-`campus_travel.gd`、`campus_transfer.gd`、`player_network.gd` 和 Go 的弱网、HTTP 故障恢复、DTLS 集成测试仅用于对应改动的专项检查，不作为每轮任务的必跑清单。碰撞改动仍运行 `server_physics.gd` 等相关物理检查。50 人容量是服务端上限，不要求每次验证都进行 50 人压测；容量压测仅在明确需要性能验收时另行安排。
+单客户端脚本使用 `DO_TEST_ACCOUNT_ID` 和 `DO_TEST_ACCOUNT_TOKEN`。`campus_travel.gd`、`campus_transfer.gd`、`player_network.gd` 和 Go 的弱网、HTTP 故障恢复、DTLS 集成测试仅用于对应改动的专项检查，不作为每轮任务的必跑清单。碰撞改动仍运行 `server_physics.gd` 等相关物理检查。50 人容量是服务端上限，不要求每次验证都进行 50 人压测；容量压测仅在明确需要性能验收时另行安排。
+
+### 网站与桌面登录
+
+官网 `/login`、`/register` 提供账号登录、注册及验证邮件重发。网站 token 仅保存在当前标签页 sessionStorage，恢复时调用 auth-refresh，退出清除。SMTP、应用地址和验证邮件模板须在 PocketBase 配置；默认使用 PocketBase 自带邮箱确认页面。注册成功不代表邮箱验证完成。
+
+桌面客户端仅显示登录按钮，打开同一 API 根地址的官网。客户端监听 `127.0.0.1` 随机端口并生成进程内随机 verifier、state：
+
+- `POST /api/v1/auth/requests`：提交 64 位十六进制 SHA256 challenge、64 位十六进制 state、`http://127.0.0.1:<port>/callback`；返回 request、login_path、expires_in。请求有效 5 分钟，同来源 IP 每秒最多创建一次，待处理请求最多 128 个；不信任代理提交的任意来源头。
+- `POST /api/v1/auth/approve`：网站携带 PocketBase Bearer token 和 request，确认当前账号后绑定身份；返回短期 code 与 state 的回调地址，有效 30 秒。同一请求只批准一次。
+- `POST /api/v1/auth/exchange`：客户端提交 request、code、verifier；原子单次兑换新的 PocketBase token 和账号信息，再走现有游戏票据流程。兑换时重新检查账号未禁用且已验证。凭据、授权码不写应用日志；反向代理也不得记录请求正文。
+
+取消、超时或兑换失败时关闭本机监听并清除本次 verifier，重新登录创建新请求。只有收到游戏服 welcome 才进入世界；票据接口返回 401/403 或账号被另一客户端替换时清除会话并返回封面。生产客户端仅允许 HTTPS API。浏览器完成页面提示返回游戏，操作系统可能限制自动切换焦点。现有 Windows/macOS 导出不需要注册自定义 URL 协议。
+
+未来 OIDC 在网站认证后仍走上述账号确认和兑换流程；当前不显示未配置的 OIDC 入口。移动端需要以 ASWebAuthenticationSession / Custom Tabs 与平台注册回调替换桌面 loopback，扩展固定回调白名单并处理前后台及进程重建，不能依赖 PocketBase 一体化 OAuth2 的后台实时连接。当前未交付移动端插件或导出。

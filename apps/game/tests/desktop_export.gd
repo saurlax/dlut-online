@@ -1,6 +1,8 @@
 extends SceneTree
 func _initialize() -> void:
 	assert(FileAccess.file_exists("res://desktop_config.json"))
+	assert(ResourceLoader.exists("res://scripts/client/account_session.gd"))
+	assert(not ResourceLoader.exists("res://scripts/client/guest_session.gd"))
 	assert(not ResourceLoader.exists("res://scripts/server/game_server.gd"))
 	assert(not ResourceLoader.exists("res://scripts/campus_pack_loader.gd"))
 	assert(not ResourceLoader.exists("res://scripts/campus_streamer.gd"))

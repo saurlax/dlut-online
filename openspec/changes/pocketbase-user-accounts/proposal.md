@@ -1,3 +1,5 @@
+> 现行登录要求由 [account-only-login](../account-only-login/specs/account-only-login/spec.md) 取代：所有玩家必须绑定 PocketBase 已验证账号，通过官网认证后返回游戏。本文中的游客入口、游客 ID 与游客入场描述仅记录历史，不再作为当前实现要求。
+
 ## Why
 
 项目需要完整的用户管理。用 PocketBase embed 统一认证、管理界面和 SQLite 持久化，为当前规模提供简单、可备份的单数据库架构。

@@ -20,8 +20,9 @@ func siteHandler() http.Handler {
 	}
 	server := http.FileServer(http.FS(files))
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Referrer-Policy", "no-referrer")
 		name := strings.TrimPrefix(r.URL.Path, "/")
-		if name == "" || name == "download" || name == "download/" {
+		if name == "" || name == "download" || name == "download/" || name == "login" || name == "login/" || name == "register" || name == "register/" {
 			name = "index.html"
 			r = r.Clone(r.Context())
 			r.URL.Path = "/"

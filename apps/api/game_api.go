@@ -6,7 +6,6 @@ import (
 	"crypto/subtle"
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -39,6 +38,9 @@ type apiRoute struct {
 	handler http.Handler
 }
 type gameAPI struct {
+	browserRequests       map[string]browserAuthorization
+	browserStarts         map[string]time.Time
+	accountSession        func(string) (map[string]any, bool)
 	mu                    sync.Mutex
 	config                gameConfig
 	tickets               map[[32]byte]admission
@@ -59,18 +61,6 @@ func randomID() string {
 		panic(err)
 	}
 	return base64.RawURLEncoding.EncodeToString(b[:])
-}
-func guestName(id string) (string, bool) {
-	if len(id) != 15 {
-		return "", false
-	}
-	for _, c := range id {
-		if (c < 'A' || c > 'F') && (c < '0' || c > '9') {
-			return "", false
-		}
-	}
-	n, _ := strconv.ParseUint(id[:8], 16, 32)
-	return fmt.Sprintf("游客%06d", n%1000000), true
 }
 func validPlayerID(id string) bool {
 	if len(id) != 15 {
@@ -124,9 +114,20 @@ func decode(w http.ResponseWriter, r *http.Request, v any, limit int64) bool {
 	return true
 }
 func newGameAPI(c gameConfig, apps ...core.App) *gameAPI {
-	g := &gameAPI{config: c, tickets: make(map[[32]byte]admission), issued: make(map[string]time.Time), retired: make(map[string]bool), now: time.Now, seq: -1}
+	g := &gameAPI{browserRequests: make(map[string]browserAuthorization), browserStarts: make(map[string]time.Time), config: c, tickets: make(map[[32]byte]admission), issued: make(map[string]time.Time), retired: make(map[string]bool), now: time.Now, seq: -1}
 	if len(apps) > 0 && apps[0] != nil {
 		app := apps[0]
+		g.accountSession = func(id string) (map[string]any, bool) {
+			record, err := app.FindRecordById("users", id)
+			if err != nil || !record.Verified() || record.GetBool("disabled") {
+				return nil, false
+			}
+			token, err := record.NewAuthToken()
+			if err != nil {
+				return nil, false
+			}
+			return map[string]any{"token": token, "record": map[string]any{"id": record.Id, "display_name": record.GetString("display_name")}}, true
+		}
 		g.resolveGameEndpoint = func() (string, bool) {
 			record, err := app.FindFirstRecordByFilter("servers", "enabled = true")
 			if err != nil {
@@ -165,6 +166,9 @@ func (g *gameAPI) apiKeyAuth(next http.HandlerFunc) http.HandlerFunc {
 }
 func (g *gameAPI) routes() []apiRoute {
 	return []apiRoute{
+		{http.MethodPost, "/api/v1/auth/requests", http.HandlerFunc(g.browserStart)},
+		{http.MethodPost, "/api/v1/auth/approve", http.HandlerFunc(g.browserApprove)},
+		{http.MethodPost, "/api/v1/auth/exchange", http.HandlerFunc(g.browserExchange)},
 		{http.MethodPost, "/api/v1/game/tickets", http.HandlerFunc(g.issue)},
 		{http.MethodPost, "/api/v1/game/tickets/consume", http.HandlerFunc(g.apiKeyAuth(g.consume))},
 		{http.MethodPost, "/api/v1/game/register", http.HandlerFunc(g.apiKeyAuth(g.register))},
@@ -189,27 +193,10 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 		reject(w, 400, "invalid_identity_or_version")
 		return
 	}
-	identity := admission{}
-	authorization := strings.TrimSpace(r.Header.Get("Authorization"))
-	if authorization != "" {
-		const prefix = "Bearer "
-		if !strings.HasPrefix(authorization, prefix) || g.resolveAccount == nil {
-			reject(w, 401, "invalid_auth_token")
-			return
-		}
-		var ok bool
-		identity, ok = g.resolveAccount(strings.TrimSpace(strings.TrimPrefix(authorization, prefix)))
-		if !ok {
-			reject(w, 401, "invalid_auth_token")
-			return
-		}
-	} else {
-		name, ok := guestName(q.ID)
-		if !ok {
-			reject(w, 400, "invalid_identity_or_version")
-			return
-		}
-		identity = admission{ID: q.ID, Username: name, Kind: "guest"}
+	identity, authenticated := g.requestAccount(r)
+	if !authenticated {
+		reject(w, 401, "invalid_auth_token")
+		return
 	}
 	if g.resolveGameEndpoint == nil {
 		reject(w, 503, "game_server_unavailable")
@@ -321,8 +308,7 @@ func (g *gameAPI) presence(w http.ResponseWriter, r *http.Request) {
 	}
 	seen := map[string]bool{}
 	for _, p := range q.Players {
-		name, guest := guestName(p.ID)
-		validIdentity := (p.Kind == "guest" && guest && name == p.Username) || (p.Kind == "account" && validPlayerID(p.ID) && strings.TrimSpace(p.Username) != "" && len([]rune(p.Username)) <= 64)
+		validIdentity := p.Kind == "account" && validPlayerID(p.ID) && strings.TrimSpace(p.Username) != "" && len([]rune(p.Username)) <= 64
 		if !validIdentity || !campusValid(p.Campus) || seen[p.ID] || p.JoinedAt <= 0 {
 			reject(w, 400, "invalid_player")
 			return
