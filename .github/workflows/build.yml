@@ -33,11 +33,10 @@ jobs:
           node-version: '22'
           cache: pnpm
           cache-dependency-path: apps/web/pnpm-lock.yaml
-      - name: Build and test Vue website
+      - name: Build Vue website
         working-directory: apps/web
         run: |
           pnpm install --frozen-lockfile
-          pnpm test
           pnpm build
       - uses: actions/setup-go@v5
         with:

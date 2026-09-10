@@ -88,3 +88,5 @@
 - 游戏协议版本 4 使用 ENet/UDP，玩家 ID 为 15 字节 ASCII：账号使用 PocketBase 小写 ID，游客使用大写十六进制进程 ID。控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。客户端可达的 `enet://` 或 `enets://` 端点存入 PocketBase `servers` Collection，由票据接口动态下发；生产只接受 `enets://`。游戏服使用 `DO_GAME_SERVER_PORT` 监听 UDP，生产使用 DTLS 证书，客户端校验证书。
 
 - 网站构建从 apps/web 输出到 apps/api/static/，Go 编译和测试前先运行 pnpm install --frozen-lockfile、pnpm build。apps/api/Dockerfile 构建前端并嵌入 Go，Compose 仍只部署 game 与 web，网站不需要 Node 运行服务。网站可以使用 Vue，游戏 UI 仍限 Godot。
+
+- Web 前端（apps/web）默认不新增或维护测试文件、测试脚本及测试框架；常规改动以 TypeScript 类型检查、生产构建和必要的浏览器检查为主，避免过度测试。仅在用户明确要求前端自动化测试时增加；此约定不影响 Go 服务和 Godot 的必要检查。
