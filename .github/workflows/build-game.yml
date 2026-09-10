@@ -1,9 +1,27 @@
-name: Build DLUT Online
+name: Build Game
 
 on:
   push:
     branches: ["**"]
+    paths:
+      - "apps/game/**"
+      - "!apps/game/**/*.md"
+      - "apps/api/**"
+      - "!apps/api/**/*.md"
+      - ".github/workflows/build-game.yml"
+      - ".github/workflows/release.yml"
+      - ".dockerignore"
+      - ".gitattributes"
   pull_request:
+    paths:
+      - "apps/game/**"
+      - "!apps/game/**/*.md"
+      - "apps/api/**"
+      - "!apps/api/**/*.md"
+      - ".github/workflows/build-game.yml"
+      - ".github/workflows/release.yml"
+      - ".dockerignore"
+      - ".gitattributes"
   workflow_dispatch:
   workflow_call:
     inputs:
@@ -63,6 +81,7 @@ jobs:
           DO_API_SERVER_URL: https://dlut.online
         working-directory: apps/game
         run: |
+          godot() { python3 "$GITHUB_WORKSPACE/apps/game/tools/run_godot.py" "$@"; }
           godot --headless --editor --quit
           godot --headless --script tests/desktop_config.gd
           godot --headless --script tools/server_export/build_worlds.gd
@@ -71,11 +90,12 @@ jobs:
           (cd ../api && go test -tags=integration -race -run TestENet -timeout 3m -v)
           mkdir -p build/windows build/macos build/server
           godot --headless --export-release Server build/server/dlut-online-server.x86_64
-          godot --headless --main-pack build/server/dlut-online-server.pck --script "$GITHUB_WORKSPACE/apps/game/tests/server_export.gd"
+          mkdir -p "$RUNNER_TEMP/pack-check"
+          (cd "$RUNNER_TEMP/pack-check" && godot --headless --main-pack "$GITHUB_WORKSPACE/apps/game/build/server/dlut-online-server.pck" --script "$GITHUB_WORKSPACE/apps/game/tests/server_export.gd")
           godot --headless --export-release Windows "build/windows/DLUT Online.exe"
           godot --headless --export-release macOS "build/macos/DLUT Online.zip"
           unzip -p 'build/macos/DLUT Online.zip' 'DLUT Online.app/Contents/Resources/DLUT Online.pck' > "$RUNNER_TEMP/desktop.pck"
-          godot --headless --main-pack "$RUNNER_TEMP/desktop.pck" --script "$GITHUB_WORKSPACE/apps/game/tests/desktop_export.gd"
+          (cd "$RUNNER_TEMP/pack-check" && godot --headless --main-pack "$RUNNER_TEMP/desktop.pck" --script "$GITHUB_WORKSPACE/apps/game/tests/desktop_export.gd")
           cd build/windows
           zip -r "../DLUT-Online-Windows.zip" .
       - uses: actions/upload-artifact@v4
@@ -118,6 +138,7 @@ jobs:
         env:
           IMAGE: dlut-online-web:${{ github.sha }}
         run: |
+          godot() { python3 "$GITHUB_WORKSPACE/apps/game/tools/run_godot.py" "$@"; }
           docker load --input "$RUNNER_TEMP/web-image.tar"
           export DO_API_KEY="$(openssl rand -hex 32)"
           docker network create game-check
@@ -129,7 +150,7 @@ jobs:
           pb_test_email="ci@example.invalid"
           pb_test_password="$(openssl rand -base64 24)"
           docker exec web-check /dlut-online-web superuser upsert "$pb_test_email" "$pb_test_password"
-          pb_token="$(curl --fail --silent --show-error http://127.0.0.1:9090/api/collections/_superusers/auth-with-password -H 'Content-Type: application/json' --data \"{\\\"identity\\\":\\\"$pb_test_email\\\",\\\"password\\\":\\\"$pb_test_password\\\"}\" | jq -r .token)"
+          pb_token="$(curl --fail --silent --show-error http://127.0.0.1:9090/api/collections/_superusers/auth-with-password -H 'Content-Type: application/json' --data "$(jq -n --arg identity "$pb_test_email" --arg password "$pb_test_password" '{identity: $identity, password: $password}')" | jq -r .token)"
           curl --fail --silent --show-error http://127.0.0.1:9090/api/collections/servers/records -H 'Content-Type: application/json' -H "Authorization: Bearer $pb_token" --data '{"name":"ci","endpoint":"enet://127.0.0.1:9061","enabled":true}'
           DO_API_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/enet_protocol.gd
           DO_API_SERVER_URL=http://127.0.0.1:9090 godot --headless --path apps/game --script tests/campus_travel.gd
@@ -166,7 +187,6 @@ jobs:
           RELEASE_BUILD: ${{ inputs.release || false }}
         run: |
           image="ghcr.io/${REPOSITORY,,}"
-          source="dlut-online-web:$COMMIT_SHA"
           tags=("sha-$COMMIT_SHA")
           if [[ "$RELEASE_BUILD" == "true" ]]; then
             tags+=("$REF_NAME")
@@ -175,8 +195,6 @@ jobs:
             tags+=(edge)
           fi
           for tag in "${tags[@]}"; do
-            docker tag "$source" "${image}-web:$tag"
-            docker push "${image}-web:$tag"
             docker tag "dlut-online:$COMMIT_SHA" "$image:$tag"
             docker push "$image:$tag"
           done

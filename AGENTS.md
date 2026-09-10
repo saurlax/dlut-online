@@ -76,7 +76,7 @@
 
 - Go HTTP 服务位于 apps/api/，自定义业务接口和 Vue 站点直接注册到 PocketBase Router；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
-- CI 在每次 push 构建 Go HTTP 和 Godot 游戏服镜像，并导出 Windows x86_64 与 macOS universal ZIP；不构建 Godot Web 游戏产物；Vue 网站构建后嵌入 Go，生成产物不提交。Go `DO_API_SERVER_PORT` 默认 8415，并兼容部署平台提供的 `PORT`；容器将 PocketBase 数据保存在 `/data/pb_data` 持久卷。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
+- CI 按路径分别触发 build-web.yml 与 build-game.yml：网站/API 变更构建 Go HTTP 镜像；游戏/API 变更构建 Godot 游戏服镜像、导出 Windows x86_64 与 macOS universal ZIP 并执行双服务联调；不构建 Godot Web 游戏产物；Vue 网站构建后嵌入 Go，生成产物不提交。Go `DO_API_SERVER_PORT` 默认 8415，并兼容部署平台提供的 `PORT`；容器将 PocketBase 数据保存在 `/data/pb_data` 持久卷。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
 
 ## 权威游戏服务
 
@@ -84,7 +84,7 @@
 - 客户端 GameNetwork Autoload 跨场景保留 ENet 连接；同实例切图不重新取票、不重登，加载期间继续心跳且停止移动，场景就绪后迁移角色。三个校区对所有玩家开放。
 - 服务端通过独立 World3D 同时持有三校区碰撞世界，不能同时加载三个视觉校园模型；客户端仍只加载一个校园。服务端静态碰撞从现有场景和标记生成，保留可直接打开的场景，修改来源后重新生成，不能手工复制第二套模型。
 - DO_API_KEY 只在可信服务进程环境读取，不导出到客户端。PocketBase Auth Collection 和 SQLite 是用户权威数据源，OIDC/SSO 提供方按部署配置；不用游客 ID 访问敏感数据。线上人数必须标记时效，失联不能报告为零人。
-- CI 同时构建 Go HTTP 镜像与独立 Godot Linux amd64 镜像，继续导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
+- 版本标签发布同时调用 Web 和 Game 工作流，构建 Go HTTP 镜像与独立 Godot Linux amd64 镜像，并导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
 - 游戏协议版本 4 使用 ENet/UDP，玩家 ID 为 15 字节 ASCII：账号使用 PocketBase 小写 ID，游客使用大写十六进制进程 ID。控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。客户端可达的 `enet://` 或 `enets://` 端点存入 PocketBase `servers` Collection，由票据接口动态下发；生产只接受 `enets://`。游戏服使用 `DO_GAME_SERVER_PORT` 监听 UDP，生产使用 DTLS 证书，客户端校验证书。
 
 - 网站构建从 apps/web 输出到 apps/api/static/，Go 编译和测试前先运行 pnpm install --frozen-lockfile、pnpm build。apps/api/Dockerfile 构建前端并嵌入 Go，Compose 仍只部署 game 与 web，网站不需要 Node 运行服务。网站可以使用 Vue，游戏 UI 仍限 Godot。
