@@ -170,7 +170,17 @@ const currentScene = computed(() => scenes[selected.value]!);
           </n-grid>
         </section>
       </main>
-      <footer><n-flex justify="space-between" align="center"><a class="brand" href="/">DLUT <span>Online</span></a><n-button text tag="a" color="#c1cbda" href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></n-button></n-flex></footer>
+      <footer><n-flex justify="space-between" align="center"><a class="brand" href="/">DLUT <span>Online</span></a><n-button text tag="a" color="#c1cbda" href="https://github.com/saurlax/dlut-online">GitHub 开源项目 <span aria-hidden="true">↗</span></n-button></n-flex>
+        <div class="healthy-gaming" aria-label="健康游戏忠告">
+          <n-p class="healthy-title">健康游戏忠告</n-p>
+          <n-flex justify="center" :size="[16, 6]">
+            <span>抵制不良游戏</span><span>拒绝盗版游戏</span><span>注意自我保护</span><span>谨防受骗上当</span>
+          </n-flex>
+          <n-flex justify="center" :size="[16, 6]">
+            <span>适度游戏益脑</span><span>沉迷游戏伤身</span><span>合理安排时间</span><span>享受健康生活</span>
+          </n-flex>
+        </div>
+      </footer>
     </div>
   </n-config-provider>
 </template>
