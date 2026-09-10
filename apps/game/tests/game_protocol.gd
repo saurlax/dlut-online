@@ -6,12 +6,12 @@ func _run() -> void:
 	assert(Guest.prepare())
 	var states: Array = []
 	for i in 50:
-		states.append({"id":Guest.guest_id if i == 0 else "%032x" % i, "position":[float(i),0.0,0.0], "velocity":[0.0,0.0,0.0], "yaw":0.25, "seq":-1, "jump":0, "map_epoch":1})
+		states.append({"id":Guest.guest_id if i == 0 else ("%015x" % i).to_upper(), "position":[float(i),0.0,0.0], "velocity":[0.0,0.0,0.0], "yaw":0.25, "seq":-1, "jump":0, "map_epoch":1})
 	var packets := Protocol.snapshots("lingshui",10,states)
 	assert(packets.size() == 5)
 	var decoded: Array = []
 	for packet in packets:
-		assert(packet.size() <= 832)
+		assert(packet.size() <= 820)
 		var part := Protocol.read_snapshot(packet)
 		decoded.append_array(part.players)
 		assert(Protocol.read_snapshot(packet.slice(0,packet.size()-1)).is_empty())

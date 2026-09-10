@@ -29,12 +29,12 @@ func TestAdmissionAndPresence(t *testing.T) {
 		_ = json.Unmarshal(w.Body.Bytes(), &v)
 		return w.Code, v
 	}
-	id := "0123456789abcdef0123456789abcdef"
-	c, v := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 3})
+	id := "0123456789ABCDE"
+	c, v := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 4})
 	if c != 201 {
 		t.Fatal(c, v)
 	}
-	if v["game_server_url"] != "enet://game.example.com:1949" || v["version"] != float64(3) {
+	if v["game_server_url"] != "enet://game.example.com:1949" || v["version"] != float64(4) {
 		t.Fatal("missing trusted game endpoint", v)
 	}
 	if _, ok := v["ws_path"]; ok {
@@ -63,12 +63,12 @@ func TestAdmissionAndPresence(t *testing.T) {
 		t.Fatal(c)
 	}
 	now = now.Add(time.Second)
-	_, v = request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 3})
+	_, v = request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 4})
 	now = now.Add(31 * time.Second)
 	if c, _ := request("POST", "/internal/v1/game/tickets/consume", "service", map[string]any{"ticket": v["ticket"]}); c != 401 {
 		t.Fatal("expired", c)
 	}
-	if c, _ := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 3, "campus": "eda"}); c != 400 {
+	if c, _ := request("POST", "/api/v1/game/tickets", "", map[string]any{"id": id, "version": 4, "campus": "eda"}); c != 400 {
 		t.Fatal("campus must not bind ticket")
 	}
 	_, v = request("GET", "/api/v1/game/online", "", nil)
@@ -127,7 +127,7 @@ func TestOriginAndTicketLimits(t *testing.T) {
 		}
 	}
 	for i := 0; i < 101; i++ {
-		b, _ := json.Marshal(map[string]any{"id": fmt.Sprintf("%032x", i), "version": 3})
+		b, _ := json.Marshal(map[string]any{"id": fmt.Sprintf("%015X", i), "version": 4})
 		q := httptest.NewRequest("POST", "/api/v1/game/tickets", bytes.NewReader(b))
 		w := httptest.NewRecorder()
 		r.ServeHTTP(w, q)
@@ -138,5 +138,45 @@ func TestOriginAndTicketLimits(t *testing.T) {
 		if w.Code != want {
 			t.Fatal(i, w.Code)
 		}
+	}
+}
+
+func TestAccountTicketUsesResolvedIdentity(t *testing.T) {
+	g := newGameAPI(gameConfig{endpoint: "enet://game.example.com:1949", serviceToken: "service"})
+	g.resolveAccount = func(token string) (admission, bool) {
+		if token != "valid" {
+			return admission{}, false
+		}
+		return admission{ID: "account12345678", Username: "王同学", Kind: "account"}, true
+	}
+	r := chi.NewRouter()
+	g.routes(r)
+	body, _ := json.Marshal(map[string]any{"id": "forged12345678", "version": 4})
+	req := httptest.NewRequest("POST", "/api/v1/game/tickets", bytes.NewReader(body))
+	req.Header.Set("Authorization", "Bearer valid")
+	w := httptest.NewRecorder()
+	r.ServeHTTP(w, req)
+	if w.Code != 201 {
+		t.Fatal(w.Code, w.Body.String())
+	}
+	issued := map[string]any{}
+	_ = json.Unmarshal(w.Body.Bytes(), &issued)
+	consumeBody, _ := json.Marshal(map[string]any{"ticket": issued["ticket"]})
+	consume := httptest.NewRequest("POST", "/internal/v1/game/tickets/consume", bytes.NewReader(consumeBody))
+	consume.Header.Set("Authorization", "Bearer "+g.config.serviceToken)
+	w = httptest.NewRecorder()
+	r.ServeHTTP(w, consume)
+	identity := map[string]any{}
+	_ = json.Unmarshal(w.Body.Bytes(), &identity)
+	if identity["id"] != "account12345678" || identity["username"] != "王同学" || identity["kind"] != "account" {
+		t.Fatal(identity)
+	}
+
+	req = httptest.NewRequest("POST", "/api/v1/game/tickets", bytes.NewReader(body))
+	req.Header.Set("Authorization", "Bearer invalid")
+	w = httptest.NewRecorder()
+	r.ServeHTTP(w, req)
+	if w.Code != 401 {
+		t.Fatal(w.Code)
 	}
 }

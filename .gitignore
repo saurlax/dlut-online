@@ -25,3 +25,4 @@ __pycache__/
 /apps/web/node_modules/
 /apps/web/dist/
 /apps/api/static/
+/apps/api/pb_data/

@@ -4,7 +4,7 @@
 
 - 产品名固定为 **DLUT Online**：以整个大连理工大学为主题的第一人称 MMORPG。
 - 仅支持 Windows x86_64 和 macOS universal 桌面客户端，共用 Godot 项目与交互；不支持或导出 Web 游戏。
-- 当前建设可行走的校园世界、游客身份和 ENet 玩家同步；室内必须先具备实景照片或有效平面数据再建设，不自行增加活动、战斗、任务、奖励或持久账号功能。
+- 当前建设可行走的校园世界、PocketBase 账号、游客身份和 ENet 玩家同步；室内必须先具备实景照片或有效平面数据再建设，不自行增加活动、战斗、任务或奖励功能。
 - 第一批地域素材来自开发区校区。地域名称用于资产、数据与来源记录，不反复出现在产品主界面。
 - 美术采用真实比例、自然材质和实景参考。不得用卡通锥体树、统一盒子立面或随意色块冒充精细建模。
 
@@ -71,17 +71,17 @@
 - references/、openspec/、AGENTS.md 和 README.md 保留仓库根目录。原始参考路径相对仓库根目录记录，生成工具须从自身位置解析路径，不能依赖调用者工作目录。
 - 各应用独立管理依赖和构建产物，桌面客户端导出位于 apps/game/build/windows/ 与 macos/，游戏服位于 server/。Go 提供首页和 /api/v1/ 接口，不再托管 /web/ 或代理 /ws；客户端直连独立 Godot 游戏服。
 
-- Go HTTP 服务位于 apps/api/，使用 Chi；负责站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
+- Go HTTP 服务位于 apps/api/，嵌入 PocketBase 并保留 Chi 业务路由；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
-- CI 在每次 push 构建 Go HTTP 和 Godot 游戏服镜像，并导出 Windows x86_64 与 macOS universal ZIP；不构建 Godot Web 游戏产物；Vue 网站构建后嵌入 Go，生成产物不提交。Go PORT 默认 8415，显式 -addr 优先。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
+- CI 在每次 push 构建 Go HTTP 和 Godot 游戏服镜像，并导出 Windows x86_64 与 macOS universal ZIP；不构建 Godot Web 游戏产物；Vue 网站构建后嵌入 Go，生成产物不提交。Go PORT 默认 8415，容器将 PocketBase 数据保存在 `/data/pb_data` 持久卷。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
 
 ## 权威游戏服务
 
 - Godot 无头服务端与客户端共享 apps/game/ 工程，入口为 scenes/server.tscn，客户端逻辑放 scripts/client/，服务端专属逻辑放 scripts/server/，共享运动、碰撞、校区注册表和协议规则放 scripts/shared/。Go apps/api/ 负责站点、票据和在线查询，不执行玩家物理或广播。
 - 客户端 GameNetwork Autoload 跨场景保留 ENet 连接；同实例切图不重新取票、不重登，加载期间继续心跳且停止移动，场景就绪后迁移角色。三个校区对所有玩家开放。
 - 服务端通过独立 World3D 同时持有三校区碰撞世界，不能同时加载三个视觉校园模型；客户端仍只加载一个校园。服务端静态碰撞从现有场景和标记生成，保留可直接打开的场景，修改来源后重新生成，不能手工复制第二套模型。
-- 服务端凭据只在进程环境读取，不导出到客户端。真实 SSO、数据库和历史分析尚未接入，不用游客 ID 访问敏感数据。线上人数必须标记时效，失联不能报告为零人。
+- 服务端凭据只在进程环境读取，不导出到客户端。PocketBase Auth Collection 和 SQLite 是用户权威数据源，OIDC/SSO 提供方按部署配置；不用游客 ID 访问敏感数据。线上人数必须标记时效，失联不能报告为零人。
 - CI 同时构建 Go HTTP 镜像与独立 Godot Linux amd64 镜像，继续导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
-- 游戏协议版本 3 使用 ENet/UDP：控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。DO_GAME_SERVER_URL 在 Go 配置为客户端可达的 enet:// 或 enets:// 主机:端口，不能填容器内部地址。生产使用 enets:// 与游戏服 DTLS 证书，客户端校验证书；游戏服 UDP 端口独立暴露。
+- 游戏协议版本 4 使用 ENet/UDP，玩家 ID 为 15 字节 ASCII：账号使用 PocketBase 小写 ID，游客使用大写十六进制进程 ID。控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。DO_GAME_SERVER_URL 在 Go 配置为客户端可达的 enet:// 或 enets:// 主机:端口，不能填容器内部地址。生产使用 enets:// 与游戏服 DTLS 证书，客户端校验证书；游戏服 UDP 端口独立暴露。
 
 - 网站构建从 apps/web 输出到 apps/api/static/，Go 编译和测试前先运行 pnpm install --frozen-lockfile、pnpm build。apps/api/Dockerfile 构建前端并嵌入 Go，Compose 仍只部署 game 与 web，网站不需要 Node 运行服务。网站可以使用 Vue，游戏 UI 仍限 Godot。

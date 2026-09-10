@@ -5,17 +5,18 @@ import (
 	"crypto/sha256"
 	"crypto/subtle"
 	"encoding/base64"
-	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/pocketbase/pocketbase/core"
 )
 
 type gameConfig struct{ endpoint, serviceToken, adminToken string }
@@ -44,6 +45,7 @@ type gameAPI struct {
 	seq                   int64
 	received              time.Time
 	players               []onlinePlayer
+	resolveAccount        func(string) (admission, bool)
 }
 
 func randomID() string {
@@ -54,12 +56,27 @@ func randomID() string {
 	return base64.RawURLEncoding.EncodeToString(b[:])
 }
 func guestName(id string) (string, bool) {
-	b, err := hex.DecodeString(id)
-	if err != nil || len(b) != 16 || hex.EncodeToString(b) != id {
+	if len(id) != 15 {
 		return "", false
+	}
+	for _, c := range id {
+		if (c < 'A' || c > 'F') && (c < '0' || c > '9') {
+			return "", false
+		}
 	}
 	n, _ := strconv.ParseUint(id[:8], 16, 32)
 	return fmt.Sprintf("游客%06d", n%1000000), true
+}
+func validPlayerID(id string) bool {
+	if len(id) != 15 {
+		return false
+	}
+	for _, c := range id {
+		if (c < 'a' || c > 'z') && (c < '0' || c > '9') {
+			return false
+		}
+	}
+	return true
 }
 func campusValid(s string) bool { return s == "lingshui" || s == "eda" || s == "panjin" }
 func validGameEndpoint(raw string) bool {
@@ -101,8 +118,23 @@ func decode(w http.ResponseWriter, r *http.Request, v any, limit int64) bool {
 	}
 	return true
 }
-func newGameAPI(c gameConfig) *gameAPI {
-	return &gameAPI{config: c, tickets: make(map[[32]byte]admission), issued: make(map[string]time.Time), retired: make(map[string]bool), now: time.Now, seq: -1}
+func newGameAPI(c gameConfig, apps ...core.App) *gameAPI {
+	g := &gameAPI{config: c, tickets: make(map[[32]byte]admission), issued: make(map[string]time.Time), retired: make(map[string]bool), now: time.Now, seq: -1}
+	if len(apps) > 0 && apps[0] != nil {
+		app := apps[0]
+		g.resolveAccount = func(token string) (admission, bool) {
+			record, err := app.FindAuthRecordByToken(token, core.TokenTypeAuth)
+			if err != nil || record.Collection().Name != "users" || !record.Verified() || record.GetBool("disabled") || !validPlayerID(record.Id) {
+				return admission{}, false
+			}
+			name := strings.TrimSpace(record.GetString("display_name"))
+			if name == "" || len([]rune(name)) > 64 {
+				return admission{}, false
+			}
+			return admission{ID: record.Id, Username: name, Kind: "account"}, true
+		}
+	}
+	return g
 }
 func (g *gameAPI) auth(token string, next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -136,10 +168,31 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 	if !decode(w, r, &q, 1024) {
 		return
 	}
-	name, ok := guestName(q.ID)
-	if !ok || q.Version != 3 {
+	if q.Version != 4 {
 		reject(w, 400, "invalid_identity_or_version")
 		return
+	}
+	identity := admission{}
+	authorization := strings.TrimSpace(r.Header.Get("Authorization"))
+	if authorization != "" {
+		const prefix = "Bearer "
+		if !strings.HasPrefix(authorization, prefix) || g.resolveAccount == nil {
+			reject(w, 401, "invalid_auth_token")
+			return
+		}
+		var ok bool
+		identity, ok = g.resolveAccount(strings.TrimSpace(strings.TrimPrefix(authorization, prefix)))
+		if !ok {
+			reject(w, 401, "invalid_auth_token")
+			return
+		}
+	} else {
+		name, ok := guestName(q.ID)
+		if !ok {
+			reject(w, 400, "invalid_identity_or_version")
+			return
+		}
+		identity = admission{ID: q.ID, Username: name, Kind: "guest"}
 	}
 	g.mu.Lock()
 	defer g.mu.Unlock()
@@ -154,7 +207,7 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 			delete(g.issued, k)
 		}
 	}
-	if last, exists := g.issued[q.ID]; exists && now.Sub(last) < time.Second {
+	if last, exists := g.issued[identity.ID]; exists && now.Sub(last) < time.Second {
 		reject(w, 429, "rate_limited")
 		return
 	}
@@ -163,9 +216,11 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	ticket := randomID()
-	g.tickets[sha256.Sum256([]byte(ticket))] = admission{ID: q.ID, Username: name, Kind: "guest", AdmissionID: randomID(), Expires: now.Add(30 * time.Second)}
-	g.issued[q.ID] = now
-	respond(w, 201, map[string]any{"ticket": ticket, "expires_in": 30, "game_server_url": g.config.endpoint, "version": 3})
+	identity.AdmissionID = randomID()
+	identity.Expires = now.Add(30 * time.Second)
+	g.tickets[sha256.Sum256([]byte(ticket))] = identity
+	g.issued[identity.ID] = now
+	respond(w, 201, map[string]any{"ticket": ticket, "expires_in": 30, "game_server_url": g.config.endpoint, "version": 4})
 }
 func (g *gameAPI) consume(w http.ResponseWriter, r *http.Request) {
 	var q struct {
@@ -240,8 +295,9 @@ func (g *gameAPI) presence(w http.ResponseWriter, r *http.Request) {
 	}
 	seen := map[string]bool{}
 	for _, p := range q.Players {
-		name, ok := guestName(p.ID)
-		if !ok || p.Kind != "guest" || name != p.Username || !campusValid(p.Campus) || seen[p.ID] || p.JoinedAt <= 0 {
+		name, guest := guestName(p.ID)
+		validIdentity := (p.Kind == "guest" && guest && name == p.Username) || (p.Kind == "account" && validPlayerID(p.ID) && strings.TrimSpace(p.Username) != "" && len([]rune(p.Username)) <= 64)
+		if !validIdentity || !campusValid(p.Campus) || seen[p.ID] || p.JoinedAt <= 0 {
 			reject(w, 400, "invalid_player")
 			return
 		}
