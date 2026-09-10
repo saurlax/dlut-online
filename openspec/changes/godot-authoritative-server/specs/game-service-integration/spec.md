@@ -83,3 +83,14 @@ Go SHALL 仅向具备有效 API Key 的调用者提供当前在线玩家标识�
 #### Scenario: 检查未接入能力
 - **WHEN** 检查本次路由和文档
 - **THEN** 无虚构 SSO 登录、历史 DAU、留存或持久化成功响应，未来数据流程和当前仅内存能力可区分
+
+### Requirement: 按应用范围构建
+CI SHALL 使用独立 Web 与 Game 工作流按路径触发，网站变更不得触发游戏导出；API 变更 SHALL 触发两者以验证联调兼容性。版本发布 SHALL 等待两者成功。
+
+#### Scenario: 网站改动
+- **WHEN** 仅修改 apps/web 下运行文件
+- **THEN** 只运行 Web 构建与镜像检查，不安装 Godot 或导出客户端
+
+#### Scenario: 导出包校验失败
+- **WHEN** 检查已导出的 PCK 或 Godot 报告脚本错误
+- **THEN** 包校验在独立临时目录执行，脚本错误使 CI 命令立即非零退出，每条直接 Godot 命令最多运行十分钟
