@@ -36,6 +36,10 @@ desktop_config 仅在 editor feature 的运行进程读取本机选择，首次�
 
 ## Unified CI Tests
 
-新增独立 Test 工作流，仅在分支 push、PR 和手动运行时触发，不提供 workflow_call，不进入 release 依赖链。单个 test job 使用 Windows runner，顺序执行 Vue 类型检查及嵌入资源构建、Go race 测试和 vet、Godot 配置/物理/协议/账号/预测测试、Windows 凭据测试。保留真实 Windows 凭据接口覆盖，不建立专项凭据 job 或 OS 矩阵。
+ci.yml 统一分支/PR/手动入口，调用仅供复用的 test.yml；同一个 Linux test 任务通过后，依据改动路径输出调用 Web/Game 构建。手动运行、新分支和标签保守构建两端。两个 build 工作流仅保留 workflow_call，防止独立入口绕过测试。release.yml 校验标签后调用同一 test，再并行调用两个 build，最后下载本次构建生成的 ZIP 发布，不复用历史运行的产物。
 
-Build Game 与 Build Web 移除上述源码测试，仍按各自路径构建及检查最终导出包、Web 镜像；碰撞生成属于构建输入准备，继续保留。Web 前端由 Dockerfile 构建，不在镜像构建前重复安装 Node/Go 并执行源码测试。现有可选集成、弱网和容量检查继续按专项需求本地运行。
+测试阶段只做 Vue vue-tsc、Go go test（60 秒超时）和 vet，不跑 race、不下载 LFS、Godot 或导出模板。Go 的 PocketBase/数据库/前端真实产物测试添加 integration 标签，进程联调沿用既有标签。默认保留纯计算和使用替身依赖、无真实网络/数据库的内存内 handler 单元测试。为满足 go:embed，在测试任务临时 static/ 放置占位文件；构建任务独立检出并由 Docker 生成真实 Vue 产物，不复用占位文件。
+
+构建只执行必要碰撞生成、编译、导出、打包和上传，移除 Web 容器 smoke 和 Godot 导出包运行检查。集成/E2E 仅在相关变更时本地专项运行。测试失败通过 needs 依赖阻止所有 build 与 release。重复分支 CI 使用 concurrency 取消旧运行，避免浪费资源。
+
+Godot 框架评估选择 GUT 9.7.1 作为后续纯函数单元测试候选，支持 Godot 4.7、GDScript 断言和 CLI；当前按最小 CI 范围不安装引擎或引入框架，禁止将加载校园、物理、网络和系统凭据操作作为单元测试加入 CI。

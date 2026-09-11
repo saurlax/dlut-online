@@ -76,7 +76,8 @@
 
 - Go HTTP 服务位于 apps/api/，自定义业务接口和 Vue 站点直接注册到 PocketBase Router；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
-- CI 按路径分别触发 build-web.yml 与 build-game.yml：网站/API 变更构建 Go HTTP 镜像；游戏/API 变更构建 Godot 游戏服镜像、导出 Windows x86_64 与 macOS universal ZIP 并保留导出包校验；源码测试统一在 test.yml 的单个 test 任务运行，包括 Go、Godot 物理/协议/账号/配置/预测及 Windows 凭据测试，不为单项测试单开任务，发布流程不调用 test.yml；构建流程不执行端到端双服务联调，按需本地运行两客户端 smoke 检查，弱网和故障恢复等仅按相关改动专项验证，不要求每轮执行 50 人压测；不构建 Godot Web 游戏产物；Vue 网站构建后嵌入 Go，生成产物不提交。Go `DO_API_SERVER_PORT` 默认 8415，并兼容部署平台提供的 `PORT`；容器将 PocketBase 数据保存在 `/data/pb_data` 持久卷。Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
+- 为节省 CI 资源、加快构建，测试统一在 test.yml 的单个 Linux test 任务中，仅运行 Vue `vue-tsc --noEmit`、Go `go test -timeout 60s ./...` 和 `go vet ./...`。不运行集成或 E2E 测试，默认不启用 race，不启动真实数据库、系统凭据操作、容器 smoke、游戏联调、物理世界或导出包运行检查；这些仅在相关改动时本地专项执行。Go 集成测试必须带 `//go:build integration`，不进入默认 go test。Godot 将来可加入使用 GUT 的纯函数单元测试，但不得加载校园、连接服务或操作系统凭据；当前轻量测试任务不安装 Godot 或下载 LFS 资产。
+- ci.yml 负责分支/PR/手动入口，先调用统一 test，再按路径调用 build-web.yml 与 build-game.yml；两个构建工作流只提供 workflow_call，不能从独立入口绕过测试。版本标签由 release.yml 先校验版本、执行同一 test，通过后调用两个构建工作流，再下载本次构建产物上传 GitHub Release。测试失败必须阻止 build 和 release，不能使用 always()、continue-on-error 或跳过测试参数绕过。网站/API 变更构建 Go HTTP 镜像；游戏/API 变更构建 Godot 游戏服镜像并导出 Windows x86_64、macOS universal ZIP，不构建 Godot Web 产物。构建阶段只做必要生成、编译、打包和上传，不运行集成/E2E。Go `DO_API_SERVER_PORT` 默认 8415，并兼容平台 `PORT`；容器 PocketBase 数据位于 `/data/pb_data` 持久卷，Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
 
 ## 权威游戏服务
 
@@ -87,7 +88,7 @@
 - 版本标签发布同时调用 Web 和 Game 工作流，构建 Go HTTP 镜像与独立 Godot Linux amd64 镜像，并导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
 - 游戏协议版本 4 使用 ENet/UDP，玩家 ID 为 15 字节 ASCII：统一使用 PocketBase 小写账号 ID。控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。客户端可达的 `enet://` 或 `enets://` 端点存入 PocketBase `servers` Collection，由票据接口动态下发；客户端不按环境限制协议，`enet://` 使用明文，`enets://` 启用 DTLS 并校验证书；Go API 的 production 配置仍只下发 `enets://`。游戏服使用 `DO_GAME_SERVER_PORT` 监听 UDP，生产使用 DTLS 证书，客户端校验证书。
 
-- 网站构建从 apps/web 输出到 apps/api/static/，Go 编译和测试前先运行 pnpm install --frozen-lockfile、pnpm build。apps/api/Dockerfile 构建前端并嵌入 Go，Compose 仍只部署 game 与 web，网站不需要 Node 运行服务。网站可以使用 Vue，游戏 UI 仍限 Godot。
+- 网站构建从 apps/web 输出到 apps/api/static/，正式编译及前端产物集成测试前先运行 pnpm install --frozen-lockfile、pnpm build。CI 纯单元测试不构建前端，只在临时工作区的 static/ 放入编译用占位文件以满足 go:embed；该文件不提交、不传给构建任务，正式镜像使用独立检出和真实前端产物。apps/api/Dockerfile 构建前端并嵌入 Go，Compose 仍只部署 game 与 web，网站不需要 Node 运行服务。网站可以使用 Vue，游戏 UI 仍限 Godot。
 
 - Web 前端（apps/web）默认不新增或维护测试文件、测试脚本及测试框架；常规改动以 TypeScript 类型检查、生产构建和必要的浏览器检查为主，避免过度测试。仅在用户明确要求前端自动化测试时增加；此约定不影响 Go 服务和 Godot 的必要检查。
 

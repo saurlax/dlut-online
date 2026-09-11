@@ -1,28 +1,6 @@
 name: Build Game
 
 on:
-  push:
-    branches: ["**"]
-    paths:
-      - "apps/game/**"
-      - "!apps/game/**/*.md"
-      - "apps/api/**"
-      - "!apps/api/**/*.md"
-      - ".github/workflows/build-game.yml"
-      - ".github/workflows/release.yml"
-      - ".dockerignore"
-      - ".gitattributes"
-  pull_request:
-    paths:
-      - "apps/game/**"
-      - "!apps/game/**/*.md"
-      - "apps/api/**"
-      - "!apps/api/**/*.md"
-      - ".github/workflows/build-game.yml"
-      - ".github/workflows/release.yml"
-      - ".dockerignore"
-      - ".gitattributes"
-  workflow_dispatch:
   workflow_call:
     inputs:
       release:
@@ -64,12 +42,8 @@ jobs:
           godot --headless --script tools/server_export/build_worlds.gd
           mkdir -p build/windows build/macos build/server
           godot --headless --export-release Server build/server/dlut-online-server.x86_64
-          mkdir -p "$RUNNER_TEMP/pack-check"
-          (cd "$RUNNER_TEMP/pack-check" && godot --headless --main-pack "$GITHUB_WORKSPACE/apps/game/build/server/dlut-online-server.pck" --script "$GITHUB_WORKSPACE/apps/game/tests/server_export.gd")
           godot --headless --export-release Windows "build/windows/DLUT Online.exe"
           godot --headless --export-release macOS "build/macos/DLUT Online.zip"
-          unzip -p 'build/macos/DLUT Online.zip' 'DLUT Online.app/Contents/Resources/DLUT Online.pck' > "$RUNNER_TEMP/desktop.pck"
-          (cd "$RUNNER_TEMP/pack-check" && godot --headless --main-pack "$RUNNER_TEMP/desktop.pck" --script "$GITHUB_WORKSPACE/apps/game/tests/desktop_export.gd")
           cd build/windows
           zip -r "../DLUT-Online-Windows.zip" .
       - uses: actions/upload-artifact@v4
