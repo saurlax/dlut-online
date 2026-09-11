@@ -6,8 +6,9 @@ import library from "./assets/library.jpg";
 import garden from "./assets/campus-garden.jpg";
 import campusFilm from "./assets/campus-film.mp4";
 import filmPoster from "./assets/campus-film-poster.jpg";
+import ProfilePage from "./ProfilePage.vue";
 import AccountPage from "./AccountPage.vue";
-import { account, logout, restoreSession } from "./auth";
+import { account, authReady, authError, restoreSession } from "./auth";
 import { downloads, detectDesktopPlatform } from "./downloads";
 
 const themeOverrides: GlobalThemeOverrides = {
@@ -22,6 +23,8 @@ const themeOverrides: GlobalThemeOverrides = {
   List: { color: "transparent" },
   Button: { heightLarge: "56px", fontSizeLarge: "14px", fontWeight: "500" },
 };
+const isProfilePage = /^\/profile\/?$/.test(window.location.pathname);
+if (isProfilePage) document.title = "个人资料 | DLUT Online";
 const isAccountPage = /^\/(login|register)\/?$/.test(window.location.pathname);
 const isRegisterPage = /^\/register\/?$/.test(window.location.pathname);
 if (isAccountPage) document.title = `${isRegisterPage ? '注册' : '登录'} | DLUT Online`;
@@ -70,24 +73,22 @@ const currentScene = computed(() => scenes[selected.value]!);
 <template>
   <n-config-provider :locale="zhCN" :date-locale="dateZhCN" :theme-overrides="themeOverrides">
     <n-global-style />
-    <div class="landing" :class="{ 'download-page': isDownloadPage || isAccountPage }">
+    <div class="landing" :class="{ 'download-page': isDownloadPage || isAccountPage || isProfilePage }">
       <header class="site-header"><n-flex justify="space-between" align="center" :wrap="false">
         <a class="brand" href="/" aria-label="DLUT Online 首页">DLUT <span>Online</span></a>
         <nav aria-label="主导航">
           <n-flex align="center" :size="16">
             <n-button text tag="a" href="/download" color="#ffffff">下载客户端</n-button>
             <template v-if="account">
-              <n-button text tag="a" href="/login" color="#ffffff" class="nav-account">{{ account.display_name }}</n-button>
-              <n-button ghost color="#ffffff" @click="logout">退出</n-button>
+              <n-button text tag="a" href="/profile" color="#ffffff" class="nav-account">{{ account.display_name || account.username }}</n-button>
             </template>
-            <template v-else>
-              <n-button text tag="a" href="/login" color="#ffffff">登录</n-button>
-              <n-button tag="a" href="/register" ghost color="#ffffff">注册</n-button>
-            </template>
+            <n-button v-else-if="authReady && !authError" tag="a" href="/login" ghost color="#ffffff">登录</n-button>
+            <n-button v-else-if="authError" text color="#ffffff" @click="restoreSession">重试登录状态</n-button>
           </n-flex>
         </nav>
       </n-flex></header>
-      <AccountPage v-if="isAccountPage" :register="isRegisterPage" />
+      <ProfilePage v-if="isProfilePage" />
+      <AccountPage v-else-if="isAccountPage" :register="isRegisterPage" />
       <main v-else-if="isDownloadPage" class="download-content">
         <n-page-header @back="goHome">
           <template #back><n-button text aria-label="返回首页">←</n-button></template>
@@ -187,7 +188,7 @@ const currentScene = computed(() => scenes[selected.value]!);
           </n-grid>
         </section>
       </main>
-      <footer><n-flex justify="space-between" align="center"><a class="brand" href="/">DLUT <span>Online</span></a><n-button text tag="a" color="#c1cbda" href="https://github.com/saurlax/dlut-online">GitHub 开源项目</n-button></n-flex>
+      <footer><n-flex justify="space-between" align="center"><a class="brand" href="/">DLUT <span>Online</span></a><n-button text tag="a" color="#c1cbda" href="https://github.com/saurlax/dlut-online">GitHub</n-button></n-flex>
         <div class="healthy-gaming" aria-label="健康游戏忠告">
           <n-p class="healthy-title">健康游戏忠告</n-p>
           <n-flex justify="center" :size="[16, 6]">

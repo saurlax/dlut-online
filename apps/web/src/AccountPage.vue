@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from "vue";
 import { NAlert, NButton, NCard, NFlex, NForm, NFormItem, NInput, NP, NSpin, type FormInst, type FormRules } from "naive-ui";
-import { account, authReady, AuthError, login, logout, request } from "./auth";
+import { account, authReady, AuthError, login, request } from "./auth";
 
 const props = defineProps<{ register: boolean }>();
 const form = ref<FormInst | null>(null);
@@ -44,6 +44,7 @@ async function submit() {
       } catch { error.value = "账号已创建，但验证邮件请求失败，请稍后重发。"; }
     } else {
       await login(model.email, model.password);
+      window.location.assign("/profile");
       model.password = "";
     }
   } catch (e) {
@@ -66,8 +67,7 @@ async function submit() {
         <template v-if="account">
           <n-p>你好，{{ account.display_name }}</n-p>
           <n-flex vertical :size="16">
-            <n-button tag="a" href="/download" type="primary" block>下载客户端</n-button>
-            <n-button text :disabled="busy" @click="logout(); error = ''">退出当前账号</n-button>
+            <n-button tag="a" href="/profile" type="primary" block>个人资料</n-button>
           </n-flex>
         </template>
         <template v-else-if="created">
