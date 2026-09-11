@@ -16,7 +16,7 @@ Go 使用 `pocketbase.NewWithConfig` 创建应用，通过 Go 代码定义 `user
 
 服务间接口统一位于 `/api/v1/`，使用 `Authorization: Bearer <DO_API_KEY>`。Go、Godot 游戏服和后续可信平台通过部署环境取得同一 API Key；PocketBase 用户 auth token 仅用于用户身份接口。
 
-username 保留用户输入大小写，使用 SQLite `lower(username)` 唯一索引判断冲突；密码登录仅使用 email。AuthRule 要求 `verified = true && disabled = false`，用户更新规则禁止修改 disabled，管理员通过 PocketBase 管理界面管理账号。
+username 保留用户输入大小写，使用 SQLite `lower(username)` 唯一索引判断冲突；密码登录仅使用 email。AuthRule 要求 `verified = true && disabled = false`，用户更新规则禁止修改 disabled，普通用户记录更新请求仅允许 display_name，邮箱通过内置验证流程更换；管理员通过 PocketBase 管理界面管理账号。
 
 PocketBase 负责密码哈希、邮箱验证与重置、token 签发、外部身份记录和 API 限流。SMTP 与 OAuth2/OIDC 提供方通过 PocketBase 设置配置；生产使用 `PB_ENCRYPTION_KEY` 加密数据库内的机密设置。PocketBase auth token 是无状态 JWT，改变 record tokenKey 可使该用户已签发 token 失效。
 

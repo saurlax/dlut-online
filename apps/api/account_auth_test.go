@@ -134,3 +134,75 @@ func TestAccountTokenRefresh(t *testing.T) {
 		t.Fatal("invalid token refreshed")
 	}
 }
+
+func TestProfileEditsAndEmailVerification(t *testing.T) {
+	app, h := accountTestApp(t)
+	users, _ := app.FindCollectionByNameOrId("users")
+	record := core.NewRecord(users)
+	record.SetEmail("profile@example.com")
+	record.SetPassword("correct-horse-battery-staple")
+	record.Set("username", "profile_test")
+	record.Set("display_name", "Original")
+	record.SetVerified(true)
+	if err := app.Save(record); err != nil {
+		t.Fatal(err)
+	}
+	token, _ := record.NewAuthToken()
+	patch := func(id, bearer string, body map[string]any) int {
+		b, _ := json.Marshal(body)
+		r := httptest.NewRequest(http.MethodPatch, "/api/collections/users/records/"+id, bytes.NewReader(b))
+		r.Header.Set("Content-Type", "application/json")
+		r.Header.Set("Authorization", "Bearer "+bearer)
+		w := httptest.NewRecorder()
+		h.ServeHTTP(w, r)
+		return w.Code
+	}
+	if status := patch(record.Id, token, map[string]any{"display_name": "新的显示名称"}); status != 200 {
+		t.Fatalf("display name: %d", status)
+	}
+	for field, value := range map[string]any{"username": "changed", "email": "bypass@example.com", "verified": false, "disabled": true, "emailVisibility": true, "password": "new-password", "id": "abcdefghijklmno"} {
+		if status := patch(record.Id, token, map[string]any{field: value}); status != 400 && status != 404 && !(field == "disabled" && status == 200) {
+			t.Fatalf("field %s: %d", field, status)
+		}
+	}
+	if status := patch(record.Id, "", map[string]any{"display_name": "Anonymous"}); status == 200 {
+		t.Fatal("anonymous edit allowed")
+	}
+	other := core.NewRecord(users)
+	other.SetEmail("other@example.com")
+	other.SetPassword("correct-horse-battery-staple")
+	other.Set("username", "other_test")
+	other.Set("display_name", "Other")
+	other.SetVerified(true)
+	if err := app.Save(other); err != nil {
+		t.Fatal(err)
+	}
+	if status := patch(other.Id, token, map[string]any{"display_name": "Hijacked"}); status == 200 {
+		t.Fatal("cross-account edit allowed")
+	}
+	updated, _ := app.FindRecordById("users", record.Id)
+	if updated.GetString("display_name") != "新的显示名称" || updated.Email() != "profile@example.com" || updated.GetBool("disabled") || updated.GetString("username") != "profile_test" {
+		t.Fatal("unexpected profile state")
+	}
+	changeToken, err := updated.NewEmailChangeToken("new@example.com")
+	if err != nil {
+		t.Fatal(err)
+	}
+	path := "/api/collections/users/confirm-email-change"
+	if status, _ := authRequest(h, path, "", map[string]any{"token": changeToken, "password": "wrong"}); status == 204 {
+		t.Fatal("wrong password accepted")
+	}
+	if status, body := authRequest(h, path, "", map[string]any{"token": changeToken, "password": "correct-horse-battery-staple"}); status != 204 {
+		t.Fatal(status, body)
+	}
+	updated, _ = app.FindRecordById("users", record.Id)
+	if updated.Email() != "new@example.com" || !updated.Verified() {
+		t.Fatal("email not verified")
+	}
+	if status, _ := authRequest(h, path, "", map[string]any{"token": changeToken, "password": "correct-horse-battery-staple"}); status == 204 {
+		t.Fatal("reused email token accepted")
+	}
+	if status, _ := authRequest(h, "/api/collections/users/auth-refresh", token, map[string]any{}); status == 200 {
+		t.Fatal("old session remains valid after email change")
+	}
+}
