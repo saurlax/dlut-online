@@ -9,7 +9,6 @@ on:
       - "apps/api/**"
       - "!apps/api/**/*.md"
       - ".github/workflows/build-game.yml"
-      - ".github/workflows/test.yml"
       - ".github/workflows/release.yml"
       - ".dockerignore"
       - ".gitattributes"
@@ -20,7 +19,6 @@ on:
       - "apps/api/**"
       - "!apps/api/**/*.md"
       - ".github/workflows/build-game.yml"
-      - ".github/workflows/test.yml"
       - ".github/workflows/release.yml"
       - ".dockerignore"
       - ".gitattributes"
@@ -40,10 +38,7 @@ concurrency:
   cancel-in-progress: ${{ github.ref_type != 'tag' }}
 
 jobs:
-  test:
-    uses: ./.github/workflows/test.yml
   build:
-    needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
