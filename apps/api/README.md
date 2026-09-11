@@ -87,8 +87,10 @@ Go `DO_API_SERVER_PORT` 默认 8415，也兼容部署平台提供的 `PORT`。Po
 mkdir -p apps/game/build/server apps/game/build/windows apps/game/build/macos
 godot --headless --path apps/game --script tools/server_export/build_worlds.gd
 godot --headless --path apps/game --export-release Server build/server/dlut-online-server.x86_64
-godot --headless --path apps/game --export-release Windows 'build/windows/DLUT Online.exe'
-godot --headless --path apps/game --export-release macOS 'build/macos/DLUT Online.zip'
+godot --headless --path apps/game --export-release Windows 'build/windows/DLUT-Online-Windows.exe'
+godot --headless --path apps/game --export-release macOS 'build/macos/DLUT Online.app'
+python3 apps/game/tools/verify_windows_export.py
+python3 apps/game/tools/package_macos.py
 docker compose build
 docker compose up -d
 ```
@@ -101,7 +103,7 @@ Godot 编辑器打开 `apps/game/project.godot` 后，顶部 `Env: Local / Dev` 
 
 生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。在 PocketBase `servers.endpoint` 填写客户端可达地址，例如 enets://game.example.com:1949；不能填容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。客户端在 development 和 production 均接受 enet://（明文）与 enets://（DTLS），按下发协议连接，不在 DTLS 失败后自动降级。临时无 DTLS 测试时，Go 与游戏服需设置 DO_ENV=development，游戏服清空 DO_GAME_TLS_CERT/DO_GAME_TLS_KEY，servers.endpoint 使用 enet://公网地址:公网UDP端口；正式客户端无需切换 development。Compose 固定将 ./.local/game-tls 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
-`build-web.yml` 与 `build-game.yml` 各自按路径接收分支 push、PR 和手动运行；Web 内置前置 `test`，成功后才执行 `build`，不抽取共享测试工作流。轻量测试使用 Linux runner，只执行 Vue `vue-tsc --noEmit`、Go `go test -timeout 60s ./...` 与 `go vet ./...`，不拉取 LFS 资产或安装 Godot。Game 当前没有接入轻量单元测试，仅做必要生成与导出，不重复执行 Vue/Go 检查。版本标签发布先校验版本，再复用 Web（test → build）和 Game 构建工作流，全部成功后下载本次构建的 ZIP 并上传 GitHub Release，不直接复用历史构建运行的产物。
+`build-web.yml` 与 `build-game.yml` 各自按路径接收分支 push、PR 和手动运行；Web 内置前置 `test`，成功后才执行 `build`，不抽取共享测试工作流。轻量测试使用 Linux runner，只执行 Vue `vue-tsc --noEmit`、Go `go test -timeout 60s ./...` 与 `go vet ./...`，不拉取 LFS 资产或安装 Godot。Game 当前没有接入轻量单元测试，仅做必要生成与导出，不重复执行 Vue/Go 检查。版本标签发布先校验版本，再复用 Web（test → build）和 Game 构建工作流，全部成功后下载本次构建的 Windows EXE 和 macOS DMG 并上传 GitHub Release，不直接复用历史构建运行的产物。
 
 CI 不执行集成、E2E、Windows 凭据、Godot 物理世界、账号联调、导出包运行或 Web 容器 smoke 检查，避免资源开销与等待卡死。数据库、PocketBase 认证和前端产物测试均带 `integration` 构建标签，默认 go test 只运行无真实外部依赖的单元测试；测试阶段静态嵌入仅用临时占位文件满足编译，正式构建使用独立检出和真实 Vue 产物。Godot 可选轻量框架为 [GUT 9.7.1](https://github.com/bitwes/Gut/releases/tag/v9.7.1)（对应 Godot 4.7），适合纯函数测试；本次未引入引擎或框架依赖到 CI。
 
@@ -140,3 +142,7 @@ DO_API_SERVER_URL=http://127.0.0.1:8415 python3 apps/game/tools/run_godot.py --h
 只有收到游戏服 welcome 才进入世界；票据接口返回 401/403 或账号被另一客户端替换时清理会话并回到登录。production 客户端账号 API 仍要求 HTTPS。未来 OIDC 和移动系统认证另行设计，当前未交付移动插件或导出。
 
 大地图右下角提供“退出登录”。退出或明确认证失效时清除系统凭据，并写入不含 Token 的本地禁用标记，避免凭据库暂时不可用时下次又自动登录；新登录成功保存后移除标记。网络超时、429 或服务端故障保留凭据，回到可操作表单。macOS 使用系统 security 工具，Windows 使用随客户端导出的 PowerShell 凭据管理器桥接；Token 仅经匿名管道传递，不放入命令行、日志或明文文件。若凭据库不可用仍允许本次密码登录，无法保证下次自动登录。
+
+桌面附件固定为 `DLUT-Online-Windows.exe`（x86_64，内嵌资源包）与 `DLUT-Online-macOS.dmg`（完整 Apple 芯片应用及 Applications 快捷入口）。macOS 导出和 DMG 打包在 macOS 上运行；官方模板仅提供 universal 二进制，因此中间应用仍按 universal 导出，打包时用 lipo 移除 Intel 架构后重新签名，最终仅发布 arm64；打包工具重新做 ad-hoc 签名，并挂载最终 DMG 检查严格签名、应用标识和仅 arm64 架构。检查失败阻止产物上传及 Release。网站直接链接最新正式 Release 的这两个文件，新链接需在首个包含 EXE/DMG 的版本发布后才可用，旧版本附件不会自动转换。
+
+当前 Windows 未签名，macOS 使用有效 ad-hoc 签名，未使用 Apple Developer ID 或公证，不需要私钥、付费证书或 GitHub Secrets。ad-hoc 修复失效模板签名，但不提供发布者身份认证，浏览器下载仍可能被 Gatekeeper 拦截；不通过关闭 Gatekeeper 或批量清除隔离标记绕过。未来正式签名须另行配置 Developer ID 证书及私钥、公证凭据。
