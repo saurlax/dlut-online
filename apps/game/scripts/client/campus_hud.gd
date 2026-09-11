@@ -29,7 +29,7 @@ var transfer_panel: VBoxContainer
 var transfer_status: Label
 var transfer_target := ""
 var root_control: Control
-var player_status: VBoxContainer
+var player_status: HBoxContainer
 var username_label: Label
 var latency_label: Label
 
@@ -309,18 +309,20 @@ func _process(delta: float) -> void:
 		pause_exploration()
 
 func build_player_status() -> void:
-	player_status = VBoxContainer.new()
+	player_status = HBoxContainer.new()
 	player_status.name = "PlayerStatus"
 	player_status.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root_control.add_child(player_status)
 	player_status.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
 	player_status.offset_left = -256
 	player_status.offset_right = -16
-	player_status.offset_top = -64
-	player_status.offset_bottom = -16
-	player_status.add_theme_constant_override("separation", 2)
+	player_status.offset_top = 0
+	player_status.offset_bottom = 0
+	player_status.grow_vertical = Control.GROW_DIRECTION_BEGIN
+	player_status.add_theme_constant_override("separation", 8)
 	username_label = Label.new()
 	username_label.name = "Username"
+	username_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	username_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	latency_label = Label.new()
 	latency_label.name = "Latency"
