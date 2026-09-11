@@ -60,7 +60,7 @@
 
 ### Requirement: 编辑器运行环境选择
 
-Godot 编辑器 SHALL 在顶部提供 API Local / Dev 下拉框。Local SHALL 使用 http://localhost:8415，Dev SHALL 使用 https://dlut.online；两者客户端环境均为 development。选择 SHALL 保存在本机已忽略的配置中，并对下一次 F5/F6 运行生效；未设置时默认 Local。
+Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，编辑器插件 SHALL 保留原名 Desktop server configuration 并放在 addons/desktop_export/。Local SHALL 使用 http://localhost:8415，Dev SHALL 使用 https://dlut.online；两者客户端环境均为 development。选择 SHALL 保存在本机已忽略的配置中，并对下一次 F5/F6 运行生效；未设置时默认 Local。
 
 #### Scenario: 快速切换服务地址
 - **WHEN** 开发者选择 Local 或 Dev 后启动游戏

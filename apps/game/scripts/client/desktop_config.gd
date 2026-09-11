@@ -51,7 +51,7 @@ static func read() -> Dictionary:
 			editor_run_defaults = editor_defaults()
 		defaults = editor_run_defaults
 		if defaults.is_empty():
-			push_error("Invalid editor API profile; select Local or Dev in the editor toolbar.")
+			push_error("Invalid editor environment profile; select Local or Dev in the editor toolbar.")
 			return {}
 	else:
 		if not FileAccess.file_exists(CONFIG_PATH):
