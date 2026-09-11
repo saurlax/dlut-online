@@ -1,0 +1,9 @@
+Weather data: Open-Meteo — https://open-meteo.com/
+Licensed under CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+DLUT Online transforms model cloud cover, wind and WMO weather codes into
+procedural sky, volumetric clouds, lighting and haze effects. These visualizations do not
+reproduce observed cloud shapes or campus weather-station measurements.
+Free API access is for non-commercial use. Commercial deployments require an
+appropriate Open-Meteo subscription: https://open-meteo.com/en/pricing
+Campus query centres: http://map.dlut.edu.cn/openmap/mapi/campus/v1
+Solar calculation reference: https://gml.noaa.gov/grad/solcalc/calcdetails.html

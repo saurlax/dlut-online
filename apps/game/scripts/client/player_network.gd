@@ -14,6 +14,10 @@ signal map_finished()
 const RemotePlayer = preload("res://scripts/client/remote_player.gd")
 const Account = preload("res://scripts/client/account_session.gd")
 const Catalog = preload("res://scripts/shared/campus_catalog.gd")
+var campus_weather := {}
+var environment_time := 0.0
+var environment_ticks := 0
+
 var player: CharacterBody3D
 var campus_id := "lingshui"
 const ChatRules = preload("res://scripts/shared/chat_rules.gd")
@@ -242,6 +246,8 @@ func require_login(reason := "登录已失效，请重新登录") -> void:
 	active = false
 	started = false
 	welcomed = false
+	campus_weather.clear()
+	environment_time = 0.0
 	retry_in = 0
 	if host != null: host.destroy()
 	host = null
@@ -333,6 +339,14 @@ func message(m: Dictionary) -> void:
 			chat_ready_at = maxi(chat_ready_at, Time.get_ticks_msec() + clampi(int(m.get("retry_ms", 0)), 0, ChatRules.INTERVAL_MS))
 			chat_pending = 0
 			chat_rejected.emit()
+
+		"environment":
+			if not welcomed or not m.get("campuses") is Dictionary: return
+			var stamp: Variant = m.get("unix_time")
+			if not (stamp is float or stamp is int) or not is_finite(float(stamp)) or float(stamp) <= 0.0: return
+			campus_weather = m.campuses
+			environment_time = float(stamp)
+			environment_ticks = Time.get_ticks_msec()
 		"welcome":
 			if m.get("version") != Protocol.VERSION:
 				close_code = 4002
@@ -564,3 +578,7 @@ func _reset_chat() -> void:
 	chat_ready_at = 0
 	chat_reset.emit()
 	chat_changed.emit()
+
+func environment_unix_time() -> float:
+	if environment_time <= 0.0: return Time.get_unix_time_from_system()
+	return environment_time + float(Time.get_ticks_msec() - environment_ticks)/1000.0

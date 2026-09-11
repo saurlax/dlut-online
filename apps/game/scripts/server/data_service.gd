@@ -1,5 +1,10 @@
 extends Node
 
+signal weather_updated()
+var weather := {}
+var weather_busy := false
+var next_weather := 0.0
+
 var base_url := ""
 var api_key := ""
 var epoch := ""
@@ -54,3 +59,14 @@ func report(delta: float, players: Array) -> void:
 		next_report = retry_delay
 		retry_delay = minf(10.0, retry_delay * 2)
 	busy = false
+
+func poll_weather(delta: float) -> void:
+	next_weather -= delta
+	if weather_busy or next_weather > 0.0: return
+	weather_busy = true
+	var result := await post("/api/v1/game/weather", {})
+	if result.get("status") == 200 and result.body.get("campuses") is Dictionary:
+		weather = result.body.campuses
+		weather_updated.emit()
+	next_weather = 60.0
+	weather_busy = false
