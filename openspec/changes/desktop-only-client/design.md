@@ -27,3 +27,9 @@
 ## Migration Plan
 
 同步发布桌面与双服务构建。Go 不再携带或需要 Web 文件，游戏协议升级为 v3 并暴露 UDP 端口，配置公网端点与生产 DTLS 证书；恢复 WebSocket/Web 必须协调回滚客户端、Go 和游戏服。既有 Web 变更保留历史完成记录，本次是平台支持现行依据。
+
+## Editor Run Profiles
+
+复用现有 desktop_export EditorPlugin，在 CONTAINER_TOOLBAR 放置 API 标签与 Local / Dev OptionButton。Local 使用 http://localhost:8415，Dev 按用户指定使用 https://dlut.online；二者都是客户端 development 配置，不改变远端服务的部署环境。使用 ConfigFile 将 profile 存入 apps/game/.godot/do_run_environment.cfg，该目录已忽略，不提交或导出。
+
+desktop_config 仅在 editor feature 的运行进程读取本机选择，首次读取后固定本进程默认值，避免运行中切换导致账号认证与票据申请跨 API。显式 DO_ENV / DO_API_SERVER_URL 仍按现有规则覆盖。插件展示实际默认地址及环境变量覆盖提示。导出插件继续从 production 默认值和显式环境变量生成包内配置，不读取本机 profile。

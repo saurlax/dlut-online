@@ -2,10 +2,23 @@
 extends RefCounted
 
 const CONFIG_PATH := "res://desktop_config.json"
+const EDITOR_PROFILE_PATH := "res://.godot/do_run_environment.cfg"
 const DEFAULT_URLS := {
 	"development": "http://localhost:8415",
 	"production": "https://dlut.online",
 }
+static var editor_run_defaults: Variant = null
+
+static func editor_defaults() -> Dictionary:
+	var local := {"environment": "development", "server_url": DEFAULT_URLS.development}
+	var config := ConfigFile.new()
+	var error := config.load(EDITOR_PROFILE_PATH)
+	if error == ERR_FILE_NOT_FOUND: return local
+	if error != OK: return {}
+	match config.get_value("run", "profile", "local"):
+		"local": return local
+		"dev": return {"environment": "development", "server_url": DEFAULT_URLS.production}
+	return {}
 
 # Explicit environment selection resets the URL; an explicit URL wins over both.
 static func resolve(defaults: Dictionary, environment: String, server_url: String) -> Dictionary:
@@ -31,8 +44,16 @@ static func resolve(defaults: Dictionary, environment: String, server_url: Strin
 	return {"environment": selected_env, "server_url": selected_url}
 
 static func read() -> Dictionary:
-	var defaults := {"environment": "development", "server_url": DEFAULT_URLS.development}
-	if not OS.has_feature("editor"):
+	var defaults: Dictionary
+	if OS.has_feature("editor"):
+		# Freeze this process's defaults; toolbar changes apply to the next run.
+		if editor_run_defaults == null:
+			editor_run_defaults = editor_defaults()
+		defaults = editor_run_defaults
+		if defaults.is_empty():
+			push_error("Invalid editor API profile; select Local or Dev in the editor toolbar.")
+			return {}
+	else:
 		if not FileAccess.file_exists(CONFIG_PATH):
 			push_error("Desktop configuration is missing; enable the desktop export plugin.")
 			return {}
