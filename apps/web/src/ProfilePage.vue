@@ -59,16 +59,16 @@ async function submit(kind: "name" | "email") {
             <n-p depth="3">新邮箱验证通过后生效，确认时需要当前密码。</n-p>
             <n-button attr-type="submit" :loading="busy">发送更换邮箱邮件</n-button>
           </n-form>
-          <n-divider />
-          <n-button type="error" block :disabled="busy" @click="logout(); error = ''; notice = ''; newEmail = ''">退出登录</n-button>
         </template>
         <template v-else-if="authError"><n-button @click="restoreSession">重试登录状态</n-button></template>
         <template v-else><n-p>登录后查看和管理你的个人资料。</n-p><n-button tag="a" href="/login" type="primary">前往登录</n-button></template>
       </template>
     </n-card>
+    <n-button v-if="authReady && account" class="profile-logout" type="error" :disabled="busy" @click="logout(); error = ''; notice = ''; newEmail = ''">退出登录</n-button>
   </main>
 </template>
 
 <style scoped>
 .profile-content { overflow-wrap: anywhere; }
+.profile-logout { margin-top: 24px; }
 </style>
