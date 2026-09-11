@@ -57,3 +57,19 @@
 #### Scenario: 默认启动与导出
 - **WHEN** 从编辑器启动或导出 Windows/macOS 客户端
 - **THEN** 默认选择 Forward+，移动端专属配置在后续适配时再添加
+
+### Requirement: 编辑器运行环境选择
+
+Godot 编辑器 SHALL 在顶部提供 API Local / Dev 下拉框。Local SHALL 使用 http://localhost:8415，Dev SHALL 使用 https://dlut.online；两者客户端环境均为 development。选择 SHALL 保存在本机已忽略的配置中，并对下一次 F5/F6 运行生效；未设置时默认 Local。
+
+#### Scenario: 快速切换服务地址
+- **WHEN** 开发者选择 Local 或 Dev 后启动游戏
+- **THEN** 客户端使用对应 API 根地址；重新打开编辑器保留选择，已有进程的配置保持不变
+
+#### Scenario: 显式覆盖
+- **WHEN** 进程带有 DO_ENV 或 DO_API_SERVER_URL
+- **THEN** 保持现有显式环境变量优先级，编辑器提示覆盖正在生效
+
+#### Scenario: 发布隔离
+- **WHEN** 编辑器选中任一运行配置后导出客户端或游戏服
+- **THEN** 本机选择和编辑器控件不进入发布包，桌面默认 production 和 https://dlut.online，仍可使用显式环境变量覆盖构建配置
