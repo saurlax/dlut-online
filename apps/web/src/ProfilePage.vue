@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { NAlert, NButton, NCard, NDescriptions, NDescriptionsItem, NDivider, NForm, NFormItem, NInput, NP, NSpin } from "naive-ui";
+import { NAlert, NButton, NCard, NDescriptions, NDescriptionsItem, NDivider, NForm, NFormItem, NInput, NModal, NP, NSpin } from "naive-ui";
 import { account, authReady, authError, AuthError, changeEmail, logout, restoreSession, updateDisplayName } from "./auth";
 
 const displayName = ref("");
@@ -8,7 +8,13 @@ const newEmail = ref("");
 const busy = ref(false);
 const error = ref("");
 const notice = ref("");
-watch(account, (value) => { displayName.value = value?.display_name ?? ""; }, { immediate: true });
+const showLogoutConfirm = ref(false);
+function confirmLogout() {
+  showLogoutConfirm.value = false;
+  logout();
+  error.value = ""; notice.value = ""; newEmail.value = "";
+}
+watch(account, (value) => { displayName.value = value?.display_name ?? ""; if (!value) showLogoutConfirm.value = false; }, { immediate: true });
 async function submit(kind: "name" | "email") {
   if (busy.value) return;
   error.value = ""; notice.value = "";
@@ -64,7 +70,10 @@ async function submit(kind: "name" | "email") {
         <template v-else><n-p>登录后查看和管理你的个人资料。</n-p><n-button tag="a" href="/login" type="primary">前往登录</n-button></template>
       </template>
     </n-card>
-    <n-button v-if="authReady && account" class="profile-logout" type="error" :disabled="busy" @click="logout(); error = ''; notice = ''; newEmail = ''">退出登录</n-button>
+    <n-button v-if="authReady && account" class="profile-logout" type="error" :disabled="busy" @click="showLogoutConfirm = true">退出登录</n-button>
+    <n-modal v-model:show="showLogoutConfirm" preset="dialog" type="warning" title="退出登录"
+      content="确定要退出当前账号吗？" positive-text="退出登录" negative-text="取消"
+      :positive-button-props="{ type: 'error' }" @positive-click="confirmLogout" @negative-click="showLogoutConfirm = false" />
   </main>
 </template>
 
