@@ -36,7 +36,7 @@ desktop_config 仅在 editor feature 的运行进程读取本机选择，首次�
 
 ## Unified CI Tests
 
-当前采用 test.yml、build.yml、release.yml 三个工作流。test.yml 仅提供 workflow_call，build.yml 统一按路径触发 main 源码 push、PR、手动及 workflow_call，先调用轻量测试，四个独立任务 windows、macos、server、web 均 needs: test 并行构建。纯文档不触发，功能分支 push 不重复构建，相关源码统一构建四种产物。release.yml 校验标签后调用整个 build.yml，全部成功后发布本次 EXE/DMG。仅非标签运行取消旧构建，不增加 ci.yml 或跳过测试入口。
+当前采用 test.yml、build.yml、release.yml 三个工作流。test.yml 仅提供 workflow_call，build.yml 统一按路径触发 main 源码 push、PR、手动及 workflow_call，先调用轻量测试（Vue 与 Go 在两个独立 Linux runner 并行运行，两者全部成功才允许构建），四个独立任务 windows、macos、server、web 均 needs: test 并行构建。纯文档不触发，功能分支 push 不重复构建，相关源码统一构建四种产物。release.yml 校验标签后调用整个 build.yml，全部成功后发布本次 EXE/DMG。仅非标签运行取消旧构建，不增加 ci.yml 或跳过测试入口。
 
 测试阶段只做 Vue vue-tsc、Go go test（60 秒超时）和 vet，不跑 race、不下载 LFS、Godot 或导出模板。Go 的 PocketBase/数据库/前端真实产物测试添加 integration 标签，进程联调沿用既有标签。默认保留纯计算和使用替身依赖、无真实网络/数据库的内存内 handler 单元测试。为满足 go:embed，在测试任务临时 static/ 放置占位文件；构建任务独立检出并由 Docker 生成真实 Vue 产物，不复用占位文件。
 
