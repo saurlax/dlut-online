@@ -36,7 +36,7 @@ desktop_config 仅在 editor feature 的运行进程读取本机选择，首次�
 
 ## Unified CI Tests
 
-build-web.yml 与 build-game.yml 各自通过原生 paths 过滤分支 push/PR，也支持手动运行及 workflow_call。Web 内置 test 任务，build 通过 needs: test 等待测试成功；Game 当前未接入轻量单元测试，只执行必要生成和导出，不重复跑 Vue/Go，不增加空 test。未来 Godot 单元测试直接放入 Game 工作流作为其构建前置。不保留 test.yml、ci.yml 或脚本路径判断。release.yml 校验标签后并行调用两个 build 工作流，Web 执行 test → build，Game 执行构建，全部成功后下载本次构建 ZIP 发布。各构建工作流使用独立 concurrency 组，仅非标签运行取消旧任务。
+build-web.yml 与 build-game.yml 各自通过原生 paths 过滤 main 分支 push 和 PR；其他分支 push 不触发，避免同一 PR 更新重复构建，也支持手动运行及 workflow_call。Web 内置 test 任务，build 通过 needs: test 等待测试成功；Game 当前未接入轻量单元测试，只执行必要生成和导出，不重复跑 Vue/Go，不增加空 test。未来 Godot 单元测试直接放入 Game 工作流作为其构建前置。不保留 test.yml、ci.yml 或脚本路径判断。release.yml 校验标签后并行调用两个 build 工作流，Web 执行 test → build，Game 执行构建，全部成功后下载本次构建 ZIP 发布。各构建工作流使用独立 concurrency 组，仅非标签运行取消旧任务。
 
 测试阶段只做 Vue vue-tsc、Go go test（60 秒超时）和 vet，不跑 race、不下载 LFS、Godot 或导出模板。Go 的 PocketBase/数据库/前端真实产物测试添加 integration 标签，进程联调沿用既有标签。默认保留纯计算和使用替身依赖、无真实网络/数据库的内存内 handler 单元测试。为满足 go:embed，在测试任务临时 static/ 放置占位文件；构建任务独立检出并由 Docker 生成真实 Vue 产物，不复用占位文件。
 
