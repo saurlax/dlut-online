@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, reactive, ref } from "vue";
-import { NAlert, NButton, NCard, NFlex, NForm, NFormItem, NInput, NP, NSpin, NText, type FormInst, type FormRules } from "naive-ui";
-import { account, authReady, AuthError, approveGame, login, logout, request } from "./auth";
+import { NAlert, NButton, NCard, NFlex, NForm, NFormItem, NInput, NP, NSpin, type FormInst, type FormRules } from "naive-ui";
+import { account, authReady, AuthError, login, logout, request } from "./auth";
 
 const props = defineProps<{ register: boolean }>();
 const form = ref<FormInst | null>(null);
@@ -10,10 +10,7 @@ const busy = ref(false);
 const error = ref("");
 const notice = ref("");
 const created = ref(false);
-const approved = ref(false);
-const gameRequest = new URLSearchParams(location.search).get("request") ?? "";
-const suffix = gameRequest ? `?request=${encodeURIComponent(gameRequest)}` : "";
-const heading = computed(() => account.value ? (gameRequest ? "登录游戏" : "已登录") : props.register ? "创建账号" : "登录");
+const heading = computed(() => account.value ? "已登录" : props.register ? "创建账号" : "登录");
 const rules: FormRules = {
   email: [{ required: true, message: "请输入邮箱", trigger: ["blur", "input"] }, { type: "email", message: "请输入有效邮箱", trigger: "blur" }],
   username: { required: true, pattern: /^[A-Za-z0-9_-]{1,64}$/, message: "用户名仅支持字母、数字、下划线和连字符，最多 64 个字符", trigger: "blur" },
@@ -57,19 +54,6 @@ async function submit() {
     } else error.value = message(e);
   } finally { busy.value = false; }
 }
-async function enterGame() {
-  busy.value = true; error.value = "";
-  try {
-    const result = await approveGame(gameRequest);
-    const target = new URL(result.redirect_uri);
-    if (target.protocol !== "http:" || target.hostname !== "127.0.0.1" || target.pathname !== "/callback") throw new Error("返回游戏的地址无效，请重新发起登录。");
-    approved.value = true;
-    location.assign(target.href);
-  } catch (e) {
-    error.value = e instanceof AuthError && e.status === 400 ? "本次游戏登录已过期或已完成，请返回游戏重新点击登录。" : message(e);
-    if (e instanceof AuthError && e.status === 401) logout();
-  } finally { busy.value = false; }
-}
 </script>
 
 <template>
@@ -81,22 +65,20 @@ async function enterGame() {
         <n-alert v-if="notice" type="success" class="account-message" role="status">{{ notice }}</n-alert>
         <template v-if="account">
           <n-p>你好，{{ account.display_name }}</n-p>
-          <n-p v-if="gameRequest" depth="3">确认使用此账号登录刚刚打开网页登录的 DLUT Online 客户端。若不是你发起的登录，请关闭此页面。</n-p>
           <n-flex vertical :size="16">
-            <n-button v-if="gameRequest" type="primary" block :loading="busy" :disabled="approved" @click="enterGame">{{ approved ? '已授权，请返回游戏' : '确认并返回游戏' }}</n-button>
-            <n-button v-else tag="a" href="/download" type="primary" block>下载客户端</n-button>
-            <n-button text :disabled="busy" @click="logout(); approved = false; error = ''">退出当前账号</n-button>
+            <n-button tag="a" href="/download" type="primary" block>下载客户端</n-button>
+            <n-button text :disabled="busy" @click="logout(); error = ''">退出当前账号</n-button>
           </n-flex>
         </template>
         <template v-else-if="created">
           <n-p>注册邮箱：{{ model.email }}</n-p>
           <n-flex vertical :size="16">
-            <n-button tag="a" :href="'/login' + suffix" type="primary" block>已验证，前往登录</n-button>
+            <n-button tag="a" href="/login" type="primary" block>已验证，前往登录</n-button>
             <n-button text :loading="busy" @click="sendVerification">重新发送验证邮件</n-button>
           </n-flex>
         </template>
         <template v-else>
-          <n-p depth="3">{{ register ? '创建账号后验证邮箱，即可登录网站和游戏。' : gameRequest ? '登录后即可返回游戏。' : '使用你的 DLUT Online 账号。' }}</n-p>
+          <n-p depth="3">{{ register ? '创建账号后验证邮箱，即可登录网站和游戏。' : '使用你的 DLUT Online 账号。' }}</n-p>
           <n-form ref="form" :model="model" :rules="rules" @submit.prevent="submit">
             <n-form-item label="邮箱" path="email"><n-input v-model:value="model.email" :input-props="{ type: 'email', autocomplete: 'email', inputmode: 'email' }" placeholder="请输入邮箱" :disabled="busy" /></n-form-item>
             <n-form-item v-if="register" label="用户名" path="username"><n-input v-model:value="model.username" :maxlength="64" :input-props="{ autocomplete: 'username' }" placeholder="字母、数字、下划线或连字符" :disabled="busy" /></n-form-item>
@@ -106,10 +88,9 @@ async function enterGame() {
             <n-button attr-type="submit" type="primary" block :loading="busy">{{ register ? '注册' : '登录' }}</n-button>
           </n-form>
           <n-flex justify="space-between" class="account-links" :size="16">
-            <n-button text tag="a" :href="(register ? '/login' : '/register') + suffix" type="primary">{{ register ? '已有账号，登录' : '没有账号？注册' }}</n-button>
+            <n-button text tag="a" :href="register ? '/login' : '/register'" type="primary">{{ register ? '已有账号，登录' : '没有账号？注册' }}</n-button>
             <n-button v-if="!register" text :disabled="busy" @click="sendVerification">重发验证邮件</n-button>
           </n-flex>
-          <n-text v-if="gameRequest" depth="3" class="account-hint">登录授权仅对本次游戏请求有效。</n-text>
         </template>
       </template>
     </n-card>

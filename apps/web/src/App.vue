@@ -24,8 +24,6 @@ const themeOverrides: GlobalThemeOverrides = {
 };
 const isAccountPage = /^\/(login|register)\/?$/.test(window.location.pathname);
 const isRegisterPage = /^\/register\/?$/.test(window.location.pathname);
-const gameRequest = isAccountPage ? new URLSearchParams(location.search).get("request") : null;
-const authSuffix = gameRequest ? `?request=${encodeURIComponent(gameRequest)}` : "";
 if (isAccountPage) document.title = `${isRegisterPage ? '注册' : '登录'} | DLUT Online`;
 const isDownloadPage = /^\/download\/?$/.test(window.location.pathname);
 const platform = detectDesktopPlatform(navigator.userAgent, navigator.platform, navigator.maxTouchPoints);
@@ -79,12 +77,12 @@ const currentScene = computed(() => scenes[selected.value]!);
           <n-flex align="center" :size="16">
             <n-button text tag="a" href="/download" color="#ffffff">下载客户端</n-button>
             <template v-if="account">
-              <n-button text tag="a" :href="'/login' + authSuffix" color="#ffffff" class="nav-account">{{ account.display_name }}</n-button>
+              <n-button text tag="a" href="/login" color="#ffffff" class="nav-account">{{ account.display_name }}</n-button>
               <n-button ghost color="#ffffff" @click="logout">退出</n-button>
             </template>
             <template v-else>
-              <n-button text tag="a" :href="'/login' + authSuffix" color="#ffffff">登录</n-button>
-              <n-button tag="a" :href="'/register' + authSuffix" ghost color="#ffffff">注册</n-button>
+              <n-button text tag="a" href="/login" color="#ffffff">登录</n-button>
+              <n-button tag="a" href="/register" ghost color="#ffffff">注册</n-button>
             </template>
           </n-flex>
         </nav>

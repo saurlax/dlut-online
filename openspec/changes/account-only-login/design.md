@@ -1,31 +1,28 @@
 ## Context
 
-Go 已嵌入 PocketBase，Godot 目前只有游客登录。最新决定为全部在网站登录，未来 OIDC 也复用网站；本轮只交付现有 Windows/macOS 客户端，移动平台仅明确可迁移边界。
+所有玩家使用 PocketBase 真实账号。客户端登录方案改为 Godot 原生邮箱、密码表单，直接调用 PocketBase；网站保留账号登录、注册与邮箱验证。
 
 ## Goals / Non-Goals
 
-**Goals:** 官网登录注册、已验证账号入场、浏览器认证后返回游戏；不依赖后台持续联网。
-**Non-Goals:** 不接尚未配置的 OIDC、不内嵌 WebView、不导出移动客户端、不持久保存游戏凭据、不改变校园模型。
+**Goals:** 原生账号登录、已验证账号入场、取消与错误重试，不开启本机监听端口。
+**Non-Goals:** 不实现 OIDC、移动端插件或导出、客户端注册表单，不保存密码，不改变校园模型。
 
 ## Decisions
 
-- 网站使用 PocketBase 原生密码认证、注册与验证邮件接口，保留邮箱已验证且未禁用的要求；验证邮件使用 PocketBase 原有验证页。Naive UI 实现 /login、/register 和导航，下载入口为 NButton text tag=a。
-- 浏览器会话 token 保存到 sessionStorage，恢复通过 auth-refresh 校验，退出清除。授权页展示当前账号并要求点击进入游戏，避免复用浏览器账号时无感选择错误身份。
-- 桌面游戏创建绑定随机 verifier 的短期授权请求，只把 SHA256 challenge 发给 Go；在 127.0.0.1 随机端口监听一次性 HTTP 回调，使用 OS.shell_open 打开官网。服务端仅允许严格的 loopback 回调，浏览器不能传入任意重定向。
-- 用户在官网确认后，Go 返回带 state 和一次性 code 的回调 URL。客户端校验 state 并以 verifier 兑换新的 PocketBase 登录 token。请求有效期五分钟、批准后的 code 三十秒，兑换原子单次；账号在批准及兑换时均重新检查。不在 URL 中传递长期 token，不输出密钥日志。
-- 游戏只在进程内保存账号会话，取票携带 Bearer token；收到游戏服 welcome 后进入。401/403 清理会话回封面；短暂连接故障保留退避重连；切校区仍复用 ENet 连接。
-- 未来 iOS 用 ASWebAuthenticationSession，Android 用 Custom Tabs 与验证过的 App Links，通过平台注册的固定回调适配同一授权请求与兑换机制；不把桌面 loopback 用作移动端验收方案。未来增加移动端时才扩展允许的回调白名单，并处理进程重建与安全保存待完成授权。不依赖 PocketBase all-in-one OAuth2 的后台实时连接。
-- 将来 OIDC 的 provider secret 与身份校验留在服务器；网站完成 OIDC 后仍使用相同的用户确认与客户端一次性兑换流程。新身份必填字段和可信邮箱映射在实际接入提供方时处理。
-
-- 客户端不按 DO_ENV 强制游戏 DTLS，按票据中的 enet:// 或 enets:// 选择传输；enets:// 始终校验信任链与主机名且不自动降级。Go 与游戏服的 production 限制保留，明文测试部署使用 development。
+- Godot 使用 LineEdit 输入邮箱和密码，密码隐藏，支持回车提交、重复提交保护、取消。提交立即清空密码框；密码不保存到文件或日志，token 仅保留于进程。
+- HTTPRequest 直接调用 /api/collections/users/auth-with-password。PocketBase AuthRule 要求 verified=true 且 disabled=false；客户端检查返回账号，票据和游戏服再次验证身份，不存在游客降级。
+- 删除桌面 TCPServer 回调、state/verifier/授权码及 Go /api/v1/auth/requests、approve、exchange；网站移除请求参数传递与返回游戏按钮。网站登录注册、验证邮件重发继续使用原生 PocketBase API。
+- 客户端注册链接打开 https://dlut.online/register，只用于注册，不承担登录回调。新账号先在网站完成邮箱验证，再回到游戏输入邮箱密码。
+- 只有收到游戏服 welcome 才进入世界。短暂网络故障退避重连，认证失效清理会话并返回登录，切校区复用连接；取消后的迟到认证结果不得建立会话。
+- DO_ENV 保留原有构建及运行时覆盖。production 客户端账号 API 使用 HTTPS；游戏传输按 enet:// 或 enets:// 选择，DTLS 校验失败不自动降级。Go 和游戏服 production 限制保留。
+- 将来 OIDC 作为独立登录方式另行设计，移动平台按系统认证能力接入；当前不保留未使用的回调实现。
 
 ## Risks / Trade-offs
 
-- SMTP 未配置 → 注册成功与发信失败分开提示，允许重发；本地检查不能证明外网邮件投递。
-- 本机端口不可用或用户关闭页面 → 明确错误、取消与重试，清理监听器；不降级为游客。
-- 浏览器可能不允许自动聚焦游戏 → 回调页面显示已完成可返回游戏，客户端尽力请求前台；不声称保证操作系统焦点切换。
-- 浏览器会话 token 可被同源脚本读取 → 不写 URL，不长期存储，退出清理。
+- 无效凭据、未验证或禁用账号不暴露额外账号信息，统一提示检查邮箱、密码及账号状态。
+- 网络失败与超时恢复可操作表单，取消终止请求并丢弃迟到结果。
+- SMTP 仍由部署配置，网站注册与验证邮件结果分开提示。
 
 ## Migration Plan
 
-网站/API 与新版客户端共同发布；拒绝旧游客客户端，协议数据结构保持 v4。现有账号数据不改。旧游客规范标明由本变更取代，更新 AGENTS 与 API 技术文档。回滚不恢复游客政策。
+网站/API 与新版客户端共同发布。现有账号、游戏票据与协议 v4 不变，旧浏览器授权客户端需升级。移除未使用的回调接口及对应专用测试，保留真实 PocketBase 密码认证和账号安全检查。

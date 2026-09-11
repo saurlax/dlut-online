@@ -19,6 +19,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -322,5 +323,51 @@ func TestENetDTLS(t *testing.T) {
 		if err != nil || bytes.Contains(result, []byte("SCRIPT ERROR")) || !bytes.Contains(result, []byte("PASS:")) {
 			t.Fatalf("%s: %v\n%s", script, err, result)
 		}
+	}
+}
+
+func TestGodotPasswordLogin(t *testing.T) {
+	app, handler := accountTestApp(t)
+	users, err := app.FindCollectionByNameOrId("users")
+	if err != nil {
+		t.Fatal(err)
+	}
+	record := core.NewRecord(users)
+	record.SetEmail("client@example.com")
+	record.SetPassword("correct-horse-battery-staple")
+	record.Set("username", "client_test")
+	record.Set("display_name", "Client player")
+	record.SetVerified(true)
+	if err := app.Save(record); err != nil {
+		t.Fatal(err)
+	}
+	api := httptest.NewServer(handler)
+	defer api.Close()
+	reserved, err := net.ListenPacket("udp", "127.0.0.1:0")
+	if err != nil {
+		t.Fatal(err)
+	}
+	_, port, _ := net.SplitHostPort(reserved.LocalAddr().String())
+	reserved.Close()
+	servers, _ := app.FindCollectionByNameOrId("servers")
+	endpoint := core.NewRecord(servers)
+	endpoint.Set("name", "password-test")
+	endpoint.Set("endpoint", "enet://127.0.0.1:"+port)
+	endpoint.Set("enabled", true)
+	if err := app.Save(endpoint); err != nil {
+		t.Fatal(err)
+	}
+	project, _ := filepath.Abs("../game")
+	server := exec.Command("godot", "--headless", "--path", project, "scenes/server.tscn")
+	server.Env = append(os.Environ(), "DO_ENV=development", "DO_GAME_TLS_CERT=", "DO_GAME_TLS_KEY=", "DO_GAME_SERVER_PORT="+port, "DO_API_KEY="+strings.Repeat("s", 32), "DO_API_SERVER_URL="+api.URL)
+	if err := server.Start(); err != nil {
+		t.Fatal(err)
+	}
+	defer func() { server.Process.Kill(); server.Wait() }()
+	client := exec.Command("godot", "--headless", "--path", project, "--script", "tests/password_login.gd")
+	client.Env = append(os.Environ(), "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
+	output, err := client.CombinedOutput()
+	if err != nil || bytes.Contains(output, []byte("SCRIPT ERROR")) || !bytes.Contains(output, []byte("PASS:")) {
+		t.Fatalf("client password login: %v\n%s", err, output)
 	}
 }
