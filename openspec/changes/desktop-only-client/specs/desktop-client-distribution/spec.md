@@ -80,16 +80,16 @@ Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，Run environmen
 
 ### Requirement: 轻量测试与构建发布门禁
 
-CI SHALL 仅在单个 Linux test 任务执行 Vue 类型检查、Go 默认单元测试和 vet，Go 测试 SHALL 设置超时；默认不启用 race，不得运行集成、E2E、系统凭据、物理世界、容器 smoke 或导出包运行检查。需要真实数据库或前端构建产物的 Go 测试 SHALL 使用 integration 标签，默认 go test 不执行。Godot 后续仅允许无校园、网络或系统依赖的纯函数单元测试。
+每个构建工作流 SHALL 通过前置 test 调用共享轻量测试，仅在单个 Linux runner 执行 Vue 类型检查、Go 默认单元测试和 vet，Go 测试 SHALL 设置超时；默认不启用 race，不得运行集成、E2E、系统凭据、物理世界、容器 smoke 或导出包运行检查。需要真实数据库或前端构建产物的 Go 测试 SHALL 使用 integration 标签，默认 go test 不执行。Godot 后续仅允许无校园、网络或系统依赖的纯函数单元测试。
 
 #### Scenario: 分支及 PR 检查
 - **WHEN** 应用源码或工作流变更触发 CI
-- **THEN** 先执行统一轻量 test，成功后才按路径执行 Web/Game 构建；失败时构建不执行
+- **THEN** Web/Game 工作流按路径触发，各自先执行轻量 test，成功后才执行内部 build；失败时对应构建不执行
 
 #### Scenario: 版本发布
 - **WHEN** 推送版本标签触发 release
-- **THEN** 校验版本后执行同一 test，通过后复用 Web/Game 构建工作流，并上传本次构建的客户端产物；任一步失败不得发布
+- **THEN** 校验版本后复用 Web/Game 构建工作流各自执行 test → build，全部成功后上传本次构建的客户端产物；任一步失败不得发布
 
 #### Scenario: 不可绕过的测试门禁
 - **WHEN** 从仓库提供的任一 CI、手动或 release 入口运行
-- **THEN** 构建始终依赖 test 成功，build 工作流仅能被复用调用，不提供独立触发器或跳过测试开关
+- **THEN** 每个 build 工作流内部的 build 始终依赖 test 成功，不提供跳过测试开关，也不增加 ci.yml 调度层
