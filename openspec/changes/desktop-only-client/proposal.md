@@ -13,7 +13,7 @@
 - 更新 CI、应用技术文档和 AGENTS.md；根 README 不修改。
 - **BREAKING**：改用 ENet/UDP；当前协议版本为 4。Go 返回公网游戏地址和票据，客户端直连游戏服，移除 Go WebSocket 代理。生产使用 DTLS 证书校验。
 
-- 编辑器顶部增加 Env Local / Dev 下拉框，插件按惯例放在 addons/desktop_export，本机选择仅影响下一次编辑器运行；Dev 使用 https://dlut.online，桌面导出默认仍为 production。
+- 编辑器顶部增加 Env Local / Dev 下拉框，运行环境插件放在 addons/run_environment，桌面导出插件独立保留在 addons/desktop_export，本机选择仅影响下一次编辑器运行；Dev 使用 https://dlut.online，桌面导出默认仍为 production。
 
 ## Capabilities
 
