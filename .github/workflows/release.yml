@@ -20,13 +20,16 @@ jobs:
             echo 'Expected vMAJOR.MINOR.PATCH or vMAJOR.MINOR.PATCH-prerelease'
             exit 1
           }
-  web:
+  test:
     needs: validate
+    uses: ./.github/workflows/test.yml
+  web:
+    needs: test
     uses: ./.github/workflows/build-web.yml
     with:
       release: true
   game:
-    needs: validate
+    needs: test
     uses: ./.github/workflows/build-game.yml
     with:
       release: true

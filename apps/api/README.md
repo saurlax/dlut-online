@@ -95,13 +95,15 @@ Godot 编辑器打开 `apps/game/project.godot` 后，顶部 `Env: Local / Dev` 
 
 生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。在 PocketBase `servers.endpoint` 填写客户端可达地址，例如 enets://game.example.com:1949；不能填容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。客户端在 development 和 production 均接受 enet://（明文）与 enets://（DTLS），按下发协议连接，不在 DTLS 失败后自动降级。临时无 DTLS 测试时，Go 与游戏服需设置 DO_ENV=development，游戏服清空 DO_GAME_TLS_CERT/DO_GAME_TLS_KEY，servers.endpoint 使用 enet://公网地址:公网UDP端口；正式客户端无需切换 development。Compose 固定将 ./.local/game-tls 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
-源码测试统一在 `test.yml` 的单个 `test` 任务运行，使用 Windows runner 执行 Go 测试与 vet、Godot 配置/物理/协议/账号/预测测试，以及 Windows 凭据测试；Vue 先类型检查并构建以供 Go 嵌入。该工作流仅由分支 push、PR 或手动触发，发布流程不调用，也不作为构建前置依赖。构建工作流保留导出包和 Web 镜像的产物检查。
+CI 使用 `ci.yml` 统一接收分支 push、PR 和手动运行，先调用 `test.yml` 的单个 Linux `test` 任务，只执行 Vue `vue-tsc --noEmit`、Go `go test -timeout 60s ./...` 与 `go vet ./...`，不拉取 LFS 资产或安装 Godot。测试通过后按改动范围调用 Web/Game 构建工作流；两个构建工作流只接受 workflow_call，不能单独绕过测试。版本标签发布依次为版本校验、同一 test、并行 Web/Game 构建、下载本次构建的 ZIP 并上传 GitHub Release，不直接复用历史构建运行的产物。
+
+CI 不执行集成、E2E、Windows 凭据、Godot 物理世界、账号联调、导出包运行或 Web 容器 smoke 检查，避免资源开销与等待卡死。数据库、PocketBase 认证和前端产物测试均带 `integration` 构建标签，默认 go test 只运行无真实外部依赖的单元测试；测试阶段静态嵌入仅用临时占位文件满足编译，正式构建使用独立检出和真实 Vue 产物。Godot 可选轻量框架为 [GUT 9.7.1](https://github.com/bitwes/Gut/releases/tag/v9.7.1)（对应 Godot 4.7），适合纯函数测试；本次未引入引擎或框架依赖到 CI。
 
 CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布游戏服 ghcr.io/saurlax/dlut-online 与 Go HTTP ghcr.io/saurlax/dlut-online-web 配套镜像；桌面未签名、macOS 未公证。
 
 ## 网站开发
 
-在仓库根运行 `pnpm --dir apps/web dev`，Vite 将 `/api` 代理至本机 Go 8415。网站构建输出 `apps/api/static/`，该目录不提交。Go 的测试与编译需要先完成前端构建；Docker 会自动完成。仅公开总人数、校区人数与时效，不请求管理员接口。生产仍只运行 `game`、`web` 两个容器，不额外运行 Node。
+在仓库根运行 `pnpm --dir apps/web dev`，Vite 将 `/api` 代理至本机 Go 8415。网站构建输出 `apps/api/static/`，该目录不提交。正式 Go 编译和前端产物集成测试需要先完成前端构建，Docker 会自动完成；纯单元测试仅要求 go:embed 有可编译的静态目录。仅公开总人数、校区人数与时效，不请求管理员接口。生产仍只运行 `game`、`web` 两个容器，不额外运行 Node。
 
 ## 验证
 

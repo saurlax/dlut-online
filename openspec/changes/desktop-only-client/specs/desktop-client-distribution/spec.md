@@ -78,14 +78,18 @@ Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，Run environmen
 - **WHEN** 仅启用 Run environment 或仅启用 Desktop server configuration
 - **THEN** 前者可独立切换本机运行环境且不注册导出处理，后者可独立导出配置且不创建环境工具栏
 
-### Requirement: 统一源码测试任务
+### Requirement: 轻量测试与构建发布门禁
 
-CI SHALL 将现有 Go、Godot 源码测试及 Windows 凭据测试统一放在 test.yml 的单个 test 任务，使用 Windows runner，不为单项测试设置独立 job。Build Game / Build Web SHALL 负责构建及最终产物检查，不重复运行上述源码测试。
+CI SHALL 仅在单个 Linux test 任务执行 Vue 类型检查、Go 默认单元测试和 vet，Go 测试 SHALL 设置超时；默认不启用 race，不得运行集成、E2E、系统凭据、物理世界、容器 smoke 或导出包运行检查。需要真实数据库或前端构建产物的 Go 测试 SHALL 使用 integration 标签，默认 go test 不执行。Godot 后续仅允许无校园、网络或系统依赖的纯函数单元测试。
 
 #### Scenario: 分支及 PR 检查
-- **WHEN** 应用源码或工作流发生变更并触发分支 push 或 PR
-- **THEN** 单个 test 任务运行 Go、Godot 和 Windows 凭据测试，测试失败使该任务失败
+- **WHEN** 应用源码或工作流变更触发 CI
+- **THEN** 先执行统一轻量 test，成功后才按路径执行 Web/Game 构建；失败时构建不执行
 
 #### Scenario: 版本发布
 - **WHEN** 推送版本标签触发 release
-- **THEN** 发布调用构建工作流而不调用 Test，不存在 windows-credentials 专项任务或构建前置测试依赖
+- **THEN** 校验版本后执行同一 test，通过后复用 Web/Game 构建工作流，并上传本次构建的客户端产物；任一步失败不得发布
+
+#### Scenario: 不可绕过的测试门禁
+- **WHEN** 从仓库提供的任一 CI、手动或 release 入口运行
+- **THEN** 构建始终依赖 test 成功，build 工作流仅能被复用调用，不提供独立触发器或跳过测试开关

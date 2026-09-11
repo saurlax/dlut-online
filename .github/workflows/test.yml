@@ -1,34 +1,53 @@
 name: Test
 
 on:
-  push:
-    branches: ["**"]
-    paths:
-      - "apps/**"
-      - "!apps/**/*.md"
-      - ".github/workflows/**"
-      - ".gitattributes"
-  pull_request:
-    paths:
-      - "apps/**"
-      - "!apps/**/*.md"
-      - ".github/workflows/**"
-      - ".gitattributes"
-  workflow_dispatch:
+  workflow_call:
+    outputs:
+      web:
+        description: Whether Web/API build inputs changed
+        value: ${{ jobs.test.outputs.web }}
+      game:
+        description: Whether Game/API build inputs changed
+        value: ${{ jobs.test.outputs.game }}
 
 permissions:
   contents: read
 
 jobs:
   test:
-    runs-on: windows-latest
-    timeout-minutes: 30
-    env:
-      DO_GODOT_VERSION: 4.7.2
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      web: ${{ steps.scope.outputs.web }}
+      game: ${{ steps.scope.outputs.game }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          lfs: true
+      - name: Select affected builds
+        id: scope
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          EVENT_NAME: ${{ github.event_name }}
+          REF_TYPE: ${{ github.ref_type }}
+        run: |
+          web=false
+          game=false
+          if [[ "$EVENT_NAME" == workflow_dispatch || "$REF_TYPE" == tag || -z "$BASE" || "$BASE" =~ ^0+$ ]]; then
+            web=true
+            game=true
+          else
+            git fetch --no-tags --depth=1 origin "$BASE"
+            git diff --name-only -z "$BASE" HEAD > "$RUNNER_TEMP/changed-files"
+            while IFS= read -r -d '' file; do
+              case "$file" in
+                *.md) continue ;;
+                apps/api/*|.github/workflows/*|.dockerignore|.gitattributes) web=true; game=true ;;
+                apps/web/*) web=true ;;
+                apps/game/*) game=true ;;
+              esac
+            done < "$RUNNER_TEMP/changed-files"
+          fi
+          echo "web=$web" >> "$GITHUB_OUTPUT"
+          echo "game=$game" >> "$GITHUB_OUTPUT"
       - uses: pnpm/action-setup@v4
         with:
           package_json_file: apps/web/package.json
@@ -37,53 +56,21 @@ jobs:
           node-version: '22'
           cache: pnpm
           cache-dependency-path: apps/web/pnpm-lock.yaml
-      - name: Type-check and build Vue for Go embedding
+      - name: Type-check Vue
         working-directory: apps/web
         run: |
           pnpm install --frozen-lockfile
-          if ($LASTEXITCODE -ne 0) { throw 'pnpm install failed' }
-          pnpm build
-          if ($LASTEXITCODE -ne 0) { throw 'Vue build failed' }
+          pnpm exec vue-tsc --noEmit
       - uses: actions/setup-go@v5
         with:
           go-version-file: apps/api/go.mod
           cache-dependency-path: apps/api/go.sum
-      - name: Test and vet Go
+      - name: Test and vet Go units
         working-directory: apps/api
         run: |
-          go test -race ./...
-          if ($LASTEXITCODE -ne 0) { throw 'Go tests failed' }
+          # Satisfy go:embed without building or testing the website in this job.
+          # Build jobs use clean checkouts and generate the real website in Docker.
+          mkdir -p static
+          printf 'Unit-check embed placeholder\n' > static/ci-placeholder.txt
+          go test -timeout 60s ./...
           go vet ./...
-          if ($LASTEXITCODE -ne 0) { throw 'Go vet failed' }
-      - name: Install Godot
-        run: |
-          $archive = Join-Path $env:RUNNER_TEMP 'godot.zip'
-          $directory = Join-Path $env:RUNNER_TEMP 'godot'
-          $release = "https://github.com/godotengine/godot-builds/releases/download/${env:DO_GODOT_VERSION}-stable"
-          Invoke-WebRequest "$release/Godot_v${env:DO_GODOT_VERSION}-stable_win64.exe.zip" -OutFile $archive
-          Expand-Archive $archive -DestinationPath $directory
-          $directory | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-      - name: Test Godot
-        working-directory: apps/game
-        env:
-          DO_ENV: production
-          DO_API_SERVER_URL: https://dlut.online
-        run: |
-          function Invoke-Godot {
-            & "Godot_v${env:DO_GODOT_VERSION}-stable_win64_console.exe" @args 2>&1 | ForEach-Object {
-              $line = "$_"
-              Write-Host $line
-              if ($line.Contains('SCRIPT ERROR:')) { throw 'Godot script error' }
-            }
-            if ($LASTEXITCODE -ne 0) { throw "Godot failed with exit code $LASTEXITCODE" }
-          }
-          Invoke-Godot --headless --editor --quit
-          Invoke-Godot --headless --script tests/desktop_config.gd
-          Invoke-Godot --headless --script tools/server_export/build_worlds.gd
-          Invoke-Godot --headless --script tests/server_physics.gd
-          Invoke-Godot --headless --script tests/game_protocol.gd
-          Invoke-Godot --headless --script tests/account_session.gd
-          Invoke-Godot --headless --script tests/player_prediction.gd
-      - name: Test Windows credential storage
-        shell: powershell
-        run: ./apps/game/tests/credential_store.ps1

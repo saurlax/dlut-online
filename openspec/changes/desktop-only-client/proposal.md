@@ -15,7 +15,7 @@
 
 - 编辑器顶部增加 Env Local / Dev 下拉框，运行环境插件放在 addons/run_environment，桌面导出插件独立保留在 addons/desktop_export，本机选择仅影响下一次编辑器运行；Dev 使用 https://dlut.online，桌面导出默认仍为 production。
 
-- 源码测试集中到 test.yml 的单个 test 任务；移除独立 Windows 凭据任务和构建中的源码测试，发布仅执行构建与产物检查。
+- CI 统一运行轻量 Vue 类型检查、Go 单元测试和 vet，禁止集成/E2E；测试通过后才能按路径构建或发布。
 
 ## Capabilities
 
