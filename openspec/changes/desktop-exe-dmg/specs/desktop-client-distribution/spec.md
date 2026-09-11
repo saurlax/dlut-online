@@ -6,7 +6,7 @@ Release SHALL 仅以 DLUT-Online-Windows.exe 和 DLUT-Online-macOS.dmg 分发 Wi
 
 #### Scenario: 产物发布
 - **WHEN** 所有构建和必要检查成功
-- **THEN** 上传本次提交的独立 EXE 和 DMG，保留现有 Web 测试前置与 Release 构建依赖
+- **THEN** 上传本次提交的独立 EXE 和 DMG，test.yml 为 build.yml 四个独立构建任务的统一前置，release.yml 校验版本后复用整个 build.yml 并等待全部成功
 
 ### Requirement: 有效临时签名
 
