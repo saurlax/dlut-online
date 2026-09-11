@@ -2,7 +2,7 @@ name: Build Web
 
 on:
   push:
-    branches: ["**"]
+    branches: ["main"]
     paths:
       - "apps/web/**"
       - "!apps/web/**/*.md"

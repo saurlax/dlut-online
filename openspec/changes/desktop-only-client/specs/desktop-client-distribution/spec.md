@@ -82,9 +82,13 @@ Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，Run environmen
 
 测试 SHALL 归属对应构建工作流，不提取共享 test.yml。Web SHALL 内置前置 test，仅在单个 Linux runner 执行 Vue 类型检查、Go 默认单元测试和 vet，Go 测试 SHALL 设置超时；默认不启用 race，不得运行集成、E2E、系统凭据、物理世界、容器 smoke 或导出包运行检查。需要真实数据库或前端构建产物的 Go 测试 SHALL 使用 integration 标签，默认 go test 不执行。Game 当前不重复运行 Vue/Go 检查，不设空测试任务；Godot 后续仅允许无校园、网络或系统依赖的纯函数单元测试，直接放入 Game 工作流并作为其构建前置。
 
-#### Scenario: 分支及 PR 检查
-- **WHEN** 应用源码或工作流变更触发 CI
+#### Scenario: main 及 PR 检查
+- **WHEN** main 分支 push 或 PR 中的应用源码或工作流变更触发 CI
 - **THEN** Web/Game 工作流按路径触发；Web 先执行轻量 test，成功后才执行内部 build；Game 当前仅做必要生成和导出
+
+#### Scenario: 功能分支推送去重
+- **WHEN** 向 main 以外的分支推送提交
+- **THEN** Web/Game SHALL 不由 push 触发；如存在 PR，则仅由 pull_request 按路径触发对应工作流，手动运行及 workflow_call 入口保持可用
 
 #### Scenario: 版本发布
 - **WHEN** 推送版本标签触发 release

@@ -2,7 +2,7 @@ name: Build Game
 
 on:
   push:
-    branches: ["**"]
+    branches: ["main"]
     paths:
       - "apps/game/**"
       - "!apps/game/**/*.md"
