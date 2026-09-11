@@ -3,6 +3,7 @@ func _initialize() -> void:
 	assert(FileAccess.file_exists("res://desktop_config.json"))
 	assert(not FileAccess.file_exists("res://.godot/do_run_environment.cfg"))
 	assert(not ResourceLoader.exists("res://addons/desktop_export/plugin.gd"))
+	assert(not ResourceLoader.exists("res://addons/run_environment/plugin.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/account_session.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/credential_store.gd"))
 	assert(not ResourceLoader.exists("res://scripts/client/guest_session.gd"))

@@ -60,7 +60,7 @@
 
 ### Requirement: 编辑器运行环境选择
 
-Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，编辑器插件 SHALL 保留原名 Desktop server configuration 并放在 addons/desktop_export/。Local SHALL 使用 http://localhost:8415，Dev SHALL 使用 https://dlut.online；两者客户端环境均为 development。选择 SHALL 保存在本机已忽略的配置中，并对下一次 F5/F6 运行生效；未设置时默认 Local。
+Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，Run environment 插件 SHALL 位于 addons/run_environment/ 并负责本机运行环境；Desktop server configuration 插件 SHALL 位于 addons/desktop_export/ 且仅负责桌面导出。两者 SHALL 共用配置解析而互不依赖。Local SHALL 使用 http://localhost:8415，Dev SHALL 使用 https://dlut.online；两者客户端环境均为 development。选择 SHALL 保存在本机已忽略的配置中，并对下一次 F5/F6 运行生效；未设置时默认 Local。
 
 #### Scenario: 快速切换服务地址
 - **WHEN** 开发者选择 Local 或 Dev 后启动游戏
@@ -73,3 +73,7 @@ Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，编辑器插�
 #### Scenario: 发布隔离
 - **WHEN** 编辑器选中任一运行配置后导出客户端或游戏服
 - **THEN** 本机选择和编辑器控件不进入发布包，桌面默认 production 和 https://dlut.online，仍可使用显式环境变量覆盖构建配置
+
+#### Scenario: 插件职责独立
+- **WHEN** 仅启用 Run environment 或仅启用 Desktop server configuration
+- **THEN** 前者可独立切换本机运行环境且不注册导出处理，后者可独立导出配置且不创建环境工具栏
