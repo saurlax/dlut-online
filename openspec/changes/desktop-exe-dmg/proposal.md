@@ -6,7 +6,7 @@ macOS 旧包残留 Godot 模板签名，严格校验失败，不能作为普通�
 
 - Windows x86_64 发布内嵌完整资源的独立 EXE。
 - macOS arm64 在 macOS runner 导出应用并重新做 ad-hoc 签名，生成 DMG，验证最终挂载内容。
-- 更新工作流、网站链接及维护约定；保留 Web 测试前置和 Release 全部构建成功门禁。
+- 更新工作流、网站链接及维护约定；采用 test.yml、build.yml、release.yml，测试通过后并行构建 Windows、macOS、server、web，Release 等待全部成功。
 - 本变更取代 development-campus-web 中旧的桌面 ZIP 和 macOS 不签名要求；不申请证书、不配置正式签名 Secrets、不发布版本。
 
 ## Impact
