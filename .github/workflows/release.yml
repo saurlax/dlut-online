@@ -1,4 +1,4 @@
-name: Release DLUT Online
+name: Release
 
 on:
   push:
