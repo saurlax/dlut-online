@@ -52,7 +52,7 @@ Go `DO_API_SERVER_PORT` 默认 8415，也兼容部署平台提供的 `PORT`。Po
 - `GET /`：客户端发布页链接。
 - `POST /api/collections/users/records`：PocketBase 用户注册，必填 email、password、passwordConfirm、username 和 display_name。
 - `/api/collections/users/request-verification`、`confirm-verification`、`auth-with-password`、`request-password-reset`、`confirm-password-reset`、`request-email-change`、`confirm-email-change` 与 `auth-refresh`：PocketBase 标准认证流程。
-- `POST /api/v1/game/tickets`：正文 `{"version":4}`，必须提交 `Authorization: Bearer <PocketBase auth token>`；服务端使用已验证且未禁用账号的 record ID 与 display_name，忽略旧客户端 id；无账号或游客请求返回 401。
+- `POST /api/v1/game/tickets`：正文 `{"version":5}`，必须提交 `Authorization: Bearer <PocketBase auth token>`；服务端使用已验证且未禁用账号的 record ID 与 display_name，忽略旧客户端 id；无账号或游客请求返回 401。
 - `POST /api/v1/game/tickets/consume`：API Key 鉴权，正文 `{"ticket":"..."}`；原子消费，返回 id、username、kind、admission_id。
 - `POST /api/v1/game/register`：API Key 鉴权，正文 instance_id、boot_id；返回 epoch，同启动标识重试幂等，旧启动不可重新注册。
 - `POST /api/v1/game/presence`：API Key 鉴权，正文 instance_id、epoch、递增 seq、players；每位玩家含 id、username、kind、campus、joined_at（Unix 秒）。
@@ -63,15 +63,21 @@ Go `DO_API_SERVER_PORT` 默认 8415，也兼容部署平台提供的 `PORT`。Po
 
 所有持久化通过 Go/PocketBase 处理，Godot 游戏服不直接打开 SQLite。重要操作采用事务和幂等 ID，位置按周期保存，不逐 tick 写数据库。
 
-## 游戏协议版本 4
+## 游戏协议版本 5
 
 客户端先向 Go 获取票据与 `game_server_url`，然后直连 Godot ENet/UDP。Go 不代理游戏流量；游戏服使用 API Key 保护的 HTTP API 兑换票据、上报在线状态。首次连接和真实断线重连时取票，切图不重新认证。
 
-控制通道 0 可靠有序传输 JSON：hello、welcome、heartbeat、roster 和切图消息。首条 hello 在 5 秒内发送，包含 version:4、ticket 和 campus。通道 1 不可靠有序传输输入与二进制位置快照；输入仍为 JSON，每秒最多 20 次，服务器不接受客户端位置、速度或帧时长。服务端 60 Hz 物理、10 Hz 同地图快照，客户端预测并纠正。
+控制通道 0 可靠有序传输 JSON：hello、welcome、heartbeat、roster、世界聊天和切图消息。首条 hello 在 5 秒内发送，包含 version:5、ticket 和 campus。通道 1 不可靠有序传输输入与二进制位置快照；输入仍为 JSON，每秒最多 20 次，服务器不接受客户端位置、速度或帧时长。服务端 60 Hz 物理、10 Hz 同地图快照，客户端预测并纠正。
 
 快照每包最多 12 人、820 字节，含 tick、地图、分包编号和每个玩家的 15 字节 ID、位置、速度、朝向、输入确认和 map_epoch。每个 tick 最多 5 包；客户端只保留最新 tick 的完整快照，丢包跳过这一帧，迟到或旧地图数据丢弃。名册通过可靠通道更新。
 
 输入累计跳跃序号抗丢包，500 ms 无有效输入停止水平移动；心跳每 5 秒，15 秒无有效消息断开。切图继续使用 change_map/prepare/ready/entered 和 cancel/status/resume，准备超时 180 秒；本地场景加载时保留连接、停止控制，确认后原子迁移。
+
+世界聊天使用可靠控制通道：客户端发送 `chat_send`（`request_id`、`text`），服务端广播 `chat_event`（`event_id`、`kind`、`id`、`username`、`text`、`request_id`）；`kind` 为 `message`、`joined` 或 `left`。拒绝返回 `chat_result`（`request_id`、`error`、`retry_ms`），成功以广播确认。同实例三个校区共享频道，显示名来自已验证票据，切图和同账号连接替换不触发进出提示。账号两次接受消息至少间隔 1000 ms，重连保留剩余冷却；正文去首尾空白后最多 200 个 Unicode 码点、800 字节 UTF-8，拒绝控制字符和空消息，不持久化聊天。
+
+桌面聊天位于左下角，左侧 16 px、底部 24 px 逻辑留白。回车打开输入，再按回车发送；间隔不足 1 秒时回车无效，保留草稿且不补发。编辑时暂停移动和环视，M 作为文本输入；Escape 取消编辑并保留草稿，恢复编辑前的控制状态。中文候选确认不提交聊天；失焦停止控制。地图与传送覆盖层隐藏聊天但继续接收，同连接保留最近 100 条事件，会话结束清空。世界消息白色，加入/离开提示黄色；右下角玩家状态的底部留白保持原规则。
+
+协议 5 与协议 4 不兼容：Go 票据接口、Godot 游戏服及 Windows/macOS 客户端必须一起升级或回滚；旧客户端申请票据时返回版本错误。
 
 关闭原因数据：4001 同身份替换并停止重试，4002 协议错误，4003 暂时不可用或超时，4004 满员。当前最多 50 人、100 个待认证/关闭中的连接。Go API 故障不阻塞现有玩家，Go 进程重启也不再断开 ENet 连接，但期间无法新入场且在线数据需要重新注册。
 

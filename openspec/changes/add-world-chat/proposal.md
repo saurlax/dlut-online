@@ -23,9 +23,9 @@
 
 ## Impact
 
-- 预计涉及 `apps/game/scripts/client/player_network.gd`、`campus_hud.gd`、输入控制逻辑、`scripts/server/game_server.gd` 与 `scripts/shared/game_protocol.gd`（后三项路径均相对 `apps/game/`）。
-- 后续实现将扩展 ENet 可靠控制消息，客户端与游戏服需要共同升级协议；不使用 Go 转发聊天，不新增数据库表、依赖或环境变量。
-- 本 PR 仅提交 OpenSpec 提案、设计、规范与未完成的实施任务，不修改运行代码、字体或校园资源。
+- 涉及 `apps/game/scripts/client/` 的网络、HUD 与独立聊天控件，`apps/game/scripts/server/game_server.gd`、`apps/game/scripts/shared/` 的协议与聊天规则，以及 `apps/api/game_api.go` 的票据版本校验。
+- 扩展 ENet 可靠控制消息，Go 票据接口、客户端与游戏服共同升级至协议 5；不使用 Go 转发聊天，不新增数据库表、运行依赖或环境变量。
+- 实现同时更新聊天相关字体子集与回归检查，不改校园模型或碰撞。
 
 ## Non-goals
 
