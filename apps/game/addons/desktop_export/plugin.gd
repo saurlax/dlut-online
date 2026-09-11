@@ -20,7 +20,7 @@ class DesktopExport extends EditorExportPlugin:
 			return
 		var credits := "res://WEATHER-CREDITS.txt"
 		add_file(credits, FileAccess.get_file_as_bytes(credits), false)
-		if DirAccess.copy_absolute(ProjectSettings.globalize_path(credits), path.get_base_dir().path_join("WEATHER-CREDITS.txt")) != OK:
+		if features.has("macos") and DirAccess.copy_absolute(ProjectSettings.globalize_path(credits), path.get_base_dir().path_join("WEATHER-CREDITS.txt")) != OK:
 			get_export_platform().add_message(EditorExportPlatform.EXPORT_MESSAGE_ERROR, "Weather attribution", "Cannot copy WEATHER-CREDITS.txt")
 		if features.has("windows"):
 			add_file("res://scripts/client/credential_store.ps1", FileAccess.get_file_as_bytes("res://scripts/client/credential_store.ps1"), false)
