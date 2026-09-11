@@ -16,7 +16,7 @@
 - **THEN** 使用 PocketBase record ID 与 display_name，票据只能消费一次
 
 ### Requirement: 客户端原生密码登录
-客户端 SHALL 使用 Godot 原生邮箱、密码表单直接调用 PocketBase 密码认证，密码隐藏且不写文件或日志，提交后清空密码输入框；token 仅保留进程内。登录 SHALL 不打开浏览器或本机监听端口，移除授权码 API 与网页返回游戏流程。无账号时 SHALL 提示前往 dlut.online 注册，注册链接不承担认证回调。
+客户端 SHALL 使用 Godot 原生邮箱、密码表单直接调用 PocketBase 密码认证，密码隐藏且不写文件或日志，提交后清空密码输入框；token 在内存使用并按下述要求保存至系统凭据库。登录 SHALL 不打开浏览器或本机监听端口，移除授权码 API 与网页返回游戏流程。无账号时 SHALL 提示前往 dlut.online 注册，注册链接不承担认证回调。
 
 #### Scenario: 成功登录
 - **WHEN** 用户提交已验证、未禁用账号的正确邮箱与密码
@@ -51,3 +51,22 @@
 #### Scenario: DTLS 证书校验失败
 - **WHEN** 下发 enets:// 端点且证书无效
 - **THEN** 拒绝连接，不跳过校验或自动改为明文
+
+### Requirement: 持久登录与恢复
+客户端 SHALL 按 API 根地址隔离，将 auth token 保存至 macOS 钥匙串或 Windows 凭据管理器；不得保存密码，或把 token 写入明文文件、命令行或日志。启动 SHALL 使用已保存的 token 调用 PocketBase auth-refresh，验证成功后更新保存并自动进入游戏。过期或失效 token SHALL 要求重新登录，不假定存在独立 refresh token。
+
+#### Scenario: 重启自动登录
+- **WHEN** 客户端重新启动且系统保存了有效 token
+- **THEN** 验证刷新后获取账号与游戏票据，不要求重新输入密码；其他 API 地址的凭据不得复用
+
+#### Scenario: 网络与认证失败
+- **WHEN** 刷新发生网络超时、限流或服务器故障
+- **THEN** 保留凭据且恢复可操作表单，不将网络失败视为账号失效
+
+#### Scenario: 退出及失效
+- **WHEN** 用户点击大地图退出登录，或账号认证明确失效
+- **THEN** 清除会话及对应凭据；本地无敏感信息标记 SHALL 阻止删除失败时自动重登，之后成功保存新登录才能重新启用
+
+#### Scenario: 凭据库不可用
+- **WHEN** 系统凭据库锁定、拒绝访问或平台缺少支持
+- **THEN** 仍允许本次手动登录，不回退到明文 token 文件

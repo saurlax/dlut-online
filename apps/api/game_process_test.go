@@ -18,6 +18,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync/atomic"
@@ -341,7 +342,25 @@ func TestGodotPasswordLogin(t *testing.T) {
 	if err := app.Save(record); err != nil {
 		t.Fatal(err)
 	}
-	api := httptest.NewServer(handler)
+	var failRefresh atomic.Bool
+	wrapped := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path == "/test/refresh-unavailable" {
+			failRefresh.Store(true)
+			w.WriteHeader(204)
+			return
+		}
+		if r.URL.Path == "/test/refresh-available" {
+			failRefresh.Store(false)
+			w.WriteHeader(204)
+			return
+		}
+		if r.URL.Path == "/api/collections/users/auth-refresh" && failRefresh.Load() {
+			w.WriteHeader(503)
+			return
+		}
+		handler.ServeHTTP(w, r)
+	})
+	api := httptest.NewServer(wrapped)
 	defer api.Close()
 	reserved, err := net.ListenPacket("udp", "127.0.0.1:0")
 	if err != nil {
@@ -364,10 +383,20 @@ func TestGodotPasswordLogin(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer func() { server.Process.Kill(); server.Wait() }()
-	client := exec.Command("godot", "--headless", "--path", project, "--script", "tests/password_login.gd")
-	client.Env = append(os.Environ(), "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
-	output, err := client.CombinedOutput()
-	if err != nil || bytes.Contains(output, []byte("SCRIPT ERROR")) || !bytes.Contains(output, []byte("PASS:")) {
-		t.Fatalf("client password login: %v\n%s", err, output)
+	phases := []string{""}
+	if runtime.GOOS == "darwin" || runtime.GOOS == "windows" {
+		phases = []string{"save", "restore"}
+	}
+	for _, phase := range phases {
+		args := []string{"--headless", "--path", project, "--script", "tests/password_login.gd"}
+		if phase != "" {
+			args = append(args, "--", phase)
+		}
+		client := exec.Command("godot", args...)
+		client.Env = append(os.Environ(), "DO_ENV=development", "DO_API_SERVER_URL="+api.URL)
+		output, err := client.CombinedOutput()
+		if err != nil || bytes.Contains(output, []byte("SCRIPT ERROR")) || !bytes.Contains(output, []byte("PASS:")) {
+			t.Fatalf("client password login %s: %v\n%s", phase, err, output)
+		}
 	}
 }

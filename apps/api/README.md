@@ -121,8 +121,10 @@ DO_API_SERVER_URL=http://127.0.0.1:8415 python3 apps/game/tools/run_godot.py --h
 
 官网 `/login`、`/register` 提供账号登录、注册及验证邮件重发。网站 token 仅保存在当前标签页 sessionStorage，恢复时调用 auth-refresh，退出清除。SMTP、应用地址和验证邮件模板须在 PocketBase 配置；默认使用 PocketBase 自带邮箱确认页面。注册成功不代表邮箱验证完成。
 
-客户端使用 Godot 原生邮箱和密码表单调用 `POST /api/collections/users/auth-with-password`，请求包含 identity（邮箱）和 password。PocketBase AuthRule 要求邮箱已验证且账号未禁用，客户端收到 token 和 record 后申请游戏票据。密码隐藏，提交时清空输入框，不持久保存或输出日志；会话只存在客户端进程中。取消终止请求并忽略迟到响应，错误后可以重新输入并登录。
+客户端使用 Godot 原生邮箱和密码表单调用 `POST /api/collections/users/auth-with-password`，请求包含 identity（邮箱）和 password。PocketBase AuthRule 要求邮箱已验证且账号未禁用，客户端收到 token 和 record 后申请游戏票据。密码隐藏，提交时清空输入框，不持久保存或输出日志；Token 按 API 根地址隔离保存在 macOS 钥匙串或 Windows 凭据管理器，密码不保存。启动时读取 Token 并调用 `POST /api/collections/users/auth-refresh`，验证通过才建立会话并进入游戏。PocketBase 0.40.3 使用同一个有效 auth token 刷新并签发新 token，没有独立 refresh token；过期 token 无法续期，需重新输入密码。取消终止请求并忽略迟到响应，错误后可以重新输入并登录。
 
 客户端不启动本机回调端口，不使用授权码接口；旧 `/api/v1/auth/requests`、`approve`、`exchange` 已移除。注册链接指向 https://dlut.online/register，用户先注册并验证邮箱，再回到游戏登录。网站原有登录、注册与验证邮件重发保持可用。
 
 只有收到游戏服 welcome 才进入世界；票据接口返回 401/403 或账号被另一客户端替换时清理会话并回到登录。production 客户端账号 API 仍要求 HTTPS。未来 OIDC 和移动系统认证另行设计，当前未交付移动插件或导出。
+
+大地图右下角提供“退出登录”。退出或明确认证失效时清除系统凭据，并写入不含 Token 的本地禁用标记，避免凭据库暂时不可用时下次又自动登录；新登录成功保存后移除标记。网络超时、429 或服务端故障保留凭据，回到可操作表单。macOS 使用系统 security 工具，Windows 使用随客户端导出的 PowerShell 凭据管理器桥接；Token 仅经匿名管道传递，不放入命令行、日志或明文文件。若凭据库不可用仍允许本次密码登录，无法保证下次自动登录。

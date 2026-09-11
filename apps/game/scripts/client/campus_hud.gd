@@ -136,6 +136,8 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	if Catalog.started or Catalog.arriving:
 		Catalog.arriving = false
 		enter_campus()
+	else:
+		account_login.restore.call_deferred()
 
 func _begin_login() -> void:
 	if enter_button.disabled: return
@@ -308,6 +310,16 @@ func build_map() -> void:
 	connection_status.offset_bottom = -20
 	connection_status.text = network.status_text
 	network.status_changed.connect(_connection_status_changed)
+	var logout_button := Button.new()
+	logout_button.text = "退出登录"
+	logout_button.flat = true
+	map_overlay.add_child(logout_button)
+	logout_button.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
+	logout_button.offset_left = -140
+	logout_button.offset_right = -24
+	logout_button.offset_top = -52
+	logout_button.offset_bottom = -16
+	logout_button.pressed.connect(func(): network.require_login("已退出，请重新登录"))
 	transfer_panel = VBoxContainer.new()
 	transfer_panel.name = "CampusTransfer"
 	map_overlay.add_child(transfer_panel)
