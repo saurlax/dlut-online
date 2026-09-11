@@ -4,11 +4,11 @@ export type DesktopPlatform = "windows" | "macos";
 export const downloads = {
   windows: {
     label: "Windows", architecture: "x86_64", button: "下载 Windows 版",
-    url: "https://github.com/saurlax/dlut-online/releases",
+    url: "https://github.com/saurlax/dlut-online/releases/latest/download/DLUT-Online-Windows.exe",
   },
   macos: {
-    label: "macOS", architecture: "Universal（Apple 芯片与 Intel）", button: "下载 macOS 版",
-    url: "https://github.com/saurlax/dlut-online/releases",
+    label: "macOS", architecture: "Apple 芯片（arm64）", button: "下载 macOS 版",
+    url: "https://github.com/saurlax/dlut-online/releases/latest/download/DLUT-Online-macOS.dmg",
   },
 } satisfies Record<DesktopPlatform, { label: string; architecture: string; button: string; url: string }>;
 
