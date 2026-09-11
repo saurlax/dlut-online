@@ -5,6 +5,7 @@ const DataService = preload("res://scripts/server/data_service.gd")
 const MAPS := ["lingshui", "eda", "panjin"]
 const MAX_CONNECTIONS := 100
 const MAX_PLAYERS := 50
+const ChatRules = preload("res://scripts/shared/chat_rules.gd")
 const Protocol = preload("res://scripts/shared/game_protocol.gd")
 var listener := ENetConnection.new()
 var data: Node
@@ -13,6 +14,9 @@ var players := {}
 var worlds := {}
 var tick := 0
 var roster_dirty := true
+var chat_last_accepted := {}
+var chat_event_id := 0
+var chat_events: Array[Dictionary] = []
 var tick_samples: Array[int] = []
 
 func _ready() -> void:
@@ -55,7 +59,7 @@ func _process(delta: float) -> void:
 			connections.append({"peer":peer, "created":now, "last":now, "window":now, "messages":0,
 				"identity":{}, "authenticating":false, "closing":false, "body":null, "campus":"", "epoch":1,
 				"seq":-1, "jump":0, "axis":Vector2.ZERO, "run":false, "yaw":0.0, "last_input":now,
-				"transfer":{}, "results":{}, "request_high":0, "frozen":false})
+				"chat_request":0, "announced":false, "replacing":false, "transfer":{}, "results":{}, "request_high":0, "frozen":false})
 		else:
 			var c := connection_for(peer)
 			if event[0] == ENetConnection.EVENT_RECEIVE:
@@ -83,6 +87,10 @@ func _process(delta: float) -> void:
 				remove(c)
 		elif c.identity.is_empty() and now - c.created > 5000: close(c, 4003, "handshake timeout")
 		elif now - c.last > 15000: close(c, 4003, "idle timeout")
+	for id: String in chat_last_accepted.keys():
+		if ChatRules.remaining(chat_last_accepted[id], Time.get_ticks_msec()) == 0:
+			chat_last_accepted.erase(id)
+	flush_chat_events()
 	var online: Array = []
 	for c: Dictionary in players.values():
 		var identity: Dictionary = c.identity
@@ -101,6 +109,8 @@ func remove_player(c: Dictionary) -> void:
 	if not c.identity.is_empty() and players.get(c.identity.id) == c:
 		players.erase(c.identity.id)
 		roster_dirty = true
+		if c.get("announced", false) and not c.get("replacing", false):
+			queue_chat_event(c, "left")
 	if is_instance_valid(c.body):
 		c.body.queue_free()
 	c.body = null
@@ -132,6 +142,7 @@ func handle(c: Dictionary, m: Dictionary) -> void:
 		"heartbeat":
 			c.last = Time.get_ticks_msec()
 			send(c, {"type":"heartbeat"})
+		"chat_send": receive_chat(c, m)
 		"input": receive_input(c, m)
 		"change_map": change_map(c, m)
 		"map_ready", "map_cancel", "map_status", "map_resume": transfer_message(c, m)
@@ -150,7 +161,10 @@ func authenticate(c: Dictionary, m: Dictionary) -> void:
 	if not players.has(identity.id) and players.size() >= MAX_PLAYERS:
 		close(c, 4004, "server full")
 		return
-	if players.has(identity.id): close(players[identity.id], 4001, "session replaced")
+	var replacing := players.has(identity.id)
+	if replacing:
+		players[identity.id].replacing = true
+		close(players[identity.id], 4001, "session replaced")
 	c.identity = identity
 	c.joined_at = int(Time.get_unix_time_from_system())
 	c.campus = m.get("campus", "lingshui")
@@ -164,6 +178,43 @@ func authenticate(c: Dictionary, m: Dictionary) -> void:
 	var welcome := state(c)
 	welcome.merge({"type":"welcome", "version":Protocol.VERSION, "username":identity.username, "admission_id":identity.admission_id, "roster":roster(c.campus)})
 	send(c, welcome)
+	if not c.closing:
+		c.announced = true
+		if not replacing: queue_chat_event(c, "joined")
+	elif replacing:
+		# The replacement failed after retiring its predecessor: the identity is offline.
+		queue_chat_event(c, "left")
+
+
+func receive_chat(c: Dictionary, m: Dictionary) -> void:
+	if players.get(c.identity.id) != c or not integer(m.get("request_id")): return
+	var request := int(m.request_id)
+	if request <= c.chat_request: return
+	c.chat_request = request
+	c.last = Time.get_ticks_msec()
+	var body := ChatRules.text(m.get("text"))
+	if m.size() != 3 or body.is_empty():
+		send(c, {"type":"chat_result", "request_id":request, "error":"invalid_text", "retry_ms":0})
+		return
+	var retry := ChatRules.remaining(chat_last_accepted.get(c.identity.id, -ChatRules.INTERVAL_MS), c.last)
+	if retry > 0:
+		send(c, {"type":"chat_result", "request_id":request, "error":"rate_limited", "retry_ms":retry})
+		return
+	chat_last_accepted[c.identity.id] = c.last
+	queue_chat_event(c, "message", body, request)
+
+func queue_chat_event(c: Dictionary, kind: String, body := "", request := 0) -> void:
+	chat_event_id += 1
+	chat_events.append({"type":"chat_event", "event_id":chat_event_id, "kind":kind,
+		"id":c.identity.id, "username":ChatRules.player_name(c.identity.username), "text":body, "request_id":request})
+
+func flush_chat_events() -> void:
+	# A failed send can enqueue a departure. Finish the current broadcast first
+	# so every peer sees events in the same order, including slow-peer failures.
+	while not chat_events.is_empty():
+		var event: Dictionary = chat_events.pop_front()
+		for c: Dictionary in players.values():
+			if c.get("announced", false): send(c, event)
 
 func finite_number(value: Variant) -> bool:
 	return (value is float or value is int) and is_finite(float(value))

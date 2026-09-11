@@ -2,6 +2,8 @@ extends SceneTree
 func _initialize() -> void:
 	assert(ResourceLoader.exists("res://scenes/server.tscn"))
 	assert(ResourceLoader.exists("res://scripts/server/game_server.gd"))
+	assert(ResourceLoader.exists("res://scripts/shared/chat_rules.gd"))
+	assert(not ResourceLoader.exists("res://scripts/client/world_chat.gd"))
 	assert(ResourceLoader.exists("res://scripts/server/data_service.gd"))
 	assert(not ResourceLoader.exists("res://assets/fonts/CampusSans.ttf"))
 	assert(not ResourceLoader.exists("res://scripts/client/player.gd"))
