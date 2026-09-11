@@ -7,6 +7,7 @@ const Store = preload("res://scripts/client/credential_store.gd")
 static var token := ""
 static var player_id := ""
 static var username := ""
+static var account_username := ""
 static var token_origin := ""
 static var restore_attempted := false
 var waiting := false
@@ -17,6 +18,7 @@ static func clear() -> void:
 	token = ""
 	player_id = ""
 	username = ""
+	account_username = ""
 	token_origin = ""
 
 static func forget_saved() -> Dictionary:
@@ -114,6 +116,7 @@ func _authenticate(url: String, path: String, body: Dictionary, bearer: String, 
 	token = payload.token
 	player_id = record.id
 	username = record.display_name
+	account_username = record.get("username", "") if record.get("username") is String else ""
 	token_origin = url
 	# Queue the write before emitting success; logout queues its deletion after it.
 	_save(url, token)
