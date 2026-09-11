@@ -3,6 +3,7 @@ extends Node
 signal status_changed(value: String)
 signal login_required()
 signal connected()
+signal connection_quality_changed(state: String, rtt_ms: int)
 signal map_prepared(campus: String)
 signal map_failed()
 signal map_finished()
@@ -29,6 +30,9 @@ var connecting := false
 var elapsed := 0.0
 var heartbeat_elapsed := 0.0
 var last_received := 0
+var last_valid_received := 0
+var connection_state := "disconnected"
+var round_trip_time_ms := -1
 var retry_in := 0.0
 var retry_delay := 1.0
 var status_text := "未连接"
@@ -52,6 +56,28 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	# Record the completed player step, not the position before its physics update.
 	process_physics_priority = 100
+	var quality_timer := Timer.new()
+	quality_timer.wait_time = 1.0
+	quality_timer.timeout.connect(_update_connection_quality)
+	add_child(quality_timer)
+	quality_timer.start()
+
+func _set_connection_quality(state: String, rtt_ms := -1) -> void:
+	connection_state = state
+	round_trip_time_ms = rtt_ms
+	connection_quality_changed.emit(state, rtt_ms)
+
+func _update_connection_quality() -> void:
+	if not welcomed or socket == null or socket.get_state() != ENetPacketPeer.STATE_CONNECTED:
+		_set_connection_quality("reconnecting" if active else "disconnected")
+	elif Time.get_ticks_msec() - last_valid_received > 5000:
+		_set_connection_quality("stale")
+	# ENet initializes this statistic to 0 and sets it to at least 1 only
+	# after an ACK has updated RTT. RTT itself starts at a synthetic 500 ms.
+	elif socket.get_statistic(ENetPacketPeer.PEER_LAST_ROUND_TRIP_TIME_VARIANCE) <= 0:
+		_set_connection_quality("measuring")
+	else:
+		_set_connection_quality("connected", int(socket.get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME)))
 
 func _physics_process(_delta: float) -> void:
 	if not welcomed or not transfer_phase.is_empty() or not is_instance_valid(player) or not history.has(sequence): return
@@ -105,6 +131,8 @@ func base_url() -> String:
 func _connect() -> void:
 	if connecting: return
 	connecting = true
+	last_valid_received = 0
+	_set_connection_quality("reconnecting")
 	set_status("连接中")
 	var url := base_url()
 	var request := HTTPRequest.new()
@@ -178,6 +206,8 @@ func _disconnected() -> void:
 		host.destroy()
 		host = null
 	socket = null
+	last_valid_received = 0
+	_set_connection_quality("disconnected")
 	if code == 4001:
 		require_login("账号已在另一客户端登录，请重新登录")
 		return
@@ -189,6 +219,7 @@ func _disconnected() -> void:
 		return
 	retry_in = retry_delay
 	retry_delay = minf(10.0, retry_delay * 2)
+	_set_connection_quality("reconnecting")
 	set_status("连接断开，正在重连")
 	map_failed.emit()
 
@@ -200,6 +231,8 @@ func require_login(reason := "登录已失效，请重新登录") -> void:
 	if host != null: host.destroy()
 	host = null
 	socket = null
+	last_valid_received = 0
+	_set_connection_quality("disconnected")
 	_clear_remotes()
 	load_generation += 1
 	transfer_id = ""
@@ -282,6 +315,8 @@ func message(m: Dictionary) -> void:
 		"welcome":
 			if m.get("id") != Account.player_id: return
 			welcomed = true
+			last_valid_received = Time.get_ticks_msec()
+			_set_connection_quality("measuring")
 			retry_delay = 1
 			admission_id = m.admission_id
 			names.clear()
@@ -289,13 +324,17 @@ func message(m: Dictionary) -> void:
 			apply_self(m, true)
 			set_status("已连接")
 			connected.emit()
+		"heartbeat":
+			if welcomed: last_valid_received = Time.get_ticks_msec()
 		"roster":
 			if m.get("campus") == campus_id and int(m.get("server_tick", -1)) > roster_tick:
+				last_valid_received = Time.get_ticks_msec()
 				roster_tick = int(m.server_tick)
 				apply_roster(m.get("roster", []))
 		"map_prepare":
 			if int(m.get("request_id", -1)) != request_id or transfer_phase == "": return
 			if not transfer_id.is_empty(): return
+			last_valid_received = Time.get_ticks_msec()
 			transfer_id = m.transfer_id
 			if cancel_pending:
 				_send({"type":"map_cancel", "transfer_id":transfer_id})
@@ -305,6 +344,7 @@ func message(m: Dictionary) -> void:
 		"map_entered", "map_cancelled": finish_map(m)
 		"map_error":
 			if int(m.get("request_id", -1)) != request_id: return
+			last_valid_received = Time.get_ticks_msec()
 			transfer_phase = ""
 			target = ""
 			if is_instance_valid(player): player.network_ready = true
@@ -327,6 +367,7 @@ func receive_snapshot(packet: PackedByteArray) -> void:
 			if state.map_epoch != epoch: return
 			own = true
 	if not own: return
+	last_valid_received = Time.get_ticks_msec()
 	applied_tick = part.tick
 	_apply_snapshot(states)
 
@@ -430,6 +471,7 @@ func load_target(id: String) -> void:
 
 func finish_map(m: Dictionary) -> void:
 	if transfer_id.is_empty() or m.get("transfer_id") != transfer_id or transfer_phase == "restoring": return
+	last_valid_received = Time.get_ticks_msec()
 	load_generation += 1
 	var generation := load_generation
 	if campus_id != m.campus:

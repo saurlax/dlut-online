@@ -24,4 +24,4 @@
 - `apps/game/scripts/client/account_session.gd`：单独保留认证记录中的账号用户名，避免改变现有昵称用途。
 - `apps/game/scripts/client/player_network.gd`：提供当前 ENet 连接的 RTT、有效性和连接状态。
 - `apps/game/scripts/client/campus_hud.gd`：右下角状态显示及与现有覆盖层的协调。
-- 涉及客户端字体子集检查、相关本地验证和桌面导出；不改变服务端协议、API、校园模型或新增依赖。本轮仅编写规划文件。
+- 涉及客户端字体子集检查、相关本地验证和桌面导出；不改变服务端协议、API、校园模型或新增依赖。
