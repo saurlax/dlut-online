@@ -1,0 +1,89 @@
+name: Test
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "apps/**"
+      - "!apps/**/*.md"
+      - ".github/workflows/**"
+      - ".gitattributes"
+  pull_request:
+    paths:
+      - "apps/**"
+      - "!apps/**/*.md"
+      - ".github/workflows/**"
+      - ".gitattributes"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      DO_GODOT_VERSION: 4.7.2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: apps/web/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+          cache-dependency-path: apps/web/pnpm-lock.yaml
+      - name: Type-check and build Vue for Go embedding
+        working-directory: apps/web
+        run: |
+          pnpm install --frozen-lockfile
+          if ($LASTEXITCODE -ne 0) { throw 'pnpm install failed' }
+          pnpm build
+          if ($LASTEXITCODE -ne 0) { throw 'Vue build failed' }
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: apps/api/go.mod
+          cache-dependency-path: apps/api/go.sum
+      - name: Test and vet Go
+        working-directory: apps/api
+        run: |
+          go test -race ./...
+          if ($LASTEXITCODE -ne 0) { throw 'Go tests failed' }
+          go vet ./...
+          if ($LASTEXITCODE -ne 0) { throw 'Go vet failed' }
+      - name: Install Godot
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP 'godot.zip'
+          $directory = Join-Path $env:RUNNER_TEMP 'godot'
+          $release = "https://github.com/godotengine/godot-builds/releases/download/${env:DO_GODOT_VERSION}-stable"
+          Invoke-WebRequest "$release/Godot_v${env:DO_GODOT_VERSION}-stable_win64.exe.zip" -OutFile $archive
+          Expand-Archive $archive -DestinationPath $directory
+          $directory | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Test Godot
+        working-directory: apps/game
+        env:
+          DO_ENV: production
+          DO_API_SERVER_URL: https://dlut.online
+        run: |
+          function Invoke-Godot {
+            & "Godot_v${env:DO_GODOT_VERSION}-stable_win64_console.exe" @args 2>&1 | ForEach-Object {
+              $line = "$_"
+              Write-Host $line
+              if ($line.Contains('SCRIPT ERROR:')) { throw 'Godot script error' }
+            }
+            if ($LASTEXITCODE -ne 0) { throw "Godot failed with exit code $LASTEXITCODE" }
+          }
+          Invoke-Godot --headless --editor --quit
+          Invoke-Godot --headless --script tests/desktop_config.gd
+          Invoke-Godot --headless --script tools/server_export/build_worlds.gd
+          Invoke-Godot --headless --script tests/server_physics.gd
+          Invoke-Godot --headless --script tests/game_protocol.gd
+          Invoke-Godot --headless --script tests/account_session.gd
+          Invoke-Godot --headless --script tests/player_prediction.gd
+      - name: Test Windows credential storage
+        shell: powershell
+        run: ./apps/game/tests/credential_store.ps1

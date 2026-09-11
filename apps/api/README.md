@@ -95,6 +95,8 @@ Godot 编辑器打开 `apps/game/project.godot` 后，顶部 `Env: Local / Dev` 
 
 生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。在 PocketBase `servers.endpoint` 填写客户端可达地址，例如 enets://game.example.com:1949；不能填容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。客户端在 development 和 production 均接受 enet://（明文）与 enets://（DTLS），按下发协议连接，不在 DTLS 失败后自动降级。临时无 DTLS 测试时，Go 与游戏服需设置 DO_ENV=development，游戏服清空 DO_GAME_TLS_CERT/DO_GAME_TLS_KEY，servers.endpoint 使用 enet://公网地址:公网UDP端口；正式客户端无需切换 development。Compose 固定将 ./.local/game-tls 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
+源码测试统一在 `test.yml` 的单个 `test` 任务运行，使用 Windows runner 执行 Go 测试与 vet、Godot 配置/物理/协议/账号/预测测试，以及 Windows 凭据测试；Vue 先类型检查并构建以供 Go 嵌入。该工作流仅由分支 push、PR 或手动触发，发布流程不调用，也不作为构建前置依赖。构建工作流保留导出包和 Web 镜像的产物检查。
+
 CI 导出 Windows/macOS 与 Linux 游戏服，构建并发布游戏服 ghcr.io/saurlax/dlut-online 与 Go HTTP ghcr.io/saurlax/dlut-online-web 配套镜像；桌面未签名、macOS 未公证。
 
 ## 网站开发
