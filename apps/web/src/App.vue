@@ -83,10 +83,7 @@ const currentScene = computed(() => scenes[selected.value]!);
               <n-button text tag="a" href="/profile" color="#ffffff" class="nav-account">{{ account.display_name || account.username }}</n-button>
               <n-button ghost color="#ffffff" @click="logout">退出</n-button>
             </template>
-            <template v-else-if="authReady && !authError">
-              <n-button text tag="a" href="/login" color="#ffffff">登录</n-button>
-              <n-button tag="a" href="/register" ghost color="#ffffff">注册</n-button>
-            </template>
+            <n-button v-else-if="authReady && !authError" tag="a" href="/login" ghost color="#ffffff">登录 / 注册</n-button>
             <n-button v-else-if="authError" text color="#ffffff" @click="restoreSession">重试登录状态</n-button>
           </n-flex>
         </nav>
