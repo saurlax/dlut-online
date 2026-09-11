@@ -18,7 +18,7 @@ func TestDesktopRoutes(t *testing.T) {
 			t.Fatalf("%s: %d", path, w.Code)
 		}
 	}
-	for _, path := range []string{"/", "/download", "/download/", "/login", "/register", "/login/", "/register/"} {
+	for _, path := range []string{"/", "/download", "/download/", "/login", "/register", "/login/", "/register/", "/profile", "/profile/"} {
 		w := httptest.NewRecorder()
 		handler.ServeHTTP(w, httptest.NewRequest(http.MethodGet, path, nil))
 		if w.Code != 200 || !strings.Contains(w.Body.String(), "id=\"app\"") {

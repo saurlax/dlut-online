@@ -22,7 +22,7 @@ func siteHandler() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Referrer-Policy", "no-referrer")
 		name := strings.TrimPrefix(r.URL.Path, "/")
-		if name == "" || name == "download" || name == "download/" || name == "login" || name == "login/" || name == "register" || name == "register/" {
+		if name == "" || name == "download" || name == "download/" || name == "login" || name == "login/" || name == "register" || name == "register/" || name == "profile" || name == "profile/" {
 			name = "index.html"
 			r = r.Clone(r.Context())
 			r.URL.Path = "/"

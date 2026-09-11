@@ -31,6 +31,21 @@ func newApplication(dataDir string, config gameConfig) *pocketbase.PocketBase {
 		DefaultEncryptionEnv: "PB_ENCRYPTION_KEY",
 	})
 	migratecmd.MustRegister(app, app.RootCmd, migratecmd.Config{})
+	app.OnRecordUpdateRequest("users").BindFunc(func(event *core.RecordRequestEvent) error {
+		if event.HasSuperuserAuth() {
+			return event.Next()
+		}
+		info, err := event.RequestInfo()
+		if err != nil {
+			return err
+		}
+		for field := range info.Body {
+			if field != "display_name" {
+				return event.BadRequestError("Only the display name can be edited here. Use email change verification to change email.", nil)
+			}
+		}
+		return event.Next()
+	})
 	api := newGameAPI(config, app)
 	app.OnServe().BindFunc(func(event *core.ServeEvent) error {
 		for _, route := range api.routes() {
