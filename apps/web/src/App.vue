@@ -8,7 +8,7 @@ import campusFilm from "./assets/campus-film.mp4";
 import filmPoster from "./assets/campus-film-poster.jpg";
 import ProfilePage from "./ProfilePage.vue";
 import AccountPage from "./AccountPage.vue";
-import { account, authReady, authError, logout, restoreSession } from "./auth";
+import { account, authReady, authError, restoreSession } from "./auth";
 import { downloads, detectDesktopPlatform } from "./downloads";
 
 const themeOverrides: GlobalThemeOverrides = {
@@ -81,7 +81,6 @@ const currentScene = computed(() => scenes[selected.value]!);
             <n-button text tag="a" href="/download" color="#ffffff">下载客户端</n-button>
             <template v-if="account">
               <n-button text tag="a" href="/profile" color="#ffffff" class="nav-account">{{ account.display_name || account.username }}</n-button>
-              <n-button ghost color="#ffffff" @click="logout">退出</n-button>
             </template>
             <n-button v-else-if="authReady && !authError" tag="a" href="/login" ghost color="#ffffff">登录</n-button>
             <n-button v-else-if="authError" text color="#ffffff" @click="restoreSession">重试登录状态</n-button>
