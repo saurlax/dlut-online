@@ -79,7 +79,7 @@
 
 - Go HTTP 服务位于 apps/api/，自定义业务接口和 Vue 站点直接注册到 PocketBase Router；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
-- CI 固定使用 test.yml、build.yml、release.yml 三个工作流。test.yml 仅提供 workflow_call，在单个 Linux runner 中运行 Vue `vue-tsc --noEmit`、Go `go test -timeout 60s ./...` 和 `go vet ./...`。不运行集成或 E2E 测试，默认不启用 race，不启动真实数据库、系统凭据操作、容器 smoke、游戏联调、物理世界或导出包运行检查；这些仅在相关改动时本地专项执行。Go 集成测试必须带 `//go:build integration`，不进入默认 go test。Godot 将来可加入使用 GUT 的纯函数单元测试，但不得加载校园、连接服务或操作系统凭据；当前轻量测试任务不安装 Godot 或下载 LFS 资产。
+- CI 固定使用 test.yml、build.yml、release.yml 三个工作流。test.yml 仅提供 workflow_call，使用两个独立 Linux runner 并行运行 Vue 与 Go 任务：Vue 执行 `vue-tsc --noEmit`，Go 依次执行 `go test -timeout 60s ./...` 和 `go vet ./...`，两者全部成功才允许构建。不运行集成或 E2E 测试，默认不启用 race，不启动真实数据库、系统凭据操作、容器 smoke、游戏联调、物理世界或导出包运行检查；这些仅在相关改动时本地专项执行。Go 集成测试必须带 `//go:build integration`，不进入默认 go test。Godot 将来可加入使用 GUT 的纯函数单元测试，但不得加载校园、连接服务或操作系统凭据；当前轻量测试任务不安装 Godot 或下载 LFS 资产。
 - build.yml 统一接收 main 源码分支 push、PR、手动运行，也提供 workflow_call 供发布复用；纯文档变更不触发，其他分支 push 不触发，避免 PR 重复运行。每次调用先执行 test.yml，成功后并行执行 windows、macos、server、web 四个独立构建任务，四者必须 needs: test。Windows 导出内嵌资源的 x86_64 独立 EXE；macOS 在 macOS runner 导出、裁剪为 arm64 并重新做 ad-hoc 签名，最终 DMG 必须通过严格签名与 arm64 架构校验；server 在 Linux 生成碰撞世界、导出游戏服并构建镜像；web 构建 Go HTTP 镜像。相关源码变更统一构建四种产物，不再按应用拆分工作流或增加 ci.yml 调度层。
 - release.yml 仅接收版本标签，先校验版本，再调用 build.yml（test → 四种构建），全部成功后下载本次构建的 EXE/DMG 上传 GitHub Release。测试失败必须阻止所有 build 和 release，不能使用 always()、continue-on-error 或跳过测试参数绕过。构建阶段只做必要生成、编译、打包、产物完整性检查和上传，不运行集成/E2E，也不构建 Godot Web 产物。Go `DO_API_SERVER_PORT` 默认 8415，并兼容平台 `PORT`；容器 PocketBase 数据位于 `/data/pb_data` 持久卷，Docker 构建上下文为根目录；Windows 暂不签名，macOS 未配置 Developer ID 和公证，须如实说明 Gatekeeper 限制。
 

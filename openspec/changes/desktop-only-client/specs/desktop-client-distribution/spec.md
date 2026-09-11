@@ -80,7 +80,7 @@ Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，Run environmen
 
 ### Requirement: 轻量测试与构建发布门禁
 
-工作流 SHALL 固定为 test.yml、build.yml、release.yml。test.yml SHALL 仅提供 workflow_call，在单个 Linux runner 执行 Vue 类型检查、Go 默认单元测试和 vet，Go 测试 SHALL 设置超时；默认不启用 race，不得运行集成、E2E、系统凭据、物理世界、容器 smoke 或导出包运行检查。需要真实数据库或前端构建产物的 Go 测试 SHALL 使用 integration 标签。Godot 后续仅允许无校园、网络或系统依赖的纯函数单元测试。
+工作流 SHALL 固定为 test.yml、build.yml、release.yml。test.yml SHALL 仅提供 workflow_call，通过两个互无依赖的 Linux 任务并行执行 Vue 类型检查和 Go 检查，Go 任务依次执行默认单元测试和 vet，两个任务全部成功后才允许构建，Go 测试 SHALL 设置超时；默认不启用 race，不得运行集成、E2E、系统凭据、物理世界、容器 smoke 或导出包运行检查。需要真实数据库或前端构建产物的 Go 测试 SHALL 使用 integration 标签。Godot 后续仅允许无校园、网络或系统依赖的纯函数单元测试。
 
 #### Scenario: main 及 PR 检查
 - **WHEN** main 源码 push 或 PR 中的应用源码、工作流或构建公共配置变更触发 CI

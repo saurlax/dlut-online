@@ -7,8 +7,8 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    name: Vue and Go
+  vue:
+    name: Vue
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -26,6 +26,13 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm exec vue-tsc --noEmit
+
+  go:
+    name: Go
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version-file: apps/api/go.mod
