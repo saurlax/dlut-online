@@ -1,6 +1,30 @@
 name: Build Web
 
 on:
+  push:
+    branches: ["**"]
+    paths:
+      - "apps/web/**"
+      - "!apps/web/**/*.md"
+      - "apps/api/**"
+      - "!apps/api/**/*.md"
+      - ".github/workflows/build-web.yml"
+      - ".github/workflows/test.yml"
+      - ".github/workflows/release.yml"
+      - ".dockerignore"
+      - ".gitattributes"
+  pull_request:
+    paths:
+      - "apps/web/**"
+      - "!apps/web/**/*.md"
+      - "apps/api/**"
+      - "!apps/api/**/*.md"
+      - ".github/workflows/build-web.yml"
+      - ".github/workflows/test.yml"
+      - ".github/workflows/release.yml"
+      - ".dockerignore"
+      - ".gitattributes"
+  workflow_dispatch:
   workflow_call:
     inputs:
       release:
@@ -11,8 +35,15 @@ permissions:
   contents: read
   packages: write
 
+concurrency:
+  group: build-web-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref_type != 'tag' }}
+
 jobs:
+  test:
+    uses: ./.github/workflows/test.yml
   build:
+    needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

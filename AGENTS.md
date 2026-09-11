@@ -76,8 +76,8 @@
 
 - Go HTTP 服务位于 apps/api/，自定义业务接口和 Vue 站点直接注册到 PocketBase Router；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
-- 为节省 CI 资源、加快构建，测试统一在 test.yml 的单个 Linux test 任务中，仅运行 Vue `vue-tsc --noEmit`、Go `go test -timeout 60s ./...` 和 `go vet ./...`。不运行集成或 E2E 测试，默认不启用 race，不启动真实数据库、系统凭据操作、容器 smoke、游戏联调、物理世界或导出包运行检查；这些仅在相关改动时本地专项执行。Go 集成测试必须带 `//go:build integration`，不进入默认 go test。Godot 将来可加入使用 GUT 的纯函数单元测试，但不得加载校园、连接服务或操作系统凭据；当前轻量测试任务不安装 Godot 或下载 LFS 资产。
-- ci.yml 负责分支/PR/手动入口，先调用统一 test，再按路径调用 build-web.yml 与 build-game.yml；两个构建工作流只提供 workflow_call，不能从独立入口绕过测试。版本标签由 release.yml 先校验版本、执行同一 test，通过后调用两个构建工作流，再下载本次构建产物上传 GitHub Release。测试失败必须阻止 build 和 release，不能使用 always()、continue-on-error 或跳过测试参数绕过。网站/API 变更构建 Go HTTP 镜像；游戏/API 变更构建 Godot 游戏服镜像并导出 Windows x86_64、macOS universal ZIP，不构建 Godot Web 产物。构建阶段只做必要生成、编译、打包和上传，不运行集成/E2E。Go `DO_API_SERVER_PORT` 默认 8415，并兼容平台 `PORT`；容器 PocketBase 数据位于 `/data/pb_data` 持久卷，Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
+- 为节省 CI 资源、加快构建，每个 build 工作流先通过前置 test 任务调用共享 test.yml，在单个 Linux runner 中仅运行 Vue `vue-tsc --noEmit`、Go `go test -timeout 60s ./...` 和 `go vet ./...`。不运行集成或 E2E 测试，默认不启用 race，不启动真实数据库、系统凭据操作、容器 smoke、游戏联调、物理世界或导出包运行检查；这些仅在相关改动时本地专项执行。Go 集成测试必须带 `//go:build integration`，不进入默认 go test。Godot 将来可加入使用 GUT 的纯函数单元测试，但不得加载校园、连接服务或操作系统凭据；当前轻量测试任务不安装 Godot 或下载 LFS 资产。
+- build-web.yml 与 build-game.yml 各自按路径接收分支 push、PR 和手动运行，也提供 workflow_call 供发布复用；每个工作流内部的 build 必须 needs: test，不增加 ci.yml 调度层。test.yml 仅提供共享轻量测试，不判断构建路径。版本标签由 release.yml 先校验版本，再调用两个构建工作流各自执行 test → build，全部成功后下载本次构建产物上传 GitHub Release。测试失败必须阻止 build 和 release，不能使用 always()、continue-on-error 或跳过测试参数绕过。网站/API 变更构建 Go HTTP 镜像；游戏/API 变更构建 Godot 游戏服镜像并导出 Windows x86_64、macOS universal ZIP，不构建 Godot Web 产物。构建阶段只做必要生成、编译、打包和上传，不运行集成/E2E。Go `DO_API_SERVER_PORT` 默认 8415，并兼容平台 `PORT`；容器 PocketBase 数据位于 `/data/pb_data` 持久卷，Docker 构建上下文为根目录；桌面签名、公证未配置时须如实说明。
 
 ## 权威游戏服务
 
