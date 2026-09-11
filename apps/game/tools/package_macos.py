@@ -2,6 +2,7 @@
 """Sign an exported Apple Silicon app and verify the final DMG on macOS."""
 from pathlib import Path
 import plistlib
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -33,6 +34,7 @@ def main():
         temporary = Path(directory)
         stage = temporary / "stage"
         stage.mkdir()
+        shutil.copyfile(GAME / "WEATHER-CREDITS.txt", stage / "WEATHER-CREDITS.txt")
         app = stage / source.name
         run("ditto", str(source), str(app))
         # Official templates contain only universal binaries. Ship only Apple Silicon.

@@ -9,6 +9,8 @@ services:
       DO_ENV: ${DO_ENV:-development}
       DO_API_SERVER_PORT: ${DO_API_SERVER_PORT:-8415}
       DO_API_KEY: ${DO_API_KEY:?set a random API key}
+      DO_WEATHER_REFRESH_MINUTES: ${DO_WEATHER_REFRESH_MINUTES:-15}
+      DO_WEATHER_API_KEY: ${DO_WEATHER_API_KEY:-}
       PB_DATA_DIR: ${PB_DATA_DIR:-/data/pb_data}
       PB_ENCRYPTION_KEY: ${PB_ENCRYPTION_KEY:-}
     volumes:
