@@ -46,7 +46,11 @@ func _physics_process(delta: float) -> void:
 	var axis := Input.get_vector("move_left","move_right","move_forward","move_back") if active else Vector2.ZERO
 	var jumping := active and Input.is_action_just_pressed("jump")
 	if jumping: jump_sequence += 1
-	Movement.step(self, axis, active and Input.is_action_pressed("run"), jumping, delta, spawn_position)
+	var running := active and Input.is_action_pressed("run")
+	var network := get_node("/root/GameNetwork")
+	network.begin_prediction(delta, axis, running)
+	Movement.step(self, axis, running, jumping, delta, spawn_position)
+	network.end_prediction()
 
 func _process(delta: float) -> void:
 	visual_offset *= exp(-12.0 * delta)
