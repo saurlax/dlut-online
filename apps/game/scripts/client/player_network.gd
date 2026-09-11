@@ -60,13 +60,11 @@ var cancel_pending := false
 var load_generation := 0
 var control_elapsed := 0.0
 var history := {}
-var was_active := false
+var last_input := {}
 var restore_playing := true
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	# Record the completed player step, not the position before its physics update.
-	process_physics_priority = 100
 	var quality_timer := Timer.new()
 	quality_timer.wait_time = 1.0
 	quality_timer.timeout.connect(_update_connection_quality)
@@ -90,7 +88,23 @@ func _update_connection_quality() -> void:
 	else:
 		_set_connection_quality("connected", int(socket.get_statistic(ENetPacketPeer.PEER_ROUND_TRIP_TIME)))
 
-func _physics_process(_delta: float) -> void:
+func begin_prediction(delta: float, axis: Vector2, running: bool) -> void:
+	if not welcomed or not transfer_phase.is_empty() or not is_instance_valid(player): return
+	var input := {"axis":[axis.x, axis.y], "yaw":wrapf(player.rotation.y, -PI, PI),
+		"run":running, "jump":player.jump_sequence}
+	elapsed += delta
+	if input == last_input and elapsed < 0.05: return
+	elapsed = 0.0
+	last_input = input.duplicate()
+	sequence += 1
+	# Start the interval before simulating this exact input, including a jump edge.
+	history[sequence] = {"points":PackedVector3Array([player.position]),
+		"start_velocity":player.velocity, "end_velocity":player.velocity}
+	while history.size() > 80: history.erase(history.keys()[0])
+	input.merge({"type":"input", "seq":sequence, "map_epoch":epoch})
+	_send(input)
+
+func end_prediction() -> void:
 	if not welcomed or not transfer_phase.is_empty() or not is_instance_valid(player) or not history.has(sequence): return
 	var sample: Dictionary = history[sequence]
 	if sample.points.size() < 32:
@@ -311,19 +325,6 @@ func _process(delta: float) -> void:
 			control_elapsed = 0
 			_send({"type":"map_status", "transfer_id":transfer_id})
 		return
-	if not is_instance_valid(player): return
-	var moving: bool = player.playing and (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or player.drag_look)
-	elapsed += delta
-	if elapsed >= 0.05 or (was_active and not moving):
-		elapsed = 0
-		sequence += 1
-		history[sequence] = {"points":PackedVector3Array([player.position]),
-			"start_velocity":player.velocity, "end_velocity":player.velocity}
-		while history.size() > 80: history.erase(history.keys()[0])
-		var axis := Input.get_vector("move_left", "move_right", "move_forward", "move_back") if moving else Vector2.ZERO
-		_send({"type":"input", "seq":sequence, "axis":[axis.x,axis.y], "yaw":wrapf(player.rotation.y,-PI,PI),
-			"run":moving and Input.is_action_pressed("run"), "jump":player.jump_sequence, "map_epoch":epoch})
-	was_active = moving
 
 func message(m: Dictionary) -> void:
 	match m.get("type"):
@@ -411,6 +412,8 @@ func apply_self(m: Dictionary, reset: bool) -> void:
 		snapshot_tick = applied_tick
 		snapshot_parts.clear()
 		sequence = 0
+		last_input.clear()
+		elapsed = 0.0
 		player.jump_sequence = int(m.get("jump",0))
 		history.clear()
 		player.position = p
