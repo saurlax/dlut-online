@@ -12,6 +12,7 @@ var data: Node
 var connections: Array[Dictionary] = []
 var players := {}
 var worlds := {}
+var environment_elapsed := 0.0
 var tick := 0
 var roster_dirty := true
 var chat_last_accepted := {}
@@ -23,6 +24,7 @@ func _ready() -> void:
 	Engine.max_fps = 60
 	data = DataService.new()
 	add_child(data)
+	data.weather_updated.connect(broadcast_environment)
 	if not data.configure():
 		push_error("Invalid DO_API_SERVER_URL or missing DO_API_KEY")
 		get_tree().quit(1)
@@ -97,6 +99,11 @@ func _process(delta: float) -> void:
 		online.append({"id":identity.id, "username":identity.username, "kind":identity.kind,
 			"campus":c.campus, "joined_at":c.joined_at})
 	data.report(delta, online)
+	data.poll_weather(delta)
+	environment_elapsed += delta
+	if environment_elapsed >= 60.0:
+		environment_elapsed = 0.0
+		broadcast_environment()
 
 func close(c: Dictionary, code: int, _reason: String) -> void:
 	if c.closing: return
@@ -178,6 +185,7 @@ func authenticate(c: Dictionary, m: Dictionary) -> void:
 	var welcome := state(c)
 	welcome.merge({"type":"welcome", "version":Protocol.VERSION, "username":identity.username, "admission_id":identity.admission_id, "roster":roster(c.campus)})
 	send(c, welcome)
+	send_environment(c)
 	if not c.closing:
 		c.announced = true
 		if not replacing: queue_chat_event(c, "joined")
@@ -348,3 +356,10 @@ func finish_transfer(c: Dictionary, status: String) -> void:
 	reply.erase("transfer")
 	reply.merge({"type":"map_" + status, "transfer_id":c.transfer.id, "request_id":c.transfer.request_id, "roster":roster(c.campus)})
 	remember(c, reply)
+	send_environment(c)
+
+func send_environment(c: Dictionary) -> void:
+	send(c, {"type":"environment", "unix_time":Time.get_unix_time_from_system(), "campuses":data.weather})
+
+func broadcast_environment() -> void:
+	for c: Dictionary in players.values(): send_environment(c)
