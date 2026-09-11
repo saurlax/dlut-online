@@ -4,6 +4,8 @@ const Account = preload("res://scripts/client/account_session.gd")
 var account_login: Node
 var cancel_login: Button
 var identity_label: Label
+var email_input: LineEdit
+var password_input: LineEdit
 var network: Node
 
 const Catalog = preload("res://scripts/shared/campus_catalog.gd")
@@ -71,7 +73,22 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	identity_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	identity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	column.add_child(identity_label)
-	identity_label.text = "在官网登录后返回游戏"
+	identity_label.text = "使用 DLUT Online 账号登录"
+	email_input = LineEdit.new()
+	email_input.name = "LoginEmail"
+	email_input.placeholder_text = "邮箱"
+	email_input.custom_minimum_size.y = 48
+	email_input.max_length = 254
+	column.add_child(email_input)
+	password_input = LineEdit.new()
+	password_input.name = "LoginPassword"
+	password_input.placeholder_text = "密码"
+	password_input.secret = true
+	password_input.secret_character = "*"
+	password_input.custom_minimum_size.y = 48
+	column.add_child(password_input)
+	email_input.text_submitted.connect(func(_value: String): password_input.grab_focus())
+	password_input.text_submitted.connect(func(_value: String): _begin_login())
 	enter_button = Button.new()
 	enter_button.name = "EnterCampus"
 	enter_button.text = "登录"
@@ -102,6 +119,10 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 		_login_status("已取消，可重新登录")
 	)
 	column.add_child(cancel_login)
+	var register_link := LinkButton.new()
+	register_link.text = "没有账号？先去 dlut.online 注册"
+	register_link.uri = "https://dlut.online/register"
+	column.add_child(register_link)
 	network = get_node("/root/GameNetwork")
 	network.configure(player, campus.campus_id)
 	network.status_changed.connect(_network_status)
@@ -117,17 +138,25 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 		enter_campus()
 
 func _begin_login() -> void:
+	if enter_button.disabled: return
 	if not Account.token.is_empty():
 		_account_authenticated()
 	else:
-		account_login.begin()
+		var password := password_input.text
+		password_input.clear()
+		account_login.begin(email_input.text, password)
 
 func _login_status(value: String) -> void:
 	identity_label.text = value
 	enter_button.disabled = account_login.waiting
 	cancel_login.visible = account_login.waiting
+	email_input.editable = not account_login.waiting
+	password_input.editable = not account_login.waiting
 
 func _account_authenticated() -> void:
+	password_input.clear()
+	email_input.editable = false
+	password_input.editable = false
 	cancel_login.hide()
 	enter_button.disabled = true
 	player.player_id = Account.player_id
@@ -154,6 +183,9 @@ func _show_login() -> void:
 	enter_button.disabled = false
 	cancel_login.hide()
 	identity_label.text = network.status_text
+	email_input.editable = true
+	password_input.editable = true
+	password_input.clear()
 
 func enter_campus() -> void:
 	if Account.token.is_empty() or not network.welcomed: return

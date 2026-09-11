@@ -46,6 +46,3 @@ export async function restoreSession() {
 export async function login(email: string, password: string) {
   save(await request<Session>("/api/collections/users/auth-with-password", { identity: email.trim(), password }));
 }
-export async function approveGame(id: string) {
-  return request<{ redirect_uri: string }>("/api/v1/auth/approve", { request: id }, token);
-}

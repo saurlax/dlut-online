@@ -38,9 +38,6 @@ type apiRoute struct {
 	handler http.Handler
 }
 type gameAPI struct {
-	browserRequests       map[string]browserAuthorization
-	browserStarts         map[string]time.Time
-	accountSession        func(string) (map[string]any, bool)
 	mu                    sync.Mutex
 	config                gameConfig
 	tickets               map[[32]byte]admission
@@ -114,20 +111,9 @@ func decode(w http.ResponseWriter, r *http.Request, v any, limit int64) bool {
 	return true
 }
 func newGameAPI(c gameConfig, apps ...core.App) *gameAPI {
-	g := &gameAPI{browserRequests: make(map[string]browserAuthorization), browserStarts: make(map[string]time.Time), config: c, tickets: make(map[[32]byte]admission), issued: make(map[string]time.Time), retired: make(map[string]bool), now: time.Now, seq: -1}
+	g := &gameAPI{config: c, tickets: make(map[[32]byte]admission), issued: make(map[string]time.Time), retired: make(map[string]bool), now: time.Now, seq: -1}
 	if len(apps) > 0 && apps[0] != nil {
 		app := apps[0]
-		g.accountSession = func(id string) (map[string]any, bool) {
-			record, err := app.FindRecordById("users", id)
-			if err != nil || !record.Verified() || record.GetBool("disabled") {
-				return nil, false
-			}
-			token, err := record.NewAuthToken()
-			if err != nil {
-				return nil, false
-			}
-			return map[string]any{"token": token, "record": map[string]any{"id": record.Id, "display_name": record.GetString("display_name")}}, true
-		}
 		g.resolveGameEndpoint = func() (string, bool) {
 			record, err := app.FindFirstRecordByFilter("servers", "enabled = true")
 			if err != nil {
@@ -166,9 +152,6 @@ func (g *gameAPI) apiKeyAuth(next http.HandlerFunc) http.HandlerFunc {
 }
 func (g *gameAPI) routes() []apiRoute {
 	return []apiRoute{
-		{http.MethodPost, "/api/v1/auth/requests", http.HandlerFunc(g.browserStart)},
-		{http.MethodPost, "/api/v1/auth/approve", http.HandlerFunc(g.browserApprove)},
-		{http.MethodPost, "/api/v1/auth/exchange", http.HandlerFunc(g.browserExchange)},
 		{http.MethodPost, "/api/v1/game/tickets", http.HandlerFunc(g.issue)},
 		{http.MethodPost, "/api/v1/game/tickets/consume", http.HandlerFunc(g.apiKeyAuth(g.consume))},
 		{http.MethodPost, "/api/v1/game/register", http.HandlerFunc(g.apiKeyAuth(g.register))},
@@ -366,4 +349,12 @@ func (g *gameAPI) details(w http.ResponseWriter, r *http.Request) {
 		v["players"] = append([]onlinePlayer{}, g.players...)
 	}
 	respond(w, 200, v)
+}
+
+func (g *gameAPI) requestAccount(r *http.Request) (admission, bool) {
+	auth := r.Header.Get("Authorization")
+	if !strings.HasPrefix(auth, "Bearer ") || g.resolveAccount == nil {
+		return admission{}, false
+	}
+	return g.resolveAccount(strings.TrimSpace(strings.TrimPrefix(auth, "Bearer ")))
 }

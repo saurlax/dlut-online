@@ -121,12 +121,8 @@ DO_API_SERVER_URL=http://127.0.0.1:8415 python3 apps/game/tools/run_godot.py --h
 
 官网 `/login`、`/register` 提供账号登录、注册及验证邮件重发。网站 token 仅保存在当前标签页 sessionStorage，恢复时调用 auth-refresh，退出清除。SMTP、应用地址和验证邮件模板须在 PocketBase 配置；默认使用 PocketBase 自带邮箱确认页面。注册成功不代表邮箱验证完成。
 
-桌面客户端仅显示登录按钮，打开同一 API 根地址的官网。客户端监听 `127.0.0.1` 随机端口并生成进程内随机 verifier、state：
+客户端使用 Godot 原生邮箱和密码表单调用 `POST /api/collections/users/auth-with-password`，请求包含 identity（邮箱）和 password。PocketBase AuthRule 要求邮箱已验证且账号未禁用，客户端收到 token 和 record 后申请游戏票据。密码隐藏，提交时清空输入框，不持久保存或输出日志；会话只存在客户端进程中。取消终止请求并忽略迟到响应，错误后可以重新输入并登录。
 
-- `POST /api/v1/auth/requests`：提交 64 位十六进制 SHA256 challenge、64 位十六进制 state、`http://127.0.0.1:<port>/callback`；返回 request、login_path、expires_in。请求有效 5 分钟，同来源 IP 每秒最多创建一次，待处理请求最多 128 个；不信任代理提交的任意来源头。
-- `POST /api/v1/auth/approve`：网站携带 PocketBase Bearer token 和 request，确认当前账号后绑定身份；返回短期 code 与 state 的回调地址，有效 30 秒。同一请求只批准一次。
-- `POST /api/v1/auth/exchange`：客户端提交 request、code、verifier；原子单次兑换新的 PocketBase token 和账号信息，再走现有游戏票据流程。兑换时重新检查账号未禁用且已验证。凭据、授权码不写应用日志；反向代理也不得记录请求正文。
+客户端不启动本机回调端口，不使用授权码接口；旧 `/api/v1/auth/requests`、`approve`、`exchange` 已移除。注册链接指向 https://dlut.online/register，用户先注册并验证邮箱，再回到游戏登录。网站原有登录、注册与验证邮件重发保持可用。
 
-取消、超时或兑换失败时关闭本机监听并清除本次 verifier，重新登录创建新请求。只有收到游戏服 welcome 才进入世界；票据接口返回 401/403 或账号被另一客户端替换时清除会话并返回封面。生产客户端仅允许 HTTPS API。浏览器完成页面提示返回游戏，操作系统可能限制自动切换焦点。现有 Windows/macOS 导出不需要注册自定义 URL 协议。
-
-未来 OIDC 在网站认证后仍走上述账号确认和兑换流程；当前不显示未配置的 OIDC 入口。移动端需要以 ASWebAuthenticationSession / Custom Tabs 与平台注册回调替换桌面 loopback，扩展固定回调白名单并处理前后台及进程重建，不能依赖 PocketBase 一体化 OAuth2 的后台实时连接。当前未交付移动端插件或导出。
+只有收到游戏服 welcome 才进入世界；票据接口返回 401/403 或账号被另一客户端替换时清理会话并回到登录。production 客户端账号 API 仍要求 HTTPS。未来 OIDC 和移动系统认证另行设计，当前未交付移动插件或导出。
