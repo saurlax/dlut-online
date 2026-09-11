@@ -9,7 +9,6 @@ on:
       - "apps/api/**"
       - "!apps/api/**/*.md"
       - ".github/workflows/build-web.yml"
-      - ".github/workflows/test.yml"
       - ".github/workflows/release.yml"
       - ".dockerignore"
       - ".gitattributes"
@@ -20,7 +19,6 @@ on:
       - "apps/api/**"
       - "!apps/api/**/*.md"
       - ".github/workflows/build-web.yml"
-      - ".github/workflows/test.yml"
       - ".github/workflows/release.yml"
       - ".dockerignore"
       - ".gitattributes"
@@ -41,7 +39,36 @@ concurrency:
 
 jobs:
   test:
-    uses: ./.github/workflows/test.yml
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: apps/web/package.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+          cache-dependency-path: apps/web/pnpm-lock.yaml
+      - name: Type-check Vue
+        working-directory: apps/web
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm exec vue-tsc --noEmit
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: apps/api/go.mod
+          cache-dependency-path: apps/api/go.sum
+      - name: Test and vet Go units
+        working-directory: apps/api
+        run: |
+          # Satisfy go:embed without building or testing the website in this job.
+          # Build jobs use clean checkouts and generate the real website in Docker.
+          mkdir -p static
+          printf 'Unit-check embed placeholder\n' > static/ci-placeholder.txt
+          go test -timeout 60s ./...
+          go vet ./...
   build:
     needs: test
     runs-on: ubuntu-latest
