@@ -57,6 +57,8 @@
 
 ## 仓库整理与提交规范
 
+- 仓库文档可以使用中文编写；commit 信息和 PR 标题使用英文，PR 正文使用中文。
+- PR 正文遵循 `.github/pull_request_template.md`，简要说明背景、改动及影响、验证和发布要求；数据库、API 和其他对外接口的变化及兼容性必须写清楚，发布所需配置、环境变量和 migration 无变化时明确写“无”。验证仅记录实际执行的检查及结果，未执行的相关测试说明原因。
 - 遵循最小改动：仅修改当前需求直接涉及的文件，不顺带重构、批量格式化、升级依赖或加入无关功能。
 - 提交只包含运行所需源码与资源、必要配置、可复用构建工具、有持续价值的回归测试，以及长期维护的规范和来源记录。
 - 临时验收报告、过程日志、截图、一次性检查/截图脚本和本机代理生成配置不提交；放入已忽略的 `.local/` 或系统临时目录。现有 docs/verification.md 与 tests/capture.gd 仅供本地使用。
@@ -65,7 +67,7 @@
 - README 和长期文档不得依赖未提交的验收文件；验证结果简要写入交付说明，不为每轮工作新增验收 docs。OpenSpec 继续维护需求和任务状态，避免重复过程记录。
 - 开始新功能、修复或其他独立任务前，先创建并切换到对应类型的工作分支，不直接在 `main` 上开发。分支使用 `<type>/<short-description>` 命名，描述采用简短的英文 kebab-case；新功能使用 `feat/`，修复使用 `fix/`，纯文档、维护和 CI 任务分别使用 `docs/`、`chore/`、`ci/` 等前缀，例如 `feat/player-connection-hud`、`fix/map-boundaries`。同一任务的后续调整沿用该任务分支；用户明确指定分支时遵循用户要求。
 - 提交前检查 git status、diff 和暂存文件清单，逐项确认与当前需求相关；按明确文件路径暂存，不使用 git add . 混入无关内容。用户已授权每次任务完成并通过相关检查后及时创建提交；按独立、可审查的任务拆分，不跨任务堆积未提交改动，不混入他人的未完成工作。
-- 所有提交信息遵循 Conventional Commits：`type(scope): description`，例如 `feat(server): support PORT environment variable`、`ci: build Docker and desktop clients`；scope 可省略，破坏性变更使用 `!` 或 BREAKING CHANGE 说明。推送包含的提交同样遵循此规范。提交与推送分开：及时提交，用户要求推送时再推送。
+- 所有提交信息使用英文并遵循 Conventional Commits：`type(scope): description`，例如 `feat(server): support PORT environment variable`、`ci: build Docker and desktop clients`；scope 可省略，破坏性变更使用 `!` 或 BREAKING CHANGE 说明。推送包含的提交同样遵循此规范。提交与推送分开：及时提交，用户要求推送时再推送。
 - 纯文档、忽略规则或仓库整理不改运行内容时，只做引用和文件清单检查；仅当资源、构建或运行行为受影响时执行相应测试、桌面/服务器导出及客户端渲染验证。
 
 ## Monorepo 目录
