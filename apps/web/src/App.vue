@@ -83,7 +83,7 @@ const currentScene = computed(() => scenes[selected.value]!);
               <n-button text tag="a" href="/profile" color="#ffffff" class="nav-account">{{ account.display_name || account.username }}</n-button>
               <n-button ghost color="#ffffff" @click="logout">退出</n-button>
             </template>
-            <n-button v-else-if="authReady && !authError" tag="a" href="/login" ghost color="#ffffff">登录 / 注册</n-button>
+            <n-button v-else-if="authReady && !authError" tag="a" href="/login" ghost color="#ffffff">登录</n-button>
             <n-button v-else-if="authError" text color="#ffffff" @click="restoreSession">重试登录状态</n-button>
           </n-flex>
         </nav>
@@ -189,7 +189,7 @@ const currentScene = computed(() => scenes[selected.value]!);
           </n-grid>
         </section>
       </main>
-      <footer><n-flex justify="space-between" align="center"><a class="brand" href="/">DLUT <span>Online</span></a><n-button text tag="a" color="#c1cbda" href="https://github.com/saurlax/dlut-online">GitHub 开源项目</n-button></n-flex>
+      <footer><n-flex justify="space-between" align="center"><a class="brand" href="/">DLUT <span>Online</span></a><n-button text tag="a" color="#c1cbda" href="https://github.com/saurlax/dlut-online">GitHub</n-button></n-flex>
         <div class="healthy-gaming" aria-label="健康游戏忠告">
           <n-p class="healthy-title">健康游戏忠告</n-p>
           <n-flex justify="center" :size="[16, 6]">
