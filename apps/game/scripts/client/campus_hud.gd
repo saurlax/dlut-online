@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+@export var login_only := false
+var loading_campus := false
+
 const Account = preload("res://scripts/client/account_session.gd")
 var account_login: Node
 var cancel_login: Button
@@ -26,6 +29,11 @@ var transfer_panel: VBoxContainer
 var transfer_status: Label
 var transfer_target := ""
 var root_control: Control
+
+func _ready() -> void:
+	if login_only:
+		Engine.max_fps = 60
+		build(null, null)
 
 func build(body: CharacterBody3D, world: Node3D) -> void:
 	player = body
@@ -124,6 +132,11 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	register_link.uri = "https://dlut.online/register"
 	column.add_child(register_link)
 	network = get_node("/root/GameNetwork")
+	if login_only:
+		if Account.restore_attempted and network.status_text != "未连接":
+			identity_label.text = network.status_text
+		account_login.restore.call_deferred()
+		return
 	network.configure(player, campus.campus_id)
 	network.status_changed.connect(_network_status)
 	network.connected.connect(_network_connected)
@@ -136,6 +149,8 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	if Catalog.started or Catalog.arriving:
 		Catalog.arriving = false
 		enter_campus()
+	elif not Account.token.is_empty():
+		_account_authenticated.call_deferred()
 	else:
 		account_login.restore.call_deferred()
 
@@ -149,6 +164,7 @@ func _begin_login() -> void:
 		account_login.begin(email_input.text, password)
 
 func _login_status(value: String) -> void:
+	if loading_campus: return
 	identity_label.text = value
 	enter_button.disabled = account_login.waiting
 	cancel_login.visible = account_login.waiting
@@ -156,14 +172,34 @@ func _login_status(value: String) -> void:
 	password_input.editable = not account_login.waiting
 
 func _account_authenticated() -> void:
+	if loading_campus or Account.token.is_empty(): return
 	password_input.clear()
 	email_input.editable = false
 	password_input.editable = false
 	cancel_login.hide()
 	enter_button.disabled = true
+	if login_only:
+		_load_initial_campus()
+		return
 	player.player_id = Account.player_id
 	player.username = Account.username
 	network.start()
+
+func _load_initial_campus() -> void:
+	loading_campus = true
+	identity_label.text = "加载中"
+	var path: String = Catalog.CAMPUSES.lingshui.scene
+	if ResourceLoader.load_threaded_request(path) == OK:
+		while ResourceLoader.load_threaded_get_status(path) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			await get_tree().process_frame
+		# Consume failed requests too, so retry can start a fresh load.
+		var scene: PackedScene = ResourceLoader.load_threaded_get(path)
+		if scene != null:
+			if get_tree().change_scene_to_packed(scene) == OK:
+				return
+	loading_campus = false
+	identity_label.text = "加载失败，请重试"
+	enter_button.disabled = false
 
 func _network_status(value: String) -> void:
 	if not Catalog.started:
@@ -188,6 +224,7 @@ func _show_login() -> void:
 	email_input.editable = true
 	password_input.editable = true
 	password_input.clear()
+	get_tree().change_scene_to_file.call_deferred("res://scenes/main.tscn")
 
 func enter_campus() -> void:
 	if Account.token.is_empty() or not network.welcomed: return

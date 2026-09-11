@@ -30,3 +30,7 @@
 ## Migration Plan
 
 网站/API 与新版客户端共同发布。现有账号、游戏票据与协议 v4 不变，旧浏览器授权客户端需升级。移除未使用的回调接口及对应专用测试，保留真实 PocketBase 密码认证和账号安全检查。
+
+## Startup Loading
+
+main.tscn 仅挂载原生登录封面，不引用校园 PackedScene。封面复用 campus_hud 的登录控件，但无玩家时不创建地图、读取校园数据或生成碰撞。PocketBase 密码认证或 auth-refresh 成功后，使用 ResourceLoader 线程加载默认凌水场景，完成切换后再申请游戏票据；游戏服 welcome 仍是允许行走的必要条件。加载中禁用重复提交，失败保留账号会话并允许重试。退出或认证失效切回轻量 main.tscn，卸载原校园；校区传送维持现有连接与加载流程。
