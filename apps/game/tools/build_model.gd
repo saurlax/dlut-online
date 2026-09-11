@@ -269,62 +269,7 @@ func build() -> void:
 			_:
 				polygon(group,points,0.1,material("Paving" if kind=="plaza" else "Reserve",Color("a9a79e") if kind=="plaza" else Color("adba99")),"Ground")
 		generated_count += 1
-	# Illustrative planting, kept off every official feature polygon.
-	var rng := RandomNumberGenerator.new()
-	rng.seed = 20260909
-	var tree_mesh := SurfaceTool.new()
-	tree_mesh.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for index in 480:
-		var p := Vector2(rng.randf_range(-570,590),rng.randf_range(-340,460))
-		var occupied := p.distance_to(Vector2(12,387)) < 28.0
-		for feature in manifest.features:
-			var poly := PackedVector2Array()
-			for point in feature.points:
-				poly.append(Vector2(point[0],point[1]))
-			if Geometry2D.is_point_in_polygon(p,poly):
-				occupied = true
-				break
-		for road in roads:
-			for i in range(road.points.size()-1):
-				var a := Vector2(road.points[i][0],road.points[i][1])
-				var b := Vector2(road.points[i+1][0],road.points[i+1][1])
-				if p.distance_to(Geometry2D.get_closest_point_to_segment(p,a,b)) < road.width/2.0+6.0:
-					occupied = true
-		if occupied:
-			continue
-		var h := rng.randf_range(7,12)
-		var trunk := CylinderMesh.new()
-		trunk.top_radius = 0.10
-		trunk.bottom_radius = h*0.027
-		trunk.height = h*0.68
-		trunk.radial_segments = 8
-		var stem := mesh_node(scene,trunk,material("Bark",Color("635b4c")),"TreeTrunk")
-		stem.position = Vector3(p.x,h*0.34,p.y)
-		for branch_index in 7:
-			var angle := rng.randf()*TAU
-			var start := Vector3(p.x,h*0.38+branch_index*0.28,p.y)
-			var tip := start + Vector3(cos(angle)*h*0.23,h*0.26,sin(angle)*h*0.23)
-			var branch_mesh := CylinderMesh.new()
-			branch_mesh.bottom_radius = 0.08
-			branch_mesh.top_radius = 0.025
-			branch_mesh.height = start.distance_to(tip)
-			branch_mesh.radial_segments = 5
-			var branch := mesh_node(scene,branch_mesh,materials.Bark,"TreeBranch")
-			branch.position = (start+tip)*0.5
-			branch.quaternion = Quaternion(Vector3.UP,(tip-start).normalized())
-			for leaf_index in 100:
-				var offset := Vector3(rng.randfn(),rng.randfn()*0.65,rng.randfn())*h*0.105
-				var center := tip+offset
-				var normal := Vector3(rng.randf_range(-1,1),rng.randf_range(0.25,1),rng.randf_range(-1,1)).normalized()
-				var side := normal.cross(Vector3.FORWARD).normalized()*rng.randf_range(0.12,0.24)
-				var along := normal.cross(side).normalized()*rng.randf_range(0.18,0.35)
-				tree_mesh.set_color(Color("69724b").lerp(Color("343e29"),rng.randf()))
-				triangle(tree_mesh,center-side,center+along,center+side)
-				triangle(tree_mesh,center-side,center+side,center-along)
-	tree_mesh.generate_normals()
-	var leaves := material("Leaves",Color.WHITE)
-	leaves.vertex_color_use_as_albedo = true
-	mesh_node(scene,tree_mesh.commit(),leaves,"TreeCanopies")
+	preload("res://tools/build_vegetation.gd").new().build(self)
 	merge_meshes(scene)
 	for mat in materials.values():
 		if mat.albedo_texture is NoiseTexture2D and mat.albedo_texture.get_image() == null:

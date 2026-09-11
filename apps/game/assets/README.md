@@ -13,6 +13,20 @@
 
 本文客户端路径均相对 apps/game/；references/ 指仓库根目录的原始参考资料。
 
+## 植被资源与分布
+
+开发区的建筑、道路与地面保留在 `development_campus.tscn`，植被独立存放于同目录 `vegetation.tscn`，两者由 `scenes/campuses/eda.tscn` 静态挂载。`tools/build_model.gd` 调用独立的 `tools/build_vegetation.gd` 生成植被，不在运行时重复创建。无头模式的 dummy renderer 不保留 MultiMesh 缓冲，生成器显式写入标准 TSCN 的实例 buffer；修改生成逻辑后须使用真实渲染器运行 `tests/vegetation.gd` 检查保存后的变换。
+
+`campuses/eda/data/vegetation.json` 保留旧生成器种子 20260909 对应的 304 棵示意树的位置和高度，新增树型与绕 Y 轴旋转（弧度）。坐标以米为单位，X 向东、Y 向上、Z 向南；这些位置沿用初版近似分布，不是照片核定或测绘结果。修改分布应编辑此文件，不通过建筑/地形生成器重新随机撒树。
+
+`tree_0.tres` 至 `tree_3.tres` 是四份共享 ArrayMesh，每份包含树干枝条与叶片两个材质表面，保留现有程序化枝叶风格，不代表核实的树种。实例以 10 米基准高度统一缩放并旋转，单棵枝叶细节不再完全对应旧随机网格。生成器使用 Godot 原生网格 LOD；离散叶片能简化的程度有限，实例化本身不保证降低可见三角形数量或提高帧率。
+
+实例按 64 米网格与树型组织为 MultiMeshInstance3D，负坐标向下取整，分块包围盒包含旋转缩放后的完整树冠。各批次共享外部树模型，保存局部变换；Godot 按批次裁剪，不逐树裁剪。块大小是初始工程参数，应依据桌面实测调整。植被不进入现有碰撞生成，树叶没有 trimesh 碰撞。桌面导出通过校园场景依赖包含植被与共享网格，服务端继续只导出既有碰撞世界。
+
+离线 `development_campus.glb` 仅导出建筑与地面，不再烘焙植被；桌面客户端使用挂载两份场景的完整校园。
+
+其他校区沿用建筑/地形、植被模型、植被分布分离的约定；没有有效植被分布依据时不复制开发区实例或新增随机分布。
+
 ## Git LFS
 
 模型目录中的 TSCN、GLB/Blender 文件、图片和字体由 Git LFS 管理，规则见根目录 .gitattributes。普通场景、脚本及 JSON 保持 Git 文本文件。克隆前安装 Git LFS 并执行 `git lfs install`；已有克隆执行 `git lfs pull`，确保资源不是指针文本后再打开 Godot 或构建。CI checkout 必须启用 `lfs: true`。忽略的生成产物仍不提交。
