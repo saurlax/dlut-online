@@ -2,7 +2,7 @@ extends SceneTree
 const Account = preload("res://scripts/client/account_session.gd")
 func _initialize() -> void: run.call_deferred()
 func run() -> void:
-	create_timer(20).timeout.connect(func(): quit(2))
+	create_timer(45).timeout.connect(func(): quit(2))
 	var session := Account.new()
 	root.add_child(session)
 	var arguments := OS.get_cmdline_user_args()
@@ -48,19 +48,38 @@ func run() -> void:
 		assert(Account.token.is_empty())
 		assert((await store.request("read", session.api_url())).missing)
 		await session.begin(email, "correct-horse-battery-staple")
-	change_scene_to_file("res://scenes/campuses/panjin.tscn")
+	change_scene_to_file("res://scenes/main.tscn")
 	await process_frame
 	await process_frame
-	current_scene.hud._account_authenticated()
+	assert(current_scene.login_only and current_scene.player == null)
+	Account.clear()
+	await current_scene.account_login.begin(email, "correct-horse-battery-staple")
+	assert(current_scene.loading_campus and current_scene.enter_button.disabled)
+	current_scene._account_authenticated() # Duplicate success must not start another load.
+	while current_scene == null or current_scene.scene_file_path == "res://scenes/main.tscn":
+		await process_frame
+	assert(current_scene.campus_id == "lingshui")
 	var network := root.get_node("GameNetwork")
 	var deadline := Time.get_ticks_msec() + 10000
 	while not network.welcomed and Time.get_ticks_msec() < deadline:
 		await process_frame
 	assert(network.welcomed and not current_scene.hud.overlay.visible)
+	var connection: ENetPacketPeer = network.socket
+	current_scene.hud.teleport("panjin")
+	while not network.transfer_phase.is_empty():
+		await process_frame
+	assert(current_scene.campus_id == "panjin" and network.socket == connection)
+	assert(not current_scene.hud.overlay.visible)
 	await Account.forget_saved()
 	network.require_login()
 	assert(Account.token.is_empty() and current_scene.hud.overlay.visible)
 	assert(current_scene.hud.password_input.editable)
+	var old: WeakRef = weakref(current_scene)
+	await process_frame
+	await process_frame
+	await process_frame
+	assert(old.get_ref() == null and current_scene.login_only)
+	assert(current_scene.player == null and current_scene.password_input.editable)
 	Account.clear()
 	session.queue_free()
 	print("PASS: native PocketBase password login, invalid password, cancellation and authenticated game entry")

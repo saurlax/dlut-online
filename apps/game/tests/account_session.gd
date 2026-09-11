@@ -8,6 +8,14 @@ func run() -> void:
 	create_timer(15).timeout.connect(func(): quit(2))
 	Account.restore_attempted = true
 	Account.clear()
+	change_scene_to_file("res://scenes/main.tscn")
+	await process_frame
+	await process_frame
+	assert(current_scene.login_only and current_scene.overlay.visible)
+	assert(current_scene.player == null and current_scene.minimap == null)
+	assert(current_scene.find_children("*", "Node3D", true, false).is_empty())
+	for id in ["lingshui", "eda", "panjin"]:
+		assert(not ResourceLoader.has_cached("res://scenes/campuses/" + id + ".tscn"), "Login must not load campus scenes")
 	change_scene_to_file("res://scenes/campuses/panjin.tscn")
 	await process_frame
 	await process_frame
@@ -34,5 +42,12 @@ func run() -> void:
 	root.get_node("GameNetwork").require_login()
 	assert(Account.token.is_empty() and current_scene.hud.overlay.visible)
 	assert(not current_scene.player.playing)
+	var old: WeakRef = weakref(current_scene)
+	await process_frame
+	await process_frame
+	await process_frame
+	assert(old.get_ref() == null, "Logout must unload the campus")
+	assert(current_scene.login_only and current_scene.overlay.visible)
+	assert(current_scene.password_input.editable)
 	print("PASS: anonymous cover, password masking, empty-input rejection, cancellation and expired session")
 	quit()

@@ -15,6 +15,11 @@ func _run() -> void:
 	assert(not account.token.is_empty())
 	create_timer(90).timeout.connect(func(): quit(2))
 	change_scene_to_file("res://scenes/main.tscn")
+	await settle(2)
+	assert(current_scene.login_only)
+	current_scene._account_authenticated()
+	while current_scene == null or current_scene.scene_file_path == "res://scenes/main.tscn":
+		await process_frame
 	await settle(45)
 	assert(current_scene.campus_id == "lingshui")
 	assert(current_scene.player.is_on_floor())
