@@ -51,7 +51,7 @@ func _select_profile(index: int) -> void:
 	config.set_value("run", "profile", "dev" if index == 1 else "local")
 	if config.save(Config.EDITOR_PROFILE_PATH) != OK:
 		run_profile.select(selected_profile)
-		push_error("Could not save the editor API profile.")
+		push_error("Could not save the editor environment profile.")
 		return
 	selected_profile = index
 	_update_tooltip()
@@ -60,19 +60,19 @@ func _update_tooltip() -> void:
 	var environment := OS.get_environment("DO_ENV")
 	var server_url := OS.get_environment("DO_API_SERVER_URL")
 	var overridden := not environment.strip_edges().is_empty() or not server_url.strip_edges().is_empty()
-	run_label.text = "API*:" if overridden else "API:"
+	run_label.text = "Env*:" if overridden else "Env:"
 	var defaults := Config.editor_defaults()
 	var effective := Config.resolve(defaults, environment, server_url) if not defaults.is_empty() else {}
 	run_profile.tooltip_text = "Next F5/F6: %s\nLocal: %s\nDev: %s\nSaved on this machine only; exports are unchanged." % [
 		effective.get("server_url", "Invalid configuration"), Config.DEFAULT_URLS.development, Config.DEFAULT_URLS.production]
 	if overridden:
-		run_profile.tooltip_text += "\nAPI*: DO_ENV / DO_API_SERVER_URL overrides the selected profile."
+		run_profile.tooltip_text += "\nEnv*: DO_ENV / DO_API_SERVER_URL overrides the selected profile."
 	run_label.tooltip_text = run_profile.tooltip_text
 
 func _build() -> bool:
 	var defaults := Config.editor_defaults()
 	if defaults.is_empty() or Config.resolve(defaults, OS.get_environment("DO_ENV"), OS.get_environment("DO_API_SERVER_URL")).is_empty():
-		push_error("Invalid API configuration. Select Local / Dev and check DO_ENV / DO_API_SERVER_URL.")
+		push_error("Invalid environment configuration. Select Local / Dev and check DO_ENV / DO_API_SERVER_URL.")
 		return false
 	return true
 

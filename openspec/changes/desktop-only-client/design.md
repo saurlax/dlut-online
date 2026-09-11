@@ -30,6 +30,6 @@
 
 ## Editor Run Profiles
 
-复用现有 desktop_export EditorPlugin，在 CONTAINER_TOOLBAR 放置 API 标签与 Local / Dev OptionButton。Local 使用 http://localhost:8415，Dev 按用户指定使用 https://dlut.online；二者都是客户端 development 配置，不改变远端服务的部署环境。使用 ConfigFile 将 profile 存入 apps/game/.godot/do_run_environment.cfg，该目录已忽略，不提交或导出。
+插件保留 Desktop server configuration 名称，位于 apps/game/addons/desktop_export/，保留已有桌面配置导出能力；通过 EditorPlugin 在 CONTAINER_TOOLBAR 放置 Env 标签与 Local / Dev OptionButton。Local 使用 http://localhost:8415，Dev 按用户指定使用 https://dlut.online；二者都是客户端 development 配置，不改变远端服务的部署环境。使用 ConfigFile 将 profile 存入 apps/game/.godot/do_run_environment.cfg，该目录已忽略，不提交或导出。
 
 desktop_config 仅在 editor feature 的运行进程读取本机选择，首次读取后固定本进程默认值，避免运行中切换导致账号认证与票据申请跨 API。显式 DO_ENV / DO_API_SERVER_URL 仍按现有规则覆盖。插件展示实际默认地址及环境变量覆盖提示。导出插件继续从 production 默认值和显式环境变量生成包内配置，不读取本机 profile。
