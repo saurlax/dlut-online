@@ -17,7 +17,10 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 )
 
-type gameConfig struct{ environment, apiKey string }
+type gameConfig struct {
+	environment, apiKey string
+	weather             weatherConfig
+}
 type admission struct {
 	ID          string    `json:"id"`
 	Username    string    `json:"username"`
@@ -38,6 +41,7 @@ type apiRoute struct {
 	handler http.Handler
 }
 type gameAPI struct {
+	weather               *weatherService
 	mu                    sync.Mutex
 	config                gameConfig
 	tickets               map[[32]byte]admission
@@ -111,7 +115,7 @@ func decode(w http.ResponseWriter, r *http.Request, v any, limit int64) bool {
 	return true
 }
 func newGameAPI(c gameConfig, apps ...core.App) *gameAPI {
-	g := &gameAPI{config: c, tickets: make(map[[32]byte]admission), issued: make(map[string]time.Time), retired: make(map[string]bool), now: time.Now, seq: -1}
+	g := &gameAPI{config: c, weather: newWeatherService(c.weather), tickets: make(map[[32]byte]admission), issued: make(map[string]time.Time), retired: make(map[string]bool), now: time.Now, seq: -1}
 	if len(apps) > 0 && apps[0] != nil {
 		app := apps[0]
 		g.resolveGameEndpoint = func() (string, bool) {
@@ -152,6 +156,7 @@ func (g *gameAPI) apiKeyAuth(next http.HandlerFunc) http.HandlerFunc {
 }
 func (g *gameAPI) routes() []apiRoute {
 	return []apiRoute{
+		{http.MethodPost, "/api/v1/game/weather", http.HandlerFunc(g.apiKeyAuth(g.weatherState))},
 		{http.MethodPost, "/api/v1/game/tickets", http.HandlerFunc(g.issue)},
 		{http.MethodPost, "/api/v1/game/tickets/consume", http.HandlerFunc(g.apiKeyAuth(g.consume))},
 		{http.MethodPost, "/api/v1/game/register", http.HandlerFunc(g.apiKeyAuth(g.register))},

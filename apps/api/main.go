@@ -61,6 +61,11 @@ func main() {
 		slog.Error("Set DO_API_KEY to a random value of at least 32 characters")
 		os.Exit(1)
 	}
+	config.weather, err = readWeatherConfig()
+	if err != nil {
+		slog.Error("Invalid weather configuration", "error", err)
+		os.Exit(1)
+	}
 	dataDir := os.Getenv("PB_DATA_DIR")
 	if dataDir == "" {
 		dataDir = "pb_data"
