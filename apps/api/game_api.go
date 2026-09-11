@@ -172,7 +172,7 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 	if !decode(w, r, &q, 1024) {
 		return
 	}
-	if q.Version != 4 {
+	if q.Version != 5 {
 		reject(w, 400, "invalid_identity_or_version")
 		return
 	}
@@ -216,7 +216,7 @@ func (g *gameAPI) issue(w http.ResponseWriter, r *http.Request) {
 	identity.Expires = now.Add(30 * time.Second)
 	g.tickets[sha256.Sum256([]byte(ticket))] = identity
 	g.issued[identity.ID] = now
-	respond(w, 201, map[string]any{"ticket": ticket, "expires_in": 30, "game_server_url": endpoint, "version": 4})
+	respond(w, 201, map[string]any{"ticket": ticket, "expires_in": 30, "game_server_url": endpoint, "version": 5})
 }
 func (g *gameAPI) consume(w http.ResponseWriter, r *http.Request) {
 	var q struct {

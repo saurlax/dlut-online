@@ -1,5 +1,9 @@
 extends Node
 
+signal chat_changed()
+signal chat_accepted()
+signal chat_reset()
+signal chat_rejected()
 signal status_changed(value: String)
 signal login_required()
 signal connected()
@@ -12,6 +16,13 @@ const Account = preload("res://scripts/client/account_session.gd")
 const Catalog = preload("res://scripts/shared/campus_catalog.gd")
 var player: CharacterBody3D
 var campus_id := "lingshui"
+const ChatRules = preload("res://scripts/shared/chat_rules.gd")
+var chat_events: Array[Dictionary] = []
+var chat_draft := ""
+var chat_event_id := 0
+var chat_request := 0
+var chat_pending := 0
+var chat_ready_at := 0
 const Protocol = preload("res://scripts/shared/game_protocol.gd")
 var host: ENetConnection
 var socket: ENetPacketPeer
@@ -148,6 +159,8 @@ func _connect() -> void:
 	if not result.is_empty() and result[1] in [401, 403]:
 		require_login()
 		return
+	if not result.is_empty() and result[1] == 400:
+		close_code = 4002
 	if result.is_empty() or result[0] != HTTPRequest.RESULT_SUCCESS or result[1] != 201:
 		_disconnected()
 		return
@@ -194,6 +207,7 @@ func _connect() -> void:
 func _disconnected() -> void:
 	if retry_in > 0: return
 	_clear_remotes()
+	_reset_chat()
 	if is_instance_valid(player): player.network_ready = false
 	welcomed = false
 	load_generation += 1
@@ -224,6 +238,7 @@ func _disconnected() -> void:
 	map_failed.emit()
 
 func require_login(reason := "登录已失效，请重新登录") -> void:
+	_reset_chat()
 	active = false
 	started = false
 	welcomed = false
@@ -312,7 +327,17 @@ func _process(delta: float) -> void:
 
 func message(m: Dictionary) -> void:
 	match m.get("type"):
+		"chat_event": _receive_chat(m)
+		"chat_result":
+			if not welcomed or chat_pending == 0 or m.get("request_id") != chat_pending: return
+			chat_ready_at = maxi(chat_ready_at, Time.get_ticks_msec() + clampi(int(m.get("retry_ms", 0)), 0, ChatRules.INTERVAL_MS))
+			chat_pending = 0
+			chat_rejected.emit()
 		"welcome":
+			if m.get("version") != Protocol.VERSION:
+				close_code = 4002
+				_disconnected()
+				return
 			if m.get("id") != Account.player_id: return
 			welcomed = true
 			last_valid_received = Time.get_ticks_msec()
@@ -501,3 +526,41 @@ func _clear_remotes() -> void:
 	for remote in remotes.values():
 		if is_instance_valid(remote): remote.queue_free()
 	remotes.clear()
+
+func submit_chat() -> bool:
+	var body := ChatRules.text(chat_draft)
+	if not welcomed or socket == null or socket.get_state() != ENetPacketPeer.STATE_CONNECTED or not transfer_phase.is_empty(): return false
+	if body.is_empty() or chat_pending != 0 or Time.get_ticks_msec() < chat_ready_at: return false
+	chat_request += 1
+	chat_pending = chat_request
+	chat_ready_at = Time.get_ticks_msec() + ChatRules.INTERVAL_MS
+	_send({"type":"chat_send", "request_id":chat_request, "text":body})
+	return chat_pending != 0
+
+func _receive_chat(m: Dictionary) -> void:
+	if not welcomed or not m.get("kind") in ["message", "joined", "left"]: return
+	if not m.get("event_id") is float and not m.get("event_id") is int: return
+	var event_id := int(m.event_id)
+	if event_id <= chat_event_id or not m.get("username") is String or not m.get("id") is String: return
+	if m.kind == "message" and ChatRules.text(m.get("text")).is_empty(): return
+	chat_event_id = event_id
+	last_valid_received = Time.get_ticks_msec()
+	var event := m.duplicate()
+	event.username = ChatRules.player_name(event.username)
+	chat_events.append(event)
+	while chat_events.size() > ChatRules.MAX_EVENTS: chat_events.pop_front()
+	chat_changed.emit()
+	if m.kind == "message" and m.id == Account.player_id and chat_pending != 0 and m.get("request_id") == chat_pending:
+		chat_pending = 0
+		chat_draft = ""
+		chat_accepted.emit()
+
+func _reset_chat() -> void:
+	chat_events.clear()
+	chat_draft = ""
+	chat_event_id = 0
+	chat_pending = 0
+	chat_request = 0
+	chat_ready_at = 0
+	chat_reset.emit()
+	chat_changed.emit()

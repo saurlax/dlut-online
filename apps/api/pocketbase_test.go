@@ -122,7 +122,7 @@ func TestPocketBaseAccountTicket(t *testing.T) {
 
 	status, issued := request("/api/v1/game/tickets", token, map[string]any{
 		"id":      "FORGED000000000",
-		"version": 4,
+		"version": 5,
 	})
 	if status != 201 {
 		t.Fatal(status, issued)
@@ -135,7 +135,7 @@ func TestPocketBaseAccountTicket(t *testing.T) {
 	if err := app.Save(record); err != nil {
 		t.Fatal(err)
 	}
-	if status, _ := request("/api/v1/game/tickets", token, map[string]any{"version": 4}); status != 401 {
+	if status, _ := request("/api/v1/game/tickets", token, map[string]any{"version": 5}); status != 401 {
 		t.Fatal("unverified account received ticket", status)
 	}
 	record.Set("verified", true)
@@ -144,7 +144,7 @@ func TestPocketBaseAccountTicket(t *testing.T) {
 	if err := app.Save(record); err != nil {
 		t.Fatal(err)
 	}
-	status, _ = request("/api/v1/game/tickets", token, map[string]any{"version": 4})
+	status, _ = request("/api/v1/game/tickets", token, map[string]any{"version": 5})
 	if status != 401 {
 		t.Fatalf("disabled account ticket status = %d", status)
 	}

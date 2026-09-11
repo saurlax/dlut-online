@@ -32,6 +32,11 @@ var root_control: Control
 var player_status: HBoxContainer
 var username_label: Label
 var latency_label: Label
+const WorldChat = preload("res://scripts/client/world_chat.gd")
+var chat: Control
+var chat_was_playing := false
+var chat_was_drag_look := false
+var chat_mouse_mode := Input.MOUSE_MODE_VISIBLE
 
 func _ready() -> void:
 	if login_only:
@@ -149,6 +154,10 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	network.map_finished.connect(_network_map_finished)
 	build_map()
 	build_player_status()
+	chat = WorldChat.new()
+	root_control.add_child(chat)
+	chat.configure(network)
+	chat.editing_finished.connect(_chat_finished)
 	minimap.visible = Catalog.started
 	if Catalog.started or Catalog.arriving:
 		Catalog.arriving = false
@@ -259,6 +268,27 @@ func pause_exploration() -> void:
 func _input(event: InputEvent) -> void:
 	if not Catalog.started:
 		return
+	if is_instance_valid(chat) and chat.editing:
+		if event is InputEventKey:
+			chat.observe_key(event)
+			if event.echo and event.keycode in [KEY_ENTER, KEY_KP_ENTER]:
+				get_viewport().set_input_as_handled()
+				return
+			if event.is_action_pressed("ui_cancel"):
+				chat.finish()
+				get_viewport().set_input_as_handled()
+		return
+	if event is InputEventKey and event.pressed and not event.echo and event.keycode in [KEY_ENTER, KEY_KP_ENTER] and _chat_available():
+		chat_was_playing = player.playing or capture_pending
+		chat_was_drag_look = player.drag_look
+		chat_mouse_mode = Input.mouse_mode
+		capture_pending = false
+		player.stop()
+		crosshair.hide()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		chat.begin()
+		get_viewport().set_input_as_handled()
+		return
 	if switching:
 		if event.is_action_pressed("ui_cancel") or (event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_M):
 			cancel_transfer()
@@ -278,6 +308,7 @@ func _input(event: InputEvent) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and is_instance_valid(player):
+		chat_was_playing = false
 		if switching:
 			map_was_playing = false
 			player.stop()
@@ -286,6 +317,11 @@ func _notification(what: int) -> void:
 
 func _process(delta: float) -> void:
 	_update_player_status_visibility()
+	if is_instance_valid(chat):
+		chat.visible = _chat_visible()
+		if chat.editing and not _chat_available():
+			chat_was_playing = false
+			chat.finish()
 	if not is_instance_valid(player):
 		return
 	if switching: return
@@ -433,6 +469,7 @@ func build_map() -> void:
 	map_overlay.hide()
 
 func toggle_map() -> void:
+	if is_instance_valid(chat) and chat.editing: return
 	if switching:
 		cancel_transfer()
 		return
@@ -502,6 +539,7 @@ func _exit_tree() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_instance_valid(chat) and chat.editing: return
 	if Catalog.started and not switching and not player.playing and not map_overlay.visible:
 		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			enter_campus()
@@ -510,3 +548,20 @@ func _unhandled_input(event: InputEvent) -> void:
 func _connection_status_changed(value: String) -> void:
 	var label: Label = map_overlay.get_node("ConnectionStatus")
 	label.text = value
+
+func _chat_visible() -> bool:
+	return Catalog.started and not Account.token.is_empty() and not overlay.visible and not map_overlay.visible and not switching and network.transfer_phase.is_empty()
+
+func _chat_available() -> bool:
+	return _chat_visible() and network.welcomed
+
+func _chat_finished(resume: bool) -> void:
+	if resume and chat_was_playing and _chat_available() and (DisplayServer.get_name() == "headless" or DisplayServer.window_is_focused()):
+		player.playing = true
+		player.drag_look = chat_was_drag_look
+		Input.mouse_mode = chat_mouse_mode
+		crosshair.show()
+	else:
+		player.stop()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		crosshair.hide()
