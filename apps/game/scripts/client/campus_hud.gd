@@ -29,6 +29,9 @@ var transfer_panel: VBoxContainer
 var transfer_status: Label
 var transfer_target := ""
 var root_control: Control
+var player_status: VBoxContainer
+var username_label: Label
+var latency_label: Label
 
 func _ready() -> void:
 	if login_only:
@@ -145,6 +148,7 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	network.map_failed.connect(_network_map_failed)
 	network.map_finished.connect(_network_map_finished)
 	build_map()
+	build_player_status()
 	minimap.visible = Catalog.started
 	if Catalog.started or Catalog.arriving:
 		Catalog.arriving = false
@@ -281,6 +285,7 @@ func _notification(what: int) -> void:
 			pause_exploration()
 
 func _process(delta: float) -> void:
+	_update_player_status_visibility()
 	if not is_instance_valid(player):
 		return
 	if switching: return
@@ -302,6 +307,55 @@ func _process(delta: float) -> void:
 			crosshair.show()
 	elif player.playing and not player.drag_look and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		pause_exploration()
+
+func build_player_status() -> void:
+	player_status = VBoxContainer.new()
+	player_status.name = "PlayerStatus"
+	player_status.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	root_control.add_child(player_status)
+	player_status.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
+	player_status.offset_left = -256
+	player_status.offset_right = -16
+	player_status.offset_top = -64
+	player_status.offset_bottom = -16
+	player_status.add_theme_constant_override("separation", 2)
+	username_label = Label.new()
+	username_label.name = "Username"
+	username_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	latency_label = Label.new()
+	latency_label.name = "Latency"
+	for label in [username_label, latency_label]:
+		label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		label.add_theme_color_override("font_color", Color("eef2f5"))
+		label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.9))
+		label.add_theme_constant_override("shadow_offset_x", 1)
+		label.add_theme_constant_override("shadow_offset_y", 1)
+		label.add_theme_constant_override("outline_size", 4)
+		label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.65))
+		player_status.add_child(label)
+	network.connection_quality_changed.connect(_connection_quality_changed)
+	overlay.visibility_changed.connect(_update_player_status_visibility)
+	map_overlay.visibility_changed.connect(_update_player_status_visibility)
+	_connection_quality_changed(network.connection_state, network.round_trip_time_ms)
+
+func _connection_quality_changed(state: String, rtt_ms: int) -> void:
+	username_label.text = Account.account_username if not Account.account_username.strip_edges().is_empty() else "用户名不可用"
+	var color := Color("cbd5df")
+	match state:
+		"connected":
+			latency_label.text = "%d ms" % rtt_ms
+			color = Color("7ee2a8") if rtt_ms < 100 else (Color("f4d477") if rtt_ms < 200 else Color("ff8585"))
+		"measuring": latency_label.text = "测量中"
+		_:
+			latency_label.text = {"stale":"连接异常", "reconnecting":"正在重连"}.get(state, "连接已断开")
+			color = Color("ff8585")
+	latency_label.add_theme_color_override("font_color", color)
+	_update_player_status_visibility()
+
+func _update_player_status_visibility() -> void:
+	if not is_instance_valid(player_status): return
+	player_status.visible = Catalog.started and not Account.token.is_empty() and not overlay.visible and not map_overlay.visible and not switching and network.transfer_phase.is_empty()
 
 func build_map() -> void:
 	minimap = MapView.new()

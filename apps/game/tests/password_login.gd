@@ -8,7 +8,7 @@ func run() -> void:
 	var arguments := OS.get_cmdline_user_args()
 	if "restore" in arguments:
 		await session.restore()
-		assert(not Account.token.is_empty() and Account.username == "Client player")
+		assert(not Account.token.is_empty() and Account.username == "Client player" and Account.account_username == "client_test")
 	var email := "client@example.com"
 	await session.begin(email, "wrong-password")
 	assert(Account.token.is_empty() and not session.waiting)
@@ -17,7 +17,7 @@ func run() -> void:
 	await create_timer(0.3).timeout
 	assert(Account.token.is_empty() and not session.waiting)
 	await session.begin(email, "correct-horse-battery-staple")
-	assert(not Account.token.is_empty() and Account.player_id.length() == 15 and Account.username == "Client player")
+	assert(not Account.token.is_empty() and Account.player_id.length() == 15 and Account.username == "Client player" and Account.account_username == "client_test")
 	assert(not session.waiting and session.pending == null)
 	var store = load("res://scripts/client/credential_store.gd")
 	var saved: Dictionary = await store.request("read", session.api_url())
@@ -31,7 +31,7 @@ func run() -> void:
 		Account.clear()
 		Account.restore_attempted = false
 		await session.restore()
-		assert(not Account.token.is_empty() and Account.username == "Client player")
+		assert(not Account.token.is_empty() and Account.username == "Client player" and Account.account_username == "client_test")
 		var kept_token := Account.token
 		await fixture(session.api_url() + "/test/refresh-unavailable")
 		Account.clear()
@@ -64,6 +64,9 @@ func run() -> void:
 	while not network.welcomed and Time.get_ticks_msec() < deadline:
 		await process_frame
 	assert(network.welcomed and not current_scene.hud.overlay.visible)
+	await process_frame
+	assert(current_scene.hud.player_status.visible)
+	assert(current_scene.hud.username_label.text == "client_test")
 	var connection: ENetPacketPeer = network.socket
 	current_scene.hud.teleport("panjin")
 	while not network.transfer_phase.is_empty():
@@ -72,7 +75,8 @@ func run() -> void:
 	assert(not current_scene.hud.overlay.visible)
 	await Account.forget_saved()
 	network.require_login()
-	assert(Account.token.is_empty() and current_scene.hud.overlay.visible)
+	assert(Account.token.is_empty() and Account.account_username.is_empty() and current_scene.hud.overlay.visible)
+	assert(not current_scene.hud.player_status.visible)
 	assert(current_scene.hud.password_input.editable)
 	var old: WeakRef = weakref(current_scene)
 	await process_frame
