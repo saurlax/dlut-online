@@ -16,10 +16,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="DLUT Online"
 run/main_scene="res://scenes/main.tscn"
-run/main_scene.dedicated_server="res://scenes/server.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/bg_color=Color(0.066667, 0.105882, 0.12549, 1)
 boot_splash/show_image=false
+run/main_scene.dedicated_server="res://scenes/server.tscn"
 
 [autoload]
 
@@ -40,7 +40,6 @@ enabled=PackedStringArray("res://addons/desktop_export/plugin.cfg", "res://addon
 
 [rendering]
 
-renderer/rendering_method="forward_plus"
 textures/vram_compression/import_etc2_astc=true
 anti_aliasing/quality/msaa_3d=1
 environment/defaults/default_clear_color=Color(0.57, 0.74, 0.85, 1)
