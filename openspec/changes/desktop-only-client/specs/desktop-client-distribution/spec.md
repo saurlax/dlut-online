@@ -49,3 +49,11 @@
 #### Scenario: Go 重启
 - **WHEN** Go 暂时不可用或在线注册状态重置
 - **THEN** 已认证 ENet 玩家继续移动和切图，Go 恢复后游戏服重新注册并上报在线状态
+
+### Requirement: 默认 Forward+ 渲染
+
+项目 SHALL 默认使用 Forward+，编辑器与桌面客户端使用同一渲染配置，当前不声明移动端渲染覆盖。
+
+#### Scenario: 默认启动与导出
+- **WHEN** 从编辑器启动或导出 Windows/macOS 客户端
+- **THEN** 默认选择 Forward+，移动端专属配置在后续适配时再添加

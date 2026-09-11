@@ -6,6 +6,8 @@
 
 ## What Changes
 
+- 默认渲染器改为 Forward+，编辑器与桌面导出共用配置，移动端覆盖留待后续适配。
+
 - **BREAKING**：移除 Web 导出、浏览器身份适配、校区下载和分块工具及 `/web/` 托管；Go 启动和镜像不再依赖 Web 资源。
 - 保留 Windows/macOS 完整地图导出和 Linux Godot 专用服务器，保留地图切换与当前权威联网能力。
 - 更新 CI、应用技术文档和 AGENTS.md；根 README 不修改。

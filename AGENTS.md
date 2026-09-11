@@ -23,7 +23,7 @@
 - 项目自定义环境变量统一使用 `DO_` 前缀和大写下划线命名（DO 为 DLUT Online 简称）。环境名称使用 `DO_ENV`（`development` / `production`），服务器根地址使用 `DO_API_SERVER_URL`，不使用含义模糊的 `ENV`、`BASE_URL` 或 `BASEURL`。平台约定变量（如现有 `PORT`）保留其兼容用途，不作为项目自定义变量命名范例。
 - `DO_API_SERVER_URL` 是 Go HTTP API 根地址，包含协议、主机和可选端口，不含末尾斜杠或接口路径；开发默认 `http://localhost:8415`，生产默认 `https://dlut.online`。客户端从 Go 获取一次性票据和游戏服公网地址后直连游戏服。
 - `DO_API_KEY` 是 Go、Godot 游戏服及其他可信服务调用方共享的 API Bearer Key，至少 32 字符；受保护服务接口统一使用 `Authorization: Bearer <DO_API_KEY>`。该变量不进入桌面客户端。
-- 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。当前保留 Compatibility 渲染器，不因取消 Web 顺带变更渲染管线。
+- 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。默认使用 Forward+ 渲染器，暂不设置移动端渲染覆盖，后续适配移动端时再添加。
 - Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，账号 token 在运行时保留于内存，并按 API 根地址隔离存入 macOS 钥匙串或 Windows 凭据管理器；游戏提供原生密码登录，无游客入口；网站提供登录注册与邮箱验证。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
 - 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，运行时资源放 assets/。
