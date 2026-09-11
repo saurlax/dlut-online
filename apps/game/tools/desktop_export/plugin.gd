@@ -18,6 +18,8 @@ class DesktopExport extends EditorExportPlugin:
 			get_export_platform().add_message(EditorExportPlatform.EXPORT_MESSAGE_ERROR,
 				"Desktop configuration", "Invalid DO_ENV or DO_API_SERVER_URL.")
 			return
+		if features.has("windows"):
+			add_file("res://scripts/client/credential_store.ps1", FileAccess.get_file_as_bytes("res://scripts/client/credential_store.ps1"), false)
 		add_file(Config.CONFIG_PATH, JSON.stringify(config).to_utf8_buffer(), false)
 
 var exporter: DesktopExport

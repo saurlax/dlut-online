@@ -34,7 +34,15 @@ permissions:
   packages: write
 
 jobs:
+  windows-credentials:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Windows credential storage
+        shell: powershell
+        run: ./apps/game/tests/credential_store.ps1
   build:
+    needs: windows-credentials
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:

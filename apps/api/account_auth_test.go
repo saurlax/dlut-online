@@ -97,3 +97,38 @@ func TestPasswordAuthentication(t *testing.T) {
 		}
 	}
 }
+
+func TestAccountTokenRefresh(t *testing.T) {
+	app, handler := accountTestApp(t)
+	users, _ := app.FindCollectionByNameOrId("users")
+	record := core.NewRecord(users)
+	record.SetEmail("refresh@example.com")
+	record.SetPassword("correct-horse-battery-staple")
+	record.Set("username", "refresh_test")
+	record.Set("display_name", "Refresh player")
+	record.SetVerified(true)
+	if err := app.Save(record); err != nil {
+		t.Fatal(err)
+	}
+	token, err := record.NewAuthToken()
+	if err != nil {
+		t.Fatal(err)
+	}
+	status, body := authRequest(handler, "/api/collections/users/auth-refresh", token, map[string]any{})
+	if status != 200 || body["token"] == "" || body["record"] == nil {
+		t.Fatalf("refresh failed: %d", status)
+	}
+	if _, exists := body["refreshToken"]; exists {
+		t.Fatal("unexpected separate refresh token")
+	}
+	record.Set("disabled", true)
+	if err := app.Save(record); err != nil {
+		t.Fatal(err)
+	}
+	if status, _ := authRequest(handler, "/api/collections/users/auth-refresh", token, map[string]any{}); status == 200 {
+		t.Fatal("disabled account refreshed")
+	}
+	if status, _ := authRequest(handler, "/api/collections/users/auth-refresh", "expired.invalid.token", map[string]any{}); status == 200 {
+		t.Fatal("invalid token refreshed")
+	}
+}

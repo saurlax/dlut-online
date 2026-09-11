@@ -206,6 +206,7 @@ func require_login(reason := "登录已失效，请重新登录") -> void:
 	transfer_phase = ""
 	history.clear()
 	if is_instance_valid(player): player.network_ready = false
+	Account.forget_saved()
 	Account.clear()
 	Catalog.started = false
 	Catalog.arriving = false

@@ -24,7 +24,7 @@
 - `DO_API_SERVER_URL` 是 Go HTTP API 根地址，包含协议、主机和可选端口，不含末尾斜杠或接口路径；开发默认 `http://localhost:8415`，生产默认 `https://dlut.online`。客户端从 Go 获取一次性票据和游戏服公网地址后直连游戏服。
 - `DO_API_KEY` 是 Go、Godot 游戏服及其他可信服务调用方共享的 API Bearer Key，至少 32 字符；受保护服务接口统一使用 `Authorization: Bearer <DO_API_KEY>`。该变量不进入桌面客户端。
 - 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。当前保留 Compatibility 渲染器，不因取消 Web 顺带变更渲染管线。
-- Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，账号 token 仅保留在客户端进程中；游戏提供原生密码登录，无游客入口；网站提供登录注册与邮箱验证。
+- Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，账号 token 在运行时保留于内存，并按 API 根地址隔离存入 macOS 钥匙串或 Windows 凭据管理器；游戏提供原生密码登录，无游客入口；网站提供登录注册与邮箱验证。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
 - 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，运行时资源放 assets/。
 - 按职责拆分模型生成器，避免把建筑内部、植被和 UI 混入同一模块。GDScript 使用 snake_case，常量 UPPER_SNAKE_CASE；类型推断不明确时显式标注类型。
@@ -91,4 +91,4 @@
 
 - Web 前端（apps/web）默认不新增或维护测试文件、测试脚本及测试框架；常规改动以 TypeScript 类型检查、生产构建和必要的浏览器检查为主，避免过度测试。仅在用户明确要求前端自动化测试时增加；此约定不影响 Go 服务和 Godot 的必要检查。
 
-- 客户端使用 Godot 原生邮箱、密码表单调用 PocketBase 密码认证，不打开本机回调端口。密码输入隐藏，提交后清空，不写入文件或日志；账号 token 仅在进程内保存。无账号提示去 dlut.online 注册。未来 OIDC 与移动系统认证另行实现。
+- 客户端使用 Godot 原生邮箱、密码表单调用 PocketBase 密码认证，不打开本机回调端口。密码输入隐藏，提交后清空，不写入文件或日志；账号 token 安全保存到系统凭据库，启动时通过 PocketBase auth-refresh 验证并刷新，认证失效或退出时清除；网络暂时故障不删除有效凭据。无账号提示去 dlut.online 注册。未来 OIDC 与移动系统认证另行实现。

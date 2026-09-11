@@ -11,6 +11,8 @@
 
 - 后续部署要求：production 客户端也接受 API 下发的 enet://，按协议选择 DTLS；不改变 HTTPS 登录要求与 enets:// 证书校验。
 
+- 登录 Token 保存到系统凭据库，启动时验证刷新；退出与失效清理，密码不保存。
+
 ## Capabilities
 
 ### New Capabilities

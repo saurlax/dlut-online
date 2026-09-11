@@ -6,6 +6,7 @@ func _initialize() -> void: run.call_deferred()
 
 func run() -> void:
 	create_timer(15).timeout.connect(func(): quit(2))
+	Account.restore_attempted = true
 	Account.clear()
 	change_scene_to_file("res://scenes/campuses/panjin.tscn")
 	await process_frame
