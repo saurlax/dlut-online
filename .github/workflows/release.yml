@@ -50,10 +50,8 @@ jobs:
           GH_REPO: ${{ github.repository }}
           TAG: ${{ github.ref_name }}
         run: |
-          mv 'dist/macos/DLUT Online.zip' dist/DLUT-Online-macOS.zip
-          mv dist/windows/DLUT-Online-Windows.zip dist/DLUT-Online-Windows.zip
           image="ghcr.io/${GH_REPO,,}"
-          printf 'Go HTTP Docker: `%s`\nGodot game Docker: `%s`\n\nWindows x86_64 and macOS universal clients are attached. Desktop builds are unsigned and macOS builds are not notarized.\n' "${image}-web:$TAG" "$image:$TAG" > notes.md
+          printf 'Go HTTP Docker: `%s`\nGodot game Docker: `%s`\n\nWindows x86_64 and macOS arm64 clients are attached. Windows EXE is unsigned. macOS DMG contains an ad-hoc signed app, without Developer ID signing or Apple notarization; Gatekeeper may block browser downloads.\n' "${image}-web:$TAG" "$image:$TAG" > notes.md
           if ! gh release view "$TAG" >/dev/null 2>&1; then
             args=(--verify-tag --title "$TAG" --notes-file notes.md)
             if [[ "$TAG" == *-* ]]; then
@@ -63,4 +61,4 @@ jobs:
             fi
             gh release create "$TAG" "${args[@]}"
           fi
-          gh release upload "$TAG" dist/*.zip --clobber
+          gh release upload "$TAG" dist/windows/DLUT-Online-Windows.exe dist/macos/DLUT-Online-macOS.dmg --clobber
