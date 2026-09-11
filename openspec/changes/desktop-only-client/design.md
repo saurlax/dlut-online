@@ -33,3 +33,9 @@
 Run environment 插件位于 apps/game/addons/run_environment/，通过 EditorPlugin 在 CONTAINER_TOOLBAR 放置 Env 标签与 Local / Dev OptionButton，负责本机选择保存及启动校验。Desktop server configuration 插件位于 apps/game/addons/desktop_export/，仅注册 EditorExportPlugin 处理桌面配置和 Windows 凭据脚本导出。两者共用 desktop_config.gd，互不依赖。Local 使用 http://localhost:8415，Dev 按用户指定使用 https://dlut.online；二者都是客户端 development 配置，不改变远端服务的部署环境。使用 ConfigFile 将 profile 存入 apps/game/.godot/do_run_environment.cfg，该目录已忽略，不提交或导出。
 
 desktop_config 仅在 editor feature 的运行进程读取本机选择，首次读取后固定本进程默认值，避免运行中切换导致账号认证与票据申请跨 API。显式 DO_ENV / DO_API_SERVER_URL 仍按现有规则覆盖。插件展示实际默认地址及环境变量覆盖提示。导出插件继续从 production 默认值和显式环境变量生成包内配置，不读取本机 profile。
+
+## Unified CI Tests
+
+新增独立 Test 工作流，仅在分支 push、PR 和手动运行时触发，不提供 workflow_call，不进入 release 依赖链。单个 test job 使用 Windows runner，顺序执行 Vue 类型检查及嵌入资源构建、Go race 测试和 vet、Godot 配置/物理/协议/账号/预测测试、Windows 凭据测试。保留真实 Windows 凭据接口覆盖，不建立专项凭据 job 或 OS 矩阵。
+
+Build Game 与 Build Web 移除上述源码测试，仍按各自路径构建及检查最终导出包、Web 镜像；碰撞生成属于构建输入准备，继续保留。Web 前端由 Dockerfile 构建，不在镜像构建前重复安装 Node/Go 并执行源码测试。现有可选集成、弱网和容量检查继续按专项需求本地运行。

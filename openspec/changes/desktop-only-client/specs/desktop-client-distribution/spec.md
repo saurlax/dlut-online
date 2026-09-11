@@ -77,3 +77,15 @@ Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，Run environmen
 #### Scenario: 插件职责独立
 - **WHEN** 仅启用 Run environment 或仅启用 Desktop server configuration
 - **THEN** 前者可独立切换本机运行环境且不注册导出处理，后者可独立导出配置且不创建环境工具栏
+
+### Requirement: 统一源码测试任务
+
+CI SHALL 将现有 Go、Godot 源码测试及 Windows 凭据测试统一放在 test.yml 的单个 test 任务，使用 Windows runner，不为单项测试设置独立 job。Build Game / Build Web SHALL 负责构建及最终产物检查，不重复运行上述源码测试。
+
+#### Scenario: 分支及 PR 检查
+- **WHEN** 应用源码或工作流发生变更并触发分支 push 或 PR
+- **THEN** 单个 test 任务运行 Go、Godot 和 Windows 凭据测试，测试失败使该任务失败
+
+#### Scenario: 版本发布
+- **WHEN** 推送版本标签触发 release
+- **THEN** 发布调用构建工作流而不调用 Test，不存在 windows-credentials 专项任务或构建前置测试依赖

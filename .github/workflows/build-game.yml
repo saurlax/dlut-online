@@ -34,15 +34,7 @@ permissions:
   packages: write
 
 jobs:
-  windows-credentials:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Verify Windows credential storage
-        shell: powershell
-        run: ./apps/game/tests/credential_store.ps1
   build:
-    needs: windows-credentials
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
@@ -69,12 +61,7 @@ jobs:
         run: |
           godot() { python3 "$GITHUB_WORKSPACE/apps/game/tools/run_godot.py" "$@"; }
           godot --headless --editor --quit
-          godot --headless --script tests/desktop_config.gd
           godot --headless --script tools/server_export/build_worlds.gd
-          godot --headless --script tests/server_physics.gd
-          godot --headless --script tests/game_protocol.gd
-          godot --headless --script tests/account_session.gd
-          godot --headless --script tests/player_prediction.gd
           mkdir -p build/windows build/macos build/server
           godot --headless --export-release Server build/server/dlut-online-server.x86_64
           mkdir -p "$RUNNER_TEMP/pack-check"
