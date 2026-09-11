@@ -146,3 +146,18 @@ DO_API_SERVER_URL=http://127.0.0.1:8415 python3 apps/game/tools/run_godot.py --h
 桌面附件固定为 `DLUT-Online-Windows.exe`（x86_64，内嵌资源包）与 `DLUT-Online-macOS.dmg`（完整 Apple 芯片应用及 Applications 快捷入口）。macOS 导出和 DMG 打包在 macOS 上运行；官方模板仅提供 universal 二进制，因此中间应用仍按 universal 导出，打包时用 lipo 移除 Intel 架构后重新签名，最终仅发布 arm64；打包工具重新做 ad-hoc 签名，并挂载最终 DMG 检查严格签名、应用标识和仅 arm64 架构。检查失败阻止产物上传及 Release。网站直接链接最新正式 Release 的这两个文件，新链接需在首个包含 EXE/DMG 的版本发布后才可用，旧版本附件不会自动转换。
 
 当前 Windows 未签名，macOS 使用有效 ad-hoc 签名，未使用 Apple Developer ID 或公证，不需要私钥、付费证书或 GitHub Secrets。ad-hoc 修复失效模板签名，但不提供发布者身份认证，浏览器下载仍可能被 Gatekeeper 拦截；不通过关闭 Gatekeeper 或批量清除隔离标记绕过。未来正式签名须另行配置 Developer ID 证书及私钥、公证凭据。
+
+## 天空、现实时间与天气
+
+Go 按官方地图三校区中心集中缓存 Open-Meteo 数据，Godot 游戏服每 60 秒通过 `POST /api/v1/game/weather` 读取缓存，使用 `Authorization: Bearer <DO_API_KEY>`。Go 按请求触发到期异步刷新，每校区最多一个在途请求，8 秒超时；接口立即返回，不等待天气上游，空闲无游戏服时不轮询。首次启动最多约 60 秒获得首批样本，缓存仅在内存中。
+
+| 环境变量 | 所属进程 | 默认或要求 |
+|---|---|---|
+| DO_WEATHER_REFRESH_MINUTES | Go | 默认 `15`，整数 `5` 至 `180`；更改后重启 Go |
+| DO_WEATHER_API_KEY | Go | 可选；设置后使用 Open-Meteo customer-api 商业端点，默认免费非商业端点；不下发客户端、不写日志 |
+
+接口返回 `campuses`（按 lingshui/eda/panjin 索引）、`source` 和 `license`。每个校区包含 `status`、`observed_at`、`fetched_at`（Unix 秒）、`cloud_cover`（百分比）、`weather_code`（WMO）、`wind_speed`（m/s）、`wind_direction`（气象来向，北为 0°）。`unavailable` 代表无数据，此时数值占位不可用；模型时刻超过 1 小时为 `stale`。失败保留最后样本，60 秒后允许重试；客户端在样本超过 3 小时后平滑回退到中性少云轻风。刷新配置超过 1 小时时，样本在下次刷新前可能进入 stale。
+
+游戏协议 5 新增向后兼容的可靠 `environment` 控制消息，包含游戏服 `unix_time` 和三校区天气。首次 welcome 后、切图确认后、每 60 秒及成功读取天气后发送。客户端以 Unix 锚点和单调时钟推进，固定 UTC+8 计算本地日期和太阳角度，暂停和失焦不暂停现实时间；同连接传送保留缓存。尚未获取服务器时间时使用本机 Unix 时间作封面/编辑器预览，服务器时钟需由宿主机保持准确。真实断线重连后用新服务器时间覆盖，退出账号清理缓存。
+
+每个校园场景实例化 `scenes/campus_environment.tscn`，静态环境可在编辑器查看。程序化体积云层在世界空间 1200 至 2100 米高度使用三维噪声密度场，半分辨率下每视线最多 32 步积分、每个非空采样向太阳追加两次密度探测实现内部遮光，低透射率提前终止。云高和厚度为视觉参数，非天气 API 实测云底高度；没有云层投射到建筑地面的精细动态阴影。4 Hz 更新环境参数，不增加透明云网格或额外实时灯光。云量、风、阴暗程度约 20 秒平滑变化；太阳角度按真实日期计算。雨雪和雷暴代码影响云层与雾效，本轮不实现降水粒子、积雪或闪电。无新增探索 HUD 和中文运行时文案，无需更新字体子集。天气来源、坐标和许可见根目录 `references/README.md`，桌面包附 `WEATHER-CREDITS.txt`。

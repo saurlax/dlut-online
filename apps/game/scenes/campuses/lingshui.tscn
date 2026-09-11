@@ -1,23 +1,9 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scripts/client/campus.gd" id="1"]
 [ext_resource type="PackedScene" path="res://assets/campuses/lingshui/models/lingshui_campus.tscn" id="2"]
 
-[sub_resource type="ProceduralSkyMaterial" id="CampusSkyMaterial"]
-sky_top_color = Color(0.529412, 0.619608, 0.682353, 1)
-sky_horizon_color = Color(0.839216, 0.87451, 0.866667, 1)
-ground_horizon_color = Color(0.839216, 0.87451, 0.866667, 1)
-ground_bottom_color = Color(0.486275, 0.556863, 0.482353, 1)
-
-[sub_resource type="Sky" id="CampusSky"]
-sky_material = SubResource("CampusSkyMaterial")
-
-[sub_resource type="Environment" id="CampusEnvironment"]
-background_mode = 2
-sky = SubResource("CampusSky")
-ambient_light_source = 2
-ambient_light_color = Color(0.964706, 0.945098, 0.901961, 1)
-ambient_light_energy = 0.42
+[ext_resource type="PackedScene" path="res://scenes/campus_environment.tscn" id="Sky"]
 
 [node name="Campus" type="Node3D"]
 script = ExtResource("1")
@@ -26,11 +12,4 @@ spawn_position = Vector3(96, 0.35, 28)
 
 [node name="CampusModel" parent="." instance=ExtResource("2")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("CampusEnvironment")
-
-[node name="Sun" type="DirectionalLight3D" parent="."]
-rotation_degrees = Vector3(-48, -28, 0)
-light_energy = 0.85
-shadow_enabled = true
-directional_shadow_max_distance = 250.0
+[node name="CampusEnvironment" parent="." instance=ExtResource("Sky")]
