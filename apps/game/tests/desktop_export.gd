@@ -5,6 +5,7 @@ func _initialize() -> void:
 	assert(not ResourceLoader.exists("res://addons/desktop_export/plugin.gd"))
 	assert(not ResourceLoader.exists("res://addons/run_environment/plugin.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/world_chat.gd"))
+	assert(ResourceLoader.exists("res://scripts/client/weather_effects.gd"))
 	assert(ResourceLoader.exists("res://scripts/shared/chat_rules.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/account_session.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/credential_store.gd"))
@@ -16,6 +17,10 @@ func _initialize() -> void:
 	for id in ["lingshui","eda","panjin"]:
 		var scene: Node = load("res://scenes/campuses/"+id+".tscn").instantiate()
 		assert(scene.get_node("CampusModel").get_child_count()>0)
+		var precipitation := scene.get_node("CampusEnvironment/Precipitation")
+		assert(precipitation.get_node("Rain") is GPUParticles3D)
+		assert(precipitation.get_node("Snow") is GPUParticles3D)
+		assert(precipitation.get_node("Shelter") is GPUParticlesCollisionHeightField3D)
 		scene.free()
 	print("PASS: desktop package has three full local campuses, API config and no server or Web download code")
 	quit()

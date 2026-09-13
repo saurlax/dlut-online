@@ -8,6 +8,7 @@ func _initialize() -> void:
 	assert(not ResourceLoader.exists("res://assets/fonts/CampusSans.ttf"))
 	assert(not ResourceLoader.exists("res://scripts/client/player.gd"))
 	assert(not ResourceLoader.exists("res://scripts/client/campus_hud.gd"))
+	assert(not ResourceLoader.exists("res://scenes/campus_precipitation.tscn"))
 	assert(not ResourceLoader.exists("res://assets/campuses/lingshui/models/lingshui_campus.tscn"))
 	assert(FileAccess.get_file_as_string("res://scripts/client/player_network.gd").strip_edges() == "extends Node")
 	for id in ["lingshui","eda","panjin"]:

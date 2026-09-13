@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/client/campus_environment.gd" id="1"]
 [ext_resource type="Shader" path="res://assets/sky/campus_sky.gdshader" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/campus_precipitation.tscn" id="3"]
 
 [sub_resource type="ShaderMaterial" id="SkyMaterial"]
 shader = ExtResource("2")
@@ -35,3 +36,5 @@ rotation_degrees = Vector3(-48, -28, 0)
 light_energy = 0.85
 shadow_enabled = true
 directional_shadow_max_distance = 250.0
+
+[node name="Precipitation" parent="." instance=ExtResource("3")]
