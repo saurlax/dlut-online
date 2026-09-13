@@ -1,0 +1,130 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Theme" path="res://assets/ui/campus_theme.tres" id="1"]
+[ext_resource type="Script" path="res://scripts/client/menu_cover.gd" id="2"]
+
+[sub_resource type="Gradient" id="ShadeGradient"]
+offsets = PackedFloat32Array(0, 0.4, 1)
+colors = PackedColorArray(0, 0, 0, 0.12, 0, 0, 0, 0.06, 0, 0, 0, 0.55)
+
+[sub_resource type="GradientTexture2D" id="Shade"]
+gradient = SubResource("ShadeGradient")
+fill_from = Vector2(0, 0)
+fill_to = Vector2(0, 1)
+
+[node name="Menu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+color = Color(0.07, 0.09, 0.1, 1)
+script = ExtResource("2")
+
+[node name="Background" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="Background"]
+handle_input_locally = false
+own_world_3d = true
+msaa_3d = 1
+size = Vector2i(1280, 720)
+render_target_update_mode = 2
+
+[node name="ShotFade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Shade" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("Shade")
+
+[node name="Composition" type="Control" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Composition"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 105.0
+offset_right = 1120.0
+offset_bottom = 177.0
+theme_override_font_sizes/font_size = 48
+text = "DLUT Online"
+horizontal_alignment = 1
+
+[node name="Form" type="Control" parent="Composition"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 290.0
+offset_right = 820.0
+offset_bottom = 640.0
+mouse_filter = 2
+
+[node name="Fields" type="VBoxContainer" parent="Composition/Form"]
+layout_mode = 0
+offset_right = 360.0
+offset_bottom = 300.0
+theme_override_constants/separation = 14
+
+[node name="AccountIdentity" type="Label" parent="Composition/Form/Fields"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 30)
+text = "使用 DLUT Online 账号登录"
+autowrap_mode = 3
+horizontal_alignment = 1
+
+[node name="LoginEmail" type="LineEdit" parent="Composition/Form/Fields"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+placeholder_text = "邮箱"
+max_length = 254
+
+[node name="LoginPassword" type="LineEdit" parent="Composition/Form/Fields"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+placeholder_text = "密码"
+secret = true
+secret_character = "*"
+
+[node name="EnterCampus" type="Button" parent="Composition/Form/Fields"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_type_variation = &"PrimaryButton"
+text = "登录"
+
+[node name="CancelLogin" type="Button" parent="Composition/Form/Fields"]
+visible = false
+layout_mode = 2
+theme_type_variation = &"QuietButton"
+text = "取消登录"
+
+[node name="Register" type="LinkButton" parent="Composition/Form/Fields"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
+text = "没有账号？先去 dlut.online 注册"
+uri = "https://dlut.online/register"
