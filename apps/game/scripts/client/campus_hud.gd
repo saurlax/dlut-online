@@ -3,6 +3,9 @@ extends CanvasLayer
 @export var login_only := false
 var loading_campus := false
 
+const MenuScene = preload("res://scenes/ui/login_menu.tscn")
+const MenuTheme = preload("res://assets/ui/campus_theme.tres")
+
 const Account = preload("res://scripts/client/account_session.gd")
 var account_login: Node
 var cancel_login: Button
@@ -47,14 +50,14 @@ func _ready() -> void:
 func build(body: CharacterBody3D, world: Node3D) -> void:
 	player = body
 	campus = world
-	root_control = Control.new()
-	add_child(root_control)
+	root_control = get_node_or_null("Interface")
+	if root_control == null:
+		root_control = Control.new()
+		root_control.name = "Interface"
+		add_child(root_control)
 	root_control.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	root_control.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var theme := Theme.new()
-	theme.default_font = load("res://assets/fonts/CampusSans.ttf")
-	theme.default_font_size = 15
-	root_control.theme = theme
+	root_control.theme = MenuTheme
 	crosshair = Control.new()
 	crosshair.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root_control.add_child(crosshair)
@@ -67,79 +70,30 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 		line.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		crosshair.add_child(line)
 	crosshair.hide()
-	overlay = ColorRect.new()
-	overlay.color = Color("111b20")
-	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
-	root_control.add_child(overlay)
-	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var center := CenterContainer.new()
-	overlay.add_child(center)
-	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	var column := VBoxContainer.new()
-	column.custom_minimum_size.x = 320
-	column.add_theme_constant_override("separation",20)
-	center.add_child(column)
-	var cover_title := Label.new()
-	cover_title.text = "DLUT Online"
-	cover_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	cover_title.add_theme_font_size_override("font_size",48)
-	column.add_child(cover_title)
-	identity_label = Label.new()
-	identity_label.name = "AccountIdentity"
-	identity_label.custom_minimum_size.x = 360
-	identity_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	identity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	column.add_child(identity_label)
-	identity_label.text = "使用 DLUT Online 账号登录"
-	email_input = LineEdit.new()
-	email_input.name = "LoginEmail"
-	email_input.placeholder_text = "邮箱"
-	email_input.custom_minimum_size.y = 48
-	email_input.max_length = 254
-	column.add_child(email_input)
-	password_input = LineEdit.new()
-	password_input.name = "LoginPassword"
-	password_input.placeholder_text = "密码"
-	password_input.secret = true
-	password_input.secret_character = "*"
-	password_input.custom_minimum_size.y = 48
-	column.add_child(password_input)
+	overlay = root_control.get_node_or_null("Menu")
+	if overlay == null:
+		overlay = MenuScene.instantiate()
+		overlay.background_enabled = login_only
+		root_control.add_child(overlay)
+	overlay.show_account_page(false)
+	var fields: VBoxContainer = overlay.get_node("Composition/Form/Fields")
+	identity_label = fields.get_node("AccountIdentity")
+	email_input = fields.get_node("LoginEmail")
+	password_input = fields.get_node("LoginPassword")
+	enter_button = fields.get_node("EnterCampus")
+	cancel_login = fields.get_node("CancelLogin")
+	register_link = fields.get_node("Register")
 	email_input.text_submitted.connect(func(_value: String): password_input.grab_focus())
 	password_input.text_submitted.connect(func(_value: String): _begin_login())
-	enter_button = Button.new()
-	enter_button.name = "EnterCampus"
-	enter_button.text = "登录"
-	enter_button.custom_minimum_size.y = 52
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color("d3e1bb")
-	style.set_corner_radius_all(5)
-	enter_button.add_theme_stylebox_override("normal",style)
-	var hover := style.duplicate() as StyleBoxFlat
-	hover.bg_color = Color("e7efd8")
-	enter_button.add_theme_stylebox_override("hover",hover)
-	enter_button.add_theme_stylebox_override("pressed",style)
-	enter_button.add_theme_color_override("font_color",Color("243d30"))
-	enter_button.add_theme_color_override("font_hover_color",Color("243d30"))
-	enter_button.add_theme_color_override("font_pressed_color",Color("243d30"))
 	enter_button.pressed.connect(_begin_login)
-	column.add_child(enter_button)
 	account_login = Account.new()
 	add_child(account_login)
 	account_login.status_changed.connect(_login_status)
 	account_login.authenticated.connect(_account_authenticated)
-	cancel_login = Button.new()
-	cancel_login.text = "取消登录"
-	cancel_login.flat = true
-	cancel_login.hide()
 	cancel_login.pressed.connect(func():
 		account_login.cancel()
 		_login_status("已取消，可重新登录")
 	)
-	column.add_child(cancel_login)
-	register_link = LinkButton.new()
-	register_link.text = "没有账号？先去 dlut.online 注册"
-	register_link.uri = "https://dlut.online/register"
-	column.add_child(register_link)
 	network = get_node("/root/GameNetwork")
 	network.menu_required.connect(_show_login)
 	if login_only:
@@ -147,7 +101,9 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 			_account_authenticated()
 		else:
 			account_login.restore.call_deferred()
-		if network.status_text != "未连接": identity_label.text = network.status_text
+		if network.status_text != "未连接":
+			identity_label.text = network.status_text
+			identity_label.show()
 		return
 	network.configure(player, campus.campus_id)
 	network.status_changed.connect(_network_status)
@@ -198,6 +154,7 @@ func _login_status(value: String) -> void:
 
 func _account_authenticated() -> void:
 	if loading_campus or Account.token.is_empty(): return
+	overlay.show_account_page(true)
 	password_input.clear()
 	email_input.hide()
 	password_input.hide()
@@ -211,6 +168,7 @@ func _load_initial_campus() -> void:
 	loading_campus = true
 	Catalog.entry_requested = true
 	var generation: int = network.connection_generation
+	identity_label.show()
 	identity_label.text = "加载中"
 	var path: String = Catalog.CAMPUSES.lingshui.scene
 	if ResourceLoader.load_threaded_request(path) == OK:
@@ -230,6 +188,7 @@ func _load_initial_campus() -> void:
 
 func _network_status(value: String) -> void:
 	if not Catalog.started:
+		identity_label.show()
 		identity_label.text = value
 		enter_button.disabled = network.active
 
@@ -245,6 +204,7 @@ func _show_login() -> void:
 		loading_campus = false
 		enter_button.disabled = false
 		if Account.token.is_empty():
+			overlay.show_account_page(false)
 			email_input.show()
 			password_input.show()
 			register_link.show()
@@ -252,6 +212,7 @@ func _show_login() -> void:
 			password_input.editable = true
 			enter_button.text = "登录"
 		identity_label.text = network.status_text
+		identity_label.show()
 		return
 	switching = false
 	transfer_panel.hide()

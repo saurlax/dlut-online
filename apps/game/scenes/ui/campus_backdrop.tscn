@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/campuses/lingshui/models/lingshui_campus.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/client/campus_backdrop.gd" id="2"]
+[ext_resource type="Shader" path="res://assets/sky/campus_sky.gdshader" id="3"]
+
+[sub_resource type="ShaderMaterial" id="SkyMaterial"]
+shader = ExtResource("3")
+shader_parameter/sun_direction = Vector3(0.2, 0.7, 0.5)
+shader_parameter/cloud_cover = 0.22
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("SkyMaterial")
+
+[sub_resource type="Environment" id="Environment"]
+background_mode = 2
+sky = SubResource("Sky")
+ambient_light_source = 2
+ambient_light_color = Color(0.78, 0.84, 0.94, 1)
+ambient_light_energy = 0.55
+reflected_light_source = 2
+tonemap_mode = 2
+fog_enabled = true
+fog_density = 0.000025
+fog_light_color = Color(0.59, 0.67, 0.73, 1)
+
+[node name="CampusBackdrop" type="Node3D"]
+script = ExtResource("2")
+
+[node name="CampusModel" parent="." instance=ExtResource("1")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-53.3, -158.2, 0)
+light_color = Color(1, 0.96, 0.88, 1)
+light_energy = 1.0
+shadow_enabled = true
+directional_shadow_max_distance = 250.0
+
+[node name="Camera" type="Camera3D" parent="."]
+position = Vector3(75, 12, 65)
+rotation_degrees = Vector3(0, 5.2, 0)
+current = true
+fov = 68.0
+far = 2500.0
