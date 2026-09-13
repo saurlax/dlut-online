@@ -10,8 +10,8 @@ root=Path(__file__).resolve().parents[1]
 font=TTFont(sys.argv[1])
 font=instantiateVariableFont(font,{'wght':400},inplace=True)
 chars=''.join(chr(i) for i in range(32,127))
-for p in list((root/'scripts').rglob('*.gd'))+list((root/'assets/campuses').rglob('*.json')):
- chars+=p.read_text()
+for p in list((root/'scripts').rglob('*.gd'))+list((root/'scenes').rglob('*.tscn'))+list((root/'assets/campuses').rglob('*.json')):
+ chars+=p.read_text(encoding='utf-8')
 options=subset.Options();options.layout_features=['*']
 subsetter=subset.Subsetter(options=options);subsetter.populate(text=chars);subsetter.subset(font)
 for record in font['name'].names:
