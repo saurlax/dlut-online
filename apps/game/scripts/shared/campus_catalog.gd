@@ -7,3 +7,4 @@ const CAMPUSES := {
 }
 static var arriving := false
 static var started := false
+static var entry_requested := false

@@ -39,6 +39,17 @@ func _run() -> void:
 	# Exercise the real physics-step boundary for consecutive start/stop/jump inputs.
 	network.player = body
 	network.welcomed = true
+	for fps in [30, 60, 144]:
+		network.last_input.clear()
+		network.elapsed = 0.0
+		var before_sequence: int = network.sequence
+		for frame in fps * 3:
+			body.rotation.y += 0.01
+			network.begin_prediction(1.0 / fps, Vector2.ZERO, false)
+			network.end_prediction()
+		assert(network.sequence - before_sequence <= 61, "Continuous mouse look must stay at or below 20 Hz plus the initial edge")
+		assert(absf(angle_difference(network.last_input.yaw, body.rotation.y)) < 0.09, "Periodic inputs must carry the latest view direction")
+	network.last_input.clear()
 	body.position = Vector3.ZERO
 	body.velocity = Vector3.ZERO
 	network.begin_prediction(1.0 / 60, Vector2(0, -1), false)

@@ -72,12 +72,16 @@ func _process(delta: float) -> void:
 					c.window = now
 					c.messages = 0
 				c.messages += 1
-				if packet.size() > 2048 or c.messages > 40:
-					close(c, 4002, "message limit")
+				if packet.size() > 2048:
+					close(c, 4006, "message size")
+					continue
+				# Allow 60 Hz discrete input edges plus reliable control traffic.
+				if c.messages > 80:
+					close(c, 4005, "message rate limit")
 					continue
 				var message: Variant = JSON.parse_string(packet.get_string_from_utf8())
 				if not message is Dictionary or (event[3] == Protocol.REALTIME) != (message.get("type") == "input"):
-					close(c, 4002, "invalid message or channel")
+					close(c, 4006, "invalid message or channel")
 					continue
 				handle(c, message)
 			elif event[0] == ENetConnection.EVENT_DISCONNECT and not c.is_empty(): remove(c)
@@ -139,8 +143,11 @@ func send(c: Dictionary, value: Dictionary) -> void:
 func handle(c: Dictionary, m: Dictionary) -> void:
 	var kind: String = str(m.get("type", ""))
 	if c.identity.is_empty():
-		if kind != "hello" or c.authenticating or m.get("version") != Protocol.VERSION or not m.get("ticket") is String or not m.get("campus", "lingshui") in MAPS:
-			close(c, 4002, "invalid hello or version")
+		if kind == "hello" and m.get("version") != Protocol.VERSION:
+			close(c, 4002, "version mismatch")
+			return
+		if kind != "hello" or c.authenticating or not m.get("ticket") is String or not m.get("campus", "lingshui") in MAPS:
+			close(c, 4006, "invalid hello")
 			return
 		c.authenticating = true
 		authenticate(c, m)
@@ -153,7 +160,7 @@ func handle(c: Dictionary, m: Dictionary) -> void:
 		"input": receive_input(c, m)
 		"change_map": change_map(c, m)
 		"map_ready", "map_cancel", "map_status", "map_resume": transfer_message(c, m)
-		_: close(c, 4002, "unknown message")
+		_: close(c, 4006, "unknown message")
 
 func authenticate(c: Dictionary, m: Dictionary) -> void:
 	var result: Dictionary = await data.post("/api/v1/game/tickets/consume", {"ticket":m.ticket})
@@ -232,7 +239,7 @@ func integer(value: Variant) -> bool:
 
 func receive_input(c: Dictionary, m: Dictionary) -> void:
 	if not integer(m.get("seq")) or not integer(m.get("jump")) or not finite_number(m.get("yaw")) or absf(float(m.yaw)) > TAU or not m.get("run") is bool or not m.get("axis") is Array or m.axis.size() != 2 or not finite_number(m.axis[0]) or not finite_number(m.axis[1]) or m.has("position") or m.has("delta") or m.has("speed"):
-		close(c, 4002, "invalid input")
+		close(c, 4006, "invalid input")
 		return
 	if m.get("map_epoch") != c.epoch or m.seq <= c.seq or c.frozen: return
 	c.seq = int(m.seq)
