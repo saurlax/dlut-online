@@ -2,8 +2,11 @@
 extends Node3D
 
 const Solar = preload("res://scripts/shared/solar_time.gd")
+const Weather = preload("res://scripts/client/weather_effects.gd")
 @onready var world: WorldEnvironment = $WorldEnvironment
 @onready var sun: DirectionalLight3D = $Sun
+@onready var precipitation: Node3D = $Precipitation
+var effects := Vector3(0.0, 0.0, 0.000025)
 var cloud := 0.3
 var storm := 0.0
 var wind := Vector2(1.0, 0.0)
@@ -35,10 +38,12 @@ func _update(delta: float) -> void:
 	var target_cloud := 0.3
 	var target_storm := 0.0
 	var target_wind := Vector2(1.0, 0.0)
+	var target_effects := Weather.profile(0)
 	if Solar.usable_weather(sample, now):
 		target_cloud = clampf(float(sample.get("cloud_cover", 30.0))/100.0,0.0,1.0)
 		var code := int(sample.get("weather_code",0))
-		target_storm = 0.85 if code >= 95 else (0.5 if code >= 51 else (0.35 if code in [45,48] else 0.0))
+		target_effects = Weather.profile(code)
+		target_storm = 0.85 if code in [95, 96, 99] else (0.5 if target_effects.x + target_effects.y > 0.0 else (0.2 if code in [45,48] else 0.0))
 		target_cloud = maxf(target_cloud, 0.9 if target_storm > 0.0 else 0.0)
 		var angle := deg_to_rad(float(sample.get("wind_direction",270.0)))
 		target_wind = Vector2(-sin(angle),cos(angle))*clampf(float(sample.get("wind_speed",1.0)),0.0,40.0)
@@ -47,6 +52,8 @@ func _update(delta: float) -> void:
 	cloud = lerpf(cloud,target_cloud,blend)
 	storm = lerpf(storm,target_storm,blend)
 	wind = wind.lerp(target_wind,blend)
+	effects = effects.lerp(target_effects, blend)
+	precipitation.set_weather(effects.x, effects.y, wind)
 	offset += wind*delta
 	sun.look_at_from_position(Vector3.ZERO,-direction,Vector3.UP)
 	var daylight := smoothstep(-0.10,0.18,direction.y)
@@ -55,7 +62,8 @@ func _update(delta: float) -> void:
 	world.environment.ambient_light_color = Color(0.27,0.35,0.55).lerp(Color(0.78,0.84,0.94),daylight)
 	world.environment.ambient_light_energy = lerpf(0.055,0.48,daylight)*(1.0-storm*0.3)
 	world.environment.fog_light_color = Color(0.018,0.025,0.045).lerp(Color(0.59,0.67,0.73),daylight)
-	world.environment.fog_density = lerpf(0.000025,0.00065,storm)
+	world.environment.fog_density = effects.z
+	world.environment.fog_sky_affect = lerpf(0.08, 0.85, clampf(effects.z / 0.009, 0.0, 1.0))
 	var material: ShaderMaterial = world.environment.sky.sky_material
 	material.set_shader_parameter("sun_direction",direction)
 	material.set_shader_parameter("cloud_cover",cloud)
