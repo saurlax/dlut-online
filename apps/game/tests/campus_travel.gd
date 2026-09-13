@@ -17,7 +17,7 @@ func _run() -> void:
 	change_scene_to_file("res://scenes/main.tscn")
 	await settle(2)
 	assert(current_scene.login_only)
-	current_scene._account_authenticated()
+	current_scene._begin_login()
 	while current_scene == null or current_scene.scene_file_path == "res://scenes/main.tscn":
 		await process_frame
 	await settle(45)
@@ -26,7 +26,7 @@ func _run() -> void:
 	assert(current_scene.has_node("CampusModel"))
 	var network := root.get_node("GameNetwork")
 	var world := current_scene
-	world.hud._account_authenticated()
+	world.hud._begin_login()
 	await create_timer(1.7).timeout
 	assert(world.player.playing)
 	assert(network.welcomed)

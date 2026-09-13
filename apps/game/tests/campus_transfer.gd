@@ -15,7 +15,7 @@ func _run() -> void:
 	change_scene_to_file("res://scenes/campuses/panjin.tscn")
 	await process_frame
 	await process_frame
-	current_scene.hud._account_authenticated()
+	current_scene.hud._begin_login()
 	var net := root.get_node("GameNetwork")
 	for frame in 300:
 		await process_frame

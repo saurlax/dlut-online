@@ -9,6 +9,7 @@ var cancel_login: Button
 var identity_label: Label
 var email_input: LineEdit
 var password_input: LineEdit
+var register_link: LinkButton
 var network: Node
 
 const Catalog = preload("res://scripts/shared/campus_catalog.gd")
@@ -135,20 +136,22 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 		_login_status("已取消，可重新登录")
 	)
 	column.add_child(cancel_login)
-	var register_link := LinkButton.new()
+	register_link = LinkButton.new()
 	register_link.text = "没有账号？先去 dlut.online 注册"
 	register_link.uri = "https://dlut.online/register"
 	column.add_child(register_link)
 	network = get_node("/root/GameNetwork")
+	network.menu_required.connect(_show_login)
 	if login_only:
-		if Account.restore_attempted and network.status_text != "未连接":
-			identity_label.text = network.status_text
-		account_login.restore.call_deferred()
+		if not Account.token.is_empty():
+			_account_authenticated()
+		else:
+			account_login.restore.call_deferred()
+		if network.status_text != "未连接": identity_label.text = network.status_text
 		return
 	network.configure(player, campus.campus_id)
 	network.status_changed.connect(_network_status)
 	network.connected.connect(_network_connected)
-	network.login_required.connect(_show_login)
 	network.map_prepared.connect(_network_map_prepared)
 	network.map_failed.connect(_network_map_failed)
 	network.map_finished.connect(_network_map_finished)
@@ -163,14 +166,23 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 		Catalog.arriving = false
 		enter_campus()
 	elif not Account.token.is_empty():
-		_account_authenticated.call_deferred()
+		_account_authenticated()
+		if Catalog.entry_requested:
+			Catalog.entry_requested = false
+			_begin_login.call_deferred()
 	else:
 		account_login.restore.call_deferred()
 
 func _begin_login() -> void:
 	if enter_button.disabled: return
 	if not Account.token.is_empty():
-		_account_authenticated()
+		enter_button.disabled = true
+		if login_only:
+			_load_initial_campus()
+		else:
+			player.player_id = Account.player_id
+			player.username = Account.username
+			network.start()
 	else:
 		var password := password_input.text
 		password_input.clear()
@@ -187,30 +199,32 @@ func _login_status(value: String) -> void:
 func _account_authenticated() -> void:
 	if loading_campus or Account.token.is_empty(): return
 	password_input.clear()
-	email_input.editable = false
-	password_input.editable = false
+	email_input.hide()
+	password_input.hide()
+	register_link.hide()
 	cancel_login.hide()
-	enter_button.disabled = true
-	if login_only:
-		_load_initial_campus()
-		return
-	player.player_id = Account.player_id
-	player.username = Account.username
-	network.start()
+	identity_label.text = Account.username
+	enter_button.text = "进入游戏"
+	enter_button.disabled = false
 
 func _load_initial_campus() -> void:
 	loading_campus = true
+	Catalog.entry_requested = true
+	var generation: int = network.connection_generation
 	identity_label.text = "加载中"
 	var path: String = Catalog.CAMPUSES.lingshui.scene
 	if ResourceLoader.load_threaded_request(path) == OK:
 		while ResourceLoader.load_threaded_get_status(path) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 			await get_tree().process_frame
+			if generation != network.connection_generation or not Catalog.entry_requested: return
 		# Consume failed requests too, so retry can start a fresh load.
 		var scene: PackedScene = ResourceLoader.load_threaded_get(path)
+		if generation != network.connection_generation or not Catalog.entry_requested: return
 		if scene != null:
 			if get_tree().change_scene_to_packed(scene) == OK:
 				return
 	loading_campus = false
+	Catalog.entry_requested = false
 	identity_label.text = "加载失败，请重试"
 	enter_button.disabled = false
 
@@ -227,6 +241,18 @@ func _network_connected() -> void:
 		pause_exploration()
 
 func _show_login() -> void:
+	if login_only:
+		loading_campus = false
+		enter_button.disabled = false
+		if Account.token.is_empty():
+			email_input.show()
+			password_input.show()
+			register_link.show()
+			email_input.editable = true
+			password_input.editable = true
+			enter_button.text = "登录"
+		identity_label.text = network.status_text
+		return
 	switching = false
 	transfer_panel.hide()
 	pause_exploration()

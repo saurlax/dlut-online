@@ -8,7 +8,7 @@ func run() -> void:
 	change_scene_to_file("res://scenes/campuses/lingshui.tscn")
 	await process_frame
 	await process_frame
-	current_scene.hud._account_authenticated()
+	current_scene.hud._begin_login()
 	var net: Node = root.get_node("GameNetwork")
 	while not net.welcomed or net.campus_weather.size() != 3: await process_frame
 	assert(absf(net.environment_unix_time()-Time.get_unix_time_from_system()) < 5.0)

@@ -6,6 +6,7 @@ signal chat_reset()
 signal chat_rejected()
 signal status_changed(value: String)
 signal login_required()
+signal menu_required()
 signal connected()
 signal connection_quality_changed(state: String, rtt_ms: int)
 signal map_prepared(campus: String)
@@ -48,8 +49,8 @@ var last_received := 0
 var last_valid_received := 0
 var connection_state := "disconnected"
 var round_trip_time_ms := -1
-var retry_in := 0.0
-var retry_delay := 1.0
+var connection_generation := 0
+var pending_connection: HTTPRequest
 var status_text := "未连接"
 var ticket := ""
 var epoch := 1
@@ -97,7 +98,10 @@ func begin_prediction(delta: float, axis: Vector2, running: bool) -> void:
 	var input := {"axis":[axis.x, axis.y], "yaw":wrapf(player.rotation.y, -PI, PI),
 		"run":running, "jump":player.jump_sequence}
 	elapsed += delta
-	if input == last_input and elapsed < 0.05: return
+	# Mouse look stays immediate locally; send its latest yaw at 20 Hz.
+	# Discrete movement edges still start their prediction interval immediately.
+	var edge: bool = last_input.is_empty() or input.axis != last_input.axis or input.run != last_input.run or input.jump != last_input.jump
+	if not edge and elapsed < 0.05: return
 	elapsed = 0.0
 	last_input = input.duplicate()
 	sequence += 1
@@ -143,8 +147,7 @@ func start() -> void:
 	if started: return
 	if Account.token.is_empty(): return
 	started = true
-	retry_in = 0
-	retry_delay = 1
+	connection_generation += 1
 	close_code = 0
 	active = true
 	_connect()
@@ -160,11 +163,13 @@ func base_url() -> String:
 func _connect() -> void:
 	if connecting: return
 	connecting = true
+	var generation := connection_generation
 	last_valid_received = 0
 	_set_connection_quality("reconnecting")
 	set_status("连接中")
 	var url := base_url()
 	var request := HTTPRequest.new()
+	pending_connection = request
 	request.timeout = 5
 	request.body_size_limit = 4096
 	add_child(request)
@@ -173,23 +178,30 @@ func _connect() -> void:
 	var result: Array = []
 	if error == OK: result = await request.request_completed
 	request.queue_free()
+	if generation != connection_generation: return
+	pending_connection = null
 	connecting = false
 	if not result.is_empty() and result[1] in [401, 403]:
 		require_login()
 		return
-	if not result.is_empty() and result[1] == 400:
-		close_code = 4002
 	if result.is_empty() or result[0] != HTTPRequest.RESULT_SUCCESS or result[1] != 201:
-		_disconnected()
+		var reason := "无法连接登录服务，请检查网络后重试"
+		if not result.is_empty() and result[0] == HTTPRequest.RESULT_SUCCESS:
+			var json := JSON.new()
+			var failure: Variant = json.data if json.parse(result[3].get_string_from_utf8()) == OK else null
+			if result[1] == 400:
+				reason = "客户端版本与服务器不兼容，请更新客户端" if failure is Dictionary and failure.get("error") == "invalid_identity_or_version" else "连接请求无效，请重试"
+			elif result[1] == 429: reason = "连接过于频繁，请稍后重试"
+			elif result[1] >= 500: reason = "游戏服务暂时不可用，请稍后重试"
+		_disconnected(reason)
 		return
 	var payload: Variant = JSON.parse_string(result[3].get_string_from_utf8())
 	if not payload is Dictionary or not payload.get("ticket") is String:
-		_disconnected()
+		_disconnected("服务器返回了无效的连接信息，请稍后重试")
 		return
 	var destination := Protocol.endpoint(str(payload.get("game_server_url", "")))
 	if destination.is_empty():
-		close_code = 4002
-		_disconnected()
+		_disconnected("游戏服务器地址配置无效，请稍后重试")
 		return
 	ticket = payload.ticket
 	host = ENetConnection.new()
@@ -222,63 +234,63 @@ func _connect() -> void:
 	snapshot_parts.clear()
 	last_received = Time.get_ticks_msec()
 
-func _disconnected() -> void:
-	if retry_in > 0: return
+func _disconnected(reason := "") -> void:
+	if close_code == 4001:
+		require_login("账号已在另一客户端登录，请重新登录")
+		return
+	if reason.is_empty():
+		reason = {
+			4002:"客户端版本与服务器不兼容，请更新客户端",
+			4003:"游戏服务连接中断，请重试",
+			4004:"服务器人数已满，请稍后重试",
+			4005:"操作发送过于频繁，连接已断开，请稍后重试",
+			4006:"游戏通信数据异常，连接已断开，请重试",
+		}.get(close_code, "与游戏服务器失去连接，请检查网络后重试")
+	_return_to_menu(reason)
+
+func _return_to_menu(reason: String) -> void:
+	connection_generation += 1
+	if is_instance_valid(pending_connection):
+		pending_connection.cancel_request()
+		pending_connection.queue_free()
+	pending_connection = null
+	connecting = false
+	active = false
+	started = false
 	_clear_remotes()
 	_reset_chat()
-	if is_instance_valid(player): player.network_ready = false
+	if is_instance_valid(player):
+		player.network_ready = false
+		player.stop()
 	welcomed = false
+	campus_weather.clear()
+	environment_time = 0.0
+	ticket = ""
+	last_input.clear()
+	elapsed = 0.0
+	heartbeat_elapsed = 0.0
 	load_generation += 1
 	transfer_id = ""
 	transfer_phase = ""
 	target = ""
 	history.clear()
-	var code := close_code
 	if host != null:
 		host.destroy()
 		host = null
 	socket = null
 	last_valid_received = 0
 	_set_connection_quality("disconnected")
-	if code == 4001:
-		require_login("账号已在另一客户端登录，请重新登录")
-		return
-	if code in [4002,4004]:
-		started = false
-		active = false
-		set_status({4002:"版本不兼容，请更新客户端",4004:"服务器人数已满"}[code])
-		map_failed.emit()
-		return
-	retry_in = retry_delay
-	retry_delay = minf(10.0, retry_delay * 2)
-	_set_connection_quality("reconnecting")
-	set_status("连接断开，正在重连")
-	map_failed.emit()
-
-func require_login(reason := "登录已失效，请重新登录") -> void:
-	_reset_chat()
-	active = false
-	started = false
-	welcomed = false
-	campus_weather.clear()
-	environment_time = 0.0
-	retry_in = 0
-	if host != null: host.destroy()
-	host = null
-	socket = null
-	last_valid_received = 0
-	_set_connection_quality("disconnected")
-	_clear_remotes()
-	load_generation += 1
-	transfer_id = ""
-	transfer_phase = ""
-	history.clear()
-	if is_instance_valid(player): player.network_ready = false
-	Account.forget_saved()
-	Account.clear()
 	Catalog.started = false
 	Catalog.arriving = false
+	Catalog.entry_requested = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	set_status(reason)
+	menu_required.emit()
+
+func require_login(reason := "登录已失效，请重新登录") -> void:
+	Account.forget_saved()
+	Account.clear()
+	_return_to_menu(reason)
 	login_required.emit()
 
 func _send(message: Dictionary) -> void:
@@ -289,12 +301,6 @@ func _send(message: Dictionary) -> void:
 
 func _process(delta: float) -> void:
 	if not active or connecting: return
-	if retry_in > 0:
-		retry_in -= delta
-		if retry_in <= 0:
-			retry_in = 0
-			_connect()
-		return
 	if host == null: return
 	for event_index in 512:
 		if host == null: return
@@ -357,7 +363,6 @@ func message(m: Dictionary) -> void:
 			welcomed = true
 			last_valid_received = Time.get_ticks_msec()
 			_set_connection_quality("measuring")
-			retry_delay = 1
 			admission_id = m.admission_id
 			names.clear()
 			apply_roster(m.get("roster", []))

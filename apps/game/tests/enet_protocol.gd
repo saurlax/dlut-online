@@ -184,6 +184,17 @@ func _run() -> void:
 		if departed: break
 		await create_timer(0.5).timeout
 	assert(departed, "Idle timeout broadcasts departure to remaining players")
+	# Control traffic has a bounded rate and its error is not a version mismatch.
+	for i in 85: send(second, {"type":"heartbeat"})
+	deadline = Time.get_ticks_msec() + 5000
+	while second.code == 0 and Time.get_ticks_msec() < deadline: await process_frame
+	assert(second.code == 4005, "Message flooding must report rate limiting")
+	var malformed := await connect_client(1)
+	await wait_message(malformed, "welcome")
+	send(malformed, {"type":"unknown"})
+	deadline = Time.get_ticks_msec() + 5000
+	while malformed.code == 0 and Time.get_ticks_msec() < deadline: await process_frame
+	assert(malformed.code == 4006, "Malformed protocol messages must not report a version mismatch")
 	for c in clients:
 		c.host.destroy()
 	clients.clear()

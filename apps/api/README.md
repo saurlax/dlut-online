@@ -135,7 +135,7 @@ DO_API_SERVER_URL=http://127.0.0.1:8415 python3 apps/game/tools/run_godot.py --h
 
 官网 `/login`、`/register` 提供账号登录、注册及验证邮件重发。网站 token 仅保存在当前标签页 sessionStorage，恢复时调用 auth-refresh，退出清除。SMTP、应用地址和验证邮件模板须在 PocketBase 配置；默认使用 PocketBase 自带邮箱确认页面。注册成功不代表邮箱验证完成。
 
-客户端使用 Godot 原生邮箱和密码表单调用 `POST /api/collections/users/auth-with-password`，请求包含 identity（邮箱）和 password。PocketBase AuthRule 要求邮箱已验证且账号未禁用，客户端收到 token 和 record 后申请游戏票据。密码隐藏，提交时清空输入框，不持久保存或输出日志；Token 按 API 根地址隔离保存在 macOS 钥匙串或 Windows 凭据管理器，密码不保存。启动时读取 Token 并调用 `POST /api/collections/users/auth-refresh`，验证通过才建立会话并进入游戏。PocketBase 0.40.3 使用同一个有效 auth token 刷新并签发新 token，没有独立 refresh token；过期 token 无法续期，需重新输入密码。取消终止请求并忽略迟到响应，错误后可以重新输入并登录。
+客户端使用 Godot 原生邮箱和密码表单调用 `POST /api/collections/users/auth-with-password`，请求包含 identity（邮箱）和 password。PocketBase AuthRule 要求邮箱已验证且账号未禁用，客户端收到 token 和 record 后停留主菜单，点击“进入游戏”才申请游戏票据。密码隐藏，提交时清空输入框，不持久保存或输出日志；Token 按 API 根地址隔离保存在 macOS 钥匙串或 Windows 凭据管理器，密码不保存。启动时读取 Token 并调用 `POST /api/collections/users/auth-refresh`，验证通过建立会话并停留主菜单，等待玩家点击进入游戏。PocketBase 0.40.3 使用同一个有效 auth token 刷新并签发新 token，没有独立 refresh token；过期 token 无法续期，需重新输入密码。取消终止请求并忽略迟到响应，错误后可以重新输入并登录。
 
 客户端不启动本机回调端口，不使用授权码接口；旧 `/api/v1/auth/requests`、`approve`、`exchange` 已移除。注册链接指向 https://dlut.online/register，用户先注册并验证邮箱，再回到游戏登录。网站原有登录、注册与验证邮件重发保持可用。
 
@@ -161,3 +161,6 @@ Go 按官方地图三校区中心集中缓存 Open-Meteo 数据，Godot 游戏�
 游戏协议 5 新增向后兼容的可靠 `environment` 控制消息，包含游戏服 `unix_time` 和三校区天气。首次 welcome 后、切图确认后、每 60 秒及成功读取天气后发送。客户端以 Unix 锚点和单调时钟推进，固定 UTC+8 计算本地日期和太阳角度，暂停和失焦不暂停现实时间；同连接传送保留缓存。尚未获取服务器时间时使用本机 Unix 时间作封面/编辑器预览，服务器时钟需由宿主机保持准确。真实断线重连后用新服务器时间覆盖，退出账号清理缓存。
 
 每个校园场景实例化 `scenes/campus_environment.tscn`，静态环境可在编辑器查看。程序化体积云层在世界空间 1200 至 2100 米高度使用三维噪声密度场，半分辨率下每视线最多 32 步积分、每个非空采样向太阳追加两次密度探测实现内部遮光，低透射率提前终止。云高和厚度为视觉参数，非天气 API 实测云底高度；没有云层投射到建筑地面的精细动态阴影。4 Hz 更新环境参数，不增加透明云网格或额外实时灯光。云量、风、阴暗程度约 20 秒平滑变化；太阳角度按真实日期计算。雨雪和雷暴代码影响云层与雾效，本轮不实现降水粒子、积雪或闪电。无新增探索 HUD 和中文运行时文案，无需更新字体子集。天气来源、坐标和许可见根目录 `references/README.md`，桌面包附 `WEATHER-CREDITS.txt`。
+
+### 客户端手动入场与断线
+密码登录和系统凭据恢复成功后停留主菜单，点击“进入游戏”才加载默认校园、申请票据并连接。普通断线卸载校园，保留有效登录并等待手动重连；认证失效仍需重新登录。连续镜头转向约 20 Hz 同步，方向键、停步、奔跑和跳跃边沿即时发送；游戏服每连接最多 80 条消息/秒。ENet 协议仍为 5，关闭码 4002 仅表示版本不兼容，4005 表示消息限流，4006 表示通信数据异常；新客户端与游戏服应配套更新以显示准确原因。无新增环境变量或数据库迁移。
