@@ -52,14 +52,18 @@ func run() -> void:
 	await process_frame
 	await process_frame
 	assert(current_scene.login_only and current_scene.player == null)
+	var network := root.get_node("GameNetwork")
+	assert(not current_scene.loading_campus and not network.started)
+	assert(current_scene.enter_button.text == "进入游戏" and not current_scene.enter_button.disabled)
 	Account.clear()
 	await current_scene.account_login.begin(email, "correct-horse-battery-staple")
+	assert(not current_scene.loading_campus and not network.started, "Password login must wait for explicit game entry")
+	current_scene._begin_login()
 	assert(current_scene.loading_campus and current_scene.enter_button.disabled)
 	current_scene._account_authenticated() # Duplicate success must not start another load.
 	while current_scene == null or current_scene.scene_file_path == "res://scenes/main.tscn":
 		await process_frame
 	assert(current_scene.campus_id == "lingshui")
-	var network := root.get_node("GameNetwork")
 	var deadline := Time.get_ticks_msec() + 10000
 	while not network.welcomed and Time.get_ticks_msec() < deadline:
 		await process_frame
@@ -67,12 +71,33 @@ func run() -> void:
 	await process_frame
 	assert(current_scene.hud.player_status.visible)
 	assert(current_scene.hud.username_label.text == "client_test")
+	var before_sequence: int = network.sequence
+	for frame in 180:
+		current_scene.player.rotation.y += 0.03
+		await physics_frame
+	assert(network.welcomed and network.sequence - before_sequence <= 62, "Turning must not hit the server message limit")
 	var connection: ENetPacketPeer = network.socket
 	current_scene.hud.teleport("panjin")
 	while not network.transfer_phase.is_empty():
 		await process_frame
 	assert(current_scene.campus_id == "panjin" and network.socket == connection)
 	assert(not current_scene.hud.overlay.visible)
+	var preserved_token := Account.token
+	var old_campus: WeakRef = weakref(current_scene)
+	network.close_code = 4005
+	network._disconnected()
+	await process_frame
+	await process_frame
+	await process_frame
+	assert(old_campus.get_ref() == null and current_scene.login_only)
+	assert(Account.token == preserved_token and not network.active and not network.started and network.socket == null)
+	assert(current_scene.enter_button.text == "进入游戏" and not current_scene.enter_button.disabled)
+	assert(current_scene.identity_label.text.contains("过于频繁") and not current_scene.identity_label.text.contains("版本"))
+	await create_timer(1.2).timeout
+	assert(not network.started, "Disconnection must not automatically reconnect")
+	current_scene._begin_login()
+	while not network.welcomed: await process_frame
+	assert(current_scene.campus_id == "lingshui" and not current_scene.hud.overlay.visible)
 	await Account.forget_saved()
 	network.require_login()
 	assert(Account.token.is_empty() and Account.account_username.is_empty() and current_scene.hud.overlay.visible)
