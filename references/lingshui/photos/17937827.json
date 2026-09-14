@@ -1,0 +1,49 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 4,
+  "result": [
+    {
+      "id": 825392,
+      "name": "0520a0e06b35b7f700c810130ccc994",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/17937827_20190923160928451.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/17937827_20190923160928451.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/17937827_20190923160928451.jpg"
+    },
+    {
+      "id": 825394,
+      "name": "ffb2f24b5ec70f0552fc8acbcb82a48",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/17937827_20190923160928441.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/17937827_20190923160928441.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/17937827_20190923160928441.jpg"
+    },
+    {
+      "id": 825393,
+      "name": "51446a4bfb305556bc3e51ddd62e60d",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/17937827_20190923160928415.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/17937827_20190923160928415.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/17937827_20190923160928415.jpg"
+    },
+    {
+      "id": 825395,
+      "name": "d61aa304e1dafabe25ca5c9768c7a16",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/17937827_20190923160928523.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/17937827_20190923160928523.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/17937827_20190923160928523.jpg"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=17937827",
+  "retrieved": "2026-09-11"
+}

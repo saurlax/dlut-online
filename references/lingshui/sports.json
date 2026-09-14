@@ -1,0 +1,44 @@
+{
+  "78473": {
+    "center": [
+      290,
+      203
+    ],
+    "rotation_degrees": 0,
+    "straight_half": 43,
+    "inner_radius": 40,
+    "lanes": 8,
+    "lane_width": 1.15,
+    "track_color": "416e7c",
+    "apron_color": "99584f",
+    "pitch_width": 62,
+    "pitch_length": 96,
+    "photos": [
+      "78473-0.jpg",
+      "78473-1.jpg",
+      "78473-3.jpg"
+    ],
+    "west_stand": true,
+    "note": "官方轮廓定位，照片确认蓝色环形跑道、红色缓冲区、草地及西侧黄色阶梯看台。跑道半径、直道、8道、划线及看台尺度均为照片比例估计，不作为标准400米场地；不建未确认通道。"
+  },
+  "17913925": {
+    "center": [
+      -986,
+      -528
+    ],
+    "rotation_degrees": 13.5,
+    "straight_half": 47,
+    "inner_radius": 29,
+    "lanes": 6,
+    "lane_width": 1.12,
+    "track_color": "b06d60",
+    "apron_color": "568f86",
+    "pitch_width": 49,
+    "pitch_length": 91,
+    "photos": [
+      "17913925-0.jpg"
+    ],
+    "west_stand": false,
+    "note": "照片确认红色环道、绿色端区和有足球划线的草地；按官方斜向轮廓拟合，6道及所有内部尺度为低分辨率照片估计，不宣称标准比赛尺寸，不推断场外球场/看台结构。"
+  }
+}

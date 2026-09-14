@@ -1,0 +1,59 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 5,
+  "result": [
+    {
+      "id": 825410,
+      "name": "4a1acdb4599dfff9cda0711706bb157",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/625864_2019092316170799.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/625864_2019092316170799.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/625864_2019092316170799.jpg"
+    },
+    {
+      "id": 825411,
+      "name": "ae7f688dc8cce6d516df5ef297a58ed",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/625864_2019092316170775.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/625864_2019092316170775.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/625864_2019092316170775.jpg"
+    },
+    {
+      "id": 825412,
+      "name": "f980e4dc44b8e2fb5284f86956667e3",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/625864_20190923161707184.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/625864_20190923161707184.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/625864_20190923161707184.jpg"
+    },
+    {
+      "id": 825413,
+      "name": "babae5e55c024b457b76f8eee59d9ed",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/625864_20190923161707618.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/625864_20190923161707618.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/625864_20190923161707618.jpg"
+    },
+    {
+      "id": 825414,
+      "name": "3ddd415209ba6d3c816e42a53ee115f",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/625864_20190923161707854.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/625864_20190923161707854.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/625864_20190923161707854.jpg"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=625864",
+  "retrieved": "2026-09-11"
+}

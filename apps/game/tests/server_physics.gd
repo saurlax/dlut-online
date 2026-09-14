@@ -21,6 +21,12 @@ func _run() -> void:
 			await physics_frame
 			Movement.step(body,Vector2.ZERO,false,false,1.0/60.0,world.get_meta("spawn"))
 		assert(body.is_on_floor(),id + " spawn must be grounded")
+		if id == "lingshui":
+			var space := world.get_world_3d().direct_space_state
+			for sample in [Vector3(390,40,165), Vector3(410,40,239)]:
+				var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(sample,sample-Vector3(0,45,0)))
+				assert(not hit.is_empty() and hit.position.y > 13.0, "Authoritative world must include the curved hall roofs")
+			assert(not space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(240,2,175),Vector3(220,2,175))).is_empty(), "Authoritative world must include the west stand")
 		if id == "eda":
 			body.position = Vector3(35,0.05,350)
 			for frame in 240:

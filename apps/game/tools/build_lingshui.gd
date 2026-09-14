@@ -7,6 +7,10 @@ func build() -> void:
 	var bounds: Array = manifest.bounds
 	box(scene,Vector3(bounds[0]+bounds[2]/2.0,-1.0,bounds[1]+bounds[3]/2.0),Vector3(bounds[2],2.0,bounds[3]),material("Lingshui ground",Color("7c8069")),"CampusBase")
 	var facade_builder := preload("res://tools/build_lingshui_facades.gd").new()
+	var panel_builder := preload("res://tools/build_lingshui_panel_facades.gd").new()
+	var sports_builder := preload("res://tools/build_lingshui_sports.gd").new()
+	var halls_builder := preload("res://tools/build_lingshui_halls.gd").new()
+	var gabled_builder := preload("res://tools/build_lingshui_gabled_hall.gd").new()
 	for feature in manifest.features:
 		var group := Node3D.new()
 		group.name = "Feature_"+feature.id+"_"+str(int(feature.part))
@@ -24,18 +28,31 @@ func build() -> void:
 			match feature.kind:
 				"building":
 					var profile: Dictionary = feature.facade
+					if profile.get("style", "") == "gabled_shell":
+						gabled_builder.build(self, group, points, profile)
+						if profile.has("panels"):
+							panel_builder.build(self, group, points, profile)
+						continue
+					if profile.get("style", "") == "sports_halls":
+						halls_builder.build(self, group, points, profile)
+						continue
 					var color: String = profile.get("color","b0aca0")
 					polygon(group,points,feature.height,material("Lingshui "+color,Color(color)),"Building")
 					group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
 					polygon(group,points,feature.height+0.18,material("Lingshui roof",Color("85867d")),"Roof",feature.height)
-					if not profile.is_empty():
+					if profile.get("style", "") == "photo_panels":
+						panel_builder.build(self, group, points, profile)
+					elif not profile.is_empty():
 						facade_builder.build(self,group,points,profile)
 				"road":
 					polygon(group,points,0.04,material("Lingshui asphalt",Color("656966")),"Road")
 				"water":
 					polygon(group,points,0.05,material("Water",Color("526b6a")),"Water")
 				"sports":
-					polygon(group,points,0.06,material("Lingshui sports",Color("92776a")),"Sports")
+					if feature.has("sports"):
+						sports_builder.build(self, group, points, feature.sports)
+					else:
+						polygon(group,points,0.06,material("Lingshui sports",Color("92776a")),"Sports")
 				"plaza", "gate":
 					polygon(group,points,0.06,material("Lingshui paving",Color("aaa799")),"Paving")
 				"reserve":
