@@ -114,7 +114,14 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 		panel(finish,gallery_y,0.2,2.8,0.8,0.4,wall,true)
 		panel((start+finish)/2.0,gallery_slab_y,finish-start,0.18,1.05,0.45,frame,true)
 		panel((start+finish)/2.0,float(profile.get("eaves_y",23.1)),finish-start+0.5,0.22,1.6,0.6,frame,true)
-		railing((start+finish)/2.0,gallery_slab_y+0.15,finish-start,0.94,true)
+		if profile.get("enclosed_gallery",false):
+			panel((start+finish)/2.0,gallery_y,finish-start,2.55,0.1,0.86,glass)
+			for i in count*3+1:
+				panel(start+(finish-start)*i/(count*3),gallery_y,0.065,2.65,0.12,0.94,frame)
+			for dy in [-1.275,0.0,1.275]:
+				panel((start+finish)/2.0,gallery_y+dy,finish-start,0.065,0.12,0.94,frame)
+		else:
+			railing((start+finish)/2.0,gallery_slab_y+0.15,finish-start,0.94,true)
 	if profile.get("ground_bars",false):
 		for col in count:
 			var x := start+(col+0.5)*spacing
@@ -141,8 +148,19 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			panel(balcony,y,balcony_width,0.2,1.25,0.57,wall,true)
 		for x in [balcony-balcony_width/2.0,balcony,balcony+balcony_width/2.0]:
 			panel(x,middle,0.22,6.5,1.25,0.57,wall,true)
-		for y in [float(levels[0])+0.17,middle+0.17]:
-			railing(balcony,y,balcony_width-0.3,1.16,false)
+		if profile.get("enclosed_balcony",false):
+			for floor_index in 2:
+				var lower := float(levels[floor_index])
+				var upper := float(levels[floor_index+1])
+				var center := (lower+upper)*0.5
+				panel(balcony,center,balcony_width-0.3,upper-lower-0.2,0.1,1.18,glass)
+				for i in 7:
+					panel(balcony-balcony_width/2+balcony_width*i/6,center,0.065,upper-lower-0.1,0.12,1.26,frame)
+				for y in [lower+0.1,center,upper-0.1]:
+					panel(balcony,y,balcony_width,0.065,0.12,1.26,frame)
+		else:
+			for y in [float(levels[0])+0.17,middle+0.17]:
+				railing(balcony,y,balcony_width-0.3,1.16,false)
 		for x in [balcony-balcony_width/2.0,balcony+balcony_width/2.0]:
 			panel(x,middle,0.55,7.0,0.18,1.3,yellow)
 		for y in [float(levels[0])-0.35,float(levels[2])+0.35]:

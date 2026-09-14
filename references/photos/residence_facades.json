@@ -162,6 +162,15 @@
         "retrieved": "2026-09-09",
         "reviewed": "2026-09-14",
         "sha256": "04dc28e31227d9ad50f57d82e3423f9c0e5e9a62bfd75cce1d5f053fb91dde04"
+      },
+      {
+        "file": "77937-2026.jpg",
+        "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=PUmnYVLNUaLzrVU4mAVMR9bMzl4olL8sU4-inNlYLRnRM7L0gihFp2hmCIa0nkh7MkhRnkhRn7lZLzGYnlr2LR9PUmGYozviMzGaMmAkLRQFLmV2MRUbUlWFMzLsMlUJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLm-0LzlPL4CigtA8pUicc&oid=1819948287&tid=1022&nid=151365&e=.jpg",
+        "article_url": "https://news.dlut.edu.cn/info/1022/151365.htm",
+        "published": "2026-09-04",
+        "retrieved": "2026-09-14",
+        "sha256": "0a9631e7e54507da8fbc0f0901d8a11eecf4baf52d8039a9e653a3360dcd8a1c",
+        "use": "拼图右半幅，报道明确开发区4舍修缮；与旧77937-0的左端高塔、黄色框和右连接段互证，确认顶层及黄色框内封窗。左半幅主校区宿舍不用于开发区。"
       }
     ],
     "terminal_windows": {
@@ -185,7 +194,10 @@
       "width": 3.6,
       "depth": 4.5,
       "note": "本楼近照确认外端蓝灰色楼梯间高出屋面。沿已配准南边在本楼外端设置独立竖向体量，23米顶高、3.6米宽、4.5米进深及横向位置均为照片比例估计。仅实现外部体量和顶端可见暗槽，不建内部楼梯、门洞或连廊。"
-    }
+    },
+    "enclosed_gallery": true,
+    "enclosed_balcony": true,
+    "renovation_note": "2026近照优先于2016开放栏杆状态：既有顶层连廊和黄色框内两层阳台改为不透明封闭玻璃及细窗框。沿用既有配准和估计尺寸，不从局部图推断室内、背面或5舍同样改造。"
   },
   "77938": {
     "edge": 5,
