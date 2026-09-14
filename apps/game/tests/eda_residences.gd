@@ -25,7 +25,7 @@ func run() -> void:
 			world.add_child(model)
 			for c in CASES:
 				var group := model.get_node("Feature_"+c[0])
-				assert(group.get_child_count()<=(8 if c[0] in ["77937","77938"] else 7),"Keep material batching per residence")
+				assert(group.get_child_count()<=(9 if c[0]=="77937" else 8 if c[0]=="77938" else 7),"Keep material batching per residence")
 				assert(group.get_meta("photo_edges")==[c[1]])
 			Collision.build(world,model,manifest,"eda")
 		await physics_frame
@@ -56,6 +56,12 @@ func run() -> void:
 				assert(space.intersect_ray(PhysicsRayQueryParameters3D.create(gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8)).is_empty(),"Do not copy an unverified gallery to residence six")
 			else:
 				hit(space,gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8,gallery,c[0]+" gallery slab")
+			if c[0]=="77937":
+				# Trace against the new enclosure itself, not the retained wall behind it.
+				for sample in [[0.43,17.5,0.91],[0.42,8.3,1.23],[0.42,11.4,1.23]]:
+					p = a.lerp(b,float(sample[0]))
+					var enclosure := Vector3(p.x,float(sample[1]),p.y)
+					hit(space,enclosure+normal*3,enclosure-normal,enclosure+normal*float(sample[2]),"Fourth residence sealed glazing")
 			if c[2]>0:
 				p = a.lerp(b,c[2])+axis*a.distance_to(b)*0.025+out*0.7
 				for y in ([6.8,9.95,13.1] if lower else [9.95,13.1,16.25]):

@@ -115,7 +115,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 		panel((start+finish)/2.0,gallery_slab_y,finish-start,0.18,1.05,0.45,frame,true)
 		panel((start+finish)/2.0,float(profile.get("eaves_y",23.1)),finish-start+0.5,0.22,1.6,0.6,frame,true)
 		if profile.get("enclosed_gallery",false):
-			panel((start+finish)/2.0,gallery_y,finish-start,2.55,0.1,0.86,glass)
+			panel((start+finish)/2.0,gallery_y,finish-start,2.55,0.1,0.86,glass,true)
 			for i in count*3+1:
 				panel(start+(finish-start)*i/(count*3),gallery_y,0.065,2.65,0.12,0.94,frame)
 			for dy in [-1.275,0.0,1.275]:
@@ -153,7 +153,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 				var lower := float(levels[floor_index])
 				var upper := float(levels[floor_index+1])
 				var center := (lower+upper)*0.5
-				panel(balcony,center,balcony_width-0.3,upper-lower-0.2,0.1,1.18,glass)
+				panel(balcony,center,balcony_width-0.3,upper-lower-0.2,0.1,1.18,glass,true)
 				for i in 7:
 					panel(balcony-balcony_width/2+balcony_width*i/6,center,0.065,upper-lower-0.1,0.12,1.26,frame)
 				for y in [lower+0.1,center,upper-0.1]:
