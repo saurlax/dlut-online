@@ -69,7 +69,27 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	glass.metallic = 0.35
 	glass.roughness = 0.28
 	var height: float = profile.height
-	shell(points,height,wall,"Building")
+	if profile.has("end_gallery"):
+		var gallery: Dictionary = profile.end_gallery
+		var recessed := PackedVector2Array()
+		var a := points[int(profile.edge)]
+		var b := points[(int(profile.edge)+1)%points.size()]
+		var out := Vector2((b-a).y,-(b-a).x).normalized()
+		if Geometry2D.is_point_in_polygon((a+b)/2+out,points): out = -out
+		for i in points.size():
+			recessed.append(points[i])
+			if i==int(profile.edge):
+				var first := a.lerp(b,float(gallery.span[0]))
+				var last := a.lerp(b,float(gallery.span[1]))
+				recessed.append(first)
+				recessed.append(first-out*float(gallery.depth))
+				recessed.append(last-out*float(gallery.depth))
+				recessed.append(last)
+		shell(points,float(gallery.bottom),wall,"GalleryBase")
+		shell(recessed,float(gallery.top),wall,"GalleryRecess",float(gallery.bottom))
+		shell(points,height,wall,"GalleryHead",float(gallery.top))
+	else:
+		shell(points,height,wall,"Building")
 	shell(points,height+0.2,frame,"Roof",height)
 	var edge := int(profile.edge)
 	origin = points[edge]
@@ -79,6 +99,14 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	if Geometry2D.is_point_in_polygon((origin+end)*0.5+outward,points):
 		outward = -outward
 	var length := origin.distance_to(end)
+	if profile.has("end_gallery"):
+		var gallery: Dictionary = profile.end_gallery
+		var first: float = length*float(gallery.span[0])
+		var last: float = length*float(gallery.span[1])
+		var depth: float = gallery.depth
+		for floor_y in gallery.floors:
+			panel((first+last)/2,float(floor_y),last-first,0.18,depth,-depth/2,frame,true)
+			railing((first+last)/2,float(floor_y)+0.15,last-first,0.02,true)
 	var start: float = profile.span[0]*length
 	var finish: float = profile.span[1]*length
 	var count := int(profile.columns)

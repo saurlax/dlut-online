@@ -75,6 +75,12 @@ func run() -> void:
 				var top := 19.95+0.4+0.11*sqrt(1+pow(0.8/(tip-join),2))
 				var eave := Vector3(p.x,top,p.y)
 				hit(space,eave+Vector3.UP*2,eave-Vector3.UP*2,eave,"Fifth residence raised eave")
+			if c[0]=="77935":
+				p = a.lerp(b,0.8875)
+				var recessed_wall := Vector3(p.x,5.1,p.y)
+				hit(space,recessed_wall+normal*1.5,recessed_wall-normal*1.5,recessed_wall-normal*0.8,"Third residence recessed gallery wall")
+				var slab := Vector3(p.x,6.84,p.y)-normal*0.4
+				hit(space,slab+Vector3.UP*0.5,slab-Vector3.UP*0.5,slab,"Third residence recessed gallery slab")
 			if c[2]>0:
 				p = a.lerp(b,c[2])+axis*a.distance_to(b)*0.025+out*0.7
 				for y in ([6.8,9.95,13.1] if lower else [9.95,13.1,16.25]):
