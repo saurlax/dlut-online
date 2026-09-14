@@ -16,8 +16,8 @@ func run() -> void:
 	var network := root.get_node("GameNetwork")
 	assert(current_scene.login_only and not current_scene.loading_campus)
 	assert(current_scene.player == null and not network.started and network.host == null)
-	assert(current_scene.enter_button.text == "进入游戏" and not current_scene.enter_button.disabled)
-	assert(not current_scene.email_input.visible and not current_scene.password_input.visible)
+	assert(current_scene.multiplayer_button.text == "多人模式" and not current_scene.multiplayer_button.disabled)
+	assert(not current_scene.email_input.is_visible_in_tree() and not current_scene.password_input.is_visible_in_tree())
 	var labels := {4002:"版本", 4003:"连接中断", 4004:"人数已满", 4005:"过于频繁", 4006:"通信数据异常", 0:"失去连接"}
 	for code in labels:
 		network.close_code = code
@@ -33,7 +33,7 @@ func run() -> void:
 		assert(network.connection_generation > generation and network.transfer_phase.is_empty())
 		assert(not Catalog.entry_requested and not Catalog.started)
 		assert(Account.token == "menu-test-only" and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE)
-		assert(current_scene.identity_label.text == network.status_text and not current_scene.enter_button.disabled)
+		assert(current_scene.menu_status.text == network.status_text and not current_scene.enter_button.disabled)
 	await create_timer(1.2).timeout
 	assert(not network.started and network.host == null, "Menu must wait for an explicit click")
 	Account.clear()

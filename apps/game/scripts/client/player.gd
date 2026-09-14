@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+const LocalSession = preload("res://scripts/client/local_session.gd")
 const Movement = preload("res://scripts/shared/movement.gd")
 const WALK_SPEED := 6.0
 const RUN_SPEED := 13.0
@@ -48,9 +49,9 @@ func _physics_process(delta: float) -> void:
 	if jumping: jump_sequence += 1
 	var running := active and Input.is_action_pressed("run")
 	var network := get_node("/root/GameNetwork")
-	network.begin_prediction(delta, axis, running)
+	if not LocalSession.enabled: network.begin_prediction(delta, axis, running)
 	Movement.step(self, axis, running, jumping, delta, spawn_position)
-	network.end_prediction()
+	if not LocalSession.enabled: network.end_prediction()
 
 func _process(delta: float) -> void:
 	visual_offset *= exp(-12.0 * delta)

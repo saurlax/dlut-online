@@ -6,6 +6,13 @@ var loading_campus := false
 const MenuScene = preload("res://scenes/ui/login_menu.tscn")
 const MenuTheme = preload("res://assets/ui/campus_theme.tres")
 
+const LocalSession = preload("res://scripts/client/local_session.gd")
+var multiplayer_requested := false
+var local_load_generation := 0
+var singleplayer_button: Button
+var multiplayer_button: Button
+var menu_status: Label
+
 const Account = preload("res://scripts/client/account_session.gd")
 var account_login: Node
 var cancel_login: Button
@@ -75,7 +82,12 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 		overlay = MenuScene.instantiate()
 		overlay.background_enabled = login_only
 		root_control.add_child(overlay)
-	overlay.show_account_page(false)
+	overlay.show_account_page(true)
+	singleplayer_button = overlay.get_node("Composition/Modes/Singleplayer")
+	multiplayer_button = overlay.get_node("Composition/Modes/Multiplayer")
+	menu_status = overlay.get_node("Composition/Modes/Status")
+	singleplayer_button.pressed.connect(_begin_singleplayer)
+	multiplayer_button.pressed.connect(_begin_multiplayer)
 	var fields: VBoxContainer = overlay.get_node("Composition/Form/Fields")
 	identity_label = fields.get_node("AccountIdentity")
 	email_input = fields.get_node("LoginEmail")
@@ -90,20 +102,19 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	add_child(account_login)
 	account_login.status_changed.connect(_login_status)
 	account_login.authenticated.connect(_account_authenticated)
-	cancel_login.pressed.connect(func():
-		account_login.cancel()
-		_login_status("已取消，可重新登录")
-	)
+	cancel_login.pressed.connect(_cancel_login)
 	network = get_node("/root/GameNetwork")
 	network.menu_required.connect(_show_login)
 	if login_only:
-		if not Account.token.is_empty():
-			_account_authenticated()
-		else:
-			account_login.restore.call_deferred()
-		if network.status_text != "未连接":
-			identity_label.text = network.status_text
-			identity_label.show()
+		if network.status_text != "未连接": menu_status.text = network.status_text
+		return
+	if LocalSession.enabled:
+		build_map()
+		Catalog.entry_requested = false
+		Catalog.arriving = false
+		enter_campus()
+		if DisplayServer.get_name() != "headless" and not DisplayServer.window_is_focused():
+			pause_exploration()
 		return
 	network.configure(player, campus.campus_id)
 	network.status_changed.connect(_network_status)
@@ -129,8 +140,36 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	else:
 		account_login.restore.call_deferred()
 
+func _begin_singleplayer() -> void:
+	if loading_campus: return
+	_cancel_login()
+	LocalSession.enabled = true
+	_load_initial_campus()
+
+func _begin_multiplayer() -> void:
+	if loading_campus or multiplayer_requested: return
+	LocalSession.enabled = false
+	multiplayer_requested = true
+	if not Account.token.is_empty():
+		_load_initial_campus()
+		return
+	overlay.show_account_page(false)
+	cancel_login.show()
+	await account_login.restore()
+	if multiplayer_requested and not loading_campus and Account.token.is_empty():
+		email_input.grab_focus()
+
+func _cancel_login() -> void:
+	account_login.cancel()
+	multiplayer_requested = false
+	password_input.clear()
+	enter_button.disabled = false
+	email_input.editable = true
+	password_input.editable = true
+	overlay.show_account_page(true)
+
 func _begin_login() -> void:
-	if enter_button.disabled: return
+	if enter_button.disabled or loading_campus: return
 	if not Account.token.is_empty():
 		enter_button.disabled = true
 		if login_only:
@@ -148,24 +187,26 @@ func _login_status(value: String) -> void:
 	if loading_campus: return
 	identity_label.text = value
 	enter_button.disabled = account_login.waiting
-	cancel_login.visible = account_login.waiting
+	cancel_login.show()
 	email_input.editable = not account_login.waiting
 	password_input.editable = not account_login.waiting
 
 func _account_authenticated() -> void:
 	if loading_campus or Account.token.is_empty(): return
-	overlay.show_account_page(true)
 	password_input.clear()
-	email_input.hide()
-	password_input.hide()
-	register_link.hide()
-	cancel_login.hide()
-	identity_label.text = Account.username
-	enter_button.text = "进入游戏"
 	enter_button.disabled = false
+	if login_only:
+		if multiplayer_requested: _load_initial_campus()
+	else:
+		overlay.show_account_page(true)
 
 func _load_initial_campus() -> void:
 	loading_campus = true
+	overlay.show_account_page(true)
+	singleplayer_button.disabled = true
+	multiplayer_button.disabled = true
+	enter_button.disabled = true
+	menu_status.text = "加载中"
 	Catalog.entry_requested = true
 	var generation: int = network.connection_generation
 	identity_label.show()
@@ -183,13 +224,19 @@ func _load_initial_campus() -> void:
 				return
 	loading_campus = false
 	Catalog.entry_requested = false
-	identity_label.text = "加载失败，请重试"
+	menu_status.text = "加载失败，请重试"
+	multiplayer_requested = false
+	singleplayer_button.disabled = false
+	multiplayer_button.disabled = false
 	enter_button.disabled = false
 
 func _network_status(value: String) -> void:
 	if not Catalog.started:
 		identity_label.show()
 		identity_label.text = value
+		menu_status.text = value
+		singleplayer_button.disabled = true
+		multiplayer_button.disabled = true
 		enter_button.disabled = network.active
 
 func _network_connected() -> void:
@@ -202,17 +249,10 @@ func _network_connected() -> void:
 func _show_login() -> void:
 	if login_only:
 		loading_campus = false
-		enter_button.disabled = false
-		if Account.token.is_empty():
-			overlay.show_account_page(false)
-			email_input.show()
-			password_input.show()
-			register_link.show()
-			email_input.editable = true
-			password_input.editable = true
-			enter_button.text = "登录"
-		identity_label.text = network.status_text
-		identity_label.show()
+		_cancel_login()
+		singleplayer_button.disabled = false
+		multiplayer_button.disabled = false
+		menu_status.text = network.status_text
 		return
 	switching = false
 	transfer_panel.hide()
@@ -227,9 +267,12 @@ func _show_login() -> void:
 	get_tree().change_scene_to_file.call_deferred("res://scenes/main.tscn")
 
 func enter_campus() -> void:
-	if Account.token.is_empty() or not network.welcomed: return
-	player.player_id = Account.player_id
-	player.username = Account.username
+	if LocalSession.enabled:
+		player.network_ready = true
+	else:
+		if Account.token.is_empty() or not network.welcomed: return
+		player.player_id = Account.player_id
+		player.username = Account.username
 	Catalog.started = true
 	has_entered = true
 	overlay.hide()
@@ -253,6 +296,10 @@ func pause_exploration() -> void:
 	overlay.visible = not Catalog.started
 
 func _input(event: InputEvent) -> void:
+	if login_only and overlay.get_node("Composition/Form").visible and event.is_action_pressed("ui_cancel"):
+		_cancel_login()
+		get_viewport().set_input_as_handled()
+		return
 	if not Catalog.started:
 		return
 	if is_instance_valid(chat) and chat.editing:
@@ -424,10 +471,11 @@ func build_map() -> void:
 	connection_status.offset_right = 440
 	connection_status.offset_top = -44
 	connection_status.offset_bottom = -20
+	connection_status.visible = not LocalSession.enabled
 	connection_status.text = network.status_text
 	network.status_changed.connect(_connection_status_changed)
 	var logout_button := Button.new()
-	logout_button.text = "退出登录"
+	logout_button.text = "返回首页" if LocalSession.enabled else "退出登录"
 	logout_button.flat = true
 	map_overlay.add_child(logout_button)
 	logout_button.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_RIGHT)
@@ -435,7 +483,7 @@ func build_map() -> void:
 	logout_button.offset_right = -24
 	logout_button.offset_top = -52
 	logout_button.offset_bottom = -16
-	logout_button.pressed.connect(func(): network.require_login("已退出，请重新登录"))
+	logout_button.pressed.connect(_leave_mode)
 	transfer_panel = VBoxContainer.new()
 	transfer_panel.name = "CampusTransfer"
 	map_overlay.add_child(transfer_panel)
@@ -453,6 +501,7 @@ func build_map() -> void:
 	cancel_button.pressed.connect(cancel_transfer)
 	transfer_panel.add_child(cancel_button)
 	transfer_panel.hide()
+	if LocalSession.enabled: _build_local_environment()
 	map_overlay.hide()
 
 func toggle_map() -> void:
@@ -487,6 +536,9 @@ func teleport(id: String) -> void:
 	transfer_target = id
 	player.stop()
 	capture_pending = false
+	if LocalSession.enabled:
+		_load_local_campus(id)
+		return
 	if not network.request_map(id, true):
 		_network_map_failed()
 		return
@@ -502,7 +554,8 @@ func _network_map_prepared(id: String) -> void:
 	network.load_target(id)
 
 func cancel_transfer() -> void:
-	network.cancel_map()
+	local_load_generation += 1
+	if not LocalSession.enabled: network.cancel_map()
 	switching = false
 	transfer_panel.hide()
 	transfer_target = ""
@@ -552,3 +605,78 @@ func _chat_finished(resume: bool) -> void:
 		player.stop()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		crosshair.hide()
+
+func _leave_mode() -> void:
+	if not LocalSession.enabled:
+		network.require_login("已退出，请重新登录")
+		return
+	local_load_generation += 1
+	player.stop()
+	Catalog.started = false
+	Catalog.arriving = false
+	Catalog.entry_requested = false
+	LocalSession.enabled = false
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().change_scene_to_file.call_deferred("res://scenes/main.tscn")
+
+func _load_local_campus(id: String) -> void:
+	local_load_generation += 1
+	var generation := local_load_generation
+	map_overlay.show()
+	crosshair.hide()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	transfer_panel.show()
+	transfer_status.text = "加载中"
+	var path: String = Catalog.CAMPUSES[id].scene
+	if ResourceLoader.load_threaded_request(path) == OK:
+		while ResourceLoader.load_threaded_get_status(path) == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+			await get_tree().process_frame
+		var scene: PackedScene = ResourceLoader.load_threaded_get(path)
+		if generation != local_load_generation: return
+		if scene != null and get_tree().change_scene_to_packed(scene) == OK: return
+	if generation != local_load_generation: return
+	switching = false
+	transfer_status.text = "加载失败，请重试"
+
+func _build_local_environment() -> void:
+	var panel := PanelContainer.new()
+	panel.name = "LocalEnvironment"
+	map_overlay.add_child(panel)
+	panel.position = Vector2(28, 28)
+	panel.custom_minimum_size.x = 264
+	var style := StyleBoxFlat.new()
+	style.bg_color = Color(0.045, 0.06, 0.065, 0.96)
+	style.set_content_margin_all(12)
+	panel.add_theme_stylebox_override("panel", style)
+	var fields := VBoxContainer.new()
+	fields.add_theme_constant_override("separation", 12)
+	panel.add_child(fields)
+	var time_label := Label.new()
+	time_label.text = "时间 %02d:%02d" % [LocalSession.minutes / 60, LocalSession.minutes % 60]
+	fields.add_child(time_label)
+	var time_slider := HSlider.new()
+	time_slider.name = "Time"
+	time_slider.max_value = 1439
+	time_slider.step = 1
+	time_slider.value = LocalSession.minutes
+	time_slider.custom_minimum_size = Vector2(240, 32)
+	fields.add_child(time_slider)
+	time_slider.value_changed.connect(func(value: float):
+		LocalSession.minutes = int(value)
+		LocalSession.revision += 1
+		time_label.text = "时间 %02d:%02d" % [LocalSession.minutes / 60, LocalSession.minutes % 60]
+	)
+	var weather_label := Label.new()
+	weather_label.text = "天气"
+	fields.add_child(weather_label)
+	var weather_select := OptionButton.new()
+	weather_select.name = "Weather"
+	weather_select.custom_minimum_size.y = 44
+	fields.add_child(weather_select)
+	for title in LocalSession.WEATHER:
+		weather_select.add_item(title, LocalSession.WEATHER[title])
+	weather_select.select(weather_select.get_item_index(LocalSession.weather_code))
+	weather_select.item_selected.connect(func(index: int):
+		LocalSession.weather_code = weather_select.get_item_id(index)
+		LocalSession.revision += 1
+	)

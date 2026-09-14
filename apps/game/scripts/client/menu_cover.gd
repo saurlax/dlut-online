@@ -3,7 +3,7 @@ extends ColorRect
 ## Presentation only; this scene never authenticates or creates a player.
 
 const BACKDROP_PATH := "res://scenes/ui/campus_backdrop.tscn"
-@export_enum("Login", "Main menu") var preview_page: int = 0:
+@export_enum("Login", "Main menu") var preview_page: int = 1:
 	set(value):
 		preview_page = value
 		if is_node_ready(): show_account_page(value == 1)
@@ -43,10 +43,7 @@ func _process(delta: float) -> void:
 		$ShotFade.color.a = backdrop.fade_alpha() if not Engine.is_editor_hint() or animate_preview else 0.0
 
 func show_account_page(authenticated: bool) -> void:
-	$Composition/Form.position.y = 510.0 if authenticated else 290.0
-	$Composition/Form/Fields/AccountIdentity.visible = not authenticated
-	$Composition/Form/Fields/LoginEmail.visible = not authenticated
-	$Composition/Form/Fields/LoginPassword.visible = not authenticated
-	$Composition/Form/Fields/Register.visible = not authenticated
-	$Composition/Form/Fields/EnterCampus.text = "进入游戏" if authenticated else "登录"
-	$Composition/Form/Fields/AccountIdentity.text = "" if authenticated else "使用 DLUT Online 账号登录"
+	$Composition/Form.visible = not authenticated
+	$ModalShade.visible = not authenticated
+	$Composition/Modes.visible = authenticated
+	$Composition/Form/Fields/AccountIdentity.text = "使用 DLUT Online 账号登录"

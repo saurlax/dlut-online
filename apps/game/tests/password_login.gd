@@ -54,11 +54,11 @@ func run() -> void:
 	assert(current_scene.login_only and current_scene.player == null)
 	var network := root.get_node("GameNetwork")
 	assert(not current_scene.loading_campus and not network.started)
-	assert(current_scene.enter_button.text == "进入游戏" and not current_scene.enter_button.disabled)
+	assert(current_scene.multiplayer_button.text == "多人模式" and not current_scene.multiplayer_button.disabled)
 	Account.clear()
+	current_scene._begin_multiplayer()
+	assert(current_scene.overlay.get_node("Composition/Form").visible)
 	await current_scene.account_login.begin(email, "correct-horse-battery-staple")
-	assert(not current_scene.loading_campus and not network.started, "Password login must wait for explicit game entry")
-	current_scene._begin_login()
 	assert(current_scene.loading_campus and current_scene.enter_button.disabled)
 	current_scene._account_authenticated() # Duplicate success must not start another load.
 	while current_scene == null or current_scene.scene_file_path == "res://scenes/main.tscn":
@@ -91,11 +91,11 @@ func run() -> void:
 	await process_frame
 	assert(old_campus.get_ref() == null and current_scene.login_only)
 	assert(Account.token == preserved_token and not network.active and not network.started and network.socket == null)
-	assert(current_scene.enter_button.text == "进入游戏" and not current_scene.enter_button.disabled)
-	assert(current_scene.identity_label.text.contains("过于频繁") and not current_scene.identity_label.text.contains("版本"))
+	assert(current_scene.multiplayer_button.text == "多人模式" and not current_scene.multiplayer_button.disabled)
+	assert(current_scene.menu_status.text.contains("过于频繁") and not current_scene.menu_status.text.contains("版本"))
 	await create_timer(1.2).timeout
 	assert(not network.started, "Disconnection must not automatically reconnect")
-	current_scene._begin_login()
+	current_scene._begin_multiplayer()
 	while not network.welcomed: await process_frame
 	assert(current_scene.campus_id == "lingshui" and not current_scene.hud.overlay.visible)
 	await Account.forget_saved()
