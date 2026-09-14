@@ -195,6 +195,21 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			for y in [0.5,2.9]:
 				panel(x,y,width+0.08,0.06,0.24,0.18,frame)
 
+	if profile.has("yellow_frame"):
+		# Sixth residence photo confirms a surround, not the balcony layout behind it.
+		var surround: Dictionary = profile.yellow_frame
+		var yellow: Material = host.material("EDA residence yellow surround",Color("d5ae25"))
+		yellow.albedo_texture = null
+		var center := float(surround.fraction)*length
+		var width: float = surround.width
+		var bottom: float = surround.bottom
+		var top: float = surround.top
+		var border: float = surround.border
+		for x in [center-(width-border)/2,center+(width-border)/2]:
+			panel(x,(bottom+top)/2,border,top-bottom,float(surround.depth),float(surround.offset),yellow)
+		for y in [bottom+border/2,top-border/2]:
+			panel(center,y,width-2*border,border,float(surround.depth),float(surround.offset),yellow)
+
 	if profile.balcony_center != null:
 		var yellow: Material = host.material("EDA residence yellow surround",Color("d5ae25"))
 		yellow.albedo_texture = null
