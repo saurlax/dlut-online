@@ -48,7 +48,9 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	group = parent
 	group.set_meta("photo_reference","references/photos/residence_facades.json")
 	group.set_meta("interior_available",false)
-	group.set_meta("photo_edges",[int(profile.edge)])
+	var photo_edges: Array = [int(profile.edge)]
+	for side in profile.get("side_windows",[]): photo_edges.append(int(side.edge))
+	group.set_meta("photo_edges",photo_edges)
 	wall = host.material("EDA residence pale tile",Color("b8b6a3"))
 	# Small rectangular ceramic tiles visible in each residence photo.
 	var tile_image := Image.create(128,128,false,Image.FORMAT_RGB8)
@@ -235,3 +237,13 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			panel(tower_x+dx,21.4,0.8,2.0,0.06,0.24,glass)
 		for dx in [-1.15,0.0,1.15]:
 			panel(tower_x+dx,21.5,0.18,2.9,0.18,0.32,frame)
+
+	for side in profile.get("side_windows",[]):
+		origin = points[int(side.edge)]
+		var end_point := points[(int(side.edge)+1)%points.size()]
+		axis = (end_point-origin).normalized()
+		outward = Vector2(axis.y,-axis.x)
+		if Geometry2D.is_point_in_polygon((origin+end_point)/2+outward,points): outward = -outward
+		for fraction in side.fractions:
+			for y in side.centers_y:
+				window(origin.distance_to(end_point)*float(fraction),float(y),float(side.width),float(side.height))
