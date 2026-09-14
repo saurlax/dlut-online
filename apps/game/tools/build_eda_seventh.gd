@@ -31,6 +31,20 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 	var raised_points := PackedVector2Array()
 	for p in raised.points: raised_points.append(Vector2(p[0],p[1]))
 	shell(builder,group,raised_points,float(raised.height),podium,white,"RaisedPodium")
+	# Only the two outer roof edges visible in the construction aerial.
+	var parapet: Dictionary = raised.parapet
+	for edge in parapet.edges:
+		var a := raised_points[int(edge)]
+		var b := raised_points[(int(edge)+1)%raised_points.size()]
+		var axis := (b-a).normalized()
+		var inward := Vector2(-axis.y,axis.x)
+		if not Geometry2D.is_point_in_polygon((a+b)*0.5+inward,raised_points): inward = -inward
+		var thickness: float = parapet.thickness
+		var wall_height: float = parapet.height
+		var pos := (a+b)*0.5+inward*thickness*0.5
+		var node: MeshInstance3D = builder.box(group,Vector3(pos.x,float(raised.height)+wall_height*0.5,pos.y),Vector3(a.distance_to(b),wall_height,thickness),white,"RaisedPodiumParapet")
+		node.rotation.y = -atan2(axis.y,axis.x)
+		node.set_meta("walk_collision",true)
 	var tower := PackedVector2Array()
 	for p in profile.tower_points: tower.append(Vector2(p[0],p[1]))
 	shell(builder,group,tower,height,podium,white,"Tower")

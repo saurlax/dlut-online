@@ -28,10 +28,24 @@ func run() -> void:
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,80,pos.y),Vector3(pos.x,-1,pos.y)))
 			assert(not hit.is_empty(),"Missing roof at "+str(pos))
 			assert(absf(hit.position.y-float(sample[1]))<0.03,"Wrong roof height at "+str(pos)+": "+str(hit.position))
+		# Both photographed raised-roof parapets block horizontally and have a top.
+		for segment in [[Vector2(433.088,-74.167),Vector2(427.25,-42.98)],[Vector2(427.25,-42.98),Vector2(448.875,-38.933)]]:
+			var a: Vector2 = segment[0]
+			var b: Vector2 = segment[1]
+			var axis := (b-a).normalized()
+			var inward := Vector2(axis.y,-axis.x)
+			var middle := (a+b)*0.5
+			var top_pos := middle+inward*0.125
+			var top := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(top_pos.x,14,top_pos.y),Vector3(top_pos.x,12,top_pos.y)))
+			assert(not top.is_empty() and absf(top.position.y-12.85)<0.03,"Missing raised-roof parapet top")
+			var outside := middle-inward
+			var inside := middle+inward
+			var side := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(outside.x,12.55,outside.y),Vector3(inside.x,12.55,inside.y)))
+			assert(not side.is_empty() and Vector2(side.position.x,side.position.z).distance_to(middle)<0.03,"Missing raised-roof parapet side")
 		# Seventh residence exterior remains closed at ground level.
 		var wall := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(429,1.7,-12),Vector3(429,1.7,-70)))
 		assert(not wall.is_empty() and wall.position.z>-50,"Podium exterior must block walking")
 		world.free()
 		viewport.free()
-	print("PASS: client/server seventh residence 63.6m tower, 8.2m low podium, 12.3m raised podium, lower dormitories 4/5 and closed exterior")
+	print("PASS: client/server seventh residence 63.6m tower, 8.2m low podium, 12.3m raised podium with 12.85m parapets, lower dormitories 4/5 and closed exterior")
 	quit()
