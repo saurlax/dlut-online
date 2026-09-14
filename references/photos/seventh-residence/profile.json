@@ -1,0 +1,129 @@
+{
+  "id": "2304982",
+  "height": 63.6,
+  "height_source": "official-news-81930",
+  "storeys": 15,
+  "podium_height": 8.2,
+  "tower_points": [
+    [
+      412.779,
+      -129.393
+    ],
+    [
+      432.094,
+      -124.043
+    ],
+    [
+      481.363,
+      -80.201
+    ],
+    [
+      467.099,
+      -32.484
+    ],
+    [
+      448.323,
+      -35.984
+    ],
+    [
+      456.0,
+      -77.0
+    ],
+    [
+      404.97,
+      -96.099
+    ]
+  ],
+  "photos": [
+    {
+      "file": "81930-1.jpg",
+      "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=ioz6D2oRG4Lz9bMszfkLznfLRrVMmMZRM4GPM7L4MNVRM870gihFp2hmCIa0LYyDL1hfn1hkU8UPM4VRoRLaM8QfoR9aozGYMNrfnm98nmAFLR9PLRM7LmrFUNn2o7-Jqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLm-0oR7bL4GJqdbnx&oid=1819948287&tid=1022&nid=81930&e=.jpg",
+      "sha256": "e91bd4e694a6f16909e967632399505a6bbc69c6b753b6c20eafe32788b83fe8",
+      "retrieved": "2026-09-14"
+    },
+    {
+      "file": "82907-0.jpg",
+      "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=jLlMwRL8n2ozUPLXlQ7nR7bLRrkL4G/4MlC8ozvZoR7sUzC0gihFp2hmCIa0okyaLkh7nSyDMzv4MmvbUNrRLmGiLlQRMRWfM4r7M7lZLlVFMml8UNUYnzVFM7CsnzlJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLmC0oR-bLRvJqdKnx&oid=1819948287&tid=1026&nid=82907&e=.jpg",
+      "sha256": "762ca8aba255f8339b98f27011fb648af06f2455604d9dfb101ed26339a69a19",
+      "retrieved": "2026-09-14"
+    },
+    {
+      "file": "82977-0.jpg",
+      "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=0UNMa7n7CbLl-iUPmCbUl-Dnl-PM49YDnz-ZMzN4L7QVn770gihFp2hmCIa0oShVMYyPnSyYMl-sU49YLNLaMRVknm7aM8rVUmv4o7rVM46FLNU8MR-ZM7WFMl7aMllJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLm-0oR-bM4vJqd4nx&oid=1819948287&tid=1022&nid=82977&e=.jpg",
+      "sha256": "6d31ea9ab1a1bc77839442a5e0e516d0b488e8d6e187cf1747b5094237b5517e",
+      "retrieved": "2026-09-14",
+      "article_url": "https://news.dlut.edu.cn/info/1022/82977.htm",
+      "use": "只使用右半幅航拍核对高低裙房和塔翼；左半幅室内不建模"
+    },
+    {
+      "file": "89514-0.jpg",
+      "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=lLllrbLNC4M4vaUINlDU4LZL7-bnmQ52MNQ7MRQRM4VVL770gihFp2hmCIa0okybUYy4n1yDnzvYM8LiMRTVUmLPMm6RUN7bMzCbnRvDLzQFMlWVL7rRUmMFMRWRLzvJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLm-0oRNiLzUJqdCnx&oid=1819948287&tid=1022&nid=89514&e=.jpg",
+      "sha256": "4438fe76b3ccdc61a6c17b04f5b1f1a655ee59a1e567037b709a7a85999b5ec2",
+      "retrieved": "2026-09-14",
+      "article_url": "https://news.dlut.edu.cn/info/1022/89514.htm",
+      "use": "首幅拼图左半幅为启用后的外观：白色端墙、分段深色竖带与顶部校徽/DUT面板。拍摄朝向尚未与官方轮廓配准，不直接替换现有边6窗格，也不复制到两端。右半幅宿舍内景不能确定房间在楼内的位置或完整平面，不据此生成室内。",
+      "registration_status": "pending"
+    },
+    {
+      "article_id": 79554,
+      "article_url": "https://news.dlut.edu.cn/info/1011/79554.htm",
+      "title": "【战“疫”情】“疫”路相逢 基建工程“逆行抢跑”稳步推进",
+      "published": "2022-09-15",
+      "retrieved": "2026-09-14",
+      "file": "79554-6.jpg",
+      "image_index": 6,
+      "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=zUNUlbnlWRU4UPLrRMRoz-DMzv8LzUI4oR62oRM7MRN4ozC0gihFp2hmCIa0n1hkn1hfMYyDMz-PMlV2UNlaUzLiozGYnRG8ozNaU4-DozQFoRNPM8WVUzMFMR7iLzNJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLz70M4NiMzUJqd5nx&oid=1819948287&tid=1011&nid=79554&e=.jpg",
+      "sha256": "f5c53cbd5914de2fb76042b6eba0f0d8fc56b3a6055ee692688a485369bfefd8",
+      "use": "报道第5项明确开发区校区学生公寓，称2022年7月28日正式开工、正在基础施工。航拍同框包含基坑、北侧既有宿舍、周边道路和球场，可用于复核七舍位置以及4/5舍屋顶、立面、连接段的对应关系。基坑不是竣工建筑轮廓或完整平面，不据此修改塔楼高度、端墙朝向或生成室内；两栋宿舍须继续与官方Feature逐一配准。",
+      "registration_status": "pending"
+    }
+  ],
+  "note": "81930报道主体15层、高63.6米。81930-1为设计效果图，82907-0上两幅为施工实照，二者互证L形白色高层及低层裙房；不得把效果图绿化、雨棚和室内直接当竣工实景。楼群位于4/5舍南、食堂北，保留官方Feature外轮廓。塔楼沿官方东北侧顶点4/5/6/7配准L形，西内侧回折点448.323,-35.984与456,-77为图像比例估计，北西端取原顶点3。裙房8.2米、塔楼进深与内院分界仍为估计；总63.6米来自官方，不等于分层净高实测。只先实现可核实高低体量和施工图可见的内院两翼窗格，南北未证面及所有室内不建。 新增82977施工航拍证实裙房内另有抬高屋面，分区见raised_podium；低裙房8.2米与抬高区12.3米均为估计。 89514（2024-02-28）补充启用后的外观照片，能辨认端墙深色竖带和顶部标识；具体端墙朝向待配准，暂未据此改变模型。施工照片继续作为既有分区依据，不表示其细节已获竣工照片验证。",
+  "raised_podium": {
+    "height": 12.3,
+    "points": [
+      [
+        448.875,
+        -38.933
+      ],
+      [
+        454.712,
+        -70.119
+      ],
+      [
+        433.088,
+        -74.167
+      ],
+      [
+        427.25,
+        -42.98
+      ]
+    ],
+    "note": "82977-0右半幅施工航拍确认低裙房上的抬高屋面；按靠东侧塔翼的内院区域配准，距塔翼内面22米、两端退3/7米及12.3米顶高均为图像比例估计，非实测。比8.2米低裙房高4.1米；不复制施工堆料或屋顶图案。",
+    "parapet": {
+      "edges": [
+        2,
+        3
+      ],
+      "height": 0.55,
+      "thickness": 0.25,
+      "note": "82977-0右侧航拍可见抬高屋面的西侧、南侧矮墙收边，配准raised_podium边2/3；高0.55米、厚0.25米为照片比例估计，顶标高12.85米。只补两段可见收边，不推定塔楼交界处及背侧构造。"
+    }
+  },
+  "end_windows": {
+    "edge": 6,
+    "fractions": [
+      0.42,
+      0.6
+    ],
+    "width": 0.85,
+    "window_height": 2.5,
+    "note": "82977-0右半幅航拍左侧塔翼端墙可辨窄竖窗，配准塔楼多边形边6。只补两列窄窗，宽0.85米、高2.5米和42%/60%位置为照片比例估计；不把施工孔洞当成窗，也不复制到另一端墙。"
+  },
+  "roof_parapet": {
+    "height": 1.2,
+    "thickness": 0.3,
+    "source": "82977-0.jpg",
+    "note": "右半幅施工航拍可见L形塔翼屋面位于外围矮墙之内，不能将整片屋面填到墙顶。保留63.6米最高外轮廓，屋面估计62.4米，女儿墙高1.2米、厚0.3米向内收；均非实测。只表达连续外围墙与下沉屋面，不生成设备、楼梯间或屋顶通行入口。"
+  }
+}
