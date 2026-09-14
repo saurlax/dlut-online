@@ -1,0 +1,52 @@
+{
+  "id": "2304982",
+  "height": 63.6,
+  "height_source": "official-news-81930",
+  "storeys": 15,
+  "podium_height": 8.2,
+  "tower_points": [
+    [
+      412.779,
+      -129.393
+    ],
+    [
+      432.094,
+      -124.043
+    ],
+    [
+      481.363,
+      -80.201
+    ],
+    [
+      467.099,
+      -32.484
+    ],
+    [
+      448.323,
+      -35.984
+    ],
+    [
+      456.0,
+      -77.0
+    ],
+    [
+      404.97,
+      -96.099
+    ]
+  ],
+  "photos": [
+    {
+      "file": "81930-1.jpg",
+      "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=ioz6D2oRG4Lz9bMszfkLznfLRrVMmMZRM4GPM7L4MNVRM870gihFp2hmCIa0LYyDL1hfn1hkU8UPM4VRoRLaM8QfoR9aozGYMNrfnm98nmAFLR9PLRM7LmrFUNn2o7-Jqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLm-0oR7bL4GJqdbnx&oid=1819948287&tid=1022&nid=81930&e=.jpg",
+      "sha256": "e91bd4e694a6f16909e967632399505a6bbc69c6b753b6c20eafe32788b83fe8",
+      "retrieved": "2026-09-14"
+    },
+    {
+      "file": "82907-0.jpg",
+      "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=jLlMwRL8n2ozUPLXlQ7nR7bLRrkL4G/4MlC8ozvZoR7sUzC0gihFp2hmCIa0okyaLkh7nSyDMzv4MmvbUNrRLmGiLlQRMRWfM4r7M7lZLlVFMml8UNUYnzVFM7CsnzlJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLmC0oR-bLRvJqdKnx&oid=1819948287&tid=1026&nid=82907&e=.jpg",
+      "sha256": "762ca8aba255f8339b98f27011fb648af06f2455604d9dfb101ed26339a69a19",
+      "retrieved": "2026-09-14"
+    }
+  ],
+  "note": "81930报道主体15层、高63.6米。81930-1为设计效果图，82907-0上两幅为施工实照，二者互证L形白色高层及低层裙房；不得把效果图绿化、雨棚和室内直接当竣工实景。楼群位于4/5舍南、食堂北，保留官方Feature外轮廓。塔楼沿官方东北侧顶点4/5/6/7配准L形，西内侧回折点448.323,-35.984与456,-77为图像比例估计，北西端取原顶点3。裙房8.2米、塔楼进深与内院分界仍为估计；总63.6米来自官方，不等于分层净高实测。只先实现可核实高低体量和施工图可见的内院两翼窗格，南北未证面及所有室内不建。"
+}

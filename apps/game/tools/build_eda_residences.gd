@@ -85,11 +85,12 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	var spacing := (finish-start)/count
 	var balcony := -100.0 if profile.balcony_center == null else float(profile.balcony_center)*length
 	var balcony_width := spacing*2.0
-	for row in 5:
+	for row in int(profile.get("window_rows",5)):
 		var y := 4.8+row*3.15
 		for col in count:
 			var x := start+(col+0.5)*spacing
-			if row in [2,3] and absf(x-balcony)<balcony_width*0.52:
+			var balcony_levels: Array = profile.get("balcony_levels",[9.85,13.0,16.15])
+			if y>float(balcony_levels[0]) and y<float(balcony_levels[2]) and absf(x-balcony)<balcony_width*0.52:
 				continue
 			window(x,y,spacing*0.77,2.15)
 			panel(x+spacing*0.35,y-1.43,spacing*0.22,0.48,0.07,0.1,accent)
@@ -97,25 +98,29 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 				panel(x+dx,y,0.18,3.15,0.22,0.12,frame)
 		panel((start+finish)/2.0,y-1.2,finish-start,0.13,0.22,0.12,frame)
 	# Only the visible upper gallery: closed shell behind it, no invented access.
+	var gallery_y: float = profile.get("gallery_y",20.65)
+	var gallery_slab_y: float = profile.get("gallery_slab_y",19.25)
 	for col in count:
 		var x := start+(col+0.5)*spacing
-		window(x,20.65,spacing*0.64,1.75)
-		panel(start+col*spacing,20.65,0.2,2.8,0.8,0.4,wall,true)
-	panel(finish,20.65,0.2,2.8,0.8,0.4,wall,true)
-	panel((start+finish)/2.0,19.25,finish-start,0.18,1.05,0.45,frame,true)
-	panel((start+finish)/2.0,23.1,finish-start+0.5,0.22,1.6,0.6,frame,true)
-	railing((start+finish)/2.0,19.4,finish-start,0.94,true)
+		window(x,gallery_y,spacing*0.64,1.75)
+		panel(start+col*spacing,gallery_y,0.2,2.8,0.8,0.4,wall,true)
+	panel(finish,gallery_y,0.2,2.8,0.8,0.4,wall,true)
+	panel((start+finish)/2.0,gallery_slab_y,finish-start,0.18,1.05,0.45,frame,true)
+	panel((start+finish)/2.0,float(profile.get("eaves_y",23.1)),finish-start+0.5,0.22,1.6,0.6,frame,true)
+	railing((start+finish)/2.0,gallery_slab_y+0.15,finish-start,0.94,true)
 	if profile.balcony_center != null:
 		var yellow: Material = host.material("EDA residence yellow surround",Color("d5ae25"))
 		yellow.albedo_texture = null
 		# Two open balcony bays per floor, outside the retained closed footprint.
-		for y in [9.85,13.0,16.15]:
+		var levels: Array = profile.get("balcony_levels",[9.85,13.0,16.15])
+		var middle: float = levels[1]
+		for y in levels:
 			panel(balcony,y,balcony_width,0.2,1.25,0.57,wall,true)
 		for x in [balcony-balcony_width/2.0,balcony,balcony+balcony_width/2.0]:
-			panel(x,13.0,0.22,6.5,1.25,0.57,wall,true)
-		for y in [10.02,13.17]:
+			panel(x,middle,0.22,6.5,1.25,0.57,wall,true)
+		for y in [float(levels[0])+0.17,middle+0.17]:
 			railing(balcony,y,balcony_width-0.3,1.16,false)
 		for x in [balcony-balcony_width/2.0,balcony+balcony_width/2.0]:
-			panel(x,13.0,0.55,7.0,0.18,1.3,yellow)
-		for y in [9.5,16.5]:
+			panel(x,middle,0.55,7.0,0.18,1.3,yellow)
+		for y in [float(levels[0])-0.35,float(levels[2])+0.35]:
 			panel(balcony,y,balcony_width+0.55,0.55,0.18,1.3,yellow)

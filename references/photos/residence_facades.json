@@ -84,5 +84,63 @@
         "use": "相邻楼栋同框与官方轮廓配准"
       }
     ]
+  },
+  "77937": {
+    "edge": 7,
+    "columns": 7,
+    "span": [
+      0.18,
+      0.82
+    ],
+    "balcony_center": 0.4,
+    "height": 19.85,
+    "window_rows": 4,
+    "gallery_y": 17.5,
+    "gallery_slab_y": 16.1,
+    "eaves_y": 19.95,
+    "balcony_levels": [
+      6.7,
+      9.85,
+      13.0
+    ],
+    "photos": [
+      {
+        "file": "77937-0.jpg",
+        "image_id": 79700,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77937_2016030211335637.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "04dc28e31227d9ad50f57d82e3423f9c0e5e9a62bfd75cce1d5f053fb91dde04"
+      }
+    ]
+  },
+  "77938": {
+    "edge": 5,
+    "columns": 6,
+    "span": [
+      0.18,
+      0.82
+    ],
+    "balcony_center": 0.58,
+    "height": 19.85,
+    "window_rows": 4,
+    "gallery_y": 17.5,
+    "gallery_slab_y": 16.1,
+    "eaves_y": 19.95,
+    "balcony_levels": [
+      6.7,
+      9.85,
+      13.0
+    ],
+    "photos": [
+      {
+        "file": "77938-0.jpg",
+        "image_id": 79699,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77938_20160302113344746.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "c9dd800a45ea1371f63702f272a8ed104d23945a00e7aa94e5a120fc0a430e6e"
+      }
+    ]
   }
 }

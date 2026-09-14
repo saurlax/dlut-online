@@ -602,7 +602,7 @@
       "name": "学生宿舍1舍",
       "kind": "building",
       "height": 23.0,
-      "height_source": "approximation",
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
@@ -652,7 +652,7 @@
       "name": "学生宿舍2舍",
       "kind": "building",
       "height": 23.0,
-      "height_source": "approximation",
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
@@ -694,7 +694,7 @@
       "name": "学生宿舍3舍",
       "kind": "building",
       "height": 23.0,
-      "height_source": "approximation",
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
@@ -727,8 +727,8 @@
       "id": "77937",
       "name": "学生宿舍4舍",
       "kind": "building",
-      "height": 23.0,
-      "height_source": "approximation",
+      "height": 19.85,
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
@@ -769,8 +769,8 @@
       "id": "77938",
       "name": "学生宿舍5舍",
       "kind": "building",
-      "height": 23.0,
-      "height_source": "approximation",
+      "height": 19.85,
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
@@ -1319,8 +1319,8 @@
       "id": "2304982",
       "name": "第七学生宿舍/大学生活动中心",
       "kind": "building",
-      "height": 23.0,
-      "height_source": "approximation",
+      "height": 63.6,
+      "height_source": "official-news-81930",
       "footprint_source": "official-map",
       "points": [
         [
