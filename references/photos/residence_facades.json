@@ -1,0 +1,88 @@
+{
+  "77931": {
+    "edge": 9,
+    "columns": 12,
+    "span": [
+      0.14,
+      0.86
+    ],
+    "balcony_center": 0.69,
+    "height": 23.0,
+    "photos": [
+      {
+        "file": "77931-0.jpg",
+        "image_id": 79703,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77931_20160302113542791.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "e771b3f407a52633c2e9432bc7a201284df93527cdf191d5bc2ba1337ad74dca"
+      },
+      {
+        "file": "77933-0.jpg",
+        "image_id": 79702,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "978b168ccbe4343451aa3b9edd79dd86e18325c43e9aed95da50836ecc0c7ad4",
+        "use": "相邻楼栋同框与官方轮廓配准"
+      }
+    ]
+  },
+  "77933": {
+    "edge": 7,
+    "columns": 12,
+    "span": [
+      0.14,
+      0.86
+    ],
+    "balcony_center": 0.28,
+    "height": 23.0,
+    "photos": [
+      {
+        "file": "77933-0.jpg",
+        "image_id": 79702,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "978b168ccbe4343451aa3b9edd79dd86e18325c43e9aed95da50836ecc0c7ad4"
+      },
+      {
+        "file": "77933-1.jpg",
+        "image_id": 79704,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113604487.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "4d0be2a7a097c1df00f6db2d51a169f7be9697d3e543c4043ea936b65c755247"
+      }
+    ]
+  },
+  "77935": {
+    "edge": 4,
+    "columns": 14,
+    "span": [
+      0.14,
+      0.86
+    ],
+    "balcony_center": null,
+    "height": 23.0,
+    "photos": [
+      {
+        "file": "77935-0.jpg",
+        "image_id": 79701,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77935_20160302113438786.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "1507bace6bd3af21cbd2b40f423714209d03991cef5b694a704e215ff8cfd814"
+      },
+      {
+        "file": "77933-0.jpg",
+        "image_id": 79702,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "978b168ccbe4343451aa3b9edd79dd86e18325c43e9aed95da50836ecc0c7ad4",
+        "use": "相邻楼栋同框与官方轮廓配准"
+      }
+    ]
+  }
+}

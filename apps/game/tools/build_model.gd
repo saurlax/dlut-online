@@ -5,6 +5,7 @@ var materials: Dictionary = {}
 var manifest: Dictionary
 var generated_count := 0
 var roads: Array = []
+var residence_profiles: Dictionary = {}
 
 func _initialize() -> void:
 	call_deferred("build")
@@ -206,6 +207,8 @@ func build() -> void:
 	scene.name = "DevelopmentCampus"
 	root.add_child(scene)
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
+	var reference_path := ProjectSettings.globalize_path("res://").path_join("../../references/photos/residence_facades.json").simplify_path()
+	residence_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path))
 	box(scene,Vector3(0,-6,55),Vector3(1280,12,930),material("Campus base",Color("74795b")),"CampusBase")
 	roads = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/roads.json")).roads
 	for road in roads:
@@ -229,6 +232,10 @@ func build() -> void:
 		var height: float = feature.height
 		match kind:
 			"building":
+				if residence_profiles.has(feature.id):
+					preload("res://tools/build_eda_residences.gd").new().build(self,group,points,residence_profiles[feature.id])
+					generated_count += 1
+					continue
 				if feature.id in ["77914","77917"]:
 					preload("res://tools/build_photo_facades.gd").new().build(self,group,points,feature.id=="77917")
 					generated_count += 1
