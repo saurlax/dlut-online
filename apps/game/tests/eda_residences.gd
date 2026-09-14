@@ -68,6 +68,13 @@ func run() -> void:
 					p = a.lerp(b,float(sample[0]))
 					var enclosure := Vector3(p.x,float(sample[1]),p.y)
 					hit(space,enclosure+normal*3,enclosure-normal,enclosure+normal*float(sample[2]),"Fourth residence sealed glazing")
+			if c[0]=="77938":
+				var tip := a.distance_to(b)*0.82+0.25
+				var join := a.distance_to(b)*(0.82-0.64*0.2)
+				p = a+axis*((tip+join)/2)+out*1.0
+				var top := 19.95+0.4+0.11*sqrt(1+pow(0.8/(tip-join),2))
+				var eave := Vector3(p.x,top,p.y)
+				hit(space,eave+Vector3.UP*2,eave-Vector3.UP*2,eave,"Fifth residence raised eave")
 			if c[2]>0:
 				p = a.lerp(b,c[2])+axis*a.distance_to(b)*0.025+out*0.7
 				for y in ([6.8,9.95,13.1] if lower else [9.95,13.1,16.25]):

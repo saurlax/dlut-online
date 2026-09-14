@@ -116,8 +116,9 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 		var eaves_y: float = profile.get("eaves_y",23.1)
 		if profile.has("eaves_upturn"):
 			var turn: Dictionary = profile.eaves_upturn
-			var tip := start-0.25
-			var join: float = start+(finish-start)*float(turn.span_fraction)
+			var at_end: bool = turn.get("at_end",false)
+			var tip := finish+0.25 if at_end else start-0.25
+			var join: float = finish-(finish-start)*float(turn.span_fraction) if at_end else start+(finish-start)*float(turn.span_fraction)
 			var rise: float = turn.rise
 			var run := join-tip
 			var pos := origin+axis*((tip+join)/2)+outward*0.6
@@ -126,7 +127,9 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			var side := Vector3(-axis.y,0,axis.x)
 			inclined.basis = Basis(along,side.cross(along),side)
 			inclined.set_meta("walk_collision",true)
-			panel((join+finish+0.25)/2,eaves_y,finish+0.25-join,0.22,1.6,0.6,frame,true)
+			var flat_start := start-0.25 if at_end else join
+			var flat_end := join if at_end else finish+0.25
+			panel((flat_start+flat_end)/2,eaves_y,flat_end-flat_start,0.22,1.6,0.6,frame,true)
 		else:
 			panel((start+finish)/2.0,eaves_y,finish-start+0.5,0.22,1.6,0.6,frame,true)
 		if profile.get("enclosed_gallery",false):
