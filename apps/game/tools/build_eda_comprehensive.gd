@@ -35,6 +35,17 @@ func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary)
 				facade.panel(x,y+0.62,width,0.07,0.08,0.2,frame)
 			facade.panel(facade.length/2,y-1.6,facade.length,0.18,0.16,0.1,band)
 		facade.panel(facade.length/2,20.09,facade.length,0.18,0.35,0.1,band,true)
+	# The courtyard wing ends in two columns of short high windows, not full bays.
+	var end_windows: Dictionary = profile.court_end_windows
+	facade.frame_for(points,int(end_windows.edge))
+	for fraction in end_windows.fractions:
+		var x := float(fraction)*facade.length
+		var width: float = end_windows.width
+		var window_height: float = end_windows.height
+		for y in end_windows.centers_y:
+			facade.panel(x,float(y),width+0.14,window_height+0.14,0.08,0.08,frame)
+			facade.panel(x,float(y),width,window_height,0.06,0.14,glass)
+			facade.panel(x,float(y),0.055,window_height,0.08,0.2,frame)
 	# Photo 77921-1 confirms the large pale frames on this outer face only.
 	facade.frame_for(points,14)
 	for fraction in [0.28,0.43,0.58,0.73]:
