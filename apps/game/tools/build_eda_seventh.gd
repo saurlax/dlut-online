@@ -63,3 +63,23 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 				for col in columns:
 					var pos := a.lerp(b,(col+0.5)/columns)+out*0.065
 					panel(builder,group,pos,y+storey/2.0,Vector3(spacing*0.68,storey*0.35,0.08),angle,trim)
+	var end_profile: Dictionary = profile.end_windows
+	var end_edge := int(end_profile.edge)
+	var end_a := tower[end_edge]
+	var end_b := tower[(end_edge+1)%tower.size()]
+	var end_axis := (end_b-end_a).normalized()
+	var end_out := Vector2(end_axis.y,-end_axis.x)
+	if Geometry2D.is_point_in_polygon((end_a+end_b)/2+end_out,tower): end_out = -end_out
+	var end_angle := -atan2(end_axis.y,end_axis.x)
+	var end_storey := (height-podium-1.5)/13.0
+	for row in 13:
+		var y := podium+end_storey*(row+0.5)
+		for fraction in end_profile.fractions:
+			var pos := end_a.lerp(end_b,float(fraction))
+			var width: float = end_profile.width
+			var window_height: float = end_profile.window_height
+			panel(builder,group,pos+end_out*0.08,y,Vector3(width,window_height,0.1),end_angle,glazing)
+			for dx in [-width/2,width/2]:
+				panel(builder,group,pos+end_axis*dx+end_out*0.15,y,Vector3(0.06,window_height+0.1,0.12),end_angle,trim)
+			for dy in [-window_height/2,window_height/2]:
+				panel(builder,group,pos+end_out*0.15,y+dy,Vector3(width+0.1,0.06,0.12),end_angle,trim)
