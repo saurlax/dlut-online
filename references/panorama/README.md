@@ -43,3 +43,7 @@
 | `KFQ00-back-10-09.jpg` | https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/10/l5_b_10_09.jpg | `a40575ffbeaa0a9e368ff59c0a683438e63719c301966cafa84c49f72118055d` |
 | `KFQ00-back-11-08.jpg` | https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/11/l5_b_11_08.jpg | `d3ac504e6ea8f080910c39eca4f2f930f38542c48a8c92f03468a263d19bf515` |
 | `KFQ00-back-11-09.jpg` | https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/11/l5_b_11_09.jpg | `f30918b4e3fca342844cecce1ffb3b3f3d0ae57130781c6d748c7bb45e338e60` |
+
+## 实验室卫星候选交叉核对（2026-09-14）
+
+官方地图配置的高德style=6图层，目标19级及邻瓦片均为无卫星图占位图。18级目标与东邻有实际影像，原始URL、哈希、读取日期及官方轮廓像素换算见 `eda-lab-satellite.json`。18级目标瓦片可见北侧深灰屋顶与南侧浅色长屋顶两栋独立建筑，东邻瓦片显示综合楼西翼。官方96575轮廓直接换算后落在北侧灰屋顶一带，但屋顶边缘与轮廓不完全重合，未完成坐标基准或地面控制点标定，不能用偏移推断高度。全景后向右侧灰色建筑仍为候选，不将南侧另一栋并入实验室。 此轮不改模型或生成室内。
