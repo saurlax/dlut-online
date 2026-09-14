@@ -137,6 +137,15 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 				panel((start+finish)/2.0,gallery_y+dy,finish-start,0.065,0.12,0.94,frame)
 		else:
 			railing((start+finish)/2.0,gallery_slab_y+0.15,finish-start,0.94,true)
+	for extra in profile.get("additional_windows",[]):
+		for y in extra.centers_y:
+			window(float(extra.fraction)*length,float(y),float(extra.width),float(extra.height))
+	if profile.get("ground_windows",false):
+		for col in count:
+			var x := start+(col+0.5)*spacing
+			# The area below the yellow surround includes doors and is not inferred.
+			if absf(x-balcony)<balcony_width*0.65: continue
+			window(x,1.7,spacing*0.77,2.4)
 	if profile.get("ground_bars",false):
 		for col in count:
 			var x := start+(col+0.5)*spacing
