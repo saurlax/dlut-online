@@ -33,6 +33,11 @@ func run() -> void:
 		# The former tall east projection must be gone above its low base.
 		var projection := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(-250,10,-60),Vector3(-250,10,-35)))
 		assert(projection.is_empty(),"Old full-height east projection remains")
+		for sample in [[-78.0,24.5],[-67.0,25.5],[-56.0,24.5],[-45.0,24.5],[-34.0,25.5],[-23.0,24.5]]:
+			var post := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(-316.5,30,sample[0]),Vector3(-316.5,14,sample[0])))
+			assert(not post.is_empty() and absf(post.position.y-sample[1])<0.03,"Missing gym roof post or wrong top")
+		var post_side := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(-317.5,18,-67),Vector3(-315.5,18,-67)))
+		assert(not post_side.is_empty(),"Roof post must have structural collision")
 		world.free()
 		viewport.free()
 	print("PASS: client/server curved gym roof, low projection and closed exterior")

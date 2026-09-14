@@ -93,3 +93,21 @@ func build(builder, parent: Node3D, points: PackedVector2Array) -> void:
 		box(Vector3(x,9.0,z+0.2),Vector3(8.6,0.08,0.12),steel).rotation.y = atan(3.469/101.256)
 		var h := roof_y(x)-3.45
 		box(Vector3(x,3+h/2,z+1.0),Vector3(0.3,h,0.3),steel,true)
+
+	# Six visible roof posts; cable attachment topology remains unverified.
+	var profile_path := ProjectSettings.globalize_path("res://").path_join("../../references/photos/gym_profile.json").simplify_path()
+	var profiles: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profile_path))
+	var posts: Dictionary = profiles["77923"].roof_posts
+	for i in posts.z.size():
+		var x: float = posts.x
+		var base_y := roof_y(x)
+		var top_y := float(posts.tops[i])
+		var mesh := CylinderMesh.new()
+		mesh.bottom_radius = float(posts.bottom_radius)
+		mesh.top_radius = float(posts.top_radius)
+		mesh.height = top_y-base_y
+		mesh.radial_segments = 12
+		mesh.rings = 1
+		var node: MeshInstance3D = host.mesh_node(group,mesh,steel,"GymRoofPost")
+		node.position = Vector3(x,(base_y+top_y)/2,float(posts.z[i]))
+		node.set_meta("walk_collision",true)
