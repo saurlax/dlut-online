@@ -348,7 +348,7 @@
       "name": "教学楼A区",
       "kind": "building",
       "height": 21.0,
-      "height_source": "approximation",
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
@@ -425,8 +425,8 @@
       "id": "77927",
       "name": "教学楼C区",
       "kind": "building",
-      "height": 21.0,
-      "height_source": "approximation",
+      "height": 24.6,
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
@@ -515,8 +515,8 @@
       "id": "77928",
       "name": "教学楼B区",
       "kind": "building",
-      "height": 21.0,
-      "height_source": "approximation",
+      "height": 9.6,
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [

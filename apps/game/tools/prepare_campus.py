@@ -5,6 +5,7 @@ ROOT=Path(__file__).resolve().parents[1]
 source=json.loads((ROOT.parents[1]/'references/development-campus-bounds.json').read_text())
 origin=(121.816326506145,39.084522240291)
 height_profiles=json.loads((ROOT.parents[1]/'references/photos/residence_facades.json').read_text())
+height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/academic_facades.json').read_text()))
 seventh_profile=json.loads((ROOT.parents[1]/'references/photos/seventh-residence/profile.json').read_text())
 features=[]
 for b in source['result']:

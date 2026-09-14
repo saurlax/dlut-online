@@ -1,0 +1,106 @@
+{
+  "77925": {
+    "height": 21.0,
+    "color": "77796f",
+    "faces": [
+      {
+        "edge": 12,
+        "span": [
+          0.03,
+          0.97
+        ],
+        "columns": 17,
+        "rows": 4,
+        "first_y": 6.2,
+        "storey": 4.0,
+        "window_height": 2.45,
+        "width_ratio": 0.62
+      }
+    ],
+    "tower": {
+      "edge": 12,
+      "fraction": 0.13,
+      "height": 29.0,
+      "width": 4.8
+    },
+    "note": "77925-0：A区居中、B区在左、C区在右，配准A区南侧边12。五层主楼先补上四排窗格、浅色层间分带和近东端玻璃塔体；底层入口及左右翼尚未分区。21米主楼沿用原比例估计，塔29米/宽4.8米/深2米、塔中心在有向边13%、17列窗和4米层距均为照片比例估计，不是实测。",
+    "photos": [
+      {
+        "file": "77925-0.jpg",
+        "image_id": 79686,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77925_20160302105742896.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "b6dd355d42ec870f8fb3291e00663aefabc02b662729cc81dca3162359da1370"
+      }
+    ]
+  },
+  "77928": {
+    "height": 9.6,
+    "color": "656c66",
+    "faces": [
+      {
+        "edge": 18,
+        "span": [
+          0.22,
+          0.84
+        ],
+        "columns": 2,
+        "rows": 2,
+        "first_y": 2.2,
+        "storey": 4.3,
+        "window_height": 2.6,
+        "width_ratio": 0.56
+      }
+    ],
+    "note": "77928-0前景为B区南端，后方A区与院内位置互证，配准南端边18。两层低楼翼改为9.6米比例高度，先补南端两列上下窗、浅色窗下板及薄檐。宽深来自官方轮廓，米制层高和柱间距未测。照片中的外楼梯、廊柱、内院其他窗段与连廊尚未配准，不新增通行入口。",
+    "photos": [
+      {
+        "file": "77928-0.jpg",
+        "image_id": 79685,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77928_201603021057270.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "0c5a21b13e1138b6286fcd96b5195b92e70508234778101901d6111be8933281"
+      }
+    ]
+  },
+  "77927": {
+    "height": 24.6,
+    "color": "74776e",
+    "faces": [
+      {
+        "edge": 3,
+        "span": [
+          0.15,
+          0.95
+        ],
+        "columns": 18,
+        "rows": 5,
+        "first_y": 5.8,
+        "storey": 3.8,
+        "window_height": 2.5,
+        "width_ratio": 0.6
+      }
+    ],
+    "note": "77927-0/1：南端圆体在左、主楼向北延伸；配准东侧长边3。可辨六层，主楼高度由21米调为24.6米比例估计，先补上五排东侧窗格及层间饰带；最南凹槽、底层入口、南端圆体细节及背面仍待逐段精修。18列窗、3.8米层距、窗宽列距60%均为照片比例估计。",
+    "photos": [
+      {
+        "file": "77927-0.jpg",
+        "image_id": 79687,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77927_20160302105813117.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "f77c8c247794a5cd993a3e3ff2eef944164eeda5a986a2b0bb2011a3f9a99699"
+      },
+      {
+        "file": "77927-1.jpg",
+        "image_id": 79688,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77927_20160302105836164.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "eeff43bd7d2b4ada26b0d1e7a7ab391cb09d90270b869d4227d1935b2aa981a4"
+      }
+    ]
+  }
+}
