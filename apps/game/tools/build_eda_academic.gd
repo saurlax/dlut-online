@@ -43,7 +43,24 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	glass.metallic = 0.35
 	glass.roughness = 0.3
 	var height: float = profile.height
-	shell(points,height,0,wall)
+	var recess: Dictionary = profile.get("recess",{})
+	if recess.is_empty():
+		shell(points,height,0,wall)
+	else:
+		frame_for(points,int(recess.edge))
+		var recessed := PackedVector2Array()
+		for i in points.size():
+			recessed.append(points[i])
+			if i==int(recess.edge):
+				var a := origin+axis*length*float(recess.span[0])
+				var b := origin+axis*length*float(recess.span[1])
+				recessed.append(a)
+				recessed.append(a-out*float(recess.depth))
+				recessed.append(b-out*float(recess.depth))
+				recessed.append(b)
+		shell(points,float(recess.bottom),0,wall)
+		shell(recessed,float(recess.top),float(recess.bottom),wall)
+		shell(points,height,float(recess.top),wall)
 	shell(points,height+0.18,height,stone)
 	for face in profile.faces:
 		frame_for(points,int(face.edge))
@@ -57,11 +74,21 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			for col in int(face.columns):
 				var x := start+(col+0.5)*spacing
 				if profile.has("tower") and absf(x-float(profile.tower.fraction)*length)<float(profile.tower.width)*0.6: continue
-				panel(x,y,width,wh,0.08,0.08,glass)
-				for dx in [-width/2.0,0.0,width/2.0]: panel(x+dx,y,0.06,wh+0.1,0.12,0.16,metal)
-				for dy in [-wh/2.0,wh*0.25,wh/2.0]: panel(x,y+dy,width+0.12,0.065,0.14,0.16,metal)
-				panel(x,y-wh/2.0-0.1,width+0.22,0.16,0.24,0.17,stone)
-			panel((start+finish)/2.0,y-wh/2.0-0.45,finish-start,0.18,0.16,0.12,stone)
+				var inset := 0.0
+				if not recess.is_empty() and int(face.edge)==int(recess.edge) and y>float(recess.bottom) and y<float(recess.top) and x>length*float(recess.span[0]) and x<length*float(recess.span[1]):
+					inset = float(recess.depth)
+				panel(x,y,width,wh,0.08,0.08-inset,glass)
+				for dx in [-width/2.0,0.0,width/2.0]: panel(x+dx,y,0.06,wh+0.1,0.12,0.16-inset,metal)
+				for dy in [-wh/2.0,wh*0.25,wh/2.0]: panel(x,y+dy,width+0.12,0.065,0.14,0.16-inset,metal)
+				panel(x,y-wh/2.0-0.1,width+0.22,0.16,0.24,0.17-inset,stone)
+			var band_y := y-wh/2.0-0.45
+			if not recess.is_empty() and int(face.edge)==int(recess.edge) and band_y>float(recess.bottom) and band_y<float(recess.top):
+				var cut_a: float = length*float(recess.span[0])
+				var cut_b: float = length*float(recess.span[1])
+				for part in [[start,minf(finish,cut_a),0.0],[maxf(start,cut_a),minf(finish,cut_b),-float(recess.depth)],[maxf(start,cut_b),finish,0.0]]:
+					if float(part[1])>float(part[0]): panel((float(part[0])+float(part[1]))/2,band_y,float(part[1])-float(part[0]),0.18,0.16,0.12+float(part[2]),stone)
+			else:
+				panel((start+finish)/2.0,band_y,finish-start,0.18,0.16,0.12,stone)
 		panel((start+finish)/2.0,height+0.09,finish-start,0.18,0.8,0.25,stone,true)
 	if profile.has("tower"):
 		var tower: Dictionary = profile.tower

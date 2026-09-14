@@ -31,6 +31,16 @@ func run() -> void:
 			assert(absf(hit.position.y-float(sample[1]))<0.03,"Wrong roof height at "+str(pos)+": "+str(hit.position))
 		var south_eave := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(201.302,26,-117.011),Vector3(201.302,23,-117.011)))
 		assert(not south_eave.is_empty() and absf(south_eave.position.y-24.78)<0.03,"Missing C south-end eave")
+		var recess_a := Vector2(205.093,-210.67)
+		var recess_b := Vector2(208.467,-116.772)
+		var recess_out := Vector2((recess_b-recess_a).y,-(recess_b-recess_a).x).normalized()
+		var recess_p := recess_a.lerp(recess_b,0.9)
+		for sample in [[10.0,-0.8],[22.5,0.0]]:
+			var from_p := recess_p+recess_out*2
+			var to_p := recess_p-recess_out*2
+			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(from_p.x,sample[0],from_p.y),Vector3(to_p.x,sample[0],to_p.y)))
+			var expected_p := recess_p+recess_out*float(sample[1])
+			assert(not hit.is_empty() and hit.position.distance_to(Vector3(expected_p.x,sample[0],expected_p.y))<0.03,"C south recess and upper bridge must have distinct walls")
 		# The rotunda's visible lower column must remain solid beyond the wall.
 		var a := Vector2(182.378,-89.314)
 		var b := Vector2(177.046,-93.047)
