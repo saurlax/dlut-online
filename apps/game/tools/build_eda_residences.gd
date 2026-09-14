@@ -124,6 +124,12 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 				panel(x-width/2+float(i)*width/bars,1.7,0.035,2.45,0.05,0.3,frame)
 			for y in [0.5,1.7,2.9]:
 				panel(x,y,width,0.04,0.05,0.3,frame)
+			# The close photo shows boxed guards with side returns to the wall.
+			for dx in [-width/2,width/2]:
+				panel(x+dx,1.7,0.045,2.45,0.24,0.18,frame)
+			for y in [0.5,2.9]:
+				panel(x,y,width+0.08,0.06,0.24,0.18,frame)
+
 	if profile.balcony_center != null:
 		var yellow: Material = host.material("EDA residence yellow surround",Color("d5ae25"))
 		yellow.albedo_texture = null
