@@ -63,6 +63,19 @@
       "article_url": "https://news.dlut.edu.cn/info/1022/89514.htm",
       "use": "首幅拼图左半幅为启用后的外观：白色端墙、分段深色竖带与顶部校徽/DUT面板。拍摄朝向尚未与官方轮廓配准，不直接替换现有边6窗格，也不复制到两端。右半幅宿舍内景不能确定房间在楼内的位置或完整平面，不据此生成室内。",
       "registration_status": "pending"
+    },
+    {
+      "article_id": 79554,
+      "article_url": "https://news.dlut.edu.cn/info/1011/79554.htm",
+      "title": "【战“疫”情】“疫”路相逢 基建工程“逆行抢跑”稳步推进",
+      "published": "2022-09-15",
+      "retrieved": "2026-09-14",
+      "file": "79554-6.jpg",
+      "image_index": 6,
+      "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=zUNUlbnlWRU4UPLrRMRoz-DMzv8LzUI4oR62oRM7MRN4ozC0gihFp2hmCIa0n1hkn1hfMYyDMz-PMlV2UNlaUzLiozGYnRG8ozNaU4-DozQFoRNPM8WVUzMFMR7iLzNJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLz70M4NiMzUJqd5nx&oid=1819948287&tid=1011&nid=79554&e=.jpg",
+      "sha256": "f5c53cbd5914de2fb76042b6eba0f0d8fc56b3a6055ee692688a485369bfefd8",
+      "use": "报道第5项明确开发区校区学生公寓，称2022年7月28日正式开工、正在基础施工。航拍同框包含基坑、北侧既有宿舍、周边道路和球场，可用于复核七舍位置以及4/5舍屋顶、立面、连接段的对应关系。基坑不是竣工建筑轮廓或完整平面，不据此修改塔楼高度、端墙朝向或生成室内；两栋宿舍须继续与官方Feature逐一配准。",
+      "registration_status": "pending"
     }
   ],
   "note": "81930报道主体15层、高63.6米。81930-1为设计效果图，82907-0上两幅为施工实照，二者互证L形白色高层及低层裙房；不得把效果图绿化、雨棚和室内直接当竣工实景。楼群位于4/5舍南、食堂北，保留官方Feature外轮廓。塔楼沿官方东北侧顶点4/5/6/7配准L形，西内侧回折点448.323,-35.984与456,-77为图像比例估计，北西端取原顶点3。裙房8.2米、塔楼进深与内院分界仍为估计；总63.6米来自官方，不等于分层净高实测。只先实现可核实高低体量和施工图可见的内院两翼窗格，南北未证面及所有室内不建。 新增82977施工航拍证实裙房内另有抬高屋面，分区见raised_podium；低裙房8.2米与抬高区12.3米均为估计。 89514（2024-02-28）补充启用后的外观照片，能辨认端墙深色竖带和顶部标识；具体端墙朝向待配准，暂未据此改变模型。施工照片继续作为既有分区依据，不表示其细节已获竣工照片验证。",
