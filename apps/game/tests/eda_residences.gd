@@ -57,6 +57,12 @@ func run() -> void:
 			else:
 				hit(space,gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8,gallery,c[0]+" gallery slab")
 			if c[0]=="77937":
+				var eave_tip := a.distance_to(b)*0.18-0.25
+				var eave_join := a.distance_to(b)*(0.18+0.64*0.2)
+				p = a+axis*((eave_tip+eave_join)/2)+out*1.0
+				var eave_top := 19.95+0.4+0.11*sqrt(1+pow(0.8/(eave_join-eave_tip),2))
+				var eave := Vector3(p.x,eave_top,p.y)
+				hit(space,eave+Vector3.UP*2,eave-Vector3.UP*2,eave,"Fourth residence raised eave")
 				# Trace against the new enclosure itself, not the retained wall behind it.
 				for sample in [[0.43,17.5,0.91],[0.42,8.3,1.23],[0.42,11.4,1.23]]:
 					p = a.lerp(b,float(sample[0]))

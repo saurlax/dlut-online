@@ -113,7 +113,22 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			panel(start+col*spacing,gallery_y,0.2,2.8,0.8,0.4,wall,true)
 		panel(finish,gallery_y,0.2,2.8,0.8,0.4,wall,true)
 		panel((start+finish)/2.0,gallery_slab_y,finish-start,0.18,1.05,0.45,frame,true)
-		panel((start+finish)/2.0,float(profile.get("eaves_y",23.1)),finish-start+0.5,0.22,1.6,0.6,frame,true)
+		var eaves_y: float = profile.get("eaves_y",23.1)
+		if profile.has("eaves_upturn"):
+			var turn: Dictionary = profile.eaves_upturn
+			var tip := start-0.25
+			var join: float = start+(finish-start)*float(turn.span_fraction)
+			var rise: float = turn.rise
+			var run := join-tip
+			var pos := origin+axis*((tip+join)/2)+outward*0.6
+			var inclined: MeshInstance3D = host.box(group,Vector3(pos.x,eaves_y+rise/2,pos.y),Vector3(sqrt(run*run+rise*rise),0.22,1.6),frame,"ResidenceUpturnedEave")
+			var along := Vector3(axis.x*run,-rise,axis.y*run).normalized()
+			var side := Vector3(-axis.y,0,axis.x)
+			inclined.basis = Basis(along,side.cross(along),side)
+			inclined.set_meta("walk_collision",true)
+			panel((join+finish+0.25)/2,eaves_y,finish+0.25-join,0.22,1.6,0.6,frame,true)
+		else:
+			panel((start+finish)/2.0,eaves_y,finish-start+0.5,0.22,1.6,0.6,frame,true)
 		if profile.get("enclosed_gallery",false):
 			panel((start+finish)/2.0,gallery_y,finish-start,2.55,0.1,0.86,glass,true)
 			for i in count*3+1:
