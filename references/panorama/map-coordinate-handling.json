@@ -1,0 +1,23 @@
+{
+  "retrieved": "2026-09-14",
+  "sources": [
+    {
+      "url": "http://map.dlut.edu.cn/main.9a064f29d18b4051b30f.bundle.js",
+      "sha256": "69f286e3f3b3ae476f3a27a1a068612c5026e399f707394c4b793d1e096d3369"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/openmap/config/map-config.js",
+      "sha256": "fa2390d0ed48d0e710c6aa7f59088f25c6b7ad9ef30bbcac12b0e3a8bdb05c48"
+    }
+  ],
+  "service": "/bd/v1/bound",
+  "draw_call": "e.drawBounds(e.boundData,\"3D\"==e.mapType)",
+  "polygon_function": "prototype.geoPolygonToLatLngs=function(t,n){for(var e=[],l=0,o=t;l<o.length;l++){var r=o[l],a=void 0;a=n?i.c.geoToGeo3D(r):r,e.push(L.latLng(a.y,a.x))}return e}",
+  "findings": [
+    "官方网页loadBounds读取接口结果后，仅当mapType为3D时向drawBounds传入真值。",
+    "geoPolygonToLatLngs在三维模式调用geoToGeo3D，否则直接使用原始r.x/r.y。接口轮廓并非需要再次geo3DToGeo转换的三维示意坐标。",
+    "map3DParams描述官网三维示意图与二维坐标之间的转换，不可直接用它修正当前Godot轮廓或卫星配准。",
+    "这些代码未声明二维坐标的地理基准，也不证明接口轮廓具有测绘精度。七舍及实验室的影像对应仍需地物控制点验证，不能由图像偏移推定旋转或高度。"
+  ],
+  "model_use": "保留官方Feature和轮廓。此记录只排除重复三维坐标变换，未完成影像配准，不改变模型、建筑高度或朝向。"
+}
