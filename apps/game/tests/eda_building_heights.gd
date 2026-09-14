@@ -1,7 +1,7 @@
 extends SceneTree
 
 const Collision = preload("res://scripts/shared/campus_collision.gd")
-const SAMPLES := [[Vector2(456,-50),63.6],[Vector2(430,-106),63.6],[Vector2(392,-82),8.2],[Vector2(423,-57),8.2],[Vector2(440,-60),12.3],[Vector2(437,-159),20.05],[Vector2(490,-155),20.05]]
+const SAMPLES := [[Vector2(456,-50),62.4],[Vector2(430,-106),62.4],[Vector2(392,-82),8.2],[Vector2(423,-57),8.2],[Vector2(440,-60),12.3],[Vector2(437,-159),20.05],[Vector2(490,-155),20.05]]
 
 func _initialize() -> void: run.call_deferred()
 
@@ -28,6 +28,21 @@ func run() -> void:
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,80,pos.y),Vector3(pos.x,-1,pos.y)))
 			assert(not hit.is_empty(),"Missing roof at "+str(pos))
 			assert(absf(hit.position.y-float(sample[1]))<0.03,"Wrong roof height at "+str(pos)+": "+str(hit.position))
+		# Check each tower rim independently: the roof is lower, the wall keeps the official top.
+		var tower := PackedVector2Array([Vector2(412.779,-129.393),Vector2(432.094,-124.043),Vector2(481.363,-80.201),Vector2(467.099,-32.484),Vector2(448.323,-35.984),Vector2(456,-77),Vector2(404.97,-96.099)])
+		for edge in tower.size():
+			var a := tower[edge]
+			var b := tower[(edge+1)%tower.size()]
+			var middle := (a+b)/2
+			var inward := Vector2(-(b-a).y,(b-a).x).normalized()
+			if not Geometry2D.is_point_in_polygon(middle+inward,tower): inward = -inward
+			var pos := middle+inward*0.15
+			var top := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,66,pos.y),Vector3(pos.x,61,pos.y)))
+			assert(not top.is_empty() and absf(top.position.y-63.6)<0.03,"Missing tower parapet top")
+			var outside := middle-inward
+			var inside := middle+inward
+			var side := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(outside.x,63, outside.y),Vector3(inside.x,63,inside.y)))
+			assert(not side.is_empty() and Vector2(side.position.x,side.position.z).distance_to(middle)<0.03,"Missing tower parapet side")
 		# The outer stair towers on dormitories 4/5 rise above their main roofs.
 		for sample in [[Vector2(467.384,-135.44),Vector2(419.887,-143.594),0.9],[Vector2(517.565,-135.991),Vector2(477.464,-135.617),0.14]]:
 			var a: Vector2 = sample[0]
@@ -60,5 +75,5 @@ func run() -> void:
 		assert(not wall.is_empty() and wall.position.z>-50,"Podium exterior must block walking")
 		world.free()
 		viewport.free()
-	print("PASS: client/server seventh residence 63.6m tower, 8.2m low podium, 12.3m raised podium with 12.85m parapets, lower dormitories 4/5 and closed exterior")
+	print("PASS: client/server seventh residence 63.6m tower rim and 62.4m recessed roof, 8.2m low podium, 12.3m raised podium with 12.85m parapets, lower dormitories 4/5 and closed exterior")
 	quit()

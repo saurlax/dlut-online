@@ -47,8 +47,25 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 		node.set_meta("walk_collision",true)
 	var tower := PackedVector2Array()
 	for p in profile.tower_points: tower.append(Vector2(p[0],p[1]))
-	shell(builder,group,tower,height,podium,white,"Tower")
-	# The completed roof remains level; do not invent rooftop equipment or rooms.
+	var roof: Dictionary = profile.roof_parapet
+	var roof_y := height-float(roof.height)
+	shell(builder,group,tower,roof_y,podium,white,"Tower")
+	# The aerial shows a lower roof inside the perimeter wall, not a solid top.
+	var inset_polygons := Geometry2D.offset_polygon(tower,-float(roof.thickness),Geometry2D.JOIN_MITER)
+	assert(inset_polygons.size()==1,"Seventh roof inset must remain one connected roof")
+	var inset: PackedVector2Array = inset_polygons[0]
+	assert(inset.size()==tower.size(),"Seventh roof inset must preserve the L-shaped corners")
+	var inner := PackedVector2Array()
+	for corner in tower:
+		var closest := inset[0]
+		for candidate in inset:
+			if candidate.distance_squared_to(corner)<closest.distance_squared_to(corner): closest = candidate
+		inner.append(closest)
+	for edge in tower.size():
+		var next := (edge+1)%tower.size()
+		var strip := PackedVector2Array([tower[edge],tower[next],inner[next],inner[edge]])
+		shell(builder,group,strip,height,roof_y,white,"TowerRoofParapet")
+	# Do not invent rooftop equipment or rooms.
 	# Construction photographs show two courtyard wings, not the unseen rear faces.
 	for edge in [4,5]:
 		var a := tower[edge]
