@@ -105,6 +105,22 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 			var a := a0.lerp(a1,float(i)/bays)
 			var b := b0.lerp(b1,float(i)/bays)
 			edge_box(a,b,beam_y,0.4,0.45,trim,true)
-			for pos in [a,b]:
-				var column: MeshInstance3D = builder.box(group,Vector3(pos.x,(base_y+beam_y)/2,pos.y),Vector3(0.5,beam_y-base_y,0.5),trim,"InformationRoofColumn")
+			for side in 2:
+				var pos := a if side==0 else b
+				var column: MeshInstance3D
+				if side==0:
+					var mesh := CylinderMesh.new()
+					mesh.top_radius = float(roof_frame.visible_column_diameter)/2
+					mesh.bottom_radius = mesh.top_radius
+					mesh.height = beam_y-base_y
+					mesh.radial_segments = 16
+					mesh.rings = 1
+					column = MeshInstance3D.new()
+					column.name = "InformationRoofRoundColumn"
+					column.mesh = mesh
+					column.material_override = trim
+					column.position = Vector3(pos.x,(base_y+beam_y)/2,pos.y)
+					group.add_child(column)
+				else:
+					column = builder.box(group,Vector3(pos.x,(base_y+beam_y)/2,pos.y),Vector3(0.5,beam_y-base_y,0.5),trim,"InformationRoofColumn")
 				column.set_meta("walk_collision",true)

@@ -36,6 +36,9 @@ func run() -> void:
 			assert(not hit.is_empty() and absf(hit.position.y-float(sample[1]))<0.02,"Roof frame beam or open bay is incorrect")
 		var roof_column := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(25,18.8,261),Vector3(25,18.8,265)))
 		assert(not roof_column.is_empty() and absf(roof_column.position.z-262.75)<0.02,"Missing roof frame support")
+		# The visible roof support is round: an off-axis ray reaches the curved face later.
+		var round_side := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(25.22,18.8,261),Vector3(25.22,18.8,265)))
+		assert(not round_side.is_empty() and round_side.position.z>262.87 and round_side.position.z<262.91,"Roof support must have a round cross-section")
 		# A north perimeter column projects beyond glazing. Test its front face,
 		# and the outer ring directly above, in both visual and saved worlds.
 		var a := Vector2(121.443,114.839)

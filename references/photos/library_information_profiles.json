@@ -30,7 +30,7 @@
         "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=rL77IbnmM2M4-4M5NWVMzARL7VRn7LCiUzNPLR-aUzMkUm90gihFp2hmCIa0Lkh7LSh2okyDnm-sLNVRnRLsM7LsU49DnR-ioR74o77sUNMFM4-anlU8LmQFM4vaLz7Jqjfjo4OeoDnOp26N_dAs6YhXptQ0g47YMz70oR-bLmUJqdQnx&oid=1819948287&tid=1251&nid=82924&e=.jpg",
         "sha256": "7d14a02c3a41a6ad1c63af99806e530720fb06dab419462329d79551631b1edd",
         "use": "只使用拼图中间右幅信息楼屋面维修近照；文章明确开展信息楼屋面原始硬覆盖拆除并贴双层卷材防水施工。能观察长向梁、横向连梁、圆柱和屋面之间的相对关系；不把施工堆料作为永久资源。镜头朝向、梁架端点与柱距须与KFQ00及官方轮廓继续配准，照片不提供实测高度，不扩建地面架空层或室内。",
-        "registration_status": "pending"
+        "registration_status": "partial-visible-column-section"
       }
     ],
     "note": "沿用既有照片建模比例，统一校园数据与模型主体高度；米制尺寸仍为估计，图书馆顶部环架另高2米。未完善的底层/侧翼仍待分区，不代表整栋完成。",
@@ -65,7 +65,9 @@
         "scene": "DUT_KFQ00",
         "retrieved": "2026-09-14",
         "sha256": "6de1003871e8ef34bcbaed9ad98dfb090624f75913db47416390be829b24c769"
-      }
+      },
+      "visible_column_diameter": 0.5,
+      "column_note": "77914-roof-2023.jpg中右幅近照确认可见屋顶支柱圆截面；与KFQ00-front长翼朝广场一排互证，仅将既有side_a的9根方柱替换为圆柱。保留估计直径0.5米、2米柱高和原柱位，16边近似圆截面；背排side_b不据此改形，完整梁架两端及间距仍为估计。"
     }
   },
   "77917": {
