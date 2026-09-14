@@ -100,8 +100,9 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	# Smaller independent windows at the photographed connector-side ends.
 	if profile.has("terminal_windows"):
 		var terminal: Dictionary = profile.terminal_windows
-		for y in terminal.centers_y:
-			window(float(terminal.fraction)*length,float(y),float(terminal.width),float(terminal.height))
+		for fraction in terminal.fractions:
+			for y in terminal.centers_y:
+				window(float(fraction)*length,float(y),float(terminal.width),float(terminal.height))
 	if profile.get("gallery_available",true):
 		# Only the visible upper gallery: closed shell behind it, no invented access.
 		var gallery_y: float = profile.get("gallery_y",20.65)
