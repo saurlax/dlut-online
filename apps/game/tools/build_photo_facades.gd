@@ -45,8 +45,20 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 	glass.albedo_texture = null
 	glass.metallic = 0.55
 	glass.roughness = 0.2
-	shell(points,height,0,wall,"Building")
-	shell(points,height+0.22,height,trim,"Roof")
+	if is_library:
+		# Official outline divides at the two corners where the wing meets the rotunda.
+		var rotunda := PackedVector2Array()
+		for i in range(2,21): rotunda.append(points[i])
+		var wing := PackedVector2Array()
+		for i in [0,1,2,20,21,22,23]: wing.append(points[i])
+		var wing_height: float = profile.wing_height
+		shell(rotunda,height,0,wall,"Rotunda")
+		shell(rotunda,height+0.22,height,trim,"RotundaRoof")
+		shell(wing,wing_height,0,wall,"LibraryWing")
+		shell(wing,wing_height+0.22,wing_height,trim,"LibraryWingRoof")
+	else:
+		shell(points,height,0,wall,"Building")
+		shell(points,height+0.22,height,trim,"Roof")
 	for edge in points.size():
 		var a := points[edge]
 		var b := points[(edge+1)%points.size()]
@@ -57,7 +69,7 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 			outward = -outward
 		# Photos show the library's curved curtain wall and information building's
 		# long facade. Unverified faces keep the pre-existing footprint shell.
-		var curved_glass := is_library and edge >= 3 and edge <= 20
+		var curved_glass := is_library and edge >= 2 and edge <= 19
 		var observed := curved_glass or (not is_library and edge in [1,2,6,8])
 		if not observed:
 			continue

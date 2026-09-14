@@ -24,7 +24,7 @@ func run() -> void:
 		await physics_frame
 		await physics_frame
 		var space := world.get_world_3d().direct_space_state
-		for sample in [[Vector2(50,280),17.82],[Vector2(130,165),22.22]]:
+		for sample in [[Vector2(50,280),17.82],[Vector2(130,165),22.22],[Vector2(122,235),17.82],[Vector2(122,215),17.82]]:
 			var pos: Vector2 = sample[0]
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,35,pos.y),Vector3(pos.x,0,pos.y)))
 			assert(not hit.is_empty())
@@ -56,5 +56,5 @@ func run() -> void:
 		assert(not ring.is_empty() and absf(ring.position.y-24.14)<0.02,"Missing raised ring")
 		world.free()
 		viewport.free()
-	print("PASS: information/library declared heights, roofs, open roof frame, structural column and ring")
+	print("PASS: information/library declared heights, lower library wing, roofs, open roof frame, structural column and ring")
 	quit()
