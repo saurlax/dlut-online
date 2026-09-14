@@ -1,7 +1,7 @@
 extends SceneTree
 
 const Collision = preload("res://scripts/shared/campus_collision.gd")
-const SAMPLES := [[Vector2(100,-245),21.18],[Vector2(70,-190),9.78],[Vector2(170,-180),24.78],[Vector2(141.47234,-210.59116),29.2],[Vector2(184.55,-88.05),24.82]]
+const SAMPLES := [[Vector2(100,-245),21.18],[Vector2(70,-190),9.78],[Vector2(170,-180),24.78],[Vector2(141.47234,-210.59116),29.2],[Vector2(184.55,-88.05),24.82],[Vector2(127.676,-134.121),9.87]]
 
 func _initialize() -> void: run.call_deferred()
 

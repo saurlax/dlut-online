@@ -96,3 +96,20 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 		for edge in rotunda.column_edges:
 			frame_for(points,int(edge))
 			panel(length/2,4.4,0.7,8.8,0.7,0.48,stone,true)
+	for bay in profile.get("court_bays",[]):
+		frame_for(points,int(bay.edge))
+		var start: float = length*float(bay.span[0])
+		var finish: float = length*float(bay.span[1])
+		var center := (start+finish)/2
+		var width := (finish-start)*0.78
+		for y in [2.2,6.6]:
+			panel(center,y,width,2.3,0.08,0.08,glass)
+			for i in 9:
+				panel(center-width/2+i*width/8,y,0.07,2.4,0.12,0.17,metal)
+			for dy in [-1.15,0.5,1.15]:
+				panel(center,y+dy,width+0.1,0.07,0.12,0.17,metal)
+			panel(center,y-1.5,width,0.55,0.16,0.14,stone)
+		for x in [start,finish]:
+			panel(x,height/2,0.4,height,0.8,0.4,wall,true)
+		panel(center,4.4,finish-start,0.28,0.8,0.35,stone,true)
+		panel(center,height+0.16,finish-start+0.4,0.22,1.2,0.45,stone,true)
