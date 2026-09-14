@@ -1,0 +1,10 @@
+version = 1
+name = "DLUT Online"
+
+[setup]
+script = ""
+
+[[actions]]
+name = "启动客户端"
+icon = "run"
+command = "godot --path apps/game"
