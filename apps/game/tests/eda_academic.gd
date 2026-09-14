@@ -29,6 +29,8 @@ func run() -> void:
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,80,pos.y),Vector3(pos.x,-1,pos.y)))
 			assert(not hit.is_empty(),"Missing roof at "+str(pos))
 			assert(absf(hit.position.y-float(sample[1]))<0.03,"Wrong roof height at "+str(pos)+": "+str(hit.position))
+		var south_eave := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(201.302,26,-117.011),Vector3(201.302,23,-117.011)))
+		assert(not south_eave.is_empty() and absf(south_eave.position.y-24.78)<0.03,"Missing C south-end eave")
 		# The rotunda's visible lower column must remain solid beyond the wall.
 		var a := Vector2(182.378,-89.314)
 		var b := Vector2(177.046,-93.047)
