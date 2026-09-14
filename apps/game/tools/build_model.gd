@@ -269,7 +269,9 @@ func build() -> void:
 				var color := Color("967c6c") if "宿舍" in feature.name else Color("b9b6ab")
 				polygon(group,points,height,material("Residence" if "宿舍" in feature.name else "Academic",color),"Building")
 				polygon(group,points,height+0.45,material("Roof",Color("92938b")),"Roof",height)
-				facade(group,points,height)
+				# An unreferenced building keeps only its official outline shell.
+				group.set_meta("facade_source","unavailable")
+				group.set_meta("interior_available",false)
 			"water":
 				polygon(group,points,0.2,material("Water",Color("526b6a")),"Lake")
 			"hill":
