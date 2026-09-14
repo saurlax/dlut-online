@@ -78,3 +78,26 @@ func build(host, group: Node3D, points: PackedVector2Array) -> void:
 		facade.panel(divider-3.0,y,6.0,0.35,1.5,0.65,band,true)
 	for y in [6.0,10.0]:
 		facade.panel(divider-1.0,y,1.2,2.6,0.1,0.1,glass)
+
+	# Only the two nearest green ducts visible on the photographed east wall.
+	facade.frame_for(points,10)
+	var duct: Material = host.material("EDA dining green ventilation ducts",Color("385542"))
+	duct.albedo_texture = null
+	duct.roughness = 0.7
+	for fraction in [0.24,0.28]:
+		var x: float = facade.length*fraction
+		facade.panel(x,7.0,0.65,10.0,0.65,0.65,duct)
+		for y in range(3,13):
+			facade.panel(x,float(y),0.72,0.065,0.72,0.65,duct)
+		# Quarter bend turns back toward the wall; hidden connections stop here.
+		for segment in 8:
+			var a := float(segment)*PI/16.0
+			var b := float(segment+1)*PI/16.0
+			var start := Vector3(0,12.0+0.65*sin(a),0.65*cos(a))
+			var finish := Vector3(0,12.0+0.65*sin(b),0.65*cos(b))
+			var center := (start+finish)*0.5
+			var pos: Vector2 = facade.origin+facade.axis*x+facade.out*center.z
+			var node: MeshInstance3D = host.box(group,Vector3(pos.x,center.y,pos.y),Vector3(0.65,start.distance_to(finish)+0.015,0.65),duct,"DiningDuctBend")
+			var tangent := Vector3(facade.out.x*(finish.z-start.z),finish.y-start.y,facade.out.y*(finish.z-start.z)).normalized()
+			var across := Vector3(facade.axis.x,0,facade.axis.y)
+			node.basis = Basis(across,tangent,across.cross(tangent))
