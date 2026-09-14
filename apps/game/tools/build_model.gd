@@ -236,6 +236,10 @@ func build() -> void:
 		var height: float = feature.height
 		match kind:
 			"building":
+				if feature.id == "77923":
+					preload("res://tools/build_eda_gym.gd").new().build(self,group,points)
+					generated_count += 1
+					continue
 				if academic_profiles.has(feature.id):
 					preload("res://tools/build_eda_academic.gd").new().build(self,group,points,academic_profiles[feature.id])
 					generated_count += 1

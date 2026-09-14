@@ -265,8 +265,8 @@
       "id": "77923",
       "name": "体育馆",
       "kind": "building",
-      "height": 15.0,
-      "height_source": "approximation",
+      "height": 17.0,
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
