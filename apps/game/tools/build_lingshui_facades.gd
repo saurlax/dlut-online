@@ -28,8 +28,6 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 				var fraction := (column+0.5)/count
 				if is_lingxi and fraction > 0.26 and fraction < 0.74:
 					continue
-				if profile.style == "bochuan" and edge == int(profile.primary_edge):
-					continue
 				var pos := p.lerp(q,fraction) + outward*0.07
 				var width := spacing*(0.35 if is_lingxi else 0.57)
 				var window_height := (height-2.0)/floors*0.63
@@ -55,7 +53,7 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 			for column in range(count+1):
 				var pos := p.lerp(q,float(column)/count)+outward*0.13
 				panel(builder,group,pos,height*0.49,Vector3(0.28,height*0.96,0.27),rotation,stone,"StonePiers")
-			for level in [0.4,height-0.45,height-3.8]:
+			for level in profile.get("cornice_levels", [0.4,height-0.45,height-3.8]):
 				panel(builder,group,(p+q)*0.5+outward*0.15,level,Vector3(length,0.30,0.35),rotation,stone,"Cornice")
 		if profile.style == "main" and edge == int(profile.primary_edge):
 			var center := (p+q)*0.5
@@ -71,22 +69,6 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 				var pos := p.lerp(q,(column+0.2)/5.4)+outward*3.0
 				var pillar := panel(builder,group,pos,3.95,Vector3(0.7,7.9,0.8),rotation,stone,"PorticoColumn")
 				pillar.set_meta("walk_collision",true)
-		if profile.style == "bochuan" and edge == int(profile.primary_edge):
-			var middle := (p+q)*0.5
-			var masonry: Material = builder.material("Lingshui "+profile.color,Color(profile.color))
-			# Photo 77447-5: a broad solid frieze, recessed high strip and square reliefs.
-			panel(builder,group,middle+outward*0.32,14.0,Vector3(length,7.0,0.45),rotation,masonry,"LibraryFrieze")
-			panel(builder,group,middle+outward*0.34,21.2,Vector3(length*0.94,2.6,0.25),rotation,glass,"LibraryHighWindow")
-			panel(builder,group,middle+outward*0.35,6.2,Vector3(length*0.58,4.2,0.22),rotation,glass,"LibraryClosedEntry")
-			for column in range(8):
-				var pos := p.lerp(q,(column+0.5)/8.0)
-				panel(builder,group,pos+outward*0.6,11.0,Vector3(0.55,16.0,1.3),rotation,stone,"FrontFins")
-				panel(builder,group,pos+outward*0.58,12.6,Vector3(0.9,0.9,0.4),rotation,stone,"SquareRelief")
-				panel(builder,group,pos+outward*0.81,12.6,Vector3(0.46,0.46,0.12),rotation,frame,"ReliefInset")
-			for fraction in [0.18,0.82]:
-				var pos := p.lerp(q,fraction)+outward*0.6
-				panel(builder,group,pos,22.0,Vector3(2.3,3.1,0.8),rotation,stone,"UpperSquareFrame")
-				panel(builder,group,pos+outward*0.45,22.0,Vector3(1.55,2.25,0.2),rotation,glass,"UpperSquareGlass")
 
 func panel(builder, group: Node3D, pos: Vector2, y: float, size: Vector3, rotation: float, mat: Material, title: String) -> MeshInstance3D:
 	var node: MeshInstance3D = builder.box(group,Vector3(pos.x,y,pos.y),size,mat,title)

@@ -59,6 +59,7 @@ def split_crossings(points):
 def main():
     source = json.loads((REFERENCES / 'bounds.json').read_text())
     profiles = json.loads((REFERENCES / 'facades.json').read_text())
+    sports = json.loads((REFERENCES / 'sports.json').read_text())
     features, excluded = [], []
     parts = {}
     for source_index, item in enumerate(source['result']):
@@ -79,9 +80,11 @@ def main():
         height = profile.get('height', 18.0 if kind == 'building' else 0.06)
         features.append({'id': feature_id, 'part': part, 'source_index': source_index,
                          'name': name, 'kind': kind, 'points': points, 'height': height,
-                         'height_source': 'photo-proportion-estimate' if profile else 'unmeasured-outline-estimate',
+                         'height_source': profile.get('height_source', 'photo-proportion-estimate') if profile else 'unmeasured-outline-estimate',
                          'footprint_source': source['source'], 'facade': profile,
                          'render_polygons': split_crossings(points)})
+        if feature_id in sports:
+            features[-1]['sports'] = sports[feature_id]
     all_points = [p for f in features for p in f['points']]
     low = [math.floor(min(p[i] for p in all_points)/10)*10-30 for i in range(2)]
     high = [math.ceil(max(p[i] for p in all_points)/10)*10+30 for i in range(2)]

@@ -1,0 +1,4190 @@
+{
+  "campus_id": "lingshui",
+  "retrieved": "2026-09-14",
+  "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=<id>",
+  "building_count": 209,
+  "description_count": 84,
+  "note": "从官方公开详情响应逐字段摘录，description保留原文；response_sha256标识读取时的原始响应。层数字句仅原文抽取，不等于统一体量高度。levels/minLevel/maxLevel为接口原字段，零值不表示建筑零层；描述中的营业时间、统计和用途仅为来源历史信息，不用于游戏。位置为点位而非测绘边界；所有has3DModel/hasIndoorGraph为false且streetViews为空，不能作为室内数据依据。",
+  "buildings": [
+    {
+      "id": "77355",
+      "name": "C区03-知化楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77355",
+      "retrieved": "2026-09-14",
+      "response_sha256": "0ffbc9d7abc1b84c2f54b4c79ea51dab14ace855467d4c641f4ddaf45f76757c",
+      "description": "建成年份：2009年；\n建筑面积：16390.00㎡；\n使用面积：9683.42㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n位于西部校区令希图书馆前广场东北侧，与综合教学2号楼相对。建筑整体呈“口”字形布局，丰富的光影变化营造不同立面上的层次效果。用色上与西部校区建筑群的砖红色统一，辅以白色外挂阳台作为装饰，稳重又不失变化。主入口正对广场，由弧形台阶将人引入建筑，一刚一柔彰显建筑开放包容的姿态。现由化工学院和化学学院共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.518774442136,
+        "y": 38.8842312247341
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77356",
+      "name": "C区02-综合教学2号楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77356",
+      "retrieved": "2026-09-14",
+      "response_sha256": "3f5585506f27ecae3fb780af5e2b12043287db6126878740df1aa47ad23deb9c",
+      "description": "建成年份：2010年；\n建筑面积：17540.00㎡；\n使用面积：\t9375.42㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n位于西部校区中轴线南侧，令希图书馆东南侧。主色调为砖红色，并辅以韵律感强的白色块。立面开窗多为竖向窗，秩序感强，建筑造型与周边建筑有较多呼应。现为学校公共教室及基础教学实验室。",
+      "location": {
+        "geoType": "point",
+        "x": 121.518516183847,
+        "y": 38.8827549600609
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77357",
+      "name": "C区01-令希图书馆",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77357",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b839d990da07ca18b10867b0fa4205ed3367e066b8f7e01aa43e035dfb3db9ee",
+      "description": "建成年份：2010年；\n建筑面积：29933.00㎡；\n使用面积：18741.35㎡；\n结构形式：钢筋混凝土结构；\n层数：6层（局部5层）。\n令希图书馆（简称令希馆），位于西部校区中轴线中央。以我国著名教育家、力学专家钱令希院士名字命名，是继伯川图书馆后，学校又一标志性建筑。于2011年正式开放运行，建筑面积3万平方米，定位为工程馆，馆藏包括工程类中文图书、外文图书、外文期刊、中文科技期刊以及文艺期刊和报纸等。",
+      "location": {
+        "geoType": "point",
+        "x": 121.517046950452,
+        "y": 38.8839273014136
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层（局部5层）。"
+    },
+    {
+      "id": "77358",
+      "name": "C区05-知顺楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77358",
+      "retrieved": "2026-09-14",
+      "response_sha256": "45f1ac6d0796f51cacb453ca99193d6d963404dc39abcc35e1ec64931c996d05",
+      "description": "建成年份：2009年；\n建筑面积：44315.00m²；\n使用面积：25462.69m²；\n结构形式：钢筋混凝土结构；\n层数：5层。\n位于西部校区知化楼北侧。各建筑围合成圆形广场与街道，尺度亲人。街道上空的多条连廊加强了建筑间的联系。立面竖向开窗，排列有序，与实墙比例恰当，整体建筑造型简洁有力，富于韵律感。建筑群现由化工学院使用，包括精细化工国家重点实验室、化学分析测试中心等。",
+      "location": {
+        "geoType": "point",
+        "x": 121.51915619611236,
+        "y": 38.885732789405345
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "5层。"
+    },
+    {
+      "id": "77371",
+      "name": "C区08-知行楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77371",
+      "retrieved": "2026-09-14",
+      "response_sha256": "689121aad1df77703e6f2884a03530a69b6651b369a5b920835ff0f0c69c7d9d",
+      "description": "建成年份：2013年；\n建筑面积：27500.00㎡；\n使用面积：16097.79㎡；\n结构形式：钢筋混凝士结构；\n层数：10层。\n位于西部校区南侧，南邻知方楼，北接学生运动场，与令希图书馆遥相呼应。主体为“L”形结构，由两个矩形体量穿插而成。北侧配建二层用房，整体组成“凹”形平面形式。现由能源与动力学院、能源研究院和碳中和研究院共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.515055566232,
+        "y": 38.8821411926546
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "10层。"
+    },
+    {
+      "id": "77374",
+      "name": "B1区33-大学生服务楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77374",
+      "retrieved": "2026-09-14",
+      "response_sha256": "79c2e97f6c24cd16246bcbc7d7e4277bfd2d4def489ca095bf94f956d87dc039",
+      "description": "建成年份：2000年；\n建筑面积:6190.13㎡；\n使用面积：5688.73㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n位于西门外凌水河畔,建筑整体由两部分体块组合而成，外饰以瓷砖贴面，浅色调为主，蓝绿色长窗加以点缀。建筑转角处正对西门，南侧转角顶层女儿墙改为透空构件，标准层采用玻璃与金属板弱化直角，增加建筑现代感；与之相邻的西侧体块则运用弧线倒角，给人以亲切自然的感觉。西山大学生服务楼集多种用途为一身，首层为商家租用，二层为美食广场，三层及以上为离退休工作处（离退休党委）等单位办公使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.525389822929,
+        "y": 38.879627344594
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77376",
+      "name": "A1区26-工程力学楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77376",
+      "retrieved": "2026-09-14",
+      "response_sha256": "66ffe2764a16978e7901ae1d44a7874f9442ced03197bd339f3014e681303601",
+      "description": "建成年份：1985年；\n建筑面积：5984.56㎡；\n使用面积：3733.40㎡；\n结构形式：混合结构；\n层数：5层。\n位于建筑艺术馆东侧。建筑组合形式呈“凹”字形，中部围合成庭院。东南侧主出入口拔高并凸出，并设有大挑檐的雨棚，配合绿化植被，形成入口广场。现由力学与航空航天学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.526895222768,
+        "y": 38.8819372418261
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "5层。"
+    },
+    {
+      "id": "77377",
+      "name": "A1区25-建筑艺术馆",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77377",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f7e4f69f5ba75d4e7919dba341436566081c8e937956fecd81957acb14de14c6",
+      "description": "建成年份：1999年；\n建筑面积：8861.96㎡；\n使用面积：5193.18\t㎡；\n结构形式：钢筋混凝土结构；\n层数：前楼5层，后楼3层。\n位于综合教学1号楼南侧，第二教学馆北侧。是校园内同时期具有鲜明现代主义风格特点的建筑，立面大面积玻璃幕墙，简洁规整，构图虚实结合，强调竖向线条，灵活富有变化。转角处采用弧形玻璃，加强了建筑、场所和校园环境的交流。前楼由建筑与艺术学院使用，包括建筑学专业教室、实验室、图书室及教学行政办公室等，后楼为100～200座/间的阶梯教室。",
+      "location": {
+        "geoType": "point",
+        "x": 121.526109415414,
+        "y": 38.8818783183447
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "前楼5层，后楼3层。"
+    },
+    {
+      "id": "77378",
+      "name": "A1区31-综合教学1号楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77378",
+      "retrieved": "2026-09-14",
+      "response_sha256": "4ebcf51d51df6b1f76d820c5af304b45c1ab1c39add22f1d06bb99a64ced6b87",
+      "description": "建成年份：2002年；\n建筑面积：27700.00㎡；\n使用面积：\t15203.51㎡；\n结构形式：钢筋混凝土结构；\n层数：7层。\n是教学北区的中心，将其南侧的建筑艺术馆、工程力学楼、船舶工程学院紧密结合在一起，并与西北部的海晖楼、海映楼遥相呼应。建筑以开放式室内空间序列和庭院式室外空间取代旧的链式空间模式，将教学空间和非教学空间视为同等重要、互相依存的整体，是学校具有代表性且极具时代特征的中心教学大楼。现为学校公共教室及基础教学实验室。",
+      "location": {
+        "geoType": "point",
+        "x": 121.526483353407,
+        "y": 38.8832874368598
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "7层。"
+    },
+    {
+      "id": "77379",
+      "name": "A1区23-海涵楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77379",
+      "retrieved": "2026-09-14",
+      "response_sha256": "9088011a9e636a299cd0f3634489117777130b77d3b5b6662b67b4b54d8b7cab",
+      "description": "建成年份：2003年；\n建筑面积：7928.00㎡；\n使用面积：5255.51㎡；\n结构形式：钢筋混凝士结构；\n层数：6层。\n位于红凌路东侧，综合教学1号楼西侧。建筑呈“L”形布局，立面以网格划分，强调秩序感。入口处玻璃圆柱体量连接两翼，形成围合的楼前广场。现由机械工程学院、能源与动力学院、力学与航空航天学院和船舶工程学院共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.524845976852,
+        "y": 38.8836238503489
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77380",
+      "name": "A1区22-内燃机实验室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77380",
+      "retrieved": "2026-09-14",
+      "response_sha256": "5e55b1da200fb5f9e25906c46cd13fe6af80353f73afe55f9b4e7433e1a6edf4",
+      "description": "建成年份：1987年；\n建筑面积：3363.18㎡；\n使用面积：2244.47㎡；\n结构形式：混合结构；\n层数：4层。\n位于海涵楼南侧，船舶工程学院西侧。建筑由四层体量和矩形单层体量共同组成。建筑风格简约，建筑立面强调横向线条。现由机械工程学院、能源与动力学院、船舶工程学院、物理学院以及体育与健康学院共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.52478513019,
+        "y": 38.8826900630755
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "77381",
+      "name": "A1区21-船舶工程学院（船舶楼）",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77381",
+      "retrieved": "2026-09-14",
+      "response_sha256": "6ea898c9d2e3b9785f40a58be381c363bd0ab2732515489523364e659eaebdc7",
+      "description": "建成年份：1980年；\n建筑面积：4689.17㎡；\n使用面积：3745.22㎡；\n结构形式：混合结构；\n层数：4层。\n位于建筑艺术馆西侧，海涵楼南侧。由主体教学区及长条状单层实验室组成，两者垂直相交。主体由两个长方体穿插而成，在路口处体量拔高，吸引视线停留。入口处楼板外挑形成雨棚，增强空间引导性。现由船舶工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.52509246805374,
+        "y": 38.88171427325017
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "77382",
+      "name": "A1区15-劳服楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77382",
+      "retrieved": "2026-09-14",
+      "response_sha256": "04e75140b8d005baefa7a19c2be74d13b590ea5127338b6f3bc07e41cc372b43",
+      "description": "    劳服楼于1999年竣工并投入使用，坐落在第二教学馆的西侧，船舶工程学院的北侧。占地面积600平方米，总建筑面积1156.10平方米，使用面积1156.10平方米，楼采用混合结构，共2层。由劳动服务公司使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.525583736878,
+        "y": 38.8809012094987
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77383",
+      "name": "A1区16-第二教学馆",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77383",
+      "retrieved": "2026-09-14",
+      "response_sha256": "d665f78794c7c7fbe6223126abd3756cc3ceb5297780b7dddaac97551261827e",
+      "description": "建成年份：1952年；\n建筑面积：9175.30㎡；\n使用面积：5158.73㎡；\n结构形式：混合结构；\n层数：4层。\n凌水校区首批建筑之一，也是学校最早的教学楼，由师生共同建设，一直使用至今。面向初阳路，位于第一教学馆西北侧，初阳路尽端。建筑立面横向展开，中心对称，主从分明，比例严谨。建筑强调竖向线条，外观反映出建筑内部空间尺度及功能。2016年与第一教学馆同时翻修。现除公共教室外，部分房间还用作建筑与艺术学院专业教室，门厅及走廊常用来展示教学作业成果。",
+      "location": {
+        "geoType": "point",
+        "x": 121.526405638275,
+        "y": 38.8811797927372
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "77384",
+      "name": "A1区07-八角楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77384",
+      "retrieved": "2026-09-14",
+      "response_sha256": "5a778e9c3fa63777f472bcc86712cde9875f506b7153fae0f57ab8d9c3922667",
+      "description": "建成年份：1982年；\n建筑面积：5774.94㎡；\n使用面积：3770.40㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n位于主教学楼西门附近，原为电教中心。楼体中轴对称，由一大两小的三个八角形体量组合而成。建筑造型强调竖向划分，整体风格与主楼相呼应。入口内凹，形成外八字形小广场。2009年更新改建，现由文科综合实验教学中心与党委宣传部（新闻中心）共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.526040214044,
+        "y": 38.8804097296338
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77385",
+      "name": "A1区08-第一教学馆",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77385",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b37abaa04b587ff26a864b72ee25cf7c378624ad50e18c5269c9850a0a01f2ea",
+      "description": "建成年份：1952年；\n建筑面积：9084.42㎡；\n使用面积：5224.00㎡；\n结构形式：混合结构；\n层数：4层。\n凌水校区首批建筑之一，也是学校最早的教学楼，由师生共同建设，一直使用至今。立面划分为纵、横三段，建筑左右对称，造型轮廓整齐，构图完整统一。中间体量凸出，通过多种设计手法，强调以入口为中心的对称布局。室内天花、扶手等多见精致的古典艺术细节。1984年扩建，在原有基础上接建了一层。2016年7月翻修，2017年4月重新开放。现为学校公共教室。",
+      "location": {
+        "geoType": "point",
+        "x": 121.527533957727,
+        "y": 38.8803980129051
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "77386",
+      "name": "A1区01-主楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77386",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f7f99f68564945be392216034bd3532854e447327a03a2a7555c3125d791d021",
+      "description": "建成年份：1963年；\n建筑面积：23598.00㎡；\n使用面积：14400.18㎡；\n结构形式：混合结构；\n层数：6层。\n位于学校主轴中央，“工”字形布局，坐北朝南，中轴对称，与伯川图书馆共同构成校园内最具代表性的核心空间。建筑造型受苏联建筑影响，整体风格舒展端庄，呈现出朴实的古典美，也是同时期国内高校最经典的建筑样式。中间体量高起，两翼向南延展，随之立面划分为纵向五段，横向三段。主楼工程在建造初期，适逢国家经济困难时期，数万名师生自愿参与建设。1968年，在广场中轴线南端修建了毛泽东塑像，避开两翼建筑的遮挡，可全天接受到阳光。2008年暑期，主楼大修改造项目启动，历时8个月，外观保持不变，内部焕然一新。改造工程获得全国设计一等奖。正楼和西侧楼现为校机关办公用房；东侧楼现为物理学院。",
+      "location": {
+        "geoType": "point",
+        "x": 121.528013075839,
+        "y": 38.8796791791406
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77387",
+      "name": "A1区05-厚民楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77387",
+      "retrieved": "2026-09-14",
+      "response_sha256": "35f1cd12158467df13183aa9dbd448308188a349f6d4901a7f50f20266ae0f6e",
+      "description": "建成年份：1983年；\n建筑面积：5188.17m²；\n使用面积：3306.00m²；\n结构形式：混合结构；\n层数：5层。\n位于主楼东南侧，坐东朝西。由矩形体量及正六边形小体量组成,二者各自独立，形成鲜明对比，并因六边形报告厅而得名“六角楼”。前者立面强调水平划分，窗体高度一致；后者立面强调竖向划分，采用白色立柱分隔窗体，开窗面积较大，每个柱间上方配一装饰性高窗。\n它是大工校园内第一栋现代主义风格建筑，与网络与信息化中心的计算中心，一起奠定了新时期大工校园建筑的新风尚。初为国内最早引进国外现代管理教育的办学机构——管理学院——所在地，建筑系也在此创办；现由马克思主义学院使用。该建筑在2019年进行整修。",
+      "location": {
+        "geoType": "point",
+        "x": 121.529463724571,
+        "y": 38.879005210046
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "5层。"
+    },
+    {
+      "id": "77389",
+      "name": "A1区09-厚兴楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77389",
+      "retrieved": "2026-09-14",
+      "response_sha256": "860685fccf0c61c586d5ef8d4bf02d046c888d513c49fb240fe0dd5107bd04dd",
+      "description": "建成年份：2005年；\n建筑面积：11000.00㎡;\n使用面积：8060.09㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n工器善厚，家国能兴。厚兴楼位于第一教学馆东侧。整体采用暖灰色调，勾勒白色纵向线条，开窗方式简洁统一。南侧入口设有大台阶，并利用平面进退形成大的凹凸变化，强化虚实对比。整体风格典雅厚重，与主楼遥相呼应。与“厚邦楼”取“兴邦”之意，现由建设工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.528608271318,
+        "y": 38.8802975282954
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77390",
+      "name": "A1区10-厚邦楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77390",
+      "retrieved": "2026-09-14",
+      "response_sha256": "d229e1ca2daabef2a92ed569c1a9836fb1561d80e72aa5d29042b8fd0620ad64",
+      "description": "建成年份：2009年；\n建筑面积：9533.21㎡；\n使用面积：6582.01㎡；\n结构形式：钢筋混凝士结构；\n层数：6层。\n民藏无虞，邦本得厚。厚邦楼位于尚书路与明德路交叉口西南侧地块内，厚兴楼东侧。建筑整体呈“L”形布局，主入口开在东侧，造型上做了拔高处理。楼体共6层（地上部分5层，地下1层）。整体采用暖灰色调，勾勒白色纵向线条，开窗方式简洁统一。整体风格典雅厚重，与主楼遥相呼应。与“厚兴楼”取“兴邦”之意，现由建设工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.52951759142138,
+        "y": 38.88058388281807
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77391",
+      "name": "A1区11-水工大厅",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77391",
+      "retrieved": "2026-09-14",
+      "response_sha256": "be98c57fa3ecb4a39ae42a1db48eae1e96eece7e00aab1586d7066a5f8cb0272",
+      "description": "建成年份：1981年；\n建筑面积：820.15㎡；\n使用面积：753.46\t㎡；\n结构形式：混合结构；\n层数：1层。\n位于第一教学馆东侧，与高速水流实验室及厚兴楼、厚邦楼围合成内庭院。“L”形布局，内部为两层高的大空间。开窗较大，整体造型简洁通透。立面设两层窗，上、下窗口及窗间墙共同后退，整体性强，强调竖向划分。窗间墙设深棕色纹理，既加强与窗口一体的效果，又与临近的高速水流实验室相呼应。其余墙面采用浅灰色调。现由建设工程学院使用。\n实验室拥有循环水装置、电动葫芦、测水压、测流速压等仪器，可承接定床、动床、流损、水流形态等实验，实现水工物理模型实验等功能。",
+      "location": {
+        "geoType": "point",
+        "x": 121.528702628128,
+        "y": 38.880688346117
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "1层。"
+    },
+    {
+      "id": "77392",
+      "name": "A1区12-高速水流实验室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77392",
+      "retrieved": "2026-09-14",
+      "response_sha256": "17b886aa8b72e6a0c1c5efa0b4aeb7eddbb6d19bd4a64736ee34206aa97cd35e",
+      "description": "建成年份：1955年；\n建筑面积：749.40㎡；\n使用面积：557.15m²；\n结构形式：混合结构；\n层数：3层。\n位于一馆东侧，与厚兴楼、厚邦楼围合成内庭院。建筑立面整体采用暖灰色调，开窗朴实。造型强调水平方向，同层窗口上、下均设有横向贯通线条，之间的墙面设有横向线条。现由建设工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.529295807884,
+        "y": 38.8807878625125
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77394",
+      "name": "A1区17-海宇楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77394",
+      "retrieved": "2026-09-14",
+      "response_sha256": "75d78a3baf80b5c1c1147331fbdd800286fb2fac210cce36bac222b7c12a1f12",
+      "description": "建成年份：2001年；\n建筑面积：11795.00㎡；\n使用面积：7785.87㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n位于尚书路北侧，公安电讯楼西侧，第二教学馆东侧。建筑造型简洁明快，强调面的穿插，带有晚期现代主义风格，建筑山墙处虚实对比强烈，识别性强。由于其白色的立面外观，常被称作“白楼”。现由建设工程学院、力学与航空航天学院共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.527967581475,
+        "y": 38.8812314383552
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77395",
+      "name": "A1区02-主楼西侧楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77395",
+      "retrieved": "2026-09-14",
+      "response_sha256": "5fa0c4bde62e4c6f5f03c0584381bd515c81647de5a7dd881a68f40befaca0cf",
+      "description": "建成年份：1963年；\n建筑面积：23598.00㎡；\n使用面积：14400.18㎡；\n结构形式：混合结构；\n层数：6层。\n位于学校主轴中央，“工”字形布局，坐北朝南，中轴对称，与伯川图书馆共同构成校园内最具代表性的核心空间。建筑造型受苏联建筑影响，整体风格舒展端庄，呈现出朴实的古典美，也是同时期国内高校最经典的建筑样式。中间体量高起，两翼向南延展，随之立面划分为纵向五段，横向三段。主楼工程在建造初期，适逢国家经济困难时期，数万名师生自愿参与建设。1968年，在广场中轴线南端修建了毛泽东塑像，避开两翼建筑的遮挡，可全天接受到阳光。2008年暑期，主楼大修改造项目启动，历时8个月，外观保持不变，内部焕然一新。改造工程获得全国设计一等奖。正楼和西侧楼现为校机关办公用房；东侧楼现为物理学院。",
+      "location": {
+        "geoType": "point",
+        "x": 121.527284675865,
+        "y": 38.8794040424885
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77396",
+      "name": "A1区03-主楼东侧楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77396",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7a8d6a51cc83c5a67f364b386487105cd32b6a0bab5a20d7800b32351c836245",
+      "description": "建成年份：1963年；\n建筑面积：23598.00㎡；\n使用面积：14400.18㎡；\n结构形式：混合结构；\n层数：6层。\n位于学校主轴中央，“工”字形布局，坐北朝南，中轴对称，与伯川图书馆共同构成校园内最具代表性的核心空间。建筑造型受苏联建筑影响，整体风格舒展端庄，呈现出朴实的古典美，也是同时期国内高校最经典的建筑样式。中间体量高起，两翼向南延展，随之立面划分为纵向五段，横向三段。主楼工程在建造初期，适逢国家经济困难时期，数万名师生自愿参与建设。1968年，在广场中轴线南端修建了毛泽东塑像，避开两翼建筑的遮挡，可全天接受到阳光。2008年暑期，主楼大修改造项目启动，历时8个月，外观保持不变，内部焕然一新。改造工程获得全国设计一等奖。正楼和西侧楼现为校机关办公用房；东侧楼现为物理学院。",
+      "location": {
+        "geoType": "point",
+        "x": 121.528791574104,
+        "y": 38.8794487979795
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77397",
+      "name": "A1区27-结构抗震试验大厅",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77397",
+      "retrieved": "2026-09-14",
+      "response_sha256": "e6f9e8bcf1511c7b6a1b9c1671ecca4df94a14f2c2f06d58e1c671bc47f73fb6",
+      "description": "建成年份：1985年；\n建筑面积：3348.24㎡；\n使用面积：2611.45㎡；\n结构形式：钢筋混凝土结构，混合结构；\n层数：4层。\n位于海洋工程研究所南侧，海宇楼北侧。建筑分为东、西两个部分，造型简洁，以矩形体量为主。西侧为结构实验室，东侧为抗震实验室，西高东低，是海岸和近海工程国家重点实验室的一个分室，现由建设工程学院使用。\n抗震实验室拥有波流、地震动联合模拟系统，是国内唯一一套能够实现波浪、水流、地震动、风荷载、海冰碰撞联合加载的设备；另有双台联动电磁模拟系统、小型精密震动试验系统、低频便携式震动校验仪，均为振动发生装置，前述设备性能互为补充，组成工程振动与地震模拟设备集群，可承接各类工程振动、结构抗震类试验。实验室内的NI系列数据采集系统、动态光纤解调仪、高速摄像系统、TDR数据遥测系统等设备配合各类传感器组成动态测试设备集群，能够为各类结构试验尤其是结构振动试验提供支撑。除前述设备集群，实验室内还配备复杂荷载动静试验机、MTS电子万能试验机、红外热像仪及各类传感器等，满足相关学科的研究需求。\n结构实验室设备固定资产3000余万元，拥有250吨大型液压伺服三轴试验机、准动态真三轴试验机、MTS佛力改造电液伺服疲劳试验系统、MTS810混凝土动态力学测试系统、10000kN、5000kN、1000kN、300kN液压伺服试验机、30吨岛津高温试验机、20吨电子万能试验机、30000J落锤冲击试验机，同时拥有大型反力墙、大型竖向加载架等加载台座，可开展梁、板、柱、节点、框架试件的拉压、疲劳和三轴试验；拥有高低温试验箱、恒温恒湿试验箱、大尺寸和常规混凝土快速冻融试验机、盐雾湿热碳化试验箱等设备，可以开展混凝土耐久性试验；\n拥有德国imc动态信号采集系统、澳大利亚Datataker数据采集系统、东华静态和动态各类采集设备、TICO超声波测试仪和PROFOMETER钢筋测试仪等各种数据分析与处理仪器，可以高精度的测量实验数据并进行有效分析。",
+      "location": {
+        "geoType": "point",
+        "x": 121.527933577017,
+        "y": 38.8817634739839
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "77398",
+      "name": "A1区18-公安电讯楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77398",
+      "retrieved": "2026-09-14",
+      "response_sha256": "d3006f204effaf1db52bf09482840a88d4d81261678c67c425667558a7539d21",
+      "description": "建成年份：1990年；\n建筑面积：1003.77㎡；\n使用面积：622.02㎡；\n结构形式：混合结构；\n层数：2层。\n位于海宇楼东侧。造型简洁大方，由2层高“L”形体量与3层高矩形体量穿插而成，交接处运用片墙围合，凸显两个体量各自的功能分区。建筑入口处墙体后退，雨棚外挑，形成浓重的阴影，虚实对比强烈。该建筑在2019年进行整修，现由党委保卫部（保卫处）使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.528829211833,
+        "y": 38.8811500132439
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "2层。"
+    },
+    {
+      "id": "77402",
+      "name": "A1区28-海洋工程研究所",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77402",
+      "retrieved": "2026-09-14",
+      "response_sha256": "5bdcb64d3fe9ca766ea0ac8d69cd4715a70b10b85a3a71a399c9a0c612b60d02",
+      "description": "建成年份：1985年；\n建筑面积：7245.79㎡；\n使用面积：5424.21㎡；\n结构形式：混合结构；\n层数：4层。\n位于理工路西侧，北侧为海岸和近海工程国家重点实验室，南侧为结构抗震试验大厅。曾于1991年和2004年两次进行改扩建。由多个建筑组合而成，参差错落，体量大小不一，现由建设工程学院使用。\n海洋工程研究所是大连理工大学海岸和近海工程国家重点实验室的核心组成部分，拥有先进的波浪、风、水流、海冰等海洋动力物理模拟水池、水槽，世界最大的O-tube往复流模拟水槽、低温海冰实验室等以及先进的波浪、水流、运动量等监测设备，可以开展海洋环境下港航桥隧工程、海上油气工程、海上风、光等新能源工程、海洋养殖工程等水动力试验，提供从大洋尺度到工程局部的精细化海洋动力模拟研究成果。同时，海洋工程研究所承担海洋资源开发技术本科专业学生培养以及海洋工程相关专业研究生培养。海洋工程研究所为海洋工程相关领域前沿研究、人才培养、重大工程应用持续贡献自己的力量。",
+      "location": {
+        "geoType": "point",
+        "x": 121.527936418543,
+        "y": 38.8822276101119
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "77403",
+      "name": "A1区29-海岸和近海工程国家重点实验室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77403",
+      "retrieved": "2026-09-14",
+      "response_sha256": "1b675f6ffe04ce1801b8895e009699a9fdbd8b7ba42921b08dea12ab53a63108",
+      "description": "建成年份：1980年；\n建筑面积：4336.05㎡；\n使用面积：3640.81㎡；\n结构形式：钢筋混凝土结构；\n层数：2层。\n实验室位于综合教学1号楼东南侧。始建于1980年，于1987年进行了改扩建。建筑造型简洁，上部以实墻面为主，下部入口处设大窗，并配以钢结构玻璃雨棚，虚实对比，富有时代感。现由建设工程学院海岸和近海工程国家重点实验室使用，海岸和近海工程国家重点实验室于1986年由国家计委批准筹建，1990年通过国家验收并正式对外开放，是我国建设的首批国家重点实验室之一，也是海洋工程领域所设立的第一个国家重点实验室。\n实验室科研设施齐全，建有海岸和海洋动力环境模拟实验平台、岩体工程灾害分析实验平台、海洋工程结构全寿命分析实验平台、海洋工程结构安全监测实验平台、海洋工程虚拟现实实验平台等，在服务科研和教学中发挥了重要作用。实验室拥有先进的仪器设备，包括大型多功能波浪水池2座、不同尺度波流水槽5座，以及世界最大规模的循环波流试验水槽，还有水下波流地震模拟系统、深水试验箱、超大型三轴仪、岩土体高温差高压差静动三轴测试系统、土工鼓式离心机造波系统以及极地海冰现场测试系统等。\n实验室致力基础研究和应用基础研究，紧扣国家陆海统筹和建设海洋强国战略需求，承担完成了一大批具有重要影响的国家级重大科研任务，所取得的标志性研究成果在我国沿海港口码头、跨海交通等大型基础设施建设、海岸和沿海城市防灾减灾、渤海东海南海三大海域油气资源开发、海洋牧场和海洋电场建设以及新型海洋能源开发等国家重大需求中发挥了重要支撑作用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.527918403165,
+        "y": 38.8828024082064
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "2层。"
+    },
+    {
+      "id": "77410",
+      "name": "A2区02-海晖楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77410",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b7caeea9670aba90ff9cb614fcc7e0e9d52ab869df860df029638c32e02002d6",
+      "description": "建成年份：1995年；\n建筑面积：11438.11㎡；\n使用面积：6655.30㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n位于海映楼南侧，士林路西侧。建筑平面呈八边形，采用环状布局，中部透空，形成室外中庭，打破旧有的条状空间布局，增加交通的可达性，创造出具有时代感的校园建筑。现由化学学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.528066990713,
+        "y": 38.8848145947509
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77411",
+      "name": "A2区06-海映楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77411",
+      "retrieved": "2026-09-14",
+      "response_sha256": "8f29484ffc2a7f6695386880d2a5873242c27ab2b8fb016111c0342f4f70ddec",
+      "description": "建成年份：2002年；\n建筑面积：10196.00㎡；\n使用面积：6817.15㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n位于海山楼西侧，海晖楼北侧，坐北朝南。建筑呈开口向东的“U”形布局，以南北向体量连接两个东西向体量，造型强调水平线条。现由电气工程学院、化学学院以及分析测试中心共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.528095525478,
+        "y": 38.8857528801068
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77412",
+      "name": "A2区03-西灰楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77412",
+      "retrieved": "2026-09-14",
+      "response_sha256": "c6ed8c34d288ea7b3a073fc15f88e74897879d6ab97d66665571830602300d75",
+      "description": "建成年份：1959年；\n建筑面积：3221.08m²；\n结构形式：混合结构；\n层数：3层。\n西灰楼坐西朝东，与东灰楼隔街相对，二者建筑高度与街道宽度比例协调，周边植被丰富,环境优美。于1999年扩建后楼,前、后两楼呈围合式布局，内有矩形院落。曾作为青年教师公寓,现为学校食堂员工宿舍。",
+      "location": {
+        "geoType": "point",
+        "x": 121.529547179997,
+        "y": 38.8843511948908
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77413",
+      "name": "A2区04-东灰楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77413",
+      "retrieved": "2026-09-14",
+      "response_sha256": "41f57b94b844ea2e4db517606b5f0fc3cb9c4dc7c416b0c0171e7586dd6c4d2a",
+      "description": "建成年份：1957年；\n建筑面积：3195.40㎡；\n结构形式：砖混结构；\n层数：3层。\n坐东朝西，与西灰楼隔街相对,二者建筑高度与街道宽度比例协调,周边植被丰富，环境优美。于1999年扩建后楼，前、后两楼呈围合式布局，内有矩形院落。先后用作青年教师公寓和留学生公寓，现为学校研究生公寓。",
+      "location": {
+        "geoType": "point",
+        "x": 121.530223868583,
+        "y": 38.8843735702369
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77414",
+      "name": "A2区07-海山楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77414",
+      "retrieved": "2026-09-14",
+      "response_sha256": "92d7ce5881daffd3193fa1551aa5c59836129414dfb653d5f23742ef6d6ea5c3",
+      "description": "建成年份：2005年；\n建筑面积：36500.00㎡；\n使用面积：19327.51㎡；\n结构形式：钢筋混凝士结构；\n层数：16层。\n位于校园北部中心轴线上，利用北高南低的地势借势造景，加以清新简洁的建筑形象，成为校园空间的标志建筑。形式上通过黑与白、高与低、实与虚的穿插对比，形成清新简洁的建筑形象；形象上以黑色铝板外墙和银白色金属窗框形成对比，创造出庄重高雅的新建筑风格。2008年荣获教育部优秀设计二等奖。现由电气工程学院、信息与通信工程学院、控制科学与工程学院以及计算机科学与技术学院共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.529177565512,
+        "y": 38.8860739556114
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "16层。"
+    },
+    {
+      "id": "77415",
+      "name": "A2区08-研究生教育大楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77415",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f87bfcdd653db2287aff93163cb99b29651c9910e70899a2baf0b0e61224e865",
+      "description": "建成年份：2005年；\n建筑面积：23554.14㎡；\n使用面积：11938.31㎡；\n结构形式：钢筋混凝土结构；\n层数：9层。\n该建筑是校园北部新兴学科建筑群的重要组成部分。根据整体性的构图法则，结合场地特征，形成“鱼骨状”总体布局形式，以一条玻璃通廊连接三组功能体块。整体布局由北侧教学楼及南侧讲堂群构成。建筑的南、北两个入口结合地形分设在一、二层，方便学生从两个方向进入。南侧大广场，布置富有校园特色的小品、构架，成为师生交往的室外平台。现为公共教室。",
+      "location": {
+        "geoType": "point",
+        "x": 121.531873419384,
+        "y": 38.886782579425
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "9层。"
+    },
+    {
+      "id": "77416",
+      "name": "A3区01-模具研究所",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77416",
+      "retrieved": "2026-09-14",
+      "response_sha256": "2da93c6871e966a1e68468a2ca14b04c45aecd647fb96bee6d97b1a702ed7600",
+      "description": "建成年份：1952年；\n建筑面积：1980.77㎡；\n使用面积：1292.79m²；\n结构形式：混合结构；\n层数：1层。\n位于体育场北侧，厚义楼西南侧。建筑层数低，随坡就势，处于坡地低处，与坡顶绿植及其他建筑互不遮挡，谦逊地面对往来师生及壮观的体育场。建筑造型简洁，矩形体量,南向大窗采光，窗框分隔均质稳定；北向设有红砖搭建的烟囱，兼具实用功能与历史意义。",
+      "location": {
+        "geoType": "point",
+        "x": 121.530212661713,
+        "y": 38.8787573407612
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "1层。"
+    },
+    {
+      "id": "77417",
+      "name": "A3区02-中心变电所",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77417",
+      "retrieved": "2026-09-14",
+      "response_sha256": "3696a67c8ce50493b4384c98ed487bb0079baeaff315f36d11d369f6aca05012",
+      "description": "该楼建成于1988年，共3层。",
+      "location": {
+        "geoType": "point",
+        "x": 121.530158457529,
+        "y": 38.8795250736087
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77418",
+      "name": "A3区03-厚义楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77418",
+      "retrieved": "2026-09-14",
+      "response_sha256": "97a29ffb4b534b3afb91a973cd0d871dbe6ed8952a73a8cbe3afee57d66e1043",
+      "description": "建成年份：1952年；\n建筑面积：6462.11m²；\n使用面积：4042.32m²；\n结构形式：混合结构；\n层数：3 层。\n建筑平面呈“工”字形，建筑随地形从南至北依次抬高，建筑层数也随之增加。建筑造型朴实，外观可见校园早期建筑风格。建筑主入口前设置台阶步道，直通山下，视野开阔,便于师生拾级而走。现由材料科学与工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.531196797721,
+        "y": 38.8794653853008
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3 层。"
+    },
+    {
+      "id": "77419",
+      "name": "A3区05-现代实验楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77419",
+      "retrieved": "2026-09-14",
+      "response_sha256": "93200ef679cd617d098306b442d6abf831180665b6f821ace11613958ec36e0f",
+      "description": "建成年份：1959年；\n建筑面积：2624.83㎡；\n使用面积：1916.041㎡；\n结构形式：混合结构；\n层数：2层。\n位于书阳路北侧，弘远路西侧，在校园东西轴线上，与厚德楼相对。主体建筑为矩形体量，北侧后院由建筑两翼围合而成，外观秩序性强。现由材料科学与工程学院、马克思主义学院、物理学院以及辽宁黄海实验室共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.532547984253,
+        "y": 38.8787854317053
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "2层。"
+    },
+    {
+      "id": "77420",
+      "name": "A3区06-工程训练中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77420",
+      "retrieved": "2026-09-14",
+      "response_sha256": "dfdbb7618ce29ff7bddb9218a185306847886b6638346750b87839caa34b9263",
+      "description": "建成年份：1959年；\n建筑面积：4487.32㎡；\n使用面积：3766.60m²；\n结构形式：混合结构；\n层数：2层。\n位于育才路南侧，弘远路西侧。由若干坡屋顶建筑组成，依照使用功能，高低错落，布置灵活。墙面为黄色涂料，色彩明快。分别为办公和实验设置了独立的出入口，现由机械工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.53258398729022,
+        "y": 38.879333301024175
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "2层。"
+    },
+    {
+      "id": "77421",
+      "name": "A3区07-铸造中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77421",
+      "retrieved": "2026-09-14",
+      "response_sha256": "4ab268015e16ae2c37a331ab89729fa9cd6e06d0a4a32980e0f62b46ec8dcc1b",
+      "description": "建成年份：1987年；\n建筑面积：4021.46m²；\n使用面积：2652.02m²；\n结构形式：混合结构；\n层数：4层。\n位于弘远路东侧，五一路北侧，南边有一处小游园，周边环境优美，植被丰富。建筑体量为“工”形，围合形成小院落。沿主路的立面造型朴实，设方窗，秩序感强。现由材料科学与工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.533709823608,
+        "y": 38.8795756827914
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "77422",
+      "name": "A3区08-起重实验室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77422",
+      "retrieved": "2026-09-14",
+      "response_sha256": "3037fca05795302d844e2528618d7bae0cf718c7cafdf842ef5c47eda4a97a62",
+      "description": "\n建筑面积：2050.31㎡；\n使用面积：1788.60㎡；\n结构形式：混合结构；\n层数：3层。\n位于铸造中心北侧。呈“L”形布局，采用折板坡屋顶。浅黄色立面与周边建筑融为一体。南立面大面积开窗，改善室内采光，同时采用深棕色格栅划分窗口。现由机械工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.534240170662,
+        "y": 38.8803200634135
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77423",
+      "name": "A3区09-三束材料实验楼4号楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77423",
+      "retrieved": "2026-09-14",
+      "response_sha256": "bf6a8084c533ca2be951e526061210a3e46003ddce36f21f01dd60a4029f6c70",
+      "description": "建成年份：1987年；\n建筑面积：3921.10m²；\n使用面积：2514.86 m²；\n结构形式：混合结构；\n层数：4层。\n位于三束材料实验室3号楼南侧。折线形的建筑体量，转折处面向道路,形成入口广场。其立面强调横向线条,采用浅黄色和白色两种颜色交替布置，呈现水平舒展的建筑形象。现由三束材料改性教育部重点实验室使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.53473060109,
+        "y": 38.8806870600996
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "77424",
+      "name": "A3区18-三束材料实验楼3号楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77424",
+      "retrieved": "2026-09-14",
+      "response_sha256": "c175826a63333a9c04df7300c85a594dc907ab5186833df52bf58b8987e39283",
+      "description": "建成年份：1986年；\n建筑面积：920.02㎡；\n使用面积：577.66m²；\n结构形式：混合结构；\n层数：3层。\n位于弘远路东侧，汽车实验室南侧，风洞实验室西侧，三束材料实验室4号楼北侧。建筑形式为简单的矩形体量，立面强调横向线条，每层窗间为暖黄色的涂料，相邻层窗间为连续的白色抹灰。现由三束材料改性教育部重点实验室使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.53491406159003,
+        "y": 38.88110325297079
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77425",
+      "name": "A3区17-三束实验室1号楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77425",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7955630266f406a986580c997787718a0eabc099be5cdb177adf48849afc2084",
+      "description": "建成年份：1992年；\n建筑面积：878.10m²；\n使用面积：513.92m²；\n结构形式：混合结构；\n层数：3层。\n位于育才路北侧，和厚望楼相毗邻。整体造型顺应坡地；建筑为单体形式，入口处外凸、拔高。周边植被丰富，绿树环绕。现为三束材料改性教育部重点实验室使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.532824202298,
+        "y": 38.8808831455071
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77426",
+      "name": "A3区11-校史馆",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77426",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b441a0dcd1a1f8701c75b98705e61e8912547d777b8e41fe75951dcb7ab6538c",
+      "description": "建成年份：1953年；\n建筑面积：3646.70m²；\n使用面积：2482.44m²；\n结构形式：混合结构；\n层数：3层。\n位于菁英路尽端，厚邦楼东侧的台地之上。建筑根据地形呈“一”字形排布，东西朝向,面向西侧设置两个出入口，便于内部疏散。\n该建筑原为基础部前楼,2019年改建为校史馆，由序厅、沿革厅、人物厅、校友厅、国际礼品厅五大展区组成，以文字、图片、实物和多媒体史料为主,以雕塑、部分场景复原等为辅助,重点展现学校在人才培养、科学研究、社会服务、文化传承创新和国际交流合作等方面取得的丰硕成果。",
+      "location": {
+        "geoType": "point",
+        "x": 121.53032150623,
+        "y": 38.8803414878901
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77427",
+      "name": "A3区12-博物馆",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77427",
+      "retrieved": "2026-09-14",
+      "response_sha256": "4c5f5f42ee2fe29affb513fb8e2088c3046b3a6469259d92da585d63fc6680a2",
+      "description": "建成年份：1958年；\n建筑面积：2861.82m²；\n使用面积：1769.09m²；\n结构形式：砖混结构；\n层数：2层。\n原为零件楼，位于校史馆东侧，北辰路缓坡绿地之下。建筑造型参考了学校早期建筑风格，与附近建筑统一而不失新意。曾作为教室及研究室使用，2019年改为博物馆。",
+      "location": {
+        "geoType": "point",
+        "x": 121.530706948878,
+        "y": 38.8804565582912
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "2层。"
+    },
+    {
+      "id": "77428",
+      "name": "A3区15-厚坤楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77428",
+      "retrieved": "2026-09-14",
+      "response_sha256": "449cb6c27f4491905ac77958d6c422b22da20ff1e20251bc6e93f4da97d37781",
+      "description": "建成年份：1959年；\n建筑面积：9156.64㎡；\n使用面积：5167.53m²；\n结构形式：混合结构；\n层数：3 层。\n位于育才路北侧，北宸路东侧,校幼儿园西南侧，与厚义楼相毗邻。形体复杂但分区明确，前部由深色“工”形体量和白色低层矩形体量穿插而成，后部为简洁的矩形体量，前后通过凸起的廊道连接而成。前部中间凸出形成主入口，两侧分布两个次入口，立面规整强调竖向分布。现由医学部、机器人与智能系统研究院和物理学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.531502346108,
+        "y": 38.8804471593266
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3 层。"
+    },
+    {
+      "id": "77429",
+      "name": "A3区16-厚望楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77429",
+      "retrieved": "2026-09-14",
+      "response_sha256": "687d9383aa586679d661fbf18f8a6124434999cec7eaf56c0bda4263f915ec2b",
+      "description": "建成年份：2001年；\n建筑面积：6506.00m²；\n使用面积：4171.21m²；\n结构形式：钢筋混凝土结构；\n层数：4层。\n位于育才路北侧，北宸路东侧，尚书路南侧，弘远路西侧，毗邻厚坤楼。建筑矩形体量，立面风格简洁，网格化的立面几何关系使建筑更具现代感。现由机械工程学院、光电工程与仪器科学学院和物理学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.532272517364,
+        "y": 38.8805964305213
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "77430",
+      "name": "A3区19-风洞实验室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77430",
+      "retrieved": "2026-09-14",
+      "response_sha256": "16b64dcd208f4e55aad2c76fcc3ed0884aaa09af5f748c14ef02058f4d4853b0",
+      "description": "建成年份：1979年；\n建筑面积：1277.56㎡；\n使用面积：1002.31㎡；\n结构形式：砖木结构；\n层数：1层。\n位于汽车实验室东侧，航空航天实验室南侧。造型采用瓦屋面坡屋顶，墻体采用浅红色涂料，在周边建筑中较为突出。入口处插入小体量建筑，强调入口位置。现由建设工程学院使用。\n实验室拥有风洞试验设备、环境模拟试验设备、多维加载试验设备。风洞实验室试验段长18m、宽3m、高2.5m，可进行桥梁与建筑结构抗风试验研究；结构环境模拟试验系统可进行高低温、酸雨盐雾、疲劳荷载共同作用试验研究，多维加载设备可进行结构多维加载试验研究。",
+      "location": {
+        "geoType": "point",
+        "x": 121.535440084272,
+        "y": 38.8813387477293
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "1层。"
+    },
+    {
+      "id": "77431",
+      "name": "A3区21-海晏楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77431",
+      "retrieved": "2026-09-14",
+      "response_sha256": "c1f74eacf8a095c5f7add9a155826f176ed0f259312dafb114facf548ee3d0e6",
+      "description": "建成年份：1987年；\n建筑面积：3627.71m²；\n使用面积：2100.77m²；\n结构形式：混合结构；\n层数：7层。\n位于明德路东侧，北辰路西侧，尚书路北侧。建筑为矩形体量，造型严谨。周边场地高差大,建筑入口根据相邻场地标高灵活处理，主出入口位于建筑北侧。在东侧二层结合高差设次要入口。原由建筑设计院及部分行政后勤部门使用，现主要由外国语学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.530566723731,
+        "y": 38.8815646358906
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "7层。"
+    },
+    {
+      "id": "77436",
+      "name": "A3区25-机械工厂装配车间",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77436",
+      "retrieved": "2026-09-14",
+      "response_sha256": "2dad0b6f7ddcf2a75f395f9677000081c2f8e55e111ef105dae3ae0b27c01e71",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53334878449732,
+        "y": 38.88063414785787
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77438",
+      "name": "A2区01-海川楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77438",
+      "retrieved": "2026-09-14",
+      "response_sha256": "94384c9852356c155c4838cf9419db0af5c43a174aba595449b98baf8a66b00f",
+      "description": "建成年份：2018年；\n建筑面积：36008.97㎡；\n使用面积：21497.30㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n位于凌水主校区与西部校区之间，中国大连高级经理学院东侧，是校内为数不多的灰砖建筑，与八角楼遥相呼应。主体平面形式为“C”形与“一”字形的组合。建筑立面虚实变化丰富，充满质感；内部装饰美观耐用，富有文化底蕴，功能规划合理。现由经济管理学院、中国工业科技管理大连培训中心、国际教育学院（留学生办公室）、大连理工大学白俄罗斯国立大学联合学院共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.525110195834,
+        "y": 38.8850469022689
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77439",
+      "name": "A3区28-汽车实验室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77439",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f398bc1eeeff11c1d56c36a2a28f9b5a1fd4b79a5287291594e2dc74c1a1928c",
+      "description": "  建成年份：2010年；\n建筑面积：3198.00㎡；\n使用面积：2468.10㎡；\n结构形式：钢结构；\n层数：3层。\n位于学校东南部实验区，一、二层有通高实验空间，屋面、墙面分别为彩钢坡屋顶，白色立面，造型简洁。现由机械工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.534919675106,
+        "y": 38.8815541037302
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77440",
+      "name": "A3区29-航空航天实验室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77440",
+      "retrieved": "2026-09-14",
+      "response_sha256": "afe6507b191f9a1e480da192eca2b823d1c310a49e56c69a9cfe84855d47b10f",
+      "description": "建成年份：2010年；\n建筑面积：3660.00㎡；\n使用面积：2939.83㎡；\n结构形式：钢结构；\n层数：2层。\n位于学校东南部，左临弘远路，右接五一路。建筑体量较大，为规则的长立方体。屋面为彩钢坡屋顶。外侧为满足实验需求，并排设有通高排换气烟道。人货分流，设有不同出入口，现由力学与航空航天学院使用。航空航天实验室自建成以来有力支撑飞行器设计与工程专业，该专业入选国家级一流本科专业建设点、辽宁省一流本科教育示范专业，并支撑航空宇航科学与技术一级学科硕士点及航空航天系统科学与工程交叉学科博士点。该实验室聚焦微纳卫星平台和高超声速飞行器两个前沿领域。该实验室自主牵头研制了大连1号—连理卫星，并圆满完成在轨释放任务；依托该实验室与中航工业沈飞601所、沈飞公司共建联合技术中心（UTC），有力支撑国内重点型号飞行器的研制任务。",
+      "location": {
+        "geoType": "point",
+        "x": 121.535408023345,
+        "y": 38.8820622385975
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "2层。"
+    },
+    {
+      "id": "77441",
+      "name": "A3区30-桥隧实验室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77441",
+      "retrieved": "2026-09-14",
+      "response_sha256": "a6ae36ba25b9032ed6396a9750eb5de7f6d5f6d34c47656f5fbcea5f39ffa16a",
+      "description": "建成年份：2012年；\n建筑面积：4939.00㎡；\n使用面积：3786.57㎡；\n结构形式：钢结构；\n层数：3层。\n位于学校东南部。建筑体量较大，为规则的长立方体。屋面为彩钢坡屋顶，造型简洁大方。现由建设工程学院使用。\n实验室拥有无线测试设备、地震台、疲劳实验机、压剪试验机、作动器、万能试验机、大型冻融试验箱等多台先进设备，并配备剪力墙、地沟、加载架、吊车等实验设施，可承担桥梁结构大比例模型试验、构件静动力性能试验和材料性能试验研究任务。",
+      "location": {
+        "geoType": "point",
+        "x": 121.535199075168,
+        "y": 38.8825229037958
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77442",
+      "name": "平房",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77442",
+      "retrieved": "2026-09-14",
+      "response_sha256": "249bd2bf98cb9debb519fd2a04535d0b0d82e1544e39cbb5012b16d8089da5ae",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.535979118619,
+        "y": 38.8825445476721
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77443",
+      "name": "A4区01-科技园大厦/国际会议中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77443",
+      "retrieved": "2026-09-14",
+      "response_sha256": "134f9d2832cc1e093e07626e22cf0c353c03c60358bc285c24e70c818d882cf7",
+      "description": "建成年份：2003年；\n建筑面积：18700.00㎡；\n使用面积：12955.74㎡；\n结构形式：钢筋混凝土结构；\n层数：宾馆区12层，办公区5层。\n位于校园南校门旁，由齐康院士主持设计。建筑整体风格简约，以入口处为分界划分为办公楼（西侧）和宾馆楼（东侧）两部分，层次分明，主体突出。是学校南门标志性建筑，集办公、会议、住宿等功能为一体。2019年进行内部更新改造。",
+      "location": {
+        "geoType": "point",
+        "x": 121.531937062864,
+        "y": 38.8758954497481
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "宾馆区12层，办公区5层。"
+    },
+    {
+      "id": "77444",
+      "name": "A4区02-学术交流公寓",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77444",
+      "retrieved": "2026-09-14",
+      "response_sha256": "74274cb8ffcd3c09801e9b43d73ea5ea888cc71b525b43e5ca75c86395ece105",
+      "description": "建成年份：1986年；\n建筑面积：4596.67m²；\n结构形式：混合结构；\n层数：6层。\n位于科技园大厦北侧，刘长春体育馆南侧。总体建筑风格简约。由前后两个体量组成。整体布局具备现代主义建筑的基本特征，平面舒展、高低错落、立面开窗反映内部功能结构布局。前部体量低矮，入口形成宽大的雨棚；后部体量3～6层，原作为客房使用，现为研究生公寓使用，形成建筑造型的一大特色。",
+      "location": {
+        "geoType": "point",
+        "x": 121.531572608176,
+        "y": 38.8765553254053
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77445",
+      "name": "A4区03-刘长春体育馆/游泳馆",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77445",
+      "retrieved": "2026-09-14",
+      "response_sha256": "1186054031053c3ad4e1f755a6f1b77ff7965f6765e79ae4ecb95bdc7a2c7aa6",
+      "description": "建成年份：2003年；\n建筑面积：17280.00㎡；\n使用面积：9012.65㎡；\n结构形式：钢筋混凝土结构；\n层数：5层。\n刘长春体育馆是以在我校从事体育教学工作三十余载的“中华体育先驱”、“中国奥运第一人”刘长春教授名字命名的一座现代化综合体育馆，其主体建筑由中心比赛馆、游泳馆组成，包括篮排球训练馆、综合馆、乒乓球台球馆、体操馆、舞蹈馆、武术馆、器械健身馆等多个附属场馆。附设有贵宾室、运动员休息室、裁判休息室、会议室、药检室、新闻发布中心等多个功能用房，是国内高校中功能最全、设施最先进的体育馆之一。",
+      "location": {
+        "geoType": "point",
+        "x": 121.531715748263,
+        "y": 38.8774528946122
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "5层。"
+    },
+    {
+      "id": "77446",
+      "name": "A4区05-厚德楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77446",
+      "retrieved": "2026-09-14",
+      "response_sha256": "c4a4c87aef3f4e1557c406690be5ffdacc6d240e9d92ac86c5bbb99d4e61834d",
+      "description": "建成年份：1990年；\n建筑面积：5821.88㎡；\n使用面积：3617.91m²；\n结构形式：混合结构；\n层数：6层。\n靠近东门，毗邻刘长春体育馆。长方形体量，利用开窗及窗间墙的不同材料组合，整体强调竖向划分。中部体量凸出，并通过雨棚及外窗线脚强调水平线条，以强调建筑入口。2019年，将西侧山墙面的阳台改建为电梯间。原由体教部等部门使用，现由人文学院和公共管理学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.532267541565,
+        "y": 38.8783142058167
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77447",
+      "name": "A4区06-伯川图书馆",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77447",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f5400e20db699eadeafe5b1641796f2c7043e0e2cab27ac3575b3e6d80b2b80a",
+      "description": "建成年份：1999年；\n建筑面积：20414.68㎡；\n使用面积：\t12059.05㎡；\n结构形式：钢筋混凝土结构；\n层数：主体5层，局部6层。\n伯川图书馆（简称伯川馆）位于凌水主校区核心地带，以我国著名教育家、学校创始人之一屈伯川博士名字命名。建成于1999年，建筑面积2万平方米，2019年12月完成了全面修缮改造。该馆定位为文理馆，馆藏包括社科、理科类中文图书及中文社科、理科类期刊、文艺期刊和报纸、学位论文等特种文献，并专设有凌水书屋（收藏国学文献）和百川文库（收藏本校教师和校友撰写的图书文献）。",
+      "location": {
+        "geoType": "point",
+        "x": 121.528019675554,
+        "y": 38.8780148280802
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "主体5层，局部6层。"
+    },
+    {
+      "id": "77448",
+      "name": "B3区01-博留公寓01",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77448",
+      "retrieved": "2026-09-14",
+      "response_sha256": "d7ca5246859ab642936a69d4040e3ef1169a05b519f8a5c6ecdd3c27d254c6bc",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532362617461,
+        "y": 38.8869250268798
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77449",
+      "name": "B3区02-博留公寓02",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77449",
+      "retrieved": "2026-09-14",
+      "response_sha256": "0c231eb7726c4d807cce994fa04edc6c881ab95319539b20dcf9595919f0485b",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532621497039,
+        "y": 38.8861823059084
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77450",
+      "name": "B3区03-博留公寓03",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77450",
+      "retrieved": "2026-09-14",
+      "response_sha256": "5397323d0b0e243cd8c73aebdd64a246ca518f4ab068817c79a077599a4c2fd5",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53299752362,
+        "y": 38.8855136642623
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77451",
+      "name": "B3区04-博留公寓04",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77451",
+      "retrieved": "2026-09-14",
+      "response_sha256": "fd7d929f7bffe5303f66d04aa01ba48957e5ab0b51a828339cfc2385f384534b",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533690796079,
+        "y": 38.8850582740135
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77452",
+      "name": "B3区08-食堂",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77452",
+      "retrieved": "2026-09-14",
+      "response_sha256": "1dcbced2520445723b746711752d8f5953509aa41e75d3276b14fb2afc458133",
+      "description": "营业时间：\n早餐：6:50-9:00 \n午餐：11:00-12:40 \n晚餐：16:30-22:00\n",
+      "location": {
+        "geoType": "point",
+        "x": 121.534505379918,
+        "y": 38.8843946867273
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77453",
+      "name": "B2区18-北区科技楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77453",
+      "retrieved": "2026-09-14",
+      "response_sha256": "62b876c132a69c21e1f6b6fb83eac597d464c4764f8db33134e460f5bed282b0",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.531210876865,
+        "y": 38.8880698262829
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77454",
+      "name": "B2区16-第七食堂",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77454",
+      "retrieved": "2026-09-14",
+      "response_sha256": "88841a155b9b00af7a77cae168d8c87b64bb6fc8aceb341571d628d2414bb743",
+      "description": "营业时间：\n早餐：6:00-9:30 \n午餐：11:00-12:30 \n晚餐：16:30-18:30\n",
+      "location": {
+        "geoType": "point",
+        "x": 121.532337724911,
+        "y": 38.8886576531126
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77456",
+      "name": "B2区01-北山学生宿舍01",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77456",
+      "retrieved": "2026-09-14",
+      "response_sha256": "af978ef9ed15d8f27e5f0983a8dcf511abf2831247a6b962ae51d5aa175f3702",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.530360812737,
+        "y": 38.8883059993827
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77457",
+      "name": "B2区02-北山学生宿舍02",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77457",
+      "retrieved": "2026-09-14",
+      "response_sha256": "2f26c1f6d5d36d591ef1f6c3df2666bc1fa932e875cd08c9e492c7363c5908d6",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.530408274966,
+        "y": 38.887932773485
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77458",
+      "name": "B2区03-北山学生宿舍03",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77458",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f263251fdd1355c3dab237a972fa9a8ca36a227840a9ad6fb58ba8a4cfe20364",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.529810961204,
+        "y": 38.8880886862774
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77459",
+      "name": "B2区04-北山学生宿舍05",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77459",
+      "retrieved": "2026-09-14",
+      "response_sha256": "397358da2f743200ee10e232df042f436482e9045a05c8085a0cd5c61c4d6b73",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.529170356446,
+        "y": 38.8878180051755
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77460",
+      "name": "B2区05-北山学生宿舍04",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77460",
+      "retrieved": "2026-09-14",
+      "response_sha256": "456ac4e5efc3d3cbc082bc31a01f0d41f9bc48327ee6c73b71db2ff3ae3158af",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52910539126,
+        "y": 38.888117264442
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77461",
+      "name": "B2区06-北山学生宿舍06",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77461",
+      "retrieved": "2026-09-14",
+      "response_sha256": "33b422c708f969b6e060fa87b6a31169857dbf413f092a5a00a52be00e92e2f0",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.526949472487,
+        "y": 38.8884247842185
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77462",
+      "name": "B2区07-北山学生宿舍07",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77462",
+      "retrieved": "2026-09-14",
+      "response_sha256": "36908541a4551f018e049d89de4b0728c3d258b29d154273cf80f810956fdaef",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.528205462884,
+        "y": 38.8886072731521
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77463",
+      "name": "B2区08-北山学生宿舍08",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77463",
+      "retrieved": "2026-09-14",
+      "response_sha256": "1e623cfa1d901128c955d1cafc4b9a8e49082593a2c8ccdcdb813728db557d8e",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.527037616121,
+        "y": 38.8891721183712
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77464",
+      "name": "B2区09-北山学生宿舍09",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77464",
+      "retrieved": "2026-09-14",
+      "response_sha256": "76ac07054e550a129005ead2803603f15a6c71ddeb1dc9fa66570f49f418f00c",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.528192515987,
+        "y": 38.8893555903594
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77465",
+      "name": "B2区10-北山学生宿舍10",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77465",
+      "retrieved": "2026-09-14",
+      "response_sha256": "08ad6a5ccc6701e634d59002cd72a5d21be3bf1d4e9bb2e5b3c2155e66736d99",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.531343426898,
+        "y": 38.888812065527
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77466",
+      "name": "B2区11-北山学生宿舍11",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77466",
+      "retrieved": "2026-09-14",
+      "response_sha256": "93e6e8a63de41a0ab5092e9a22efab0b0e2f8b097aecd5c9f565917ca611362b",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.531407586,
+        "y": 38.8892461114717
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77467",
+      "name": "B2区12-北山学生宿舍12",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77467",
+      "retrieved": "2026-09-14",
+      "response_sha256": "4feb68152547d9ea753ebc4096199faf7a71db077ff5ff0693de7c02a8953230",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532276572108,
+        "y": 38.8894193836402
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77468",
+      "name": "B2区13-北山学生宿舍13",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77468",
+      "retrieved": "2026-09-14",
+      "response_sha256": "02585d8633de187a3bad0d0d580909c57b6dc9c9bf2f37954f73d4b8c8e9ceab",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533206607744,
+        "y": 38.8892033221662
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77472",
+      "name": "B2区17-体育活动中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77472",
+      "retrieved": "2026-09-14",
+      "response_sha256": "0d7f357e127918240a21030dd30b28465716a9efa9ffb68c091776913d2ae1a8",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52732328119,
+        "y": 38.8887428788634
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77474",
+      "name": "B1区32-数学科学学院大楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77474",
+      "retrieved": "2026-09-14",
+      "response_sha256": "ad460e56dc95da25749a2118b742288596bd4f9119690aea0bd4ee083fd31ca0",
+      "description": "建成年份：1986年；\n建筑面积：5556.14m²；\n使用面积：3740.23㎡；\n结构形式：混合结构；\n层数：6层。\n位于学校西便门西北侧,建筑呈“L”形布局。曾用作理工宾馆，于2017年进行翻修改造，每一层都有特色鲜明的功能区分。原建筑造型为舒展的窗下横线条与深色窗间墙结合，是原学校西门区域最具标志性的建筑。改造后的建筑呈现“包豪斯”风格，通过对窗格、露台、遮阳板的精心搭配和处理,呈现出简洁统一，并富动感的艺术形象。原由创新创业学院使用，现为数学科学学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.525856269045,
+        "y": 38.8789259648419
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77479",
+      "name": "B1区11-西山学生宿舍11#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77479",
+      "retrieved": "2026-09-14",
+      "response_sha256": "dc31316fe2d0faa5d134bd779f1b70bae2a679d91d48d70749319cb549f6c7fd",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.525376689616,
+        "y": 38.8789868759886
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77480",
+      "name": "B1区35-后勤办公楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77480",
+      "retrieved": "2026-09-14",
+      "response_sha256": "63c5b2ba969ca1b177c9bf5ecb0f46eadecebf8b2012f0cad80f7ef8d6b82027",
+      "description": "建成年份：1988年；\n建筑面积：847.90㎡；\n使用面积：477.83㎡；\n结构形式：混合结构；\n层数：3层。\n建筑采用“V”形的布局形式。黄棕色的建筑外墙上覆满爬山虎，把建筑围得严严实实。绿植掩映中，锯齿形的凸窗富有秩序地露出。现由后勤处使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.525236834797,
+        "y": 38.8793253558037
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "77481",
+      "name": "B1区31-沁园食堂",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77481",
+      "retrieved": "2026-09-14",
+      "response_sha256": "d97f27971350a59b573d20bdfe3fc2fb87baa6feeabd09fa63ce4e6918cd41ee",
+      "description": "沁园餐厅：\n早餐：6:00-9:00 \n午餐：10:00-13:00 \n晚餐：16:00-19:00\n",
+      "location": {
+        "geoType": "point",
+        "x": 121.52458042373232,
+        "y": 38.87879849746702
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77483",
+      "name": "B1区21-西山学生宿舍21#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77483",
+      "retrieved": "2026-09-14",
+      "response_sha256": "046f4e97b932de17c71e84a129e403f29131e4e1c07c8a32671075f046e8fedb",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.524276467753,
+        "y": 38.8787029060143
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77484",
+      "name": "B1区20-西山学生宿舍20#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77484",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b7ff033a1fb4c76a13d2b4cda5ef661b9eadd7b8d9f0c6078f63583e72180a51",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.523399059572,
+        "y": 38.8787773377797
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77485",
+      "name": "B1区10-西山学生宿舍10#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77485",
+      "retrieved": "2026-09-14",
+      "response_sha256": "6cb39cb34d30807fee74dc904dd3568ba378c83fd3d7090139eed84888985960",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.524910739482,
+        "y": 38.8785626094393
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77486",
+      "name": "B1区09-西山学生宿舍9#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77486",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b3ad08e7bac6ad4eaf8acce4243ad5002d029e9ef0d9ddb5583647790181fc6d",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.524234056092,
+        "y": 38.8795319517203
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77487",
+      "name": "B1区38-校医院",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77487",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7c652c3d06abcbf3d919b4a63eb8581449aacebf70660fe58f084b2e9089d7aa",
+      "description": "建成年份：2000年；\n建筑面积：5200.61㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n建筑外观形体方正，东侧随用地边界有所削减，呈锯齿状排列。建筑南侧作为主要临街立面，设有主入口。",
+      "location": {
+        "geoType": "point",
+        "x": 121.525050089946,
+        "y": 38.8801843430299
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "77489",
+      "name": "B1区19-西山学生宿舍19#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77489",
+      "retrieved": "2026-09-14",
+      "response_sha256": "838941657ae539275813205992531ca1711789bfd2a6630ce37eaae85c33e37b",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52222142946,
+        "y": 38.8786076535278
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77490",
+      "name": "B1区36-中心食堂",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77490",
+      "retrieved": "2026-09-14",
+      "response_sha256": "40ded539f15c196a226e32083a273f65acb45ce803d17f875ee6d62652d07750",
+      "description": "中心食堂一楼营业时间： \n早餐：6:00-9:00 午餐：10:00-13:00 晚餐：16:00-19:00 \n中心食堂二楼营业时间：\n早餐：6:30-9:00 午餐：10:30-13:00 晚餐：16:30-17:40\n中心食堂三楼营业时间：\n午餐：10:30-13:00 晚餐：16:00-19:00\n",
+      "location": {
+        "geoType": "point",
+        "x": 121.522181564549,
+        "y": 38.8793535620318
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77491",
+      "name": "B1区37-大学生超市",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77491",
+      "retrieved": "2026-09-14",
+      "response_sha256": "d81d6bf663057c635a922867c7c34d84941d177a9011e1c8c2771f8c4810b019",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.521301995602,
+        "y": 38.8797841685706
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77492",
+      "name": "B1区39-第五食堂/西山浴区",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77492",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7989ee704daadbaa62ab56ca03c8982459e71296fa8d756c7fa7921c84bd7465",
+      "description": "营业时间：\n早餐：6:30-8:30 \n午餐：11:00-13:00 \n晚餐：16:30-18:00\n",
+      "location": {
+        "geoType": "point",
+        "x": 121.5223605977,
+        "y": 38.8826052672609
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77493",
+      "name": "B1区17-西山学生宿舍17#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77493",
+      "retrieved": "2026-09-14",
+      "response_sha256": "2b3dffc30c2f85d9e28778f10bafe7735458ddd5d087deccac74f1f52cdd5c15",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52084544959058,
+        "y": 38.878911260286415
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77494",
+      "name": "B1区18-西山学生宿舍18#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77494",
+      "retrieved": "2026-09-14",
+      "response_sha256": "2c4ef5c652b0d003943a48564f9d9206103be602e58d6430d8c90f1954ca4040",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52121761882023,
+        "y": 38.878885703007356
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77495",
+      "name": "B1区13-西山学生宿舍13#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77495",
+      "retrieved": "2026-09-14",
+      "response_sha256": "fc2dc08850c79680f63e629dbdbaff792d0a6a725868ef56842f6334a0332b09",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.520910986468,
+        "y": 38.8793296558868
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77496",
+      "name": "B1区12-西山学生宿舍12#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77496",
+      "retrieved": "2026-09-14",
+      "response_sha256": "afca7d123e6120200ab84111d542e1f764087bcc3d27afc16a8054ba10c737fe",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.521397065883,
+        "y": 38.8793452313531
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77497",
+      "name": "B1区15-西山学生宿舍15#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77497",
+      "retrieved": "2026-09-14",
+      "response_sha256": "d1696aaefb5111d2d5188c776f216bee8ea9866f2b67b0d9c34b6895e8bb3e06",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.520697601795,
+        "y": 38.8803855157452
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77498",
+      "name": "B1区16-西山学生宿舍16#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77498",
+      "retrieved": "2026-09-14",
+      "response_sha256": "078672d4b6fa3e11c990f8bf57158dc0569202df5fce59ac7a89718715d30a2f",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52125356633,
+        "y": 38.8804470071577
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77499",
+      "name": "B1区04-西山学生宿舍4#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77499",
+      "retrieved": "2026-09-14",
+      "response_sha256": "2e3e4be7ba12f87aa991926d5c54cb90555117595c558e3eec1099658d8e3d38",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.521690413474,
+        "y": 38.8804835688881
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77500",
+      "name": "B1区05-西山学生宿舍5#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77500",
+      "retrieved": "2026-09-14",
+      "response_sha256": "079a7974aba66c65841c21346dec8b6121afd71df211f6cdda52295f3847c656",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.522425935835,
+        "y": 38.8805253416241
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77501",
+      "name": "B1区06-西山学生宿舍6#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77501",
+      "retrieved": "2026-09-14",
+      "response_sha256": "4ab5a005d3670314cbdece9324c6e3b76788eb081596f1f59d8ee9c27d795a7c",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.523014860915,
+        "y": 38.8805502345528
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77502",
+      "name": "B1区07-西山学生宿舍7#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77502",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7082ebaba6648b24348aa2f41214c90ee578fe24f37574f08a58f2f9fad3c4a3",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.523645522204,
+        "y": 38.8805900315822
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77503",
+      "name": "B1区08-西山学生宿舍8#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77503",
+      "retrieved": "2026-09-14",
+      "response_sha256": "6fdf8c854fa2e82345998a5a2208acd8144f332c1177f991b973dcafdb979db8",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.524192971347,
+        "y": 38.8805823781375
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77504",
+      "name": "B1区01-西山学生宿舍1#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77504",
+      "retrieved": "2026-09-14",
+      "response_sha256": "0b26c827f1762dfed71003602cf7c5497182722ee5ed805220863d1ef71c6063",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.521545557616,
+        "y": 38.8815120764565
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77505",
+      "name": "B1区02-西山学生宿舍2#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77505",
+      "retrieved": "2026-09-14",
+      "response_sha256": "1ad304c7adabf856728e1cb6434eaf0c85a0116ad82b3e99fc647aa841d9130a",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52220163837,
+        "y": 38.8815093574796
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77506",
+      "name": "B1区03-西山学生宿舍3#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77506",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b31cff0ba9bdce48e2c03e6c8781d23f9925a78f924b5174a81406e2894a3d91",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.522817671266,
+        "y": 38.8816358313443
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77507",
+      "name": "B1区24-西山学生宿舍24#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77507",
+      "retrieved": "2026-09-14",
+      "response_sha256": "2e034df39a6afb144cf32501ba0f61c341796467ea3233b9bcad52bb2356bc69",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.521134895849,
+        "y": 38.8810381327852
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77508",
+      "name": "B1区22-西山学生宿舍22#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77508",
+      "retrieved": "2026-09-14",
+      "response_sha256": "75eeffaf6be6611aecd0ec69531f9b830419f155c3c7d65a898c9d80ea320826",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.520738074801,
+        "y": 38.8810479825259
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77509",
+      "name": "B1区26-西山学生宿舍26#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77509",
+      "retrieved": "2026-09-14",
+      "response_sha256": "adda175904eb3c772e689195e217cab27f3e3ba54b399f533767d1692099569c",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52027494568,
+        "y": 38.8808987209288
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77510",
+      "name": "B1区23-西山学生宿舍23#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77510",
+      "retrieved": "2026-09-14",
+      "response_sha256": "35127ce1688d8885a4e415e654dfac75531d14357b43d8075342a3eff17b049b",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.520680662248,
+        "y": 38.8817078677806
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77511",
+      "name": "B1区25-西山学生宿舍25#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77511",
+      "retrieved": "2026-09-14",
+      "response_sha256": "4d0b280cbdcd86551789a8a952e90981294a5b074b31d86e7f098811bb1b6636",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.521096335995,
+        "y": 38.8817128118459
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77512",
+      "name": "B1区27-西山学生宿舍27#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77512",
+      "retrieved": "2026-09-14",
+      "response_sha256": "590f2c2eb5d19b55c6af5c3499537ea57292589bcf3571562fdea763706ba8ab",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.520680971988,
+        "y": 38.8823072958731
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77513",
+      "name": "B1区28-西山学生宿舍28#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77513",
+      "retrieved": "2026-09-14",
+      "response_sha256": "905fb76fa23b2e3aa231ed808716d6eae230db6d23faf46ec9275e5c4f0d4111",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.521098267303,
+        "y": 38.8825901333065
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77514",
+      "name": "B1区29-西山学生宿舍29#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77514",
+      "retrieved": "2026-09-14",
+      "response_sha256": "8170e97d52544d67c8001466c271a406cb1609fb855adc68e500ce91d3d454f6",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52168029856,
+        "y": 38.8828237747458
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77515",
+      "name": "B1区14-西山学生宿舍14#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77515",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7a15cadb84ac9986e83e7a336d69ace080952eff777adfb4c1a7051806d03122",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.521903941913,
+        "y": 38.8821426362867
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77516",
+      "name": "配电房",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77516",
+      "retrieved": "2026-09-14",
+      "response_sha256": "d44bce39dc599a9779529e958576adeacf4ceb0c6de56aa4c6e1974c3767de74",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.521888846277,
+        "y": 38.8823368104365
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77519",
+      "name": "东山5栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77519",
+      "retrieved": "2026-09-14",
+      "response_sha256": "2a42d688411771a45d3cc6a692486c70e09a7aab675f255f800e39745d1d7082",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53065999693,
+        "y": 38.8842303479364
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77539",
+      "name": "东山8栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77539",
+      "retrieved": "2026-09-14",
+      "response_sha256": "ecefafaf62c404e07f8666f218479c4a039713821299f316547f378a2f0bc73f",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.531305638381,
+        "y": 38.8829956206226
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77540",
+      "name": "东山9栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77540",
+      "retrieved": "2026-09-14",
+      "response_sha256": "e73ff9f81dcf155df5561b6a06ac51c4a537cc012fc5bc299b2ac1c98212cc2d",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.531313436306,
+        "y": 38.8832426675871
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77541",
+      "name": "东山10栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77541",
+      "retrieved": "2026-09-14",
+      "response_sha256": "e98340e157e450418a8566585b1b62d9d58f39411f10a79e477e3d94fadcd841",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.531323573267,
+        "y": 38.8835897058124
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77542",
+      "name": "东山11栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77542",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b6dbcb938ea4bbb6cbc7ab07053958c13ffea5758dfb3e811fbe8e417ad8ba7c",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.531369920764,
+        "y": 38.8839383888603
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77543",
+      "name": "小楼11#12#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77543",
+      "retrieved": "2026-09-14",
+      "response_sha256": "99cec59d5d2d7959423c9ac916850af721f22d93dff4c3658857f0ecda1012a7",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532066493899,
+        "y": 38.8826952280817
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77544",
+      "name": "小楼9#10#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77544",
+      "retrieved": "2026-09-14",
+      "response_sha256": "134a8c08286efc18f5482605d1ec0c91267a8a5b8a148d5860d4f74b56945964",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532467375725,
+        "y": 38.8828625683315
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77545",
+      "name": "小楼19#20#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77545",
+      "retrieved": "2026-09-14",
+      "response_sha256": "1782264656e25e02ca9269f5c41a43f69e45ead3744ccd153f3ea5269b5388f3",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532798242293,
+        "y": 38.8829928137713
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77546",
+      "name": "小楼7#8#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77546",
+      "retrieved": "2026-09-14",
+      "response_sha256": "e0c69aa74759223642ff6703b6c006ded9dd6d98218a40802669db73d7e181de",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532163940601,
+        "y": 38.8829412368443
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77547",
+      "name": "小楼5#6#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77547",
+      "retrieved": "2026-09-14",
+      "response_sha256": "85f5edce751953cb320ef7fa548e8797942f34bfa62704b22cf4a3c9d5560f11",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532598009853,
+        "y": 38.8831212345502
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77548",
+      "name": "小楼17#18#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77548",
+      "retrieved": "2026-09-14",
+      "response_sha256": "8b85c84b66bccd8120133384e37b0acc60f865f0b1cd861e84e2f46d769b4909",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53190252761,
+        "y": 38.8824123785364
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77549",
+      "name": "小楼15#16#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77549",
+      "retrieved": "2026-09-14",
+      "response_sha256": "94fe1d8f7e6b63bebbcd6279c63046b37c634bf6a6cbea97446933e9ba158242",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532356847675,
+        "y": 38.8825770357616
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77550",
+      "name": "小楼13#14#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77550",
+      "retrieved": "2026-09-14",
+      "response_sha256": "4170e63c6a4013359584105b8f7287b1ca72ddf2292d4676010e4d5ae9559d16",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532836423677,
+        "y": 38.8827748963296
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77551",
+      "name": "小楼3#4#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77551",
+      "retrieved": "2026-09-14",
+      "response_sha256": "6774b53941494b71cde342946349ace9c8e60373a037092263f5bc5d0fb3b578",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532266638105,
+        "y": 38.883197800151
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77552",
+      "name": "小楼1#2#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77552",
+      "retrieved": "2026-09-14",
+      "response_sha256": "8cdeca5f5d08f71a706a89f22724cd9430d8c6e792c7d0f9ffc3f7a6966f1a76",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532702852901,
+        "y": 38.8833616349649
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77553",
+      "name": "东山12栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77553",
+      "retrieved": "2026-09-14",
+      "response_sha256": "013d13c66ab78f2e791c6c5d89ff678824216232916abf4cbb71d509dee38e42",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532334160991,
+        "y": 38.8839550777006
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77555",
+      "name": "东山30栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77555",
+      "retrieved": "2026-09-14",
+      "response_sha256": "db9ace0f7c6905512cf52da373d19cca5d7002bd1425377a12d24287b61e1e1c",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533043609015,
+        "y": 38.8839742886426
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77556",
+      "name": "东山34栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77556",
+      "retrieved": "2026-09-14",
+      "response_sha256": "6e91d036c265b7efa7d19329fcc63df0902d1d085553a907c0dd8f2c115f7df5",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533309155533,
+        "y": 38.8829735632206
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77557",
+      "name": "东山33栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77557",
+      "retrieved": "2026-09-14",
+      "response_sha256": "0030cd7276d7b5708936e06a84b6486cb4c6bba9ca8ad835a9564694236859cd",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533229335792,
+        "y": 38.8831956755155
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77558",
+      "name": "东山32栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77558",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f25fa5589838acc861f1e070f3ce4a6a3cc0d2d2f65dc63e2d708c4d7b8fafbe",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533173261426,
+        "y": 38.8834416794794
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77559",
+      "name": "东山31栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77559",
+      "retrieved": "2026-09-14",
+      "response_sha256": "0caf126fc5f51a45fc9bd06d4fbd67013518824418990323c6c8df2dab69ed19",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533099959358,
+        "y": 38.8836920112904
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77560",
+      "name": "东山35栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77560",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b4c4d2e7b219e8cbbee28650e45a369e881bda599c6a6d4dcf02278235fafb0d",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533751171978,
+        "y": 38.8831143839243
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77561",
+      "name": "东山36栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77561",
+      "retrieved": "2026-09-14",
+      "response_sha256": "10cf5750de792fcfee543787f3c0043c9bd19cb308b088234428687799eb3966",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533684923833,
+        "y": 38.8833390195902
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77562",
+      "name": "东山37栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77562",
+      "retrieved": "2026-09-14",
+      "response_sha256": "c27e80f3c3b75d6d6f50da63cfccf56bd3675bcd2464932d9d5a5607fe3bd18a",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533655016362,
+        "y": 38.8835564789425
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77563",
+      "name": "东山38栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77563",
+      "retrieved": "2026-09-14",
+      "response_sha256": "34dadf278fdb935f33b893b6ef9ca3ea23b346ba9c44576dc97fa8a5f339f339",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533588507944,
+        "y": 38.8837987568812
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77564",
+      "name": "东山39栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77564",
+      "retrieved": "2026-09-14",
+      "response_sha256": "477bfff64d3e259d7c13eda571e0ee1e1175728a25e3a7e4142e668dbedf7c13",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533551059393,
+        "y": 38.884010298711
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77565",
+      "name": "东山40栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77565",
+      "retrieved": "2026-09-14",
+      "response_sha256": "8247684da56e6e2cc4476a929d37a25025372d38300b12916d8399fa28591074",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.534186113967,
+        "y": 38.8831164791162
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77566",
+      "name": "东山41栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77566",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f3ada467d7b0fe8e599ad5ba1cb7d68bce89649a6cd6062fdf44ff70353f6e65",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.534142619197,
+        "y": 38.8833500462132
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77567",
+      "name": "东山42栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77567",
+      "retrieved": "2026-09-14",
+      "response_sha256": "647cea18f28fe6495c593c3130db9e174ea361e21e412368aacd5f06fcf9944d",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.534097239157,
+        "y": 38.8835821339295
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77568",
+      "name": "小楼23#24#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77568",
+      "retrieved": "2026-09-14",
+      "response_sha256": "82b1cb282ccc1e2c8dc38c67f975518afee6bf3c25565520089efe15755481e6",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.532706294872,
+        "y": 38.8824373598864
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77569",
+      "name": "小楼21#22#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77569",
+      "retrieved": "2026-09-14",
+      "response_sha256": "648e4ec04ab6728e3fbefccdf08806cce4b3936ed77d2c5bb5b8776690d2899b",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53300456712,
+        "y": 38.882563221132
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77570",
+      "name": "B3区05-博留公寓05",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77570",
+      "retrieved": "2026-09-14",
+      "response_sha256": "dc9d00b56533298d441a99e88fc13a65c3dab493a25757e0e89038bb220f542f",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.534783383956,
+        "y": 38.8833481262822
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77571",
+      "name": "B3区07-博留公寓07",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77571",
+      "retrieved": "2026-09-14",
+      "response_sha256": "a9e56c384e38d9c1d06a2b54f9a75be85bb0f87f171e583a6dcd4a273959001a",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.536082285222,
+        "y": 38.8832073573749
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "77572",
+      "name": "B3区06-博留公寓06",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77572",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f470ba2df1d599fc55de90ac64917f4d7189fdc9911df82ec21a3e3b6220dd6b",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.535400778147,
+        "y": 38.8837701357876
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "78148",
+      "name": "研究生社团活动中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=78148",
+      "retrieved": "2026-09-14",
+      "response_sha256": "9ce9ebf49cce8977a5c07d10afd0ef03c79c557bfc3cd32f59e3ce934a898d61",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.530973142162,
+        "y": 38.8894794248744
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "78292",
+      "name": "A3区31-电力电子研究所",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=78292",
+      "retrieved": "2026-09-14",
+      "response_sha256": "cb5ea29484c749703d4e798c8b9d486aae38940eebb70d52fee69afc0b3367c9",
+      "description": "建成年份：1991年；\n建筑面积：2419.82㎡；\n使用面积：1146.12㎡；\n结构形式：混合结构；\n层数：5层。\n位于校园东部，博留公寓第五宿舍以南，弘远路以东。建筑由三部分体块组成，中间高，两侧低，体块方正，主次分明。中部首层为人行主入口，两侧设有车行入口，楼体窗口纵横边界均齐平，加以横向线条分割，立面外观规律且齐整。现由电气工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.534828175265,
+        "y": 38.8829219150579
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "5层。"
+    },
+    {
+      "id": "78293",
+      "name": "A3区32-静电与特种电源研究所",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=78293",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f9f7a6bc7c9adf0090205b5ca60c1da0abcd0967713f1852d6dcc21957cb2338",
+      "description": "建成年份：1993年；\n建筑面积：1126.84㎡；\n使用面积：574.09㎡；\n结构形式：混合结构；\n层数：3层。\n位于校园东侧，周边为三栋博留公寓。建筑由四部分构成，体块相互咬接，中部拔高，东、西两侧体块设计为多边形，局部平台退后，形体错落。入口内凹，呈外八字，在视线引导的同时，利用有限空间强调入口。现由电气工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.535414370899,
+        "y": 38.8828732801347
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "78486",
+      "name": "收发室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=78486",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7899cf7be490c637df932e489ce6775a91696f99439d5796d021844215cf9a69",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.527387447512,
+        "y": 38.8780078979649
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "81821",
+      "name": "西山公寓",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=81821",
+      "retrieved": "2026-09-14",
+      "response_sha256": "6af0e16c28253d1c40811c0205b9d92c0d17562f3755e17895a79eec7fd08301",
+      "description": "统计日期:2018-06-25<br/>出口: 556辆<br/>入口: 546辆<br/>",
+      "location": {
+        "geoType": "point",
+        "x": 121.526081786424,
+        "y": 38.8791811974848
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "83718",
+      "name": "A3区22-学生文化中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=83718",
+      "retrieved": "2026-09-14",
+      "response_sha256": "9ced07c0d58b3b2315093843b1d2b6d112aae8de29e968b624e70daaf5b25bc3",
+      "description": "建成年份：2019年；\n建筑面积：27514.46㎡;\n使用面积：14715.13㎡；\n结构形式：钢筋混凝土结构；\n层数：5层。\n西临明德路，西侧为休闲广场。南北轴长282米，东西轴长52米，建筑主体呈扁担式布局，将主要室内交通空间结合共享空间和顶部采光设计，使室内自然采光通风充分，并创造出有利于人的交往的生动活泼的室内空间效果。在设计手法上采用集中与分散相结合的布局，从而使项目本身不至于显得体量过于庞大，使学生之间的交流更为自然，同时释放出层次多样的室外、半室外空间，使空间富于变化。建筑北侧主要为办公区和社团活动空间，南侧由1500座的礼堂以及500座的音乐厅组成，优质的演出条件为校园文化发展提供重要支持。现由校团委、学生服务中心（学生就业指导中心）、教学运行保障中心共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.53044021596693,
+        "y": 38.88346788865208
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "5层。"
+    },
+    {
+      "id": "83977",
+      "name": "C区06-知渊楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=83977",
+      "retrieved": "2026-09-14",
+      "response_sha256": "5f8118e206ab58d7a3cfcb95c27fed1c29de2eb6463bd2be67a50bc4cfb6d95a",
+      "description": "建成年份：2018年；\n建筑面积：20551.13㎡；\n使用面积：13224.98㎡；\n结构形式：钢筋混凝土结构；\n层数：8层。\n位于西部校区北端。楼平面形式为“L”形与“Z”形的组合，南北体块之间皆有连廊连接，增强了南北楼联络和可达性。现由环境学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.51663182777347,
+        "y": 38.885715973433676
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "8层。"
+    },
+    {
+      "id": "83979",
+      "name": "A1区32-深海工程创新实验基地",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=83979",
+      "retrieved": "2026-09-14",
+      "response_sha256": "c23a981917c8d42b52cce833a34bfe2016c9096a1958e67106ca4934f2e1d31e",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.527786034578,
+        "y": 38.8837417761756
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "83981",
+      "name": "西山浴室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=83981",
+      "retrieved": "2026-09-14",
+      "response_sha256": "0f2d5eb4a7a47978aae6173bcccb05b906a8384efa2e38e22cdfe376f8131007",
+      "description": "男浴室<br/>存包柜合计：280<br/>存包柜已使用：6<br/>存包柜未使用：274<br/>女浴室<br/>存包柜合计：280<br/>存包柜已使用：37<br/>存包柜未使用：243<br/>",
+      "location": {
+        "geoType": "point",
+        "x": 121.522558459921,
+        "y": 38.8825145045971
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "625864",
+      "name": "A1区06-网络与信息化中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=625864",
+      "retrieved": "2026-09-14",
+      "response_sha256": "77822f43289b6032c57c0e6c21fa316f127e10f3d4faff15007c04535851b18e",
+      "description": "建成年份：1983年；\n建筑面积：2166.00㎡；\n使用面积：1339.76㎡；\n结构形式：钢筋混凝土结构；\n层数：3层。\n位于主楼东侧，长方形体量。建筑造型简洁有力，强调水平方向的舒展，在每层设有深远的挑檐，下部为通长带形长窗。建筑风格纯粹简洁，所有门窗均为钢制型材，室内铺设防静电地板，是当时大工校园内最现代化的建筑。南侧设有中国教育和科研计算机网大连地区地面卫星站。原为计算机中心，现由网络与信息化中心使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.52945903996121,
+        "y": 38.879807108301065
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3层。"
+    },
+    {
+      "id": "630232",
+      "name": "大连理工大学附属学校",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=630232",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7e21db705724718a29f2076f3b789ffa64f6709c33b8c3faf04ca1ea80bd0c26",
+      "description": "大连理工大学附属学校位于美丽的海滨城市大连，创办于1957年，历史悠久，底蕴丰厚。2000年大连理工大学将初中部与小学部加以整合，成立了九年一贯制学校，命名为大连理工大学附属学校。2014年5月16日，高新区和大连理工大学共同签署了《区校一体化合作协议》，正式接管圣克拉校区，学校开始实施一校两校区办学。校本部占地面积26880㎡，塑胶操场10060㎡；圣克拉校区占地面积26416.5㎡，建筑面积29083㎡。",
+      "location": {
+        "geoType": "point",
+        "x": 121.53918136309258,
+        "y": 38.877477649982545
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1337464",
+      "name": "C区07-知微楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1337464",
+      "retrieved": "2026-09-14",
+      "response_sha256": "cc38dd1d3dff639ab37772cae11dddb0c1a1da64b1ddd65e098ed13893035f79",
+      "description": "建成年份：2018年；\n建筑面积：19773.28m²；\n使用面积：12846.24㎡；\n结构形式：钢筋混凝土结构；\n层数：7层。\n位于西部校区北端，毗邻知渊楼，楼宇由四个长方体块穿插而成，体块的灵活变化使建筑形成中庭和前广场，空间灵活实用。现由生物工程学院使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.5154905944045,
+        "y": 38.885874325622126
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "7层。"
+    },
+    {
+      "id": "1502851",
+      "name": "B3区09-博留公寓09",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1502851",
+      "retrieved": "2026-09-14",
+      "response_sha256": "d3946d079a0be008d1fa01eb2ac421ec37770fe8935ac3f31d059b98c9409eb3",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53440353580336,
+        "y": 38.88399398358145
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1503000",
+      "name": "A3区27-学生创新实践中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1503000",
+      "retrieved": "2026-09-14",
+      "response_sha256": "a26685200d919876d377834e1e974aaf49c1113cf885c5f85f59498c43fa6d6b",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53256268472154,
+        "y": 38.8815547099541
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1503015",
+      "name": "C区09-知远楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1503015",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b03f2125552f9a512a3b0c4ccb57310f5fd41d25c1f10558dd9adcffc1d3768f",
+      "description": "建成年份：2024年；\n建筑面积：30000.00㎡；\n使用面积：19539.64㎡；\n结构形式：钢筋混凝土结构；\n层数：6层。\n位于西部校区南端，西邻知方楼，现由材料科学与工程学院和分析测试中心共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.51698813865752,
+        "y": 38.88010739897044
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "6层。"
+    },
+    {
+      "id": "1503045",
+      "name": "大连理工大学附属学校综合服务楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1503045",
+      "retrieved": "2026-09-14",
+      "response_sha256": "8207abadc2f783700d5d26c2b3e58283b18c50c111823a2d4d6b92d0eb49e9c2",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53920722259704,
+        "y": 38.87650625585424
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1512962",
+      "name": "东山15栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1512962",
+      "retrieved": "2026-09-14",
+      "response_sha256": "b48e87ad6b87e0b96d1ad1ba49827aa3045a9b1328465ce13f23d351b515e262",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53121949592955,
+        "y": 38.88425594241156
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1512970",
+      "name": "东山16栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1512970",
+      "retrieved": "2026-09-14",
+      "response_sha256": "cedc4317e2a2079d68369a7448a3ac96de4d34c2e44594024863f7d565a15eb0",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53120600861243,
+        "y": 38.884582969832024
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1512976",
+      "name": "东山17栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1512976",
+      "retrieved": "2026-09-14",
+      "response_sha256": "e76ffef5bf30d52a6def5ba97433b07afb24e0ee2fdf66273f2dbf43547a6581",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53119892894037,
+        "y": 38.88487027275525
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1512982",
+      "name": "东山18栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1512982",
+      "retrieved": "2026-09-14",
+      "response_sha256": "c08cdf2c117e50ad55cc53ca4aeacab2e55428d035b80c566f31f237ab60fc38",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53117535850419,
+        "y": 38.88510900123737
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1512984",
+      "name": "东山19栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1512984",
+      "retrieved": "2026-09-14",
+      "response_sha256": "1ea7cc7450743d4835313fcc9c6c9ef472c83c0aea063150a0fc6787b5bdbbb7",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53120210973253,
+        "y": 38.88538235594481
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1512987",
+      "name": "东山20栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1512987",
+      "retrieved": "2026-09-14",
+      "response_sha256": "2cee48ec1b0e6a7eb4cb3ecea0d891d285441bd0baa0c9737021b0264dac4e15",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53115084186277,
+        "y": 38.88567108988924
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1512992",
+      "name": "东山21栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1512992",
+      "retrieved": "2026-09-14",
+      "response_sha256": "3c067f8693af96aaed18e4482d6ddf5fce88f6f77587e4efcdf4381f36929d45",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53191619766582,
+        "y": 38.88569128822042
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1512994",
+      "name": "东山22栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1512994",
+      "retrieved": "2026-09-14",
+      "response_sha256": "90603a43d9787722bda9e3af50dad189b4c7a0088cc4708ed3a836f4a5c6d510",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53229872841422,
+        "y": 38.88569568520792
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1512998",
+      "name": "东山23栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1512998",
+      "retrieved": "2026-09-14",
+      "response_sha256": "5b160b905f9b58e43eb8c706532aca7fbce0a98c178019e7ad4ff0fef328c8e8",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53198438098582,
+        "y": 38.885395580168094
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1513002",
+      "name": "东山24栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1513002",
+      "retrieved": "2026-09-14",
+      "response_sha256": "9fb7e94d608bcfe273704cf1491b6015208e41b8be71d8f617cc2fecbd49b482",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.5323303084067,
+        "y": 38.885407301104294
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1513009",
+      "name": "东山25栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1513009",
+      "retrieved": "2026-09-14",
+      "response_sha256": "fc3c4b67f67334a8e66ffbd9e38563cad6b8d0090491e386c94e855ea4fabaaa",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53210376217982,
+        "y": 38.88513964937631
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1513018",
+      "name": "东山26栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1513018",
+      "retrieved": "2026-09-14",
+      "response_sha256": "6552d90b422205231c87ab2ff8ccb102ffc0f45ae687b96e7d6d11892e7ed715",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53211273806946,
+        "y": 38.88485381968496
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1513022",
+      "name": "东山27栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1513022",
+      "retrieved": "2026-09-14",
+      "response_sha256": "ed7a40391d73f8a0f907181f880b126039454f4fe28e0dffdab7d64f583e0fdb",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.5321097614598,
+        "y": 38.88459446595664
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1513025",
+      "name": "东山28栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1513025",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7af926af2e5511b2d450a24c742e51af605f6da87c125836645ca563483da4e2",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53214455198417,
+        "y": 38.8843152816377
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1513030",
+      "name": "东山29栋",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1513030",
+      "retrieved": "2026-09-14",
+      "response_sha256": "e33af2a8262fda601222acf645378adbe2f04ae820fb802672f9987bb42537e7",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53288904939407,
+        "y": 38.884319274418274
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "1582228",
+      "name": "B1区30-学生体质健康测试中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=1582228",
+      "retrieved": "2026-09-14",
+      "response_sha256": "636c9084a4d0678b4a74fca98c71163321b3b7f4366038784f307777ed47c38b",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52271773010187,
+        "y": 38.87858117292505
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2034735",
+      "name": "B1区39-西山学生宿舍30#-31#",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2034735",
+      "retrieved": "2026-09-14",
+      "response_sha256": "bc68b59da42fa3d4ebe84ec34befd728f8033450c02fad328f4a67ad028515f8",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52132619564176,
+        "y": 38.87819670134522
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2034766",
+      "name": "博士生8#楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2034766",
+      "retrieved": "2026-09-14",
+      "response_sha256": "547e8c47d239dec16c8ffccf152be030fa34185bcc74190b9d2c2db4bb131f17",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53214227067446,
+        "y": 38.887484090521326
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2122498",
+      "name": "A3区26-机械工厂三车间",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2122498",
+      "retrieved": "2026-09-14",
+      "response_sha256": "0154e182ab64d9b1c8b2e29a591ad17113e206859aa2af31ce35f58f7b3b0e39",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53339807981769,
+        "y": 38.88089685494268
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2145390",
+      "name": "校友交流中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2145390",
+      "retrieved": "2026-09-14",
+      "response_sha256": "786f2cca983ec7a0f102807be1d275aadf7e452999eca4f30f408634938a8c32",
+      "description": "校友会秘书处，对口支援、定点帮扶办公室，继续教育管理办公室",
+      "location": {
+        "geoType": "point",
+        "x": 121.52374361598578,
+        "y": 38.88354320489893
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2283165",
+      "name": "A1区21-船舶工程学院（船池）",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2283165",
+      "retrieved": "2026-09-14",
+      "response_sha256": "58dd71e42585958e43c144254d8572804bbbe2f232d98ffb717f9214b738d0c5",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52525511996947,
+        "y": 38.88293134971264
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2283170",
+      "name": "A1区24-造船工艺研究所",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2283170",
+      "retrieved": "2026-09-14",
+      "response_sha256": "e4c87d252e55a0851e0e6f13c89eb71dde4e035d973e652ab26d98a0f8ea4ea4",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.52503331877188,
+        "y": 38.88237234619941
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2283256",
+      "name": "A3区10-东山锅炉房",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2283256",
+      "retrieved": "2026-09-14",
+      "response_sha256": "a16a435ab9330dd7429c8b713671143691e725e35f787809892c9876b72562ac",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53301788158299,
+        "y": 38.88007531491981
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2283260",
+      "name": "修缮中心办公楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2283260",
+      "retrieved": "2026-09-14",
+      "response_sha256": "8ec0b44c3f5827c22728da75d57d11f996adea236aa16c08158ef80ac7b9f2cb",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.53262279641982,
+        "y": 38.88001646120628
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2554118",
+      "name": "西校区宿舍A",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2554118",
+      "retrieved": "2026-09-14",
+      "response_sha256": "594aa5e3ec2aebb9487dda47cec2384f37c21fba47b4c6cc470606def0055610",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.5183884237895,
+        "y": 38.89078205820328
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2554124",
+      "name": "西校区宿舍B",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2554124",
+      "retrieved": "2026-09-14",
+      "response_sha256": "30a658c01c9ac6b7c538dde8ad6b57c07eb5d73dfafbcc9875428be16f48c1da",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.51718168316174,
+        "y": 38.89015026993292
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2554126",
+      "name": "西校区宿舍C",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2554126",
+      "retrieved": "2026-09-14",
+      "response_sha256": "40dc4783c44c8d817bfd2b87fb0d340567a1b9a31d2e21d45ec83a9116675cc2",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.51683266650338,
+        "y": 38.889390953396244
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2554130",
+      "name": "西校区食堂D",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2554130",
+      "retrieved": "2026-09-14",
+      "response_sha256": "417bdf23ba7ca2779b57101aaecd3033bbf93b028a8450c5b6016e002cb4f4cf",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.51668920360694,
+        "y": 38.88855530712313
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2554132",
+      "name": "西校区宿舍F",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2554132",
+      "retrieved": "2026-09-14",
+      "response_sha256": "cdaf39bc320f8ade51fe4f92ebedfae88d10a76a3b88fca5c420277dcdf688b7",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.51834735002154,
+        "y": 38.88974343968818
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2554155",
+      "name": "医工结合创新中心",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2554155",
+      "retrieved": "2026-09-14",
+      "response_sha256": "7ecabafab0048c452f2ea5d934a3d71fa6d5c9d3c94cdf4180bb931e86fd1b56",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.51620433684141,
+        "y": 38.88695765828852
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "2554166",
+      "name": "西校区食堂H",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=2554166",
+      "retrieved": "2026-09-14",
+      "response_sha256": "f6b3caae014b40af322a56ea3e076f6d0538d970ec56e3779987b86689077c41",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.51792431168462,
+        "y": 38.881173359309
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "17927511",
+      "name": "在水一方西餐厅",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=17927511",
+      "retrieved": "2026-09-14",
+      "response_sha256": "6e23fbedef951bd951a0933795665567618ae0fe42caa411428f0b5cc051a96a",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.533102952207,
+        "y": 38.8860032434012
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "17929178",
+      "name": "附属高中/附属学校",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=17929178",
+      "retrieved": "2026-09-14",
+      "response_sha256": "ed5e164ed8c971f3536c934b6735917787a0839c839f599aeb70a64c8342a599",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.530937792364,
+        "y": 38.8935286973738
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "17937827",
+      "name": "A1区05-六角楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=17937827",
+      "retrieved": "2026-09-14",
+      "response_sha256": "eecf691818732ce8091f27dde3c4628cca0b0d31558483af34102521da5a9411",
+      "description": null,
+      "location": {
+        "geoType": "point",
+        "x": 121.529258775215,
+        "y": 38.8791487622775
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "18820417",
+      "name": "A1区36-A字楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=18820417",
+      "retrieved": "2026-09-14",
+      "response_sha256": "06d3c789be6b7476e47972251cc0a87f6c22dece5d5e534463845b68f4e272e2",
+      "description": "建成年份：1993年；\n建筑面积：1171.27㎡；\n使用面积：697.03㎡；\n结构形式：混合结构；\n层数：4层。\n位于建筑艺术馆北侧，综合教学1号楼南侧，建筑形状如字母A，故名为A字楼。现由力学与航空航天学院、船舶工程学院行政办公使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.52638686039634,
+        "y": 38.882583936245894
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "4层。"
+    },
+    {
+      "id": "29813247",
+      "name": "北山浴室",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=29813247",
+      "retrieved": "2026-09-14",
+      "response_sha256": "96cd69ece4f163c33b780e903d0c3dd725d294c9ca886f8bf52aa77bdc6f126a",
+      "description": "男浴室<br/>存包柜合计：120<br/>存包柜已使用：1<br/>存包柜未使用：119<br/>女浴室<br/>存包柜合计：120<br/>存包柜已使用：1<br/>存包柜未使用：119<br/>",
+      "location": {
+        "geoType": "point",
+        "x": 121.532643265172,
+        "y": 38.8886122832716
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": null
+    },
+    {
+      "id": "34785233",
+      "name": "A1区33-山上礼堂",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=34785233",
+      "retrieved": "2026-09-14",
+      "response_sha256": "3a99205f5c1b75339bfbd2e243ebd46176b8939edc56d8a66edd75cfee272bab",
+      "description": "建成年份：1981年；\n建筑面积：1645.11m²；\n结构形式：混合结构；\n层数：2层。\n位于花果山上，以电影院标准设计施工图纸为基础，又在长轴方向多建了两个柱距（12米），作为舞台。其外立面以红砖为主，也是“大工红”的基本色调，配以外露的浅色混凝土梁柱。建筑色彩随着阳光变化而出现微妙的转变。\n它的建设过程虽经波折，但从无到有是大工建设者们努力争取的结果。至今仍是校园文化和艺术的汇集地，著名的“峰岚杯”“英语晚会”“歌手大赛”以及历年的新年晚会曾均在此举行。",
+      "location": {
+        "geoType": "point",
+        "x": 121.528818274657,
+        "y": 38.8829293957376
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "2层。"
+    },
+    {
+      "id": "35995473",
+      "name": "A1区19-大工商店",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=35995473",
+      "retrieved": "2026-09-14",
+      "response_sha256": "645ab1f057a32cca5f5d57659ca679e457b30d9bb71a9ba69adbfaa664fc0c4c",
+      "description": "建成年份：1981年；\n建筑面积：2412.83m²；\n结构形式：混合结构；\n层数：3 层。\n位于尚书路北侧，明德路西侧，公安电讯楼东侧。整体为矩形体量，面对十字路口一侧做了切角处理。主入口位于切角部分，设大台阶与路面相连。该楼由我校与商业网点联合投资建设。该建筑已成为休闲、自习、交流的公共场所，给广大师生的校内生活提供了便利。",
+      "location": {
+        "geoType": "point",
+        "x": 121.529573078168,
+        "y": 38.8810713273771
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "3 层。"
+    },
+    {
+      "id": "237205620",
+      "name": "C区12-知方楼",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=237205620",
+      "retrieved": "2026-09-14",
+      "response_sha256": "001a10de9421dcd43a701306e5ca768997cf7f9e8361247d50b9c6085b4f260a",
+      "description": "建成年份：2019年；\n建筑面积：55479.67㎡；\n使用面积：31242.46㎡；\n结构形式：钢筋混凝土结构；\n层数：10层。\n位于西部校区南端，北邻知行楼。主体建筑为“口”字形，内部穿插有两个东西对称的“C”形体块，色彩以砖红色为主，外部配建有“凹”字形辅楼。立面由排列整齐的竖窗和红色砖墙组成。双围合形式形成两个中庭，配有层次丰富的绿化空间，环境优美。现由机械工程学院和辽宁黄海实验室共同使用。",
+      "location": {
+        "geoType": "point",
+        "x": 121.514629865893,
+        "y": 38.8810984915054
+      },
+      "levels": 0,
+      "minLevel": 0,
+      "maxLevel": 0,
+      "has3DModel": false,
+      "hasIndoorGraph": false,
+      "streetViews": [],
+      "floor_statement": "10层。"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 10,
+  "result": [
+    {
+      "id": 840632,
+      "name": "624440715026697027",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20191018153530466.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20191018153530466.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20191018153530466.jpg"
+    },
+    {
+      "id": 840052,
+      "name": "116581525724977785",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20191017171005211.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20191017171005211.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20191017171005211.jpg"
+    },
+    {
+      "id": 840053,
+      "name": "308113451876206679",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20191017171004951.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20191017171004951.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20191017171004951.jpg"
+    },
+    {
+      "id": 840054,
+      "name": "97827383279310079",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20191017171005432.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20191017171005432.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20191017171005432.jpg"
+    },
+    {
+      "id": 840055,
+      "name": "759231560992472886",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20191017171006285.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20191017171006285.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20191017171006285.jpg"
+    },
+    {
+      "id": 840056,
+      "name": "687408315856281367",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20191017171005933.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20191017171005933.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20191017171005933.jpg"
+    },
+    {
+      "id": 840057,
+      "name": "868267732054085893",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20191017171008297.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20191017171008297.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20191017171008297.jpg"
+    },
+    {
+      "id": 875261,
+      "name": "船舶工程学院",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20200108085130201.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20200108085130201.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20200108085130201.png"
+    },
+    {
+      "id": 875262,
+      "name": "7de50661760cad29f42a53b7ded04ae",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20200108085137979.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20200108085137979.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20200108085137979.png"
+    },
+    {
+      "id": 875263,
+      "name": "07196fd70894339591f2646d3cc0840",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77381_20200108085150270.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77381_20200108085150270.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77381_20200108085150270.png"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77381",
+  "retrieved": "2026-09-11"
+}

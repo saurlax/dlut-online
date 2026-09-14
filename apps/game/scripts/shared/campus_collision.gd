@@ -14,7 +14,7 @@ static func build(root: Node3D, model: Node3D, manifest: Dictionary, campus_id: 
 		if child is MeshInstance3D and child.get_meta("walk_collision",false):
 			_collider(child)
 	for feature in manifest.features:
-		if feature.kind not in ["building","hill","gate"]:
+		if feature.kind not in ["building","hill","gate","sports"]:
 			continue
 		var node_name: String = "Feature_"+feature.id
 		if feature.has("part"):

@@ -1,0 +1,19 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 1,
+  "result": [
+    {
+      "id": 851435,
+      "name": "60829fe2775f63498e9b1cde0e75831",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/17913925_20191108145111151.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/17913925_20191108145111151.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/17913925_20191108145111151.png"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=17913925",
+  "retrieved": "2026-09-11"
+}

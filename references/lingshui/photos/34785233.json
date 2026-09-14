@@ -1,0 +1,89 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 8,
+  "result": [
+    {
+      "id": 827318,
+      "name": "b42c09e5edfc157aae3bc13b9661c2c",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/34785233_20190924162046281.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/34785233_20190924162046281.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/34785233_20190924162046281.jpg"
+    },
+    {
+      "id": 827320,
+      "name": "8bc7c52a9ce6cacc3dad9ee8aaf6545",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/34785233_20190924162046506.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/34785233_20190924162046506.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/34785233_20190924162046506.jpg"
+    },
+    {
+      "id": 827319,
+      "name": "914119dc961c2ca2a43706c195ab856",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/34785233_20190924162046549.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/34785233_20190924162046549.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/34785233_20190924162046549.jpg"
+    },
+    {
+      "id": 827321,
+      "name": "da04dc0e3a66ebb69f312f1dadbdd47",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/34785233_20190924162046599.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/34785233_20190924162046599.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/34785233_20190924162046599.jpg"
+    },
+    {
+      "id": 827323,
+      "name": "a2ddeb1301358d06679a6b7a68ea5c4",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/34785233_20190924162046649.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/34785233_20190924162046649.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/34785233_20190924162046649.jpg"
+    },
+    {
+      "id": 875267,
+      "name": "山上礼堂",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/34785233_20200108085732483.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/34785233_20200108085732483.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/34785233_20200108085732483.png"
+    },
+    {
+      "id": 875268,
+      "name": "d9791c9985cef53be6e1abd40d097cc",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/34785233_20200108085740732.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/34785233_20200108085740732.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/34785233_20200108085740732.png"
+    },
+    {
+      "id": 875269,
+      "name": "72cdf6ae0e887a2120d788b53178db7",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/34785233_20200108085752776.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/34785233_20200108085752776.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/34785233_20200108085752776.png"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=34785233",
+  "retrieved": "2026-09-11"
+}
