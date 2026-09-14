@@ -4,6 +4,13 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 source=json.loads((ROOT.parents[1]/'references/development-campus-bounds.json').read_text())
 origin=(121.816326506145,39.084522240291)
+height_profiles=json.loads((ROOT.parents[1]/'references/photos/residence_facades.json').read_text())
+height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/academic_facades.json').read_text()))
+height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/gym_profile.json').read_text()))
+height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/comprehensive_profile.json').read_text()))
+height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/dining_profile.json').read_text()))
+height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/library_information_profiles.json').read_text()))
+seventh_profile=json.loads((ROOT.parents[1]/'references/photos/seventh-residence/profile.json').read_text())
 features=[]
 for b in source['result']:
  name=b['name']; kind='building'; height=20.0
@@ -22,9 +29,11 @@ for b in source['result']:
  elif '宿舍' in name: height=23.0
  elif '食堂' in name: height=12.0
  elif '实验室' in name: height=9.0
+ if str(b['id']) in height_profiles: height=float(height_profiles[str(b['id'])]['height'])
+ if str(b['id']) == '2304982': height=float(seventh_profile['height'])
  points=[[round((p['x']-origin[0])*111320*math.cos(math.radians(origin[1])),3),round(-(p['y']-origin[1])*111320,3)] for p in b['bound']['points']]
  if points[-1]==points[0]:points.pop()
- features.append(dict(id=str(b['id']),name=name,kind=kind,height=height,height_source='approximation',footprint_source='official-map',points=points))
+ features.append(dict(id=str(b['id']),name=name,kind=kind,height=height,height_source='official-news-81930' if str(b['id']) == '2304982' else height_profiles[str(b['id'])].get('height_source','photo-storey-proportion-estimate') if str(b['id']) in height_profiles else 'approximation',footprint_source='official-map',points=points))
 data=dict(campus_id='eda',campus='大连理工大学 · 开发区校区',origin=list(origin),units='approximate meters',source=source['source'],retrieved=source['retrieved'],features=features)
 (ROOT/'assets/campuses/eda/data/campus.json').write_text(json.dumps(data,ensure_ascii=False,indent=2))
 print(f'Prepared {len(features)} official footprints')

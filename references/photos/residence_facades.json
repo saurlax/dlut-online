@@ -1,0 +1,429 @@
+{
+  "77931": {
+    "edge": 9,
+    "columns": 12,
+    "span": [
+      0.14,
+      0.86
+    ],
+    "balcony_center": 0.69,
+    "height": 23.0,
+    "photos": [
+      {
+        "file": "77931-0.jpg",
+        "image_id": 79703,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77931_20160302113542791.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "e771b3f407a52633c2e9432bc7a201284df93527cdf191d5bc2ba1337ad74dca"
+      },
+      {
+        "file": "77933-0.jpg",
+        "image_id": 79702,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "978b168ccbe4343451aa3b9edd79dd86e18325c43e9aed95da50836ecc0c7ad4",
+        "use": "相邻楼栋同框与官方轮廓配准"
+      }
+    ],
+    "terminal_windows": {
+      "fractions": [
+        0.07,
+        0.93
+      ],
+      "width": 2.3,
+      "height": 2.15,
+      "centers_y": [
+        4.8,
+        7.95,
+        11.1,
+        14.25,
+        17.4,
+        20.55
+      ]
+    },
+    "terminal_note": "本楼照片可见主窗段两端的独立窄窗列，按已配准长立面两端各7%退距补上六排；窗宽、高度、横向位置及标高均为照片比例估计。只补本楼可见窗列，底层店面和端部旁的小通风口尚未核实，不复制4/5舍屋顶高塔。",
+    "side_windows": [
+      {
+        "edge": 0,
+        "fractions": [
+          0.3,
+          0.7
+        ],
+        "width": 1.5,
+        "height": 1.8,
+        "centers_y": [
+          4.8,
+          7.95,
+          11.1,
+          14.25,
+          17.4,
+          20.55
+        ],
+        "source": "77931-0 / 79703",
+        "note": "本楼近照左侧端墙可辨两列独立窗，配准官方边0。位置、尺寸和楼层标高为照片比例估计；底层店面不补。"
+      }
+    ],
+    "eaves_span": [
+      0.14,
+      1.0
+    ],
+    "eaves_note": "77931-0可见顶层挑檐延伸至有楼号的外端独立窗列上方，沿已配准南面只延长本楼外端檐板；沿用估计23.1米中心高、0.22米厚、1.6米进深和0.6米出墙中心，端部额外0.25米退让同既有檐板。中段连廊、另一端未确认连接部位和屋顶小构筑物不由此扩建。"
+  },
+  "77933": {
+    "edge": 7,
+    "columns": 12,
+    "span": [
+      0.14,
+      0.86
+    ],
+    "balcony_center": 0.28,
+    "height": 23.0,
+    "photos": [
+      {
+        "file": "77933-0.jpg",
+        "image_id": 79702,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "978b168ccbe4343451aa3b9edd79dd86e18325c43e9aed95da50836ecc0c7ad4"
+      },
+      {
+        "file": "77933-1.jpg",
+        "image_id": 79704,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113604487.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "4d0be2a7a097c1df00f6db2d51a169f7be9697d3e543c4043ea936b65c755247"
+      }
+    ],
+    "terminal_windows": {
+      "fractions": [
+        0.07,
+        0.93
+      ],
+      "width": 2.0,
+      "height": 2.15,
+      "centers_y": [
+        4.8,
+        7.95,
+        11.1,
+        14.25,
+        17.4,
+        20.55
+      ]
+    },
+    "terminal_note": "本楼照片可见主窗段两端的独立窄窗列，按已配准长立面两端各7%退距补上六排；窗宽、高度、横向位置及标高均为照片比例估计。只补本楼可见窗列，底层店面和端部旁的小通风口尚未核实，不复制4/5舍屋顶高塔。",
+    "side_windows": [
+      {
+        "edge": 6,
+        "fractions": [
+          0.5
+        ],
+        "width": 1.4,
+        "height": 1.8,
+        "centers_y": [
+          4.8,
+          7.95,
+          11.1,
+          14.25,
+          17.4
+        ],
+        "source": "77933-1 / 79704",
+        "note": "本楼近照右侧近端墙可辨局部窗列，配准紧邻南面边7的边6，只补中间五排。位置、尺寸和楼层标高为照片比例估计，不延伸到后折边5、顶层或底层遮挡处。"
+      }
+    ],
+    "eaves_span": [
+      0.0,
+      0.86
+    ],
+    "eaves_note": "77933-1可见顶层挑檐延伸至有楼号的外端独立窗列上方，沿已配准南面只延长本楼外端檐板；沿用估计23.1米中心高、0.22米厚、1.6米进深和0.6米出墙中心，端部额外0.25米退让同既有檐板。中段连廊、另一端未确认连接部位和屋顶小构筑物不由此扩建。"
+  },
+  "77935": {
+    "edge": 4,
+    "columns": 14,
+    "span": [
+      0.14,
+      0.86
+    ],
+    "balcony_center": null,
+    "height": 23.0,
+    "photos": [
+      {
+        "file": "77935-0.jpg",
+        "image_id": 79701,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77935_20160302113438786.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "1507bace6bd3af21cbd2b40f423714209d03991cef5b694a704e215ff8cfd814"
+      },
+      {
+        "file": "77933-0.jpg",
+        "image_id": 79702,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "978b168ccbe4343451aa3b9edd79dd86e18325c43e9aed95da50836ecc0c7ad4",
+        "use": "相邻楼栋同框与官方轮廓配准"
+      }
+    ],
+    "terminal_windows": {
+      "fractions": [
+        0.07,
+        0.93
+      ],
+      "width": 2.0,
+      "height": 2.15,
+      "centers_y": [
+        4.8,
+        7.95,
+        11.1,
+        14.25,
+        17.4,
+        20.55
+      ]
+    },
+    "terminal_note": "本楼照片可见主窗段两端的独立窄窗列，按已配准长立面两端各7%退距补上六排；窗宽、高度、横向位置及标高均为照片比例估计。只补本楼可见窗列，底层店面和端部旁的小通风口尚未核实，不复制4/5舍屋顶高塔。",
+    "end_gallery": {
+      "span": [
+        0.865,
+        0.91
+      ],
+      "bottom": 3.5,
+      "top": 22.2,
+      "depth": 0.8,
+      "floors": [
+        3.6,
+        6.75,
+        9.9,
+        13.05,
+        16.2,
+        19.35
+      ],
+      "note": "77935-0左端小窗列与主窗之间可见六段栏杆廊，配准东边4的86.5%—91%。深0.8米、3.5—22.2米分区及板标高均为比例估计；只补可见凹槽、楼板和栏杆，不建门洞、内部房间或楼梯。"
+    }
+  },
+  "77937": {
+    "edge": 7,
+    "columns": 7,
+    "span": [
+      0.18,
+      0.82
+    ],
+    "balcony_center": 0.4,
+    "height": 19.85,
+    "window_rows": 4,
+    "gallery_y": 17.5,
+    "gallery_slab_y": 16.1,
+    "eaves_y": 19.95,
+    "balcony_levels": [
+      6.7,
+      9.85,
+      13.0
+    ],
+    "photos": [
+      {
+        "file": "77937-0.jpg",
+        "image_id": 79700,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77937_2016030211335637.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "04dc28e31227d9ad50f57d82e3423f9c0e5e9a62bfd75cce1d5f053fb91dde04"
+      },
+      {
+        "file": "77937-2026.jpg",
+        "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=PUmnYVLNUaLzrVU4mAVMR9bMzl4olL8sU4-inNlYLRnRM7L0gihFp2hmCIa0nkh7MkhRnkhRn7lZLzGYnlr2LR9PUmGYozviMzGaMmAkLRQFLmV2MRUbUlWFMzLsMlUJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLm-0LzlPL4CigtA8pUicc&oid=1819948287&tid=1022&nid=151365&e=.jpg",
+        "article_url": "https://news.dlut.edu.cn/info/1022/151365.htm",
+        "published": "2026-09-04",
+        "retrieved": "2026-09-14",
+        "sha256": "0a9631e7e54507da8fbc0f0901d8a11eecf4baf52d8039a9e653a3360dcd8a1c",
+        "use": "拼图右半幅，报道明确开发区4舍修缮；与旧77937-0的左端高塔、黄色框和右连接段互证，确认顶层及黄色框内封窗。左半幅主校区宿舍不用于开发区。"
+      }
+    ],
+    "terminal_windows": {
+      "width": 2.4,
+      "height": 1.65,
+      "centers_y": [
+        1.7,
+        4.8,
+        7.95,
+        11.1,
+        14.25
+      ],
+      "fractions": [
+        0.075
+      ]
+    },
+    "terminal_note": "各自官方照片显示靠两栋连接体一端的独立窗列，配准已确认南立面边内端；底层及其上四排小窗，不跨到连接体。横向位置、2.4米窗宽、1.65米窗高及楼层标高均为照片比例估计，不代表测绘。仅装饰窗格，不生成门洞或室内。",
+    "stair_tower": {
+      "fraction": 0.9,
+      "height": 23.0,
+      "width": 3.6,
+      "depth": 4.5,
+      "note": "本楼近照确认外端蓝灰色楼梯间高出屋面。沿已配准南边在本楼外端设置独立竖向体量，23米顶高、3.6米宽、4.5米进深及横向位置均为照片比例估计。仅实现外部体量和顶端可见暗槽，不建内部楼梯、门洞或连廊。"
+    },
+    "enclosed_gallery": true,
+    "enclosed_balcony": true,
+    "renovation_note": "2026近照优先于2016开放栏杆状态：既有顶层连廊和黄色框内两层阳台改为不透明封闭玻璃及细窗框。沿用既有配准和估计尺寸，不从局部图推断室内、背面或5舍同样改造。 顶层与阳台整幅封窗面参与碰撞，窗框仅装饰；按结构/装饰材质拆批后4舍最多9个网格。",
+    "eaves_upturn": {
+      "span_fraction": 0.2,
+      "rise": 0.8,
+      "source": "77937-2026.jpg right half; 77937-0.jpg",
+      "note": "两张照片均可见右侧连接端檐口向外上挑；对应已配准南边7的起端。仅改既有可见檐板起端20%跨度，上挑0.8米为照片比例估计，不延伸到未核实屋顶或5舍。檐板参与碰撞。"
+    },
+    "ground_windows": true,
+    "additional_windows": [
+      {
+        "fraction": 0.965,
+        "width": 1.6,
+        "height": 1.65,
+        "centers_y": [
+          4.8,
+          7.95,
+          11.1,
+          14.25,
+          17.4
+        ]
+      }
+    ],
+    "lower_facade_note": "77937-2026右半幅可见黄色框两侧底层封闭窗，按既有主窗列补窗，框下涉及入口的区域排除。左端塔体外侧的小窗列亦由77937-0互证，配准边7的96.5%，补5排1.6×1.65米窗。位置/尺寸/楼层标高仍为照片比例估计；不把塔体相邻窗列复制到塔体面上，不生成门洞。"
+  },
+  "77938": {
+    "edge": 5,
+    "columns": 6,
+    "span": [
+      0.18,
+      0.82
+    ],
+    "balcony_center": 0.58,
+    "height": 19.85,
+    "window_rows": 4,
+    "gallery_y": 17.5,
+    "gallery_slab_y": 16.1,
+    "eaves_y": 19.95,
+    "balcony_levels": [
+      6.7,
+      9.85,
+      13.0
+    ],
+    "photos": [
+      {
+        "file": "77938-0.jpg",
+        "image_id": 79699,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77938_20160302113344746.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "c9dd800a45ea1371f63702f272a8ed104d23945a00e7aa94e5a120fc0a430e6e"
+      }
+    ],
+    "terminal_windows": {
+      "width": 2.4,
+      "height": 1.65,
+      "centers_y": [
+        1.7,
+        4.8,
+        7.95,
+        11.1,
+        14.25
+      ],
+      "fractions": [
+        0.925
+      ]
+    },
+    "terminal_note": "各自官方照片显示靠两栋连接体一端的独立窗列，配准已确认南立面边内端；底层及其上四排小窗，不跨到连接体。横向位置、2.4米窗宽、1.65米窗高及楼层标高均为照片比例估计，不代表测绘。仅装饰窗格，不生成门洞或室内。",
+    "stair_tower": {
+      "fraction": 0.14,
+      "height": 23.0,
+      "width": 3.6,
+      "depth": 4.5,
+      "note": "本楼近照确认外端蓝灰色楼梯间高出屋面。沿已配准南边在本楼外端设置独立竖向体量，23米顶高、3.6米宽、4.5米进深及横向位置均为照片比例估计。仅实现外部体量和顶端可见暗槽，不建内部楼梯、门洞或连廊。"
+    },
+    "eaves_upturn": {
+      "at_end": true,
+      "span_fraction": 0.2,
+      "rise": 0.8,
+      "source": "77938-0.jpg / 79699",
+      "note": "本楼照片左侧连接端的檐板向外上挑，配准南边5末端；只修改已有檐口末端20%跨度，0.8米上挑为图像比例估计，不改变未核实屋顶。"
+    },
+    "additional_windows": [
+      {
+        "fraction": 0.045,
+        "width": 1.8,
+        "height": 1.65,
+        "centers_y": [
+          4.8,
+          7.95,
+          11.1,
+          14.25,
+          17.4
+        ]
+      }
+    ],
+    "outer_window_note": "77938-0右侧塔体外侧有独立小窗列，配准边5的4.5%，5排窗位置及1.8×1.65米为照片比例估计；保留图中开放连廊/阳台，不复制4舍封窗，底层遮挡不补。"
+  },
+  "77941": {
+    "edge": 7,
+    "columns": 6,
+    "span": [
+      0.05,
+      0.45
+    ],
+    "balcony_center": null,
+    "height": 23.0,
+    "height_source": "approximation",
+    "window_rows": 6,
+    "gallery_available": false,
+    "ground_bars": true,
+    "photos": [
+      {
+        "file": "77941-0.jpg",
+        "image_id": 79698,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77941_20160302113258884.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "f9e22bc1415ddd04b20ef9fef9aecfffe9745b73f0f625247a1e151450bba2e6"
+      }
+    ],
+    "note": "官方近照显示南侧局部，KFQ00前向高清瓦片11/05和11/06显示六舍位于六食堂南侧、信息楼东侧，与官方位置互证，配准南边7的东侧5%至45%。补地面层及六排主窗、浅紫饰板与底层防护栏；全景上部为封闭窗排，不采用1—5舍顶层连廊。23米沿用旧比例估计，未获得实测高度；六列窗和3.15米层距为模型离散，黄色框按独立参数补外饰框，框内空间和端部体量仍待核实。",
+    "panorama": [
+      {
+        "file": "../panorama/KFQ00-front-11-05.jpg",
+        "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/f/l5/11/l5_f_11_05.jpg",
+        "scene": "DUT_KFQ00",
+        "retrieved": "2026-09-14",
+        "sha256": "43d36345d22a75b4c9ee99160cde45f4e38d35cee24f07e6b5d7be9aa066bc77",
+        "use": "六舍位置与封闭上层外窗核对；不提供实测尺寸"
+      },
+      {
+        "file": "../panorama/KFQ00-front-11-06.jpg",
+        "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/f/l5/11/l5_f_11_06.jpg",
+        "scene": "DUT_KFQ00",
+        "retrieved": "2026-09-14",
+        "sha256": "5c92618fcfab6cae0006ea9c53ee8355a6b49a0b79c659c95771627f96b90fb2",
+        "use": "六舍位置与封闭上层外窗核对；不提供实测尺寸"
+      }
+    ],
+    "ground_guard_note": "77941-0近照可见底层防护栏与墙面之间的回折及上下横杆；在已配准窗段补左右回折、上下横杆，外沿距墙约0.3米，回折深0.24米为照片比例估计。细杆仅装饰，保持原封闭外壳碰撞。黄色框在本段之外，独立近似位置见yellow_frame。",
+    "yellow_frame": {
+      "fraction": 0.66,
+      "width": 5.2,
+      "bottom": 9.5,
+      "top": 16.8,
+      "border": 0.5,
+      "depth": 0.18,
+      "offset": 0.2,
+      "source": "77941-0.jpg / 79698",
+      "note": "近照左侧可见黄色矩形外框，位于既有东侧局部窗段之外；配准南边7的66%处，外宽5.2米、底9.5米、顶16.8米、边宽0.5米、出墙中心0.2米均为照片比例估计。仅建立外饰框，不创建框内阳台、栏杆、平台、门洞或室内，保持原封闭外壳。"
+    },
+    "stair_tower": {
+      "edge": 0,
+      "fraction": 0.5,
+      "height": 25.5,
+      "width": 6.0,
+      "depth": 4.5,
+      "slot_y": 23.9,
+      "note": "KFQ00-front-11-05航拍可见六舍西端墙中央蓝灰楼梯间及顶端两暗槽，高出主体屋面。配准官方边0中央，保持主体23米，塔体顶25.5米、宽6米、进深4.5米及前沿出墙0.2米均为照片比例估计。仅补外部竖向体量与顶部闭合暗槽，不生成内部楼梯、门洞，未确认的小窗和附属屋顶设备暂不建。"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "retrieved": "2026-09-14",
+  "source_config": "http://map.dlut.edu.cn/openmap/config/map-config.js",
+  "layer": "autonavi style=6",
+  "zoom": 18,
+  "images": [
+    {
+      "file": "eda-lab-z18-219772-100107.jpg",
+      "url": "https://webst04.is.autonavi.com/appmaptile?style=6&x=219772&y=100107&z=18",
+      "sha256": "76a16b0dd88e3c0d75904a9d65db9ae0ee5bac8f605eefd33d29e23f85197e1b"
+    },
+    {
+      "file": "eda-lab-z18-219773-100107.jpg",
+      "url": "https://webst04.is.autonavi.com/appmaptile?style=6&x=219773&y=100107&z=18",
+      "sha256": "bd0d4282eda23cf21b782cb8a2e6be03f84a502f6c7ae728f13fadc5bc2ea639"
+    }
+  ],
+  "projection": "Direct slippy-map conversion; pixel origin is upper-left of tile x219772/y100107. No datum transform or ground-control calibration established.",
+  "official_outline_pixels": {
+    "77921": [
+      [
+        394.25,
+        193.08
+      ],
+      [
+        360.97,
+        161.31
+      ],
+      [
+        324.23,
+        59.12
+      ],
+      [
+        360.69,
+        45.82
+      ],
+      [
+        396.44,
+        79.31
+      ],
+      [
+        415.8,
+        119.84
+      ],
+      [
+        498.06,
+        118.5
+      ],
+      [
+        500.98,
+        108.71
+      ],
+      [
+        507.47,
+        101.08
+      ],
+      [
+        515.61,
+        99.25
+      ],
+      [
+        526.47,
+        100.08
+      ],
+      [
+        541.32,
+        111.78
+      ],
+      [
+        551.09,
+        125.5
+      ],
+      [
+        564.91,
+        138.29
+      ],
+      [
+        571.01,
+        184.73
+      ],
+      [
+        394.25,
+        193.08
+      ]
+    ],
+    "96575": [
+      [
+        54.2,
+        75.88
+      ],
+      [
+        123.35,
+        76.65
+      ],
+      [
+        144.83,
+        96.5
+      ],
+      [
+        142.29,
+        144.73
+      ],
+      [
+        72.54,
+        141.61
+      ],
+      [
+        52.92,
+        124.2
+      ],
+      [
+        54.2,
+        75.88
+      ]
+    ]
+  },
+  "note": "18级目标瓦片可见北侧深灰屋顶与南侧浅色长屋顶两栋独立建筑，东邻瓦片显示综合楼西翼。官方96575轮廓直接换算后落在北侧灰屋顶一带，但屋顶边缘与轮廓不完全重合，未完成坐标基准或地面控制点标定，不能用偏移推断高度。全景后向右侧灰色建筑仍为候选，不将南侧另一栋并入实验室。",
+  "registration_status": "spatial-candidate-not-calibrated",
+  "model_use": "仅用于候选排除与配准，不改96575轮廓、高度、立面或碰撞，无入口或室内依据。",
+  "unavailable_zoom": "19级目标及相邻共5张瓦片均返回此区域无卫星图占位图，HTTP成功不等于有影像。"
+}
