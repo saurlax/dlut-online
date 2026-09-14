@@ -97,17 +97,28 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			for dx in [-spacing*0.5,spacing*0.5]:
 				panel(x+dx,y,0.18,3.15,0.22,0.12,frame)
 		panel((start+finish)/2.0,y-1.2,finish-start,0.13,0.22,0.12,frame)
-	# Only the visible upper gallery: closed shell behind it, no invented access.
-	var gallery_y: float = profile.get("gallery_y",20.65)
-	var gallery_slab_y: float = profile.get("gallery_slab_y",19.25)
-	for col in count:
-		var x := start+(col+0.5)*spacing
-		window(x,gallery_y,spacing*0.64,1.75)
-		panel(start+col*spacing,gallery_y,0.2,2.8,0.8,0.4,wall,true)
-	panel(finish,gallery_y,0.2,2.8,0.8,0.4,wall,true)
-	panel((start+finish)/2.0,gallery_slab_y,finish-start,0.18,1.05,0.45,frame,true)
-	panel((start+finish)/2.0,float(profile.get("eaves_y",23.1)),finish-start+0.5,0.22,1.6,0.6,frame,true)
-	railing((start+finish)/2.0,gallery_slab_y+0.15,finish-start,0.94,true)
+	if profile.get("gallery_available",true):
+		# Only the visible upper gallery: closed shell behind it, no invented access.
+		var gallery_y: float = profile.get("gallery_y",20.65)
+		var gallery_slab_y: float = profile.get("gallery_slab_y",19.25)
+		for col in count:
+			var x := start+(col+0.5)*spacing
+			window(x,gallery_y,spacing*0.64,1.75)
+			panel(start+col*spacing,gallery_y,0.2,2.8,0.8,0.4,wall,true)
+		panel(finish,gallery_y,0.2,2.8,0.8,0.4,wall,true)
+		panel((start+finish)/2.0,gallery_slab_y,finish-start,0.18,1.05,0.45,frame,true)
+		panel((start+finish)/2.0,float(profile.get("eaves_y",23.1)),finish-start+0.5,0.22,1.6,0.6,frame,true)
+		railing((start+finish)/2.0,gallery_slab_y+0.15,finish-start,0.94,true)
+	if profile.get("ground_bars",false):
+		for col in count:
+			var x := start+(col+0.5)*spacing
+			var width := spacing*0.77
+			window(x,1.7,width,2.4)
+			var bars := maxi(2,ceili(width/0.18))
+			for i in bars+1:
+				panel(x-width/2+float(i)*width/bars,1.7,0.035,2.45,0.05,0.3,frame)
+			for y in [0.5,1.7,2.9]:
+				panel(x,y,width,0.04,0.05,0.3,frame)
 	if profile.balcony_center != null:
 		var yellow: Material = host.material("EDA residence yellow surround",Color("d5ae25"))
 		yellow.albedo_texture = null

@@ -142,5 +142,48 @@
         "sha256": "c9dd800a45ea1371f63702f272a8ed104d23945a00e7aa94e5a120fc0a430e6e"
       }
     ]
+  },
+  "77941": {
+    "edge": 7,
+    "columns": 6,
+    "span": [
+      0.05,
+      0.45
+    ],
+    "balcony_center": null,
+    "height": 23.0,
+    "height_source": "approximation",
+    "window_rows": 6,
+    "gallery_available": false,
+    "ground_bars": true,
+    "photos": [
+      {
+        "file": "77941-0.jpg",
+        "image_id": 79698,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77941_20160302113258884.jpg",
+        "retrieved": "2026-09-09",
+        "reviewed": "2026-09-14",
+        "sha256": "f9e22bc1415ddd04b20ef9fef9aecfffe9745b73f0f625247a1e151450bba2e6"
+      }
+    ],
+    "note": "官方近照显示南侧局部，KFQ00前向高清瓦片11/05和11/06显示六舍位于六食堂南侧、信息楼东侧，与官方位置互证，配准南边7的东侧5%至45%。补地面层及六排主窗、浅紫饰板与底层防护栏；全景上部为封闭窗排，不采用1—5舍顶层连廊。23米沿用旧比例估计，未获得实测高度；六列窗和3.15米层距为模型离散，黄色框等其余部分继续完善。",
+    "panorama": [
+      {
+        "file": "../panorama/KFQ00-front-11-05.jpg",
+        "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/f/l5/11/l5_f_11_05.jpg",
+        "scene": "DUT_KFQ00",
+        "retrieved": "2026-09-14",
+        "sha256": "43d36345d22a75b4c9ee99160cde45f4e38d35cee24f07e6b5d7be9aa066bc77",
+        "use": "六舍位置与封闭上层外窗核对；不提供实测尺寸"
+      },
+      {
+        "file": "../panorama/KFQ00-front-11-06.jpg",
+        "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/f/l5/11/l5_f_11_06.jpg",
+        "scene": "DUT_KFQ00",
+        "retrieved": "2026-09-14",
+        "sha256": "5c92618fcfab6cae0006ea9c53ee8355a6b49a0b79c659c95771627f96b90fb2",
+        "use": "六舍位置与封闭上层外窗核对；不提供实测尺寸"
+      }
+    ]
   }
 }

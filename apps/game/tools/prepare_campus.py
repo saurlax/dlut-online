@@ -32,7 +32,7 @@ for b in source['result']:
  if str(b['id']) == '2304982': height=float(seventh_profile['height'])
  points=[[round((p['x']-origin[0])*111320*math.cos(math.radians(origin[1])),3),round(-(p['y']-origin[1])*111320,3)] for p in b['bound']['points']]
  if points[-1]==points[0]:points.pop()
- features.append(dict(id=str(b['id']),name=name,kind=kind,height=height,height_source='official-news-81930' if str(b['id']) == '2304982' else 'photo-storey-proportion-estimate' if str(b['id']) in height_profiles else 'approximation',footprint_source='official-map',points=points))
+ features.append(dict(id=str(b['id']),name=name,kind=kind,height=height,height_source='official-news-81930' if str(b['id']) == '2304982' else height_profiles[str(b['id'])].get('height_source','photo-storey-proportion-estimate') if str(b['id']) in height_profiles else 'approximation',footprint_source='official-map',points=points))
 data=dict(campus_id='eda',campus='大连理工大学 · 开发区校区',origin=list(origin),units='approximate meters',source=source['source'],retrieved=source['retrieved'],features=features)
 (ROOT/'assets/campuses/eda/data/campus.json').write_text(json.dumps(data,ensure_ascii=False,indent=2))
 print(f'Prepared {len(features)} official footprints')

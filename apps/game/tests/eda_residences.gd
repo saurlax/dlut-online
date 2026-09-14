@@ -1,7 +1,7 @@
 extends SceneTree
 
 const Collision = preload("res://scripts/shared/campus_collision.gd")
-const CASES := [["77931",9,0.69],["77933",7,0.28],["77935",4,-1.0],["77937",7,0.4],["77938",5,0.58]]
+const CASES := [["77931",9,0.69],["77933",7,0.28],["77935",4,-1.0],["77937",7,0.4],["77938",5,0.58],["77941",7,-1.0]]
 
 func _initialize() -> void: run.call_deferred()
 
@@ -52,7 +52,10 @@ func run() -> void:
 			hit(space,roof+Vector3.UP*3,roof-Vector3.UP*3,roof,c[0]+" roof")
 			p = a.lerp(b,0.43)+out*0.7
 			var gallery := Vector3(p.x,16.19 if lower else 19.34,p.y)
-			hit(space,gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8,gallery,c[0]+" gallery slab")
+			if c[0]=="77941":
+				assert(space.intersect_ray(PhysicsRayQueryParameters3D.create(gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8)).is_empty(),"Do not copy an unverified gallery to residence six")
+			else:
+				hit(space,gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8,gallery,c[0]+" gallery slab")
 			if c[2]>0:
 				p = a.lerp(b,c[2])+axis*a.distance_to(b)*0.025+out*0.7
 				for y in ([6.8,9.95,13.1] if lower else [9.95,13.1,16.25]):
@@ -60,5 +63,5 @@ func run() -> void:
 					hit(space,slab+Vector3.UP*0.7,slab-Vector3.UP*0.7,slab,c[0]+" balcony slab")
 		world.free()
 		viewport.free()
-	print("PASS: five batched photo facades; client/server closed shells, roofs, galleries and balcony slabs")
+	print("PASS: six batched photo facades; client/server closed shells, roofs, galleries and balcony slabs")
 	quit()
