@@ -1,7 +1,7 @@
 extends SceneTree
 
 const Collision = preload("res://scripts/shared/campus_collision.gd")
-const SAMPLES := [[Vector2(100,-245),21.18],[Vector2(70,-190),9.78],[Vector2(170,-180),24.78],[Vector2(141.47234,-210.59116),29.2],[Vector2(184.55,-88.05),24.82],[Vector2(127.676,-134.121),9.87]]
+const SAMPLES := [[Vector2(100,-245),21.18],[Vector2(70,-190),9.78],[Vector2(170,-180),24.78],[Vector2(141.47234,-210.59116),28.6],[Vector2(184.55,-88.05),24.82],[Vector2(127.676,-134.121),9.87]]
 
 func _initialize() -> void: run.call_deferred()
 
@@ -29,6 +29,17 @@ func run() -> void:
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,80,pos.y),Vector3(pos.x,-1,pos.y)))
 			assert(not hit.is_empty(),"Missing roof at "+str(pos))
 			assert(absf(hit.position.y-float(sample[1]))<0.03,"Wrong roof height at "+str(pos)+": "+str(hit.position))
+		var tower_a := Vector2(150.193,-210.496)
+		var tower_b := Vector2(83.111,-211.228)
+		var tower_axis := (tower_b-tower_a).normalized()
+		var tower_out := Vector2(tower_axis.y,-tower_axis.x)
+		var tower_center := tower_a.lerp(tower_b,0.13)
+		for sample in [[0.0,false],[2.4,true]]:
+			var p := tower_center+tower_axis*float(sample[0])
+			var start := p+tower_out*3
+			var end := p-tower_out*3
+			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(start.x,28.0,start.y),Vector3(end.x,28.0,end.y)))
+			assert(hit.is_empty()!=bool(sample[1]),"A tower top opening/fins must remain distinct")
 		var south_eave := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(201.302,26,-117.011),Vector3(201.302,23,-117.011)))
 		assert(not south_eave.is_empty() and absf(south_eave.position.y-24.78)<0.03,"Missing C south-end eave")
 		var recess_a := Vector2(205.093,-210.67)

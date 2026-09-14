@@ -96,11 +96,16 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 		var x: float = tower.fraction*length
 		var top: float = tower.height
 		var width: float = tower.width
-		panel(x,top/2.0,width,top,2.0,0.0,wall,true)
-		panel(x,top/2.0,width-0.6,top-1.0,0.1,1.06,glass)
-		for dx in [-width/2.0,0.0,width/2.0]: panel(x+dx,top/2.0,0.18,top+0.6,0.25,1.16,stone)
-		for i in range(1,15): panel(x,float(i)*(top-0.5)/15.0,width,0.09,0.18,1.2,metal)
-		panel(x,top+0.1,width+0.4,0.2,2.3,0.0,stone,true)
+		var body_top: float = tower.get("body_height",top)
+		panel(x,body_top/2.0,width,body_top,2.0,0.0,wall,true)
+		panel(x,body_top/2.0,width-0.6,body_top-1.0,0.1,1.06,glass)
+		for dx in [-width/2.0,0.0,width/2.0]: panel(x+dx,body_top/2.0,0.18,body_top+0.6,0.25,1.16,stone)
+		for i in range(1,15): panel(x,float(i)*(body_top-0.5)/15.0,width,0.09,0.18,1.2,metal)
+		panel(x,body_top+0.1,width+0.4,0.2,2.3,0.0,stone,true)
+		if tower.has("body_height"):
+			for dx in [-width/2,width/2]:
+				panel(x+dx,(body_top+top+0.3)/2,0.2,top+0.3-body_top,2.3,0.0,stone,true)
+			panel(x,float(tower.head_beam_y),width,0.2,2.3,0.0,stone,true)
 	if profile.has("rotunda"):
 		var rotunda: Dictionary = profile.rotunda
 		for edge in rotunda.edges:
