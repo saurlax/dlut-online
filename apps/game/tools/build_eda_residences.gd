@@ -163,7 +163,10 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			var flat_end := join if at_end else finish+0.25
 			panel((flat_start+flat_end)/2,eaves_y,flat_end-flat_start,0.22,1.6,0.6,frame,true)
 		else:
-			panel((start+finish)/2.0,eaves_y,finish-start+0.5,0.22,1.6,0.6,frame,true)
+			var eave_span: Array = profile.get("eaves_span",profile.span)
+			var eave_start := float(eave_span[0])*length
+			var eave_end := float(eave_span[1])*length
+			panel((eave_start+eave_end)/2.0,eaves_y,eave_end-eave_start+0.5,0.22,1.6,0.6,frame,true)
 		if profile.get("enclosed_gallery",false):
 			panel((start+finish)/2.0,gallery_y,finish-start,2.55,0.1,0.86,glass,true)
 			for i in count*3+1:

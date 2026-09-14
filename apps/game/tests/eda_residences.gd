@@ -56,6 +56,11 @@ func run() -> void:
 				assert(space.intersect_ray(PhysicsRayQueryParameters3D.create(gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8)).is_empty(),"Do not copy an unverified gallery to residence six")
 			else:
 				hit(space,gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8,gallery,c[0]+" gallery slab")
+			if c[0] in ["77931","77933"]:
+				var outer_fraction := 0.96 if c[0]=="77931" else 0.04
+				p = a.lerp(b,outer_fraction)+out*0.9
+				var outer_eave := Vector3(p.x,23.21,p.y)
+				hit(space,outer_eave+Vector3.UP*2,outer_eave-Vector3.UP*2,outer_eave,c[0]+" outer end eave")
 			if c[0]=="77937":
 				var eave_tip := a.distance_to(b)*0.18-0.25
 				var eave_join := a.distance_to(b)*(0.18+0.64*0.2)
