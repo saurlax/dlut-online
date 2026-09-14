@@ -67,6 +67,26 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 		var outward := Vector2(axis.y,-axis.x)
 		if Geometry2D.is_point_in_polygon((a+b)*0.5+outward,points):
 			outward = -outward
+		if is_library and edge==int(profile.wing_windows.edge):
+			var windows: Dictionary = profile.wing_windows
+			var first := a.lerp(b,float(windows.span[0]))
+			var last := a.lerp(b,float(windows.span[1]))
+			var columns := int(windows.columns)
+			var spacing := first.distance_to(last)/columns
+			var width := spacing*float(windows.width_fraction)
+			var window_height: float = windows.height
+			for y in windows.centers_y:
+				for bay in columns:
+					var center := first.lerp(last,(bay+0.5)/columns)+outward*0.12
+					var left := center-axis*width/2
+					var right := center+axis*width/2
+					edge_box(left,right,float(y),window_height,0.08,glass)
+					for division in 4:
+						var upright := left.lerp(right,float(division)/3)+outward*0.07
+						edge_box(upright-axis*0.035,upright+axis*0.035,float(y),window_height+0.1,0.12,metal)
+					for dy in [-window_height/2,window_height*0.25,window_height/2]:
+						edge_box(left+outward*0.07,right+outward*0.07,float(y)+dy,0.065,0.12,metal)
+			continue
 		# Photos show the library's curved curtain wall and information building's
 		# long facade. Unverified faces keep the pre-existing footprint shell.
 		var curved_glass := is_library and edge >= 2 and edge <= 19
