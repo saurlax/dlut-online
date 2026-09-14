@@ -140,3 +140,14 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			panel(x,height/2,0.4,height,0.8,0.4,wall,true)
 		panel(center,4.4,finish-start,0.28,0.8,0.35,stone,true)
 		panel(center,height+0.16,finish-start+0.4,0.22,1.2,0.45,stone,true)
+
+	for canopy in profile.get("canopies",[]):
+		frame_for(points,int(canopy.edge))
+		var center: float = length*float(canopy.fraction)
+		var width: float = canopy.width
+		var projection: float = canopy.projection
+		var y: float = canopy.y
+		for x in [center-width/2,center+width/2]:
+			panel(x,y,0.16,0.18,projection,projection/2,stone,true)
+		for i in 4:
+			panel(center,y,width,0.14,0.14,0.1+(projection-0.2)*i/3,stone,true)

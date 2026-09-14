@@ -51,6 +51,16 @@ func run() -> void:
 		var column := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(from.x,4,from.y),Vector3(to.x,4,to.y)))
 		var expected := mid+out*0.83
 		assert(not column.is_empty() and column.position.distance_to(Vector3(expected.x,4,expected.y))<0.03,"Missing C rotunda column")
+		var canopy_a := Vector2(118.774,-140.488)
+		var canopy_b := Vector2(135.553,-126.524)
+		var canopy_axis := (canopy_b-canopy_a).normalized()
+		var canopy_out := Vector2(canopy_axis.y,-canopy_axis.x)
+		# Edge 17 faces the inner court, to the northeast.
+		var canopy_center := canopy_a.lerp(canopy_b,0.72)
+		for sample in [[1.9,0.9,true],[0.0,0.9,false]]:
+			var p := canopy_center+canopy_axis*float(sample[0])+canopy_out*float(sample[1])
+			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,5.5,p.y),Vector3(p.x,4.0,p.y)))
+			assert(hit.is_empty()!=bool(sample[2]),"B canopy beam/gap must match: "+str(sample)+" / "+str(hit))
 		# B's former 21m shell must not remain above the low wing.
 		var clearance := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(25,15,-190),Vector3(110,15,-190)))
 		assert(clearance.is_empty(),"Old B wing collision remains at 15m")
