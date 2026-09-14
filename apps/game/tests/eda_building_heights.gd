@@ -56,6 +56,18 @@ func run() -> void:
 			var inside := front-out
 			var side := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(outside.x,21,outside.y),Vector3(inside.x,21,inside.y)))
 			assert(not side.is_empty() and Vector2(side.position.x,side.position.z).distance_to(front+out*0.2)<0.03,"Stair tower must remain closed")
+		# Sixth residence has a raised shaft on the west end, separate from its south facade.
+		var sixth_a := Vector2(349.254,110.43)
+		var sixth_b := Vector2(330.015,91.37)
+		var sixth_out := Vector2((sixth_b-sixth_a).y,-(sixth_b-sixth_a).x).normalized()
+		var sixth_front := (sixth_a+sixth_b)/2
+		var sixth_center := sixth_front-sixth_out*2
+		var sixth_top := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(sixth_center.x,28,sixth_center.y),Vector3(sixth_center.x,23,sixth_center.y)))
+		assert(not sixth_top.is_empty() and absf(sixth_top.position.y-25.5)<0.03,"Missing sixth residence raised west tower")
+		var sixth_from := sixth_front+sixth_out*2
+		var sixth_to := sixth_front-sixth_out
+		var sixth_side := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(sixth_from.x,24,sixth_from.y),Vector3(sixth_to.x,24,sixth_to.y)))
+		assert(not sixth_side.is_empty() and Vector2(sixth_side.position.x,sixth_side.position.z).distance_to(sixth_front+sixth_out*0.2)<0.03,"Sixth tower must remain closed")
 		# Both photographed raised-roof parapets block horizontally and have a top.
 		for segment in [[Vector2(433.088,-74.167),Vector2(427.25,-42.98)],[Vector2(427.25,-42.98),Vector2(448.875,-38.933)]]:
 			var a: Vector2 = segment[0]

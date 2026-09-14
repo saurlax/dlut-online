@@ -50,6 +50,8 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	group.set_meta("interior_available",false)
 	var photo_edges: Array = [int(profile.edge)]
 	for side in profile.get("side_windows",[]): photo_edges.append(int(side.edge))
+	if profile.has("stair_tower") and profile.stair_tower.has("edge"):
+		photo_edges.append(int(profile.stair_tower.edge))
 	group.set_meta("photo_edges",photo_edges)
 	wall = host.material("EDA residence pale tile",Color("b8b6a3"))
 	# Small rectangular ceramic tiles visible in each residence photo.
@@ -240,6 +242,13 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 
 	if profile.has("stair_tower"):
 		var tower: Dictionary = profile.stair_tower
+		if tower.has("edge"):
+			origin = points[int(tower.edge)]
+			var tower_end := points[(int(tower.edge)+1)%points.size()]
+			axis = (tower_end-origin).normalized()
+			outward = Vector2(axis.y,-axis.x)
+			if Geometry2D.is_point_in_polygon((origin+tower_end)/2+outward,points): outward = -outward
+			length = origin.distance_to(tower_end)
 		var tower_x := float(tower.fraction)*length
 		var tower_height: float = tower.height
 		var tower_width: float = tower.width
@@ -248,10 +257,11 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 		blue.albedo_texture = null
 		panel(tower_x,tower_height/2,tower_width,tower_height,tower_depth,0.2-tower_depth/2,blue,true)
 		# The two visible top slots stay closed; they do not expose an interior.
+		var slot_y: float = tower.get("slot_y",21.4)
 		for dx in [-0.6,0.6]:
-			panel(tower_x+dx,21.4,0.8,2.0,0.06,0.24,glass)
+			panel(tower_x+dx,slot_y,0.8,2.0,0.06,0.24,glass)
 		for dx in [-1.15,0.0,1.15]:
-			panel(tower_x+dx,21.5,0.18,2.9,0.18,0.32,frame)
+			panel(tower_x+dx,slot_y+0.1,0.18,2.9,0.18,0.32,frame)
 
 	for side in profile.get("side_windows",[]):
 		origin = points[int(side.edge)]
