@@ -5,19 +5,32 @@ extends RefCounted
 var builder
 var group: Node3D
 
-func edge_box(a: Vector2, b: Vector2, y: float, height: float, depth: float, mat: Material) -> void:
+func edge_box(a: Vector2, b: Vector2, y: float, height: float, depth: float, mat: Material, solid := false) -> void:
 	var mid := (a+b)*0.5
 	var node: MeshInstance3D = builder.box(group,Vector3(mid.x,y,mid.y),Vector3(a.distance_to(b),height,depth),mat,"PhotoFacade")
 	node.rotation.y = -atan2((b-a).y,(b-a).x)
+	node.set_meta("walk_collision",solid)
+
+func shell(points: PackedVector2Array, top: float, base: float, mat: Material, title: String) -> void:
+	builder.polygon(group,points,top,mat,title,base)
+	var node: MeshInstance3D = group.get_child(group.get_child_count()-1)
+	var indexed := SurfaceTool.new()
+	indexed.create_from(node.mesh,0)
+	indexed.index()
+	node.mesh = indexed.commit()
+	node.set_meta("walk_collision",true)
 
 func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -> void:
 	builder = host
 	group = parent
-	var floors := 5 if is_library else 4
-	# Photo-derived storey count; metre scale remains an estimate, not survey data.
-	var storey := 4.4
-	var height := floors*storey
-	group.set_meta("photo_reference","references/photos/77917.json" if is_library else "references/photos/77914.json")
+	var profile_path := ProjectSettings.globalize_path("res://").path_join("../../references/photos/library_information_profiles.json").simplify_path()
+	var profiles: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profile_path))
+	var profile: Dictionary = profiles["77917" if is_library else "77914"]
+	# Photo proportions remain estimates; share the source with campus data.
+	var storey: float = profile.storey
+	var height: float = profile.height
+	var floors := roundi(height/storey)
+	group.set_meta("photo_reference","references/photos/library_information_profiles.json")
 	group.set_meta("interior_available",false)
 	group.set_meta("height_is_approximate",true)
 	var wall: StandardMaterial3D = builder.material("Library masonry" if is_library else "Information taupe masonry",Color("898679") if is_library else Color("817c72"))
@@ -32,10 +45,8 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 	glass.albedo_texture = null
 	glass.metallic = 0.55
 	glass.roughness = 0.2
-	builder.polygon(group,points,height,wall,"Building")
-	group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
-	builder.polygon(group,points,height+0.22,trim,"Roof",height)
-	group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
+	shell(points,height,0,wall,"Building")
+	shell(points,height+0.22,height,trim,"Roof")
 	for edge in points.size():
 		var a := points[edge]
 		var b := points[(edge+1)%points.size()]
@@ -67,12 +78,13 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 				if not curved_glass and bay%3==0 and level < floors-1:
 					edge_box(left+outward*0.10,left+axis*0.48+outward*0.10,window_y,window_height+0.1,0.22,wall)
 			edge_box(a+outward*0.32,b+outward*0.32,base+0.12,0.22 if curved_glass else 0.38,0.65,trim)
-		edge_box(a+outward*0.35,b+outward*0.35,height+0.12,0.24,1.0,trim)
+		edge_box(a+outward*0.35,b+outward*0.35,height+0.12,0.24,1.0,trim,true)
 		if curved_glass:
 			# Raised perimeter ring and radial roof members visible in image 2.
-			edge_box(a+outward*1.3,b+outward*1.3,height+2.0,0.28,0.5,trim)
+			edge_box(a+outward*1.3,b+outward*1.3,height+2.0,0.28,0.5,trim,true)
 			if edge%2==0:
 				var mid := (a+b)*0.5
-				edge_box(mid-outward*0.6,mid+outward*1.3,height+1.9,0.16,0.18,trim)
+				edge_box(mid-outward*0.6,mid+outward*1.3,height+1.9,0.16,0.18,trim,true)
 				var column: MeshInstance3D = builder.box(group,Vector3(mid.x+outward.x*0.52,(height+2)*0.5,mid.y+outward.y*0.52),Vector3(0.38,height+2,0.38),trim,"PhotoFin")
 				column.rotation.y = -atan2(axis.y,axis.x)
+				column.set_meta("walk_collision",true)

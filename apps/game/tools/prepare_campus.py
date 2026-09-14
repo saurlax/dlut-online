@@ -9,6 +9,7 @@ height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/academic_f
 height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/gym_profile.json').read_text()))
 height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/comprehensive_profile.json').read_text()))
 height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/dining_profile.json').read_text()))
+height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/library_information_profiles.json').read_text()))
 seventh_profile=json.loads((ROOT.parents[1]/'references/photos/seventh-residence/profile.json').read_text())
 features=[]
 for b in source['result']:

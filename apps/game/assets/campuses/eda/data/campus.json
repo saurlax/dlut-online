@@ -43,8 +43,8 @@
       "id": "77914",
       "name": "信息楼",
       "kind": "building",
-      "height": 24.0,
-      "height_source": "approximation",
+      "height": 17.6,
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
@@ -89,8 +89,8 @@
       "id": "77917",
       "name": "图书馆",
       "kind": "building",
-      "height": 27.0,
-      "height_source": "approximation",
+      "height": 22.0,
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
