@@ -1,7 +1,7 @@
 extends SceneTree
 
 const Collision = preload("res://scripts/shared/campus_collision.gd")
-const SAMPLES := [[Vector2(456,-50),63.6],[Vector2(430,-106),63.6],[Vector2(392,-82),8.2],[Vector2(423,-57),8.2],[Vector2(437,-159),20.05],[Vector2(490,-155),20.05]]
+const SAMPLES := [[Vector2(456,-50),63.6],[Vector2(430,-106),63.6],[Vector2(392,-82),8.2],[Vector2(423,-57),8.2],[Vector2(440,-60),12.3],[Vector2(437,-159),20.05],[Vector2(490,-155),20.05]]
 
 func _initialize() -> void: run.call_deferred()
 
@@ -33,5 +33,5 @@ func run() -> void:
 		assert(not wall.is_empty() and wall.position.z>-50,"Podium exterior must block walking")
 		world.free()
 		viewport.free()
-	print("PASS: client/server seventh residence 63.6m tower, 8.2m podium, lower dormitories 4/5 and closed exterior")
+	print("PASS: client/server seventh residence 63.6m tower, 8.2m low podium, 12.3m raised podium, lower dormitories 4/5 and closed exterior")
 	quit()

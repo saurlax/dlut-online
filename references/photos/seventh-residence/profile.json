@@ -46,7 +46,37 @@
       "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=jLlMwRL8n2ozUPLXlQ7nR7bLRrkL4G/4MlC8ozvZoR7sUzC0gihFp2hmCIa0okyaLkh7nSyDMzv4MmvbUNrRLmGiLlQRMRWfM4r7M7lZLlVFMml8UNUYnzVFM7CsnzlJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLmC0oR-bLRvJqdKnx&oid=1819948287&tid=1026&nid=82907&e=.jpg",
       "sha256": "762ca8aba255f8339b98f27011fb648af06f2455604d9dfb101ed26339a69a19",
       "retrieved": "2026-09-14"
+    },
+    {
+      "file": "82977-0.jpg",
+      "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=0UNMa7n7CbLl-iUPmCbUl-Dnl-PM49YDnz-ZMzN4L7QVn770gihFp2hmCIa0oShVMYyPnSyYMl-sU49YLNLaMRVknm7aM8rVUmv4o7rVM46FLNU8MR-ZM7WFMl7aMllJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLm-0oR-bM4vJqd4nx&oid=1819948287&tid=1022&nid=82977&e=.jpg",
+      "sha256": "6d31ea9ab1a1bc77839442a5e0e516d0b488e8d6e187cf1747b5094237b5517e",
+      "retrieved": "2026-09-14",
+      "article_url": "https://news.dlut.edu.cn/info/1022/82977.htm",
+      "use": "只使用右半幅航拍核对高低裙房和塔翼；左半幅室内不建模"
     }
   ],
-  "note": "81930报道主体15层、高63.6米。81930-1为设计效果图，82907-0上两幅为施工实照，二者互证L形白色高层及低层裙房；不得把效果图绿化、雨棚和室内直接当竣工实景。楼群位于4/5舍南、食堂北，保留官方Feature外轮廓。塔楼沿官方东北侧顶点4/5/6/7配准L形，西内侧回折点448.323,-35.984与456,-77为图像比例估计，北西端取原顶点3。裙房8.2米、塔楼进深与内院分界仍为估计；总63.6米来自官方，不等于分层净高实测。只先实现可核实高低体量和施工图可见的内院两翼窗格，南北未证面及所有室内不建。"
+  "note": "81930报道主体15层、高63.6米。81930-1为设计效果图，82907-0上两幅为施工实照，二者互证L形白色高层及低层裙房；不得把效果图绿化、雨棚和室内直接当竣工实景。楼群位于4/5舍南、食堂北，保留官方Feature外轮廓。塔楼沿官方东北侧顶点4/5/6/7配准L形，西内侧回折点448.323,-35.984与456,-77为图像比例估计，北西端取原顶点3。裙房8.2米、塔楼进深与内院分界仍为估计；总63.6米来自官方，不等于分层净高实测。只先实现可核实高低体量和施工图可见的内院两翼窗格，南北未证面及所有室内不建。 新增82977施工航拍证实裙房内另有抬高屋面，分区见raised_podium；低裙房8.2米与抬高区12.3米均为估计。",
+  "raised_podium": {
+    "height": 12.3,
+    "points": [
+      [
+        448.875,
+        -38.933
+      ],
+      [
+        454.712,
+        -70.119
+      ],
+      [
+        433.088,
+        -74.167
+      ],
+      [
+        427.25,
+        -42.98
+      ]
+    ],
+    "note": "82977-0右半幅施工航拍确认低裙房上的抬高屋面；按靠东侧塔翼的内院区域配准，距塔翼内面22米、两端退3/7米及12.3米顶高均为图像比例估计，非实测。比8.2米低裙房高4.1米；不复制施工堆料或屋顶图案。"
+  }
 }

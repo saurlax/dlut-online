@@ -27,6 +27,10 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 	var podium: float = profile.podium_height
 	var height: float = profile.height
 	shell(builder,group,points,podium,0.0,white,"Podium")
+	var raised: Dictionary = profile.raised_podium
+	var raised_points := PackedVector2Array()
+	for p in raised.points: raised_points.append(Vector2(p[0],p[1]))
+	shell(builder,group,raised_points,float(raised.height),podium,white,"RaisedPodium")
 	var tower := PackedVector2Array()
 	for p in profile.tower_points: tower.append(Vector2(p[0],p[1]))
 	shell(builder,group,tower,height,podium,white,"Tower")
