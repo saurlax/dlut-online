@@ -88,3 +88,23 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 				var column: MeshInstance3D = builder.box(group,Vector3(mid.x+outward.x*0.52,(height+2)*0.5,mid.y+outward.y*0.52),Vector3(0.38,height+2,0.38),trim,"PhotoFin")
 				column.rotation.y = -atan2(axis.y,axis.x)
 				column.set_meta("walk_collision",true)
+
+	if not is_library:
+		# Open roof frame visible on the long wing; its dimensions are estimates.
+		var roof_frame: Dictionary = profile.roof_frame
+		var a0 := Vector2(roof_frame.side_a[0][0],roof_frame.side_a[0][1])
+		var a1 := Vector2(roof_frame.side_a[1][0],roof_frame.side_a[1][1])
+		var b0 := Vector2(roof_frame.side_b[0][0],roof_frame.side_b[0][1])
+		var b1 := Vector2(roof_frame.side_b[1][0],roof_frame.side_b[1][1])
+		var beam_y: float = roof_frame.beam_center
+		var base_y: float = roof_frame.base
+		edge_box(a0,a1,beam_y,0.4,0.45,trim,true)
+		edge_box(b0,b1,beam_y,0.4,0.45,trim,true)
+		var bays := int(roof_frame.bays)
+		for i in bays+1:
+			var a := a0.lerp(a1,float(i)/bays)
+			var b := b0.lerp(b1,float(i)/bays)
+			edge_box(a,b,beam_y,0.4,0.45,trim,true)
+			for pos in [a,b]:
+				var column: MeshInstance3D = builder.box(group,Vector3(pos.x,(base_y+beam_y)/2,pos.y),Vector3(0.5,beam_y-base_y,0.5),trim,"InformationRoofColumn")
+				column.set_meta("walk_collision",true)

@@ -29,6 +29,13 @@ func run() -> void:
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,35,pos.y),Vector3(pos.x,0,pos.y)))
 			assert(not hit.is_empty())
 			assert(absf(hit.position.y-float(sample[1]))<0.02,"Body roof must match declared scale")
+		# Information roof beams remain open between spans, with solid supports.
+		for sample in [[Vector2(70.5,266.75),20.02],[Vector2(31,267),17.82]]:
+			var pos: Vector2 = sample[0]
+			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,25,pos.y),Vector3(pos.x,17,pos.y)))
+			assert(not hit.is_empty() and absf(hit.position.y-float(sample[1]))<0.02,"Roof frame beam or open bay is incorrect")
+		var roof_column := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(25,18.8,261),Vector3(25,18.8,265)))
+		assert(not roof_column.is_empty() and absf(roof_column.position.z-262.75)<0.02,"Missing roof frame support")
 		# A north perimeter column projects beyond glazing. Test its front face,
 		# and the outer ring directly above, in both visual and saved worlds.
 		var a := Vector2(121.443,114.839)
@@ -46,5 +53,5 @@ func run() -> void:
 		assert(not ring.is_empty() and absf(ring.position.y-24.14)<0.02,"Missing raised ring")
 		world.free()
 		viewport.free()
-	print("PASS: information/library declared heights, roofs, structural column and ring")
+	print("PASS: information/library declared heights, roofs, open roof frame, structural column and ring")
 	quit()
