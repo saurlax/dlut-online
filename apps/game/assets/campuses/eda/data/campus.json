@@ -846,7 +846,7 @@
       "name": "大连理工大学第六学生食堂",
       "kind": "building",
       "height": 12.0,
-      "height_source": "approximation",
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [

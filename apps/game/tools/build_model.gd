@@ -236,6 +236,10 @@ func build() -> void:
 		var height: float = feature.height
 		match kind:
 			"building":
+				if feature.id == "77943":
+					preload("res://tools/build_eda_dining.gd").new().build(self,group,points)
+					generated_count += 1
+					continue
 				if feature.id == "77921":
 					var profile_path := reference_path.get_base_dir().path_join("comprehensive_profile.json")
 					var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profile_path))["77921"]
