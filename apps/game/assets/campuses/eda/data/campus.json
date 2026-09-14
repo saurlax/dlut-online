@@ -196,7 +196,7 @@
       "name": "综合楼",
       "kind": "building",
       "height": 20.0,
-      "height_source": "approximation",
+      "height_source": "photo-storey-proportion-estimate",
       "footprint_source": "official-map",
       "points": [
         [
