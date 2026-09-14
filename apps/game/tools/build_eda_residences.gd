@@ -97,6 +97,11 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			for dx in [-spacing*0.5,spacing*0.5]:
 				panel(x+dx,y,0.18,3.15,0.22,0.12,frame)
 		panel((start+finish)/2.0,y-1.2,finish-start,0.13,0.22,0.12,frame)
+	# Smaller independent windows at the photographed connector-side ends.
+	if profile.has("terminal_windows"):
+		var terminal: Dictionary = profile.terminal_windows
+		for y in terminal.centers_y:
+			window(float(terminal.fraction)*length,float(y),float(terminal.width),float(terminal.height))
 	if profile.get("gallery_available",true):
 		# Only the visible upper gallery: closed shell behind it, no invented access.
 		var gallery_y: float = profile.get("gallery_y",20.65)
