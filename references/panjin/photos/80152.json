@@ -1,0 +1,19 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 1,
+  "result": [
+    {
+      "id": 80154,
+      "name": "IMG_0135",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/80152_20160303094542186.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/80152_20160303094542186.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/80152_20160303094542186.jpg"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=80152",
+  "retrieved": "2026-09-14"
+}

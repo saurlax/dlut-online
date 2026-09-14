@@ -35,6 +35,6 @@
 ### Requirement: 校区资源隔离
 校区专属数据和模型 SHALL 按 assets/campuses/<campus_id>/data/ 和 models/ 组织，由校区注册表声明数据路径；字体保持共享。
 
-#### Scenario: 加载占位校区
-- **WHEN** 打开盘锦占位场景
-- **THEN** 不读取开发区数据，不复制或伪造该校区地图资产
+#### Scenario: 加载盘锦校区
+- **WHEN** 打开盘锦场景
+- **THEN** 读取盘锦专属官方轮廓和模型，不读取开发区数据，不复制或伪造其他校区资产
