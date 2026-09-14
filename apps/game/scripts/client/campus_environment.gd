@@ -1,6 +1,9 @@
 @tool
 extends Node3D
 
+const LocalSession = preload("res://scripts/client/local_session.gd")
+var local_revision := -1
+
 const Solar = preload("res://scripts/shared/solar_time.gd")
 const Weather = preload("res://scripts/client/weather_effects.gd")
 @onready var world: WorldEnvironment = $WorldEnvironment
@@ -31,7 +34,13 @@ func _update(delta: float) -> void:
 	var network := get_node_or_null("/root/GameNetwork") if not Engine.is_editor_hint() else null
 	var now := Time.get_unix_time_from_system()
 	var sample: Dictionary = {}
-	if network != null:
+	if not Engine.is_editor_hint() and LocalSession.enabled:
+		now = LocalSession.unix_time()
+		sample = LocalSession.weather()
+		if local_revision != LocalSession.revision:
+			initialized = false
+			local_revision = LocalSession.revision
+	elif network != null:
 		now = network.environment_unix_time()
 		sample = network.campus_weather.get(campus, {})
 	var direction := Solar.sun_direction(now, campus)

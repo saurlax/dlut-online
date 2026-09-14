@@ -59,6 +59,16 @@ grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("Shade")
 
+[node name="ModalShade" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.04, 0.045, 0.55)
+
 [node name="Composition" type="Control" parent="."]
 layout_mode = 0
 offset_right = 1280.0
@@ -75,13 +85,46 @@ theme_override_font_sizes/font_size = 48
 text = "DLUT Online"
 horizontal_alignment = 1
 
-[node name="Form" type="Control" parent="Composition"]
+[node name="Modes" type="VBoxContainer" parent="Composition"]
 layout_mode = 0
 offset_left = 460.0
-offset_top = 290.0
+offset_top = 470.0
+offset_right = 820.0
+offset_bottom = 620.0
+theme_override_constants/separation = 14
+
+[node name="Singleplayer" type="Button" parent="Composition/Modes"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "单人模式"
+theme_type_variation = &"PrimaryButton"
+
+[node name="Multiplayer" type="Button" parent="Composition/Modes"]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+text = "多人模式"
+
+[node name="Status" type="Label" parent="Composition/Modes"]
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Form" type="Control" parent="Composition"]
+visible = false
+layout_mode = 0
+offset_left = 460.0
+offset_top = 210.0
 offset_right = 820.0
 offset_bottom = 640.0
 mouse_filter = 2
+
+[node name="Panel" type="ColorRect" parent="Composition/Form"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -24.0
+offset_right = 388.0
+offset_bottom = 350.0
+color = Color(0.045, 0.06, 0.065, 0.96)
 
 [node name="Fields" type="VBoxContainer" parent="Composition/Form"]
 layout_mode = 0
@@ -120,7 +163,7 @@ text = "登录"
 visible = false
 layout_mode = 2
 theme_type_variation = &"QuietButton"
-text = "取消登录"
+text = "取消"
 
 [node name="Register" type="LinkButton" parent="Composition/Form/Fields"]
 layout_mode = 2
