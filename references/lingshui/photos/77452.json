@@ -1,0 +1,69 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 6,
+  "result": [
+    {
+      "id": 78511,
+      "name": "s_247",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77452_20160226145035863.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77452_20160226145035863.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77452_20160226145035863.jpg"
+    },
+    {
+      "id": 78512,
+      "name": "blbyst",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77452_20160226145558579.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77452_20160226145558579.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77452_20160226145558579.png"
+    },
+    {
+      "id": 851400,
+      "name": "29529a17896dfe0f2c675588e6dd07b",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77452_20191108144056534.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77452_20191108144056534.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77452_20191108144056534.png"
+    },
+    {
+      "id": 851402,
+      "name": "9873a879cb4100c0477598031dcd35c",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77452_20191108144056512.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77452_20191108144056512.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77452_20191108144056512.png"
+    },
+    {
+      "id": 851403,
+      "name": "25c68c44bb98935ddfc57a272941a5a",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77452_20191108144056530.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77452_20191108144056530.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77452_20191108144056530.png"
+    },
+    {
+      "id": 851401,
+      "name": "5d69419547586f6a46badc0dce079ce",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77452_20191108144056514.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77452_20191108144056514.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77452_20191108144056514.png"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77452",
+  "retrieved": "2026-09-11"
+}

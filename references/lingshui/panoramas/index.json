@@ -1,0 +1,1375 @@
+{
+  "retrieved": "2026-09-11",
+  "entry": "https://360.toowtech.com/dalian/DUT/",
+  "configurations": [
+    {
+      "source": "https://imgs.toowtech.com/dalian/DUT/toowtech_bc.xml",
+      "retrieved": "2026-09-11",
+      "scenes": [
+        {
+          "id": "scene_DUT_BC02",
+          "title": "鸟瞰图（北门）",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC02.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,640,1152,2304,4608,9216"
+            },
+            {
+              "url": "panos/DUT_BC02.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC01",
+          "title": "鸟瞰图（南门）",
+          "lat": "38.87577553",
+          "lng": "121.52391045",
+          "heading": "0.0",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC01.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,640,1152,2304,4608,9216"
+            },
+            {
+              "url": "panos/DUT_BC01.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC04",
+          "title": "北门",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC04.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC04.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC03",
+          "title": "南门",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC03.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC03.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC05",
+          "title": "二楼大厅（北门）",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC05.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC05.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC06",
+          "title": "二楼大厅（南门）",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC06.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC06.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC07",
+          "title": "二楼大厅（服务台）",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC07.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC07.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC102",
+          "title": "二楼大厅（博雅轩）",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC102.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC102.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC101",
+          "title": "二楼大厅（206图书馆办公室）",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC101.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC101.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC08",
+          "title": "二楼大厅（自助设备间）",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC08.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC08.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC09",
+          "title": "二楼会议区",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC09.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC09.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC10",
+          "title": "二楼多功能厅",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC10.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC10.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC11",
+          "title": "二楼报告厅",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC11.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC11.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC103",
+          "title": "普罗名特厅",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC103.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC103.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC104",
+          "title": "普罗名特厅会议室走廊",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC104.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC104.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC105",
+          "title": "第一会议室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC105.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC105.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC106",
+          "title": "第三会议室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC106.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC106.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC107",
+          "title": "一楼电梯厅",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC107.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC107.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC108",
+          "title": "电子阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC108.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC108.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC109",
+          "title": "视听室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC109.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC109.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC12",
+          "title": "休闲空间",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC12.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC12.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC13",
+          "title": "百卉含英",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC13.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC13.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC14",
+          "title": "301阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC14.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC14.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC110",
+          "title": "信息咨询部",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC110.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC110.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC111",
+          "title": "信息咨询部办公室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC111.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC111.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC15",
+          "title": "312阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC15.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC15.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC16",
+          "title": "四楼凌水书屋",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC16.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC16.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC17",
+          "title": "四楼凌水文库内景",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC17.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC17.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC19",
+          "title": "四楼百川文库",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC19.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC19.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC20",
+          "title": "四楼百川文库内景",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC20.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC20.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC23",
+          "title": "401阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC23.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC23.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC18",
+          "title": "404阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC18.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC18.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC22",
+          "title": "409阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC22.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC22.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC25",
+          "title": "501阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC25.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC25.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC26",
+          "title": "504阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC26.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC26.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC21",
+          "title": "504阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC21.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC21.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_BC24",
+          "title": "507阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_BC24.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_BC24.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "https://imgs.toowtech.com/dalian/DUT/toowtech_lx.xml",
+      "retrieved": "2026-09-11",
+      "scenes": [
+        {
+          "id": "scene_DUT_LX00",
+          "title": "鸟瞰图（东门）",
+          "lat": "38.88271564",
+          "lng": "121.51465095",
+          "heading": "0.0",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX00.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,640,1152,2304,4608,9216"
+            },
+            {
+              "url": "panos/DUT_LX00.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX01",
+          "title": "东门",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX01.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX01.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX202",
+          "title": "西门",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX202.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX202.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX03",
+          "title": "二楼大厅",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX03.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX03.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX04",
+          "title": "二楼大厅-钱令希纪念碑",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX04.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX04.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX05",
+          "title": "二楼大厅-总服务台",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX05.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX05.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX06",
+          "title": "二楼大厅-北厅",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX06.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX06.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX07",
+          "title": "201阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX07.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX07.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX08",
+          "title": "202阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX08.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX08.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX09",
+          "title": "202阅览室内景",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX09.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX09.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX10",
+          "title": "202阅览室内景",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX10.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX10.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX11",
+          "title": "三楼走廊-东侧",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX11.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX11.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX12",
+          "title": "301阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX12.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX12.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX13",
+          "title": "301阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX13.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX13.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX14",
+          "title": "302阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX14.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX14.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX15",
+          "title": "302阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX15.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX15.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX16",
+          "title": "四楼走廊-东侧",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX16.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX16.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX17",
+          "title": "401阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX17.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX17.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX18",
+          "title": "401阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX18.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX18.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX19",
+          "title": "402阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX19.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX19.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX20",
+          "title": "402阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX20.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX20.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX21",
+          "title": "五楼走廊-东侧",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX21.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX21.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX22",
+          "title": "501阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX22.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX22.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX23",
+          "title": "501阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX23.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX23.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX24",
+          "title": "502阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX24.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX24.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX25",
+          "title": "502阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX25.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX25.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX26",
+          "title": "六楼走廊-东侧",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX26.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX26.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX28",
+          "title": "601阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX28.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX28.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_LX27",
+          "title": "602阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_LX27.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_LX27.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "https://imgs.toowtech.com/dalian/DUT/toowtech_mks.xml",
+      "retrieved": "2026-09-11",
+      "scenes": [
+        {
+          "id": "scene_DUT_MKS01",
+          "title": "外门",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_MKS01.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_MKS01.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_MKS02",
+          "title": "内门",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_MKS02.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_MKS02.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        },
+        {
+          "id": "scene_DUT_MKS03",
+          "title": "阅览室",
+          "lat": "",
+          "lng": "",
+          "heading": "",
+          "cubes": [
+            {
+              "url": "panos/DUT_MKS03.tiles/%s/l%l/%0v/l%l_%s_%0v_%0h.jpg",
+              "multires": "512,768,1664,3200,6400"
+            },
+            {
+              "url": "panos/DUT_MKS03.tiles/vr/pano_%s.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "used_faces": [
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "f",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/vr/pano_f.jpg",
+      "file": "BC02-f.jpg",
+      "purpose": "核对伯川北侧与主楼广场、体育场的相对位置及可见窗型"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "l",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/vr/pano_l.jpg",
+      "file": "BC02-l.jpg",
+      "purpose": "核对厚民楼位于主楼东翼之后的西向横带立面"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "b",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/vr/pano_b.jpg",
+      "file": "BC02-b.jpg",
+      "purpose": "配合左视核对厚兴楼位于主楼东北侧，南面弧形饰带与照片对应；核对第二教学馆位于第一教学馆北侧偏西的南立面"
+    },
+    {
+      "scene": "scene_DUT_BC01",
+      "face": "f",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC01.tiles/vr/pano_f.jpg",
+      "file": "BC01-f.jpg",
+      "purpose": "伯川图书馆南侧入口外观、前场与主楼的相对位置复核；可见入口外梯、浅色竖柱及顶部方形构件，不将其复制为北侧立面，也不据此建立内部或完整分段平面。内燃机实验室位于远景，无法唯一确定高低分界。 后续结合地图4/5号照片用于南侧东翼边13三列五排窗配准；中央入口和其他面仍未建。"
+    }
+  ],
+  "limitations": "立方体图并非正射平面；不按单个lat/lng或heading自动投影。内部空间、屋面分段深度和未见立面未由本资料证明。",
+  "review_tiles": [
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "l",
+      "level": 4,
+      "row": 5,
+      "column": 2,
+      "retrieved": "2026-09-11",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/l/l4/05/l4_l_05_02.jpg",
+      "file": "BC02-l4-5-2.jpg",
+      "sha256": "683ca1334f60414f86b2aee87aaf018c84a8675b9dc424caafd201e57ccb3300",
+      "purpose": "核对主楼东侧实验区的屋顶和邻楼关系；树冠遮挡连接处，尚不足以唯一配准厚坤楼照片或确定内部边界，不作为新增模型依据"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "l",
+      "level": 4,
+      "row": 5,
+      "column": 3,
+      "retrieved": "2026-09-11",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/l/l4/05/l4_l_05_03.jpg",
+      "file": "BC02-l4-5-3.jpg",
+      "sha256": "a05a665c7a88da151ec5ccbb92ccd18973abfb46043677dab6e2f0866b8abd56",
+      "purpose": "核对主楼东侧实验区的屋顶和邻楼关系；树冠遮挡连接处，尚不足以唯一配准厚坤楼照片或确定内部边界，不作为新增模型依据"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "l",
+      "level": 4,
+      "row": 5,
+      "column": 4,
+      "retrieved": "2026-09-11",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/l/l4/05/l4_l_05_04.jpg",
+      "file": "BC02-l4-5-4.jpg",
+      "sha256": "6d6d17d19d14bd30f1d486cdc139200eafe50e5b752ab4996abb7572fedab56e",
+      "purpose": "核对主楼东侧实验区的屋顶和邻楼关系；树冠遮挡连接处，尚不足以唯一配准厚坤楼照片或确定内部边界，不作为新增模型依据"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "l",
+      "level": 4,
+      "row": 6,
+      "column": 2,
+      "retrieved": "2026-09-11",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/l/l4/06/l4_l_06_02.jpg",
+      "file": "BC02-l4-6-2.jpg",
+      "sha256": "88238ec45365faa861de8324152a794a9e6aed85606eadc504a2783885817428",
+      "purpose": "核对主楼东侧实验区的屋顶和邻楼关系；树冠遮挡连接处，尚不足以唯一配准厚坤楼照片或确定内部边界，不作为新增模型依据"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "l",
+      "level": 4,
+      "row": 6,
+      "column": 3,
+      "retrieved": "2026-09-11",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/l/l4/06/l4_l_06_03.jpg",
+      "file": "BC02-l4-6-3.jpg",
+      "sha256": "85ef6af3cfdfa9a66cffb9b4b1f6e7aef1bc42046486e6ac5652d363fba629b1",
+      "purpose": "核对主楼东侧实验区的屋顶和邻楼关系；树冠遮挡连接处，尚不足以唯一配准厚坤楼照片或确定内部边界，不作为新增模型依据"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "l",
+      "level": 4,
+      "row": 6,
+      "column": 4,
+      "retrieved": "2026-09-11",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/l/l4/06/l4_l_06_04.jpg",
+      "file": "BC02-l4-6-4.jpg",
+      "sha256": "41d010d576e61df2c69f27982280ca11416720243856919f667d3047c05e36b5",
+      "purpose": "核对主楼东侧实验区的屋顶和邻楼关系；树冠遮挡连接处，尚不足以唯一配准厚坤楼照片或确定内部边界，不作为新增模型依据"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "b",
+      "level": 4,
+      "row": 6,
+      "column": 1,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l4/06/l4_b_06_01.jpg",
+      "file": "BC02-b4-6-1.jpg",
+      "sha256": "f56bc31d3b93f1f25ef3b901f4cc62e0f53b66bb1dbef03c833c98ee37252045",
+      "purpose": "船舶楼三列加两列高段、两列短面及低翼与第二教学馆邻接配准；支持南向入口及东高西低，树冠遮挡落地分界和后方连接，不据此生成室内或完整分段平面"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "b",
+      "level": 5,
+      "row": 11,
+      "column": 1,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/11/l5_b_11_01.jpg",
+      "file": "BC02-b5-11-1.jpg",
+      "sha256": "6a8254a88ec9a0224516b86fe3517d4ac4bc066dc25900df752dc0bc8ac25331",
+      "purpose": "船舶楼三列加两列高段、两列短面及低翼与第二教学馆邻接配准；支持南向入口及东高西低，树冠遮挡落地分界和后方连接，不据此生成室内或完整分段平面"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "b",
+      "level": 5,
+      "row": 11,
+      "column": 2,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/11/l5_b_11_02.jpg",
+      "file": "BC02-b5-11-2.jpg",
+      "sha256": "6a4d834f20c90c2843ed89a4f10aca76206d0c15151b023f1c8ee1ed4dd7dc88",
+      "purpose": "船舶楼三列加两列高段、两列短面及低翼与第二教学馆邻接配准；支持南向入口及东高西低，树冠遮挡落地分界和后方连接，不据此生成室内或完整分段平面"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "b",
+      "level": 5,
+      "row": 10,
+      "column": 5,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/10/l5_b_10_05.jpg",
+      "file": "BC02-b5-10-5.jpg",
+      "sha256": "81d09042e614bfb5dc657c1e10fb110b496d17135a359fb5d07ba7a7bee8d067",
+      "purpose": "排除海涵顶冠候选误认：画面浅色楼顶为带横条的封闭矩形屋顶房，不能当作77379照片中的三道开放弧带；候选楼Feature未确认，不用于建模"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "b",
+      "level": 5,
+      "row": 10,
+      "column": 6,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/10/l5_b_10_06.jpg",
+      "file": "BC02-b5-10-6.jpg",
+      "sha256": "4b491d5503693c361703129bdbc610552b4e8d17db31270aede701b84152d5dc",
+      "purpose": "排除海涵顶冠候选误认：画面浅色楼顶为带横条的封闭矩形屋顶房，不能当作77379照片中的三道开放弧带；候选楼Feature未确认，不用于建模"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "b",
+      "level": 5,
+      "row": 10,
+      "column": 7,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/10/l5_b_10_07.jpg",
+      "file": "BC02-b5-10-7.jpg",
+      "sha256": "7a2cc70391f1a3459be5c0a1d8bc9bf8f10efbb64fe0cc272a55dbc084d4f121",
+      "purpose": "综合教学1号楼中央高段与前方低翼补充核对：与既有10行5/6列连续，屋顶浅色阶形突出物、下方成排窗及左下玻璃雨棚与地图77378-2/7号图建立对应；可见中央屋面后退长横窗段和右前方较低翼楼。地面视角看不到的上部横窗为官方七层说明提供补充外观线索，但本透视图不能量出后退深度、院落落地边界或完整第七层平面，不用于恢复边33/34通用网格或新增模型。"
+    },
+    {
+      "scene": "scene_DUT_BC02",
+      "face": "b",
+      "level": 5,
+      "row": 10,
+      "column": 8,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/10/l5_b_10_08.jpg",
+      "file": "BC02-b5-10-8.jpg",
+      "sha256": "6ee2fb480301bcb661f6438bc48b8672d7e75b8d71aff6a1aefacf4653da51e6",
+      "purpose": "综合教学1号楼中央高段与前方低翼补充核对：与既有10行5/6列连续，屋顶浅色阶形突出物、下方成排窗及左下玻璃雨棚与地图77378-2/7号图建立对应；可见中央屋面后退长横窗段和右前方较低翼楼。地面视角看不到的上部横窗为官方七层说明提供补充外观线索，但本透视图不能量出后退深度、院落落地边界或完整第七层平面，不用于恢复边33/34通用网格或新增模型。"
+    },
+    {
+      "scene": "scene_DUT_LX00",
+      "face": "b",
+      "level": 5,
+      "row": 11,
+      "column": 7,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_LX00.tiles/b/l5/11/l5_b_11_07.jpg",
+      "file": "LX00-b5-11-7.jpg",
+      "sha256": "a1660943b425bf3beabd61cca134fe884d475e208f0db97adb5c05c30ff78840",
+      "purpose": "综合教学1号楼相反方向屋面复核：配合下方海涵楼的圆柱转角、临路位置与官方西邻关系，连续11行7/8列显示后侧错开的屋面平台、浅色阶形顶房与局部坡形采光构件。不能将每个顶房视为独立楼层，也不能把树冠下方的空隙量作院落边界；用于下一步高低体量配准，未用于模型。"
+    },
+    {
+      "scene": "scene_DUT_LX00",
+      "face": "b",
+      "level": 5,
+      "row": 11,
+      "column": 8,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_LX00.tiles/b/l5/11/l5_b_11_08.jpg",
+      "file": "LX00-b5-11-8.jpg",
+      "sha256": "e9fb86917f3fb13652703e597c8a15fcb0ca97a8f3904a1fd3bd450f45edb750",
+      "purpose": "综合教学1号楼相反方向屋面复核：配合下方海涵楼的圆柱转角、临路位置与官方西邻关系，连续11行7/8列显示后侧错开的屋面平台、浅色阶形顶房与局部坡形采光构件。不能将每个顶房视为独立楼层，也不能把树冠下方的空隙量作院落边界；用于下一步高低体量配准，未用于模型。"
+    },
+    {
+      "scene": "scene_DUT_LX00",
+      "face": "b",
+      "level": 5,
+      "row": 12,
+      "column": 7,
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_LX00.tiles/b/l5/12/l5_b_12_07.jpg",
+      "file": "LX00-b5-12-7.jpg",
+      "sha256": "77fe5c860c4247574e88f3cb0aec27e40882e1ec4e94d7d49b51d36a0941ee34",
+      "purpose": "综合教学1号楼西侧定位参照：可见海涵楼白色网格长立面和圆柱转角，与官方说明的L形、入口圆柱及综合教学1号楼西侧关系互证；远端和地面被树冠遮挡，不能从本切片确定院落或通行范围，未用于模型。"
+    }
+  ],
+  "review_faces": [
+    {
+      "scene": "scene_DUT_BC01",
+      "face": "f",
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC01.tiles/vr/pano_f.jpg",
+      "file": "BC01-f.jpg",
+      "sha256": "5a267c21f87db54792c6559329535d961a49d246fed2271af64ab11e04361be7",
+      "purpose": "伯川图书馆南侧入口外观、前场与主楼的相对位置复核；可见入口外梯、浅色竖柱及顶部方形构件，不将其复制为北侧立面，也不据此建立内部或完整分段平面。内燃机实验室位于远景，无法唯一确定高低分界。 后续结合地图4/5号照片用于南侧东翼边13三列五排窗配准；中央入口和其他面仍未建。",
+      "used_for_model": true
+    },
+    {
+      "scene": "scene_DUT_BC01",
+      "face": "r",
+      "retrieved": "2026-09-14",
+      "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC01.tiles/vr/pano_r.jpg",
+      "file": "BC01-r.jpg",
+      "sha256": "6df55fb4b1231c9f7ead54ca215e1651c6380201f4f2bb3a76b1c54b833de21a",
+      "purpose": "体育馆/游泳馆、田径场和周边楼的另一方向关系复核；记录浅蓝与浅绿色看台及曲面屋顶可见状态，尚未与地图照片拍摄时期和结构分段统一，不直接替换当前看台或屋顶模型。",
+      "used_for_model": false
+    }
+  ]
+}

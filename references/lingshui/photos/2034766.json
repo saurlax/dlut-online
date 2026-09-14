@@ -1,0 +1,8 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 0,
+  "result": [],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=2034766",
+  "retrieved": "2026-09-11"
+}

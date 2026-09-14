@@ -1,0 +1,59 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 5,
+  "result": [
+    {
+      "id": 78464,
+      "name": "IMG_0248",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77444_20160226112422489.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77444_20160226112422489.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77444_20160226112422489.jpg"
+    },
+    {
+      "id": 78465,
+      "name": "IMG_0244",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77444_2016022611243953.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77444_2016022611243953.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77444_2016022611243953.jpg"
+    },
+    {
+      "id": 78466,
+      "name": "IMG_0255",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77444_20160226112501771.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77444_20160226112501771.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77444_20160226112501771.jpg"
+    },
+    {
+      "id": 78467,
+      "name": "IMG_0256",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77444_20160226112509685.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77444_20160226112509685.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77444_20160226112509685.jpg"
+    },
+    {
+      "id": 273996132,
+      "name": "A402",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77444_20170913105015340.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77444_20170913105015340.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77444_20170913105015340.jpg"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77444",
+  "retrieved": "2026-09-11"
+}
