@@ -25,7 +25,7 @@ func run() -> void:
 			world.add_child(model)
 			for c in CASES:
 				var group := model.get_node("Feature_"+c[0])
-				assert(group.get_child_count()<=7,"Keep material batching per residence")
+				assert(group.get_child_count()<=(8 if c[0] in ["77937","77938"] else 7),"Keep material batching per residence")
 				assert(group.get_meta("photo_edges")==[c[1]])
 			Collision.build(world,model,manifest,"eda")
 		await physics_frame

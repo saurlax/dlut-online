@@ -28,6 +28,19 @@ func run() -> void:
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,80,pos.y),Vector3(pos.x,-1,pos.y)))
 			assert(not hit.is_empty(),"Missing roof at "+str(pos))
 			assert(absf(hit.position.y-float(sample[1]))<0.03,"Wrong roof height at "+str(pos)+": "+str(hit.position))
+		# The outer stair towers on dormitories 4/5 rise above their main roofs.
+		for sample in [[Vector2(467.384,-135.44),Vector2(419.887,-143.594),0.9],[Vector2(517.565,-135.991),Vector2(477.464,-135.617),0.14]]:
+			var a: Vector2 = sample[0]
+			var b: Vector2 = sample[1]
+			var out := Vector2((b-a).y,-(b-a).x).normalized()
+			var center := a.lerp(b,sample[2])-out*2.05
+			var top := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(center.x,27,center.y),Vector3(center.x,19,center.y)))
+			assert(not top.is_empty() and absf(top.position.y-23.0)<0.03,"Missing raised dormitory stair tower")
+			var front := a.lerp(b,sample[2])
+			var outside := front+out
+			var inside := front-out
+			var side := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(outside.x,21,outside.y),Vector3(inside.x,21,inside.y)))
+			assert(not side.is_empty() and Vector2(side.position.x,side.position.z).distance_to(front+out*0.2)<0.03,"Stair tower must remain closed")
 		# Both photographed raised-roof parapets block horizontally and have a top.
 		for segment in [[Vector2(433.088,-74.167),Vector2(427.25,-42.98)],[Vector2(427.25,-42.98),Vector2(448.875,-38.933)]]:
 			var a: Vector2 = segment[0]
