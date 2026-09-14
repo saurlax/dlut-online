@@ -17,6 +17,12 @@ func _initialize() -> void:
 	for id in ["lingshui","eda","panjin"]:
 		var scene: Node = load("res://scenes/campuses/"+id+".tscn").instantiate()
 		assert(scene.get_node("CampusModel").get_child_count()>0)
+		var manifest_path: String = "res://assets/campuses/"+id+"/data/campus.json"
+		assert(FileAccess.file_exists(manifest_path))
+		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
+		assert(not manifest.features.is_empty())
+		if id == "panjin":
+			assert(manifest.features.size()==64)
 		var precipitation := scene.get_node("CampusEnvironment/Precipitation")
 		assert(precipitation.get_node("Rain") is GPUParticles3D)
 		assert(precipitation.get_node("Snow") is GPUParticles3D)
