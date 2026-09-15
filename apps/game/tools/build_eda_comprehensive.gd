@@ -6,7 +6,7 @@ func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary)
 	var facade := Facade.new()
 	facade.host = host
 	facade.group = group
-	group.set_meta("photo_reference","references/photos/comprehensive_profile.json")
+	group.set_meta("photo_reference","references/eda/buildings/comprehensive_profile.json")
 	group.set_meta("interior_available",false)
 	var wall: Material = host.material("EDA comprehensive grey masonry",Color("777c79"))
 	var band: Material = host.material("EDA comprehensive pale bands",Color("c3c6b7"))

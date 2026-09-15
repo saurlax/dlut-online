@@ -12,8 +12,8 @@ EXCLUDED_IDS = {80152, 80155, 80158, 80161, 80164, 80691, 80693, 80694, 80697}
 
 
 def main():
-    source = json.loads((REFERENCES / 'bounds.json').read_text())
-    profiles = json.loads((REFERENCES / 'facades.json').read_text())
+    source = json.loads((REFERENCES / 'mapping/bounds.json').read_text())
+    profiles = json.loads((REFERENCES / 'buildings/facades.json').read_text())
     features, excluded, parts = [], [], {}
     for item in source['result']:
         if item['id'] in EXCLUDED_IDS:
@@ -46,7 +46,7 @@ def main():
             'source': source['source'], 'retrieved': source['retrieved'],
             'bounds': low+[high[i]-low[i] for i in range(2)], 'features': features}
     (output/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n')
-    (REFERENCES/'excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n')
+    (REFERENCES/'mapping/excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n')
     print(f'Panjin: {len(features)} polygon parts, {len(parts)} IDs, {len(excluded)} excluded')
 
 

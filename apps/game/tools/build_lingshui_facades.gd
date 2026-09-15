@@ -1,6 +1,6 @@
 extends RefCounted
 
-# Explicit edge indices and photo coverage live in references/lingshui/facades.json.
+# Explicit edge indices and photo coverage live in references/lingshui/buildings/facades.json.
 # All ornament is merged by material by the caller; only structural columns collide.
 func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictionary) -> void:
 	var height: float = profile.height

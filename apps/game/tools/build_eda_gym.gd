@@ -27,7 +27,7 @@ func quad(a: Vector3,b: Vector3,c: Vector3,d: Vector3,mat: Material,solid := tru
 func build(builder, parent: Node3D, points: PackedVector2Array) -> void:
 	host = builder
 	group = parent
-	group.set_meta("photo_reference","references/photos/gym_profile.json")
+	group.set_meta("photo_reference","references/eda/buildings/gym_profile.json")
 	group.set_meta("interior_available",false)
 	var base: Material = host.material("EDA gym stone",Color("88897e"))
 	var wall: Material = host.material("EDA gym pale wall",Color("b3b7aa"))
@@ -95,7 +95,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array) -> void:
 		box(Vector3(x,3+h/2,z+1.0),Vector3(0.3,h,0.3),steel,true)
 
 	# Six visible roof posts; cable attachment topology remains unverified.
-	var profile_path := ProjectSettings.globalize_path("res://").path_join("../../references/photos/gym_profile.json").simplify_path()
+	var profile_path := ProjectSettings.globalize_path("res://").path_join("../../references/eda/buildings/gym_profile.json").simplify_path()
 	var profiles: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profile_path))
 	var posts: Dictionary = profiles["77923"].roof_posts
 	for i in posts.z.size():

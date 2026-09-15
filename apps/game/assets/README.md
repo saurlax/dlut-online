@@ -7,7 +7,7 @@
 - `campuses/eda/models/development_campus.glb` 与同目录 albedo PNG：生成器输出的离线模型交换文件及纹理，不列入 Web 导出和版本控制；需要时运行模型生成工具重建，供外部建模工具使用。
 - `.import`：Godot 资源导入配置，由编辑器管理；移动资产时同步更新。
 
-`lingshui` 的官方轮廓数据位于 `campuses/lingshui/data/campus.json`，静态模型位于 `campuses/lingshui/models/lingshui_campus.tscn`，由凌水场景直接挂载。包含 313 段轮廓及七栋建筑的局部照片立面，来源与精度见根目录 `references/lingshui/README.md`。`panjin` 仍为直接保存在场景内的占位模型，不复制其他校区资源。
+`lingshui` 的官方轮廓数据位于 `campuses/lingshui/data/campus.json`，静态模型位于 `campuses/lingshui/models/lingshui_campus.tscn`，由凌水场景直接挂载。包含 313 段轮廓及七栋建筑的局部照片立面，来源与精度见根目录 `references/lingshui/buildings/basis.md`。`panjin` 仍为直接保存在场景内的占位模型，不复制其他校区资源。
 
 `tools/prepare_campus.py`、`tools/add_roads.py`、`tools/build_model.gd` 目前仅生成 eda；不生成其他校区。原始参考资料位于 `references/`，不打入 Web。
 

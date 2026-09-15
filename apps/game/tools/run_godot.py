@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run headless Godot with bounded execution and fail on script errors."""
+"""Run headless Godot with bounded execution and fail on script or attribution errors."""
 import os
 import selectors
 import signal
@@ -32,8 +32,8 @@ def main():
                 sys.stdout.buffer.write(data)
                 sys.stdout.buffer.flush()
                 pending = (pending + data)[-131072:]
-                if b"SCRIPT ERROR:" in pending:
-                    print("Godot script error; stopping CI command", file=sys.stderr)
+                if b"SCRIPT ERROR:" in pending or b"ERROR: Third-party notices:" in pending:
+                    print("Godot script or attribution error; stopping CI command", file=sys.stderr)
                     result = 1
                     break
             if result is not None:

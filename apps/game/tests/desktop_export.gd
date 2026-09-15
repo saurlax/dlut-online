@@ -1,6 +1,8 @@
 extends SceneTree
 func _initialize() -> void:
 	assert(FileAccess.file_exists("res://desktop_config.json"))
+	var credits := FileAccess.get_file_as_string("res://CREDITS.md")
+	assert(credits.contains("Open-Meteo") and credits.contains("https://creativecommons.org/licenses/by/4.0/"))
 	assert(not FileAccess.file_exists("res://.godot/do_run_environment.cfg"))
 	assert(not ResourceLoader.exists("res://addons/desktop_export/plugin.gd"))
 	assert(not ResourceLoader.exists("res://addons/run_environment/plugin.gd"))

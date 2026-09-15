@@ -26,7 +26,7 @@
 - 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。桌面默认使用 Forward+ 渲染器，Android 使用 Mobile 渲染器覆盖。
 - Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，账号 token 在运行时保留于内存，并按 API 根地址隔离存入 macOS 钥匙串或 Windows 凭据管理器；Android 测试版仅在内存保留登录，重启后重新登录；多人模式提供原生密码登录，无联网游客入口，单人模式无需登录；网站提供登录注册与邮箱验证。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
-- 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，运行时资源放 assets/。
+- 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，按 references/README.md 的校区与主题分类；项目外部信息、素材、天气 API 等来源和许可统一维护于根目录 CREDITS.md，运行时资源放 assets/。
 - 按职责拆分模型生成器，避免把建筑内部、植被和 UI 混入同一模块。GDScript 使用 snake_case，常量 UPPER_SNAKE_CASE；类型推断不明确时显式标注类型。
 - 静态世界模型、环境和灯光必须挂入 .tscn 主场景，打开编辑器即可查看；不要只在 _ready() 中实例化静态世界。运行时逻辑不得重复创建已挂载的节点。
 - 场景保留官方 Feature ID 和轮廓。建筑应有独立可替换的模型；改变形状、高度和入口时记录依据。
@@ -48,7 +48,7 @@
 
 - 固定 ID：lingshui（凌水主校区）、eda（开发区校区）、panjin（盘锦校区），默认 lingshui。场景位于 scenes/campuses/，每个都能直接在编辑器打开。
 - 校区传送通过 SceneTree 场景切换，卸载旧场景；不同时加载三个校园模型。
-- lingshui 使用官方主校区轮廓和已核对的局部照片立面，精度边界见 references/lingshui/README.md；panjin 使用官方盘锦轮廓及已核对的三栋局部照片立面，精度边界见 references/panjin/README.md。eda 保留已有官方轮廓模型。
+- lingshui 使用官方主校区轮廓和已核对的局部照片立面，精度边界见 references/lingshui/buildings/basis.md；panjin 使用官方盘锦轮廓及已核对的三栋局部照片立面，精度边界见 references/panjin/buildings/basis.md。eda 保留已有官方轮廓模型。
 - 圆形小地图与地图面板全用 Godot 控件绘制；M 或点击打开，打开时暂停行走并释放鼠标，关闭时恢复原状态。
 
 - 大地图必须铺满整个屏幕，使用固定默认比例尺，支持滚轮缩放及左键拖动，禁止拖出边界；校区选择列表在右上角竖直排列；不显示关闭按钮，使用 M 或 Escape 收起。
@@ -80,7 +80,7 @@
 - Go HTTP 服务位于 apps/api/，自定义业务接口和 Vue 站点直接注册到 PocketBase Router；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
 - CI 固定使用 test.yml、build.yml、release.yml 三个工作流。test.yml 仅提供 workflow_call，使用两个独立 Linux runner 并行运行 Vue 与 Go 任务：Vue 执行 `vue-tsc --noEmit`，Go 依次执行 `go test -timeout 60s ./...` 和 `go vet ./...`，两者全部成功才允许构建。不运行集成或 E2E 测试，默认不启用 race，不启动真实数据库、系统凭据操作、容器 smoke、游戏联调、物理世界或导出包运行检查；这些仅在相关改动时本地专项执行。Go 集成测试必须带 `//go:build integration`，不进入默认 go test。Godot 将来可加入使用 GUT 的纯函数单元测试，但不得加载校园、连接服务或操作系统凭据；当前轻量测试任务不安装 Godot 或下载 LFS 资产。
-- build.yml 统一接收 main 源码分支 push、PR、手动运行，也提供 workflow_call 供发布复用；纯文档变更不触发，其他分支 push 不触发，避免 PR 重复运行。每次调用先执行 test.yml，成功后并行执行 windows、macos、server、web、android 五个独立构建任务，五者必须 needs: test。Windows 导出内嵌资源的 x86_64 独立 EXE；macOS 在 macOS runner 导出、裁剪为 arm64 并重新做 ad-hoc 签名，最终 DMG 必须通过严格签名与 arm64 架构校验；server 在 Linux 生成碰撞世界、导出游戏服并构建镜像；web 构建 Go HTTP 镜像。Android 在 Linux 使用 JDK 17、Android SDK 和 Godot 模板导出 arm64 Release APK，使用 Android 默认 debug keystore，缺失时按标准参数初始化，仅上传 APK artifact 并在摘要提供下载链接，不保存或上传密钥，不需配置签名 Secrets；不同构建可能需卸载旧版再安装。相关源码变更统一构建五种产物，不再按应用拆分工作流或增加 ci.yml 调度层。
+- build.yml 统一接收 main 源码分支 push、PR、手动运行，也提供 workflow_call 供发布复用；纯文档变更不触发；根目录 CREDITS.md 作为发行资源参与构建触发。其他分支 push 不触发，避免 PR 重复运行。每次调用先执行 test.yml，成功后并行执行 windows、macos、server、web、android 五个独立构建任务，五者必须 needs: test。Windows 导出内嵌资源的 x86_64 独立 EXE；macOS 在 macOS runner 导出、裁剪为 arm64 并重新做 ad-hoc 签名，最终 DMG 必须通过严格签名与 arm64 架构校验；server 在 Linux 生成碰撞世界、导出游戏服并构建镜像；web 构建 Go HTTP 镜像。Android 在 Linux 使用 JDK 17、Android SDK 和 Godot 模板导出 arm64 Release APK，使用 Android 默认 debug keystore，缺失时按标准参数初始化，仅上传 APK artifact 并在摘要提供下载链接，不保存或上传密钥，不需配置签名 Secrets；不同构建可能需卸载旧版再安装。相关源码变更统一构建五种产物，不再按应用拆分工作流或增加 ci.yml 调度层。
 - release.yml 仅接收版本标签，先校验版本，再调用 build.yml（test → 五种构建），全部成功后下载本次构建的 EXE/DMG 上传 GitHub Release。测试失败必须阻止所有 build 和 release，不能使用 always()、continue-on-error 或跳过测试参数绕过。构建阶段只做必要生成、编译、打包、产物完整性检查和上传，不运行集成/E2E，也不构建 Godot Web 产物。Go `DO_API_SERVER_PORT` 默认 8415，并兼容平台 `PORT`；容器 PocketBase 数据位于 `/data/pb_data` 持久卷，Docker 构建上下文为根目录；Windows 暂不签名，macOS 未配置 Developer ID 和公证，须如实说明 Gatekeeper 限制。
 
 ## 权威游戏服务

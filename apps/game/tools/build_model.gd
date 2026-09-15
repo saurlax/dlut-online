@@ -209,7 +209,7 @@ func build() -> void:
 	scene.name = "DevelopmentCampus"
 	root.add_child(scene)
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
-	var reference_path := ProjectSettings.globalize_path("res://").path_join("../../references/photos/residence_facades.json").simplify_path()
+	var reference_path := ProjectSettings.globalize_path("res://").path_join("../../references/eda/buildings/residence_facades.json").simplify_path()
 	residence_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path))
 	academic_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("academic_facades.json")))
 	seventh_profile = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("seventh-residence/profile.json")))
@@ -305,6 +305,7 @@ func build() -> void:
 				polygon(group,points,0.1,material("Paving" if kind=="plaza" else "Reserve",Color("a9a79e") if kind=="plaza" else Color("adba99")),"Ground")
 		generated_count += 1
 	preload("res://tools/build_vegetation.gd").new().build(self)
+	preload("res://tools/build_terrain.gd").new().build(self, "eda")
 	merge_meshes(scene)
 	for mat in materials.values():
 		if mat.albedo_texture is NoiseTexture2D and mat.albedo_texture.get_image() == null:

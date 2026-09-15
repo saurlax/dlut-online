@@ -9,12 +9,14 @@ static func _collider(mesh: MeshInstance3D) -> void:
 					shape.shape.backface_collision = true
 
 static func build(root: Node3D, model: Node3D, manifest: Dictionary, campus_id: String) -> void:
-	_collider(model.get_node("CampusBase"))
+	var base := model.get_node_or_null("CampusBase")
+	if base != null:
+		_collider(base)
 	for child in model.get_children():
 		if child is MeshInstance3D and child.get_meta("walk_collision",false):
 			_collider(child)
 	for feature in manifest.features:
-		if feature.kind not in ["building","hill","gate","sports"]:
+		if campus_id not in ["lingshui", "eda"] and feature.kind not in ["building", "hill", "gate", "sports"]:
 			continue
 		var node_name: String = "Feature_"+feature.id
 		if feature.has("part"):

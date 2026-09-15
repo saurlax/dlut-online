@@ -34,7 +34,7 @@ def main():
         temporary = Path(directory)
         stage = temporary / "stage"
         stage.mkdir()
-        shutil.copyfile(GAME / "WEATHER-CREDITS.txt", stage / "WEATHER-CREDITS.txt")
+        shutil.copyfile(GAME.parents[1] / "CREDITS.md", stage / "CREDITS.md")
         app = stage / source.name
         run("ditto", str(source), str(app))
         # Official templates contain only universal binaries. Ship only Apple Silicon.
@@ -55,6 +55,8 @@ def main():
         run("hdiutil", "attach", "-readonly", "-nobrowse", "-mountpoint", str(mount), str(output))
         try:
             verify(mount / source.name)
+            if (mount / "CREDITS.md").read_bytes() != (stage / "CREDITS.md").read_bytes():
+                raise RuntimeError("DMG third-party notices differ from CREDITS.md")
         finally:
             run("hdiutil", "detach", str(mount))
         status = ("macOS: valid ad-hoc signature, no Developer ID or Apple notarization; "

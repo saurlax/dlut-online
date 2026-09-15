@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="PackedScene" path="res://assets/campuses/lingshui/models/lingshui_campus.tscn" id="1"]
 [ext_resource type="Script" path="res://scripts/client/campus_backdrop.gd" id="2"]
 [ext_resource type="Shader" path="res://assets/sky/campus_sky.gdshader" id="3"]
+
+[ext_resource type="PackedScene" path="res://assets/campuses/lingshui/models/terrain.tscn" id="Terrain"]
 
 [sub_resource type="ShaderMaterial" id="SkyMaterial"]
 shader = ExtResource("3")
@@ -45,3 +47,5 @@ rotation_degrees = Vector3(0, 5.2, 0)
 current = true
 fov = 68.0
 far = 2500.0
+
+[node name="Terrain" parent="." instance=ExtResource("Terrain")]

@@ -46,7 +46,7 @@ func shell(points: PackedVector2Array, height: float, mat: Material, title: Stri
 func build(builder, parent: Node3D, points: PackedVector2Array, profile: Dictionary) -> void:
 	host = builder
 	group = parent
-	group.set_meta("photo_reference","references/photos/residence_facades.json")
+	group.set_meta("photo_reference","references/eda/buildings/residence_facades.json")
 	group.set_meta("interior_available",false)
 	var photo_edges: Array = [int(profile.edge)]
 	for side in profile.get("side_windows",[]): photo_edges.append(int(side.edge))

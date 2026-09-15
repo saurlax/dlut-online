@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "campus_id": "lingshui",
+  "dataset": "Copernicus DEM GLO-30 Public, AWS COG, 2021 release",
+  "source": {
+    "file": "copernicus-N38E121.tif",
+    "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N38_00_E121_00_DEM/Copernicus_DSM_COG_10_N38_00_E121_00_DEM.tif",
+    "bytes": 5429270,
+    "sha256": "3cf10081a84aa9b385a3a22876c2b940f9ca48b328c40cee07562988e88b89c1",
+    "tile_id": "N38E121",
+    "bbox_wgs84": [
+      121.505,
+      38.86,
+      121.545,
+      38.9
+    ],
+    "coverage_purpose": "校园及周边缓冲区矩形，非校界；涵盖整体地势和后续配准余量。"
+  },
+  "retrieved": "2026-09-15",
+  "acquisition": "TanDEM-X 2011–2015；局部补洞可能使用更早数据，未核实逐像元采集日期。",
+  "license": {
+    "name": "Copernicus WorldDEM-30 Licence",
+    "url": "https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf"
+  },
+  "attribution": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved",
+  "liability_notice": "The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30",
+  "horizontal_crs": "EPSG:4326",
+  "vertical_datum": "EGM2008",
+  "unit": "m",
+  "surface_type": "DSM",
+  "nominal_resolution": "1 arcsecond (GLO-30)",
+  "campus_accuracy": "未通过校内实测控制点核验；采样间距不等于测量精度。",
+  "processing": "原始像素窗口裁剪及 JSON 无损转换；无重采样、平滑、去建筑、去树冠或垂直基准转换。",
+  "source_pixel_window": [
+    1818,
+    360,
+    145,
+    145
+  ],
+  "pixel_edge_geotransform": [
+    121.50486111111111,
+    0.0002777777777778,
+    0.0,
+    38.90013888888889,
+    0.0,
+    -0.0002777777777778
+  ],
+  "statistics": {
+    "samples": 21025,
+    "missing_samples": 0,
+    "minimum_m": -1.0043030977249146,
+    "maximum_m": 226.96835327148438
+  },
+  "model_alignment": "未核实官方校园轮廓水平基准，禁止直接作为现有场景坐标使用。",
+  "use": "离线地形基础资料，未接入客户端或碰撞世界。",
+  "outputs": {
+    "surface-dem.tif": {
+      "sha256": "5c5348e8a047f02c0f25dda04727377f34fabe31c25aab17abee6140120f60ea"
+    },
+    "heightfield.json": {
+      "sha256": "7a5f25e2aa26c72a5ea0838e562a51880597f76bdd73a158a3e2e42f09f8fb0f"
+    }
+  },
+  "generator": "apps/game/tools/prepare_terrain.py",
+  "processing_software": "GDAL 3.13.3 \"Iowa City\", released 2026/08/13"
+}
