@@ -6,7 +6,7 @@
 
 - 以 lingshui、eda、panjin 分校区，按 mapping、terrain、vegetation、buildings、facilities、imagery 分类；共享资料归 shared，活动和文件按需扩展。
 - README 改为目录与录入规范，保留原建模参数、照片配准和精度限制于专题 basis.md 与 JSON。
-- 根目录新增 CREDITS.md，明确实际使用、离线参考、分发和候选状态，纳入 Weather API、素材、字体及许可入口。
+- 根目录新增正式的第三方资料、版权与许可声明 CREDITS.md，列明实际使用的 Weather API、素材、字体及软件的来源、使用范围与许可；不收录调研候选和内部维护约定。
 - 同步工具、来源索引和文档中的本地路径，保留原始 URL、对象 ID、数值、图像与 LFS 管理。
 
 ## Capabilities

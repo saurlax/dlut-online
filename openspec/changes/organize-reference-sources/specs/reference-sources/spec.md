@@ -20,14 +20,19 @@ README SHALL 只维护目录职责、录入规范和索引；长期配准及估�
 
 ### Requirement: Project source and licence register
 
-根目录 CREDITS.md SHALL 记录游戏、网站和服务端使用的信息、素材、数据服务与算法参考，包括 Weather API。条目 SHALL 区分实际使用和候选，以及离线参考、生成资源、原素材分发；未知授权 MUST 明确标记待确认，不把公开访问等同于开放许可。
+根目录 CREDITS.md SHALL 记录游戏、网站和服务端使用的信息、素材、数据服务与算法参考，包括 Weather API。声明 SHALL 使用正式的版权与许可文体，仅列实际使用的来源、使用范围、权利归属及许可条件；MUST NOT 包含调研候选、内部维护约定或过程报告。授权依据缺失时 SHALL 如实说明，不把公开访问等同于开放许可。
 
 #### Scenario: Weather provider attribution
 
 - **WHEN** 服务端通过 Open-Meteo 获取天气并向客户端提供
-- **THEN** 总账本记录 API 来源、CC BY 4.0 数据许可、服务套餐条件和可视化处理，链接共享天气资料，并与桌面 WEATHER-CREDITS.txt 同步维护
+- **THEN** 声明记录 API 来源、CC BY 4.0 数据许可、服务套餐条件和可视化处理，链接共享天气资料，并与桌面 WEATHER-CREDITS.txt 同步维护
 
 #### Scenario: Distribute an existing website asset
 
 - **WHEN** 网站包含校园照片、视频或字体副本
-- **THEN** 总账本记录实际分发文件、原始来源、处理和许可状态，不将它们误标为仅离线参考
+- **THEN** 声明记录实际分发文件、原始来源、处理和许可状态，不将它们误标为仅离线参考
+
+#### Scenario: Formal third-party notice
+
+- **WHEN** 编辑 CREDITS.md
+- **THEN** 使用分条声明与正式署名，保留 Weather API、素材及字体的适用许可和必要授权说明；目录录入规则保留在 references/README.md

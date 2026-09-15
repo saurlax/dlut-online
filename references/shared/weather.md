@@ -15,4 +15,4 @@
 
 太阳位置使用 NOAA [Solar Calculation Details](https://gml.noaa.gov/grad/solcalc/calcdetails.html) 的分数年、太阳赤纬与时间方程近似法，固定 UTC+8，无夏令时。没有大气折射、高程遮蔽或精密天文历表，不保证地平线日出时刻的分钟级精度。
 
-来源与许可统一见 [CREDITS](../../CREDITS.md#服务端-weather-api-与太阳位置)，桌面随包署名见 [WEATHER-CREDITS.txt](../../apps/game/WEATHER-CREDITS.txt)。
+来源与许可统一见 [CREDITS](../../CREDITS.md#三天气数据与计算方法)，桌面随包署名见 [WEATHER-CREDITS.txt](../../apps/game/WEATHER-CREDITS.txt)。
