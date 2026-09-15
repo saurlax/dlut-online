@@ -108,6 +108,11 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	if login_only:
 		if network.status_text != "未连接": menu_status.text = network.status_text
 		return
+	if player.touch_enabled:
+		var touch := preload("res://scripts/client/touch_controls.gd").new()
+		touch.player = player
+		root_control.add_child(touch)
+		touch.pause_requested.connect(pause_exploration)
 	if LocalSession.enabled:
 		build_map()
 		Catalog.entry_requested = false
@@ -281,8 +286,8 @@ func enter_campus() -> void:
 	map_overlay.hide()
 	player.playing = true
 	player.drag_look = true
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	capture_pending = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if player.touch_enabled else Input.MOUSE_MODE_CAPTURED
+	capture_pending = not player.touch_enabled
 	capture_elapsed = 0
 	enter_button.release_focus()
 
@@ -341,7 +346,18 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and is_instance_valid(player):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		if login_only:
+			_cancel_login()
+		elif switching:
+			cancel_transfer()
+		elif map_overlay.visible:
+			close_map()
+		elif player.playing:
+			pause_exploration()
+		else:
+			enter_campus()
+	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_APPLICATION_PAUSED] and is_instance_valid(player):
 		chat_was_playing = false
 		if switching:
 			map_was_playing = false
@@ -375,7 +391,7 @@ func _process(delta: float) -> void:
 			player.playing = true
 			overlay.hide()
 			crosshair.show()
-	elif player.playing and not player.drag_look and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+	elif not player.touch_enabled and player.playing and not player.drag_look and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
 		pause_exploration()
 
 func build_player_status() -> void:
@@ -581,7 +597,7 @@ func _exit_tree() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if is_instance_valid(chat) and chat.editing: return
 	if Catalog.started and not switching and not player.playing and not map_overlay.visible:
-		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) or (event is InputEventScreenTouch and event.pressed):
 			enter_campus()
 			get_viewport().set_input_as_handled()
 

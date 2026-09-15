@@ -1,4 +1,10 @@
-import urllib.request,struct,zlib,pathlib,json,sys
+import urllib.request,struct,zlib,pathlib,json,sys,argparse
+parser = argparse.ArgumentParser(description='Install Godot 4.7.2 export templates')
+parser.add_argument('--android', action='store_true', help='Also install Android APK templates')
+args = parser.parse_args()
+selected = {'windows_release_x86_64.exe', 'macos.zip', 'linux_release.x86_64', 'linux_debug.x86_64', 'version.txt'}
+if args.android:
+ selected.update({'android_debug.apk', 'android_release.apk'})
 meta=json.load(urllib.request.urlopen('https://api.github.com/repos/godotengine/godot-builds/releases/tags/4.7.2-stable', timeout=30))
 asset=next(a for a in meta['assets'] if a['name']=='Godot_v4.7.2-stable_export_templates.tpz')
 url=asset['browser_download_url']
@@ -17,7 +23,7 @@ out.mkdir(parents=True,exist_ok=True)
 while p<len(cd):
  h=struct.unpack_from('<4s6H3L5H2L',cd,p)
  name=cd[p+46:p+46+h[10]].decode();p+=46+h[10]+h[11]+h[12]
- if name.split('/')[-1] not in ('windows_release_x86_64.exe','macos.zip','linux_release.x86_64','linux_debug.x86_64','version.txt'): continue
+ if name.split('/')[-1] not in selected: continue
  if (out/name.split('/')[-1]).exists(): continue
  print('Downloading',name,h[8],flush=True)
  local=read_range(h[16],h[16]+29);lh=struct.unpack('<4s5H3L2H',local)
