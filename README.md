@@ -1,5 +1,7 @@
 # DLUT Online
 
+<img src="apps/game/assets/ui/branding/dlut-online-logo.svg" alt="DLUT Online" width="420">
+
 **在熟悉的校园，遇见新的故事。**
 
 DLUT Online 是一个以大连理工大学为背景的第一人称校园 MMORPG 项目，探索校园生活与多人互动的更多可能。
