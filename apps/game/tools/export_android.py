@@ -32,6 +32,7 @@ def main():
     parser.add_argument('--java', type=Path, required=True, help='JDK 17 home (contains bin/java)')
     parser.add_argument('--godot', default='godot')
     args = parser.parse_args()
+    run(sys.executable, GAME / 'tools/build_brand_icons.py', '--check')
     sdk, java = args.sdk.resolve(), args.java.resolve()
     build_tools = sdk / 'build-tools' / '35.0.0'
     for tool in (java / 'bin/java', java / 'bin/keytool', build_tools / 'aapt', build_tools / 'apksigner', build_tools / 'zipalign', sdk / 'platform-tools/adb'):
