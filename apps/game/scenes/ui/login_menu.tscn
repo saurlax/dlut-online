@@ -103,6 +103,7 @@ theme_type_variation = &"PrimaryButton"
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 text = "多人模式"
+theme_type_variation = &"PrimaryButton"
 
 [node name="Status" type="Label" parent="Composition/Modes"]
 layout_mode = 2
