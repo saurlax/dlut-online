@@ -62,7 +62,7 @@ def main():
         config_root = Path(os.environ.get('XDG_CONFIG_HOME', str(Path.home() / '.config'))) / 'godot'
     preferences = config_root / f'editor_settings-{major_minor}.tres'
     if not preferences.is_file():
-        run(args.godot, '--headless', '--editor', '--quit')
+        run(args.godot, '--headless', '--recovery-mode', '--import')
     content = preferences.read_text()
     if '[resource]' not in content:
         raise RuntimeError('Invalid Godot editor preferences')
@@ -74,7 +74,8 @@ def main():
         else:
             content = content.replace('[resource]', '[resource]\n' + line, 1)
     preferences.write_text(content)
-    run(args.godot, '--headless', '--editor', '--quit')
+    # Import without running @tool homepage previews; export below enables plugins.
+    run(args.godot, '--headless', '--recovery-mode', '--import')
     # A failed export must never leave an older APK looking like a new result.
     output.unlink(missing_ok=True)
     run(args.godot, '--headless', '--export-debug', 'Android', output)
