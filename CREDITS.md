@@ -38,6 +38,28 @@ Third-Party Notices
 
 资料的原始地址、对象标识、读取日期和处理依据分别载于[凌水主校区档案](references/lingshui/README.md)、[开发区校区档案](references/eda/README.md)及[盘锦校区档案](references/panjin/README.md)。
 
+### 2.4 Copernicus 高程数据
+
+**数据产品：** [Copernicus DEM GLO-30 Public](https://registry.opendata.aws/copernicus-dem/)，由 Sinergise 在 AWS 发布的 2021 版 Cloud Optimized GeoTIFF。
+
+**适用许可：** [Copernicus WorldDEM-30 Licence](https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf)（文内同名许可）。该许可授予全球范围、无期限、免费的非独占复制、分发、向公众传播、改编、修改及与其他数据组合使用的权利，使用者及后续分发者须遵守其署名、责任声明及其他条款。
+
+DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格格式转换，作为凌水主校区和开发区校区的离线地形基础资料。原始数据的著作权归 DLR e.V. 及 Airbus Defence and Space GmbH 等相应权利人所有。
+
+原始数据版权声明：
+
+> © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.
+
+改编数据署名声明：
+
+> produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved
+
+责任声明：
+
+> The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30.
+
+数据按原样提供。后续使用者对相关数据的分发或向公众传播须保留上述声明，并遵守该许可第 6 条的义务。数据提供者、许可方及 Copernicus 相关机构未对本项目作出认可或背书。
+
 ## 三、天气数据与计算方法
 
 ### 3.1 Open-Meteo
