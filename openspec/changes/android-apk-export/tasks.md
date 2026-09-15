@@ -19,4 +19,4 @@ Android 真机安装、触屏手感、GPU 性能、软键盘登录与 ENet/DTLS 
 
 - [x] 3.1 在 build.yml 增加依赖 test 的 Android 构建、临时调试签名和 APK artifact 下载摘要。
 - [x] 3.2 同步平台、CI 与签名规范，保留原有 Release 附件。
-- [ ] 3.3 校验工作流与构建门禁，提交并创建 PR，确认 Android CI artifact 可下载。
+- [x] 3.3 校验工作流与构建门禁，提交并创建 PR，确认 Android CI artifact 可下载。
