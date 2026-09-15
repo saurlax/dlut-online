@@ -44,7 +44,7 @@ Third-Party Notices
 
 **适用许可：** [Copernicus WorldDEM-30 Licence](https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf)（文内同名许可）。该许可授予全球范围、无期限、免费的非独占复制、分发、向公众传播、改编、修改及与其他数据组合使用的权利，使用者及后续分发者须遵守其署名、责任声明及其他条款。
 
-DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格格式转换，作为凌水主校区和开发区校区的离线地形基础资料。原始数据的著作权归 DLR e.V. 及 Airbus Defence and Space GmbH 等相应权利人所有。
+DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格格式转换，作为凌水主校区和开发区校区的地形基础资料，并经过过滤、插值、坐标平移及局部地坪调整生成客户端和游戏服使用的地形。原始数据的著作权归 DLR e.V. 及 Airbus Defence and Space GmbH 等相应权利人所有。
 
 原始数据版权声明：
 
@@ -59,6 +59,14 @@ DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格�
 > The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30.
 
 数据按原样提供。后续使用者对相关数据的分发或向公众传播须保留上述声明，并遵守该许可第 6 条的义务。数据提供者、许可方及 Copernicus 相关机构未对本项目作出认可或背书。
+
+### 2.5 OpenStreetMap
+
+**数据来源：** [OpenStreetMap](https://www.openstreetmap.org/)，© OpenStreetMap contributors。
+
+**适用许可：** [Open Data Commons Open Database License 1.0（ODbL）](https://opendatacommons.org/licenses/odbl/1-0/)。版权及署名要求见 [OpenStreetMap Copyright](https://www.openstreetmap.org/copyright)。
+
+DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与官方校园地图的同名建筑匹配，以估算地形预览的水平平移。所使用的 OSM 数据摘录及其转换记录载于两校区 `terrain/alignment.json`；该等数据库内容按 ODbL 1.0 提供，后续使用者须遵守其署名、共享及数据库分发条件。
 
 ## 三、天气数据与计算方法
 

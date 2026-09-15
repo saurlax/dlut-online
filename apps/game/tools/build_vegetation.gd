@@ -23,9 +23,12 @@ func build(builder: SceneTree) -> void:
 		meshes.append(load(path))
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(DATA_PATH))
 	assert(data.schema_version == 1)
+	var terrain := preload("res://tools/build_terrain.gd").new()
+	terrain.load_campus("eda")
 	var buckets: Dictionary = {}
 	for entry: Dictionary in data.instances:
 		var position := Vector3(entry.position[0], entry.position[1], entry.position[2])
+		position.y += terrain.elevation(position.x, position.z)
 		var variant := int(entry.variant)
 		assert(variant >= 0 and variant < VARIANT_COUNT and float(entry.height) > 0.0)
 		var cell := Vector2i(floori(position.x / CELL_SIZE), floori(position.z / CELL_SIZE))

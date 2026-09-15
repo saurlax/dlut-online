@@ -305,6 +305,7 @@ func build() -> void:
 				polygon(group,points,0.1,material("Paving" if kind=="plaza" else "Reserve",Color("a9a79e") if kind=="plaza" else Color("adba99")),"Ground")
 		generated_count += 1
 	preload("res://tools/build_vegetation.gd").new().build(self)
+	preload("res://tools/build_terrain.gd").new().build(self, "eda")
 	merge_meshes(scene)
 	for mat in materials.values():
 		if mat.albedo_texture is NoiseTexture2D and mat.albedo_texture.get_image() == null:

@@ -6,6 +6,7 @@
 |---|---|
 | [surface-dem.tif](surface-dem.tif) | Copernicus GLO-30 原生间距地表高程裁剪，WGS84 / EGM2008 |
 | [heightfield.json](heightfield.json) | 从北到南、从西到东排列的绝对高度网格 |
+| [alignment.json](alignment.json) | OSM 轮廓匹配、预览平移与误差记录 |
 | [source.json](source.json) | 来源、日期、许可、坐标、覆盖、处理与输出校验值 |
 
 网格结构、生成命令及精度边界见 [高程数据依据](../../shared/terrain/basis.md)，许可声明见 [CREDITS.md](../../../CREDITS.md)。数据不等于已经接入游戏的裸地地形；官方平面轮廓见 [mapping/](../mapping/)。
