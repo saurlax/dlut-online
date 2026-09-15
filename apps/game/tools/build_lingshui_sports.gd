@@ -1,6 +1,6 @@
 extends RefCounted
 
-# Internal dimensions are photo estimates in references/lingshui/sports.json.
+# Internal dimensions are photo estimates in references/lingshui/facilities/sports.json.
 # Every surface is clipped to the official footprint; no standard track length is implied.
 func build(builder, group: Node3D, outline: PackedVector2Array, profile: Dictionary) -> void:
 	var center := Vector2(profile.center[0], profile.center[1])

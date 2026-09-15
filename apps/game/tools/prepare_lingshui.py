@@ -57,9 +57,9 @@ def split_crossings(points):
 
 
 def main():
-    source = json.loads((REFERENCES / 'bounds.json').read_text())
-    profiles = json.loads((REFERENCES / 'facades.json').read_text())
-    sports = json.loads((REFERENCES / 'sports.json').read_text())
+    source = json.loads((REFERENCES / 'mapping/bounds.json').read_text())
+    profiles = json.loads((REFERENCES / 'buildings/facades.json').read_text())
+    sports = json.loads((REFERENCES / 'facilities/sports.json').read_text())
     features, excluded = [], []
     parts = {}
     for source_index, item in enumerate(source['result']):
@@ -94,7 +94,7 @@ def main():
             'features': features}
     OUTPUT.mkdir(parents=True, exist_ok=True)
     (OUTPUT/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n')
-    (REFERENCES/'excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n')
+    (REFERENCES/'mapping/excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n')
     print(f'Lingshui: {len(features)} polygons, {len(parts)} IDs, {len(excluded)} surrounding polygons excluded')
 
 

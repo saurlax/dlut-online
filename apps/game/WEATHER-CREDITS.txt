@@ -7,3 +7,6 @@ Free API access is for non-commercial use. Commercial deployments require an
 appropriate Open-Meteo subscription: https://open-meteo.com/en/pricing
 Campus query centres: http://map.dlut.edu.cn/openmap/mapi/campus/v1
 Solar calculation reference: https://gml.noaa.gov/grad/solcalc/calcdetails.html
+
+Project source and licence register: CREDITS.md at the repository root.
+Used by the Go weather API and the Godot client; attribution applies to both.

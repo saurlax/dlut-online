@@ -313,17 +313,17 @@
           7
         ],
         "panorama_tiles": [
-          "panoramas/BC02-b5-10-5.jpg",
-          "panoramas/BC02-b5-10-6.jpg",
-          "panoramas/BC02-b5-10-7.jpg",
-          "panoramas/BC02-b5-10-8.jpg"
+          "../imagery/panoramas/BC02-b5-10-5.jpg",
+          "../imagery/panoramas/BC02-b5-10-6.jpg",
+          "../imagery/panoramas/BC02-b5-10-7.jpg",
+          "../imagery/panoramas/BC02-b5-10-8.jpg"
         ],
         "finding": "地面图中的两翼五层和中央六层不能作为全体统一层数。连续航拍切片补充中央屋面后退横窗和前方较低翼楼；这解释了为何地面可见窗排不足以否定官方七层说明。中央高段和翼楼的完整平面、院落地面边界仍未确定。 令希方向11行7/8列补充相反方向多块错开屋面与阶形顶房，下方12行7列海涵圆柱转角作为西邻参照。两方向均不能明确树冠下内墙落地点；各顶房不直接等同于楼层数。",
         "next_step": "将BC02南向视角的高段横窗与LX00西向视角的阶形顶房逐一对应，取得能约束院落内墙、翼楼厚度和屋顶后退深度的有效平面后分段建模；海涵圆柱转角只用作邻接参照。不把各屋顶平台算成完整楼层，不恢复横跨135米南外边的统一窗墙。",
         "reverse_panorama_tiles": [
-          "panoramas/LX00-b5-11-7.jpg",
-          "panoramas/LX00-b5-11-8.jpg",
-          "panoramas/LX00-b5-12-7.jpg"
+          "../imagery/panoramas/LX00-b5-11-7.jpg",
+          "../imagery/panoramas/LX00-b5-11-8.jpg",
+          "../imagery/panoramas/LX00-b5-12-7.jpg"
         ]
       }
     },
@@ -394,14 +394,14 @@
         "panorama_review": [
           {
             "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/10/l5_b_10_05.jpg",
-            "file": "panoramas/BC02-b5-10-5.jpg",
+            "file": "../imagery/panoramas/BC02-b5-10-5.jpg",
             "sha256": "81d09042e614bfb5dc657c1e10fb110b496d17135a359fb5d07ba7a7bee8d067",
             "reviewed": "2026-09-14",
             "use": "排除海涵顶冠候选误认：画面浅色楼顶为带横条的封闭矩形屋顶房，不能当作77379照片中的三道开放弧带；候选楼Feature未确认，不用于建模"
           },
           {
             "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/10/l5_b_10_06.jpg",
-            "file": "panoramas/BC02-b5-10-6.jpg",
+            "file": "../imagery/panoramas/BC02-b5-10-6.jpg",
             "sha256": "4b491d5503693c361703129bdbc610552b4e8d17db31270aede701b84152d5dc",
             "reviewed": "2026-09-14",
             "use": "排除海涵顶冠候选误认：画面浅色楼顶为带横条的封闭矩形屋顶房，不能当作77379照片中的三道开放弧带；候选楼Feature未确认，不用于建模"
@@ -485,21 +485,21 @@
         "panorama_review": [
           {
             "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l4/06/l4_b_06_01.jpg",
-            "file": "panoramas/BC02-b4-6-1.jpg",
+            "file": "../imagery/panoramas/BC02-b4-6-1.jpg",
             "sha256": "f56bc31d3b93f1f25ef3b901f4cc62e0f53b66bb1dbef03c833c98ee37252045",
             "reviewed": "2026-09-14",
             "use": "船舶楼三列加两列高段、两列短面及低翼与第二教学馆邻接配准；支持南向入口及东高西低，树冠遮挡落地分界和后方连接，不据此生成室内或完整分段平面"
           },
           {
             "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/11/l5_b_11_01.jpg",
-            "file": "panoramas/BC02-b5-11-1.jpg",
+            "file": "../imagery/panoramas/BC02-b5-11-1.jpg",
             "sha256": "6a8254a88ec9a0224516b86fe3517d4ac4bc066dc25900df752dc0bc8ac25331",
             "reviewed": "2026-09-14",
             "use": "船舶楼三列加两列高段、两列短面及低翼与第二教学馆邻接配准；支持南向入口及东高西低，树冠遮挡落地分界和后方连接，不据此生成室内或完整分段平面"
           },
           {
             "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/b/l5/11/l5_b_11_02.jpg",
-            "file": "panoramas/BC02-b5-11-2.jpg",
+            "file": "../imagery/panoramas/BC02-b5-11-2.jpg",
             "sha256": "6a4d834f20c90c2843ed89a4f10aca76206d0c15151b023f1c8ee1ed4dd7dc88",
             "reviewed": "2026-09-14",
             "use": "船舶楼三列加两列高段、两列短面及低翼与第二教学馆邻接配准；支持南向入口及东高西低，树冠遮挡落地分界和后方连接，不据此生成室内或完整分段平面"
@@ -4547,7 +4547,7 @@
           "reviewed": "2026-09-14",
           "scene": "scene_DUT_BC02",
           "face": "l",
-          "file": "panoramas/BC02-l.jpg",
+          "file": "../imagery/panoramas/BC02-l.jpg",
           "source": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_BC02.tiles/vr/pano_l.jpg",
           "result": "1536像素立方体左面未能辨认中央伞状柱与连廊，不足以将相册窗面配准到具体轮廓边；需要更清晰视角，不把远处相似白色长楼作为已确认对象。"
         }

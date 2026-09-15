@@ -4,7 +4,7 @@
     "storey": 4.4,
     "photos": [
       {
-        "file": "77914-0.jpg",
+        "file": "photos/77914-0.jpg",
         "image_id": 79690,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77914_20160302110004939.jpg",
         "retrieved": "2026-09-09",
@@ -12,7 +12,7 @@
         "sha256": "8566d61e3f8abc39d4b9af011598b811833dc4406b6968f3293db6f7dc8cd31c"
       },
       {
-        "file": "77914-1.jpg",
+        "file": "photos/77914-1.jpg",
         "image_id": 79689,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77914_20160302105951849.jpg",
         "retrieved": "2026-09-09",
@@ -25,7 +25,7 @@
         "title": "【学思想·促发展】开发区校区管委会暑期工作纪实",
         "published": "2023-09-01",
         "retrieved": "2026-09-14",
-        "file": "77914-roof-2023.jpg",
+        "file": "photos/77914-roof-2023.jpg",
         "image_index": 3,
         "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=rL77IbnmM2M4-4M5NWVMzARL7VRn7LCiUzNPLR-aUzMkUm90gihFp2hmCIa0Lkh7LSh2okyDnm-sLNVRnRLsM7LsU49DnR-ioR74o77sUNMFM4-anlU8LmQFM4vaLz7Jqjfjo4OeoDnOp26N_dAs6YhXptQ0g47YMz70oR-bLmUJqdQnx&oid=1819948287&tid=1251&nid=82924&e=.jpg",
         "sha256": "7d14a02c3a41a6ad1c63af99806e530720fb06dab419462329d79551631b1edd",
@@ -60,7 +60,7 @@
       "bays": 8,
       "note": "KFQ00前向航拍可见信息楼长翼屋顶的开放梁架，77914-1左上可见相连屋面框架。仅在长翼屋顶内建一段纵向梁架，四个端点、8.5米框宽、2米柱高和8跨划分均为比例估计；不是实测结构图，不扩展至其他屋面。梁顶20.02米，主体屋顶仍17.82米。",
       "source": {
-        "file": "../panorama/KFQ00-front.jpg",
+        "file": "../imagery/panoramas/KFQ00-front.jpg",
         "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/vr/pano_f.jpg",
         "scene": "DUT_KFQ00",
         "retrieved": "2026-09-14",
@@ -75,7 +75,7 @@
     "storey": 4.4,
     "photos": [
       {
-        "file": "77917-0.jpg",
+        "file": "photos/77917-0.jpg",
         "image_id": 79691,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77917_20160302112746401.jpg",
         "retrieved": "2026-09-09",
@@ -83,7 +83,7 @@
         "sha256": "818957253f2dabd44047ca692513d24a80e74c72b40187842ae5123c613f3055"
       },
       {
-        "file": "77917-1.jpg",
+        "file": "photos/77917-1.jpg",
         "image_id": 2304829,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77917_20240909172433433.jpg",
         "retrieved": "2026-09-09",
@@ -91,7 +91,7 @@
         "sha256": "7edd807de1c72436b535aa9f3760e2df1a0fb3377337732959289289ae22dd74"
       },
       {
-        "file": "77917-2.jpg",
+        "file": "photos/77917-2.jpg",
         "image_id": 2304830,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77917_20240909172433195.jpg",
         "retrieved": "2026-09-09",

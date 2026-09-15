@@ -29,7 +29,7 @@ Godot 4.7.2 / GDScript / Compatibility，27 个官方轮廓已生成静态模型
 
 ## 官方照片与数据边界
 
-通过官方 /image/v1 接口取得实景照片，首批用于信息楼和图书馆的立面精修。外观生成拆分到 tools/build_photo_facades.gd，运行时仍加载导出的静态模型。照片与索引位于 references/photos，不加入 Web 成品。
+通过官方 /image/v1 接口取得实景照片，首批用于信息楼和图书馆的立面精修。外观生成拆分到 tools/build_photo_facades.gd，运行时仍加载导出的静态模型。照片与索引位于 references/eda/buildings/photos，不加入 Web 成品。
 
 没有数据的就不做，不要臆想。已查室内接口没有可用的墙、房间或门洞几何，故不制作室内，也不新增推测性入口或家具。
 

@@ -10,7 +10,7 @@
     "height": 23.0,
     "photos": [
       {
-        "file": "77931-0.jpg",
+        "file": "photos/77931-0.jpg",
         "image_id": 79703,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77931_20160302113542791.jpg",
         "retrieved": "2026-09-09",
@@ -18,7 +18,7 @@
         "sha256": "e771b3f407a52633c2e9432bc7a201284df93527cdf191d5bc2ba1337ad74dca"
       },
       {
-        "file": "77933-0.jpg",
+        "file": "photos/77933-0.jpg",
         "image_id": 79702,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
         "retrieved": "2026-09-09",
@@ -82,7 +82,7 @@
     "height": 23.0,
     "photos": [
       {
-        "file": "77933-0.jpg",
+        "file": "photos/77933-0.jpg",
         "image_id": 79702,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
         "retrieved": "2026-09-09",
@@ -90,7 +90,7 @@
         "sha256": "978b168ccbe4343451aa3b9edd79dd86e18325c43e9aed95da50836ecc0c7ad4"
       },
       {
-        "file": "77933-1.jpg",
+        "file": "photos/77933-1.jpg",
         "image_id": 79704,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113604487.jpg",
         "retrieved": "2026-09-09",
@@ -151,7 +151,7 @@
     "height": 23.0,
     "photos": [
       {
-        "file": "77935-0.jpg",
+        "file": "photos/77935-0.jpg",
         "image_id": 79701,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77935_20160302113438786.jpg",
         "retrieved": "2026-09-09",
@@ -159,7 +159,7 @@
         "sha256": "1507bace6bd3af21cbd2b40f423714209d03991cef5b694a704e215ff8cfd814"
       },
       {
-        "file": "77933-0.jpg",
+        "file": "photos/77933-0.jpg",
         "image_id": 79702,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
         "retrieved": "2026-09-09",
@@ -224,7 +224,7 @@
     ],
     "photos": [
       {
-        "file": "77937-0.jpg",
+        "file": "photos/77937-0.jpg",
         "image_id": 79700,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77937_2016030211335637.jpg",
         "retrieved": "2026-09-09",
@@ -232,7 +232,7 @@
         "sha256": "04dc28e31227d9ad50f57d82e3423f9c0e5e9a62bfd75cce1d5f053fb91dde04"
       },
       {
-        "file": "77937-2026.jpg",
+        "file": "photos/77937-2026.jpg",
         "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=PUmnYVLNUaLzrVU4mAVMR9bMzl4olL8sU4-inNlYLRnRM7L0gihFp2hmCIa0nkh7MkhRnkhRn7lZLzGYnlr2LR9PUmGYozviMzGaMmAkLRQFLmV2MRUbUlWFMzLsMlUJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLm-0LzlPL4CigtA8pUicc&oid=1819948287&tid=1022&nid=151365&e=.jpg",
         "article_url": "https://news.dlut.edu.cn/info/1022/151365.htm",
         "published": "2026-09-04",
@@ -309,7 +309,7 @@
     ],
     "photos": [
       {
-        "file": "77938-0.jpg",
+        "file": "photos/77938-0.jpg",
         "image_id": 79699,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77938_20160302113344746.jpg",
         "retrieved": "2026-09-09",
@@ -377,7 +377,7 @@
     "ground_bars": true,
     "photos": [
       {
-        "file": "77941-0.jpg",
+        "file": "photos/77941-0.jpg",
         "image_id": 79698,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77941_20160302113258884.jpg",
         "retrieved": "2026-09-09",
@@ -388,7 +388,7 @@
     "note": "官方近照显示南侧局部，KFQ00前向高清瓦片11/05和11/06显示六舍位于六食堂南侧、信息楼东侧，与官方位置互证，配准南边7的东侧5%至45%。补地面层及六排主窗、浅紫饰板与底层防护栏；全景上部为封闭窗排，不采用1—5舍顶层连廊。23米沿用旧比例估计，未获得实测高度；六列窗和3.15米层距为模型离散，黄色框按独立参数补外饰框，框内空间和端部体量仍待核实。",
     "panorama": [
       {
-        "file": "../panorama/KFQ00-front-11-05.jpg",
+        "file": "../imagery/panoramas/KFQ00-front-11-05.jpg",
         "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/f/l5/11/l5_f_11_05.jpg",
         "scene": "DUT_KFQ00",
         "retrieved": "2026-09-14",
@@ -396,7 +396,7 @@
         "use": "六舍位置与封闭上层外窗核对；不提供实测尺寸"
       },
       {
-        "file": "../panorama/KFQ00-front-11-06.jpg",
+        "file": "../imagery/panoramas/KFQ00-front-11-06.jpg",
         "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/f/l5/11/l5_f_11_06.jpg",
         "scene": "DUT_KFQ00",
         "retrieved": "2026-09-14",

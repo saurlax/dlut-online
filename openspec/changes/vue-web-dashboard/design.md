@@ -39,10 +39,10 @@ Go 源码迁移至 apps/api，Vue 位于 apps/web。应用技术文档与合并�
 - https://www.naeu.playblackdesert.com/en-US/Main/Index ：游戏官网入口与品牌呈现。
 - https://www.dlut.edu.cn/css/style20230317.css ：参考品牌蓝 #0041B7，不声称为学校完整 VI 标准。
 
-图片来自 http://map.dlut.edu.cn 的已归档实景，原始读取 2026-09-09，本次复核 2026-09-10；原始 URL 和图片 ID 在 references/lingshui/photos/77386.json 与 77357.json 对应 result 数组中。网站展示副本：
-- main-building.jpg ← references/lingshui/photos/77386-1.jpg，主楼，Feature 77386，用于首屏与场景展示。
-- library.jpg ← references/lingshui/photos/77357-7.jpg，令希图书馆，Feature 77357，用于场景展示。
-- campus-garden.jpg ← references/lingshui/photos/77386-4.jpg，主楼旁绿荫，Feature 77386，用于介绍与场景展示。
+图片来自 http://map.dlut.edu.cn 的已归档实景，原始读取 2026-09-09，本次复核 2026-09-10；原始 URL 和图片 ID 在 references/lingshui/buildings/photos/77386.json 与 77357.json 对应 result 数组中。网站展示副本：
+- main-building.jpg ← references/lingshui/buildings/photos/77386-1.jpg，主楼，Feature 77386，用于首屏与场景展示。
+- library.jpg ← references/lingshui/buildings/photos/77357-7.jpg，令希图书馆，Feature 77357，用于场景展示。
+- campus-garden.jpg ← references/lingshui/buildings/photos/77386-4.jpg，主楼旁绿荫，Feature 77386，用于介绍与场景展示。
 
 仅作为网站宣传中的校园实景，不进入 Godot 客户端，不作为游戏截图或新增建模精度证据。没有修改建筑模型、室内或碰撞。
 

@@ -209,7 +209,7 @@ func build() -> void:
 	scene.name = "DevelopmentCampus"
 	root.add_child(scene)
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
-	var reference_path := ProjectSettings.globalize_path("res://").path_join("../../references/photos/residence_facades.json").simplify_path()
+	var reference_path := ProjectSettings.globalize_path("res://").path_join("../../references/eda/buildings/residence_facades.json").simplify_path()
 	residence_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path))
 	academic_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("academic_facades.json")))
 	seventh_profile = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("seventh-residence/profile.json")))

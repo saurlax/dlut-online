@@ -26,7 +26,7 @@
 - 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。默认使用 Forward+ 渲染器，暂不设置移动端渲染覆盖，后续适配移动端时再添加。
 - Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，账号 token 在运行时保留于内存，并按 API 根地址隔离存入 macOS 钥匙串或 Windows 凭据管理器；多人模式提供原生密码登录，无联网游客入口，单人模式无需登录；网站提供登录注册与邮箱验证。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
-- 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，运行时资源放 assets/。
+- 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，按 references/README.md 的校区与主题分类；项目外部信息、素材、天气 API 等来源和许可统一维护于根目录 CREDITS.md，运行时资源放 assets/。
 - 按职责拆分模型生成器，避免把建筑内部、植被和 UI 混入同一模块。GDScript 使用 snake_case，常量 UPPER_SNAKE_CASE；类型推断不明确时显式标注类型。
 - 静态世界模型、环境和灯光必须挂入 .tscn 主场景，打开编辑器即可查看；不要只在 _ready() 中实例化静态世界。运行时逻辑不得重复创建已挂载的节点。
 - 场景保留官方 Feature ID 和轮廓。建筑应有独立可替换的模型；改变形状、高度和入口时记录依据。
@@ -48,7 +48,7 @@
 
 - 固定 ID：lingshui（凌水主校区）、eda（开发区校区）、panjin（盘锦校区），默认 lingshui。场景位于 scenes/campuses/，每个都能直接在编辑器打开。
 - 校区传送通过 SceneTree 场景切换，卸载旧场景；不同时加载三个校园模型。
-- lingshui 使用官方主校区轮廓和已核对的局部照片立面，精度边界见 references/lingshui/README.md；panjin 使用官方盘锦轮廓及已核对的三栋局部照片立面，精度边界见 references/panjin/README.md。eda 保留已有官方轮廓模型。
+- lingshui 使用官方主校区轮廓和已核对的局部照片立面，精度边界见 references/lingshui/buildings/basis.md；panjin 使用官方盘锦轮廓及已核对的三栋局部照片立面，精度边界见 references/panjin/buildings/basis.md。eda 保留已有官方轮廓模型。
 - 圆形小地图与地图面板全用 Godot 控件绘制；M 或点击打开，打开时暂停行走并释放鼠标，关闭时恢复原状态。
 
 - 大地图必须铺满整个屏幕，使用固定默认比例尺，支持滚轮缩放及左键拖动，禁止拖出边界；校区选择列表在右上角竖直排列；不显示关闭按钮，使用 M 或 Escape 收起。
