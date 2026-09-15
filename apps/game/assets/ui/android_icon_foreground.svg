@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" width="432" height="432" viewBox="0 0 512 512">
   <title>DLUT Online</title>
-  <rect width="512" height="512" fill="#FFFFFF"/>
-  <g transform="translate(30.72 30.72) scale(0.88)">
+  <g transform="translate(71.68 71.68) scale(0.72)">
 <g xmlns="http://www.w3.org/2000/svg" fill="#005BAC">
     <path d="M 438.0536,147.3700 A 212,212 0 1 1 364.6300,73.9464 L 348.2330,101.4262 A 180,180 0 1 0 410.5738,163.7670 Z" />
     <path d="M 116.0000,208 A 148,148 0 0 1 396.0000,208 H 361.6030 A 116,116 0 0 0 150.3970,208 Z M 396.0000,304 A 148,148 0 0 1 116.0000,304 H 150.3970 A 116,116 0 0 0 361.6030,304 Z" />
