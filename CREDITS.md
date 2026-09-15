@@ -54,7 +54,7 @@ DLUT Online 服务端通过 [Open-Meteo Forecast API](https://open-meteo.com/en/
 
 > Weather data by Open-Meteo, licensed under CC BY 4.0. DLUT Online transforms the data into procedural weather visualizations.
 
-客户端随附的署名文本见 [WEATHER-CREDITS.txt](apps/game/WEATHER-CREDITS.txt)。服务端对数据的转发及客户端对数据的可视化使用均适用本条。
+服务端对数据的转发及客户端对数据的可视化使用均适用本条。
 
 ### 3.2 NOAA 太阳位置计算资料
 

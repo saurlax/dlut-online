@@ -25,7 +25,7 @@ README SHALL 只维护目录职责、录入规范和索引；长期配准及估�
 #### Scenario: Weather provider attribution
 
 - **WHEN** 服务端通过 Open-Meteo 获取天气并向客户端提供
-- **THEN** 声明记录 API 来源、CC BY 4.0 数据许可、服务套餐条件和可视化处理，链接共享天气资料，并与桌面 WEATHER-CREDITS.txt 同步维护
+- **THEN** 声明记录 API 来源、CC BY 4.0 数据许可、服务套餐条件和可视化处理，链接共享天气资料，以根目录 CREDITS.md 为唯一维护源，桌面导出 SHALL 将其内容写入 res://CREDITS.md，macOS DMG SHALL 同时附带同一声明
 
 #### Scenario: Distribute an existing website asset
 
@@ -36,3 +36,8 @@ README SHALL 只维护目录职责、录入规范和索引；长期配准及估�
 
 - **WHEN** 编辑 CREDITS.md
 - **THEN** 使用分条声明与正式署名，保留 Weather API、素材及字体的适用许可和必要授权说明；目录录入规则保留在 references/README.md
+
+#### Scenario: Package the unified notice
+
+- **WHEN** 导出桌面客户端或打包 macOS 安装镜像
+- **THEN** 读取仓库根目录 CREDITS.md，读取失败通过导出错误及构建脚本的错误拦截使构建失败；不维护第二份天气署名文件，CREDITS.md 变更触发构建

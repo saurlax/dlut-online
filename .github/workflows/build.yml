@@ -4,6 +4,7 @@ on:
   push:
     branches: ["main"]
     paths:
+      - "CREDITS.md"
       - "apps/**"
       - "!apps/**/*.md"
       - ".github/workflows/**"
@@ -11,6 +12,7 @@ on:
       - ".gitattributes"
   pull_request:
     paths:
+      - "CREDITS.md"
       - "apps/**"
       - "!apps/**/*.md"
       - ".github/workflows/**"
