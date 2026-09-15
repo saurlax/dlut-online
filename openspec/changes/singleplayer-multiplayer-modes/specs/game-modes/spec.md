@@ -1,7 +1,7 @@
 ## ADDED Requirements
 
 ### Requirement: 双模式首页
-客户端 SHALL 启动显示单人模式和多人模式，不在首页自动读取凭据或连接服务器。
+客户端 SHALL 启动显示单人模式和多人模式，不在首页自动读取凭据或连接服务器。两个模式按钮 SHALL 使用同一 PrimaryButton 主题样式，字号均为 22，保留默认字间距。
 
 #### Scenario: 离线入场
 - **WHEN** 未登录玩家点击单人模式
