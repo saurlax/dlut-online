@@ -1,7 +1,7 @@
 extends RefCounted
 
 # Only photo-visible exterior features. No invented rooms, doors or furniture.
-# Source mapping and dimensional limits: references/photos/README.md.
+# Source mapping and dimensional limits: references/eda/buildings/basis.md.
 var builder
 var group: Node3D
 
@@ -23,14 +23,14 @@ func shell(points: PackedVector2Array, top: float, base: float, mat: Material, t
 func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -> void:
 	builder = host
 	group = parent
-	var profile_path := ProjectSettings.globalize_path("res://").path_join("../../references/photos/library_information_profiles.json").simplify_path()
+	var profile_path := ProjectSettings.globalize_path("res://").path_join("../../references/eda/buildings/library_information_profiles.json").simplify_path()
 	var profiles: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profile_path))
 	var profile: Dictionary = profiles["77917" if is_library else "77914"]
 	# Photo proportions remain estimates; share the source with campus data.
 	var storey: float = profile.storey
 	var height: float = profile.height
 	var floors := roundi(height/storey)
-	group.set_meta("photo_reference","references/photos/library_information_profiles.json")
+	group.set_meta("photo_reference","references/eda/buildings/library_information_profiles.json")
 	group.set_meta("interior_available",false)
 	group.set_meta("height_is_approximate",true)
 	var wall: StandardMaterial3D = builder.material("Library masonry" if is_library else "Information taupe masonry",Color("898679") if is_library else Color("817c72"))

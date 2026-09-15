@@ -15,7 +15,7 @@ func panel(builder, group: Node3D, pos: Vector2, y: float, size: Vector3, angle:
 	node.rotation.y = angle
 
 func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictionary) -> void:
-	group.set_meta("photo_reference","references/photos/seventh-residence/profile.json")
+	group.set_meta("photo_reference","references/eda/buildings/seventh-residence/profile.json")
 	group.set_meta("height_source",profile.height_source)
 	group.set_meta("interior_available",false)
 	var white: Material = builder.material("Seventh white cladding",Color("d0d1cd"))

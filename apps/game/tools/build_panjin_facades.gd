@@ -1,6 +1,6 @@
 extends RefCounted
 
-# Coverage and approximation limits are explicit in references/panjin/facades.json.
+# Coverage and approximation limits are explicit in references/panjin/buildings/facades.json.
 # Decorations stay on the closed footprint shell and never receive collision.
 func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictionary) -> void:
 	var glass: Material = builder.material("Window glass", Color("455651"))

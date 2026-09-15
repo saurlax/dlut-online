@@ -14,7 +14,7 @@ func build(host, group: Node3D, points: PackedVector2Array) -> void:
 	var facade := Facade.new()
 	facade.host = host
 	facade.group = group
-	group.set_meta("photo_reference","references/photos/dining_profile.json")
+	group.set_meta("photo_reference","references/eda/buildings/dining_profile.json")
 	group.set_meta("interior_available",false)
 	var wall: Material = host.material("EDA dining buff masonry",Color("b6aa7f"))
 	var band: Material = host.material("EDA dining pale cornice",Color("c7bb93"))

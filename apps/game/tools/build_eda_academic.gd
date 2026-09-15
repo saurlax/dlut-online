@@ -33,7 +33,7 @@ func shell(points: PackedVector2Array, top: float, base: float, mat: Material) -
 func build(builder, parent: Node3D, points: PackedVector2Array, profile: Dictionary) -> void:
 	host = builder
 	group = parent
-	group.set_meta("photo_reference","references/photos/academic_facades.json")
+	group.set_meta("photo_reference","references/eda/buildings/academic_facades.json")
 	group.set_meta("interior_available",false)
 	var wall: Material = host.material("EDA academic "+str(profile.color),Color(profile.color))
 	var stone: Material = host.material("EDA academic pale bands",Color("b6b7a7"))

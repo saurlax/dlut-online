@@ -2,15 +2,15 @@
 import json, math
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-source=json.loads((ROOT.parents[1]/'references/development-campus-bounds.json').read_text())
+source=json.loads((ROOT.parents[1]/'references/eda/mapping/bounds.json').read_text())
 origin=(121.816326506145,39.084522240291)
-height_profiles=json.loads((ROOT.parents[1]/'references/photos/residence_facades.json').read_text())
-height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/academic_facades.json').read_text()))
-height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/gym_profile.json').read_text()))
-height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/comprehensive_profile.json').read_text()))
-height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/dining_profile.json').read_text()))
-height_profiles.update(json.loads((ROOT.parents[1]/'references/photos/library_information_profiles.json').read_text()))
-seventh_profile=json.loads((ROOT.parents[1]/'references/photos/seventh-residence/profile.json').read_text())
+height_profiles=json.loads((ROOT.parents[1]/'references/eda/buildings/residence_facades.json').read_text())
+height_profiles.update(json.loads((ROOT.parents[1]/'references/eda/buildings/academic_facades.json').read_text()))
+height_profiles.update(json.loads((ROOT.parents[1]/'references/eda/buildings/gym_profile.json').read_text()))
+height_profiles.update(json.loads((ROOT.parents[1]/'references/eda/buildings/comprehensive_profile.json').read_text()))
+height_profiles.update(json.loads((ROOT.parents[1]/'references/eda/buildings/dining_profile.json').read_text()))
+height_profiles.update(json.loads((ROOT.parents[1]/'references/eda/buildings/library_information_profiles.json').read_text()))
+seventh_profile=json.loads((ROOT.parents[1]/'references/eda/buildings/seventh-residence/profile.json').read_text())
 features=[]
 for b in source['result']:
  name=b['name']; kind='building'; height=20.0

@@ -2,6 +2,8 @@
 extends Node3D
 ## Camera-only shots of existing photo-supported facades; no gameplay or physics.
 
+const SHOT_FEATURES := ["Feature_77386_0", "Feature_77447_0", "Feature_77357_0"]
+
 const SHOT_DURATION := 14.0
 const FADE_DURATION := 0.8
 const SHOTS := [
@@ -35,4 +37,6 @@ func _update_camera() -> void:
 	var shot: Array = SHOTS[shot_index]
 	var progress: float = smoothstep(0.0, 1.0, elapsed / SHOT_DURATION)
 	var start: Vector3 = shot[0]
-	$Camera.look_at_from_position(start.lerp(shot[1], progress), shot[2], Vector3.UP)
+	var height: float = $CampusModel.get_node(SHOT_FEATURES[shot_index]).position.y
+	var offset := Vector3.UP * height
+	$Camera.look_at_from_position(start.lerp(shot[1], progress) + offset, shot[2] + offset, Vector3.UP)

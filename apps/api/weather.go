@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-// Official campus map centres, approximate source coordinates (see references/README.md).
+// Official campus map centres, approximate source coordinates (see references/shared/weather.md; credits in CREDITS.md).
 var weatherLocations = map[string][2]float64{
 	"lingshui": {38.879216, 121.526959},
 	"eda":      {39.084522, 121.816327},
