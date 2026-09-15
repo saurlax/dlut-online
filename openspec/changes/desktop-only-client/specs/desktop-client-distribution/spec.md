@@ -8,7 +8,7 @@
 
 ### Requirement: 仅桌面游戏分发
 
-系统 SHALL 正式发布 Windows x86_64、macOS arm64 游戏客户端及 Linux 专用游戏服务器，另允许按 android-apk-export 规范本地导出 Android arm64 测试 APK，不再导出、打包或托管浏览器游戏。既有 Web 分块与浏览器适配要求 SHALL 由本要求取代。
+系统 SHALL 正式发布 Windows x86_64、macOS arm64 游戏客户端及 Linux 专用游戏服务器，另允许按 android-apk-export 规范本地及 CI 导出 Android arm64 测试 APK，不再导出、打包或托管浏览器游戏。既有 Web 分块与浏览器适配要求 SHALL 由本要求取代。
 
 #### Scenario: 构建与服务启动
 - **WHEN** 运行当前构建与部署流程

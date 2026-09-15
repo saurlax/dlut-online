@@ -72,6 +72,63 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 
+  android:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    env:
+      GODOT_VERSION: 4.7.2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install Android build tools
+        run: sdkmanager 'platform-tools' 'platforms;android-36' 'build-tools;35.0.0'
+      - name: Install Godot and Android export templates
+        run: |
+          release="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
+          curl -fL --retry 3 "$release/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" -o "$RUNNER_TEMP/godot.zip"
+          unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
+          sudo install "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
+          curl -fL --retry 3 "$release/Godot_v${GODOT_VERSION}-stable_export_templates.tpz" -o "$RUNNER_TEMP/templates.tpz"
+          unzip -q "$RUNNER_TEMP/templates.tpz" 'templates/android_debug.apk' 'templates/android_release.apk' -d "$RUNNER_TEMP/godot-templates"
+          templates="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          mkdir -p "$templates"
+          mv "$RUNNER_TEMP/godot-templates/templates/"*.apk "$templates/"
+      - name: Export and verify Android test APK
+        env:
+          DO_ENV: production
+          DO_API_SERVER_URL: https://dlut.online
+        run: python3 apps/game/tools/export_android.py --sdk "$ANDROID_HOME" --java "$JAVA_HOME"
+      - uses: actions/upload-artifact@v4
+        id: apk
+        with:
+          name: client-android-debug-${{ github.sha }}
+          path: apps/game/build/android/DLUT-Online-Android.apk
+          retention-days: 7
+          compression-level: 0
+          if-no-files-found: error
+      - name: Add APK download instructions
+        env:
+          ARTIFACT_URL: ${{ steps.apk.outputs.artifact-url }}
+        run: |
+          cat >> "$GITHUB_STEP_SUMMARY" <<EOF
+          ## Android arm64 测试 APK
+
+          [下载 APK artifact]($ARTIFACT_URL)，解压后安装其中的 APK。下载需登录 GitHub，保留 7 天。
+
+          使用本次构建自动生成的调试密钥签名，不需要配置证书或 Secrets。不同构建签名不同，覆盖安装失败时需卸载旧版；卸载会清除本地数据。
+
+          当前为 Debug 测试包，默认连接 https://dlut.online，尚未通过 Android 真机性能及联网验收，不用于应用商店发行。
+          EOF
+
   macos:
     needs: test
     runs-on: macos-latest

@@ -2,7 +2,7 @@
 
 ### Requirement: Android test APK
 
-系统 SHALL 提供 Android arm64 横屏测试 APK，使用 Godot Mobile 渲染器，共用完整三校区资源、Godot 原生界面与 ENet 协议。正式桌面发布仍使用 Windows x86_64、macOS arm64 和 Forward+。Android 不进入现有四任务 CI 发布链路。
+系统 SHALL 提供 Android arm64 横屏测试 APK，使用 Godot Mobile 渲染器，共用完整三校区资源、Godot 原生界面与 ENet 协议。正式桌面发布仍使用 Windows x86_64、macOS arm64 和 Forward+。Android 作为 build.yml 中第五个构建任务提供测试 APK artifact，GitHub Release 附件仍仅包含桌面 EXE/DMG。
 
 #### Scenario: Local export
 
@@ -44,3 +44,20 @@ Android SHALL 保持单人离线无账号，多人使用真实账号；账号 to
 
 - **WHEN** 导出 Android APK
 - **THEN** 只包含已有三校区模型及其现有室内范围，不增加建筑或室内；模型精度沿用 references 中各校区来源记录
+
+### Requirement: PR test artifacts and temporary signing
+
+系统 SHALL 在统一 build.yml 中增加 android 任务，必须 needs: test，沿用现有 PR、main push、手动和发布复用入口。Android 任务 SHALL 安装 JDK 17、Android SDK 和 Godot 4.7.2 Android 模板，使用现有导出脚本生成 arm64 Debug APK 并验证签名、对齐、架构与资源；不运行集成或真机测试。
+
+#### Scenario: Download from a pull request
+
+- **WHEN** PR 的前置测试及 Android 构建成功
+- **THEN** 上传 `client-android-debug-<github.sha>` artifact，仅含 APK，保留 7 天，并在 Actions 摘要提供下载链接和解压安装说明
+- **AND** 用户可从 PR Checks 打开构建下载，无需等待其他平台产物；其他构建仍必须通过才算整体 CI 成功
+
+#### Scenario: No managed release certificate
+
+- **WHEN** 干净的 CI runner 打包测试 APK
+- **THEN** 自动生成本次构建的调试密钥并签名，不需用户上传证书或配置 Secrets，不缓存、提交或上传密钥
+- **AND** 摘要说明不同构建签名不同，覆盖安装失败时需卸载旧版，卸载会清除本地数据；不宣称存在通用的默认正式签名
+- **AND** APK 不作为 GitHub Release 附件或应用商店正式发行包
