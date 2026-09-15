@@ -7,6 +7,7 @@ func _initialize() -> void:
 	assert(not ResourceLoader.exists("res://addons/desktop_export/plugin.gd"))
 	assert(not ResourceLoader.exists("res://addons/run_environment/plugin.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/world_chat.gd"))
+	assert(ResourceLoader.exists("res://scripts/client/touch_controls.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/weather_effects.gd"))
 	assert(ResourceLoader.exists("res://scripts/shared/chat_rules.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/account_session.gd"))

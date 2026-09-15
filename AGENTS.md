@@ -3,7 +3,7 @@
 ## 项目定位
 
 - 产品名固定为 **DLUT Online**：以整个大连理工大学为主题的第一人称 MMORPG。
-- 仅支持 Windows x86_64 和 macOS arm64 桌面客户端，共用 Godot 项目与交互；不支持或导出 Web 游戏。
+- 正式客户端支持 Windows x86_64 和 macOS arm64，另提供 Android arm64 测试 APK，共用 Godot 项目；不支持或导出 Web 游戏。Android 提供触屏移动、环视、跳跃、暂停和地图操作，真机性能与联网体验仍需验收。
 - 当前建设可行走的校园世界、PocketBase 账号和 ENet 玩家同步，多人模式玩家必须使用真实账号，单人模式纯本地且无需账号；室内必须先具备实景照片或有效平面数据再建设，不自行增加活动、战斗、任务或奖励功能。
 - 第一批地域素材来自开发区校区。地域名称用于资产、数据与来源记录，不反复出现在产品主界面。
 - 美术采用真实比例、自然材质和实景参考。不得用卡通锥体树、统一盒子立面或随意色块冒充精细建模。
@@ -23,8 +23,8 @@
 - 项目自定义环境变量统一使用 `DO_` 前缀和大写下划线命名（DO 为 DLUT Online 简称）。环境名称使用 `DO_ENV`（`development` / `production`），服务器根地址使用 `DO_API_SERVER_URL`，不使用含义模糊的 `ENV`、`BASE_URL` 或 `BASEURL`。平台约定变量（如现有 `PORT`）保留其兼容用途，不作为项目自定义变量命名范例。
 - `DO_API_SERVER_URL` 是 Go HTTP API 根地址，包含协议、主机和可选端口，不含末尾斜杠或接口路径；开发默认 `http://localhost:8415`，生产默认 `https://dlut.online`。客户端从 Go 获取一次性票据和游戏服公网地址后直连游戏服。
 - `DO_API_KEY` 是 Go、Godot 游戏服及其他可信服务调用方共享的 API Bearer Key，至少 32 字符；受保护服务接口统一使用 `Authorization: Bearer <DO_API_KEY>`。该变量不进入桌面客户端。
-- 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。默认使用 Forward+ 渲染器，暂不设置移动端渲染覆盖，后续适配移动端时再添加。
-- Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，账号 token 在运行时保留于内存，并按 API 根地址隔离存入 macOS 钥匙串或 Windows 凭据管理器；多人模式提供原生密码登录，无联网游客入口，单人模式无需登录；网站提供登录注册与邮箱验证。
+- 游戏、角色、场景和 UI 全部使用 Godot 4 / GDScript / 原生节点。桌面默认使用 Forward+ 渲染器，Android 使用 Mobile 渲染器覆盖。
+- Godot 游戏不引入外部前端框架、自定义 HTML 游戏 UI 或 JavaScriptBridge；客户端使用 Godot 原生 HTTPRequest 与 ENet，账号 token 在运行时保留于内存，并按 API 根地址隔离存入 macOS 钥匙串或 Windows 凭据管理器；Android 测试版仅在内存保留登录，重启后重新登录；多人模式提供原生密码登录，无联网游客入口，单人模式无需登录；网站提供登录注册与邮箱验证。
 - 尺度以米为单位，Y 向上；地图局部 X 向东、Z 向南。角色眼高约 1.7 米。
 - 工具代码放 tools/，客户端代码放 scripts/client/，游戏服代码放 scripts/server/，共享代码放 scripts/shared/，原始参考放 references/，按 references/README.md 的校区与主题分类；项目外部信息、素材、天气 API 等来源和许可统一维护于根目录 CREDITS.md，运行时资源放 assets/。
 - 按职责拆分模型生成器，避免把建筑内部、植被和 UI 混入同一模块。GDScript 使用 snake_case，常量 UPPER_SNAKE_CASE；类型推断不明确时显式标注类型。
@@ -80,8 +80,8 @@
 - Go HTTP 服务位于 apps/api/，自定义业务接口和 Vue 站点直接注册到 PocketBase Router；负责账号、SQLite 持久化、站点、票据与在线查询，不执行世界模拟或代理实时流量。服务启动和参数见 apps/api/README.md。
 
 - CI 固定使用 test.yml、build.yml、release.yml 三个工作流。test.yml 仅提供 workflow_call，使用两个独立 Linux runner 并行运行 Vue 与 Go 任务：Vue 执行 `vue-tsc --noEmit`，Go 依次执行 `go test -timeout 60s ./...` 和 `go vet ./...`，两者全部成功才允许构建。不运行集成或 E2E 测试，默认不启用 race，不启动真实数据库、系统凭据操作、容器 smoke、游戏联调、物理世界或导出包运行检查；这些仅在相关改动时本地专项执行。Go 集成测试必须带 `//go:build integration`，不进入默认 go test。Godot 将来可加入使用 GUT 的纯函数单元测试，但不得加载校园、连接服务或操作系统凭据；当前轻量测试任务不安装 Godot 或下载 LFS 资产。
-- build.yml 统一接收 main 源码分支 push、PR、手动运行，也提供 workflow_call 供发布复用；纯文档变更不触发；根目录 CREDITS.md 作为桌面发行资源参与构建触发。其他分支 push 不触发，避免 PR 重复运行。每次调用先执行 test.yml，成功后并行执行 windows、macos、server、web 四个独立构建任务，四者必须 needs: test。Windows 导出内嵌资源的 x86_64 独立 EXE；macOS 在 macOS runner 导出、裁剪为 arm64 并重新做 ad-hoc 签名，最终 DMG 必须通过严格签名与 arm64 架构校验；server 在 Linux 生成碰撞世界、导出游戏服并构建镜像；web 构建 Go HTTP 镜像。相关源码变更统一构建四种产物，不再按应用拆分工作流或增加 ci.yml 调度层。
-- release.yml 仅接收版本标签，先校验版本，再调用 build.yml（test → 四种构建），全部成功后下载本次构建的 EXE/DMG 上传 GitHub Release。测试失败必须阻止所有 build 和 release，不能使用 always()、continue-on-error 或跳过测试参数绕过。构建阶段只做必要生成、编译、打包、产物完整性检查和上传，不运行集成/E2E，也不构建 Godot Web 产物。Go `DO_API_SERVER_PORT` 默认 8415，并兼容平台 `PORT`；容器 PocketBase 数据位于 `/data/pb_data` 持久卷，Docker 构建上下文为根目录；Windows 暂不签名，macOS 未配置 Developer ID 和公证，须如实说明 Gatekeeper 限制。
+- build.yml 统一接收 main 源码分支 push、PR、手动运行，也提供 workflow_call 供发布复用；纯文档变更不触发；根目录 CREDITS.md 作为发行资源参与构建触发。其他分支 push 不触发，避免 PR 重复运行。每次调用先执行 test.yml，成功后并行执行 windows、macos、server、web、android 五个独立构建任务，五者必须 needs: test。Windows 导出内嵌资源的 x86_64 独立 EXE；macOS 在 macOS runner 导出、裁剪为 arm64 并重新做 ad-hoc 签名，最终 DMG 必须通过严格签名与 arm64 架构校验；server 在 Linux 生成碰撞世界、导出游戏服并构建镜像；web 构建 Go HTTP 镜像。Android 在 Linux 使用 JDK 17、Android SDK 和 Godot 模板导出 arm64 Release APK，使用 Android 默认 debug keystore，缺失时按标准参数初始化，仅上传 APK artifact 并在摘要提供下载链接，不保存或上传密钥，不需配置签名 Secrets；不同构建可能需卸载旧版再安装。相关源码变更统一构建五种产物，不再按应用拆分工作流或增加 ci.yml 调度层。
+- release.yml 仅接收版本标签，先校验版本，再调用 build.yml（test → 五种构建），全部成功后下载本次构建的 EXE/DMG 上传 GitHub Release。测试失败必须阻止所有 build 和 release，不能使用 always()、continue-on-error 或跳过测试参数绕过。构建阶段只做必要生成、编译、打包、产物完整性检查和上传，不运行集成/E2E，也不构建 Godot Web 产物。Go `DO_API_SERVER_PORT` 默认 8415，并兼容平台 `PORT`；容器 PocketBase 数据位于 `/data/pb_data` 持久卷，Docker 构建上下文为根目录；Windows 暂不签名，macOS 未配置 Developer ID 和公证，须如实说明 Gatekeeper 限制。
 
 ## 权威游戏服务
 
@@ -89,7 +89,7 @@
 - 客户端 GameNetwork Autoload 跨场景保留 ENet 连接；同实例切图不重新取票、不重登，加载期间继续心跳且停止移动，场景就绪后迁移角色。三个校区对所有玩家开放。
 - 服务端通过独立 World3D 同时持有三校区碰撞世界，不能同时加载三个视觉校园模型；客户端仍只加载一个校园。服务端静态碰撞从现有场景和标记生成，保留可直接打开的场景，修改来源后重新生成，不能手工复制第二套模型。
 - DO_API_KEY 只在可信服务进程环境读取，不导出到客户端。PocketBase Auth Collection 和 SQLite 是用户权威数据源，OIDC/SSO 提供方按部署配置；无有效账号凭据不能申请游戏票据。线上人数必须标记时效，失联不能报告为零人。
-- 版本标签发布调用统一 build.yml 的四个构建任务，构建 Go HTTP 镜像与独立 Godot Linux amd64 镜像，并导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
+- 版本标签发布调用统一 build.yml 的五个构建任务，构建 Go HTTP 镜像与独立 Godot Linux amd64 镜像，并导出 Windows/macOS 客户端；双服务及客户端按兼容版本共同发布和回滚。
 - 游戏协议版本 5 使用 ENet/UDP，玩家 ID 为 15 字节 ASCII：统一使用 PocketBase 小写账号 ID。控制消息可靠传输，输入与二进制快照使用不可靠有序通道；通过序号、server_tick 和 map_epoch 拒绝迟到状态。客户端可达的 `enet://` 或 `enets://` 端点存入 PocketBase `servers` Collection，由票据接口动态下发；客户端不按环境限制协议，`enet://` 使用明文，`enets://` 启用 DTLS 并校验证书；Go API 的 production 配置仍只下发 `enets://`。游戏服使用 `DO_GAME_SERVER_PORT` 监听 UDP，生产使用 DTLS 证书，客户端校验证书。
 
 - 网站构建从 apps/web 输出到 apps/api/static/，正式编译及前端产物集成测试前先运行 pnpm install --frozen-lockfile、pnpm build。CI 纯单元测试不构建前端，只在临时工作区的 static/ 放入编译用占位文件以满足 go:embed；该文件不提交、不传给构建任务，正式镜像使用独立检出和真实前端产物。apps/api/Dockerfile 构建前端并嵌入 Go，Compose 仍只部署 game 与 web，网站不需要 Node 运行服务。网站可以使用 Vue，游戏 UI 仍限 Godot。

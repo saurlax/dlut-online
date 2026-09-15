@@ -8,7 +8,7 @@
 
 ### Requirement: 仅桌面游戏分发
 
-系统 SHALL 仅发布 Windows x86_64、macOS arm64 游戏客户端及 Linux 专用游戏服务器，不再导出、打包或托管浏览器游戏。既有 Web 分块与浏览器适配要求 SHALL 由本要求取代。
+系统 SHALL 正式发布 Windows x86_64、macOS arm64 游戏客户端及 Linux 专用游戏服务器，另允许按 android-apk-export 规范本地及 CI 导出 Android arm64 测试 APK，不再导出、打包或托管浏览器游戏。既有 Web 分块与浏览器适配要求 SHALL 由本要求取代。
 
 #### Scenario: 构建与服务启动
 - **WHEN** 运行当前构建与部署流程
@@ -52,15 +52,15 @@
 
 ### Requirement: 默认 Forward+ 渲染
 
-项目 SHALL 默认使用 Forward+，编辑器与桌面客户端使用同一渲染配置，当前不声明移动端渲染覆盖。
+项目 SHALL 默认使用 Forward+，编辑器与桌面客户端使用同一渲染配置，Android 测试版使用 Mobile 渲染器覆盖。
 
 #### Scenario: 默认启动与导出
 - **WHEN** 从编辑器启动或导出 Windows/macOS 客户端
-- **THEN** 默认选择 Forward+，移动端专属配置在后续适配时再添加
+- **THEN** 默认选择 Forward+，Android 使用独立 Mobile 渲染器覆盖
 
 ### Requirement: 编辑器运行环境选择
 
-Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，Run environment 插件 SHALL 位于 addons/run_environment/ 并负责本机运行环境；Desktop server configuration 插件 SHALL 位于 addons/desktop_export/ 且仅负责桌面导出。两者 SHALL 共用配置解析而互不依赖。Local SHALL 使用 http://localhost:8415，Dev SHALL 使用 https://dlut.online；两者客户端环境均为 development。选择 SHALL 保存在本机已忽略的配置中，并对下一次 F5/F6 运行生效；未设置时默认 Local。
+Godot 编辑器 SHALL 在顶部提供 Env Local / Dev 下拉框，Run environment 插件 SHALL 位于 addons/run_environment/ 并负责本机运行环境；Desktop server configuration 插件 SHALL 位于 addons/desktop_export/ 且负责桌面及 Android 客户端导出配置。两者 SHALL 共用配置解析而互不依赖。Local SHALL 使用 http://localhost:8415，Dev SHALL 使用 https://dlut.online；两者客户端环境均为 development。选择 SHALL 保存在本机已忽略的配置中，并对下一次 F5/F6 运行生效；未设置时默认 Local。
 
 #### Scenario: 快速切换服务地址
 - **WHEN** 开发者选择 Local 或 Dev 后启动游戏

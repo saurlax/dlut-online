@@ -23,5 +23,33 @@ func _initialize() -> void:
 	map.size = Vector2(1600,900)
 	map.constrain_view()
 	assert(map.map_scale == map.MIN_SCALE and map.view_center==Vector2.ZERO)
+	map.round_map = false
+	map.size = Vector2(800, 600)
+	map.map_scale = 2.0
+	map.view_center = Vector2.ZERO
+	var finger := InputEventScreenTouch.new()
+	finger.index = 0
+	finger.position = Vector2(300, 300)
+	finger.pressed = true
+	map._gui_input(finger)
+	var drag := InputEventScreenDrag.new()
+	drag.index = 0
+	drag.position = Vector2(340, 300)
+	map._gui_input(drag)
+	assert(map.view_center.is_equal_approx(Vector2(-20, 0)))
+	finger.index = 1
+	finger.position = Vector2(500, 300)
+	map._gui_input(finger)
+	drag.index = 1
+	drag.position = Vector2(660, 300)
+	map._gui_input(drag)
+	assert(is_equal_approx(map.map_scale, 4.0))
+	finger.pressed = false
+	map._gui_input(finger)
+	assert(map.fingers.size() == 1)
+	map.hide()
+	assert(map.fingers.is_empty())
+	map.free()
+	print("PASS: touch pan, pinch zoom and hidden-map finger reset")
 	print("PASS: fixed scale, cursor zoom anchor, zoom limits, pan bounds, oversized viewport centering")
 	quit()
