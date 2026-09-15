@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Theme" path="res://assets/ui/campus_theme.tres" id="1"]
 [ext_resource type="Script" path="res://scripts/client/menu_cover.gd" id="2"]
@@ -11,6 +11,12 @@ colors = PackedColorArray(0, 0, 0, 0.12, 0, 0, 0, 0.06, 0, 0, 0, 0.55)
 gradient = SubResource("ShadeGradient")
 fill_from = Vector2(0, 0)
 fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="LoadingTrack"]
+bg_color = Color(0.3, 0.34, 0.36, 1)
+
+[sub_resource type="StyleBoxFlat" id="LoadingFill"]
+bg_color = Color(0.92, 0.95, 0.96, 1)
 
 [node name="Menu" type="ColorRect"]
 anchors_preset = 15
@@ -103,6 +109,7 @@ theme_type_variation = &"PrimaryButton"
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 text = "多人模式"
+theme_type_variation = &"PrimaryButton"
 
 [node name="Status" type="Label" parent="Composition/Modes"]
 layout_mode = 2
@@ -171,3 +178,66 @@ size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
 text = "没有账号？先去 dlut.online 注册"
 uri = "https://dlut.online/register"
+
+[node name="StartupLoading" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.09, 0.1, 1)
+
+[node name="Title" type="Label" parent="StartupLoading"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -32.0
+offset_right = 200.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "DLUT Online"
+horizontal_alignment = 1
+
+[node name="Progress" type="ProgressBar" parent="StartupLoading"]
+layout_mode = 1
+anchor_left = 0.15
+anchor_top = 1.0
+anchor_right = 0.85
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_bottom = -56.0
+show_percentage = false
+mouse_filter = 2
+theme_override_styles/background = SubResource("LoadingTrack")
+theme_override_styles/fill = SubResource("LoadingFill")
+
+[node name="Status" type="Label" parent="StartupLoading"]
+layout_mode = 1
+anchor_left = 0.15
+anchor_top = 1.0
+anchor_right = 0.85
+anchor_bottom = 1.0
+offset_top = -106.0
+offset_bottom = -76.0
+text = "加载中"
+horizontal_alignment = 1
+
+[node name="Retry" type="Button" parent="StartupLoading"]
+visible = false
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = 60.0
+offset_right = 80.0
+offset_bottom = 108.0
+text = "重试"
