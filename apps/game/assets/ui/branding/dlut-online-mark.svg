@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>DLUT Online</title>
+  <desc>扁平化蓝色标志：同心圆与工字骨架、向前箭头及右上连接节点。透明背景。</desc>
+  <g fill="none" stroke="#005BAC" stroke-width="32">
+    <path d="M 439.66,187.16 A 196,196 0 1 1 324.84,72.34"/>
+    <path d="M 132,224 A 128,128 0 0 1 380,224 M 132,288 A 128,128 0 0 0 380,288"/>
+    <path d="M 256,60 V 128 M 256,384 V 452"/>
+  </g>
+  <path fill="#005BAC" d="M 112,240 H 232 V 272 H 112 Z M 280,240 H 400 V 272 H 280 Z M 256,210 L 282,236 H 270 V 272 H 242 V 236 H 230 Z"/>
+  <circle cx="394.59" cy="117.41" r="20" fill="#005BAC"/>
+</svg>
