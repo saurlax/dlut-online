@@ -9,7 +9,7 @@ class DesktopExport extends EditorExportPlugin:
 
 	func _export_begin(features: PackedStringArray, _is_debug: bool, path: String, _flags: int) -> void:
 		if features.has("dedicated_server"): return
-		if not features.has("windows") and not features.has("macos") and not features.has("linux"):
+		if not features.has("windows") and not features.has("macos") and not features.has("linux") and not features.has("android"):
 			return
 		var config := Config.resolve(
 			{"environment": "production", "server_url": Config.DEFAULT_URLS.production},

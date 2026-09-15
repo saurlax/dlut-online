@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal input_stopped
+
 const LocalSession = preload("res://scripts/client/local_session.gd")
 const Movement = preload("res://scripts/shared/movement.gd")
 const WALK_SPEED := 6.0
@@ -17,6 +19,10 @@ var jump_sequence := 0
 var visual_offset := Vector3.ZERO
 var drag_look := false
 var pitch := 0.0
+var touch_enabled := OS.has_feature("android")
+var touch_axis := Vector2.ZERO
+var touch_running := false
+var touch_jump := false
 
 func _ready() -> void:
 	name = "Player"
@@ -34,20 +40,25 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not playing:
 		return
-	if event is InputEventMouseMotion and (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or (drag_look and (event.button_mask & (MOUSE_BUTTON_MASK_RIGHT | MOUSE_BUTTON_MASK_LEFT)) != 0)):
-		rotate_y(-event.relative.x*0.0025)
-		pitch = clampf(pitch-event.relative.y*0.0025,-1.45,1.45)
-		camera.rotation.x = pitch
+	if not touch_enabled and event is InputEventMouseMotion and (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or (drag_look and (event.button_mask & (MOUSE_BUTTON_MASK_RIGHT | MOUSE_BUTTON_MASK_LEFT)) != 0)):
+		look_by(event.relative * 0.0025)
+
+func look_by(relative: Vector2) -> void:
+	rotate_y(-relative.x)
+	pitch = clampf(pitch - relative.y, -1.45, 1.45)
+	camera.rotation.x = pitch
 
 func movement_direction(input: Vector2) -> Vector3:
 	return (global_basis * Vector3(input.x,0,input.y)).normalized()
 
 func _physics_process(delta: float) -> void:
-	var active := network_ready and playing and (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or drag_look)
+	var active := network_ready and playing and (touch_enabled or Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or drag_look)
 	var axis := Input.get_vector("move_left","move_right","move_forward","move_back") if active else Vector2.ZERO
-	var jumping := active and Input.is_action_just_pressed("jump")
+	if active and touch_axis != Vector2.ZERO: axis = touch_axis
+	var jumping := active and (touch_jump or Input.is_action_just_pressed("jump"))
+	touch_jump = false
 	if jumping: jump_sequence += 1
-	var running := active and Input.is_action_pressed("run")
+	var running := active and (touch_running or Input.is_action_pressed("run"))
 	var network := get_node("/root/GameNetwork")
 	if not LocalSession.enabled: network.begin_prediction(delta, axis, running)
 	Movement.step(self, axis, running, jumping, delta, spawn_position)
@@ -64,6 +75,10 @@ func stop() -> void:
 	playing = false
 	drag_look = false
 	velocity = Vector3.ZERO
+	touch_axis = Vector2.ZERO
+	touch_running = false
+	touch_jump = false
+	input_stopped.emit()
 
 func correct_position(offset: Vector3) -> void:
 	position += offset

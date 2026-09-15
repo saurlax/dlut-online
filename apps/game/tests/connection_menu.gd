@@ -36,6 +36,9 @@ func run() -> void:
 		assert(current_scene.menu_status.text == network.status_text and not current_scene.enter_button.disabled)
 	await create_timer(1.2).timeout
 	assert(not network.started and network.host == null, "Menu must wait for an explicit click")
+	# Finish the background worker before shutting down the test scene.
+	while current_scene.overlay.background_requested or current_scene.overlay.preparing:
+		await process_frame
 	Account.clear()
 	print("PASS: restored account waits in menu; disconnect reasons are distinct; state is cleared without automatic reconnect")
 	quit()
