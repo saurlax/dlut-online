@@ -5,6 +5,7 @@ const DEFAULT_SCALE := 2.0 # Godot UI pixels per world metre.
 const MIN_SCALE := 0.5
 const MAX_SCALE := 8.0
 const ZOOM_STEP := 1.2
+var fingers := {}
 var map_scale := DEFAULT_SCALE
 var view_center := Vector2.ZERO
 
@@ -53,6 +54,10 @@ func configure(world: Node3D, circular: bool) -> void:
 	constrain_view()
 	queue_redraw()
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_VISIBILITY_CHANGED or what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		fingers.clear()
+
 func _process(delta: float) -> void:
 	elapsed += delta
 	if elapsed >= 0.1:
@@ -63,6 +68,31 @@ func _has_point(point: Vector2) -> bool:
 	return point.distance_to(size*0.5) <= size.x*0.5 if round_map else Rect2(Vector2.ZERO,size).has_point(point)
 
 func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouse and event.device == InputEvent.DEVICE_ID_EMULATION and OS.has_feature("android"):
+		return
+	if event is InputEventScreenTouch:
+		if round_map:
+			if event.pressed: pressed.emit()
+		elif event.pressed:
+			fingers[event.index] = event.position
+		else:
+			fingers.erase(event.index)
+		accept_event()
+		return
+	if not round_map and event is InputEventScreenDrag and fingers.has(event.index):
+		if fingers.size() == 1:
+			pan_by(event.position - Vector2(fingers[event.index]))
+		elif fingers.size() == 2:
+			var other: int = fingers.keys()[0] if fingers.keys()[1] == event.index else fingers.keys()[1]
+			var fixed: Vector2 = fingers[other]
+			var previous: Vector2 = fingers[event.index]
+			var before := previous.distance_to(fixed)
+			if before > 1.0:
+				zoom_at((previous + fixed) * 0.5, event.position.distance_to(fixed) / before)
+				pan_by((event.position - previous) * 0.5)
+		fingers[event.index] = event.position
+		accept_event()
+		return
 	if round_map and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		pressed.emit()
 		accept_event()
