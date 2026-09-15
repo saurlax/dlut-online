@@ -38,10 +38,6 @@ Third-Party Notices
 
 资料的原始地址、对象标识、读取日期和处理依据分别载于[凌水主校区档案](references/lingshui/README.md)、[开发区校区档案](references/eda/README.md)及[盘锦校区档案](references/panjin/README.md)。
 
-### 2.4 文字资料
-
-网站健康游戏忠告文本参考[洛克王国：世界官网](https://rocom.qq.com/)公开文本。该文本的专项再分发授权尚未获得确认；来源署名不构成授权证明。
-
 ## 三、天气数据与计算方法
 
 ### 3.1 Open-Meteo
