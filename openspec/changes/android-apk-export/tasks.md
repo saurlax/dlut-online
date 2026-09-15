@@ -17,6 +17,10 @@ Android 真机安装、触屏手感、GPU 性能、软键盘登录与 ENet/DTLS 
 
 ## 3. PR Android CI
 
-- [x] 3.1 在 build.yml 增加依赖 test 的 Android 构建、临时调试签名和 APK artifact 下载摘要。
+- [x] 3.1 在 build.yml 增加依赖 test 的 Android 构建、默认 debug keystore 签名和 APK artifact 下载摘要。
 - [x] 3.2 同步平台、CI 与签名规范，保留原有 Release 附件。
 - [x] 3.3 校验工作流与构建门禁，提交并创建 PR，确认 Android CI artifact 可下载。
+
+## 4. 统一 Release 构建
+
+- [x] 4.1 Android 改用 Release 模板和导出模式，独立注入默认 debug keystore 签名，增加 non-debuggable 检查并更新 artifact 名称与规范。

@@ -112,7 +112,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         id: apk
         with:
-          name: client-android-debug-${{ github.sha }}
+          name: client-android-release-${{ github.sha }}
           path: apps/game/build/android/DLUT-Online-Android.apk
           retention-days: 7
           compression-level: 0
@@ -126,9 +126,9 @@ jobs:
 
           [下载 APK artifact]($ARTIFACT_URL)，解压后安装其中的 APK。下载需登录 GitHub，保留 7 天。
 
-          使用本次构建自动生成的调试密钥签名，不需要配置证书或 Secrets。不同构建签名不同，覆盖安装失败时需卸载旧版；卸载会清除本地数据。
+          使用 Android 默认 debug keystore 签名（缺失时按标准参数初始化），不需要配置证书或 Secrets。不同 runner 的默认测试签名可能不同，覆盖安装失败时需卸载旧版；卸载会清除本地数据。
 
-          当前为 Debug 测试包，默认连接 https://dlut.online，尚未通过 Android 真机性能及联网验收，不用于应用商店发行。
+          当前为 Release 测试包，默认连接 https://dlut.online，尚未通过 Android 真机性能及联网验收，不用于应用商店发行。
           EOF
 
   macos:

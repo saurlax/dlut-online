@@ -8,7 +8,7 @@
 - 接入左侧摇杆、外圈奔跑、右侧滑动环视、跳跃、暂停、触屏地图拖动和双指缩放，失焦、暂停、切图清空输入。
 - Android 账号仅保留内存会话，重启后重新登录；不以明文文件替代系统凭据库。
 - 扩展现有导出配置插件，提供可复用 APK 构建及签名、架构、资源检查工具。
-- 统一 CI 新增依赖 test 的 Android 构建，使用临时调试签名，在 PR Checks 中提供 APK artifact。
+- 统一 CI 新增依赖 test 的 Android 构建，使用 Release 构建及默认 debug keystore 签名，在 PR Checks 中提供 APK artifact。
 
 ## Capabilities
 
