@@ -339,7 +339,9 @@ func build() -> void:
 					for surface: Dictionary in feature.sports_surfaces:
 						var court := PackedVector2Array()
 						for p: Array in surface.points: court.append(Vector2(p[0],p[1]))
-						polygon(group,court,0.3,material("Court surface",Color("638c91")),"Court_"+surface.osm_id.replace("/","_"))
+						var surface_id: String = surface.get("id",surface.get("osm_id",""))
+						assert(not surface_id.is_empty(),"Sports surface source identity missing")
+						polygon(group,court,0.3,material("Court surface",Color("638c91")),"Court_"+surface_id.replace("/","_"))
 						group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
 						for i in court.size():
 							var a := court[i]
