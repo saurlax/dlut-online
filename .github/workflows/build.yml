@@ -94,7 +94,7 @@ jobs:
         with:
           packages: platform-tools
       - name: Install Android build tools
-        run: sdkmanager 'platform-tools' 'platforms;android-36' 'build-tools;35.0.0'
+        run: sdkmanager 'platform-tools' 'platforms;android-36' 'build-tools;36.1.0' 'ndk;29.0.14206865'
       - name: Install Godot and Android export templates
         run: |
           release="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
@@ -102,10 +102,10 @@ jobs:
           unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
           sudo install "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
           curl -fL --retry 3 "$release/Godot_v${GODOT_VERSION}-stable_export_templates.tpz" -o "$RUNNER_TEMP/templates.tpz"
-          unzip -q "$RUNNER_TEMP/templates.tpz" 'templates/android_debug.apk' 'templates/android_release.apk' -d "$RUNNER_TEMP/godot-templates"
+          unzip -q "$RUNNER_TEMP/templates.tpz" 'templates/android_source.zip' -d "$RUNNER_TEMP/godot-templates"
           templates="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
           mkdir -p "$templates"
-          mv "$RUNNER_TEMP/godot-templates/templates/"*.apk "$templates/"
+          mv "$RUNNER_TEMP/godot-templates/templates/android_source.zip" "$templates/"
       - name: Export and verify Android test APK
         env:
           DO_ENV: production
