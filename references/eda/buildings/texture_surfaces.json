@@ -709,7 +709,8 @@
       "shell_materials": [],
       "regions": [],
       "observation": "只替换两块已配准方形面砖墙片的旧程序纹理，保持原来的方砖比例。",
-      "coverage": "existing_square_tiles"
+      "coverage": "existing_square_tiles",
+      "osm_regions": []
     },
     "77923": {
       "status": "deferred",

@@ -58,6 +58,7 @@ selected={'77914':'way/1422474847','77921':'way/232559719','77917':'way/14224748
           '2304789':'way/1076344145',
           '39327816':'way/375541050',
           '39327169':'way/1076344139',
+          '77943':'way/375541048',
           '77931':'way/309375779','77933':'way/309375778','77935':'way/309375777','77937':'way/309375780','77941':'way/375541046',
           '2304775':'way/232560296','39328846':'way/232560016',
           '2304759':'way/232560269','2304752':'way/1381450450'}
@@ -68,6 +69,8 @@ for feature in features:
   record=records[selected[feature['id']]]
   assert len(record['polygons'])==1 and not record['polygons'][0]['holes']
   feature.update(points=record['polygons'][0]['outer'],osm_id=record['osm_id'],osm_version=record['version'],footprint_source='osm',geometry_status='registered-source-outline')
+  if feature['id']=='77943':
+   feature.update(osm_geometry_category=record['category'],geometry_status='photo-reviewed-amenity-outline; provisional geometry')
   for spec in sport_specs:
    if spec['official_id']!=feature['id']:continue
    parent=records[spec['osm_id']]

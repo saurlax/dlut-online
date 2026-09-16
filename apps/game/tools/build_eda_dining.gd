@@ -10,7 +10,7 @@ func roof_railing(facade, start: float, finish: float, metal: Material) -> void:
 	for i in posts+1:
 		facade.panel(start+width*i/posts,12.57,0.035,0.78,0.035,-0.08,metal)
 
-func build(host, group: Node3D, points: PackedVector2Array) -> void:
+func build(host, group: Node3D, points: PackedVector2Array, registration: Dictionary = {}) -> void:
 	var facade := Facade.new()
 	facade.host = host
 	facade.group = group
@@ -28,8 +28,8 @@ func build(host, group: Node3D, points: PackedVector2Array) -> void:
 	glass.roughness = 0.3
 	facade.shell(points,12,0,wall)
 	facade.shell(points,12.18,12,band)
-	# Visible southwest glazing follows the original polygon segments.
-	for edge in [0,1]:
+	# Only the photo-visible southwest arc is registered for glazing.
+	for edge in registration.get("glazing_edges",[0,1]):
 		facade.frame_for(points,edge)
 		for y in [2.0,6.0,10.0]:
 			facade.panel(facade.length/2,y,facade.length,2.9,0.1,0.1,glass)
@@ -43,15 +43,15 @@ func build(host, group: Node3D, points: PackedVector2Array) -> void:
 		facade.panel(facade.length/2,0.3,facade.length,0.6,0.25,0.1,plinth)
 		roof_railing(facade,0.0,facade.length,metal)
 	# Rectangular wing: only the portions visible in the official photograph.
-	for face in [[11,3,0.05,0.65],[10,4,0.3,0.95]]:
-		facade.frame_for(points,int(face[0]))
-		var start: float = facade.length*float(face[2])
-		var finish: float = facade.length*float(face[3])
-		var spacing: float = (finish-start)/int(face[1])
+	for face in registration.get("faces",[[11,-1,3,0.05,0.65],[10,-1,4,0.3,0.95]]):
+		facade.frame_for(points,int(face[0]),int(face[1]))
+		var start: float = facade.length*float(face[3])
+		var finish: float = facade.length*float(face[4])
+		var spacing: float = (finish-start)/int(face[2])
 		facade.panel((start+finish)/2,6.2,finish-start,11.6,0.025,0.02,tile)
 		roof_railing(facade,start,finish,metal)
 		for y in [2.0,6.0,10.0]:
-			for col in int(face[1]):
+			for col in int(face[2]):
 				var x := start+(col+0.5)*spacing
 				facade.panel(x,y,2.1,2.6,0.1,0.1,glass)
 				for dx in [-1.05,0.0,1.05]:
@@ -62,7 +62,8 @@ func build(host, group: Node3D, points: PackedVector2Array) -> void:
 			facade.panel((start+finish)/2,y,finish-start,0.35,0.4,0.18,band,true)
 		facade.panel((start+finish)/2,0.3,finish-start,0.6,0.2,0.1,plinth)
 	# The photo shows a raised divider beside the south wing's recessed bays.
-	facade.frame_for(points,11)
+	var divider_face: Array = registration.get("divider_face",[11,-1])
+	facade.frame_for(points,int(divider_face[0]),int(divider_face[1]))
 	var divider: float = facade.length*0.82
 	facade.panel(divider,7.25,0.4,14.5,1.5,0.65,wall,true)
 	for y in [4.0,8.0,12.0]:
@@ -71,7 +72,8 @@ func build(host, group: Node3D, points: PackedVector2Array) -> void:
 		facade.panel(divider-1.0,y,1.2,2.6,0.1,0.1,glass)
 
 	# Only the two nearest green ducts visible on the photographed east wall.
-	facade.frame_for(points,10)
+	var duct_face: Array = registration.get("duct_face",[10,-1])
+	facade.frame_for(points,int(duct_face[0]),int(duct_face[1]))
 	var duct: Material = host.material("EDA dining green ventilation ducts",Color("385542"))
 	duct.albedo_texture = null
 	duct.roughness = 0.7
