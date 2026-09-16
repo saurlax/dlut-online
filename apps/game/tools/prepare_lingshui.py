@@ -106,7 +106,19 @@ def main():
     for feature in features:
         if feature.get('sports',{}).get('osm_registration'):
             profile=feature['sports'];spec=profile['osm_registration']
-            record=surface_records[spec['osm_id']];track=surface_records[spec['track_osm_id']]
+            record=surface_records[spec['osm_id']]
+            if spec.get('layout_mode')=='retain-photo-proportions':
+                assert record['version']==spec['osm_version'] and len(record['polygons'])==1
+                ring=record['polygons'][0]['outer']
+                assert len(ring)==spec['expected_vertices'] and not record['polygons'][0]['holes']
+                a,b=[ring[i] for i in spec['axis_vertices']]
+                profile['rotation_degrees']=math.degrees(math.atan2(b[1]-a[1],b[0]-a[0]))
+                corners=spec['center_vertices']
+                profile['center']=[sum(ring[j][i] for j in corners)/len(corners) for i in (0,1)]
+                feature.update(points=ring,render_polygons=[ring],osm_id=record['osm_id'],osm_version=record['version'],
+                               footprint_source='osm',geometry_status='photo-layout-registered-to-osm; dimensions approximate')
+                continue
+            track=surface_records[spec['track_osm_id']]
             assert record['version']==spec['osm_version'] and track['version']==spec['track_osm_version']
             assert len(record['polygons'])==len(track['polygons'])==1
             ring=record['polygons'][0]['outer'];track_ring=track['polygons'][0]['outer']

@@ -14,8 +14,15 @@
       "osm_id": "way/543818291",
       "osm_version": 2,
       "expected_vertices": 4
+    },
+    "81675": {
+      "name": "西校区网球场",
+      "osm_id": "way/544331542",
+      "osm_version": 1,
+      "expected_vertices": 5,
+      "basis": "与体育场南边共享边界的独立球场；官方称网球场，OSM sport=tennis，17913925-0前景可见篮架，故只采用外围，不据标签生成网球划线。"
     }
   },
-  "basis": "与官方对象同名、同地点的OSM leisure=pitch、sport=soccer闭合区域；两处来源均标注surface=artificial_turf。",
+  "basis": "七七与福佳足球场为同名同地点的OSM leisure=pitch、sport=soccer闭合区域，均标注artificial_turf；西校区南侧球场按与体育场的共享边及照片相对位置登记，具体依据见对象记录。",
   "limits": "仅迁移场地外边界。原场景没有这两场的内部划线或设施注册，不添加标准比赛尺寸、球门、灯柱及围栏；材质类型取自OSM，绿色为近似表达。OSM不是实测边界或现状测绘。"
 }
