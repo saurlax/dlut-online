@@ -380,6 +380,10 @@ func build() -> void:
 				box(group,Vector3(center.x,5,center.y),Vector3(width+2,1.2,1.8),materials.Gate)
 			_:
 				polygon(group,points,0.1,material("Paving" if kind=="plaza" else "Reserve",Color("a9a79e") if kind=="plaza" else Color("adba99")),"Ground")
+				if kind=="plaza" and feature.has("osm_id"):
+					var surface: MeshInstance3D = group.get_child(group.get_child_count()-1)
+					surface.set_meta("road_surface",true)
+					surface.set_meta("walk_collision",true)
 		generated_count += 1
 	preload("res://tools/build_vegetation.gd").new().build(self)
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "eda"):

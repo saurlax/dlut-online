@@ -71,6 +71,16 @@ class OSMWorldTests(unittest.TestCase):
         self.assertEqual(dining['version'],5)
         self.assertEqual(len(dining['polygons'][0]['outer']),19)
 
+    def test_named_square_is_retained_without_building_or_highway_tags(self):
+        records={r['osm_id']:r for r in build('eda')['areas']}
+        square=records['way/1381503838']
+        self.assertEqual(square['category'],'square')
+        self.assertEqual(square['tags']['place'],'square')
+        self.assertNotIn('building',square['tags'])
+        self.assertNotIn('highway',square['tags'])
+        self.assertEqual(square['version'],2)
+        self.assertEqual(len(square['polygons'][0]['outer']),33)
+
     def test_courtyards_are_not_filled(self):
         _,nodes,ways,relations=osm.archive('eda')
         rings=osm.relation_rings(relations['3123051'],ways,nodes)
