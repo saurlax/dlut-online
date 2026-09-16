@@ -41016,33 +41016,25 @@
       "kind": "building",
       "points": [
         [
-          717.4870345414547,
-          -174.6963245962013
+          705.7053150433669,
+          -189.68928000041217
         ],
         [
-          708.5653211674332,
-          -182.71232459620126
+          706.1819263174764,
+          -181.29575200040563
         ],
         [
-          707.8353446192339,
-          -191.46232459620126
+          729.9258334266493,
+          -182.63159200019686
         ],
         [
-          731.2635919449399,
-          -192.03532459620124
-        ],
-        [
-          741.4292653545231,
-          -182.09432459620132
-        ],
-        [
-          741.61225947551,
-          -174.8883245962013
+          729.4492221525398,
+          -191.0251200002034
         ]
       ],
       "height": 14.5,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 14.5,
@@ -41051,8 +41043,8 @@
         "frame_color": "bfc7ba",
         "trim_color": "bca58c",
         "edges": [
-          5,
-          4
+          1,
+          2
         ],
         "photos": [
           "77564-0.jpg",
@@ -41060,7 +41052,7 @@
         ],
         "panels": [
           {
-            "edge": 5,
+            "edge": 1,
             "rows": [
               {
                 "bottom": 8.05,
@@ -41098,16 +41090,7 @@
             ],
             "window_platforms": [
               {
-                "fraction": 0.0625,
-                "width": 1.9,
-                "depth": 0.45,
-                "top": 11.48,
-                "thickness": 0.16,
-                "rail_height": 0.75,
-                "front_bars": 8
-              },
-              {
-                "fraction": 0.4375,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 11.48,
@@ -41126,6 +41109,15 @@
               },
               {
                 "fraction": 0.4375,
+                "width": 1.9,
+                "depth": 0.45,
+                "top": 11.48,
+                "thickness": 0.16,
+                "rail_height": 0.75,
+                "front_bars": 8
+              },
+              {
+                "fraction": 0.5625,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 7.93,
@@ -41134,7 +41126,7 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.5625,
+                "fraction": 0.4375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 7.93,
@@ -41145,7 +41137,7 @@
             ]
           },
           {
-            "edge": 4,
+            "edge": 2,
             "rows": [
               {
                 "bottom": 0.95,
@@ -41182,91 +41174,169 @@
             ]
           }
         ],
-        "note": "0号照片东端楼号39和30栋西邻关系配准南侧边5、东端边4。局部放大重新核对南侧每排为八组窗，纠正先前九组记录并同步窗距和平台位置。南侧上两排窗、东端四层窄窗已建；补最东端顶层一处及中部两列上下两层四处窗前平台，共五处。宽1.9米、外挑0.45米、板厚0.16米、栏高0.75米、窗距和杆距均为照片比例估计；挑板有结构碰撞，细栏杆仅装饰。西端和电杆遮挡平台、南侧下部、北/西面、附房、台阶、入口及室内待核实。"
+        "note": "0号照片东端楼号39和30栋西邻关系配准南侧边5、东端边4。局部放大重新核对南侧每排为八组窗，纠正先前九组记录并同步窗距和平台位置。南侧上两排窗、东端四层窄窗已建；补最东端顶层一处及中部两列上下两层四处窗前平台，共五处。宽1.9米、外挑0.45米、板厚0.16米、栏高0.75米、窗距和杆距均为照片比例估计；挑板有结构碰撞，细栏杆仅装饰。西端和电杆遮挡平台、南侧下部、北/西面、附房、台阶、入口及室内待核实。",
+        "osm_registration": {
+          "osm_id": "way/1384290185",
+          "osm_version": 1,
+          "expected_vertices": 4,
+          "basis": "77564-0于2026-09-17核对，南侧长墙与东端按照片及相邻楼关系配准；旧南边5/东4对应新1/2反向（40栋仅登记南墙）。保留各自已核对窗格及平台分布，照片拍摄日期未知。",
+          "limits": "14.5米高度及窗、平台尺寸仍为照片比例估计。遮挡墙脚、附房平面、台阶、入口、背面、烟囱位置和室内未补建；原斜视外沿不作为落地轮廓。照片优先于俯视图及OSM，四角底稿绝对精度待核实。",
+          "profile": {
+            "edges": [
+              1,
+              2
+            ],
+            "panels": [
+              {
+                "edge": 1,
+                "rows": [
+                  {
+                    "bottom": 8.05,
+                    "count": 8,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "transom": true
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 8,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "transom": true
+                  }
+                ],
+                "bands": [
+                  {
+                    "y": 7.3,
+                    "height": 0.16,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 10.85,
+                    "height": 0.16,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 14.3,
+                    "height": 0.16,
+                    "depth": 0.22
+                  }
+                ],
+                "window_platforms": [
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 11.48,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.5625,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 11.48,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.4375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 11.48,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.5625,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 7.93,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.4375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 7.93,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  }
+                ]
+              },
+              {
+                "edge": 2,
+                "rows": [
+                  {
+                    "bottom": 0.95,
+                    "count": 1,
+                    "width": 1.25,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.25,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.25,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true
+                  },
+                  {
+                    "bottom": 11.9,
+                    "count": 1,
+                    "width": 1.25,
+                    "height": 1.75,
+                    "divisions": 2,
+                    "transom": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
       },
       "render_polygons": [
         [
           [
-            717.4870345414547,
-            -174.6963245962013
+            705.7053150433669,
+            -189.68928000041217
           ],
           [
-            708.5653211674332,
-            -182.71232459620126
+            706.1819263174764,
+            -181.29575200040563
           ],
           [
-            707.8353446192339,
-            -191.46232459620126
+            729.9258334266493,
+            -182.63159200019686
           ],
           [
-            731.2635919449399,
-            -192.03532459620124
-          ],
-          [
-            741.4292653545231,
-            -182.09432459620132
-          ],
-          [
-            741.61225947551,
-            -174.8883245962013
+            729.4492221525398,
+            -191.0251200002034
           ]
         ]
       ],
-      "reference_points": [
-        [
-          561.466,
-          -524.85
-        ],
-        [
-          552.544,
-          -532.866
-        ],
-        [
-          551.814,
-          -541.616
-        ],
-        [
-          575.243,
-          -542.189
-        ],
-        [
-          585.409,
-          -532.248
-        ],
-        [
-          585.592,
-          -525.042
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            561.466,
-            -524.85
-          ],
-          [
-            552.544,
-            -532.866
-          ],
-          [
-            551.814,
-            -541.616
-          ],
-          [
-            575.243,
-            -542.189
-          ],
-          [
-            585.409,
-            -532.248
-          ],
-          [
-            585.592,
-            -525.042
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1384290185",
+      "osm_version": 1,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77565",
@@ -41276,33 +41346,25 @@
       "kind": "building",
       "points": [
         [
-          775.2851776728646,
-          -73.64732459620126
+          762.6560294668619,
+          -89.20071599990166
         ],
         [
-          765.6574869796257,
-          -82.93832459620126
+          763.1326407409714,
+          -80.80718799989512
         ],
         [
-          765.4854925052553,
-          -92.57032459620126
+          786.8678821898985,
+          -82.14302800047733
         ],
         [
-          788.0997659813252,
-          -92.24932459620129
-        ],
-        [
-          798.8434208222225,
-          -81.47432459620126
-        ],
-        [
-          798.2994382986326,
-          -74.21332459620129
+          786.3999365748034,
+          -90.53655600048387
         ]
       ],
       "height": 14.5,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 14.5,
@@ -41311,14 +41373,14 @@
         "frame_color": "c4cbbd",
         "trim_color": "bca58c",
         "edges": [
-          5
+          1
         ],
         "photos": [
           "77565-0.jpg"
         ],
         "panels": [
           {
-            "edge": 5,
+            "edge": 1,
             "rows": [
               {
                 "bottom": 0.95,
@@ -41330,73 +41392,8 @@
                   0.32,
                   0.76
                 ],
-                "from": 0.0625,
-                "to": 0.0625
-              },
-              {
-                "bottom": 0.95,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 3,
-                "horizontal_fractions": [
-                  0.32,
-                  0.76
-                ],
-                "from": 0.1875,
-                "to": 0.1875
-              },
-              {
-                "bottom": 0.95,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 3,
-                "horizontal_fractions": [
-                  0.32,
-                  0.76
-                ],
-                "from": 0.3125,
-                "to": 0.3125
-              },
-              {
-                "bottom": 0.95,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 3,
-                "horizontal_fractions": [
-                  0.32,
-                  0.76
-                ],
-                "from": 0.4375,
-                "to": 0.4375
-              },
-              {
-                "bottom": 0.95,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 3,
-                "horizontal_fractions": [
-                  0.32,
-                  0.76
-                ],
-                "from": 0.5625,
-                "to": 0.5625
-              },
-              {
-                "bottom": 0.95,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 3,
-                "horizontal_fractions": [
-                  0.32,
-                  0.76
-                ],
-                "from": 0.6875,
-                "to": 0.6875
+                "from": 0.9375,
+                "to": 0.9375
               },
               {
                 "bottom": 0.95,
@@ -41421,16 +41418,69 @@
                   0.32,
                   0.76
                 ],
-                "from": 0.9375,
-                "to": 0.9375
+                "from": 0.6875,
+                "to": 0.6875
               },
               {
-                "bottom": 4.5,
+                "bottom": 0.95,
                 "count": 1,
                 "width": 1.8,
                 "height": 2.15,
                 "divisions": 3,
                 "horizontal_fractions": [
+                  0.32,
+                  0.76
+                ],
+                "from": 0.5625,
+                "to": 0.5625
+              },
+              {
+                "bottom": 0.95,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.32,
+                  0.76
+                ],
+                "from": 0.4375,
+                "to": 0.4375
+              },
+              {
+                "bottom": 0.95,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.32,
+                  0.76
+                ],
+                "from": 0.3125,
+                "to": 0.3125
+              },
+              {
+                "bottom": 0.95,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.32,
+                  0.76
+                ],
+                "from": 0.1875,
+                "to": 0.1875
+              },
+              {
+                "bottom": 0.95,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.32,
                   0.76
                 ],
                 "from": 0.0625,
@@ -41445,32 +41495,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.1875,
-                "to": 0.1875
-              },
-              {
-                "bottom": 4.5,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 2,
-                "horizontal_fractions": [
-                  0.76
-                ],
-                "from": 0.3125,
-                "to": 0.3125
-              },
-              {
-                "bottom": 4.5,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 2,
-                "horizontal_fractions": [
-                  0.76
-                ],
-                "from": 0.4375,
-                "to": 0.4375
+                "from": 0.9375,
+                "to": 0.9375
               },
               {
                 "bottom": 4.5,
@@ -41478,30 +41504,6 @@
                 "width": 1.8,
                 "height": 2.15,
                 "divisions": 3,
-                "horizontal_fractions": [
-                  0.76
-                ],
-                "from": 0.5625,
-                "to": 0.5625
-              },
-              {
-                "bottom": 4.5,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 2,
-                "horizontal_fractions": [
-                  0.76
-                ],
-                "from": 0.6875,
-                "to": 0.6875
-              },
-              {
-                "bottom": 4.5,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 2,
                 "horizontal_fractions": [
                   0.76
                 ],
@@ -41517,11 +41519,59 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.9375,
-                "to": 0.9375
+                "from": 0.6875,
+                "to": 0.6875
               },
               {
-                "bottom": 8.05,
+                "bottom": 4.5,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 2,
+                "horizontal_fractions": [
+                  0.76
+                ],
+                "from": 0.5625,
+                "to": 0.5625
+              },
+              {
+                "bottom": 4.5,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.76
+                ],
+                "from": 0.4375,
+                "to": 0.4375
+              },
+              {
+                "bottom": 4.5,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 2,
+                "horizontal_fractions": [
+                  0.76
+                ],
+                "from": 0.3125,
+                "to": 0.3125
+              },
+              {
+                "bottom": 4.5,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 2,
+                "horizontal_fractions": [
+                  0.76
+                ],
+                "from": 0.1875,
+                "to": 0.1875
+              },
+              {
+                "bottom": 4.5,
                 "count": 1,
                 "width": 1.8,
                 "height": 2.15,
@@ -41541,8 +41591,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.1875,
-                "to": 0.1875
+                "from": 0.9375,
+                "to": 0.9375
               },
               {
                 "bottom": 8.05,
@@ -41553,8 +41603,20 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.3125,
-                "to": 0.3125
+                "from": 0.8125,
+                "to": 0.8125
+              },
+              {
+                "bottom": 8.05,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 2,
+                "horizontal_fractions": [
+                  0.76
+                ],
+                "from": 0.6875,
+                "to": 0.6875
               },
               {
                 "bottom": 8.05,
@@ -41562,18 +41624,6 @@
                 "width": 1.8,
                 "height": 2.15,
                 "divisions": 3,
-                "horizontal_fractions": [
-                  0.76
-                ],
-                "from": 0.4375,
-                "to": 0.4375
-              },
-              {
-                "bottom": 8.05,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 2,
                 "horizontal_fractions": [
                   0.76
                 ],
@@ -41589,8 +41639,20 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.6875,
-                "to": 0.6875
+                "from": 0.4375,
+                "to": 0.4375
+              },
+              {
+                "bottom": 8.05,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 2,
+                "horizontal_fractions": [
+                  0.76
+                ],
+                "from": 0.3125,
+                "to": 0.3125
               },
               {
                 "bottom": 8.05,
@@ -41599,8 +41661,8 @@
                 "height": 2.15,
                 "divisions": 2,
                 "horizontal_fractions": [],
-                "from": 0.8125,
-                "to": 0.8125
+                "from": 0.1875,
+                "to": 0.1875
               },
               {
                 "bottom": 8.05,
@@ -41609,6 +41671,18 @@
                 "height": 2.15,
                 "divisions": 2,
                 "horizontal_fractions": [],
+                "from": 0.0625,
+                "to": 0.0625
+              },
+              {
+                "bottom": 11.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.76
+                ],
                 "from": 0.9375,
                 "to": 0.9375
               },
@@ -41621,8 +41695,54 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.0625,
-                "to": 0.0625
+                "from": 0.8125,
+                "to": 0.8125
+              },
+              {
+                "bottom": 11.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.76
+                ],
+                "from": 0.6875,
+                "to": 0.6875
+              },
+              {
+                "bottom": 11.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.76
+                ],
+                "from": 0.5625,
+                "to": 0.5625
+              },
+              {
+                "bottom": 11.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.76
+                ],
+                "from": 0.4375,
+                "to": 0.4375
+              },
+              {
+                "bottom": 11.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.15,
+                "divisions": 2,
+                "horizontal_fractions": [],
+                "from": 0.3125,
+                "to": 0.3125
               },
               {
                 "bottom": 11.6,
@@ -41645,66 +41765,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.3125,
-                "to": 0.3125
-              },
-              {
-                "bottom": 11.6,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 3,
-                "horizontal_fractions": [
-                  0.76
-                ],
-                "from": 0.4375,
-                "to": 0.4375
-              },
-              {
-                "bottom": 11.6,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 3,
-                "horizontal_fractions": [
-                  0.76
-                ],
-                "from": 0.5625,
-                "to": 0.5625
-              },
-              {
-                "bottom": 11.6,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 2,
-                "horizontal_fractions": [],
-                "from": 0.6875,
-                "to": 0.6875
-              },
-              {
-                "bottom": 11.6,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 3,
-                "horizontal_fractions": [
-                  0.76
-                ],
-                "from": 0.8125,
-                "to": 0.8125
-              },
-              {
-                "bottom": 11.6,
-                "count": 1,
-                "width": 1.8,
-                "height": 2.15,
-                "divisions": 3,
-                "horizontal_fractions": [
-                  0.76
-                ],
-                "from": 0.9375,
-                "to": 0.9375
+                "from": 0.0625,
+                "to": 0.0625
               }
             ],
             "bands": [
@@ -41731,7 +41793,7 @@
             ],
             "window_platforms": [
               {
-                "fraction": 0.0625,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 4.38,
@@ -41740,7 +41802,7 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.0625,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 7.93,
@@ -41749,34 +41811,7 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.0625,
-                "width": 1.9,
-                "depth": 0.45,
-                "top": 11.48,
-                "thickness": 0.16,
-                "rail_height": 0.75,
-                "front_bars": 8
-              },
-              {
-                "fraction": 0.4375,
-                "width": 1.9,
-                "depth": 0.45,
-                "top": 4.38,
-                "thickness": 0.16,
-                "rail_height": 0.75,
-                "front_bars": 8
-              },
-              {
-                "fraction": 0.4375,
-                "width": 1.9,
-                "depth": 0.45,
-                "top": 7.93,
-                "thickness": 0.16,
-                "rail_height": 0.75,
-                "front_bars": 8
-              },
-              {
-                "fraction": 0.4375,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 11.48,
@@ -41812,7 +41847,7 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.9375,
+                "fraction": 0.4375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 4.38,
@@ -41821,7 +41856,7 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.9375,
+                "fraction": 0.4375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 7.93,
@@ -41830,7 +41865,34 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.9375,
+                "fraction": 0.4375,
+                "width": 1.9,
+                "depth": 0.45,
+                "top": 11.48,
+                "thickness": 0.16,
+                "rail_height": 0.75,
+                "front_bars": 8
+              },
+              {
+                "fraction": 0.0625,
+                "width": 1.9,
+                "depth": 0.45,
+                "top": 4.38,
+                "thickness": 0.16,
+                "rail_height": 0.75,
+                "front_bars": 8
+              },
+              {
+                "fraction": 0.0625,
+                "width": 1.9,
+                "depth": 0.45,
+                "top": 7.93,
+                "thickness": 0.16,
+                "rail_height": 0.75,
+                "front_bars": 8
+              },
+              {
+                "fraction": 0.0625,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 11.48,
@@ -41841,91 +41903,569 @@
             ]
           }
         ],
-        "note": "0号照片南侧道路转角、左侧35栋和右后侧校园建筑关系与官方地图最南排位置对应，配准南侧长边5。原图局部放大确认四层各八列窗、东端/中部两列/西端共四列上三层十二处平台，分别设置可辨替换窗。四层14.5米、窗宽窗距、平台宽1.9米/挑深0.45米/板厚0.16米/栏高0.75米均为照片比例估计。首层灌木遮挡窗下部，不据此添加入口、台阶或附房；东端、背面和室内继续待核实。"
+        "note": "0号照片南侧道路转角、左侧35栋和右后侧校园建筑关系与官方地图最南排位置对应，配准南侧长边5。原图局部放大确认四层各八列窗、东端/中部两列/西端共四列上三层十二处平台，分别设置可辨替换窗。四层14.5米、窗宽窗距、平台宽1.9米/挑深0.45米/板厚0.16米/栏高0.75米均为照片比例估计。首层灌木遮挡窗下部，不据此添加入口、台阶或附房；东端、背面和室内继续待核实。",
+        "osm_registration": {
+          "osm_id": "way/1384290192",
+          "osm_version": 1,
+          "expected_vertices": 4,
+          "basis": "77565-0于2026-09-17核对，南侧长墙与东端按照片及相邻楼关系配准；旧南边5/东4对应新1/2反向（40栋仅登记南墙）。保留各自已核对窗格及平台分布，照片拍摄日期未知。",
+          "limits": "14.5米高度及窗、平台尺寸仍为照片比例估计。遮挡墙脚、附房平面、台阶、入口、背面、烟囱位置和室内未补建；原斜视外沿不作为落地轮廓。照片优先于俯视图及OSM，四角底稿绝对精度待核实。",
+          "profile": {
+            "edges": [
+              1
+            ],
+            "panels": [
+              {
+                "edge": 1,
+                "rows": [
+                  {
+                    "bottom": 0.95,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ],
+                    "from": 0.9375,
+                    "to": 0.9375
+                  },
+                  {
+                    "bottom": 0.95,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ],
+                    "from": 0.8125,
+                    "to": 0.8125
+                  },
+                  {
+                    "bottom": 0.95,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ],
+                    "from": 0.6875,
+                    "to": 0.6875
+                  },
+                  {
+                    "bottom": 0.95,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ],
+                    "from": 0.5625,
+                    "to": 0.5625
+                  },
+                  {
+                    "bottom": 0.95,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ],
+                    "from": 0.4375,
+                    "to": 0.4375
+                  },
+                  {
+                    "bottom": 0.95,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ],
+                    "from": 0.3125,
+                    "to": 0.3125
+                  },
+                  {
+                    "bottom": 0.95,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ],
+                    "from": 0.1875,
+                    "to": 0.1875
+                  },
+                  {
+                    "bottom": 0.95,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ],
+                    "from": 0.0625,
+                    "to": 0.0625
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.9375,
+                    "to": 0.9375
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.8125,
+                    "to": 0.8125
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.6875,
+                    "to": 0.6875
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.5625,
+                    "to": 0.5625
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.4375,
+                    "to": 0.4375
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.3125,
+                    "to": 0.3125
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.1875,
+                    "to": 0.1875
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.0625,
+                    "to": 0.0625
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.9375,
+                    "to": 0.9375
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.8125,
+                    "to": 0.8125
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.6875,
+                    "to": 0.6875
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.5625,
+                    "to": 0.5625
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.4375,
+                    "to": 0.4375
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.3125,
+                    "to": 0.3125
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [],
+                    "from": 0.1875,
+                    "to": 0.1875
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [],
+                    "from": 0.0625,
+                    "to": 0.0625
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.9375,
+                    "to": 0.9375
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.8125,
+                    "to": 0.8125
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.6875,
+                    "to": 0.6875
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.5625,
+                    "to": 0.5625
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.4375,
+                    "to": 0.4375
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [],
+                    "from": 0.3125,
+                    "to": 0.3125
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.1875,
+                    "to": 0.1875
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.0625,
+                    "to": 0.0625
+                  }
+                ],
+                "bands": [
+                  {
+                    "y": 3.75,
+                    "height": 0.16,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 7.3,
+                    "height": 0.16,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 10.85,
+                    "height": 0.16,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 14.3,
+                    "height": 0.16,
+                    "depth": 0.22
+                  }
+                ],
+                "window_platforms": [
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 4.38,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 7.93,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 11.48,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.5625,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 4.38,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.5625,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 7.93,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.5625,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 11.48,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.4375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 4.38,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.4375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 7.93,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.4375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 11.48,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.0625,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 4.38,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.0625,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 7.93,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.0625,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 11.48,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  }
+                ]
+              }
+            ]
+          }
+        }
       },
       "render_polygons": [
         [
           [
-            775.2851776728646,
-            -73.64732459620126
+            762.6560294668619,
+            -89.20071599990166
           ],
           [
-            765.6574869796257,
-            -82.93832459620126
+            763.1326407409714,
+            -80.80718799989512
           ],
           [
-            765.4854925052553,
-            -92.57032459620126
+            786.8678821898985,
+            -82.14302800047733
           ],
           [
-            788.0997659813252,
-            -92.24932459620129
-          ],
-          [
-            798.8434208222225,
-            -81.47432459620126
-          ],
-          [
-            798.2994382986326,
-            -74.21332459620129
+            786.3999365748034,
+            -90.53655600048387
           ]
         ]
       ],
-      "reference_points": [
-        [
-          619.266,
-          -423.801
-        ],
-        [
-          609.638,
-          -433.092
-        ],
-        [
-          609.466,
-          -442.724
-        ],
-        [
-          632.081,
-          -442.403
-        ],
-        [
-          642.825,
-          -431.628
-        ],
-        [
-          642.281,
-          -424.367
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            619.266,
-            -423.801
-          ],
-          [
-            609.638,
-            -433.092
-          ],
-          [
-            609.466,
-            -442.724
-          ],
-          [
-            632.081,
-            -442.403
-          ],
-          [
-            642.825,
-            -431.628
-          ],
-          [
-            642.281,
-            -424.367
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1384290192",
+      "osm_version": 1,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77566",
@@ -41935,33 +42475,25 @@
       "kind": "building",
       "points": [
         [
-          762.7555802085642,
-          -108.40732459620125
+          758.6524947645887,
+          -114.60394000015015
         ],
         [
-          762.0746020862027,
-          -117.8453245962013
+          759.1291060374667,
+          -106.19928000001352
         ],
         [
-          784.5618796422434,
-          -117.65032459620124
+          782.8643474876253,
+          -107.54625199993484
         ],
         [
-          793.3645968392295,
-          -109.09832459620128
-        ],
-        [
-          793.4125952971933,
-          -98.69732459620127
-        ],
-        [
-          771.6892931970765,
-          -99.40832459620128
+          782.3877362135158,
+          -115.93977999994138
         ]
       ],
       "height": 14.5,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 14.5,
@@ -41970,15 +42502,15 @@
         "frame_color": "c4cbbd",
         "trim_color": "bca58c",
         "edges": [
-          3,
-          4
+          2,
+          1
         ],
         "photos": [
           "77566-0.jpg"
         ],
         "panels": [
           {
-            "edge": 3,
+            "edge": 2,
             "rows": [
               {
                 "bottom": 4.5,
@@ -42014,7 +42546,7 @@
             ]
           },
           {
-            "edge": 4,
+            "edge": 1,
             "rows": [
               {
                 "bottom": 4.5,
@@ -42023,8 +42555,8 @@
                 "height": 2.15,
                 "divisions": 3,
                 "transom": true,
-                "from": 0.0625,
-                "to": 0.0625
+                "from": 0.9375,
+                "to": 0.9375
               },
               {
                 "bottom": 8.05,
@@ -42033,8 +42565,8 @@
                 "height": 2.15,
                 "divisions": 3,
                 "transom": true,
-                "from": 0.0625,
-                "to": 0.0625
+                "from": 0.9375,
+                "to": 0.9375
               },
               {
                 "bottom": 11.6,
@@ -42043,13 +42575,13 @@
                 "height": 2.15,
                 "divisions": 3,
                 "transom": true,
-                "from": 0.0625,
-                "to": 0.0625
+                "from": 0.9375,
+                "to": 0.9375
               }
             ],
             "window_platforms": [
               {
-                "fraction": 0.0625,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 4.38,
@@ -42058,7 +42590,7 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.0625,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 7.93,
@@ -42067,7 +42599,7 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.0625,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 11.48,
@@ -42078,91 +42610,147 @@
             ]
           }
         ],
-        "note": "0号照片楼号41清晰，东端窄窗及北侧邻楼关系对应东端边3、南侧长边4。补东端上三层窗及南侧最东列上三层窗和三处窗前平台；未由透视压缩的长面推断整排总数。四层14.5米、单列位置、窗宽窗距、平台宽1.9米/挑深0.45米/板厚0.16米/栏高0.75米为照片比例估计。首层被灌木遮挡，其余南侧窗面、其他平台、附房、入口、台阶、背面及室内继续待核实。"
+        "note": "0号照片楼号41清晰，东端窄窗及北侧邻楼关系对应东端边3、南侧长边4。补东端上三层窗及南侧最东列上三层窗和三处窗前平台；未由透视压缩的长面推断整排总数。四层14.5米、单列位置、窗宽窗距、平台宽1.9米/挑深0.45米/板厚0.16米/栏高0.75米为照片比例估计。首层被灌木遮挡，其余南侧窗面、其他平台、附房、入口、台阶、背面及室内继续待核实。",
+        "osm_registration": {
+          "osm_id": "way/1384290193",
+          "osm_version": 1,
+          "expected_vertices": 4,
+          "basis": "77566-0于2026-09-17核对，南侧长墙与东端按照片及相邻楼关系配准；旧南边4/东3对应新1/2反向（40栋仅登记南墙）。保留各自已核对窗格及平台分布，照片拍摄日期未知。",
+          "limits": "14.5米高度及窗、平台尺寸仍为照片比例估计。遮挡墙脚、附房平面、台阶、入口、背面、烟囱位置和室内未补建；原斜视外沿不作为落地轮廓。照片优先于俯视图及OSM，四角底稿绝对精度待核实。",
+          "profile": {
+            "edges": [
+              2,
+              1
+            ],
+            "panels": [
+              {
+                "edge": 2,
+                "rows": [
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.3,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ]
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.3,
+                    "height": 2.05,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ]
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.3,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ]
+                  }
+                ]
+              },
+              {
+                "edge": 1,
+                "rows": [
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "transom": true,
+                    "from": 0.9375,
+                    "to": 0.9375
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "transom": true,
+                    "from": 0.9375,
+                    "to": 0.9375
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "transom": true,
+                    "from": 0.9375,
+                    "to": 0.9375
+                  }
+                ],
+                "window_platforms": [
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 4.38,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 7.93,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 11.48,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  }
+                ]
+              }
+            ]
+          }
+        }
       },
       "render_polygons": [
         [
           [
-            762.7555802085642,
-            -108.40732459620125
+            758.6524947645887,
+            -114.60394000015015
           ],
           [
-            762.0746020862027,
-            -117.8453245962013
+            759.1291060374667,
+            -106.19928000001352
           ],
           [
-            784.5618796422434,
-            -117.65032459620124
+            782.8643474876253,
+            -107.54625199993484
           ],
           [
-            793.3645968392295,
-            -109.09832459620128
-          ],
-          [
-            793.4125952971933,
-            -98.69732459620127
-          ],
-          [
-            771.6892931970765,
-            -99.40832459620128
+            782.3877362135158,
+            -115.93977999994138
           ]
         ]
       ],
-      "reference_points": [
-        [
-          606.736,
-          -458.561
-        ],
-        [
-          606.055,
-          -467.999
-        ],
-        [
-          628.543,
-          -467.804
-        ],
-        [
-          637.346,
-          -459.252
-        ],
-        [
-          637.394,
-          -448.851
-        ],
-        [
-          615.67,
-          -449.562
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            606.736,
-            -458.561
-          ],
-          [
-            606.055,
-            -467.999
-          ],
-          [
-            628.543,
-            -467.804
-          ],
-          [
-            637.346,
-            -459.252
-          ],
-          [
-            637.394,
-            -448.851
-          ],
-          [
-            615.67,
-            -449.562
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1384290193",
+      "osm_version": 1,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77567",
@@ -42172,33 +42760,25 @@
       "kind": "building",
       "points": [
         [
-          766.6134562674047,
-          -125.69332459620125
+          753.5744182805078,
+          -139.5618839999409
         ],
         [
-          758.361721369128,
-          -133.38232459620127
+          754.0423638943715,
+          -131.16835599993436
         ],
         [
-          758.1617277942787,
-          -142.63732459620127
+          777.7862710035445,
+          -132.50419600051657
         ],
         [
-          780.0000261999337,
-          -144.09832459620128
-        ],
-        [
-          790.1337006375411,
-          -134.23932459620124
-        ],
-        [
-          790.4856893292756,
-          -126.1313245962013
+          777.309659729435,
+          -140.8977240005231
         ]
       ],
       "height": 14.5,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 14.5,
@@ -42207,8 +42787,8 @@
         "frame_color": "c4cbbd",
         "trim_color": "bca58c",
         "edges": [
-          5,
-          4
+          1,
+          2
         ],
         "photos": [
           "77567-0.jpg",
@@ -42216,7 +42796,7 @@
         ],
         "panels": [
           {
-            "edge": 5,
+            "edge": 1,
             "rows": [
               {
                 "bottom": 4.5,
@@ -42227,8 +42807,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.0625,
-                "to": 0.0625
+                "from": 0.9375,
+                "to": 0.9375
               },
               {
                 "bottom": 4.5,
@@ -42239,8 +42819,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.1875,
-                "to": 0.1875
+                "from": 0.8125,
+                "to": 0.8125
               },
               {
                 "bottom": 4.5,
@@ -42251,8 +42831,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.3125,
-                "to": 0.3125
+                "from": 0.6875,
+                "to": 0.6875
               },
               {
                 "bottom": 8.05,
@@ -42263,8 +42843,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.0625,
-                "to": 0.0625
+                "from": 0.9375,
+                "to": 0.9375
               },
               {
                 "bottom": 8.05,
@@ -42275,8 +42855,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.1875,
-                "to": 0.1875
+                "from": 0.8125,
+                "to": 0.8125
               },
               {
                 "bottom": 8.05,
@@ -42287,8 +42867,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.3125,
-                "to": 0.3125
+                "from": 0.6875,
+                "to": 0.6875
               },
               {
                 "bottom": 11.6,
@@ -42299,8 +42879,8 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.0625,
-                "to": 0.0625
+                "from": 0.9375,
+                "to": 0.9375
               },
               {
                 "bottom": 11.6,
@@ -42309,8 +42889,8 @@
                 "height": 2.15,
                 "divisions": 2,
                 "horizontal_fractions": [],
-                "from": 0.1875,
-                "to": 0.1875
+                "from": 0.8125,
+                "to": 0.8125
               },
               {
                 "bottom": 11.6,
@@ -42321,43 +42901,43 @@
                 "horizontal_fractions": [
                   0.76
                 ],
-                "from": 0.3125,
-                "to": 0.3125
+                "from": 0.6875,
+                "to": 0.6875
               }
             ],
             "accents": [
               {
-                "fraction": 0.1875,
+                "fraction": 0.8125,
                 "y": 3.75,
                 "size": [
-                  8.95,
+                  8.914179464890863,
                   0.16,
                   0.22
                 ]
               },
               {
-                "fraction": 0.1875,
+                "fraction": 0.8125,
                 "y": 7.3,
                 "size": [
-                  8.95,
+                  8.914179464890863,
                   0.16,
                   0.22
                 ]
               },
               {
-                "fraction": 0.1875,
+                "fraction": 0.8125,
                 "y": 10.85,
                 "size": [
-                  8.95,
+                  8.914179464890863,
                   0.16,
                   0.22
                 ]
               },
               {
-                "fraction": 0.1875,
+                "fraction": 0.8125,
                 "y": 14.3,
                 "size": [
-                  8.95,
+                  8.914179464890863,
                   0.16,
                   0.22
                 ]
@@ -42365,7 +42945,7 @@
             ],
             "window_platforms": [
               {
-                "fraction": 0.0625,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 4.38,
@@ -42374,7 +42954,7 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.0625,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 7.93,
@@ -42383,7 +42963,7 @@
                 "front_bars": 8
               },
               {
-                "fraction": 0.0625,
+                "fraction": 0.9375,
                 "width": 1.9,
                 "depth": 0.45,
                 "top": 11.48,
@@ -42394,7 +42974,7 @@
             ]
           },
           {
-            "edge": 4,
+            "edge": 2,
             "rows": [
               {
                 "bottom": 4.5,
@@ -42431,91 +43011,262 @@
             ]
           }
         ],
-        "note": "0号照片东端上层双分格窗、下两层多分格窗及南侧平台与41栋0号照片右后方北邻楼互证，配准南侧长边5和东端边4。补东端上三层窗、南侧靠东三列上三层窗和最东列三处窗前平台；不以透视压缩窗距推断全排总数。四层14.5米、三列位置、窗宽窗距、平台宽1.9米/挑深0.45米/板厚0.16米/栏高0.75米为照片比例估计。南侧其余窗段及中部平台、首层灌木遮挡、附房、屋面烟囱位置、入口、台阶、背面和室内仍待核实。"
+        "note": "0号照片东端上层双分格窗、下两层多分格窗及南侧平台与41栋0号照片右后方北邻楼互证，配准南侧长边5和东端边4。补东端上三层窗、南侧靠东三列上三层窗和最东列三处窗前平台；不以透视压缩窗距推断全排总数。四层14.5米、三列位置、窗宽窗距、平台宽1.9米/挑深0.45米/板厚0.16米/栏高0.75米为照片比例估计。南侧其余窗段及中部平台、首层灌木遮挡、附房、屋面烟囱位置、入口、台阶、背面和室内仍待核实。",
+        "osm_registration": {
+          "osm_id": "way/1384290194",
+          "osm_version": 1,
+          "expected_vertices": 4,
+          "basis": "77567-0于2026-09-17核对，南侧长墙与东端按照片及相邻楼关系配准；旧南边5/东4对应新1/2反向（40栋仅登记南墙）。保留各自已核对窗格及平台分布，照片拍摄日期未知。",
+          "limits": "14.5米高度及窗、平台尺寸仍为照片比例估计。遮挡墙脚、附房平面、台阶、入口、背面、烟囱位置和室内未补建；原斜视外沿不作为落地轮廓。照片优先于俯视图及OSM，四角底稿绝对精度待核实。",
+          "profile": {
+            "edges": [
+              1,
+              2
+            ],
+            "panels": [
+              {
+                "edge": 1,
+                "rows": [
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.9375,
+                    "to": 0.9375
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.8125,
+                    "to": 0.8125
+                  },
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.6875,
+                    "to": 0.6875
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.9375,
+                    "to": 0.9375
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.8125,
+                    "to": 0.8125
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.6875,
+                    "to": 0.6875
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.9375,
+                    "to": 0.9375
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 2,
+                    "horizontal_fractions": [],
+                    "from": 0.8125,
+                    "to": 0.8125
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.8,
+                    "height": 2.15,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.76
+                    ],
+                    "from": 0.6875,
+                    "to": 0.6875
+                  }
+                ],
+                "accents": [
+                  {
+                    "fraction": 0.8125,
+                    "y": 3.75,
+                    "size": [
+                      8.914179464890863,
+                      0.16,
+                      0.22
+                    ]
+                  },
+                  {
+                    "fraction": 0.8125,
+                    "y": 7.3,
+                    "size": [
+                      8.914179464890863,
+                      0.16,
+                      0.22
+                    ]
+                  },
+                  {
+                    "fraction": 0.8125,
+                    "y": 10.85,
+                    "size": [
+                      8.914179464890863,
+                      0.16,
+                      0.22
+                    ]
+                  },
+                  {
+                    "fraction": 0.8125,
+                    "y": 14.3,
+                    "size": [
+                      8.914179464890863,
+                      0.16,
+                      0.22
+                    ]
+                  }
+                ],
+                "window_platforms": [
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 4.38,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 7.93,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  },
+                  {
+                    "fraction": 0.9375,
+                    "width": 1.9,
+                    "depth": 0.45,
+                    "top": 11.48,
+                    "thickness": 0.16,
+                    "rail_height": 0.75,
+                    "front_bars": 8
+                  }
+                ]
+              },
+              {
+                "edge": 2,
+                "rows": [
+                  {
+                    "bottom": 4.5,
+                    "count": 1,
+                    "width": 1.3,
+                    "height": 2.05,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ]
+                  },
+                  {
+                    "bottom": 8.05,
+                    "count": 1,
+                    "width": 1.3,
+                    "height": 2.05,
+                    "divisions": 3,
+                    "horizontal_fractions": [
+                      0.32,
+                      0.76
+                    ]
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 1,
+                    "width": 1.3,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "horizontal_fractions": [
+                      0.76
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
       },
       "render_polygons": [
         [
           [
-            766.6134562674047,
-            -125.69332459620125
+            753.5744182805078,
+            -139.5618839999409
           ],
           [
-            758.361721369128,
-            -133.38232459620127
+            754.0423638943715,
+            -131.16835599993436
           ],
           [
-            758.1617277942787,
-            -142.63732459620127
+            777.7862710035445,
+            -132.50419600051657
           ],
           [
-            780.0000261999337,
-            -144.09832459620128
-          ],
-          [
-            790.1337006375411,
-            -134.23932459620124
-          ],
-          [
-            790.4856893292756,
-            -126.1313245962013
+            777.309659729435,
+            -140.8977240005231
           ]
         ]
       ],
-      "reference_points": [
-        [
-          610.594,
-          -475.847
-        ],
-        [
-          602.342,
-          -483.536
-        ],
-        [
-          602.142,
-          -492.791
-        ],
-        [
-          623.981,
-          -494.252
-        ],
-        [
-          634.115,
-          -484.393
-        ],
-        [
-          634.467,
-          -476.285
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            610.594,
-            -475.847
-          ],
-          [
-            602.342,
-            -483.536
-          ],
-          [
-            602.142,
-            -492.791
-          ],
-          [
-            623.981,
-            -494.252
-          ],
-          [
-            634.115,
-            -484.393
-          ],
-          [
-            634.467,
-            -476.285
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1384290194",
+      "osm_version": 1,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77568",
