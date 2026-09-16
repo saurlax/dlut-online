@@ -114,6 +114,16 @@ def build(campus, fetch=False):
     else:
         source = read(archive)
     elements = source['response']['elements']
+    adjustment_path = refs / 'road-adjustments.json'
+    adjustments = read(adjustment_path)['nodes'] if adjustment_path.exists() else []
+    for adjustment in adjustments:
+        assert manifest.get('geographic_crs') == 'EPSG:4326'
+        users = [e for e in elements if adjustment['node_id'] in e.get('nodes', [])]
+        assert sorted((e['id'], e['version']) for e in users) == sorted(tuple(v) for v in adjustment['ways']), 'Road adjustment source changed; review shared-node users'
+        assert len(adjustment['point_xz']) == 2 and all(isinstance(v, (int, float)) and math.isfinite(v) for v in adjustment['point_xz'])
+        for element in users:
+            index = element['nodes'].index(adjustment['node_id'])
+            assert math.dist(local(element['geometry'][index]), adjustment['expected_source_xz']) < 0.002, 'Road adjustment source coordinate changed'
     boundary = next(e for e in elements if e['id'] == BOUNDARIES[campus])
     campus_ring = [local(p) for p in boundary['geometry'][:-1]]
     x, z, w, h = manifest.get('bounds', [-640, -410, 1280, 930])
@@ -124,7 +134,14 @@ def build(campus, fetch=False):
         tags = element.get('tags', {})
         if 'highway' not in tags:
             continue
-        paths = clipped_parts([local(p) for p in element['geometry']], [campus_ring, frame])
+        source_points = [local(p) for p in element['geometry']]
+        adjusted_points = [p[:] for p in source_points]
+        applied = []
+        for adjustment in adjustments:
+            if adjustment['node_id'] in element.get('nodes', []):
+                adjusted_points[element['nodes'].index(adjustment['node_id'])] = adjustment['point_xz']
+                applied.append(adjustment['node_id'])
+        paths = clipped_parts(adjusted_points, [campus_ring, frame])
         if not paths:
             continue
         if (tags['highway'] not in WIDTHS or tags.get('area') == 'yes'
@@ -137,6 +154,9 @@ def build(campus, fetch=False):
             roads.append({'osm_way_id': element['id'], 'osm_version': element['version'], 'part': part,
                           'name': tags.get('name', ''), 'highway': tags['highway'], 'width': road_width,
                           'width_basis': basis, 'points': points})
+            if applied:
+                roads[-1].update(source_points=source_points, adjusted_nodes=applied,
+                                 geometry_basis=str(adjustment_path.relative_to(ROOT)).replace('\\', '/'))
     assert roads, f'No usable OSM roads for {campus}'
     coverage_path = refs / 'road-coverage.json'
     coverage = None
