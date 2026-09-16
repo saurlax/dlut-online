@@ -24,7 +24,7 @@ func _run() -> void:
 		assert(body.is_on_floor(),id + " spawn must be grounded")
 		if id == "lingshui":
 			var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
-			# These two structures still retain photo geometry in the legacy frame.
+			# The sports halls still retain photo geometry in the legacy frame.
 			# Convert their recorded samples, including the saved terrain placement.
 			var model: Node3D = load("res://assets/campuses/lingshui/models/lingshui_campus.tscn").instantiate()
 			var registration: Dictionary = manifest.legacy_reference_transform
@@ -37,11 +37,14 @@ func _run() -> void:
 				var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(top+Vector3.UP,top-Vector3.UP))
 				assert(not hit.is_empty() and absf(hit.position.y-top.y)<0.08,"Authoritative curved roof height must match migrated photo geometry")
 			base = model.get_node("Feature_78473_0").position.y
-			var start := Vector3(240*float(registration.scale_x)+offset.x,base+2,175+offset.y)
-			var end := Vector3(220*float(registration.scale_x)+offset.x,base+2,175+offset.y)
-			var stand := space.intersect_ray(PhysicsRayQueryParameters3D.create(start,end))
+			var stand_frame: Dictionary
+			for feature: Dictionary in manifest.features:
+				if feature.id=="78473": stand_frame = feature.sports.stand_transform
+			var moved := func(p: Vector2) -> Vector3:
+				return Vector3(stand_frame.offset[0]+stand_frame.right[0]*p.x+stand_frame.forward[0]*p.y,base+2,stand_frame.offset[1]+stand_frame.right[1]*p.x+stand_frame.forward[1]*p.y)
+			var stand := space.intersect_ray(PhysicsRayQueryParameters3D.create(moved.call(Vector2(240,175)),moved.call(Vector2(220,175))))
 			assert(not stand.is_empty(),"Authoritative world must include the migrated west stand")
-			assert(absf(stand.position.x-(228.225*float(registration.scale_x)+offset.x))<0.03,"Ray must reach the seating structure, not surrounding ground")
+			assert(stand.position.distance_to(moved.call(Vector2(228.225,175)))<0.03,"Ray must reach the seating structure, not surrounding ground")
 			model.free()
 		if id == "eda":
 			var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
