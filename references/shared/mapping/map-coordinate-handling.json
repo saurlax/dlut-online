@@ -41,6 +41,13 @@
       "inputs": "已下载的 .local/osm-audit/*.osm、官网 bounds、复核工具缓存和可选 draft.json",
       "outputs": ".local/footprint-consensus/ 下 normalized-bounds.json、candidate-bounds.json、sources.json、report.md 和 comparison.html",
       "limits": "官网及 OSM 标准化并非完整校园建筑清单；关系对象保留待处理。仅六个配对样本做形状约束，0.6 米/3% 是候选约束阈值而非真实精度；所有候选未验证，无地面控制点，禁止跨来源盲目平均。"
+    },
+    "osm_overlay": {
+      "command": "python apps/game/tools/footprint_overlay.py --serve --download",
+      "url": "http://127.0.0.1:8772/",
+      "inputs": "footprint_consensus.py 的本地输出",
+      "cache": ".local/footprint-overlay/tiles",
+      "limits": "三校区沿用旧初始平移，盘锦仅 D03 单样本推算；米制微调仅在页面预览、不保存、不改变源数据。仅显式 --download 时请求缺失官网 lm30 瓦片。"
     }
   }
 }

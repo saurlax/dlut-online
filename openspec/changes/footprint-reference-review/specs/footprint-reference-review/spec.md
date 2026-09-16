@@ -1,5 +1,20 @@
 ## ADDED Requirements
 
+### Requirement: Preview OSM on official top-view tiles
+
+工具 SHALL 将三校区已转换 OSM 轮廓投影到官网 lm30 图面，保留内环，支持底图和两类轮廓开关、平移缩放及按米临时平移 OSM。初始平移 MUST 标为未验证，不修改源轮廓、模型或碰撞。
+
+#### Scenario: Open campus overlay
+
+- **WHEN** 用户打开叠图并切换校区
+- **THEN** 显示该校区 OSM 与俯视底图，明确初始定位依据；盘锦单样本推算不得宣称为全校区可靠配准
+- **AND** 显示瓦片加载与失败状态，缺失底图不冒充已加载
+
+#### Scenario: Cache visible tiles
+
+- **WHEN** 指定下载选项启动本机服务
+- **THEN** 仅按视口请求官网 lm30 瓦片并记录 URL、读取时间和摘要；未指定下载时缺失缓存返回明确失败
+
 ### Requirement: Normalize sources without fabricating consensus
 
 工具 SHALL 将已取得多边形转换为带 source、frame、摘要和有效性标记的 bound；未取得几何的地图页面、栅格 PDF 和数据目录 MUST 列为缺口。OSM 下载框不等于校园边界，官网记录不等于建筑清单。关系对象 MUST 保留成员，不得丢弃内院后冒充单环轮廓。
