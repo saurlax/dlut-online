@@ -16017,33 +16017,25 @@
       "kind": "building",
       "points": [
         [
-          440.0469477998192,
-          92.16367540379872
+          443.8810780421578,
+          86.71828000015779
         ],
         [
-          440.03994802469947,
-          77.2676754037987
+          444.34035799700723,
+          99.08593199993874
         ],
         [
-          485.42149006159866,
-          77.08867540379873
+          494.9738066234904,
+          99.36423200002707
         ],
         [
-          505.2908517228636,
-          96.42267540379873
-        ],
-        [
-          504.9368630953806,
-          107.51567540379872
-        ],
-        [
-          456.2334277802367,
-          107.59667540379874
+          494.4278700723408,
+          86.50677200005902
         ]
       ],
       "height": 24,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 24,
@@ -16052,15 +16044,15 @@
         "frame_color": "c3c7b8",
         "trim_color": "bfc8be",
         "edges": [
-          4,
-          5
+          1,
+          0
         ],
         "photos": [
           "77431-0.jpg"
         ],
         "panels": [
           {
-            "edge": 4,
+            "edge": 1,
             "rows": [
               {
                 "bottom": 1.1,
@@ -16068,7 +16060,9 @@
                 "width": 2.8,
                 "height": 2.25,
                 "divisions": 3,
-                "transom": true
+                "transom": true,
+                "from": 0,
+                "to": 1
               },
               {
                 "bottom": 4.9,
@@ -16076,7 +16070,9 @@
                 "width": 2.8,
                 "height": 2.25,
                 "divisions": 3,
-                "transom": true
+                "transom": true,
+                "from": 0,
+                "to": 1
               },
               {
                 "bottom": 8.7,
@@ -16084,7 +16080,9 @@
                 "width": 2.8,
                 "height": 2.25,
                 "divisions": 3,
-                "transom": true
+                "transom": true,
+                "from": 0,
+                "to": 1
               },
               {
                 "bottom": 12.5,
@@ -16092,7 +16090,9 @@
                 "width": 2.8,
                 "height": 2.25,
                 "divisions": 3,
-                "transom": true
+                "transom": true,
+                "from": 0,
+                "to": 1
               },
               {
                 "bottom": 16.3,
@@ -16100,7 +16100,9 @@
                 "width": 2.8,
                 "height": 2.25,
                 "divisions": 3,
-                "transom": true
+                "transom": true,
+                "from": 0,
+                "to": 1
               },
               {
                 "bottom": 20.1,
@@ -16108,7 +16110,9 @@
                 "width": 2.8,
                 "height": 2.25,
                 "divisions": 3,
-                "transom": true
+                "transom": true,
+                "from": 0,
+                "to": 1
               }
             ],
             "bands": [
@@ -16150,7 +16154,7 @@
             ]
           },
           {
-            "edge": 5,
+            "edge": 0,
             "rows": [
               {
                 "bottom": 1.1,
@@ -16158,7 +16162,7 @@
                 "width": 1.7,
                 "height": 2.25,
                 "divisions": 2,
-                "from": 0.46,
+                "from": 0.45999999999999996,
                 "to": 0.54
               },
               {
@@ -16167,7 +16171,7 @@
                 "width": 1.7,
                 "height": 2.25,
                 "divisions": 2,
-                "from": 0.46,
+                "from": 0.45999999999999996,
                 "to": 0.54
               },
               {
@@ -16176,7 +16180,7 @@
                 "width": 1.7,
                 "height": 2.25,
                 "divisions": 2,
-                "from": 0.46,
+                "from": 0.45999999999999996,
                 "to": 0.54
               }
             ],
@@ -16219,91 +16223,219 @@
             ]
           }
         ],
-        "note": "照片0核对海晏楼长面六排分格窗和连续浅色横带，按短端与长边关系对应南面边4。24米主体高度、窗距和带宽为照片比例估计；屋顶中央局部加高与外梯尚无平面，不生成，北面及其他边尚待配准，不能将横带复制到未核实的面。 2026-09-14复核0号照片共同转角，南面边4左邻斜端墙对应边5；补下部三排各一扇窄窗及同标高浅色横带，窗宽1.7米、高2.25米、居中位置与标高仍为比例估计。上部外梯、门口和屋顶局部第七层不以窄窗代替；官方七层说明不意味着六排长面应统一加一排。斜端墙后缘以官方轮廓为限，北侧边0未有足够照片，不延伸窗带。"
+        "note": "照片0核对海晏楼长面六排分格窗和连续浅色横带，按短端与长边关系对应南面边4。24米主体高度、窗距和带宽为照片比例估计；屋顶中央局部加高与外梯尚无平面，不生成，北面及其他边尚待配准，不能将横带复制到未核实的面。 2026-09-14复核0号照片共同转角，南面边4左邻斜端墙对应边5；补下部三排各一扇窄窗及同标高浅色横带，窗宽1.7米、高2.25米、居中位置与标高仍为比例估计。上部外梯、门口和屋顶局部第七层不以窄窗代替；官方七层说明不意味着六排长面应统一加一排。斜端墙后缘以官方轮廓为限，北侧边0未有足够照片，不延伸窗带。",
+        "osm_registration": {
+          "osm_id": "way/1384290164",
+          "osm_version": 1,
+          "expected_vertices": 4,
+          "reviewed": "2026-09-16",
+          "profile": {
+            "edges": [
+              1,
+              0
+            ],
+            "panels": [
+              {
+                "edge": 1,
+                "rows": [
+                  {
+                    "bottom": 1.1,
+                    "count": 8,
+                    "width": 2.8,
+                    "height": 2.25,
+                    "divisions": 3,
+                    "transom": true,
+                    "from": 0,
+                    "to": 1
+                  },
+                  {
+                    "bottom": 4.9,
+                    "count": 8,
+                    "width": 2.8,
+                    "height": 2.25,
+                    "divisions": 3,
+                    "transom": true,
+                    "from": 0,
+                    "to": 1
+                  },
+                  {
+                    "bottom": 8.7,
+                    "count": 8,
+                    "width": 2.8,
+                    "height": 2.25,
+                    "divisions": 3,
+                    "transom": true,
+                    "from": 0,
+                    "to": 1
+                  },
+                  {
+                    "bottom": 12.5,
+                    "count": 8,
+                    "width": 2.8,
+                    "height": 2.25,
+                    "divisions": 3,
+                    "transom": true,
+                    "from": 0,
+                    "to": 1
+                  },
+                  {
+                    "bottom": 16.3,
+                    "count": 8,
+                    "width": 2.8,
+                    "height": 2.25,
+                    "divisions": 3,
+                    "transom": true,
+                    "from": 0,
+                    "to": 1
+                  },
+                  {
+                    "bottom": 20.1,
+                    "count": 8,
+                    "width": 2.8,
+                    "height": 2.25,
+                    "divisions": 3,
+                    "transom": true,
+                    "from": 0,
+                    "to": 1
+                  }
+                ],
+                "bands": [
+                  {
+                    "y": 0.4,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 4.2,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 8.0,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 11.8,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 15.6,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 19.4,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 23.2,
+                    "height": 1.2,
+                    "depth": 0.22
+                  }
+                ]
+              },
+              {
+                "edge": 0,
+                "rows": [
+                  {
+                    "bottom": 1.1,
+                    "count": 1,
+                    "width": 1.7,
+                    "height": 2.25,
+                    "divisions": 2,
+                    "from": 0.45999999999999996,
+                    "to": 0.54
+                  },
+                  {
+                    "bottom": 4.9,
+                    "count": 1,
+                    "width": 1.7,
+                    "height": 2.25,
+                    "divisions": 2,
+                    "from": 0.45999999999999996,
+                    "to": 0.54
+                  },
+                  {
+                    "bottom": 8.7,
+                    "count": 1,
+                    "width": 1.7,
+                    "height": 2.25,
+                    "divisions": 2,
+                    "from": 0.45999999999999996,
+                    "to": 0.54
+                  }
+                ],
+                "bands": [
+                  {
+                    "y": 0.4,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 4.2,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 8.0,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 11.8,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 15.6,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 19.4,
+                    "height": 1.2,
+                    "depth": 0.22
+                  },
+                  {
+                    "y": 23.2,
+                    "height": 1.2,
+                    "depth": 0.22
+                  }
+                ]
+              }
+            ]
+          },
+          "basis": "复核77431-0南侧长面与西端窄窗，77440-0同框南北实验室面向院落的墙面；旧边→新边 {4: 1, 5: 0}。源墙线方向相反，窗段及装饰fraction反转。",
+          "limits": "仅配准既有照片覆盖面；高度、窗距及重复数量仍为既有估计。77431屋顶局部加高和外挂楼梯未获独立边界，不据照片透视外缘扩大底框；实验室其他面与内部仍未增加。"
+        }
       },
       "render_polygons": [
         [
           [
-            440.0469477998192,
-            92.16367540379872
+            443.8810780421578,
+            86.71828000015779
           ],
           [
-            440.03994802469947,
-            77.2676754037987
+            444.34035799700723,
+            99.08593199993874
           ],
           [
-            485.42149006159866,
-            77.08867540379873
+            494.9738066234904,
+            99.36423200002707
           ],
           [
-            505.2908517228636,
-            96.42267540379873
-          ],
-          [
-            504.9368630953806,
-            107.51567540379872
-          ],
-          [
-            456.2334277802367,
-            107.59667540379874
+            494.4278700723408,
+            86.50677200005902
           ]
         ]
       ],
-      "reference_points": [
-        [
-          284.017,
-          -257.99
-        ],
-        [
-          284.01,
-          -272.886
-        ],
-        [
-          329.393,
-          -273.065
-        ],
-        [
-          349.263,
-          -253.731
-        ],
-        [
-          348.909,
-          -242.638
-        ],
-        [
-          300.204,
-          -242.557
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            284.017,
-            -257.99
-          ],
-          [
-            284.01,
-            -272.886
-          ],
-          [
-            329.393,
-            -273.065
-          ],
-          [
-            349.263,
-            -253.731
-          ],
-          [
-            348.909,
-            -242.638
-          ],
-          [
-            300.204,
-            -242.557
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1384290164",
+      "osm_version": 1,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77436",
@@ -16686,41 +16818,25 @@
       "kind": "building",
       "points": [
         [
-          820.8607134773674,
-          87.63967540379872
+          818.8355001912897,
+          73.15950399990385
         ],
         [
-          823.7946192204049,
-          66.53167540379872
+          857.3283598183502,
+          73.15950399990385
         ],
         [
-          864.0463260624228,
-          65.17467540379874
+          857.3283598183502,
+          118.82296799962262
         ],
         [
-          871.9560719477076,
-          72.20867540379874
-        ],
-        [
-          871.1760970057958,
-          122.25267540379872
-        ],
-        [
-          829.9144226107894,
-          122.62867540379872
-        ],
-        [
-          828.2474761644216,
-          115.83267540379873
-        ],
-        [
-          824.2796036394141,
-          111.33267540379873
+          818.8355001912897,
+          118.82296799962262
         ]
       ],
       "height": 12.8,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 12.8,
@@ -16729,7 +16845,7 @@
         "frame_color": "aab4aa",
         "trim_color": "607f91",
         "edges": [
-          1
+          0
         ],
         "photos": [
           "77439-1.jpg",
@@ -16738,7 +16854,7 @@
         ],
         "panels": [
           {
-            "edge": 1,
+            "edge": 0,
             "rows": [
               {
                 "bottom": 5.0,
@@ -16866,115 +16982,175 @@
             ]
           }
         ],
-        "note": "照片77440-0同时显示北侧桥隧实验室、中央航空航天实验室和南侧汽车实验室，按官方三个独立轮廓与西侧院落关系配准。汽车实验室仅处理朝北边1的三层浅色墙面、分格窗和蓝色檐边；12.8米、窗距及重复数量为比例估计。其余面、门洞与附属构件未建。"
+        "note": "照片77440-0同时显示北侧桥隧实验室、中央航空航天实验室和南侧汽车实验室，按官方三个独立轮廓与西侧院落关系配准。汽车实验室仅处理朝北边1的三层浅色墙面、分格窗和蓝色檐边；12.8米、窗距及重复数量为比例估计。其余面、门洞与附属构件未建。",
+        "osm_registration": {
+          "osm_id": "way/232259673",
+          "osm_version": 2,
+          "expected_vertices": 4,
+          "reviewed": "2026-09-16",
+          "profile": {
+            "edges": [
+              0
+            ],
+            "panels": [
+              {
+                "edge": 0,
+                "rows": [
+                  {
+                    "bottom": 5.0,
+                    "count": 10,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true
+                  },
+                  {
+                    "bottom": 8.8,
+                    "count": 10,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.05,
+                    "to": 0.05
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.15,
+                    "to": 0.15
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.25,
+                    "to": 0.25
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.35,
+                    "to": 0.35
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.45,
+                    "to": 0.45
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.55,
+                    "to": 0.55
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.65,
+                    "to": 0.65
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.75,
+                    "to": 0.75
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.85,
+                    "to": 0.85
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.95,
+                    "to": 0.95
+                  }
+                ],
+                "bands": [
+                  {
+                    "y": 12.45,
+                    "height": 0.2,
+                    "depth": 0.26
+                  }
+                ]
+              }
+            ]
+          },
+          "basis": "复核77431-0南侧长面与西端窄窗，77440-0同框南北实验室面向院落的墙面；旧边→新边 {1: 0}。源墙线同向，窗段保留原方向。",
+          "limits": "仅配准既有照片覆盖面；高度、窗距及重复数量仍为既有估计。77431屋顶局部加高和外挂楼梯未获独立边界，不据照片透视外缘扩大底框；实验室其他面与内部仍未增加。"
+        }
       },
       "render_polygons": [
         [
           [
-            820.8607134773674,
-            87.63967540379872
+            818.8355001912897,
+            73.15950399990385
           ],
           [
-            823.7946192204049,
-            66.53167540379872
+            857.3283598183502,
+            73.15950399990385
           ],
           [
-            864.0463260624228,
-            65.17467540379874
+            857.3283598183502,
+            118.82296799962262
           ],
           [
-            871.9560719477076,
-            72.20867540379874
-          ],
-          [
-            871.1760970057958,
-            122.25267540379872
-          ],
-          [
-            829.9144226107894,
-            122.62867540379872
-          ],
-          [
-            828.2474761644216,
-            115.83267540379873
-          ],
-          [
-            824.2796036394141,
-            111.33267540379873
+            818.8355001912897,
+            118.82296799962262
           ]
         ]
       ],
-      "reference_points": [
-        [
-          664.843,
-          -262.514
-        ],
-        [
-          667.777,
-          -283.622
-        ],
-        [
-          708.03,
-          -284.979
-        ],
-        [
-          715.94,
-          -277.945
-        ],
-        [
-          715.16,
-          -227.901
-        ],
-        [
-          673.897,
-          -227.525
-        ],
-        [
-          672.23,
-          -234.321
-        ],
-        [
-          668.262,
-          -238.821
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            664.843,
-            -262.514
-          ],
-          [
-            667.777,
-            -283.622
-          ],
-          [
-            708.03,
-            -284.979
-          ],
-          [
-            715.94,
-            -277.945
-          ],
-          [
-            715.16,
-            -227.901
-          ],
-          [
-            673.897,
-            -227.525
-          ],
-          [
-            672.23,
-            -234.321
-          ],
-          [
-            668.262,
-            -238.821
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/232259673",
+      "osm_version": 2,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77440",
@@ -17185,53 +17361,25 @@
       "kind": "building",
       "points": [
         [
-          832.2633471473928,
-          7.185675403798712
+          818.7055152986866,
+          -32.67242000056257
         ],
         [
-          823.7596203448061,
-          -0.7483245962012575
+          819.6067438891254,
+          1.8033839997181644
         ],
         [
-          819.7927477876729,
-          -19.605324596201285
+          904.4695476539582,
+          -0.42301600019754915
         ],
         [
-          824.4225990454313,
-          -33.756324596201296
-        ],
-        [
-          828.416470735169,
-          -33.76132459620129
-        ],
-        [
-          829.7814268835148,
-          -37.61232459620129
-        ],
-        [
-          848.7508174579584,
-          -37.63432459620128
-        ],
-        [
-          849.1298052822976,
-          -34.03132459620127
-        ],
-        [
-          909.4238682278251,
-          -35.98632459620126
-        ],
-        [
-          921.8834679409283,
-          -24.53432459620126
-        ],
-        [
-          922.4214506572725,
-          4.786675403798711
+          903.5683190635195,
+          -34.88768800034819
         ]
       ],
       "height": 12.8,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 12.8,
@@ -17240,7 +17388,7 @@
         "frame_color": "aab4aa",
         "trim_color": "607f91",
         "edges": [
-          10
+          1
         ],
         "photos": [
           "77441-0.jpg",
@@ -17248,7 +17396,7 @@
         ],
         "panels": [
           {
-            "edge": 10,
+            "edge": 1,
             "rows": [
               {
                 "bottom": 5.0,
@@ -17256,7 +17404,9 @@
                 "width": 1.5,
                 "height": 1.95,
                 "divisions": 2,
-                "transom": true
+                "transom": true,
+                "from": 0,
+                "to": 1
               },
               {
                 "bottom": 8.8,
@@ -17264,7 +17414,9 @@
                 "width": 1.5,
                 "height": 1.95,
                 "divisions": 2,
-                "transom": true
+                "transom": true,
+                "from": 0,
+                "to": 1
               },
               {
                 "bottom": 1.2,
@@ -17273,138 +17425,8 @@
                 "height": 1.95,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.025,
-                "to": 0.025
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.075,
-                "to": 0.075
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.125,
-                "to": 0.125
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.175,
-                "to": 0.175
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.225,
-                "to": 0.225
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.275,
-                "to": 0.275
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.325,
-                "to": 0.325
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.375,
-                "to": 0.375
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.625,
-                "to": 0.625
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.675,
-                "to": 0.675
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.725,
-                "to": 0.725
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.775,
-                "to": 0.775
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.825,
-                "to": 0.825
-              },
-              {
-                "bottom": 1.2,
-                "count": 1,
-                "width": 1.5,
-                "height": 1.95,
-                "divisions": 2,
-                "transom": true,
-                "from": 0.875,
-                "to": 0.875
+                "from": 0.975,
+                "to": 0.975
               },
               {
                 "bottom": 1.2,
@@ -17423,8 +17445,138 @@
                 "height": 1.95,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.975,
-                "to": 0.975
+                "from": 0.875,
+                "to": 0.875
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.825,
+                "to": 0.825
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.775,
+                "to": 0.775
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.725,
+                "to": 0.725
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.675,
+                "to": 0.675
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.625,
+                "to": 0.625
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.375,
+                "to": 0.375
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.32499999999999996,
+                "to": 0.32499999999999996
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.275,
+                "to": 0.275
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.22499999999999998,
+                "to": 0.22499999999999998
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.17500000000000004,
+                "to": 0.17500000000000004
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.125,
+                "to": 0.125
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.07499999999999996,
+                "to": 0.07499999999999996
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.025000000000000022,
+                "to": 0.025000000000000022
               }
             ],
             "bands": [
@@ -17436,151 +17588,239 @@
             ]
           }
         ],
-        "note": "照片77440-0同时显示北侧桥隧实验室、中央航空航天实验室和南侧汽车实验室，按官方三个独立轮廓与西侧院落关系配准。桥隧实验室仅处理朝南边10的三层浅色墙面、分格窗和蓝色檐边；12.8米、窗距及重复数量为比例估计。其余面、门洞与附属构件未建。"
+        "note": "照片77440-0同时显示北侧桥隧实验室、中央航空航天实验室和南侧汽车实验室，按官方三个独立轮廓与西侧院落关系配准。桥隧实验室仅处理朝南边10的三层浅色墙面、分格窗和蓝色檐边；12.8米、窗距及重复数量为比例估计。其余面、门洞与附属构件未建。",
+        "osm_registration": {
+          "osm_id": "way/1381605750",
+          "osm_version": 1,
+          "expected_vertices": 4,
+          "reviewed": "2026-09-16",
+          "profile": {
+            "edges": [
+              1
+            ],
+            "panels": [
+              {
+                "edge": 1,
+                "rows": [
+                  {
+                    "bottom": 5.0,
+                    "count": 20,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0,
+                    "to": 1
+                  },
+                  {
+                    "bottom": 8.8,
+                    "count": 20,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0,
+                    "to": 1
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.975,
+                    "to": 0.975
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.925,
+                    "to": 0.925
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.875,
+                    "to": 0.875
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.825,
+                    "to": 0.825
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.775,
+                    "to": 0.775
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.725,
+                    "to": 0.725
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.675,
+                    "to": 0.675
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.625,
+                    "to": 0.625
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.375,
+                    "to": 0.375
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.32499999999999996,
+                    "to": 0.32499999999999996
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.275,
+                    "to": 0.275
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.22499999999999998,
+                    "to": 0.22499999999999998
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.17500000000000004,
+                    "to": 0.17500000000000004
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.125,
+                    "to": 0.125
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.07499999999999996,
+                    "to": 0.07499999999999996
+                  },
+                  {
+                    "bottom": 1.2,
+                    "count": 1,
+                    "width": 1.5,
+                    "height": 1.95,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.025000000000000022,
+                    "to": 0.025000000000000022
+                  }
+                ],
+                "bands": [
+                  {
+                    "y": 12.45,
+                    "height": 0.2,
+                    "depth": 0.26
+                  }
+                ]
+              }
+            ]
+          },
+          "basis": "复核77431-0南侧长面与西端窄窗，77440-0同框南北实验室面向院落的墙面；旧边→新边 {10: 1}。源墙线方向相反，窗段及装饰fraction反转。",
+          "limits": "仅配准既有照片覆盖面；高度、窗距及重复数量仍为既有估计。77431屋顶局部加高和外挂楼梯未获独立边界，不据照片透视外缘扩大底框；实验室其他面与内部仍未增加。"
+        }
       },
       "render_polygons": [
         [
           [
-            832.2633471473928,
-            7.185675403798712
+            818.7055152986866,
+            -32.67242000056257
           ],
           [
-            823.7596203448061,
-            -0.7483245962012575
+            819.6067438891254,
+            1.8033839997181644
           ],
           [
-            819.7927477876729,
-            -19.605324596201285
+            904.4695476539582,
+            -0.42301600019754915
           ],
           [
-            824.4225990454313,
-            -33.756324596201296
-          ],
-          [
-            828.416470735169,
-            -33.76132459620129
-          ],
-          [
-            829.7814268835148,
-            -37.61232459620129
-          ],
-          [
-            848.7508174579584,
-            -37.63432459620128
-          ],
-          [
-            849.1298052822976,
-            -34.03132459620127
-          ],
-          [
-            909.4238682278251,
-            -35.98632459620126
-          ],
-          [
-            921.8834679409283,
-            -24.53432459620126
-          ],
-          [
-            922.4214506572725,
-            4.786675403798711
+            903.5683190635195,
+            -34.88768800034819
           ]
         ]
       ],
-      "reference_points": [
-        [
-          676.246,
-          -342.968
-        ],
-        [
-          667.742,
-          -350.902
-        ],
-        [
-          663.775,
-          -369.759
-        ],
-        [
-          668.405,
-          -383.91
-        ],
-        [
-          672.399,
-          -383.915
-        ],
-        [
-          673.764,
-          -387.766
-        ],
-        [
-          692.734,
-          -387.788
-        ],
-        [
-          693.113,
-          -384.185
-        ],
-        [
-          753.409,
-          -386.14
-        ],
-        [
-          765.869,
-          -374.688
-        ],
-        [
-          766.407,
-          -345.367
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            676.246,
-            -342.968
-          ],
-          [
-            667.742,
-            -350.902
-          ],
-          [
-            663.775,
-            -369.759
-          ],
-          [
-            668.405,
-            -383.91
-          ],
-          [
-            672.399,
-            -383.915
-          ],
-          [
-            673.764,
-            -387.766
-          ],
-          [
-            692.734,
-            -387.788
-          ],
-          [
-            693.113,
-            -384.185
-          ],
-          [
-            753.409,
-            -386.14
-          ],
-          [
-            765.869,
-            -374.688
-          ],
-          [
-            766.407,
-            -345.367
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1381605750",
+      "osm_version": 1,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77442",

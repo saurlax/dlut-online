@@ -640,9 +640,549 @@
     }
   },
   "77430": {"style": "gabled_shell", "height": 6.5, "eave_height": 5.0, "ridge_x": 727.3, "floors": 1, "color": "b0aca0", "edges": [], "photos": ["77430-1.jpg", "77430-2.jpg"], "note": "照片1/2确认风洞实验室为单层纵向坡屋顶厂房。按官方长条轮廓保留全部顶点，屋面在X=727.3处形成纵向屋脊。檐高5米、脊高6.5米及屋脊位置为照片比例估计，不是实测；本轮仅修正体量和屋面，暂保留原墙色，窗、红/浅色墙面配准、前部附属小屋及入口未建。"},
-  "77431": {"style": "photo_panels", "height": 24, "floors": 6, "color": "b29b73", "frame_color": "c3c7b8", "trim_color": "bfc8be", "edges": [4, 5], "photos": ["77431-0.jpg"], "panels": [{"edge": 4, "rows": [{"bottom": 1.1, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 4.9, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 8.7, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 12.5, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 16.3, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 20.1, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}], "bands": [{"y": 0.4, "height": 1.2, "depth": 0.22}, {"y": 4.2, "height": 1.2, "depth": 0.22}, {"y": 8.0, "height": 1.2, "depth": 0.22}, {"y": 11.8, "height": 1.2, "depth": 0.22}, {"y": 15.6, "height": 1.2, "depth": 0.22}, {"y": 19.4, "height": 1.2, "depth": 0.22}, {"y": 23.2, "height": 1.2, "depth": 0.22}]}, {"edge": 5, "rows": [{"bottom": 1.1, "count": 1, "width": 1.7, "height": 2.25, "divisions": 2, "from": 0.46, "to": 0.54}, {"bottom": 4.9, "count": 1, "width": 1.7, "height": 2.25, "divisions": 2, "from": 0.46, "to": 0.54}, {"bottom": 8.7, "count": 1, "width": 1.7, "height": 2.25, "divisions": 2, "from": 0.46, "to": 0.54}], "bands": [{"y": 0.4, "height": 1.2, "depth": 0.22}, {"y": 4.2, "height": 1.2, "depth": 0.22}, {"y": 8.0, "height": 1.2, "depth": 0.22}, {"y": 11.8, "height": 1.2, "depth": 0.22}, {"y": 15.6, "height": 1.2, "depth": 0.22}, {"y": 19.4, "height": 1.2, "depth": 0.22}, {"y": 23.2, "height": 1.2, "depth": 0.22}]}], "note": "照片0核对海晏楼长面六排分格窗和连续浅色横带，按短端与长边关系对应南面边4。24米主体高度、窗距和带宽为照片比例估计；屋顶中央局部加高与外梯尚无平面，不生成，北面及其他边尚待配准，不能将横带复制到未核实的面。 2026-09-14复核0号照片共同转角，南面边4左邻斜端墙对应边5；补下部三排各一扇窄窗及同标高浅色横带，窗宽1.7米、高2.25米、居中位置与标高仍为比例估计。上部外梯、门口和屋顶局部第七层不以窄窗代替；官方七层说明不意味着六排长面应统一加一排。斜端墙后缘以官方轮廓为限，北侧边0未有足够照片，不延伸窗带。"},
-  "77439": {"style": "photo_panels", "height": 12.8, "floors": 3, "color": "c8cbc1", "frame_color": "aab4aa", "trim_color": "607f91", "edges": [1], "photos": ["77439-1.jpg", "77439-2.jpg", "77440-0.jpg"], "panels": [{"edge": 1, "rows": [{"bottom": 5.0, "count": 10, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 8.8, "count": 10, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.05, "to": 0.05}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.15, "to": 0.15}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.25, "to": 0.25}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.35, "to": 0.35}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.45, "to": 0.45}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.55, "to": 0.55}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.65, "to": 0.65}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.75, "to": 0.75}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.85, "to": 0.85}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.95, "to": 0.95}], "bands": [{"y": 12.45, "height": 0.2, "depth": 0.26}]}], "note": "照片77440-0同时显示北侧桥隧实验室、中央航空航天实验室和南侧汽车实验室，按官方三个独立轮廓与西侧院落关系配准。汽车实验室仅处理朝北边1的三层浅色墙面、分格窗和蓝色檐边；12.8米、窗距及重复数量为比例估计。其余面、门洞与附属构件未建。"},
-  "77441": {"style": "photo_panels", "height": 12.8, "floors": 3, "color": "c8cbc1", "frame_color": "aab4aa", "trim_color": "607f91", "edges": [10], "photos": ["77441-0.jpg", "77440-0.jpg"], "panels": [{"edge": 10, "rows": [{"bottom": 5.0, "count": 20, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 8.8, "count": 20, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.025, "to": 0.025}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.075, "to": 0.075}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.125, "to": 0.125}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.175, "to": 0.175}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.225, "to": 0.225}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.275, "to": 0.275}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.325, "to": 0.325}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.375, "to": 0.375}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.625, "to": 0.625}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.675, "to": 0.675}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.725, "to": 0.725}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.775, "to": 0.775}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.825, "to": 0.825}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.875, "to": 0.875}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.925, "to": 0.925}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.975, "to": 0.975}], "bands": [{"y": 12.45, "height": 0.2, "depth": 0.26}]}], "note": "照片77440-0同时显示北侧桥隧实验室、中央航空航天实验室和南侧汽车实验室，按官方三个独立轮廓与西侧院落关系配准。桥隧实验室仅处理朝南边10的三层浅色墙面、分格窗和蓝色檐边；12.8米、窗距及重复数量为比例估计。其余面、门洞与附属构件未建。"},
+  "77431": {"style": "photo_panels", "height": 24, "floors": 6, "color": "b29b73", "frame_color": "c3c7b8", "trim_color": "bfc8be", "edges": [4, 5], "photos": ["77431-0.jpg"], "panels": [{"edge": 4, "rows": [{"bottom": 1.1, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 4.9, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 8.7, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 12.5, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 16.3, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 20.1, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}], "bands": [{"y": 0.4, "height": 1.2, "depth": 0.22}, {"y": 4.2, "height": 1.2, "depth": 0.22}, {"y": 8.0, "height": 1.2, "depth": 0.22}, {"y": 11.8, "height": 1.2, "depth": 0.22}, {"y": 15.6, "height": 1.2, "depth": 0.22}, {"y": 19.4, "height": 1.2, "depth": 0.22}, {"y": 23.2, "height": 1.2, "depth": 0.22}]}, {"edge": 5, "rows": [{"bottom": 1.1, "count": 1, "width": 1.7, "height": 2.25, "divisions": 2, "from": 0.46, "to": 0.54}, {"bottom": 4.9, "count": 1, "width": 1.7, "height": 2.25, "divisions": 2, "from": 0.46, "to": 0.54}, {"bottom": 8.7, "count": 1, "width": 1.7, "height": 2.25, "divisions": 2, "from": 0.46, "to": 0.54}], "bands": [{"y": 0.4, "height": 1.2, "depth": 0.22}, {"y": 4.2, "height": 1.2, "depth": 0.22}, {"y": 8.0, "height": 1.2, "depth": 0.22}, {"y": 11.8, "height": 1.2, "depth": 0.22}, {"y": 15.6, "height": 1.2, "depth": 0.22}, {"y": 19.4, "height": 1.2, "depth": 0.22}, {"y": 23.2, "height": 1.2, "depth": 0.22}]}], "note": "照片0核对海晏楼长面六排分格窗和连续浅色横带，按短端与长边关系对应南面边4。24米主体高度、窗距和带宽为照片比例估计；屋顶中央局部加高与外梯尚无平面，不生成，北面及其他边尚待配准，不能将横带复制到未核实的面。 2026-09-14复核0号照片共同转角，南面边4左邻斜端墙对应边5；补下部三排各一扇窄窗及同标高浅色横带，窗宽1.7米、高2.25米、居中位置与标高仍为比例估计。上部外梯、门口和屋顶局部第七层不以窄窗代替；官方七层说明不意味着六排长面应统一加一排。斜端墙后缘以官方轮廓为限，北侧边0未有足够照片，不延伸窗带。",
+    "osm_registration": {
+      "osm_id": "way/1384290164",
+      "osm_version": 1,
+      "expected_vertices": 4,
+      "reviewed": "2026-09-16",
+      "profile": {
+        "edges": [
+          1,
+          0
+        ],
+        "panels": [
+          {
+            "edge": 1,
+            "rows": [
+              {
+                "bottom": 1.1,
+                "count": 8,
+                "width": 2.8,
+                "height": 2.25,
+                "divisions": 3,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              },
+              {
+                "bottom": 4.9,
+                "count": 8,
+                "width": 2.8,
+                "height": 2.25,
+                "divisions": 3,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              },
+              {
+                "bottom": 8.7,
+                "count": 8,
+                "width": 2.8,
+                "height": 2.25,
+                "divisions": 3,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              },
+              {
+                "bottom": 12.5,
+                "count": 8,
+                "width": 2.8,
+                "height": 2.25,
+                "divisions": 3,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              },
+              {
+                "bottom": 16.3,
+                "count": 8,
+                "width": 2.8,
+                "height": 2.25,
+                "divisions": 3,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              },
+              {
+                "bottom": 20.1,
+                "count": 8,
+                "width": 2.8,
+                "height": 2.25,
+                "divisions": 3,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              }
+            ],
+            "bands": [
+              {
+                "y": 0.4,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 4.2,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 8.0,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 11.8,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 15.6,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 19.4,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 23.2,
+                "height": 1.2,
+                "depth": 0.22
+              }
+            ]
+          },
+          {
+            "edge": 0,
+            "rows": [
+              {
+                "bottom": 1.1,
+                "count": 1,
+                "width": 1.7,
+                "height": 2.25,
+                "divisions": 2,
+                "from": 0.45999999999999996,
+                "to": 0.54
+              },
+              {
+                "bottom": 4.9,
+                "count": 1,
+                "width": 1.7,
+                "height": 2.25,
+                "divisions": 2,
+                "from": 0.45999999999999996,
+                "to": 0.54
+              },
+              {
+                "bottom": 8.7,
+                "count": 1,
+                "width": 1.7,
+                "height": 2.25,
+                "divisions": 2,
+                "from": 0.45999999999999996,
+                "to": 0.54
+              }
+            ],
+            "bands": [
+              {
+                "y": 0.4,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 4.2,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 8.0,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 11.8,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 15.6,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 19.4,
+                "height": 1.2,
+                "depth": 0.22
+              },
+              {
+                "y": 23.2,
+                "height": 1.2,
+                "depth": 0.22
+              }
+            ]
+          }
+        ]
+      },
+      "basis": "复核77431-0南侧长面与西端窄窗，77440-0同框南北实验室面向院落的墙面；旧边→新边 {4: 1, 5: 0}。源墙线方向相反，窗段及装饰fraction反转。",
+      "limits": "仅配准既有照片覆盖面；高度、窗距及重复数量仍为既有估计。77431屋顶局部加高和外挂楼梯未获独立边界，不据照片透视外缘扩大底框；实验室其他面与内部仍未增加。"
+    }
+  },
+  "77439": {"style": "photo_panels", "height": 12.8, "floors": 3, "color": "c8cbc1", "frame_color": "aab4aa", "trim_color": "607f91", "edges": [1], "photos": ["77439-1.jpg", "77439-2.jpg", "77440-0.jpg"], "panels": [{"edge": 1, "rows": [{"bottom": 5.0, "count": 10, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 8.8, "count": 10, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.05, "to": 0.05}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.15, "to": 0.15}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.25, "to": 0.25}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.35, "to": 0.35}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.45, "to": 0.45}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.55, "to": 0.55}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.65, "to": 0.65}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.75, "to": 0.75}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.85, "to": 0.85}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.95, "to": 0.95}], "bands": [{"y": 12.45, "height": 0.2, "depth": 0.26}]}], "note": "照片77440-0同时显示北侧桥隧实验室、中央航空航天实验室和南侧汽车实验室，按官方三个独立轮廓与西侧院落关系配准。汽车实验室仅处理朝北边1的三层浅色墙面、分格窗和蓝色檐边；12.8米、窗距及重复数量为比例估计。其余面、门洞与附属构件未建。",
+    "osm_registration": {
+      "osm_id": "way/232259673",
+      "osm_version": 2,
+      "expected_vertices": 4,
+      "reviewed": "2026-09-16",
+      "profile": {
+        "edges": [
+          0
+        ],
+        "panels": [
+          {
+            "edge": 0,
+            "rows": [
+              {
+                "bottom": 5.0,
+                "count": 10,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true
+              },
+              {
+                "bottom": 8.8,
+                "count": 10,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.05,
+                "to": 0.05
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.15,
+                "to": 0.15
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.25,
+                "to": 0.25
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.35,
+                "to": 0.35
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.45,
+                "to": 0.45
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.55,
+                "to": 0.55
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.65,
+                "to": 0.65
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.75,
+                "to": 0.75
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.85,
+                "to": 0.85
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.95,
+                "to": 0.95
+              }
+            ],
+            "bands": [
+              {
+                "y": 12.45,
+                "height": 0.2,
+                "depth": 0.26
+              }
+            ]
+          }
+        ]
+      },
+      "basis": "复核77431-0南侧长面与西端窄窗，77440-0同框南北实验室面向院落的墙面；旧边→新边 {1: 0}。源墙线同向，窗段保留原方向。",
+      "limits": "仅配准既有照片覆盖面；高度、窗距及重复数量仍为既有估计。77431屋顶局部加高和外挂楼梯未获独立边界，不据照片透视外缘扩大底框；实验室其他面与内部仍未增加。"
+    }
+  },
+  "77441": {"style": "photo_panels", "height": 12.8, "floors": 3, "color": "c8cbc1", "frame_color": "aab4aa", "trim_color": "607f91", "edges": [10], "photos": ["77441-0.jpg", "77440-0.jpg"], "panels": [{"edge": 10, "rows": [{"bottom": 5.0, "count": 20, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 8.8, "count": 20, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.025, "to": 0.025}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.075, "to": 0.075}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.125, "to": 0.125}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.175, "to": 0.175}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.225, "to": 0.225}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.275, "to": 0.275}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.325, "to": 0.325}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.375, "to": 0.375}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.625, "to": 0.625}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.675, "to": 0.675}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.725, "to": 0.725}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.775, "to": 0.775}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.825, "to": 0.825}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.875, "to": 0.875}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.925, "to": 0.925}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.975, "to": 0.975}], "bands": [{"y": 12.45, "height": 0.2, "depth": 0.26}]}], "note": "照片77440-0同时显示北侧桥隧实验室、中央航空航天实验室和南侧汽车实验室，按官方三个独立轮廓与西侧院落关系配准。桥隧实验室仅处理朝南边10的三层浅色墙面、分格窗和蓝色檐边；12.8米、窗距及重复数量为比例估计。其余面、门洞与附属构件未建。",
+    "osm_registration": {
+      "osm_id": "way/1381605750",
+      "osm_version": 1,
+      "expected_vertices": 4,
+      "reviewed": "2026-09-16",
+      "profile": {
+        "edges": [
+          1
+        ],
+        "panels": [
+          {
+            "edge": 1,
+            "rows": [
+              {
+                "bottom": 5.0,
+                "count": 20,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              },
+              {
+                "bottom": 8.8,
+                "count": 20,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.975,
+                "to": 0.975
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.925,
+                "to": 0.925
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.875,
+                "to": 0.875
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.825,
+                "to": 0.825
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.775,
+                "to": 0.775
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.725,
+                "to": 0.725
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.675,
+                "to": 0.675
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.625,
+                "to": 0.625
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.375,
+                "to": 0.375
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.32499999999999996,
+                "to": 0.32499999999999996
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.275,
+                "to": 0.275
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.22499999999999998,
+                "to": 0.22499999999999998
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.17500000000000004,
+                "to": 0.17500000000000004
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.125,
+                "to": 0.125
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.07499999999999996,
+                "to": 0.07499999999999996
+              },
+              {
+                "bottom": 1.2,
+                "count": 1,
+                "width": 1.5,
+                "height": 1.95,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.025000000000000022,
+                "to": 0.025000000000000022
+              }
+            ],
+            "bands": [
+              {
+                "y": 12.45,
+                "height": 0.2,
+                "depth": 0.26
+              }
+            ]
+          }
+        ]
+      },
+      "basis": "复核77431-0南侧长面与西端窄窗，77440-0同框南北实验室面向院落的墙面；旧边→新边 {10: 1}。源墙线方向相反，窗段及装饰fraction反转。",
+      "limits": "仅配准既有照片覆盖面；高度、窗距及重复数量仍为既有估计。77431屋顶局部加高和外挂楼梯未获独立边界，不据照片透视外缘扩大底框；实验室其他面与内部仍未增加。"
+    }
+  },
   "77440": {"style": "gabled_shell", "height": 10.6, "eave_height": 9.2, "ridge_z": -315.8, "floors": 2, "color": "c8cbc1", "frame_color": "aab4aa", "trim_color": "607f91", "edges": [0, 1], "photos": ["77440-0.jpg"], "panels": [{"edge": 0, "rows": [{"bottom": 5.7, "count": 3, "width": 1.8, "height": 1.8, "divisions": 2, "transom": true}, {"bottom": 1.3, "count": 2, "width": 1.8, "height": 1.8, "divisions": 2, "transom": true, "from": 0.1, "to": 0.6}]}, {"edge": 1, "rows": [{"bottom": 5.7, "count": 3, "width": 1.8, "height": 1.8, "divisions": 2, "transom": true}, {"bottom": 1.3, "count": 2, "width": 1.8, "height": 1.8, "divisions": 2, "transom": true, "from": 0.4, "to": 0.9}]}], "note": "77440-0院落全景确认中央航空航天实验室为较低两层窗厂房，西面浅坡山墙，北侧桥隧与南侧汽车实验室为三层。保留官方独立轮廓；东西向屋脊Z=-315.8、檐高9.2米、脊高10.6米及窗距均为照片比例估计。西面边0/1仅制作可见上下窗排，中央大门不生成通道，未见面和屋顶设备待核实。"},
   "77398": {"style": "photo_panels", "height": 8.2, "floors": 2, "color": "ac9281", "frame_color": "c7c7b4", "trim_color": "b4ae98", "edges": [4], "photos": ["77398-0.jpg"], "panels": [{"edge": 4, "rows": [{"bottom": 1.1, "count": 1, "width": 2.0, "height": 1.9, "divisions": 2, "transom": true, "from": 0.125, "to": 0.125}, {"bottom": 4.7, "count": 1, "width": 2.0, "height": 1.9, "divisions": 2, "transom": true, "from": 0.125, "to": 0.125}, {"bottom": 4.7, "count": 1, "width": 2.0, "height": 1.9, "divisions": 2, "transom": true, "from": 0.375, "to": 0.375}, {"bottom": 1.1, "count": 1, "width": 2.0, "height": 1.9, "divisions": 2, "transom": true, "from": 0.375, "to": 0.375}, {"bottom": 4.7, "count": 1, "width": 2.0, "height": 1.9, "divisions": 2, "transom": true, "from": 0.625, "to": 0.625}, {"bottom": 1.1, "count": 1, "width": 2.0, "height": 1.9, "divisions": 2, "transom": true, "from": 0.875, "to": 0.875}, {"bottom": 4.7, "count": 1, "width": 2.0, "height": 1.9, "divisions": 2, "transom": true, "from": 0.875, "to": 0.875}]}], "note": "照片0的A1区18标识及左侧海宇楼确认公安电讯楼南侧边4，制作两层分格窗；下层从西向东第二开间为入口，不生成窗或通道。8.2米、窗宽和间距为比例估计。标牌、入口门廊、屋顶附属体量及其他面未细化。"},
   "77446": {"style": "photo_panels", "height": 24.5, "floors": 6, "color": "b8ad96", "frame_color": "bcc4b5", "trim_color": "969181", "edges": [12], "photos": ["77446-0.jpg", "77446-1.jpg"], "panels": [{"edge": 12, "rows": [{"bottom": 1.1, "count": 14, "width": 2.05, "height": 2.25, "divisions": 3, "transom": true, "apron": 0.95}, {"bottom": 4.9, "count": 14, "width": 2.05, "height": 2.25, "divisions": 3, "transom": true, "apron": 0.95}, {"bottom": 8.7, "count": 14, "width": 2.05, "height": 2.25, "divisions": 3, "transom": true, "apron": 0.95}, {"bottom": 12.5, "count": 14, "width": 2.05, "height": 2.25, "divisions": 3, "transom": true, "apron": 0.95}, {"bottom": 16.3, "count": 14, "width": 2.05, "height": 2.25, "divisions": 3, "transom": true, "apron": 0.95}, {"bottom": 20.1, "count": 14, "width": 2.05, "height": 2.25, "divisions": 3, "transom": true, "apron": 0.95}]}], "note": "照片0/1支持厚德楼面向体育馆前场的南侧边12，六层分格窗及深色窗下板。24.5米、窗距及数量为比例估计；照片2外观不同，本轮不用于推断背面。其他立面、入口和屋顶附属结构未细化。"},
