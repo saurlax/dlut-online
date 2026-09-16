@@ -203,7 +203,8 @@
         "Photo smooth trim ": "plaster",
         "Lingshui stone trim": "plaster",
         "Photo facade frames ": "window_frame"
-      }
+      },
+      "osm_regions": []
     },
     "77380": {
       "finish": "plaster",
