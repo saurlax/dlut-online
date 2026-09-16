@@ -106,10 +106,18 @@ def main():
                 assert candidate['osm_id']==registration['osm_id'] and candidate['osm_version']==registration['osm_version']
                 assert len(ring)==registration['expected_vertices']
                 feature['facade']={**feature['facade'],**registration['profile']}
+                if 'ground_ring_indices' in registration:
+                    indices=registration['ground_ring_indices']
+                    assert len(indices)>=3 and len(set(indices))==len(indices)
+                    assert all(isinstance(i,int) and 0<=i<len(ring) for i in indices)
+                    feature['osm_source_points']=ring
+                    ring=[ring[i] for i in indices]
             feature.update(points=ring,render_polygons=[ring],osm_id=candidate['osm_id'],
                            osm_version=candidate['osm_version'],footprint_source='osm',
                            geometry_status='osm-source-outline; absolute accuracy unverified')
             feature['holes']=candidate['polygons'][0]['holes']
+            if 'osm_source_points' in feature:
+                feature['geometry_status']='photo-refined-osm-ground-ring; absolute accuracy unverified'
         else:
             feature['reference_points']=feature['points']
             feature['reference_render_polygons']=feature['render_polygons']
