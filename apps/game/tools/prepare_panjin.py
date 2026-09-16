@@ -1,8 +1,11 @@
 """Convert archived official Panjin polygons into the desktop model manifest."""
 import json
 import math
+import re
 from pathlib import Path
 from prepare_lingshui import split_crossings
+import osm_world
+from prepare_osm_identities import build as identities
 
 CLIENT = Path(__file__).resolve().parents[1]
 REFERENCES = CLIENT.parents[1] / 'references/panjin'
@@ -12,8 +15,8 @@ EXCLUDED_IDS = {80152, 80155, 80158, 80161, 80164, 80691, 80693, 80694, 80697}
 
 
 def main():
-    source = json.loads((REFERENCES / 'mapping/bounds.json').read_text())
-    profiles = json.loads((REFERENCES / 'buildings/facades.json').read_text())
+    source = json.loads((REFERENCES / 'mapping/bounds.json').read_text(encoding='utf-8'))
+    profiles = json.loads((REFERENCES / 'buildings/facades.json').read_text(encoding='utf-8'))
     features, excluded, parts = [], [], {}
     for item in source['result']:
         if item['id'] in EXCLUDED_IDS:
@@ -37,16 +40,51 @@ def main():
                          'height': profile.get('height', 18.0 if kind == 'building' else 0.06),
                          'height_source': 'photo-proportion-estimate' if profile else 'unmeasured-outline-estimate',
                          'footprint_source': source['source'], 'facade': profile})
+    mapping = identities('panjin', {'features':features})
+    matched = {m['official_id']:m for m in mapping['buildings'] if m['status']=='matched'}
+    origin = osm_world.frame('panjin')['origin_lon_lat']
+    alignment = json.loads((REFERENCES/'mapping/road-alignment.json').read_text(encoding='utf-8'))
+    scale = math.cos(math.radians(origin[1]))/math.cos(math.radians(ORIGIN[1]))
+    delta = osm_world.local('panjin',*ORIGIN)
+    offset = [delta[0]+alignment['offset_xz_m'][0]*scale,delta[1]+alignment['offset_xz_m'][1]]
+    def moved(p): return [p[0]*scale+offset[0],p[1]+offset[1]]
+    for feature in features:
+        match = matched.get(feature['id'])
+        # Photo-covered facades require reviewed edge registrations before replacing
+        # their source ring. Retain them explicitly rather than copying old indexes.
+        if match and not feature['facade']:
+            assert len(match['osm_candidates'])==1 and match['official_parts']==1
+            record = match['osm_candidates'][0]
+            assert len(record['polygons'])==1 and not record['polygons'][0]['holes']
+            ring = record['polygons'][0]['outer']
+            feature.update(points=ring,render_polygons=[ring],osm_id=record['osm_id'],
+                           osm_version=record['osm_version'],footprint_source='osm',
+                           geometry_status='osm-source-outline; absolute accuracy unverified')
+        else:
+            feature['reference_points']=feature['points']
+            feature['reference_render_polygons']=feature['render_polygons']
+            feature['points']=[moved(p) for p in feature['points']]
+            feature['render_polygons']=[[moved(p) for p in ring] for ring in feature['render_polygons']]
+            feature['geometry_status']='legacy-silhouette-pending-replacement'
     points = [p for f in features for p in f['points']]
     low = [math.floor(min(p[i] for p in points)/10)*10-30 for i in range(2)]
     high = [math.ceil(max(p[i] for p in points)/10)*10+30 for i in range(2)]
     output = CLIENT / 'assets/campuses/panjin/data'
     output.mkdir(parents=True, exist_ok=True)
-    data = {'campus_id': 'panjin', 'origin': ORIGIN, 'units': 'approximate meters',
+    data = {'campus_id': 'panjin', 'origin': origin, 'units': 'approximate meters',
+            'geographic_crs':'EPSG:4326','coordinate_frame':'references/shared/mapping/osm-world-frame.json',
+            'legacy_reference_transform':{'scale_x':scale,'offset_xz':offset,
+                'basis':'references/panjin/mapping/road-alignment.json',
+                'status':'temporary placement for retained references; not shape validation'},
+            'spawn_xz':moved([12,-62]),'elevation_status':'no archived elevation; existing flat ground retained',
             'source': source['source'], 'retrieved': source['retrieved'],
             'bounds': low+[high[i]-low[i] for i in range(2)], 'features': features}
-    (output/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n')
-    (REFERENCES/'mapping/excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n')
+    (output/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n',encoding='utf-8')
+    (REFERENCES/'mapping/excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n',encoding='utf-8')
+    scene_path=CLIENT/'scenes/campuses/panjin.tscn'
+    scene=scene_path.read_text(encoding='utf-8')
+    scene=re.sub(r'^spawn_position = Vector3\([^\n]+\)',f'spawn_position = Vector3({data["spawn_xz"][0]:.6f}, 0.35, {data["spawn_xz"][1]:.6f})',scene,flags=re.MULTILINE)
+    scene_path.write_text(scene,encoding='utf-8')
     print(f'Panjin: {len(features)} polygon parts, {len(parts)} IDs, {len(excluded)} excluded')
 
 
