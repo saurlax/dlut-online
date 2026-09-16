@@ -38,6 +38,8 @@ Third-Party Notices
 
 资料的原始地址、对象标识、读取日期和处理依据分别载于[凌水主校区档案](references/lingshui/README.md)、[开发区校区档案](references/eda/README.md)及[盘锦校区档案](references/panjin/README.md)。
 
+室外道路细节还参考 [令希图书馆南侧阅读空间报道](https://news.dlut.edu.cn/info/1292/117214.htm)、[开发区校园风光](https://news.dlut.edu.cn/info/1292/147345.htm)和[教学区南侧阅读空间报道](https://news.dlut.edu.cn/info/1022/143385.htm)。读取日期为 2026-09-16，照片对象、原始 URL、哈希与用途见 [道路细节依据](references/shared/mapping/roads.md)及对应照片索引。仅离线参考铺装与台阶，原图不打入游戏；开放许可仍未确认，适用第 2.1 条授权说明。程序生成纹理不直接复用照片像素。
+
 ### 2.4 Copernicus 高程数据
 
 **数据产品：** [Copernicus DEM GLO-30 Public](https://registry.opendata.aws/copernicus-dem/)，由 Sinergise 在 AWS 发布的 2021 版 Cloud Optimized GeoTIFF。
@@ -69,6 +71,7 @@ DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格�
 DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与官方校园地图的同名建筑匹配，以估算地形预览的水平平移。所使用的 OSM 数据摘录及其转换记录载于两校区 `terrain/alignment.json`；该等数据库内容按 ODbL 1.0 提供，后续使用者须遵守其署名、共享及数据库分发条件。
 
 三校区建筑轮廓的离线复核另使用 [样本登记](references/shared/mapping/footprint-review.json) 中的 OSM way，并与官网 `lm30` 俯视瓦片、原始 `bound` 对比。[复核工具及边界](references/shared/mapping/map-coordinate-handling.json)保存源 URL、读取时间、摘要、way/node 版本、初始定位与未验证草稿。下载资料和底图仅置于 `.local/`，不随游戏分发；官网底图仍适用第 2.1 条授权说明。OSM 摘录及其衍生数据库保留 ODbL 署名和许可信息。官网 bound 存在斜视外轮廓，既有质心平移不能再作为已验证的建筑基底配准。
+三个校区的道路中心线和校园范围使用 2026-09-16 读取的 OSM 数据，原始查询、way/node ID 与版本归档于 `references/<campus_id>/mapping/osm-roads.json`；盘锦建筑配准控制点另存 `references/panjin/mapping/road-alignment.json`。离线裁剪、坐标转换及估计宽度生成的 `apps/game/assets/campuses/<campus_id>/data/osm_roads.json` 同样按 ODbL 1.0 提供，随仓库公开分发。道路模型及游戏地图含 © OpenStreetMap contributors 数据，转换方式及精度限制见 [道路数据依据](references/shared/mapping/roads.md)。
 
 ### 2.6 建筑表面贴图
 
