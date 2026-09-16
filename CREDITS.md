@@ -75,6 +75,8 @@ DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与�
 
 三校区统一平面基准迁移使用 2026-09-16 已下载 OSM 原始数据，压缩归档及校验摘要见 `references/<campus_id>/mapping/osm-world.osm.gz` 与 `osm-world-source.json`。这些原始数据库摘录保留节点、道路、建筑、地表和关系对象的 ID、版本及时间戳，按 ODbL 1.0 提供。统一 WGS84 局部原点见 `references/shared/mapping/osm-world-frame.json`；归档范围包含校外要素，不能将归档数量视为校园建筑总数。地形高程继续单独标注 Copernicus 来源，不声称由 OSM 提供连续高程。
 
+离线迁移工具 `apps/game/tools/prepare_osm_world.py` 按上述归档提取地表面及道路、水道等线要素，保留多环孔洞、边界相交状态和身份冲突；`prepare_osm_terrain.py` 在同一地理坐标下采样已归档的凌水及开发区 DSM，不叠加旧官网平移。候选输出位于 `.local/osm-world/`，不表示运行场景已迁移；盘锦尚无归档高程网格，不能把缺口解释为 OSM 提供的平坦地形。
+
 ### 2.6 建筑表面贴图
 
 

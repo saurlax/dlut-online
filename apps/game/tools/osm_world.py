@@ -9,11 +9,13 @@ import json
 import math
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from functools import lru_cache
 
 ROOT = Path(__file__).resolve().parents[3]
 FRAME_PATH = ROOT / 'references/shared/mapping/osm-world-frame.json'
 
 
+@lru_cache(maxsize=3)
 def frame(campus):
     return json.loads(FRAME_PATH.read_text(encoding='utf-8'))['campuses'][campus]
 
@@ -55,3 +57,40 @@ def way_coordinates(way, nodes):
     if any(ref not in nodes for ref in refs):
         raise ValueError(f'Incomplete OSM way {way.get("id")}')
     return [[float(nodes[ref].get('lon')),float(nodes[ref].get('lat'))] for ref in refs]
+
+
+def relation_rings(relation, ways, nodes):
+    """Assemble complete multipolygons without filling courtyards or open ways."""
+    if tags(relation).get('type') != 'multipolygon':
+        raise ValueError('Not a multipolygon')
+    result = []
+    for member in relation.findall('member'):
+        if member.get('type') != 'way' or member.get('role', '') not in ('', 'outer', 'inner'):
+            raise ValueError('Unsupported multipolygon member')
+        if member.get('ref') not in ways:
+            raise ValueError('Incomplete multipolygon member')
+    for role in ('outer', 'inner'):
+        pending = []
+        for member in relation.findall('member'):
+            if (member.get('role') or 'outer') == role:
+                refs = [n.get('ref') for n in ways[member.get('ref')].findall('nd')]
+                if len(refs) < 2 or any(ref not in nodes for ref in refs):
+                    raise ValueError('Incomplete multipolygon nodes')
+                pending.append(refs)
+        while pending:
+            chain = pending.pop(0)
+            while chain[-1] != chain[0]:
+                matches = [(i, p if p[0] == chain[-1] else p[::-1])
+                           for i, p in enumerate(pending) if chain[-1] in (p[0], p[-1])]
+                if len(matches) != 1:
+                    raise ValueError('Open or branching multipolygon ring')
+                index, part = matches[0]
+                pending.pop(index)
+                chain.extend(part[1:])
+            if len(chain) < 4:
+                raise ValueError('Degenerate multipolygon ring')
+            result.append({'role': role, 'lon_lat': [
+                [float(nodes[n].get('lon')), float(nodes[n].get('lat'))] for n in chain[:-1]]})
+    if not any(r['role'] == 'outer' for r in result):
+        raise ValueError('Missing outer ring')
+    return result
