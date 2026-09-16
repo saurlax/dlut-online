@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "id": "lingxi-south-reading-garden",
+  "source_photos": [
+    "references/lingshui/vegetation/photos/ls-library-5.jpg",
+    "references/lingshui/vegetation/photos/ls-library-6.jpg"
+  ],
+  "source_page": "https://news.dlut.edu.cn/info/1292/117214.htm",
+  "source_feature_id": "77357",
+  "origin_xz": [
+    -862,
+    -440
+  ],
+  "rotation_degrees": 12.5,
+  "plaza_bounds": [
+    -20.5,
+    0,
+    41,
+    11
+  ],
+  "plaza_north_y": 32.45,
+  "plaza_south_y": 32.66,
+  "central_path_width": 5,
+  "side_path_width": 5,
+  "end_depth": 46,
+  "stairs": [
+    {
+      "id": "west-flight",
+      "side": -18,
+      "start_depth": 11,
+      "length": 2.4,
+      "width": 5,
+      "steps": 4
+    },
+    {
+      "id": "east-flight",
+      "side": 18,
+      "start_depth": 11,
+      "length": 2.8,
+      "width": 5,
+      "steps": 7
+    }
+  ],
+  "red_paths": [
+    {
+      "width": 1.8,
+      "points": [
+        [
+          -18,
+          23
+        ],
+        [
+          -12,
+          20
+        ],
+        [
+          -9,
+          24
+        ],
+        [
+          -4,
+          26
+        ],
+        [
+          0,
+          28
+        ],
+        [
+          6,
+          30
+        ],
+        [
+          11,
+          27
+        ],
+        [
+          15,
+          22
+        ],
+        [
+          18,
+          20
+        ]
+      ]
+    },
+    {
+      "width": 1.8,
+      "points": [
+        [
+          -18,
+          37
+        ],
+        [
+          -12,
+          32
+        ],
+        [
+          -8,
+          34
+        ],
+        [
+          -4,
+          34
+        ],
+        [
+          0,
+          35
+        ],
+        [
+          7,
+          38
+        ],
+        [
+          12,
+          35
+        ],
+        [
+          15,
+          31
+        ],
+        [
+          18,
+          33
+        ]
+      ]
+    }
+  ],
+  "precision": "Photo-supported outdoor layout only. Position, dimensions, 4/7 riser counts and elevations are visual approximations fitted to the current provisional terrain, not measured. The full 3000 m2 garden, engraved text and vegetation are not reconstructed. Stair collision uses bounded ramps; no interior or invented entry."
+}

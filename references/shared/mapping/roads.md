@@ -29,3 +29,14 @@ godot --headless --path apps/game --script res://tools/server_export/build_world
 ```
 
 仅在主动更新来源时给 Python 工具加 `--fetch`，可用 `--campus lingshui` 限定校区。默认完全离线。完整校园生成器也调用同一道路构建器。道路专项检查为 `res://tests/road_geometry.gd`；客户端/服务端应一起重新导出。
+
+## 照片支持的局部道路细节
+
+2026-09-16 复用植被工作区归档的官方新闻网照片。开发区使用 `eda-lake:2`、`eda-lake:4` 和 `eda-slope:6`，凌水使用 `ls-library:5`、`ls-library:6`；完整下载 URL、对象 ID、读取时间、SHA-256 在各校区 `vegetation/photos/` 对应 JSON 中。本轮新增用途为离线确认道路材质、可见铺装布局和室外台阶，原图不随游戏分发。
+
+- 开发区 `mapping/road-details.json` 指定湖边 1076344125、1076344124 的局部段及教学南侧 1381476343/1381476344。保留 OSM 中心线，照片对应段采用红色路面和约 0.12 米浅色收边，宽度和颜色均为视觉估计。2026 年照片的新三环景观不凭旧 OSM 单环补造。
+- 凌水 `mapping/road-details.json` 对应 Feature 77357 令希图书馆南侧“银杏书韵”。仅建局部石板铺装、两条平滑红砖园路与两处台阶，不声称还原完整 3000 平方米场地。坐标、曲线控制点、41×11 米铺装区、5 米路宽、0.6 米板格、4/7 级踏步均为照片估计，没有实测高程。近似范围沿现有图书馆南边定位并接合南侧道路，不改变官方建筑轮廓，不创建入口或室内。
+- 台阶适配当前暂定地形，上沿约 32.66 米，西/东下沿约 32.215/31.471 米，单级约 0.111/0.170 米，进深约 0.600/0.400 米。碰撞为限定于梯段内的斜坡，最大脚底与可见踏面偏差为一个踏步；不能据此认定现场尺寸或无障碍条件。铺装渐变接入现有地形，仍需实测替换。
+- 材质程序生成细粒、板缝和人字砖纹，不使用原照片像素。独立 `assets/campuses/lingshui/models/road_details.tscn` 静态挂入校区场景，便于替换；本轮不修改建筑或植被模型。
+
+重建道路后运行 `godot --headless --path apps/game --script res://tools/build_road_details.gd`，再运行上述服务端碰撞生成器。新增检查 `res://tests/photo_road_details.gd`，加 `-- --server` 检查权威世界；使用 `--fixed-fps 60` 保证运动步长一致。

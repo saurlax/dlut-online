@@ -26,6 +26,11 @@ func _run() -> void:
 	# Crossing rectangles must have union area, not overlapping triangles.
 	var rings: Array[PackedVector2Array] = [rectangle(-2,-10,4,20), rectangle(-10,-2,20,4)]
 	assert(absf(area(roads.tessellate(rings)) - 144.0) < 0.001)
+	var cutouts: Array[PackedVector2Array] = [rectangle(-1,-20,2,40)]
+	var difference := roads.tessellate(rings, cutouts)
+	assert(absf(area(difference) - 104.0) < 0.001)
+	assert(not covered(Vector2(0,0), difference))
+	assert(covered(Vector2(5,0), difference))
 	# A closed block must retain its empty interior.
 	rings = [rectangle(0,0,20,2), rectangle(0,18,20,2), rectangle(0,2,2,16), rectangle(18,2,2,16)]
 	var pieces := roads.tessellate(rings)
@@ -48,7 +53,7 @@ func _run() -> void:
 		for child in model.get_children():
 			if not child is MeshInstance3D or not child.get_meta("road_surface", false):
 				continue
-			var clearance := 0.12 if campus == "lingshui" else (0.22 if child.material_override.resource_name == "Road" else 0.16)
+			var clearance := 0.12 if campus == "lingshui" else (0.22 if child.material_override.resource_name in ["Road", "Photo red path"] else (0.18 if child.material_override.resource_name == "Photo path edging" else 0.16))
 			var faces: PackedVector3Array = child.mesh.get_faces()
 			for i in range(0, faces.size(), 3):
 				for p in [(faces[i]+faces[i+1]+faces[i+2])/3.0, (faces[i]+faces[i+1])*0.5]:
@@ -64,7 +69,7 @@ func _run() -> void:
 		var stage := Node3D.new()
 		root.add_child(stage)
 		for child in model.get_children():
-			if child is MeshInstance3D and child.get_meta("road_surface", false):
+			if child is MeshInstance3D and child.get_meta("road_surface", false) and child.get_meta("walk_collision", false):
 				child.owner = null
 				model.remove_child(child)
 				stage.add_child(child)

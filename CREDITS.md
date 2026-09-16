@@ -38,6 +38,8 @@ Third-Party Notices
 
 资料的原始地址、对象标识、读取日期和处理依据分别载于[凌水主校区档案](references/lingshui/README.md)、[开发区校区档案](references/eda/README.md)及[盘锦校区档案](references/panjin/README.md)。
 
+室外道路细节还参考 [令希图书馆南侧阅读空间报道](https://news.dlut.edu.cn/info/1292/117214.htm)、[开发区校园风光](https://news.dlut.edu.cn/info/1292/147345.htm)和[教学区南侧阅读空间报道](https://news.dlut.edu.cn/info/1022/143385.htm)。读取日期为 2026-09-16，照片对象、原始 URL、哈希与用途见 [道路细节依据](references/shared/mapping/roads.md)及对应照片索引。仅离线参考铺装与台阶，原图不打入游戏；开放许可仍未确认，适用第 2.1 条授权说明。程序生成纹理不直接复用照片像素。
+
 ### 2.4 Copernicus 高程数据
 
 **数据产品：** [Copernicus DEM GLO-30 Public](https://registry.opendata.aws/copernicus-dem/)，由 Sinergise 在 AWS 发布的 2021 版 Cloud Optimized GeoTIFF。
