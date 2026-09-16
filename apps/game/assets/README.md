@@ -13,22 +13,18 @@
 
 本文客户端路径均相对 apps/game/；references/ 指仓库根目录的原始参考资料。
 
-## 植被资源与分布
-
-开发区的建筑、道路与地面保留在 `development_campus.tscn`，植被独立存放于同目录 `vegetation.tscn`，两者由 `scenes/campuses/eda.tscn` 静态挂载。`tools/build_model.gd` 调用独立的 `tools/build_vegetation.gd` 生成植被，不在运行时重复创建。无头模式的 dummy renderer 不保留 MultiMesh 缓冲，生成器显式写入标准 TSCN 的实例 buffer；修改生成逻辑后须使用真实渲染器运行 `tests/vegetation.gd` 检查保存后的变换。
-
-`campuses/eda/data/vegetation.json` 保留旧生成器种子 20260909 对应的 304 棵示意树的位置和高度，新增树型与绕 Y 轴旋转（弧度）。坐标以米为单位，X 向东、Y 向上、Z 向南；这些位置沿用初版近似分布，不是照片核定或测绘结果。修改分布应编辑此文件，不通过建筑/地形生成器重新随机撒树。
-
-`tree_0.tres` 至 `tree_3.tres` 是四份共享 ArrayMesh，每份包含树干枝条与叶片两个材质表面，保留现有程序化枝叶风格，不代表核实的树种。实例以 10 米基准高度统一缩放并旋转，单棵枝叶细节不再完全对应旧随机网格。生成器使用 Godot 原生网格 LOD；离散叶片能简化的程度有限，实例化本身不保证降低可见三角形数量或提高帧率。
-
-实例按 64 米网格与树型组织为 MultiMeshInstance3D，负坐标向下取整，分块包围盒包含旋转缩放后的完整树冠。各批次共享外部树模型，保存局部变换；Godot 按批次裁剪，不逐树裁剪。块大小是初始工程参数，应依据桌面实测调整。植被不进入现有碰撞生成，树叶没有 trimesh 碰撞。桌面导出通过校园场景依赖包含植被与共享网格，服务端继续只导出既有碰撞世界。
-
-离线 `development_campus.glb` 仅导出建筑与地面，不再烘焙植被；桌面客户端使用挂载两份场景的完整校园。
-
-其他校区沿用建筑/地形、植被模型、植被分布分离的约定；没有有效植被分布依据时不复制开发区实例或新增随机分布。
-
 ## Git LFS
 
 模型目录中的 TSCN、GLB/Blender 文件、图片和字体由 Git LFS 管理，规则见根目录 .gitattributes。普通场景、脚本及 JSON 保持 Git 文本文件。克隆前安装 Git LFS 并执行 `git lfs install`；已有克隆执行 `git lfs pull`，确保资源不是指针文本后再打开 Godot 或构建。CI checkout 必须启用 `lfs: true`。忽略的生成产物仍不提交。
 
 Web 导出由 tools/campus_packs 自动把三校区转换为基础轮廓/碰撞启动层与 100 米网格细节包。完整建筑细节只保存一次并由覆盖格引用；其他非碰撞表面按格裁切，共享材质随启动层提供。源 TSCN 与官方 Feature ID 不变，编辑器和桌面仍使用完整模型。生成 PCK 位于 build/web/campuses/，临时场景位于 .godot/campus_grid/，均不提交。首包保留共享字体和凌水启动层。
+
+## 三校区植被
+
+共享形态及材质位于 `assets/vegetation/`，校区实例数据和静态场景位于 `assets/campuses/<id>/data/vegetation.json` 与 `models/vegetation.tscn`。配置依据见仓库 `references/<id>/vegetation/planting.json` 和 `basis.md`。
+
+从仓库根运行 `godot --headless --path apps/game --script tools/generate_vegetation.gd` 重新生成三校区植被；开发区整场景构建仍通过 build_vegetation.gd 更新对应资源。生成期间关闭正打开这些资源的游戏进程。网格使用压缩二进制 `.res`，三种姿态共享材质；每 32 米单元按形态和姿态组成 MultiMesh，近远级别分别使用 48 米（乔木）与 32 米（低植被）切换。乔木保留到 650 米，低植被保留到 120 米，细草只在 32 米内绘制。低植被和远距模型不投射实时阴影；近景乔木保留阴影。近远包围盒统一并预留微风摆动余量。
+
+草坪随地形细分，并在边缘裁切过渡；装饰植被没有碰撞。运行时只加载当前校区静态资源，服务端不包含视觉植物。实际分布和数量是照片限定区域内的确定性估计，不能作为逐树调查。
+
+回归检查使用真实渲染器运行 `godot --path apps/game --script tests/vegetation.gd`，核对来源、逐实例变换、地形、官方排除轮廓、资源共享、近远包围盒与三角形缩减。无头 dummy renderer 不保留 MultiMesh 变换，不能用于此检查。Android 的 Mobile 渲染路径可在桌面检查，但不替代 Android 真机性能验收。

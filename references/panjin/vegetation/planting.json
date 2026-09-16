@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "campus": "panjin",
+  "retrieved": "2026-09-16",
+  "coordinates": "Campus local metres, X east Z south. Hand-aligned to official feature outlines.",
+  "source_pages": [
+    "https://pjxqzwb.dlut.edu.cn/info/1071/3901.htm"
+  ],
+  "precision": "Zones and all positions/heights/counts approximate. Photographs confirm presence, not surveyed placement.",
+  "zones": [
+    {
+      "id": "library-west-lawn",
+      "seed": 16093758,
+      "polygon": [
+        [
+          213,
+          -439
+        ],
+        [
+          229,
+          -439
+        ],
+        [
+          229,
+          -392
+        ],
+        [
+          213,
+          -392
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77963-1.jpg",
+        "photos/pj-2025-5.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "grass",
+          "spacing": 0.8,
+          "height": [
+            0.08,
+            0.16
+          ],
+          "clearance": 0.6,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "library-south-lawn",
+      "seed": 16093870,
+      "polygon": [
+        [
+          249,
+          -363
+        ],
+        [
+          311,
+          -363
+        ],
+        [
+          311,
+          -346
+        ],
+        [
+          249,
+          -346
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77963-1.jpg",
+        "photos/pj-2025-5.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "grass",
+          "spacing": 0.8,
+          "height": [
+            0.09,
+            0.16
+          ],
+          "clearance": 0.6,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "library-flower-border",
+      "seed": 16094166,
+      "polygon": [
+        [
+          228,
+          -400
+        ],
+        [
+          231,
+          -400
+        ],
+        [
+          231,
+          -380
+        ],
+        [
+          228,
+          -380
+        ]
+      ],
+      "photos": [
+        "photos/pj-2025-5.jpg",
+        "photos/pj-2025-6.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "calibrachoa",
+          "spacing": 0.45,
+          "height": [
+            0.22,
+            0.35
+          ],
+          "clearance": 0.5,
+          "jitter": 1
+        }
+      ],
+      "lawn": false,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": "Flower species supported by 3901; bed extent approximate, no invented planters."
+    },
+    {
+      "id": "chemistry-south-lawn",
+      "seed": 16094097,
+      "polygon": [
+        [
+          20,
+          -414
+        ],
+        [
+          167,
+          -386
+        ],
+        [
+          164,
+          -375
+        ],
+        [
+          18,
+          -402
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77955-0.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "broadleaf",
+          "spacing": 8,
+          "height": [
+            4.8,
+            6.5
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "grass",
+          "spacing": 0.85,
+          "height": [
+            0.09,
+            0.16
+          ],
+          "clearance": 0.6,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": "Winter photo shows small deciduous row, species unknown; generic leaf-on crown is an approximation."
+    },
+    {
+      "id": "teaching-south-east-row",
+      "seed": 16094332,
+      "polygon": [
+        [
+          91,
+          -126
+        ],
+        [
+          143,
+          -126
+        ],
+        [
+          143,
+          -109
+        ],
+        [
+          91,
+          -109
+        ]
+      ],
+      "photos": [
+        "photos/pj-2025-5.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "broadleaf",
+          "spacing": 8,
+          "height": [
+            5,
+            7
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "hedge",
+          "spacing": 1.5,
+          "height": [
+            0.55,
+            0.8
+          ],
+          "clearance": 0.8,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": "Same A01 reference, visible side row; not a species inventory."
+    }
+  ]
+}

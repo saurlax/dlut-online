@@ -10,10 +10,13 @@ func _initialize() -> void:
 	assert(not ResourceLoader.exists("res://scripts/client/campus_hud.gd"))
 	assert(not ResourceLoader.exists("res://scenes/campus_precipitation.tscn"))
 	assert(not ResourceLoader.exists("res://assets/campuses/lingshui/models/lingshui_campus.tscn"))
+	assert(not ResourceLoader.exists("res://assets/vegetation/leaves.gdshader"))
+	assert(not ResourceLoader.exists("res://assets/campuses/eda/models/vegetation.tscn"))
 	assert(FileAccess.get_file_as_string("res://scripts/client/player_network.gd").strip_edges() == "extends Node")
 	for id in ["lingshui","eda","panjin"]:
 		var world: Node = load("res://scenes/server/"+id+".scn").instantiate()
 		assert(world.find_children("*","MeshInstance3D",true,false).is_empty())
+		assert(world.find_children("*","MultiMeshInstance3D",true,false).is_empty())
 		assert(world.get_child_count()>0)
 		world.free()
 	print("PASS: dedicated package has collision worlds and server logic, without client UI/visual assets")

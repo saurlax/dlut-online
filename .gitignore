@@ -1,5 +1,6 @@
 .godot/
 build/
+/apps/game/android/
 .DS_Store
 
 # Local acceptance notes and one-off capture scripts

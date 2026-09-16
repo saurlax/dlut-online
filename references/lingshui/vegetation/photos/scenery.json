@@ -1,0 +1,28 @@
+[
+  {
+    "file": "references/lingshui/vegetation/photos/spring-3.jpg",
+    "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=5LN7C4LRUiUzG4LQ7lPnNQ2M7LaMRGqDUlCYoRLsUz9snNl0gihFp2hmCIa0UYyYUSyYL1yPnRv8ozCZU47DLmCPLzvbLmr2L4vsLNWkM7MFL77PLRQkLmnFoRGZnlLJqjfjo4OeoDnOp26N_dAs6YhXptQ0gY84gY84gtA8pUpcc&oid=1819948287&e=.jpg",
+    "original_sha256": "37d341ce201f6b759745f0bb3f173ededf4a27089dcd663c66e3e6682e007c79",
+    "sha256": "aab107aae1c1ac5803ee25bbc8e753d471398478ce866e7367bee6b376d86f3e",
+    "source_page": "https://news.dlut.edu.cn/info/1020/92404.htm",
+    "discovered_via": "https://www.dlut.edu.cn/xxgk/xyfg.htm",
+    "object_id": "92404:image-3",
+    "retrieved": "2026-09-16",
+    "usage": "Offline reference: lawn and drooping willow by Lingshui Lake",
+    "license": "Not confirmed; not distributed in client",
+    "processing": "max 1280x960 JPEG quality 80"
+  },
+  {
+    "file": "references/lingshui/vegetation/photos/spring-4.jpg",
+    "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=5Um7C8UmARMRlsnQNlPUmUsM49DLRvqsMmLYLmCaMz9Dnzv0gihFp2hmCIa0nkhfLkhfn1yDo7U8nlUYL4MRLz9sLRlDUlLbUl-bLR78L7nFolC4nmWRo7MFMzVVMllJqjfjo4OeoDnOp26N_dAs6YhXptQ0gY84gY84gtA8pUpcc&oid=1819948287&e=.jpg",
+    "original_sha256": "dbcba3acd24ab0848d6b283f2c912a3ccfaa378c8e9b5e12906be6ad38374e6d",
+    "sha256": "b55660fbf344232e1ae0806c64b6c50943ab5287e02eb25b57a2259e4130f0e0",
+    "source_page": "https://news.dlut.edu.cn/info/1020/92404.htm",
+    "discovered_via": "https://www.dlut.edu.cn/xxgk/xyfg.htm",
+    "object_id": "92404:image-4",
+    "retrieved": "2026-09-16",
+    "usage": "Offline reference: lawn and drooping willow by Lingshui Lake",
+    "license": "Not confirmed; not distributed in client",
+    "processing": "max 1280x960 JPEG quality 80"
+  }
+]
