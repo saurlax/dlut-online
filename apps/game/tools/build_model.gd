@@ -265,7 +265,14 @@ func build() -> void:
 					generated_count += 1
 					continue
 				if academic_profiles.has(feature.id):
-					preload("res://tools/build_eda_academic.gd").new().build(self,group,points,academic_profiles[feature.id])
+					var profile: Dictionary = academic_profiles[feature.id].duplicate(true)
+					if feature.has("osm_id"):
+						assert(profile.has("osm_registration"),"Academic OSM facade registration missing")
+						var registration: Dictionary = profile.osm_registration
+						assert(feature.osm_id==registration.osm_id and int(feature.osm_version)==int(registration.osm_version),"Academic OSM version changed")
+						assert(points.size()==int(registration.expected_vertices),"Academic OSM ring changed")
+						profile.merge(registration,true)
+					preload("res://tools/build_eda_academic.gd").new().build(self,group,points,profile)
 					generated_count += 1
 					continue
 				if feature.id == "2304982":
