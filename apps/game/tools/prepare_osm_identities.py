@@ -29,10 +29,10 @@ def normalized(campus, name):
     return name
 
 
-def build(campus):
+def build(campus, manifest=None):
     directory=osm.ROOT/f'references/{campus}/mapping'
     manifest_path=osm.ROOT/f'apps/game/assets/campuses/{campus}/data/campus.json'
-    manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+    manifest=json.loads(manifest_path.read_text(encoding='utf-8')) if manifest is None else manifest
     config_path=directory/'osm-identity-overrides.json'
     config=json.loads(config_path.read_text(encoding='utf-8')) if config_path.exists() else {'aliases':{},'objects':{}}
     world=world_data(campus,include_outside=True)
