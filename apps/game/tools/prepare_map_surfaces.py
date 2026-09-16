@@ -42,7 +42,7 @@ def build(campus):
         from prepare_osm_world import valid_ring
         if not all(valid_ring(ring) for ring in [outer]+holes):
             raise ValueError('Invalid map surface ring')
-        result.append({'id':item['id'], 'kind':'plaza', 'outer':outer, 'holes':holes,
+        result.append({'id':item['id'], 'kind':'plaza', 'surface_type':item.get('surface_type','paving'), 'outer':outer, 'holes':holes,
                        'source':str(path.relative_to(osm.ROOT)).replace('\\','/'),
                        'source_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
                        'status':item['status'], 'osm_anchor_way':anchor['way_id'],
