@@ -13,3 +13,17 @@
 #### Scenario: 桌面应用不同遮罩
 - **WHEN** 启动器使用圆形或圆角方形遮罩裁剪自适应图标
 - **THEN** 标志完整且周围有留白，最终外形服从启动器遮罩
+
+### Requirement: Android 资源包名与应用包名一致
+Android 导出流程 SHALL 将 `resources.arsc` 中应用资源包（ID 0x7f）的名称与 Manifest 的应用包名同步，不保留 Godot 模板包名；保留资源 ID、路径及其他资源载荷。仅允许转换已知模板包名或处理已一致的包名，拒绝损坏的资源表和未知包名，不盲目替换二进制字符串。
+
+#### Scenario: MagicOS 图标主题处理
+- **WHEN** 导出使用 `com.godot.game` 资源包名的 Godot 模板
+- **THEN** 分发前同步为 Manifest 中的实际应用包名，使系统可以按应用身份处理启动器图标，无需给自适应背景添加固定圆角
+
+### Requirement: 验证最终 APK 图标与签名
+导出流程 SHALL 在修改资源表后重新对齐并使用原导出测试密钥签名，验证 APK 签名和 16 KiB 原生库 ZIP 对齐；检查 Manifest 图标引用、Android 8+ 自适应 XML 选择、前景背景引用和文件完整性，任何检查失败均不得报告构建成功。
+
+#### Scenario: 图标引用损坏
+- **WHEN** Manifest 指向错误图标，或自适应 XML/前景/背景资源缺失或关联错误
+- **THEN** 导出校验失败，不将该 APK 作为成功产物发布

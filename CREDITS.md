@@ -94,6 +94,10 @@ DLUT Online 服务端通过 [Open-Meteo Forecast API](https://open-meteo.com/en/
 
 水面着色实现参考 Godot 官方 [Spatial shaders](https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/spatial_shader.html) 与 [Environment and post-processing](https://docs.godotengine.org/en/stable/tutorials/3d/environment_and_post_processing.html)（读取日期：2026-09-16），用于法线空间、物理材质参数和屏幕空间反射兼容性核对。文档适用 [CC BY 3.0](https://docs.godotengine.org/en/stable/about/complying_with_licenses.html)。波纹法线由项目内 FastNoiseLite 参数程序化生成，没有引入外部水面图片；沿用已有官方水体轮廓，不新增水文测绘数据。
 
+### 3.4 Android 图标与资源表技术资料
+
+Android 图标布局参考 [Android 自适应图标文档](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive)与 [Godot Android 导出文档](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_android.html)。非 Gradle 导出资源包名兼容处理参考 [Godot 导出实现](https://github.com/godotengine/godot/blob/4.7-stable/platform/android/export/export_plugin.cpp)和 [AOSP ResourceTypes.h](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/libs/androidfw/include/androidfw/ResourceTypes.h) 中的资源表格式，读取日期为 2026-09-16。相关上游代码分别适用 MIT 和 Apache-2.0，文档许可见各来源页；本项目工具独立实现固定字段读写，未引入额外运行库或外部图标素材。
+
 ## 四、字体
 
 | 字体 | 提供者与来源 | 使用形式 | 许可文本 |
