@@ -16,6 +16,13 @@
 - **THEN** 不生成虚假 bound，不将其计为独立几何证据
 - **AND** 对比页列明各来源实际取得的资料，区分几何来源数量和样本数量；候选明确标为派生数据，重合线使用不同宽度与虚实线，并支持逐层开关
 
+#### Scenario: Browse all downloaded geometry
+
+- **WHEN** 生成本地 bound 结果
+- **THEN** 提供三校区全部已转换轮廓总览，支持校区切换、平移缩放、边线点击查看来源及 JSON 下载
+- **AND** 官网与 OSM 各用原始坐标独立显示；完整 multipolygon 成员按节点 ID 组环，保留 outer/inner 角色为 multiRing，无法组环的关系保留待处理清单
+- **AND** 明示单环检查不代表多环嵌套及重叠已验证，关系与单 way 可能重复，记录数不得宣称为建筑总数
+
 ### Requirement: Separate source outlines from review drafts
 
 工具 SHALL 使用官网 `lm30` 二维瓦片图面为参考，分别保留官网 bound、OSM 原始点与初始定位、人工修正草稿。地图来源未知的地理基准和精度 MUST 明示，初始质心平移不得标为已通过配准。
