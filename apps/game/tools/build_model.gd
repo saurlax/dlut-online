@@ -333,7 +333,20 @@ func build() -> void:
 				mesh_node(group,st.commit(),material("Hill",Color("73795d")),"SchematicTerrain")
 			"track", "basketball", "tennis":
 				polygon(group,points,0.15,material("Sports base",Color("bdbaa0")),"SportsBase")
-				sports(group,points,kind)
+				if feature.has("sports_surfaces"):
+					group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
+					group.set_meta("sports_source_count",feature.sports_surfaces.size())
+					for surface: Dictionary in feature.sports_surfaces:
+						var court := PackedVector2Array()
+						for p: Array in surface.points: court.append(Vector2(p[0],p[1]))
+						polygon(group,court,0.3,material("Court surface",Color("638c91")),"Court_"+surface.osm_id.replace("/","_"))
+						group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
+						for i in court.size():
+							var a := court[i]
+							var b := court[(i+1)%court.size()]
+							line(group,Vector3(a.x,0.4,a.y),Vector3(b.x,0.4,b.y),0.12,material("Court markings",Color("f6eedc")))
+				else:
+					sports(group,points,kind)
 			"gate":
 				polygon(group,points,0.16,material("Paving",Color("a9a79e")),"GateFootprint")
 				var bounds := Rect2(points[0],Vector2.ZERO)
