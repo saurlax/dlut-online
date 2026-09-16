@@ -7,9 +7,29 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 import osm_world as osm
 from prepare_osm_world import build, scope
 from prepare_osm_terrain import Elevation
+from prepare_osm_identities import build as identities
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_identity_import_retains_missing_and_outside_buildings(self):
+        data=identities('lingshui')
+        records={r['official_id']:r for r in data['buildings']}
+        self.assertEqual(records['77456']['status'],'matched')
+        self.assertEqual(records['77456']['osm_candidates'][0]['osm_id'],'way/1384296476')
+        self.assertEqual(records['77456']['osm_candidates'][0]['scope'],'outside')
+        self.assertEqual(records['77490']['status'],'matched')
+        self.assertEqual(records['77490']['osm_candidates'][0]['osm_id'],'way/1383545735')
+        self.assertEqual(records['2554118']['status'],'missing')
+        self.assertEqual(len(records),209)
+
+    def test_shared_official_identity_retains_both_osm_buildings(self):
+        data=identities('eda')
+        records={r['official_id']:r for r in data['buildings']}
+        self.assertEqual({r['osm_id'] for r in records['2304982']['osm_candidates']},
+                         {'way/375541049','way/1381473266'})
+        self.assertEqual(records['77914']['osm_candidates'][0]['osm_id'],'way/1422474847')
+        self.assertEqual(records['77943']['status'],'missing')
+
     def test_courtyards_are_not_filled(self):
         _,nodes,ways,relations=osm.archive('eda')
         rings=osm.relation_rings(relations['3123051'],ways,nodes)
