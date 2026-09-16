@@ -4,7 +4,6 @@ var scene := Node3D.new()
 var materials: Dictionary = {}
 var manifest: Dictionary
 var generated_count := 0
-var roads: Array = []
 var residence_profiles: Dictionary = {}
 var seventh_profile: Dictionary = {}
 var academic_profiles: Dictionary = {}
@@ -211,13 +210,7 @@ func build() -> void:
 	academic_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("academic_facades.json")))
 	seventh_profile = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("seventh-residence/profile.json")))
 	box(scene,Vector3(0,-6,55),Vector3(1280,12,930),material("Campus base",Color("74795b")),"CampusBase")
-	roads = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/roads.json")).roads
-	for road in roads:
-		for i in range(road.points.size()-1):
-			var a := Vector3(road.points[i][0],0.04,road.points[i][1])
-			var b := Vector3(road.points[i+1][0],0.04,road.points[i+1][1])
-			line(scene,a,b,road.width+3.0,material("Road edge",Color("a9a69c")))
-			line(scene,a+Vector3.UP*0.06,b+Vector3.UP*0.06,road.width,material("Road",Color("555a5b")))
+	preload("res://tools/build_roads.gd").new().build(self, "eda")
 	for feature in manifest.features:
 		var group := Node3D.new()
 		group.name = "Feature_" + feature.id
