@@ -157,7 +157,18 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77938"
+      "profile": "residence_facades.json#77938",
+      "osm_regions": [
+        {
+          "edge": 1,
+          "span": [
+            0.18000000000000005,
+            0.8200000000000001
+          ],
+          "bottom": 3.7,
+          "top": 15.325
+        }
+      ]
     },
     "77941": {
       "status": "applied",

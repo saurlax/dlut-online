@@ -281,7 +281,14 @@ func build() -> void:
 					generated_count += 1
 					continue
 				if residence_profiles.has(feature.id):
-					preload("res://tools/build_eda_residences.gd").new().build(self,group,points,residence_profiles[feature.id])
+					var profile: Dictionary = residence_profiles[feature.id].duplicate(true)
+					if feature.has("osm_id"):
+						assert(profile.has("osm_registration"),"Residence OSM facade registration missing")
+						var registration: Dictionary = profile.osm_registration
+						assert(feature.osm_id==registration.osm_id and int(feature.osm_version)==int(registration.osm_version),"Residence OSM source changed")
+						assert(points.size()==int(registration.expected_vertices),"Residence OSM ring changed")
+						profile.merge(registration,true)
+					preload("res://tools/build_eda_residences.gd").new().build(self,group,points,profile)
 					generated_count += 1
 					continue
 				if feature.id in ["77914","77917"]:
