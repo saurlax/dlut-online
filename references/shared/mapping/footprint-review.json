@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "comparison-only",
+  "reference": "官网二维 lm30 瓦片的图面坐标；不是已验证的测绘坐标系",
+  "tile_url": "http://map.dlut.edu.cn/map?lyrs=lm30&x={x}&y={y}&z={z}",
+  "zoom": 19,
+  "cases": [
+    {"campus": "lingshui", "official_id": "77387", "osm_way_id": "300180515", "name": "厚民楼"},
+    {"campus": "lingshui", "official_id": "77412", "osm_way_id": "1381605758", "name": "西灰楼"},
+    {"campus": "lingshui", "official_id": "77413", "osm_way_id": "1381605759", "name": "东灰楼"},
+    {"campus": "eda", "official_id": "77914", "osm_way_id": "1422474847", "name": "信息楼（OSM 身份及拆分待核实）"},
+    {"campus": "eda", "official_id": "77935", "osm_way_id": "309375777", "name": "第三学生公寓"},
+    {"campus": "panjin", "official_id": "77955", "osm_way_id": "1318388516", "name": "D03 化学实验楼"}
+  ]
+}
