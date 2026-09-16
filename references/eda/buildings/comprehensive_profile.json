@@ -69,6 +69,102 @@
         18.6
       ],
       "note": "77921-0右侧院内翼可见五列常规窗及端部两列矮横窗。边4方向从外端向院内转角，常规窗改为28%至94%五列，横窗配准7%/18%。宽1.4米、高0.55米及比主窗中心高0.4米均为照片比例估计；底层被遮挡不补。"
+    },
+    "osm_registration": {
+      "osm_id": "way/232559719",
+      "osm_version": 7,
+      "expected_vertices": 8,
+      "outer_edge": 0,
+      "outer_end_vertex": 2,
+      "court_edge": 5,
+      "court_end_vertex": 7,
+      "faces": [
+        {
+          "edge": 0,
+          "columns": 16,
+          "span": [
+            0.06,
+            0.94
+          ],
+          "end_vertex": 2
+        },
+        {
+          "edge": 7,
+          "columns": 1,
+          "span": [
+            0.35,
+            0.65
+          ]
+        },
+        {
+          "edge": 5,
+          "columns": 8,
+          "span": [
+            0.06,
+            0.94
+          ],
+          "end_vertex": 7
+        },
+        {
+          "edge": 4,
+          "columns": 5,
+          "span": [
+            0.28,
+            0.94
+          ]
+        }
+      ],
+      "court_end_windows": {
+        "edge": 4,
+        "fractions": [
+          0.07,
+          0.18
+        ],
+        "width": 1.4,
+        "height": 0.55,
+        "centers_y": [
+          6.6,
+          10.6,
+          14.6,
+          18.6
+        ],
+        "note": "77921-0右侧院内翼可见五列常规窗及端部两列矮横窗。边4方向从外端向院内转角，常规窗改为28%至94%五列，横窗配准7%/18%。宽1.4米、高0.55米及比主窗中心高0.4米均为照片比例估计；底层被遮挡不补。"
+      },
+      "basis": "OSM 8点主体 L 形；保留原始共线连接点1和6，以跨点边段映射照片立面：旧14→0至2，旧13→7至0，旧5→5至7，旧4→4至5。官网 lm30 俯视图核对朝向。北侧圆体不在此 OSM 主体内，另待有依据的轮廓补充，不能套用旧斜视外包络。立面列数和高度沿用照片比例估计，边跨度改变不等于实测。",
+      "review_date": "2026-09-16",
+      "top_view_source": "http://map.dlut.edu.cn/map?lyrs=lm30&x={x}&y={y}&z=19",
+      "review_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200214&z=19",
+          "retrieved": "2026-09-16T11:34:52.240304+00:00",
+          "sha256": "7958e64d6b92eaa61b8dfe7a353c1fde4ad0e98523d1454d5b3848d6fe92be0e"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200215&z=19",
+          "retrieved": "2026-09-16T11:34:52.297427+00:00",
+          "sha256": "07a833bdc7bd78a00398e4a1e7f7a2194d80e0f051644af8a8a231e5cf0dc46a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200214&z=19",
+          "retrieved": "2026-09-16T11:34:52.380578+00:00",
+          "sha256": "6a016adb1b107eae140cccba869592fab41379e44d90a704b76bfebb017634ec"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200215&z=19",
+          "retrieved": "2026-09-16T11:34:52.771449+00:00",
+          "sha256": "bcdd666063df1537055b2a558abb2c82ab88705c77c90acff1bb6b52a9e758ef"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200214&z=19",
+          "retrieved": "2026-09-16T11:34:52.943742+00:00",
+          "sha256": "6f8fb4460ec41a28cd49babbd911cbe5ad9b2c0fa2ed9211a2138f51fe031e32"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200215&z=19",
+          "retrieved": "2026-09-16T11:34:53.004563+00:00",
+          "sha256": "b99d1f21f934fd4e06d8684ad76019613341fcb0505f4417637ed150a4dbd9e5"
+        }
+      ]
     }
   }
 }

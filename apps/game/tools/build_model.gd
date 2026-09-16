@@ -233,6 +233,11 @@ func build() -> void:
 				if feature.id == "77921":
 					var profile_path := reference_path.get_base_dir().path_join("comprehensive_profile.json")
 					var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profile_path))["77921"]
+					if feature.has("osm_id"):
+						var registration: Dictionary = profile.osm_registration
+						assert(feature.osm_id == registration.osm_id,"Unregistered comprehensive footprint")
+						assert(int(feature.get("osm_version",-1)) == int(registration.osm_version),"Comprehensive OSM version changed; review facade anchors")
+						profile.merge(registration,true)
 					preload("res://tools/build_eda_comprehensive.gd").new().build(self,group,points,profile)
 					generated_count += 1
 					continue

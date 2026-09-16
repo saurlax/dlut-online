@@ -3,11 +3,15 @@ extends RefCounted
 const Facade = preload("res://tools/build_eda_academic.gd")
 
 func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary) -> void:
+	assert(points.size() == int(profile.get("expected_vertices",points.size())),"Comprehensive footprint/profile mismatch")
 	var facade := Facade.new()
 	facade.host = host
 	facade.group = group
 	group.set_meta("photo_reference","references/eda/buildings/comprehensive_profile.json")
 	group.set_meta("interior_available",false)
+	if profile.has("osm_id"):
+		group.set_meta("osm_id",profile.osm_id)
+		group.set_meta("osm_version",profile.osm_version)
 	var wall: Material = host.material("EDA comprehensive grey masonry",Color("777c79"))
 	var band: Material = host.material("EDA comprehensive pale bands",Color("c3c6b7"))
 	var glass: Material = host.material("EDA comprehensive opaque glass",Color("607e79"))
@@ -18,8 +22,10 @@ func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary)
 	glass.roughness = 0.28
 	facade.shell(points,float(profile.height),0,wall)
 	facade.shell(points,float(profile.height)+0.18,float(profile.height),band)
+	var court_edge := int(profile.get("court_edge",5))
+	var court_end_vertex := int(profile.get("court_end_vertex",-1))
 	for face in profile.faces:
-		facade.frame_for(points,int(face.edge))
+		facade.frame_for(points,int(face.edge),int(face.get("end_vertex",-1)))
 		var start: float = face.span[0]*facade.length
 		var finish: float = face.span[1]*facade.length
 		var spacing: float = (finish-start)/int(face.columns)
@@ -28,7 +34,7 @@ func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary)
 			var y := 6.2+row*4.0
 			for col in int(face.columns):
 				var x := start+(col+0.5)*spacing
-				if int(face.edge)==5 and row<3 and absf(x-facade.length*0.3)<8.7: continue
+				if int(face.edge)==court_edge and row<3 and absf(x-facade.length*0.3)<8.7: continue
 				facade.panel(x,y,width+0.16,2.36,0.08,0.08,frame)
 				facade.panel(x,y,width,2.2,0.06,0.14,glass)
 				facade.panel(x,y,0.07,2.2,0.08,0.2,frame)
@@ -47,14 +53,14 @@ func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary)
 			facade.panel(x,float(y),width,window_height,0.06,0.14,glass)
 			facade.panel(x,float(y),0.055,window_height,0.08,0.2,frame)
 	# Photo 77921-1 confirms the large pale frames on this outer face only.
-	facade.frame_for(points,14)
+	facade.frame_for(points,int(profile.get("outer_edge",14)),int(profile.get("outer_end_vertex",-1)))
 	for fraction in [0.28,0.43,0.58,0.73]:
 		facade.panel(fraction*facade.length,9.8,0.6,13.0,0.7,0.4,band,true)
 	for y in [4.0,8.0,12.0,16.0]:
 		facade.panel(0.505*facade.length,y,0.45*facade.length,0.5,0.7,0.4,band,true)
 	# Closed three-storey glass projection on the court-side wing. The photo
 	# does not establish an interior or a walkable entrance behind the glass.
-	facade.frame_for(points,5)
+	facade.frame_for(points,court_edge,court_end_vertex)
 	var center: float = facade.length*0.3
 	facade.panel(center,10.0,17,12,1.4,0.6,wall,true)
 	facade.panel(center,10.0,16.7,11.7,0.08,1.35,glass)
