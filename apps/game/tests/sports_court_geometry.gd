@@ -5,13 +5,30 @@ func _initialize() -> void:
 
 func check() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
-	var feature: Dictionary
-	for item: Dictionary in data.features:
-		if item.id=="2304789": feature = item
-	assert(feature.osm_id=="way/1076344145" and feature.sports_surfaces.size()==6)
 	var model: Node3D = load("res://assets/campuses/eda/models/development_campus.tscn").instantiate()
 	root.add_child(model)
-	var group: Node3D = model.get_node("Feature_2304789")
+	var checked := 0
+	for feature: Dictionary in data.features:
+		if feature.id not in ["2304789","39327816"]: continue
+		assert(feature.sports_surfaces.size()==(6 if feature.id=="2304789" else 9))
+		if feature.id=="2304789":
+			assert(feature.osm_id=="way/1076344145")
+		else:
+			assert(feature.osm_id=="way/375541050")
+			assert(feature.osm_geometry_sources.size()==3)
+			for court: Dictionary in feature.sports_surfaces:
+				if court.has("osm_id"):
+					assert(court.osm_id=="way/1381450456")
+				else:
+					assert(court.source=="official-lm30-local-registration")
+		await check_courts(model,feature)
+		checked += 1
+	assert(checked==2)
+	print("SPORTS COURT GEOMETRY PASS: six tennis, seven basketball and two volleyball areas and center collisions")
+	quit()
+
+func check_courts(model: Node3D, feature: Dictionary) -> void:
+	var group: Node3D = model.get_node("Feature_"+feature.id)
 	var expected_area := 0.0
 	var centers: Array[Vector2] = []
 	for court: Dictionary in feature.sports_surfaces:
@@ -40,5 +57,3 @@ func check() -> void:
 	for center in centers:
 		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(center.x,group.position.y+3,center.y),Vector3(center.x,group.position.y,center.y)))
 		assert(not hit.is_empty() and absf(hit.position.y-group.position.y-0.3)<0.01,"Court center collision missing")
-	print("TENNIS GEOMETRY PASS: six archived court areas and center collisions")
-	quit()

@@ -4,6 +4,8 @@ from pathlib import Path
 import osm_world
 from prepare_osm_world import build as osm_data
 from prepare_map_surfaces import build as ground_surfaces
+from refine_osm_footprints import projective_map
+from prepare_osm_world import inside, valid_ring
 ROOT=Path(__file__).resolve().parents[1]
 source=json.loads((ROOT.parents[1]/'references/eda/mapping/bounds.json').read_text(encoding='utf-8'))
 origin=(121.816326506145,39.084522240291)
@@ -54,15 +56,50 @@ selected={'77914':'way/1422474847','77921':'way/232559719','77917':'way/14224748
           '77938':'way/309375781',
           '77923':'way/1076344144',
           '2304789':'way/1076344145',
+          '39327816':'way/375541050',
           '77931':'way/309375779','77933':'way/309375778','77935':'way/309375777','77937':'way/309375780','77941':'way/375541046',
           '2304775':'way/232560296','39328846':'way/232560016',
           '2304759':'way/232560269','2304752':'way/1381450450'}
 records={r['osm_id']:r for r in world['areas']}
+sport_specs=json.loads((ROOT.parents[1]/'references/eda/mapping/sports-refinements.json').read_text(encoding='utf-8'))['refinements']
 for feature in features:
  if feature['id'] in selected:
   record=records[selected[feature['id']]]
   assert len(record['polygons'])==1 and not record['polygons'][0]['holes']
   feature.update(points=record['polygons'][0]['outer'],osm_id=record['osm_id'],osm_version=record['version'],footprint_source='osm',geometry_status='registered-source-outline')
+  for spec in sport_specs:
+   if spec['official_id']!=feature['id']:continue
+   parent=records[spec['osm_id']]
+   assert parent['version']==spec['osm_version']
+   parent_points=parent['polygons'][0]['outer']
+   transform=projective_map([a['pixel'] for a in spec['anchors']],[parent_points[a['osm_vertex']] for a in spec['anchors']])
+   feature.setdefault('sports_surfaces',[])
+   for surface in spec['surfaces']:
+    points=[transform(p) for p in surface['pixels']]
+    assert valid_ring(points) and all(inside(p,parent_points) for p in points)
+    feature['sports_surfaces'].append(dict(id=surface['id'],points=points,source='official-lm30-local-registration',refinement_id=spec['id']))
+  if feature['id']=='39327816':
+   parts=[records[k] for k in ['way/375541050','way/1381450455','way/1381450456']]
+   feature['osm_geometry_sources']=[dict(osm_id=p['osm_id'],osm_version=p['version']) for p in parts]
+   # Cancel shared edges of these three contiguous archived polygons; do not
+   # replace the complete official sports area with only its northern section.
+   edges={}
+   for part in parts:
+    ring=[tuple(p) for p in part['polygons'][0]['outer']]
+    for a,b in zip(ring,ring[1:]+ring[:1]):
+     if (b,a) in edges:del edges[(b,a)]
+     else:edges[(a,b)]=True
+   first=next(iter(edges))[0];outline=[first];current=first
+   while edges:
+    following=[b for a,b in edges if a==current]
+    assert len(following)==1,'Sports union is not one closed exterior'
+    following=following[0];del edges[(current,following)];current=following
+    if current==first:break
+    outline.append(current)
+   assert not edges and valid_ring(outline)
+   feature['points']=[list(p) for p in outline]
+   south=parts[-1]
+   feature['sports_surfaces'].append(dict(osm_id=south['osm_id'],osm_version=south['version'],points=south['polygons'][0]['outer']))
   if feature['id']=='2304789':
    feature['sports_surfaces']=[]
    for way_id in range(1076344146,1076344152):
