@@ -1,0 +1,442 @@
+{
+  "reviewed": "2026-09-16",
+  "scope": "仅已配准、已建模的照片可见区段；材质类别与颜色是视觉近似，非施工材料鉴定或实测。细节比例未重新测量。",
+  "buildings": {
+    "77931": {
+      "status": "applied",
+      "finish": "ceramic",
+      "color": "b8b6a3",
+      "reference": {
+        "photo": "photos/77931-0.jpg",
+        "photo_id": 79703,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77931_20160302113542791.jpg"
+      },
+      "shell_materials": [
+        "EDA residence pale tile"
+      ],
+      "regions": [
+        {
+          "edge": 9,
+          "span": [
+            0.14,
+            0.86
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 0,
+          "span": [
+            0.26174067272345686,
+            0.3382593272765431
+          ],
+          "bottom": 3.9,
+          "top": 21.45
+        },
+        {
+          "edge": 0,
+          "span": [
+            0.6617406727234568,
+            0.7382593272765431
+          ],
+          "bottom": 3.9,
+          "top": 21.45
+        }
+      ],
+      "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
+      "profile": "residence_facades.json#77931"
+    },
+    "77933": {
+      "status": "applied",
+      "finish": "ceramic",
+      "color": "b8b6a3",
+      "reference": {
+        "photo": "photos/77933-0.jpg",
+        "photo_id": 79702,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg"
+      },
+      "shell_materials": [
+        "EDA residence pale tile"
+      ],
+      "regions": [
+        {
+          "edge": 7,
+          "span": [
+            0.14,
+            0.86
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 6,
+          "span": [
+            0.40164803987221637,
+            0.5983519601277836
+          ],
+          "bottom": 3.9,
+          "top": 18.299999999999997
+        }
+      ],
+      "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
+      "profile": "residence_facades.json#77933"
+    },
+    "77935": {
+      "status": "applied",
+      "finish": "ceramic",
+      "color": "b8b6a3",
+      "reference": {
+        "photo": "photos/77935-0.jpg",
+        "photo_id": 79701,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77935_20160302113438786.jpg"
+      },
+      "shell_materials": [
+        "EDA residence pale tile"
+      ],
+      "regions": [
+        {
+          "edge": 4,
+          "span": [
+            0.14,
+            0.86
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        }
+      ],
+      "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
+      "profile": "residence_facades.json#77935"
+    },
+    "77937": {
+      "status": "applied",
+      "finish": "ceramic",
+      "color": "b8b6a3",
+      "reference": {
+        "photo": "photos/77937-0.jpg",
+        "photo_id": 79700,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77937_2016030211335637.jpg"
+      },
+      "shell_materials": [
+        "EDA residence pale tile"
+      ],
+      "regions": [
+        {
+          "edge": 7,
+          "span": [
+            0.18,
+            0.82
+          ],
+          "bottom": 3.7,
+          "top": 15.325
+        }
+      ],
+      "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
+      "profile": "residence_facades.json#77937"
+    },
+    "77938": {
+      "status": "applied",
+      "finish": "ceramic",
+      "color": "b8b6a3",
+      "reference": {
+        "photo": "photos/77938-0.jpg",
+        "photo_id": 79699,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77938_20160302113344746.jpg"
+      },
+      "shell_materials": [
+        "EDA residence pale tile"
+      ],
+      "regions": [
+        {
+          "edge": 5,
+          "span": [
+            0.18,
+            0.82
+          ],
+          "bottom": 3.7,
+          "top": 15.325
+        }
+      ],
+      "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
+      "profile": "residence_facades.json#77938"
+    },
+    "77941": {
+      "status": "applied",
+      "finish": "ceramic",
+      "color": "b8b6a3",
+      "reference": {
+        "photo": "photos/77941-0.jpg",
+        "photo_id": 79698,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77941_20160302113258884.jpg"
+      },
+      "shell_materials": [
+        "EDA residence pale tile"
+      ],
+      "regions": [
+        {
+          "edge": 7,
+          "span": [
+            0.05,
+            0.45
+          ],
+          "bottom": 3.7,
+          "top": 21.625
+        }
+      ],
+      "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
+      "profile": "residence_facades.json#77941"
+    },
+    "77925": {
+      "status": "applied",
+      "finish": "mineral",
+      "color": "77796f",
+      "reference": {
+        "photo": "photos/77925-0.jpg",
+        "photo_id": 79686,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77925_20160302105742896.jpg"
+      },
+      "shell_materials": [
+        "EDA academic 77796f"
+      ],
+      "regions": [
+        {
+          "edge": 12,
+          "span": [
+            0.03,
+            0.97
+          ],
+          "bottom": 4.975,
+          "top": 19.425
+        }
+      ],
+      "observation": "照片可见灰色细粒墙面，只覆盖已配准窗段，塔体与其他折面不外推。",
+      "profile": "academic_facades.json#77925"
+    },
+    "77928": {
+      "status": "applied",
+      "finish": "mineral",
+      "color": "656c66",
+      "reference": {
+        "photo": "photos/77928-0.jpg",
+        "photo_id": 79685,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77928_201603021057270.jpg"
+      },
+      "shell_materials": [
+        "EDA academic 656c66"
+      ],
+      "regions": [
+        {
+          "edge": 18,
+          "span": [
+            0.22,
+            0.84
+          ],
+          "bottom": 0.9000000000000001,
+          "top": 7.8
+        }
+      ],
+      "observation": "照片可见灰色细粒墙面，只覆盖已配准窗段，塔体与其他折面不外推。",
+      "profile": "academic_facades.json#77928"
+    },
+    "77927": {
+      "status": "applied",
+      "finish": "mineral",
+      "color": "74776e",
+      "reference": {
+        "photo": "photos/77927-0.jpg",
+        "photo_id": 79687,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77927_20160302105813117.jpg"
+      },
+      "shell_materials": [
+        "EDA academic 74776e"
+      ],
+      "regions": [
+        {
+          "edge": 3,
+          "span": [
+            0.15,
+            0.95
+          ],
+          "bottom": 4.55,
+          "top": 22.25
+        },
+        {
+          "edge": 4,
+          "span": [
+            0.12,
+            0.88
+          ],
+          "bottom": 4.75,
+          "top": 18.25
+        }
+      ],
+      "observation": "照片可见灰色细粒墙面，只覆盖已配准窗段，塔体与其他折面不外推。",
+      "profile": "academic_facades.json#77927"
+    },
+    "77921": {
+      "status": "applied",
+      "finish": "mineral",
+      "color": "777c79",
+      "reference": {
+        "photo": "photos/77921-0.jpg",
+        "photo_id": 79694,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77921_20160302113022434.jpg"
+      },
+      "shell_materials": [
+        "EDA comprehensive grey masonry"
+      ],
+      "regions": [
+        {
+          "edge": 14,
+          "span": [
+            0.06,
+            0.94
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 13,
+          "span": [
+            0.35,
+            0.65
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 5,
+          "span": [
+            0.06,
+            0.94
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 4,
+          "span": [
+            0.28,
+            0.94
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        }
+      ],
+      "observation": "照片可见灰色颗粒饰面，首层及入口保持原状态。"
+    },
+    "77914": {
+      "status": "applied",
+      "finish": "mineral",
+      "color": "817c72",
+      "reference": {
+        "photo": "photos/77914-0.jpg",
+        "photo_id": 79690,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77914_20160302110004939.jpg"
+      },
+      "shell_materials": [
+        "Information taupe masonry"
+      ],
+      "regions": [
+        {
+          "edge": 1,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 2,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 6,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 8,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        }
+      ],
+      "observation": "照片可见灰褐细粒墙面，沿用既有上部窗面配准；底层及架空区不生成贴面。"
+    },
+    "77917": {
+      "status": "applied",
+      "finish": "mineral",
+      "color": "898679",
+      "reference": {
+        "photo": "photos/77917-0.jpg",
+        "photo_id": 79691,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77917_20160302112746401.jpg"
+      },
+      "shell_materials": [
+        "Library masonry"
+      ],
+      "regions": [
+        {
+          "edge": 1,
+          "span": [
+            0.08,
+            0.96
+          ],
+          "bottom": 5,
+          "top": 17.1
+        }
+      ],
+      "observation": "只处理官方照片已配准的连接翼西面上三排窗段，弧形玻璃不贴墙面纹理。"
+    },
+    "77943": {
+      "status": "applied",
+      "finish": "square_ceramic",
+      "color": "b6aa7f",
+      "reference": {
+        "photo": "photos/77943-0.jpg",
+        "photo_id": 79682,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77943_20160302105424396.jpg"
+      },
+      "shell_materials": [],
+      "regions": [],
+      "observation": "只替换两块已配准方形面砖墙片的旧程序纹理，保持原来的方砖比例。",
+      "coverage": "existing_square_tiles"
+    },
+    "77923": {
+      "status": "deferred",
+      "reference": {
+        "photo": "photos/77923-0.jpg",
+        "photo_id": 79697,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77923_20160302113154275.jpg"
+      },
+      "reason": "主立面为玻璃与金属，近地石质部位被植被遮挡且未独立配准，不把墙面纹理套到曲面金属屋顶。"
+    },
+    "2304982": {
+      "status": "deferred",
+      "profile": "seventh-residence/profile.json",
+      "reason": "竣工照片已归档但外墙尚未配准，施工照与设计效果图不能证明最终面材，不新增纹理。"
+    },
+    "77912": {
+      "status": "deferred",
+      "reference": {
+        "photo": "photos/77912-0.jpg",
+        "photo_id": 80738,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77912_20160303150816293.jpg"
+      },
+      "reason": "现有场景仅保留官方校门地面轮廓，无照片配准的立体墙面，不为贴图另建门体。"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "date": "2026-09-16",
+  "asset": "apps/game/assets/textures/buildings/small_ceramic_tiles_albedo.png",
+  "mode": "built-in image_gen",
+  "prompt": "Use case: photorealistic-natural. Asset type: seamless tileable 3D game exterior ceramic wall ALBEDO texture, square 1024x1024. Create a neutral near-white small rectangular ceramic facing tile texture, inspired only by the material category visible in the attached campus photos (reference only; do not reproduce buildings or photos). Exactly 4 columns and 8 rows of horizontally elongated tiles, aligned stack bond, each tile twice as wide as tall. Perfect orthographic front view, full-bleed edge-to-edge repeat with continuous narrow cool-gray grout lines, including matching half-width grout at opposing outer edges. Clean lightly aged exterior glazed ceramic with subtle fine grain, very restrained individual tile tone variation, no cracks or damage. Near-white neutral color so the game can tint it pale yellow or ivory. Flat diffuse lighting, no directional shadows, no reflections, no vignette, no gradients, no perspective. No windows, buildings, objects, vegetation, text or watermark. One material swatch only, not a collage, not a rendered sphere. Seamless left/right and top/bottom.",
+  "references": [
+    {
+      "feature_id": "77390",
+      "photo": "photos/77390-3.jpg",
+      "index": "photos/77390.json",
+      "use": "厚邦楼已配准的矩形面砖墙面，材料类别参考，沿用原有颜色与覆盖范围",
+      "photo_id": 825441,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77390_20190923162856865.jpg"
+    },
+    {
+      "feature_id": "77487",
+      "photo": "photos/77487-0.jpg",
+      "index": "photos/77487.json",
+      "photo_id": 78259,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77487_20160224170526326.jpg",
+      "use": "校医院已配准转角浅黄色小面砖，材料类别参考"
+    }
+  ],
+  "mapping": {
+    "repeat_metres": 0.4,
+    "columns": 4,
+    "rows": 8,
+    "dimensions": "沿用已有近似，非实测",
+    "uv": "墙面局部米制坐标，窗口周围切块共用原点",
+    "source_pixels": [
+      1254,
+      1254
+    ],
+    "import_size_limit": 1024,
+    "mipmaps": true,
+    "compression": "S3TC / ETC2",
+    "roughness": 0.72
+  },
+  "limitations": [
+    "生成图不是实景采样或测绘结果，不证明微观纹理、砖尺寸和老化程度",
+    "仅颜色贴图，无扫描法线或粗糙度贴图；保留固定粗糙度",
+    "对边并非逐像素相同；已在重复铺贴近远景中检查，不能承诺数学无缝",
+    "原始参考照片不打包，不将本生成素材标记为 CC0"
+  ],
+  "public_candidates": [
+    {
+      "name": "Poly Haven Long White Tiles",
+      "url": "https://polyhaven.com/a/long_white_tiles",
+      "license": "CC0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": "Jenelle van Heerden, Sergej Majboroda",
+      "decision": "未接入：长条砖比例与破损、旧化程度不符本次照片参考"
+    },
+    {
+      "name": "Poly Haven Beige Wall 001",
+      "url": "https://polyhaven.com/a/beige_wall_001",
+      "license": "CC0",
+      "license_url": "https://polyhaven.com/license",
+      "authors": "Dimitrios Savva, Rico Cilliers",
+      "decision": "第一轮未替代面砖；后续扩展用于照片支持的细抹灰墙面，见 references/shared/buildings/textures.json。"
+    },
+    {
+      "name": "ambientCG",
+      "url": "https://ambientcg.com",
+      "license": "CC0",
+      "license_url": "https://docs.ambientcg.com/license/",
+      "decision": "已核对素材库许可，未下载或接入具体资产"
+    }
+  ],
+  "sha256": "b6f9b02fd6bf4ece5b37f848869d50fc8825e31f7976b627aae0278a263917b6",
+  "current_usage": "共享资源与后续三校区覆盖见 references/shared/buildings/textures.json 及各校区 texture_surfaces.json。本文件保留首次生成与两栋面砖依据。"
+}

@@ -35,4 +35,6 @@ func build(builder, group: Node3D, p: Vector2, q: Vector2, outward: Vector2, fac
    var middle := piece.get_center()
    var pos := p+direction*middle.x+outward*0.025
    var node: MeshInstance3D = builder.box(group,Vector3(pos.x,middle.y,pos.y),Vector3(piece.size.x,piece.size.y,0.03),material,"PhotoWallFinish")
+   if finish.get("finish","") == "small_tiles":
+    preload("res://tools/build_lingshui_tile_material.gd").new().map_piece(node,middle)
    node.rotation.y = rotation

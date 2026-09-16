@@ -35,3 +35,9 @@
 在仓库根目录运行 `python3 apps/game/tools/prepare_panjin.py`，再运行 `godot --headless --path apps/game --script tools/build_panjin.gd` 和 `godot --headless --path apps/game --script tools/server_export/build_worlds.gd`。工具从自身位置解析路径，只读取已归档资料，不在导出期间联网。
 
 盘锦出生点为局部 (12,0.35,-62)，位于主教学楼南侧外部。小地图与大地图自动读取注册表中的盘锦 manifest，传送沿用原有场景切换。客户端与游戏服应共同发布新模型、边界、碰撞和出生点。数据库、API、协议、依赖、环境变量及 migration 变化：无。
+
+## 照片限定表面贴图（2026-09-16）
+
+本轮核对的档案对象中，2 栋已有模型的照片配准局部使用共享表面材质，1 个对象暂缓。逐栋状态、照片 URL / ID、区段和理由见 [覆盖登记](texture_surfaces.json)，公开材质许可与生成提示词见 [共享来源](../../shared/buildings/textures.json)。
+
+贴图仅覆盖登记墙段及已有照片细部；连续窗段采用已登记窗行的包围范围，不延伸到未知背面或未确认楼层。新增表面裁剪自原墙体三角形，不封闭缺口、不创建碰撞。材料类别和细节尺度属于照片视觉近似，不证明真实材料型号、砖尺寸或微观粗糙度；玻璃反射继续使用既有材质，未新建室内。

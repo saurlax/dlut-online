@@ -23,16 +23,7 @@ func build(host, group: Node3D, points: PackedVector2Array) -> void:
 	var plinth: Material = host.material("EDA dining stone plinth",Color("7b7b6b"))
 	for mat in [wall,band,glass,metal,plinth]: mat.albedo_texture = null
 	# Small square tiles only on the individually registered visible wall portions.
-	var tile: Material = host.material("EDA dining photographed square tiles",Color("b6aa7f"))
-	var tile_image := Image.create(256,256,false,Image.FORMAT_RGB8)
-	for y in 256:
-		for x in 256:
-			var joint := x%32 == 0 or y%32 == 0
-			var tone := 0.77 if joint else 0.96+float((x/32*3+y/32*5)%7)*0.006
-			tile_image.set_pixel(x,y,Color(tone,tone,tone))
-	tile_image.generate_mipmaps()
-	tile.albedo_texture = ImageTexture.create_from_image(tile_image)
-	tile.uv1_scale = Vector3.ONE*1.25
+	var tile: Material = preload("res://tools/build_surface_materials.gd").new().material(host,"square_ceramic",Color("b6aa7f"))
 	glass.metallic = 0.3
 	glass.roughness = 0.3
 	facade.shell(points,12,0,wall)

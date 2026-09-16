@@ -61,6 +61,9 @@ func build() -> void:
 					# Point-of-interest outlines are retained as metadata, not invented statues or bridges.
 					pass
 		generated_count += 1
+	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "lingshui"):
+		quit(1)
+		return
 	preload("res://tools/build_terrain.gd").new().build(self, "lingshui")
 	merge_meshes(scene)
 	for mat in materials.values():
