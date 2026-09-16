@@ -91,7 +91,7 @@ def category(tags):
     if tags.get('leisure') in ('park','garden'): return 'garden'
     if tags.get('leisure') in ('pitch','track','stadium','sports_centre'): return 'sports'
     if tags.get('amenity') == 'parking': return 'parking'
-    if tags.get('amenity') in ('restaurant','cafe','fast_food'): return 'amenity-area'
+    if tags.get('amenity') in ('restaurant','cafe','fast_food','public_bath'): return 'amenity-area'
     if tags.get('place') == 'square': return 'square'
     if tags.get('area:highway') or tags.get('highway') == 'pedestrian' and tags.get('area') == 'yes': return 'paved-area'
     if tags.get('landuse') in ('construction','brownfield'): return 'reserve'
