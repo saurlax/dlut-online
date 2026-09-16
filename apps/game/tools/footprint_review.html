@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>建筑轮廓图面复核</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:14px/1.5 system-ui,sans-serif;color:#e6ecf2;background:#17212b}header{padding:12px 18px;border-bottom:1px solid #405366}h1{font-size:19px;margin:0 0 8px}button,select,input,textarea{font:inherit}button,select{padding:6px 10px;color:inherit;background:#253645;border:1px solid #63788a;border-radius:4px}button{cursor:pointer}button:disabled{opacity:.4;cursor:default}.bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 310px;height:calc(100vh - 123px);min-height:450px}.map{position:relative;min-width:0;overflow:hidden}canvas{display:block;width:100%;height:100%;touch-action:none}aside{padding:14px;overflow:auto;background:#1d2b38}p{margin:8px 0 14px}label{display:inline-flex;gap:5px;align-items:center}textarea{display:block;width:100%;min-height:80px;background:#12202c;color:inherit;border:1px solid #63788a;padding:8px}a{color:#83d9ef}.muted{color:#bac8d4;font-size:12px}.warning{color:#ffd795}.official{color:#ff6666}.osm{color:#40daf5}.draft{color:#ffcf4b}.status{padding:8px 0;white-space:pre-line}h2{font-size:15px;margin:18px 0 5px}#message{min-height:24px}.help{margin:8px 0 0}.hidden{display:none}@media(max-width:760px){.workspace{height:auto;display:flex;flex-direction:column}.map{height:60vh;min-height:350px}aside{overflow:visible}header{padding:10px}}
+body{height:100vh;display:flex;flex-direction:column}header{flex:none}.workspace{height:auto;flex:1;min-height:0}.map{min-height:0}aside{min-height:0}@media(max-width:760px){body{height:auto}.workspace{flex:none}.map{flex:none;min-height:350px}}
+</style>
+<header>
+<h1>建筑轮廓图面复核</h1>
+<div class="bar"><label>样本 <select id="sample"></select></label><label>操作 <select id="mode"><option value="pan">浏览底图</option><option value="move">移动草稿</option><option value="vertex">调整顶点</option><option value="trace">重新描绘</option></select></label><button id="fit">适应画面</button><button id="undo">撤销</button><button id="reset">恢复 OSM 草稿</button><button id="export">导出复核草稿</button></div>
+<p class="help muted">滚轮缩放，浏览模式拖动底图。黄色草稿独立编辑；原始 bound 与 OSM 保持不变。草稿不会自动保存，请点击保存。</p>
+</header>
+<main class="workspace"><div class="map"><canvas id="map" aria-label="官网俯视底图与三组建筑轮廓"></canvas></div><aside>
+<div class="bar"><label class="official"><input id="showOfficial" type="checkbox" checked>官网 bound</label><label class="osm"><input id="showOsm" type="checkbox" checked>OSM 初始定位</label><label class="draft"><input id="showDraft" type="checkbox" checked>修正草稿</label></div>
+<p class="warning">图面参考，不是实测。底图中的屋檐、屋顶附属物与地面墙角须区分；看不清的部分不定稿。</p>
+<div id="info"></div><div id="metrics" class="status"></div>
+<div class="bar"><button id="remove">删除选中顶点</button><button id="finish">结束描绘</button><button id="cancel">取消描绘</button></div>
+<p class="muted">调整顶点：拖动黄点；按住 Shift 点击边可增加顶点。重新描绘：逐点点击，完成后选择“结束描绘”。</p>
+<h2>复核依据与疑点</h2><textarea id="notes" aria-label="复核依据与疑点" placeholder="记录可见边界、遮挡、采用何种轮廓及待核实项"></textarea>
+<p id="message" role="status" aria-live="polite"></p>
+<h2>来源</h2><p id="sources" class="muted"></p>
+<p class="muted">© OpenStreetMap contributors，<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">ODbL</a>。底图来自大连理工大学校园地图，仅本地复核；许可未确认，不随游戏分发。</p>
+</aside></main>
+<script>
+'use strict';
+const data = /* REVIEW_DATA */null;
+const $ = id => document.getElementById(id), canvas=$('map'), ctx=canvas.getContext('2d');
+const clone = value => JSON.parse(JSON.stringify(value));
+const states=data.cases.map(c=>({points:clone(c.draft?.points||c.osm.points),notes:c.draft?.notes||'',history:[],selected:-1}));
+let index=0, view={x:0,y:0,scale:1}, drag=null, tracing=null, images=[], loaded=0, failed=0;
+const current=()=>data.cases[index], state=()=>states[index];
+const message=text=>$('message').textContent=text;
+for(const [i,c] of data.cases.entries()){
+ const option=document.createElement('option');option.value=i;option.textContent=`${c.campus} / ${c.name}`;$('sample').append(option);
+}
+function save(){state().history.push({points:clone(state().points),notes:state().notes});state().selected=-1;}
+function world(e){const r=canvas.getBoundingClientRect();return [(e.clientX-r.left-view.x)/view.scale,(e.clientY-r.top-view.y)/view.scale];}
+function resize(){const r=canvas.getBoundingClientRect();const dpr=devicePixelRatio||1;canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw();}
+function fit(){const c=current(),r=canvas.getBoundingClientRect();const ps=[...c.official.points,...c.osm.points,...state().points];const low=[0,1].map(k=>Math.min(...ps.map(p=>p[k]))-70),high=[0,1].map(k=>Math.max(...ps.map(p=>p[k]))+70);view.scale=Math.min(r.width/(high[0]-low[0]),r.height/(high[1]-low[1]));view.x=r.width/2-(low[0]+high[0])/2*view.scale;view.y=r.height/2-(low[1]+high[1])/2*view.scale;draw();}
+function polygon(ps,color,dashed=false,vertices=false,closed=true){
+ if(!ps.length)return;ctx.beginPath();ps.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));if(closed)ctx.closePath();ctx.strokeStyle=color;ctx.lineWidth=2/view.scale;ctx.setLineDash(dashed?[7/view.scale,5/view.scale]:[]);ctx.stroke();ctx.setLineDash([]);
+ if(vertices)ps.forEach((p,i)=>{ctx.beginPath();ctx.arc(p[0],p[1],(i===state().selected?6:4)/view.scale,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();ctx.strokeStyle='#14202b';ctx.lineWidth=1/view.scale;ctx.stroke();});
+}
+function valid(ps){
+ if(ps.length<3||ps.some(p=>p.length!==2||p.some(v=>!Number.isFinite(v))))return false;
+ const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+ const on=(a,b,p)=>Math.abs(cross(a,b,p))<1e-7&&p[0]>=Math.min(a[0],b[0])-1e-7&&p[0]<=Math.max(a[0],b[0])+1e-7&&p[1]>=Math.min(a[1],b[1])-1e-7&&p[1]<=Math.max(a[1],b[1])+1e-7;
+ let area=0;for(let i=0;i<ps.length;i++){
+  const a=ps[i],b=ps[(i+1)%ps.length];if(Math.hypot(a[0]-b[0],a[1]-b[1])<.01)return false;area+=a[0]*b[1]-a[1]*b[0];
+  for(let j=i+1;j<ps.length;j++){if(j===i+1||(i===0&&j===ps.length-1))continue;const c=ps[j],d=ps[(j+1)%ps.length];if((cross(a,b,c)*cross(a,b,d)<0&&cross(c,d,a)*cross(c,d,b)<0)||on(a,b,c)||on(a,b,d)||on(c,d,a)||on(c,d,b))return false;}
+ }return Math.abs(area)>1;
+}
+function draw(){
+ const r=canvas.getBoundingClientRect();ctx.clearRect(0,0,r.width,r.height);ctx.fillStyle='#334450';ctx.fillRect(0,0,r.width,r.height);ctx.save();ctx.translate(view.x,view.y);ctx.scale(view.scale,view.scale);
+ images.forEach(({img,tile})=>{if(img.complete&&img.naturalWidth)ctx.drawImage(img,tile.x,tile.y,256,256);});
+ if($('showOfficial').checked)polygon(current().official.points,'#ff4141');
+ if($('showOsm').checked)polygon(current().osm.points,'#00c5f2',true);
+ if($('showDraft').checked)polygon(tracing||state().points,'#ffc72c',false,true,tracing===null);ctx.restore();
+ ctx.font='13px system-ui';ctx.fillStyle='#102433';ctx.fillRect(12,r.height-48,205,35);ctx.fillStyle='#ffffff';ctx.fillText(`北 ↑    约 10 米（图面比例）`,20,r.height-27);ctx.fillRect(20,r.height-20,10/current().meters_per_pixel_approx*view.scale,2);
+ const changed=state().points.length!==current().osm.points.length||state().points.some((p,i)=>Math.hypot(p[0]-current().osm.points[i][0],p[1]-current().osm.points[i][1])>.01);
+ $('metrics').textContent=`草稿：${state().points.length} 个顶点，${changed?'已调整':'未调整'}\n${valid(state().points)?'几何检查：闭合且无自交':'几何检查失败：退化或自交，请修正'}\n底图 ${loaded}/${images.length}${failed?'，存在加载失败':''}`;
+ $('undo').disabled=!state().history.length;$('remove').disabled=tracing!==null||state().selected<0||state().points.length<=3;$('finish').disabled=tracing===null||!valid(tracing);$('cancel').disabled=tracing===null;
+}
+function select(){
+ index=Number($('sample').value);tracing=null;drag=null;state().selected=-1;$('mode').value='pan';$('notes').value=state().notes;message('');loaded=0;failed=0;
+ const c=current();$('info').textContent=`官方 ID ${c.official_id} / OSM way ${c.osm_way_id} v${c.osm.version}。${c.initial_alignment.status}。`;
+ $('sources').replaceChildren();for(const [title,url] of [['官网地图','http://map.dlut.edu.cn/#/home'],['OSM 对象',`https://www.openstreetmap.org/way/${c.osm_way_id}`],['OSM 编辑记录',`https://www.openstreetmap.org/changeset/${c.osm.changeset}`]]){const a=document.createElement('a');a.textContent=title;a.href=url;a.target='_blank';a.rel='noopener';$('sources').append(a,document.createElement('br'));}
+ const selectedIndex=index;images=c.tiles.map(tile=>{const img=new Image();img.onload=()=>{if(index===selectedIndex){loaded++;draw();}};img.onerror=()=>{if(index===selectedIndex){failed++;message('底图加载失败，不能作为复核依据');draw();}};img.src=tile.image;return {img,tile};});fit();
+}
+canvas.addEventListener('wheel',e=>{e.preventDefault();const p=world(e),r=canvas.getBoundingClientRect();view.scale=Math.max(.15,Math.min(10,view.scale*Math.exp(-e.deltaY*.001)));view.x=e.clientX-r.left-p[0]*view.scale;view.y=e.clientY-r.top-p[1]*view.scale;draw();},{passive:false});
+canvas.addEventListener('pointerdown',e=>{
+ if(e.button!==0)return;const p=world(e),mode=$('mode').value;if(mode!=='pan'&&!$('showDraft').checked){message('请先显示修正草稿');return;}canvas.setPointerCapture(e.pointerId);
+ if(mode==='trace'){tracing.push(p);draw();return;}
+ if(mode==='pan'){drag={mode,x:e.clientX,y:e.clientY,vx:view.x,vy:view.y};return;}
+ if(mode==='move'){save();drag={mode,start:p,original:clone(state().points)};return;}
+ const ps=state().points;let nearest=-1,dist=12/view.scale;ps.forEach((v,i)=>{const d=Math.hypot(v[0]-p[0],v[1]-p[1]);if(d<dist){nearest=i;dist=d;}});
+ if(e.shiftKey&&nearest<0){let edge=-1,best=12/view.scale,point;
+  ps.forEach((a,i)=>{const b=ps[(i+1)%ps.length],dx=b[0]-a[0],dy=b[1]-a[1],den=dx*dx+dy*dy;if(!den)return;const t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/den));const q=[a[0]+t*dx,a[1]+t*dy],d=Math.hypot(q[0]-p[0],q[1]-p[1]);if(d<best){best=d;edge=i;point=q;}});
+  if(edge>=0){save();state().points.splice(edge+1,0,point);state().selected=edge+1;draw();}return;
+ }
+ if(nearest>=0){save();state().selected=nearest;drag={mode:'vertex',vertex:nearest};}else state().selected=-1;draw();
+});
+canvas.addEventListener('pointermove',e=>{if(!drag)return;if(drag.mode==='pan'){view.x=drag.vx+e.clientX-drag.x;view.y=drag.vy+e.clientY-drag.y;}else{const p=world(e);if(drag.mode==='move')state().points=drag.original.map(v=>[v[0]+p[0]-drag.start[0],v[1]+p[1]-drag.start[1]]);else state().points[drag.vertex]=p;}draw();});
+const stop=()=>{drag=null;};canvas.addEventListener('pointerup',stop);canvas.addEventListener('pointercancel',stop);canvas.addEventListener('lostpointercapture',stop);
+$('sample').onchange=select;$('fit').onclick=fit;
+for(const id of ['showOfficial','showOsm','showDraft'])$(id).onchange=draw;
+$('mode').onchange=()=>{if(tracing!==null&&tracing.length)message('未结束的描绘已取消');tracing=$('mode').value==='trace'?[]:null;draw();};
+$('finish').onclick=()=>{if(!tracing||!valid(tracing))return;save();state().points=clone(tracing);tracing=null;$('mode').value='vertex';message('已生成图面草稿，尚未核实为建筑基底');draw();};
+$('cancel').onclick=()=>{tracing=null;$('mode').value='pan';draw();};
+$('undo').onclick=()=>{const prev=state().history.pop();if(prev){Object.assign(state(),prev);state().selected=-1;$('notes').value=state().notes;}tracing=$('mode').value==='trace'?[]:null;draw();};
+$('reset').onclick=()=>{save();state().points=clone(current().osm.points);tracing=null;$('mode').value='pan';message('已恢复初始定位，仍未验证配准');draw();};
+$('remove').onclick=()=>{if(state().selected<0||state().points.length<=3)return;const i=state().selected;save();state().points.splice(i,1);draw();};
+$('notes').oninput=()=>state().notes=$('notes').value;
+$('export').textContent='保存复核草稿';
+$('export').onclick=async()=>{
+ if(tracing!==null){message('请先结束或取消描绘');return;}
+ const invalid=states.findIndex(s=>!valid(s.points));if(invalid>=0){message(`样本 ${data.cases[invalid].name} 存在退化或自交，不能导出`);return;}
+ const result={schema_version:1,status:'unverified-map-plane-draft',exported:new Date().toISOString(),reference:'official-lm30-pixel-plane',license:{osm:'© OpenStreetMap contributors, ODbL 1.0',official_tiles:'许可未确认，仅本地参考'},cases:data.cases.map((c,i)=>{
+  const {tiles,...metadata}=c,scale=256*2**c.zoom;
+  return {...metadata,tiles:tiles.map(({image,...t})=>t),draft:{status:'unverified',points:states[i].points,notes:states[i].notes,map_numeric_lon_lat:states[i].points.map(p=>{const x=p[0]+c.pixel_origin[0],y=p[1]+c.pixel_origin[1];return [x/scale*360-180,Math.atan(Math.sinh(Math.PI*(1-2*y/scale)))*180/Math.PI];})}};
+ })};
+ try {const response=await fetch('/draft',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(result)});if(!response.ok)throw new Error(`HTTP ${response.status}`);message('已保存 draft.json 及来源记录；未修改模型或碰撞');const link=document.createElement('a');link.href='draft.json';link.target='_blank';link.textContent=' 查看草稿 JSON';$('message').append(link);}catch(error){message(`保存失败：${error.message}。请使用 footprint_review.py --serve 打开。`);}
+};
+new ResizeObserver(resize).observe(canvas);select();
+</script>
+</html>

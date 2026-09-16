@@ -19,5 +19,21 @@
     "map3DParams描述官网三维示意图与二维坐标之间的转换，不可直接用它修正当前Godot轮廓或卫星配准。",
     "这些代码未声明二维坐标的地理基准，也不证明接口轮廓具有测绘精度。七舍及实验室的影像对应仍需地物控制点验证，不能由图像偏移推定旋转或高度。"
   ],
-  "model_use": "保留官方Feature和轮廓。此记录只排除重复三维坐标变换，未完成影像配准，不改变模型、建筑高度或朝向。"
+  "model_use": "原始 Feature 和 bound 保留为来源档案，不再视为已核实建筑基底。此记录及复核工具不直接改变现有模型、建筑高度或朝向。",
+  "footprint_review": {
+    "date": "2026-09-16",
+    "sample_feature_id": "77387",
+    "finding": "同一组六顶点按官网公式叠在 last 斜视瓦片时贴合厚民楼屋顶及可见侧墙的整体外轮廓；直接叠在 lm30 二维瓦片时偏离主体，伸入停车区。坐标存储形式不能证明几何含义为建筑基底。",
+    "usage": "drawBounds 将轮廓用作交互区，仅在斜视模式悬停/点击时填色高亮。geoToGeo3D 不使用建筑高度，不能消除屋顶与墙脚间的投影偏移。",
+    "reference_frame": "可以使用 lm30 图面像素作为离线比较框架；未确认地理基准、实测精度、底图现势性及屋檐和地面墙脚的区别。",
+    "alignment_warning": "两校区 terrain/alignment.json 由旧 bound 质心估计的平移仅用于初始定位，不作为已验证建筑配准。盘锦单样本质心重合也仅为定位提示。不得把修正后单栋偏移推广到整个校区。",
+    "tool": "apps/game/tools/footprint_review.py",
+    "samples": "references/shared/mapping/footprint-review.json",
+    "commands": [
+      "python apps/game/tools/footprint_review.py --download --serve",
+      "python apps/game/tools/footprint_review.py --serve"
+    ],
+    "operation": "默认本机 8769 端口，可用 --port 指定。滚轮缩放、浏览模式拖图；黄线草稿可整体移动、拖顶点、Shift 点击边加点、删除选中点或重新描绘，支持撤销。点击保存后写入 .local/footprint-review/draft.json，刷新和再次生成会校验来源后恢复。缓存不自动刷新；更新来源应使用新的 --output 目录，旧草稿不跨源套用。",
+    "draft_limits": "所有保存结果均为未验证图面草稿，不自动更新校园 manifest、模型、立面索引或碰撞。当前仅闭合单 way 样本，不处理 OSM multipolygon、内院或全校区批量匹配。底图可见范围之外不修正；全部修改需继续结合照片或平面数据复核。"
+  }
 }
