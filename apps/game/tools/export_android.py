@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export a release-mode arm64 test APK using installed Android SDK and JDK 17 tools."""
+"""Export an arm64 test APK with Godot's official Gradle template and JDK 17."""
 import argparse
 import json
 import os
@@ -8,17 +8,14 @@ import subprocess
 import re
 import sys
 import zipfile
-import tempfile
-
-from android_resources import rewrite_apk
 
 GAME = Path(__file__).resolve().parents[1]
 
 
-def run(*args, **kwargs):
+def run(*args, timeout=600, **kwargs):
     result = subprocess.run([str(arg) for arg in args], cwd=GAME,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                            text=True, encoding='utf-8', timeout=600, **kwargs)
+                            text=True, encoding='utf-8', timeout=timeout, **kwargs)
     print(result.stdout, end="", flush=True)
     result.check_returncode()
     errors = [line for line in result.stdout.splitlines() if "ERROR:" in line]
@@ -37,8 +34,18 @@ def main():
     args = parser.parse_args()
     run(sys.executable, GAME / 'tools/build_brand_icons.py', '--check')
     sdk, java = args.sdk.resolve(), args.java.resolve()
-    build_tools = sdk / 'build-tools' / '35.0.0'
-    for tool in (java / 'bin/java', java / 'bin/keytool', build_tools / 'aapt', build_tools / 'apksigner', build_tools / 'zipalign', sdk / 'platform-tools/adb'):
+    build_tools = sdk / 'build-tools' / '36.1.0'
+
+    def executable(directory, name):
+        suffix = '.bat' if name == 'apksigner' else '.exe'
+        return directory / (name + suffix if sys.platform == 'win32' else name)
+
+    java_bin = executable(java / 'bin', 'java')
+    keytool = executable(java / 'bin', 'keytool')
+    aapt = executable(build_tools, 'aapt')
+    apksigner = executable(build_tools, 'apksigner')
+    zipalign = executable(build_tools, 'zipalign')
+    for tool in (java_bin, keytool, aapt, apksigner, zipalign, executable(sdk / 'platform-tools', 'adb')):
         if not tool.is_file():
             parser.error(f'Missing tool: {tool}')
     output = GAME / 'build/android/DLUT-Online-Android.apk'
@@ -47,7 +54,7 @@ def main():
     keystore = Path.home() / '.android/debug.keystore'
     keystore.parent.mkdir(parents=True, exist_ok=True)
     if not keystore.exists():
-        run(java / 'bin/keytool', '-genkeypair', '-keystore', keystore,
+        run(keytool, '-genkeypair', '-keystore', keystore,
             '-storepass', 'android', '-keypass', 'android', '-alias', 'androiddebugkey',
             '-dname', 'CN=Android Debug,O=Android,C=US', '-keyalg', 'RSA',
             '-keysize', '2048', '-validity', '10000')
@@ -84,27 +91,17 @@ def main():
     output.unlink(missing_ok=True)
     # Release build mode is independent of the default debug signing identity.
     export_environment = dict(os.environ,
+        JAVA_HOME=str(java),
+        ANDROID_HOME=str(sdk),
         GODOT_ANDROID_KEYSTORE_RELEASE_PATH=str(keystore),
         GODOT_ANDROID_KEYSTORE_RELEASE_USER='androiddebugkey',
         GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD='android')
-    run(args.godot, '--headless', '--export-release', 'Android', output, env=export_environment)
+    # Godot installs the matching official android_source.zip; generated Gradle
+    # files stay ignored, so neither local nor CI builds need a maintained fork.
+    run(args.godot, '--headless', '--install-android-build-template',
+        '--export-release', 'Android', output, env=export_environment, timeout=1800)
     environment = dict(os.environ, JAVA_HOME=str(java))
-    manifest = run(build_tools / 'aapt', 'dump', 'xmltree', output, 'AndroidManifest.xml')
-    package = re.search(r'A: package="([^"]+)"', manifest)
-    if not package:
-        raise RuntimeError('Missing manifest package name')
-    package_name = package[1]
-    # Keep the resource namespace in sync with the manifest for OEM launchers.
-    # Never distribute the modified ZIP without re-aligning and re-signing it.
-    with tempfile.TemporaryDirectory(prefix='android-resources-', dir=output.parent) as temporary:
-        unsigned = Path(temporary) / 'unsigned.apk'
-        aligned = Path(temporary) / 'aligned.apk'
-        rewrite_apk(output, unsigned, package_name)
-        run(build_tools / 'zipalign', '-P', '16', '4', unsigned, aligned)
-        run(build_tools / 'apksigner', 'sign', '--ks', keystore,
-            '--ks-key-alias', 'androiddebugkey', '--ks-pass', 'pass:android',
-            '--key-pass', 'pass:android', aligned, env=environment)
-        aligned.replace(output)
+    manifest = run(aapt, 'dump', 'xmltree', output, 'AndroidManifest.xml')
     with zipfile.ZipFile(output) as apk:
         names = apk.namelist()
         libraries = [name for name in names if name.startswith('lib/') and name.endswith('.so')]
@@ -123,8 +120,8 @@ def main():
                   if 'A: android:debuggable(' in line]
     if any(value != '(type 0x12)0x0' for value in debuggable):
         raise RuntimeError('Expected a non-debuggable Release APK')
-    run(build_tools / 'apksigner', 'verify', '--verbose', output, env=environment)
-    run(build_tools / 'zipalign', '-c', '-P', '16', '4', output)
+    run(apksigner, 'verify', '--verbose', output, env=environment)
+    run(zipalign, '-c', '-P', '16', '4', output)
     print(f'Verified Release test APK: {output} ({output.stat().st_size / 1048576:.1f} MiB)')
 
 
