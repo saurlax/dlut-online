@@ -189,6 +189,12 @@ func build() -> void:
 	var angle := deg_to_rad(float(profile.rotation_degrees))
 	right = Vector2(cos(angle),sin(angle))
 	forward = Vector2(-sin(angle),cos(angle))
+	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
+	if manifest.has("legacy_reference_transform"):
+		var registration: Dictionary = manifest.legacy_reference_transform
+		origin = Vector2(origin.x*float(registration.scale_x)+float(registration.offset_xz[0]),origin.y+float(registration.offset_xz[1]))
+		right.x *= float(registration.scale_x)
+		forward.x *= float(registration.scale_x)
 	scene.name = "PhotoRoadDetails"
 	root.add_child(scene)
 	scene.set_meta("source", "references/lingshui/mapping/road-details.json")

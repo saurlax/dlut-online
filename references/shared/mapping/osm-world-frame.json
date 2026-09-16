@@ -7,7 +7,7 @@
   "meter_per_degree": 111320,
   "longitude_scale": "111320 * cos(origin_latitude)",
   "old_official_shift_applied": false,
-  "status": "migration-in-progress; eda and panjin shared frames active with explicitly retained legacy shapes; lingshui pending",
+  "status": "migration-in-progress; all three shared frames active with explicitly retained legacy shapes and coverage gaps",
   "campuses": {
     "lingshui": {
       "origin_lon_lat": [
