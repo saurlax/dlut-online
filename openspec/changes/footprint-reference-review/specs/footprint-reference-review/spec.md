@@ -14,6 +14,7 @@
 
 - **WHEN** 来源只有可浏览页面、目录或未配准栅格
 - **THEN** 不生成虚假 bound，不将其计为独立几何证据
+- **AND** 对比页列明各来源实际取得的资料，区分几何来源数量和样本数量；候选明确标为派生数据，重合线使用不同宽度与虚实线，并支持逐层开关
 
 ### Requirement: Separate source outlines from review drafts
 
