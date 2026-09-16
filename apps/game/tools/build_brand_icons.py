@@ -22,10 +22,16 @@ def main():
                 '  <title>DLUT Online</title>\n' + body + '\n</svg>\n')
 
     white = '  <rect width="512" height="512" fill="#FFFFFF"/>'
+    # Legacy launchers/installers may display this bitmap without applying a mask.
+    # Keep a transparent 6.25% outer inset and round the white tile itself.
+    legacy_tile = '  <rect x="32" y="32" width="448" height="448" rx="100" fill="#FFFFFF"/>'
     files = {
-        "android_icon.svg": svg(512, white + '\n  <g transform="translate(30.72 30.72) scale(0.88)">\n' + shapes + '\n  </g>'),
-        # 212 * .72 * 432 / 512 = 128.79 px radius, inside Android's 132 px safe circle.
-        "android_icon_foreground.svg": svg(432, '  <g transform="translate(71.68 71.68) scale(0.72)">\n' + shapes + '\n  </g>'),
+        "android_icon.svg": svg(512, legacy_tile + '\n  <g transform="translate(71.68 71.68) scale(0.72)">\n' + shapes + '\n  </g>'),
+        # The launcher shows the central 72dp of the 108dp adaptive canvas.
+        # 212 * .56 * 432 / 512 = 100.17 px radius: ~70% of that visible area,
+        # with comfortable padding inside Android's 132 px safe circle.
+        "android_icon_foreground.svg": svg(432, '  <g transform="translate(112.64 112.64) scale(0.56)">\n' + shapes + '\n  </g>'),
+        # Adaptive backgrounds must stay full bleed; the launcher supplies the mask.
         "android_icon_background.svg": svg(432, white),
     }
     for name, content in files.items():
