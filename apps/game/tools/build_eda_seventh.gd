@@ -30,6 +30,19 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 	var raised: Dictionary = profile.raised_podium
 	var raised_points := PackedVector2Array()
 	for p in raised.points: raised_points.append(Vector2(p[0],p[1]))
+	if profile.has("raised_registration"):
+		var spec: Dictionary = profile.raised_registration
+		var start: Array = profile.tower_points[int(spec.start_vertex)]
+		var finish: Array = profile.tower_points[int(spec.end_vertex)]
+		var a := Vector2(start[0],start[1])
+		var b := Vector2(finish[0],finish[1])
+		var axis := (b-a).normalized()
+		var courtyard := Vector2(-axis.y,axis.x)
+		a += axis*float(spec.start_inset)
+		b -= axis*float(spec.end_inset)
+		raised_points = PackedVector2Array([a,b,b+courtyard*float(spec.width),a+courtyard*float(spec.width)])
+		for point in raised_points:
+			assert(Geometry2D.is_point_in_polygon(point,points),"Raised podium left the registered compound")
 	shell(builder,group,raised_points,float(raised.height),podium,white,"RaisedPodium")
 	# Only the two outer roof edges visible in the construction aerial.
 	var parapet: Dictionary = raised.parapet
@@ -67,7 +80,8 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 		shell(builder,group,strip,height,roof_y,white,"TowerRoofParapet")
 	# Do not invent rooftop equipment or rooms.
 	# Construction photographs show two courtyard wings, not the unseen rear faces.
-	for edge in [4,5]:
+	for face in profile.get("courtyard_faces",[{"edge":4,"columns":9},{"edge":5,"columns":12}]):
+		var edge := int(face.edge)
 		var a := tower[edge]
 		var b := tower[(edge+1)%tower.size()]
 		var axis := (b-a).normalized()
@@ -75,7 +89,7 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 		if Geometry2D.is_point_in_polygon((a+b)*0.5+out,tower): out = -out
 		var angle := -atan2(axis.y,axis.x)
 		var length := a.distance_to(b)
-		var columns := 9 if edge == 4 else 12
+		var columns := int(face.columns)
 		var spacing := length/columns
 		var storey := (height-podium-1.5)/13.0
 		for row in 13:

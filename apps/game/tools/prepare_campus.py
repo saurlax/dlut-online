@@ -59,6 +59,7 @@ selected={'77914':'way/1422474847','77921':'way/232559719','77917':'way/14224748
           '39327816':'way/375541050',
           '39327169':'way/1076344139',
           '77943':'way/375541048',
+          '2304982':'way/375541049',
           '77931':'way/309375779','77933':'way/309375778','77935':'way/309375777','77937':'way/309375780','77941':'way/375541046',
           '2304775':'way/232560296','39328846':'way/232560016',
           '2304759':'way/232560269','2304752':'way/1381450450'}
@@ -71,6 +72,27 @@ for feature in features:
   feature.update(points=record['polygons'][0]['outer'],osm_id=record['osm_id'],osm_version=record['version'],footprint_source='osm',geometry_status='registered-source-outline')
   if feature['id']=='77943':
    feature.update(osm_geometry_category=record['category'],geometry_status='photo-reviewed-amenity-outline; provisional geometry')
+  if feature['id']=='2304982':
+   parts=[records[p['osm_id']] for p in seventh_profile['source_review']['parts']]
+   for part,spec in zip(parts,seventh_profile['source_review']['parts']):
+    assert part['version']==spec['osm_version'] and len(part['polygons'][0]['outer'])==spec['expected_vertices']
+   feature['building_parts']=[dict(role=spec['role'],osm_id=part['osm_id'],osm_version=part['version'],points=part['polygons'][0]['outer']) for part,spec in zip(parts,seventh_profile['source_review']['parts'])]
+   edges={}
+   for part in parts:
+    ring=[tuple(p) for p in part['polygons'][0]['outer']]
+    for a,b in zip(ring,ring[1:]+ring[:1]):
+     if (b,a) in edges:del edges[(b,a)]
+     else:edges[(a,b)]=True
+   first=next(iter(edges))[0];outline=[first];current=first
+   while edges:
+    following=[b for a,b in edges if a==current]
+    assert len(following)==1,'Seventh compound outline must retain both adjacent source parts'
+    following=following[0];del edges[(current,following)];current=following
+    if current==first:break
+    outline.append(current)
+   assert not edges and valid_ring(outline)
+   feature['points']=[list(p) for p in outline]
+   feature['geometry_status']='photo-reviewed-compound-outline; provisional geometry'
   for spec in sport_specs:
    if spec['official_id']!=feature['id']:continue
    parent=records[spec['osm_id']]
