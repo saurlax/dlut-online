@@ -106,6 +106,15 @@ def main():
                 assert candidate['osm_id']==registration['osm_id'] and candidate['osm_version']==registration['osm_version']
                 assert len(ring)==registration['expected_vertices']
                 feature['facade']={**feature['facade'],**registration['profile']}
+                if 'ground_ring_uv' in registration:
+                    # Photo-supported refinements within a registered four-corner source.
+                    # U runs from source corner 0 to 3; V from the north to south edge.
+                    assert len(ring)==4 and 'ground_ring_indices' not in registration
+                    uv=registration['ground_ring_uv']
+                    assert len(uv)>=3 and len({tuple(p) for p in uv})==len(uv)
+                    assert all(len(p)==2 and all(isinstance(v,(int,float)) and math.isfinite(v) and 0<=v<=1 for v in p) for p in uv)
+                    feature['osm_source_points']=ring
+                    ring=[[(1-v)*((1-u)*ring[0][axis]+u*ring[3][axis])+v*((1-u)*ring[1][axis]+u*ring[2][axis]) for axis in range(2)] for u,v in uv]
                 if 'ground_ring_indices' in registration:
                     indices=registration['ground_ring_indices']
                     assert len(indices)>=3 and len(set(indices))==len(indices)
