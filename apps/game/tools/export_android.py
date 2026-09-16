@@ -8,6 +8,9 @@ import subprocess
 import re
 import sys
 import zipfile
+import tempfile
+
+from android_resources import rewrite_apk
 
 GAME = Path(__file__).resolve().parents[1]
 
@@ -15,7 +18,7 @@ GAME = Path(__file__).resolve().parents[1]
 def run(*args, **kwargs):
     result = subprocess.run([str(arg) for arg in args], cwd=GAME,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                            text=True, timeout=600, **kwargs)
+                            text=True, encoding='utf-8', timeout=600, **kwargs)
     print(result.stdout, end="", flush=True)
     result.check_returncode()
     errors = [line for line in result.stdout.splitlines() if "ERROR:" in line]
@@ -85,6 +88,23 @@ def main():
         GODOT_ANDROID_KEYSTORE_RELEASE_USER='androiddebugkey',
         GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD='android')
     run(args.godot, '--headless', '--export-release', 'Android', output, env=export_environment)
+    environment = dict(os.environ, JAVA_HOME=str(java))
+    manifest = run(build_tools / 'aapt', 'dump', 'xmltree', output, 'AndroidManifest.xml')
+    package = re.search(r'A: package="([^"]+)"', manifest)
+    if not package:
+        raise RuntimeError('Missing manifest package name')
+    package_name = package[1]
+    # Keep the resource namespace in sync with the manifest for OEM launchers.
+    # Never distribute the modified ZIP without re-aligning and re-signing it.
+    with tempfile.TemporaryDirectory(prefix='android-resources-', dir=output.parent) as temporary:
+        unsigned = Path(temporary) / 'unsigned.apk'
+        aligned = Path(temporary) / 'aligned.apk'
+        rewrite_apk(output, unsigned, package_name)
+        run(build_tools / 'zipalign', '-P', '16', '4', unsigned, aligned)
+        run(build_tools / 'apksigner', 'sign', '--ks', keystore,
+            '--ks-key-alias', 'androiddebugkey', '--ks-pass', 'pass:android',
+            '--key-pass', 'pass:android', aligned, env=environment)
+        aligned.replace(output)
     with zipfile.ZipFile(output) as apk:
         names = apk.namelist()
         libraries = [name for name in names if name.startswith('lib/') and name.endswith('.so')]
@@ -99,12 +119,10 @@ def main():
                 raise RuntimeError(f'Missing campus: {campus}')
         if any('/scripts/server/' in name or '/references/' in name for name in names):
             raise RuntimeError('Unexpected server code or offline references')
-    manifest = run(build_tools / 'aapt', 'dump', 'xmltree', output, 'AndroidManifest.xml')
     debuggable = [line.split('=', 1)[1].strip() for line in manifest.splitlines()
                   if 'A: android:debuggable(' in line]
     if any(value != '(type 0x12)0x0' for value in debuggable):
         raise RuntimeError('Expected a non-debuggable Release APK')
-    environment = dict(os.environ, JAVA_HOME=str(java))
     run(build_tools / 'apksigner', 'verify', '--verbose', output, env=environment)
     run(build_tools / 'zipalign', '-c', '-P', '16', '4', output)
     print(f'Verified Release test APK: {output} ({output.stat().st_size / 1048576:.1f} MiB)')
