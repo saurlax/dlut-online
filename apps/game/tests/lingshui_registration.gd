@@ -9,9 +9,9 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
+		if feature.id not in ["77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
-		if feature.id in ["77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
+		if feature.id in ["77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
 			var outline := PackedVector2Array()
 			for p in feature.points: outline.append(Vector2(p[0],p[1]))
 			var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
@@ -41,7 +41,7 @@ func check() -> void:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
 		checked += 1
-	assert(checked==33)
+	assert(checked==37)
 	await physics_frame
 	await physics_frame
 	for sample in [["77412",384.25,-235],["77413",444.86,-239]]:
@@ -113,5 +113,10 @@ func check() -> void:
 			var p := Vector3(sample[1],residence.position.y+level,sample[2])
 			var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.08,p-Vector3.UP*0.08))
 			assert(not hit.is_empty() and absf(hit.position.y-p.y)<0.02,"East-end window platform slab detached")
-	print("LINGSHUI REGISTRATION PASS: thirty-three roofs, registered walls and forty-three residence platform floors and two gabled roofs")
+	for sample in [["77564", 728.454, -182.323, 11.48], ["77564", 719.551, -181.823, 11.48], ["77564", 716.583, -181.656, 11.48], ["77564", 719.551, -181.823, 7.93], ["77564", 716.583, -181.656, 7.93], ["77565", 785.397, -81.835, 4.38], ["77565", 785.397, -81.835, 7.93], ["77565", 785.397, -81.835, 11.48], ["77565", 776.496, -81.334, 4.38], ["77565", 776.496, -81.334, 7.93], ["77565", 776.496, -81.334, 11.48], ["77565", 773.529, -81.167, 4.38], ["77565", 773.529, -81.167, 7.93], ["77565", 773.529, -81.167, 11.48], ["77565", 764.629, -80.666, 4.38], ["77565", 764.629, -80.666, 7.93], ["77565", 764.629, -80.666, 11.48], ["77566", 781.394, -107.237, 4.38], ["77566", 781.394, -107.237, 7.93], ["77566", 781.394, -107.237, 11.48], ["77567", 776.315, -132.196, 4.38], ["77567", 776.315, -132.196, 7.93], ["77567", 776.315, -132.196, 11.48]]:
+		var residence: Node3D = model.get_node("Feature_"+str(sample[0])+"_0")
+		var p := Vector3(sample[1],residence.position.y+sample[3],sample[2])
+		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.08,p-Vector3.UP*0.08))
+		assert(not hit.is_empty() and absf(hit.position.y-p.y)<0.02,"East residences 39-42 platform collision detached")
+	print("LINGSHUI REGISTRATION PASS: thirty-seven roofs, registered walls and sixty-six residence platform floors and two gabled roofs")
 	quit()
