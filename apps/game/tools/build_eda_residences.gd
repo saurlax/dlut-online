@@ -98,6 +98,10 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	var edge := int(profile.edge)
 	origin = points[edge]
 	var end := points[(edge+1)%points.size()]
+	if profile.get("reverse_edge",false):
+		assert(not profile.has("end_gallery"),"Recessed gallery needs explicit reversed polygon registration")
+		origin = points[(edge+1)%points.size()]
+		end = points[edge]
 	axis = (end-origin).normalized()
 	outward = Vector2(axis.y,-axis.x)
 	if Geometry2D.is_point_in_polygon((origin+end)*0.5+outward,points):
