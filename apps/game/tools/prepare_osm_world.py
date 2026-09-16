@@ -96,7 +96,7 @@ def category(tags):
     return None
 
 
-def build(campus, include_outside=False):
+def build(campus, include_outside=False, refine=False):
     source,nodes,ways,relations = osm.archive(campus)
     spec = osm.frame(campus)
     boundary = [osm.local(campus,*p) for p in osm.way_coordinates(ways[spec['boundary_way']],nodes)[:-1]]
@@ -173,6 +173,9 @@ def build(campus, include_outside=False):
         if r['category']=='building' and r['tags'].get('name'):
             names[r['tags']['name']].append(r['osm_id'])
     conflicts=[{'name':n,'osm_ids':ids,'status':'identity-review-required'} for n,ids in names.items() if len(ids)>1]
+    if refine:
+        from refine_osm_footprints import refine as refine_record
+        records=[refine_record(campus,r) for r in records]
     return {'schema_version':1,'campus_id':campus,'status':'migration-input-not-runtime',
             'scope_selection':'full-archive' if include_outside else 'university-boundary-intersection',
             'coordinate_frame':str(osm.FRAME_PATH.relative_to(osm.ROOT)).replace('\\','/'),
@@ -189,9 +192,10 @@ def build(campus, include_outside=False):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,default=osm.ROOT/'.local/osm-world')
+    parser.add_argument('--refine',action='store_true',help='Apply recorded image-supported refinements; preserve original rings')
     args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=True)
     for campus in ('lingshui','eda','panjin'):
-        data=build(campus)
+        data=build(campus,refine=args.refine)
         (args.output/(campus+'.json')).write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         print(campus,dict(Counter(r['category'] for r in data['areas'])),
               'lines',len(data['lines']),'points',len(data['points']),
