@@ -18,6 +18,12 @@
 - **AND** 连续高程通过同一 WGS84 地理点采样已归档 DSM，缺少来源时不能推断为零高程
 - **AND** 尚未核对身份、立面锚点及关联设施的数据仅作为离线迁移输入，不能表示运行场景已经完成切换
 
+#### Scenario: Preserve existing buildings outside the OSM university boundary
+
+- **WHEN** 既有北山宿舍等建筑位于 OSM 大学校园边界之外
+- **THEN** 身份匹配搜索完整归档，不因大学边界遗漏而删除既有建筑 ID
+- **AND** 未匹配、同名冲突及官网一个 ID 对应多个 OSM 体量的情况必须保留，不能静默丢弃或生成统一外包框
+
 ### Requirement: Evidence-based top-view refinement
 
 官网俯视图 SHALL 用于独立检查及有依据的局部轮廓修正，MUST 保存原始 OSM、配准依据、修正范围和不确定项；官网斜视交互外轮廓 MUST NOT 直接充当建筑基底。

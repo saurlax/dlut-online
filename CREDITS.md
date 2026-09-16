@@ -77,6 +77,8 @@ DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与�
 
 离线迁移工具 `apps/game/tools/prepare_osm_world.py` 按上述归档提取地表面及道路、水道等线要素，保留多环孔洞、边界相交状态和身份冲突；`prepare_osm_terrain.py` 在同一地理坐标下采样已归档的凌水及开发区 DSM，不叠加旧官网平移。候选输出位于 `.local/osm-world/`，不表示运行场景已迁移；盘锦尚无归档高程网格，不能把缺口解释为 OSM 提供的平坦地形。
 
+`apps/game/tools/prepare_osm_identities.py` 为既有建筑生成 OSM 身份清单，名称别名和显式消歧依据维护于 `references/<campus_id>/mapping/osm-identity-overrides.json`。匹配搜索完整归档，避免大学边界遗漏北山宿舍；完整归档中无关校外建筑不会因此自动加入模型。候选保留未匹配 ID、原始多边形、OSM 版本及输入摘要；名称或位置对应不证明轮廓精度，立面锚点及局部形状仍须复核。
+
 ### 2.6 建筑表面贴图
 
 

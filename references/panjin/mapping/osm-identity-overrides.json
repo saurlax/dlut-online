@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-09-16",
+  "purpose": "Identity correspondence only; footprint and facade validation tracked separately",
+  "aliases": {},
+  "objects": {
+    "77995": {
+      "osm_ids": [
+        "way/1318388491"
+      ],
+      "basis": "OSM 未命名餐馆建筑，位于 B11 与 B14 之间，与官网 B13 第八食堂的相对位置对应；旧配准仅用于身份检索，包络中心相差约4.9米，不作为最终坐标转换或精度声明。"
+    }
+  }
+}

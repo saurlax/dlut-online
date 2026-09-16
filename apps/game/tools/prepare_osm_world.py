@@ -96,7 +96,7 @@ def category(tags):
     return None
 
 
-def build(campus):
+def build(campus, include_outside=False):
     source,nodes,ways,relations = osm.archive(campus)
     spec = osm.frame(campus)
     boundary = [osm.local(campus,*p) for p in osm.way_coordinates(ways[spec['boundary_way']],nodes)[:-1]]
@@ -108,7 +108,8 @@ def build(campus):
         coverage = [scope(r,boundary) for r in outer]
         if all(s=='outside' for s in coverage):
             outside[kind] += 1
-            return
+            if not include_outside:
+                return
         if not all(valid_ring(r['points']) for r in rings):
             raise ValueError('Degenerate or self-intersecting ring')
         polygons = [{'outer':p,'holes':[]} for p in outer]
@@ -128,7 +129,8 @@ def build(campus):
                 raise ValueError('Intersecting or nested outer rings')
         records.append({'osm_id':element.tag+'/'+element.get('id'),'version':int(element.get('version')),
                         'tags':osm.tags(element),'category':kind,'polygons':polygons,
-                        'scope':'inside' if all(s=='inside' for s in coverage) else 'boundary-crossing',
+                        'scope':('inside' if all(s=='inside' for s in coverage) else
+                                 'outside' if all(s=='outside' for s in coverage) else 'boundary-crossing'),
                         'area_m2':sum(area(p['outer'])-sum(area(h) for h in p['holes']) for p in polygons)})
 
     for element in relations.values():
@@ -172,6 +174,7 @@ def build(campus):
             names[r['tags']['name']].append(r['osm_id'])
     conflicts=[{'name':n,'osm_ids':ids,'status':'identity-review-required'} for n,ids in names.items() if len(ids)>1]
     return {'schema_version':1,'campus_id':campus,'status':'migration-input-not-runtime',
+            'scope_selection':'full-archive' if include_outside else 'university-boundary-intersection',
             'coordinate_frame':str(osm.FRAME_PATH.relative_to(osm.ROOT)).replace('\\','/'),
             'origin_lon_lat':spec['origin_lon_lat'],'axes':'X east, Z south; metres',
             'source':source,'boundary_osm_id':'way/'+spec['boundary_way'],'boundary':boundary,
