@@ -2,7 +2,7 @@
 
 ### Requirement: One OSM geographic frame for the world
 
-三校区世界平面数据 SHALL 以 OSM WGS84 为基础，每校区使用唯一原点和共享转换。道路、建筑、广场、水域、植被及室外设施 MUST 不再独立叠加旧官网质心平移。
+三校区世界平面数据 SHALL 使用 OSM WGS84 坐标底稿，每校区使用唯一原点和共享转换。坐标底稿 MUST NOT 被视为几何真值；几何与外观证据优先级为照片 > 官网俯视图 > OSM。道路、建筑、广场、水域、植被及室外设施 MUST 不再独立叠加旧官网质心平移。
 
 #### Scenario: Rebuild a campus
 
@@ -26,10 +26,17 @@
 
 ### Requirement: Evidence-based top-view refinement
 
-官网俯视图 SHALL 用于独立检查及有依据的局部轮廓修正，MUST 保存原始 OSM、配准依据、修正范围和不确定项；官网斜视交互外轮廓 MUST NOT 直接充当建筑基底。
+照片 SHALL 优先用于核对可见形状和细节，其次使用官网俯视图，最后以 OSM 补足缺口。官网俯视图 MUST NOT 默认视为精确测绘数据。修正 MUST 保存原始 OSM、照片日期与视角、配准依据、修正范围和不确定项；照片透视外包络、屋檐及官网斜视交互外轮廓 MUST NOT 直接充当建筑基底。
+
+#### Scenario: Resolve conflicting source geometry
+
+- **WHEN** 照片、官网俯视图与 OSM 的形状或相对位置不一致
+- **THEN** 优先采用照片可确认的证据，其次采用俯视图，OSM 作为底稿；不强制高优先级证据贴合 OSM
+- **AND** 核对拍摄日期、视角、遮挡与几何可观测性，无法判断的墙脚或高程保留缺口，不以源排名推定照片未显示的内容
+- **AND** 已由俯视图派生的框保留暂定标记，后续照片证据可以修正它们；不通过多源平均掩盖冲突
 
 #### Scenario: Resolve EDA building and plaza mismatch
 
 - **WHEN** 重建开发区综合楼附近
-- **THEN** 建筑、北侧环岛和南侧广场的位置关系与 OSM 及俯视参考一致，广场不再错误侵入楼体下方
-- **AND** 信息楼边框仅在俯视资料支持的范围内精修，不能因方便而强制为矩形
+- **THEN** 建筑、北侧环岛和南侧广场的位置关系按照片、俯视图、OSM 的优先级核对，广场不再错误侵入楼体下方
+- **AND** 信息楼边框仅在有效证据支持的范围内精修，不能因方便而强制为矩形
