@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "reviewed": "2026-09-17",
+  "coordinate_frame": "references/shared/mapping/osm-world-frame.json",
+  "objects": {
+    "1331412": {
+      "name": "凌水河",
+      "osm_id": "way/1381615917",
+      "osm_version": 1,
+      "expected_vertices": 38
+    },
+    "2145432": {
+      "name": "凌水湖",
+      "osm_id": "way/1381615918",
+      "osm_version": 3,
+      "expected_vertices": 26
+    }
+  },
+  "basis": "归档OSM与官方对象的水体名称、所在位置及河湖关系一致，保留官方身份，以natural=water闭合区域作为平面底稿。",
+  "limits": "岸线和水位具有时效性，非实测；现有spring-3/4照片仅显示桥岸局部，不能核准完整岸线。水面高程继续采用暂定DSM地形基高，未新增水深、护岸或桥梁。"
+}
