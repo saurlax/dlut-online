@@ -43,8 +43,9 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 			for bay in bays:
 				var fraction := (bay+0.5)/bays
 				# A01 central opening lacks a complete plan. Leave its shell undecorated.
-				if profile.style == "teaching" and floor_index<4 and fraction>0.17 and fraction<0.73:
-					continue
+				if profile.style == "teaching" and floor_index<4:
+					var blank: Array = profile.get("blank_spans",{}).get(str(edge),[0.17,0.73] if not profile.has("blank_spans") else [])
+					if blank.size()==2 and fraction>float(blank[0]) and fraction<float(blank[1]): continue
 				var pos := p.lerp(q,fraction)+outward*0.08
 				var window_height := height/floors*0.70
 				var y := 0.7+floor_index*height/floors+window_height/2.0
