@@ -104,6 +104,43 @@ def main():
             surface_specs[fid]=(kind,spec)
     surface_records={r['osm_id']:r for r in world_data('lingshui')['areas']}
     for feature in features:
+        if feature.get('sports',{}).get('osm_registration'):
+            profile=feature['sports'];spec=profile['osm_registration']
+            record=surface_records[spec['osm_id']];track=surface_records[spec['track_osm_id']]
+            assert record['version']==spec['osm_version'] and track['version']==spec['track_osm_version']
+            assert len(record['polygons'])==len(track['polygons'])==1
+            ring=record['polygons'][0]['outer'];track_ring=track['polygons'][0]['outer']
+            assert len(ring)==spec['expected_vertices'] and len(track_ring)==spec['expected_track_vertices']
+            assert len(track['polygons'][0]['holes'])==1
+            pitch=track['polygons'][0]['holes'][0]
+            assert len(pitch)==spec['expected_pitch_vertices']
+            along=[pitch[1][i]-pitch[0][i] for i in (0,1)];length=math.hypot(*along)
+            forward=[v/length for v in along];right=[forward[1],-forward[0]]
+            project=lambda p:[sum(p[i]*axis[i] for i in (0,1)) for axis in (right,forward)]
+            projected=[project(p) for p in track_ring]
+            low=[min(p[i] for p in projected) for i in (0,1)];high=[max(p[i] for p in projected) for i in (0,1)]
+            middle=[(low[i]+high[i])/2 for i in (0,1)]
+            center=[right[i]*middle[0]+forward[i]*middle[1] for i in (0,1)]
+            outer_radius=(high[0]-low[0])/2
+            profile.update(center=center,rotation_degrees=math.degrees(math.atan2(right[1],right[0])),
+                           straight_half=(high[1]-low[1])/2-outer_radius,
+                           inner_radius=outer_radius-profile['lanes']*profile['lane_width'],
+                           pitch_outline=pitch,pitch_width=math.dist(pitch[1],pitch[2]),pitch_length=length)
+            a,b=[ring[i] for i in spec['stand_back_vertices']]
+            line=[b[i]-a[i] for i in (0,1)];span=math.hypot(*line)
+            inset=spec.get('stand_end_inset_m',0)
+            assert 0<=inset<span/2
+            a=[a[i]+line[i]/span*inset for i in (0,1)]
+            line=[v*(span-2*inset)/span for v in line];span=math.hypot(*line)
+            stand_forward=[v/spec['stand_reference_length'] for v in line]
+            stand_right=[line[1]/span,-line[0]/span]
+            ox,oz=spec['stand_reference_origin']
+            profile['stand_transform']={'right':stand_right,'forward':stand_forward,
+                'offset':[a[i]-stand_right[i]*ox-stand_forward[i]*oz for i in (0,1)]}
+            assert profile['straight_half']>0 and profile['inner_radius']>0
+            feature.update(points=ring,render_polygons=[ring],osm_id=record['osm_id'],osm_version=record['version'],
+                           footprint_source='osm',geometry_status='photo-layout-registered-to-osm; dimensions approximate')
+            continue
         if feature['id'] in surface_specs:
             kind,spec=surface_specs[feature['id']];record=surface_records[spec['osm_id']]
             assert feature['kind']==kind and record['category']==kind and feature['name']==spec['name']
