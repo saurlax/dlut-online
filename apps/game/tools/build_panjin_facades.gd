@@ -56,7 +56,7 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 		if profile.style == "teaching":
 			for row in range(1,roundi(height/0.45)):
 				panel(builder,group,middle+outward*0.025,row*0.45,Vector3(length,0.017,0.035),rotation,metal,"TerracottaJoints")
-		elif profile.style == "laboratory" and edge == 5:
+		elif profile.style == "laboratory" and edge in PackedInt32Array(profile.get("duct_edges",[5])):
 			var count := maxi(1,roundi(length/9.0))
 			for pipe in count:
 				var pos := p.lerp(q,(pipe+0.4)/count)+outward*0.5

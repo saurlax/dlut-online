@@ -46,6 +46,18 @@
     "precision": "中央开敞空间不挖洞、不补室内，也不把侧翼窗格铺满整面；高度和窗距为比例估算。"
   },
   "77955": {
+    "osm_registration": {
+      "osm_id": "way/1318388516",
+      "osm_version": 1,
+      "expected_vertices": 6,
+      "edges": [5, 4],
+      "duct_edges": [4],
+      "review_date": "2026-09-16",
+      "photo": "photos/77955-0.jpg",
+      "photo_id": 80114,
+      "basis": "Photo shows D03 south long facade with exposed ducts and west short facade, D04 behind. Old west edge 1 maps to OSM edge 5; old south edge 5 maps to OSM edge 4. OSM vertices 0,1,2,3 lie along the north facade and are retained as source connection points.",
+      "limits": "Preserve existing estimated height and visible facade styles. Window and pipe spacing remain approximations; photo does not establish surveyed ground corners or interior geometry."
+    },
     "height": 19.0,
     "floors": 4,
     "style": "laboratory",
