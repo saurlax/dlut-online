@@ -9,7 +9,7 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77412","77413"]: continue
+		if feature.id not in ["77412","77413","77416","77427","77429"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
 		var group: Node3D = model.get_node("Feature_"+feature.id+"_0")
 		var roof := PackedVector2Array()
@@ -19,18 +19,18 @@ func check() -> void:
 				var p := mesh.transform*vertex
 				if mesh.material_override.resource_name=="Lingshui roof" and absf(p.y-float(feature.height)-0.18)<0.001:
 					roof.append(Vector2(p.x,p.z))
-				if mesh.material_override.resource_name=="Window glass" and p.y<3:
+				if feature.id in ["77412","77413"] and mesh.material_override.resource_name=="Window glass" and p.y<3:
 					assert(p.z>-228,"Visible ground-floor windows moved away from the south end")
 					lower_windows += 1
 			if mesh.get_meta("walk_collision",false): preload("res://scripts/shared/campus_collision.gd")._collider(mesh)
-		assert(lower_windows>0)
+		if feature.id in ["77412","77413"]: assert(lower_windows>0)
 		for coordinate: Array in feature.points:
 			var found := false
 			for p in roof:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
 		checked += 1
-	assert(checked==2)
+	assert(checked==5)
 	await physics_frame
 	await physics_frame
 	for sample in [["77412",384.25,-235],["77413",444.86,-239]]:
@@ -38,5 +38,10 @@ func check() -> void:
 		var p := Vector3(sample[1],group.position.y+6,sample[2])
 		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.RIGHT*4,p-Vector3.RIGHT*4))
 		assert(not hit.is_empty() and absf(hit.position.x-p.x)<0.1,"East wall collision detached from registered footprint")
-	print("LINGSHUI REGISTRATION PASS: two roofs, south-end windows and east wall collisions")
+	for sample in [["77416",420,410.23],["77427",470,230.24],["77429",618,225.23]]:
+		var group: Node3D = model.get_node("Feature_"+str(sample[0])+"_0")
+		var p := Vector3(sample[1],group.position.y+6,sample[2])
+		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.BACK*4,p-Vector3.BACK*4))
+		assert(not hit.is_empty() and absf(hit.position.z-p.z)<0.1,"South wall collision detached from registered footprint")
+	print("LINGSHUI REGISTRATION PASS: five roofs, south-end windows and five wall collisions")
 	quit()

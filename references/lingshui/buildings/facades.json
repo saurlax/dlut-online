@@ -16,9 +16,629 @@
   "77387": {"style": "photo_panels", "height": 23, "floors": 5, "color": "b7aa8e", "frame_color": "6e6c60", "trim_color": "c7bfa8", "edges": [0], "photos": ["77387-0.jpg", "77387-1.jpg", "77387-4.jpg"], "panoramas": ["../imagery/panoramas/BC02-l.jpg"], "panels": [{"edge": 0, "rows": [{"bottom": 1.0, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 5.3, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 9.6, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 13.9, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 18.2, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 4.0, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 8.3, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 12.6, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 16.9, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 21.2, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}], "bands": [{"y": 0.65, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 4.8, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 9.1, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 13.4, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 17.7, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 22.55, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 3.8, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 8.1, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 12.4, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 16.7, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 21.0, "height": 0.15, "projection": 0.3, "depth": 0.6}]}], "note": "官方照片0/1/4核对五层主窗排、深色分格窗及连续浅色水平挑檐；BC02左视航拍用主楼东翼、体育馆的相对位置确认厚民楼西面为边0。2026-09-14官方详情明确5层，0/1号照片从地面至屋檐也仅五排主窗，撤销旧六排窗判断。西侧改为五排、每排18处现有开间；窗底1/5.3/9.6/13.9/18.2米，窗高2.5米与水平分隔位置为照片比例近似，不代表实测。23米壳高仍沿用早期估计，须后续核准；各窗准确宽窄及门廊仍待精修。其他面及入口通行未建，不复制西面到背面。 77387-0/1/4显示主窗上方独立矮横窗及下缘浅色挑带。沿已有18列窗轴补五排矮横窗，共90处，底4/8.3/12.6/16.9/21.2米、高0.65米、宽2.25米、三分格；分隔挑带厚0.15米深0.6米。尺寸、疏密及分格为照片估计，不是完整实测窗表；只在已配准西面添加，不把小横窗计作楼层，主体、主窗、既有横带和结构碰撞不变。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77387"},
   "77389": {"style": "photo_panels", "height": 22, "floors": 6, "color": "b29d83", "frame_color": "c2c7bc", "trim_color": "d0c8b5", "edges": [7], "photos": ["77389-0.jpg", "77389-2.jpg", "77389-4.jpg"], "panoramas": ["../imagery/panoramas/BC02-b.jpg", "../imagery/panoramas/BC02-l.jpg"], "panels": [{"edge": 7, "rows": [{"bottom": 0.8, "count": 7, "width": 2.05, "height": 1.8, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 4, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 7.6, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 11.2, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 14.8, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 18.4, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 0.8, "count": 7, "width": 2.05, "height": 1.8, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 4, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 7.6, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 11.2, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 14.8, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 18.4, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 11.2, "count": 4, "width": 2.35, "height": 2.55, "transom": true, "from": 0.39, "to": 0.61}, {"bottom": 14.8, "count": 4, "width": 2.35, "height": 2.55, "transom": true, "from": 0.39, "to": 0.61}, {"bottom": 18.4, "count": 4, "width": 2.35, "height": 1.0, "transom": true, "from": 0.39, "to": 0.61}], "bands": [{"y": 21.65, "height": 0.25, "depth": 0.4}], "accents": [{"fraction": 0.32, "y": 11, "size": [0.55, 21, 0.35]}, {"fraction": 0.68, "y": 11, "size": [0.55, 21, 0.35]}, {"fraction": 0.39, "y": 14.5, "size": [0.45, 12, 0.32]}, {"fraction": 0.445, "y": 14.5, "size": [0.45, 12, 0.32]}, {"fraction": 0.5, "y": 14.5, "size": [0.45, 12, 0.32]}, {"fraction": 0.555, "y": 14.5, "size": [0.45, 12, 0.32]}, {"fraction": 0.61, "y": 14.5, "size": [0.45, 12, 0.32]}], "arches": [{"center": 0.5, "half_width": 9.3, "bottom": 18.8, "rise": 2.1, "thickness": 0.23, "depth": 0.32, "segments": 24}]}], "note": "官方0/2/4号照片与详情6层说明互证：台阶下有较矮底排窗，入口所在层之上有连廊窗，再上为中央三排窗。旧五层判断漏计底层差异；南侧边7两翼改为六排，既有横向七列位置及范围保留，底排窗高1.8米，其余2.55米，窗底0.8/4/7.6/11.2/14.8/18.4米；中央上三排仍各四窗，底11.2/14.8/18.4米。BC02后视及左视以主楼、厚民楼相对位置核对南侧边7。22米、窗距、标高、中央分段和弧度仍为比例估计，不是测绘数据。低层中央门廊与外梯尚缺平面，保持封闭原轮廓，不构造通道；北/东西面和屋顶设备未精修。 4号照片中央顶排位于弧带下，为较矮窗，按1米窗高近似，与两翼顶排高窗区分，避免窗框穿越弧带。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77389"},
   "77383": {"style": "photo_panels", "height": 18.5, "floors": 4, "color": "b7a07c", "frame_color": "c3c6b9", "trim_color": "c9c1ab", "edges": [12], "photos": ["77383-1.jpg", "77383-3.jpg", "77383-12.jpg"], "panoramas": ["../imagery/panoramas/BC02-b.jpg"], "panels": [{"edge": 12, "rows": [{"bottom": 1.1, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.015, "to": 0.32}, {"bottom": 5.2, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.015, "to": 0.32}, {"bottom": 9.3, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.015, "to": 0.32}, {"bottom": 13.4, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.015, "to": 0.32}, {"bottom": 1.1, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.68, "to": 0.985}, {"bottom": 5.2, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.68, "to": 0.985}, {"bottom": 9.3, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.68, "to": 0.985}, {"bottom": 13.4, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.68, "to": 0.985}, {"bottom": 5.2, "count": 3, "width": 2.65, "height": 2.75, "divisions": 3, "transom": true, "from": 0.415, "to": 0.585}, {"bottom": 9.3, "count": 3, "width": 2.65, "height": 2.75, "divisions": 3, "transom": true, "from": 0.415, "to": 0.585}, {"bottom": 13.4, "count": 3, "width": 2.65, "height": 2.75, "divisions": 3, "transom": true, "from": 0.415, "to": 0.585}, {"bottom": 1.1, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.365, "to": 0.365}, {"bottom": 5.2, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.365, "to": 0.365}, {"bottom": 9.3, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.365, "to": 0.365}, {"bottom": 13.4, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.365, "to": 0.365}, {"bottom": 1.1, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.635, "to": 0.635}, {"bottom": 5.2, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.635, "to": 0.635}, {"bottom": 9.3, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.635, "to": 0.635}, {"bottom": 13.4, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.635, "to": 0.635}], "accents": [{"fraction": 0.015, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.0455, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.076, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.1065, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.137, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.16749999999999998, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.198, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.22849999999999998, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.259, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.28950000000000004, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.32, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.68, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.7105, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.741, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.7715000000000001, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.802, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.8325, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.863, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.8935, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.9239999999999999, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.9544999999999999, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.985, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.415, "y": 9, "size": [0.75, 16.8, 0.24]}, {"fraction": 0.4717, "y": 9, "size": [0.75, 16.8, 0.24]}, {"fraction": 0.5283, "y": 9, "size": [0.75, 16.8, 0.24]}, {"fraction": 0.585, "y": 9, "size": [0.75, 16.8, 0.24]}], "bands": [{"y": 18.1, "height": 0.22, "depth": 0.35}]}], "note": "照片1/3/12的A1区16标识确认第二教学馆，四层浅褐墙、成组窗、中央窄窗与浅色竖向分隔；BC02后视按第一教学馆后方偏西的相对位置核对南面边12。18.5米楼高、开间数、中央分段和窗距是比例估计。中央底层入口不生成门洞或通道，其他面及屋顶小体量未精修。"},
-  "77427": {"style": "photo_panels", "height": 8.5, "floors": 2, "color": "96534b", "frame_color": "c2c6b6", "trim_color": "c9c6af", "edges": [5, 4], "photos": ["77427-0.jpg", "77427-1.jpg"], "panels": [{"edge": 5, "rows": [{"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.1, "to": 0.1}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.1, "to": 0.1}, {"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.3, "to": 0.3}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.3, "to": 0.3}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.5, "to": 0.5}, {"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.7, "to": 0.7}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.7, "to": 0.7}, {"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.9, "to": 0.9}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.9, "to": 0.9}], "accents": [{"fraction": 0.0, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.2, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.4, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.6, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.8, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 1.0, "y": 4.35, "size": [0.27, 8.1, 0.24]}], "bands": [{"y": 0.35, "height": 0.25, "depth": 0.26}, {"y": 4.15, "height": 0.25, "depth": 0.26}, {"y": 8.25, "height": 0.25, "depth": 0.26}]}, {"edge": 4, "rows": [{"bottom": 1.0, "count": 12, "width": 1.85, "height": 2.5, "divisions": 2, "transom": true}, {"bottom": 4.6, "count": 12, "width": 1.85, "height": 2.5, "divisions": 2, "transom": true}], "accents": [{"fraction": 0.0, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.08333333333333333, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.16666666666666666, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.25, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.3333333333333333, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.4166666666666667, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.5, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.5833333333333334, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.6666666666666666, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.75, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.8333333333333334, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.9166666666666666, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 1.0, "y": 4.35, "size": [0.25, 8.1, 0.24]}], "bands": [{"y": 0.35, "height": 0.25, "depth": 0.26}, {"y": 4.15, "height": 0.25, "depth": 0.26}, {"y": 8.25, "height": 0.25, "depth": 0.26}]}], "note": "照片0/1核对博物馆红色两层外墙、浅色矩形分隔和分格窗。按官方长条轮廓、短端前场与长边延伸关系对应南侧短边5及东侧长边4；南面底层中央为入口，不生成窗或通道。8.5米、侧窗数量与窗距为照片比例估计。西面、北面、门廊和屋面细部未精修。"},
+  "77427": {"style": "photo_panels", "height": 8.5, "floors": 2, "color": "96534b", "frame_color": "c2c6b6", "trim_color": "c9c6af", "edges": [5, 4], "photos": ["77427-0.jpg", "77427-1.jpg"], "panels": [{"edge": 5, "rows": [{"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.1, "to": 0.1}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.1, "to": 0.1}, {"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.3, "to": 0.3}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.3, "to": 0.3}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.5, "to": 0.5}, {"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.7, "to": 0.7}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.7, "to": 0.7}, {"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.9, "to": 0.9}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.9, "to": 0.9}], "accents": [{"fraction": 0.0, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.2, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.4, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.6, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.8, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 1.0, "y": 4.35, "size": [0.27, 8.1, 0.24]}], "bands": [{"y": 0.35, "height": 0.25, "depth": 0.26}, {"y": 4.15, "height": 0.25, "depth": 0.26}, {"y": 8.25, "height": 0.25, "depth": 0.26}]}, {"edge": 4, "rows": [{"bottom": 1.0, "count": 12, "width": 1.85, "height": 2.5, "divisions": 2, "transom": true}, {"bottom": 4.6, "count": 12, "width": 1.85, "height": 2.5, "divisions": 2, "transom": true}], "accents": [{"fraction": 0.0, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.08333333333333333, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.16666666666666666, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.25, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.3333333333333333, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.4166666666666667, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.5, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.5833333333333334, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.6666666666666666, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.75, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.8333333333333334, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.9166666666666666, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 1.0, "y": 4.35, "size": [0.25, 8.1, 0.24]}], "bands": [{"y": 0.35, "height": 0.25, "depth": 0.26}, {"y": 4.15, "height": 0.25, "depth": 0.26}, {"y": 8.25, "height": 0.25, "depth": 0.26}]}], "note": "照片0/1核对博物馆红色两层外墙、浅色矩形分隔和分格窗。按官方长条轮廓、短端前场与长边延伸关系对应南侧短边5及东侧长边4；南面底层中央为入口，不生成窗或通道。8.5米、侧窗数量与窗距为照片比例估计。西面、北面、门廊和屋面细部未精修。",
+    "osm_registration": {
+      "osm_id": "way/1381605739",
+      "osm_version": 1,
+      "expected_vertices": 4,
+      "reviewed": "2026-09-16",
+      "profile": {
+        "edges": [
+          2,
+          3
+        ],
+        "panels": [
+          {
+            "edge": 2,
+            "rows": [
+              {
+                "bottom": 1.0,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.9,
+                "to": 0.9
+              },
+              {
+                "bottom": 4.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.9,
+                "to": 0.9
+              },
+              {
+                "bottom": 1.0,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.7,
+                "to": 0.7
+              },
+              {
+                "bottom": 4.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.7,
+                "to": 0.7
+              },
+              {
+                "bottom": 4.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.5,
+                "to": 0.5
+              },
+              {
+                "bottom": 1.0,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.30000000000000004,
+                "to": 0.30000000000000004
+              },
+              {
+                "bottom": 4.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.30000000000000004,
+                "to": 0.30000000000000004
+              },
+              {
+                "bottom": 1.0,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.09999999999999998,
+                "to": 0.09999999999999998
+              },
+              {
+                "bottom": 4.6,
+                "count": 1,
+                "width": 1.8,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.09999999999999998,
+                "to": 0.09999999999999998
+              }
+            ],
+            "accents": [
+              {
+                "fraction": 1.0,
+                "y": 4.35,
+                "size": [
+                  0.27,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.8,
+                "y": 4.35,
+                "size": [
+                  0.27,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.6,
+                "y": 4.35,
+                "size": [
+                  0.27,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.4,
+                "y": 4.35,
+                "size": [
+                  0.27,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.19999999999999996,
+                "y": 4.35,
+                "size": [
+                  0.27,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.0,
+                "y": 4.35,
+                "size": [
+                  0.27,
+                  8.1,
+                  0.24
+                ]
+              }
+            ],
+            "bands": [
+              {
+                "y": 0.35,
+                "height": 0.25,
+                "depth": 0.26
+              },
+              {
+                "y": 4.15,
+                "height": 0.25,
+                "depth": 0.26
+              },
+              {
+                "y": 8.25,
+                "height": 0.25,
+                "depth": 0.26
+              }
+            ]
+          },
+          {
+            "edge": 3,
+            "rows": [
+              {
+                "bottom": 1.0,
+                "count": 12,
+                "width": 1.85,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              },
+              {
+                "bottom": 4.6,
+                "count": 12,
+                "width": 1.85,
+                "height": 2.5,
+                "divisions": 2,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              }
+            ],
+            "accents": [
+              {
+                "fraction": 1.0,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.9166666666666666,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.8333333333333334,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.75,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.6666666666666667,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.5833333333333333,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.5,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.41666666666666663,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.33333333333333337,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.25,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.16666666666666663,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.08333333333333337,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              },
+              {
+                "fraction": 0.0,
+                "y": 4.35,
+                "size": [
+                  0.25,
+                  8.1,
+                  0.24
+                ]
+              }
+            ],
+            "bands": [
+              {
+                "y": 0.35,
+                "height": 0.25,
+                "depth": 0.26
+              },
+              {
+                "y": 4.15,
+                "height": 0.25,
+                "depth": 0.26
+              },
+              {
+                "y": 8.25,
+                "height": 0.25,
+                "depth": 0.26
+              }
+            ]
+          }
+        ]
+      },
+      "basis": "重新核对既有官方外观照片的南端及东侧关系；对应OSM边方向与旧参数相反，窗段及装饰fraction整体反转，保持可见构件在同一物理端部。旧边→新边：{5: 2, 4: 3}",
+      "limits": "保留照片可见范围、原高度/窗尺寸估计及77416官方单层状态；门廊、连接体和未见立面没有新增完整几何。"
+    }
+  },
   "77426": {"style": "photo_panels", "height": 14, "floors": 3, "color": "b29e87", "frame_color": "bec2b2", "trim_color": "cbc7b5", "edges": [1, 5, 3], "photos": ["77426-0.jpg", "77426-3.jpg", "77426-4.jpg"], "panels": [{"edge": 1, "rows": [{"bottom": 1.1, "count": 5, "width": 1.5, "height": 2.55, "divisions": 2, "transom": true}, {"bottom": 5.0, "count": 5, "width": 1.5, "height": 2.55, "divisions": 2, "transom": true}, {"bottom": 8.9, "count": 5, "width": 1.5, "height": 2.55, "divisions": 2, "transom": true}], "bands": [{"y": 13.6, "height": 0.22, "depth": 0.3}]}, {"edge": 5, "rows": [{"bottom": 1.1, "count": 19, "width": 1.5, "height": 2.55, "divisions": 2, "transom": true}, {"bottom": 5.0, "count": 19, "width": 1.5, "height": 2.55, "divisions": 2, "transom": true}, {"bottom": 8.9, "count": 19, "width": 1.5, "height": 2.55, "divisions": 2, "transom": true}], "bands": [{"y": 13.6, "height": 0.22, "depth": 0.3}]}, {"edge": 3, "rows": [{"bottom": 4.1, "count": 1, "width": 4.9, "height": 8.1, "divisions": 4}], "accents": [{"fraction": 0.5, "y": 5.2, "size": [4.9, 0.075, 0.25]}, {"fraction": 0.5, "y": 6.35, "size": [4.9, 0.075, 0.25]}, {"fraction": 0.5, "y": 7.5, "size": [4.9, 0.075, 0.25]}, {"fraction": 0.5, "y": 8.65, "size": [4.9, 0.075, 0.25]}, {"fraction": 0.5, "y": 9.8, "size": [4.9, 0.075, 0.25]}, {"fraction": 0.5, "y": 10.95, "size": [4.9, 0.075, 0.25]}, {"fraction": 0.5, "y": 12.1, "size": [4.9, 0.075, 0.25]}, {"fraction": 0.327, "y": 4.58, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.327, "y": 5.02, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.3024, "y": 4.8, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.3516, "y": 4.8, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.327, "y": 5.73, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.327, "y": 6.17, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.3024, "y": 5.95, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.3516, "y": 5.95, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.327, "y": 6.88, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.327, "y": 7.319999999999999, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.3024, "y": 7.1, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.3516, "y": 7.1, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.327, "y": 8.03, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.327, "y": 8.47, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.3024, "y": 8.25, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.3516, "y": 8.25, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.327, "y": 9.18, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.327, "y": 9.620000000000001, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.3024, "y": 9.4, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.3516, "y": 9.4, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.327, "y": 10.33, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.327, "y": 10.770000000000001, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.3024, "y": 10.55, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.3516, "y": 10.55, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.327, "y": 11.479999999999999, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.327, "y": 11.92, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.3024, "y": 11.7, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.3516, "y": 11.7, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.442, "y": 4.58, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.442, "y": 5.02, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.4174, "y": 4.8, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.4666, "y": 4.8, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.442, "y": 5.73, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.442, "y": 6.17, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.4174, "y": 5.95, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.4666, "y": 5.95, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.442, "y": 6.88, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.442, "y": 7.319999999999999, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.4174, "y": 7.1, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.4666, "y": 7.1, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.442, "y": 8.03, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.442, "y": 8.47, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.4174, "y": 8.25, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.4666, "y": 8.25, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.442, "y": 9.18, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.442, "y": 9.620000000000001, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.4174, "y": 9.4, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.4666, "y": 9.4, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.442, "y": 10.33, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.442, "y": 10.770000000000001, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.4174, "y": 10.55, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.4666, "y": 10.55, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.442, "y": 11.479999999999999, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.442, "y": 11.92, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.4174, "y": 11.7, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.4666, "y": 11.7, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.558, "y": 4.58, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.558, "y": 5.02, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.5334000000000001, "y": 4.8, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.5826, "y": 4.8, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.558, "y": 5.73, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.558, "y": 6.17, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.5334000000000001, "y": 5.95, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.5826, "y": 5.95, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.558, "y": 6.88, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.558, "y": 7.319999999999999, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.5334000000000001, "y": 7.1, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.5826, "y": 7.1, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.558, "y": 8.03, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.558, "y": 8.47, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.5334000000000001, "y": 8.25, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.5826, "y": 8.25, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.558, "y": 9.18, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.558, "y": 9.620000000000001, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.5334000000000001, "y": 9.4, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.5826, "y": 9.4, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.558, "y": 10.33, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.558, "y": 10.770000000000001, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.5334000000000001, "y": 10.55, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.5826, "y": 10.55, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.558, "y": 11.479999999999999, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.558, "y": 11.92, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.5334000000000001, "y": 11.7, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.5826, "y": 11.7, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.673, "y": 4.58, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.673, "y": 5.02, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.6484000000000001, "y": 4.8, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.6976, "y": 4.8, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.673, "y": 5.73, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.673, "y": 6.17, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.6484000000000001, "y": 5.95, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.6976, "y": 5.95, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.673, "y": 6.88, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.673, "y": 7.319999999999999, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.6484000000000001, "y": 7.1, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.6976, "y": 7.1, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.673, "y": 8.03, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.673, "y": 8.47, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.6484000000000001, "y": 8.25, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.6976, "y": 8.25, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.673, "y": 9.18, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.673, "y": 9.620000000000001, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.6484000000000001, "y": 9.4, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.6976, "y": 9.4, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.673, "y": 10.33, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.673, "y": 10.770000000000001, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.6484000000000001, "y": 10.55, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.6976, "y": 10.55, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.673, "y": 11.479999999999999, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.673, "y": 11.92, "size": [0.52, 0.045, 0.25]}, {"fraction": 0.6484000000000001, "y": 11.7, "size": [0.045, 0.48, 0.25]}, {"fraction": 0.6976, "y": 11.7, "size": [0.045, 0.48, 0.25]}], "bands": [{"y": 13.65, "height": 0.25, "depth": 0.35}]}], "note": "照片0/3/4确认校史馆三层窗和入口上方大窗的浅色几何分格。西侧轮廓边3的突出短段对应入口上方大窗，向北长翼边5及南侧短翼边1分别对应可见窗排；东面轮廓为后方翼楼，未套用前窗。14米楼高、窗距和装饰格尺寸为比例估计；门廊、外梯、标牌及未见面未建，保留封闭外壳。"},
-  "77429": {"style": "photo_panels", "height": 17, "floors": 4, "color": "b6a389", "frame_color": "a7b3a7", "trim_color": "ccc9b5", "edges": [5], "photos": ["77429-1.jpg"], "panels": [{"edge": 5, "rows": [{"bottom": 1.3, "count": 9, "width": 1.0, "height": 3.2, "divisions": 2, "transom": true, "from": 0.15, "to": 0.85}, {"bottom": 5.6, "count": 9, "width": 1.0, "height": 2.45, "divisions": 2, "transom": true, "from": 0.15, "to": 0.85}, {"bottom": 9.5, "count": 9, "width": 1.0, "height": 2.45, "divisions": 2, "transom": true, "from": 0.15, "to": 0.85}, {"bottom": 13.6, "count": 6, "width": 2.75, "height": 2.25, "divisions": 3, "transom": true, "from": 0.045, "to": 0.955}], "accents": [{"fraction": 0.15, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.22777777777777777, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.3055555555555556, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.3833333333333333, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.46111111111111114, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.5388888888888889, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.6166666666666666, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.6944444444444444, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.7722222222222223, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.85, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.06, "y": 2.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 4.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 6.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 8.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 10.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 12.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 2.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 4.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 6.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 8.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 10.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 12.0, "size": [3.1, 0.06, 0.22]}], "bands": [{"y": 0.6, "height": 1.1, "depth": 0.2}, {"y": 16.55, "height": 0.3, "depth": 0.8, "projection": 0.35}]}], "note": "照片1确认厚望楼南侧短立面：下部三层窄窗、顶层六组宽窗、两侧横向浅线与宽檐。按长条楼短端和向北延伸的西侧楼身对应边5。17米高度、窄窗距和分隔尺寸为照片比例估计。照片0的另一端与照片1不同，不能镜像复制；其余面、入口及屋顶设备未细化。"},
+  "77429": {"style": "photo_panels", "height": 17, "floors": 4, "color": "b6a389", "frame_color": "a7b3a7", "trim_color": "ccc9b5", "edges": [5], "photos": ["77429-1.jpg"], "panels": [{"edge": 5, "rows": [{"bottom": 1.3, "count": 9, "width": 1.0, "height": 3.2, "divisions": 2, "transom": true, "from": 0.15, "to": 0.85}, {"bottom": 5.6, "count": 9, "width": 1.0, "height": 2.45, "divisions": 2, "transom": true, "from": 0.15, "to": 0.85}, {"bottom": 9.5, "count": 9, "width": 1.0, "height": 2.45, "divisions": 2, "transom": true, "from": 0.15, "to": 0.85}, {"bottom": 13.6, "count": 6, "width": 2.75, "height": 2.25, "divisions": 3, "transom": true, "from": 0.045, "to": 0.955}], "accents": [{"fraction": 0.15, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.22777777777777777, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.3055555555555556, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.3833333333333333, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.46111111111111114, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.5388888888888889, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.6166666666666666, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.6944444444444444, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.7722222222222223, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.85, "y": 7.05, "size": [0.38, 12.5, 0.25]}, {"fraction": 0.06, "y": 2.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 4.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 6.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 8.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 10.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.06, "y": 12.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 2.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 4.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 6.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 8.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 10.0, "size": [3.1, 0.06, 0.22]}, {"fraction": 0.94, "y": 12.0, "size": [3.1, 0.06, 0.22]}], "bands": [{"y": 0.6, "height": 1.1, "depth": 0.2}, {"y": 16.55, "height": 0.3, "depth": 0.8, "projection": 0.35}]}], "note": "照片1确认厚望楼南侧短立面：下部三层窄窗、顶层六组宽窗、两侧横向浅线与宽檐。按长条楼短端和向北延伸的西侧楼身对应边5。17米高度、窄窗距和分隔尺寸为照片比例估计。照片0的另一端与照片1不同，不能镜像复制；其余面、入口及屋顶设备未细化。",
+    "osm_registration": {
+      "osm_id": "way/1381605743",
+      "osm_version": 1,
+      "expected_vertices": 4,
+      "reviewed": "2026-09-16",
+      "profile": {
+        "edges": [
+          2
+        ],
+        "panels": [
+          {
+            "edge": 2,
+            "rows": [
+              {
+                "bottom": 1.3,
+                "count": 9,
+                "width": 1.0,
+                "height": 3.2,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.15000000000000002,
+                "to": 0.85
+              },
+              {
+                "bottom": 5.6,
+                "count": 9,
+                "width": 1.0,
+                "height": 2.45,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.15000000000000002,
+                "to": 0.85
+              },
+              {
+                "bottom": 9.5,
+                "count": 9,
+                "width": 1.0,
+                "height": 2.45,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.15000000000000002,
+                "to": 0.85
+              },
+              {
+                "bottom": 13.6,
+                "count": 6,
+                "width": 2.75,
+                "height": 2.25,
+                "divisions": 3,
+                "transom": true,
+                "from": 0.04500000000000004,
+                "to": 0.955
+              }
+            ],
+            "accents": [
+              {
+                "fraction": 0.85,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.7722222222222223,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.6944444444444444,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.6166666666666667,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.5388888888888889,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.46111111111111114,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.3833333333333334,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.3055555555555556,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.22777777777777775,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.15000000000000002,
+                "y": 7.05,
+                "size": [
+                  0.38,
+                  12.5,
+                  0.25
+                ]
+              },
+              {
+                "fraction": 0.94,
+                "y": 2.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.94,
+                "y": 4.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.94,
+                "y": 6.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.94,
+                "y": 8.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.94,
+                "y": 10.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.94,
+                "y": 12.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.06000000000000005,
+                "y": 2.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.06000000000000005,
+                "y": 4.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.06000000000000005,
+                "y": 6.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.06000000000000005,
+                "y": 8.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.06000000000000005,
+                "y": 10.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              },
+              {
+                "fraction": 0.06000000000000005,
+                "y": 12.0,
+                "size": [
+                  3.1,
+                  0.06,
+                  0.22
+                ]
+              }
+            ],
+            "bands": [
+              {
+                "y": 0.6,
+                "height": 1.1,
+                "depth": 0.2
+              },
+              {
+                "y": 16.55,
+                "height": 0.3,
+                "depth": 0.8,
+                "projection": 0.35
+              }
+            ]
+          }
+        ]
+      },
+      "basis": "重新核对既有官方外观照片的南端及东侧关系；对应OSM边方向与旧参数相反，窗段及装饰fraction整体反转，保持可见构件在同一物理端部。旧边→新边：{5: 2}",
+      "limits": "保留照片可见范围、原高度/窗尺寸估计及77416官方单层状态；门廊、连接体和未见立面没有新增完整几何。"
+    }
+  },
   "77430": {"style": "gabled_shell", "height": 6.5, "eave_height": 5.0, "ridge_x": 727.3, "floors": 1, "color": "b0aca0", "edges": [], "photos": ["77430-1.jpg", "77430-2.jpg"], "note": "照片1/2确认风洞实验室为单层纵向坡屋顶厂房。按官方长条轮廓保留全部顶点，屋面在X=727.3处形成纵向屋脊。檐高5米、脊高6.5米及屋脊位置为照片比例估计，不是实测；本轮仅修正体量和屋面，暂保留原墙色，窗、红/浅色墙面配准、前部附属小屋及入口未建。"},
   "77431": {"style": "photo_panels", "height": 24, "floors": 6, "color": "b29b73", "frame_color": "c3c7b8", "trim_color": "bfc8be", "edges": [4, 5], "photos": ["77431-0.jpg"], "panels": [{"edge": 4, "rows": [{"bottom": 1.1, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 4.9, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 8.7, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 12.5, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 16.3, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}, {"bottom": 20.1, "count": 8, "width": 2.8, "height": 2.25, "divisions": 3, "transom": true}], "bands": [{"y": 0.4, "height": 1.2, "depth": 0.22}, {"y": 4.2, "height": 1.2, "depth": 0.22}, {"y": 8.0, "height": 1.2, "depth": 0.22}, {"y": 11.8, "height": 1.2, "depth": 0.22}, {"y": 15.6, "height": 1.2, "depth": 0.22}, {"y": 19.4, "height": 1.2, "depth": 0.22}, {"y": 23.2, "height": 1.2, "depth": 0.22}]}, {"edge": 5, "rows": [{"bottom": 1.1, "count": 1, "width": 1.7, "height": 2.25, "divisions": 2, "from": 0.46, "to": 0.54}, {"bottom": 4.9, "count": 1, "width": 1.7, "height": 2.25, "divisions": 2, "from": 0.46, "to": 0.54}, {"bottom": 8.7, "count": 1, "width": 1.7, "height": 2.25, "divisions": 2, "from": 0.46, "to": 0.54}], "bands": [{"y": 0.4, "height": 1.2, "depth": 0.22}, {"y": 4.2, "height": 1.2, "depth": 0.22}, {"y": 8.0, "height": 1.2, "depth": 0.22}, {"y": 11.8, "height": 1.2, "depth": 0.22}, {"y": 15.6, "height": 1.2, "depth": 0.22}, {"y": 19.4, "height": 1.2, "depth": 0.22}, {"y": 23.2, "height": 1.2, "depth": 0.22}]}], "note": "照片0核对海晏楼长面六排分格窗和连续浅色横带，按短端与长边关系对应南面边4。24米主体高度、窗距和带宽为照片比例估计；屋顶中央局部加高与外梯尚无平面，不生成，北面及其他边尚待配准，不能将横带复制到未核实的面。 2026-09-14复核0号照片共同转角，南面边4左邻斜端墙对应边5；补下部三排各一扇窄窗及同标高浅色横带，窗宽1.7米、高2.25米、居中位置与标高仍为比例估计。上部外梯、门口和屋顶局部第七层不以窄窗代替；官方七层说明不意味着六排长面应统一加一排。斜端墙后缘以官方轮廓为限，北侧边0未有足够照片，不延伸窗带。"},
   "77439": {"style": "photo_panels", "height": 12.8, "floors": 3, "color": "c8cbc1", "frame_color": "aab4aa", "trim_color": "607f91", "edges": [1], "photos": ["77439-1.jpg", "77439-2.jpg", "77440-0.jpg"], "panels": [{"edge": 1, "rows": [{"bottom": 5.0, "count": 10, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 8.8, "count": 10, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.05, "to": 0.05}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.15, "to": 0.15}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.25, "to": 0.25}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.35, "to": 0.35}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.45, "to": 0.45}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.55, "to": 0.55}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.65, "to": 0.65}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.75, "to": 0.75}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.85, "to": 0.85}, {"bottom": 1.2, "count": 1, "width": 1.5, "height": 1.95, "divisions": 2, "transom": true, "from": 0.95, "to": 0.95}], "bands": [{"y": 12.45, "height": 0.2, "depth": 0.26}]}], "note": "照片77440-0同时显示北侧桥隧实验室、中央航空航天实验室和南侧汽车实验室，按官方三个独立轮廓与西侧院落关系配准。汽车实验室仅处理朝北边1的三层浅色墙面、分格窗和蓝色檐边；12.8米、窗距及重复数量为比例估计。其余面、门洞与附属构件未建。"},
@@ -30,7 +650,114 @@
   "77390": {"style": "photo_panels", "height": 22.0, "floors": 5, "color": "a49884", "frame_color": "777e79", "trim_color": "cdcbbd", "edges": [7], "photos": ["77390-3.jpg", "77392-0.jpg"], "panels": [{"edge": 7, "rows": [{"bottom": 0.6, "count": 3, "width": 2.7, "height": 3.1, "divisions": 2, "horizontal_fractions": [0.2, 0.72], "sill": 0.4, "from": 0.69, "to": 0.9}, {"bottom": 5, "count": 3, "width": 2.7, "height": 2.6, "divisions": 2, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.69, "to": 0.9}, {"bottom": 9.2, "count": 3, "width": 2.7, "height": 2.6, "divisions": 2, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.69, "to": 0.9}, {"bottom": 13.4, "count": 3, "width": 2.7, "height": 2.6, "divisions": 2, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.69, "to": 0.9}, {"bottom": 17.6, "count": 3, "width": 2.7, "height": 2.6, "divisions": 2, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.69, "to": 0.9}, {"bottom": 5, "count": 1, "width": 2.7, "height": 2.6, "divisions": 2, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.9, "to": 0.97}, {"bottom": 9.2, "count": 1, "width": 2.7, "height": 2.6, "divisions": 2, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.9, "to": 0.97}, {"bottom": 13.4, "count": 1, "width": 2.7, "height": 2.6, "divisions": 2, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.9, "to": 0.97}, {"bottom": 17.6, "count": 1, "width": 2.7, "height": 2.6, "divisions": 2, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.9, "to": 0.97}, {"bottom": 5, "count": 1, "width": 5.1, "height": 2.6, "divisions": 4, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.58, "to": 0.69}, {"bottom": 9.2, "count": 1, "width": 5.1, "height": 2.6, "divisions": 4, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.58, "to": 0.69}, {"bottom": 13.4, "count": 1, "width": 5.1, "height": 2.6, "divisions": 4, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.58, "to": 0.69}, {"bottom": 17.6, "count": 2, "width": 2.1, "height": 2.6, "divisions": 2, "horizontal_fractions": [0.72], "sill": 0.4, "from": 0.58, "to": 0.69}], "accents": [{"fraction": 0.69, "y": 8.4, "size": [0.38, 16.4, 0.28], "tile_color": "cdcbbd"}, {"fraction": 0.76, "y": 8.4, "size": [0.38, 16.4, 0.28], "tile_color": "cdcbbd"}, {"fraction": 0.83, "y": 8.4, "size": [0.38, 16.4, 0.28], "tile_color": "cdcbbd"}, {"fraction": 0.9, "y": 8.4, "size": [0.38, 16.4, 0.28], "tile_color": "cdcbbd"}, {"fraction": 0.83, "y": 16.65, "size": [19.924412379591026, 0.24, 0.32]}, {"fraction": 0.83, "y": 20.85, "size": [19.924412379591026, 0.24, 0.32]}, {"fraction": 0.97, "y": 10.55, "size": [0.38, 12.1, 0.28], "tile_color": "cdcbbd"}, {"fraction": 0.635, "y": 7.75, "size": [5.34, 0.2, 0.4]}, {"fraction": 0.635, "y": 11.95, "size": [5.34, 0.2, 0.4]}, {"fraction": 0.635, "y": 16.15, "size": [5.34, 0.2, 0.4]}, {"fraction": 0.935, "y": 2.15, "size": [3.1, 3.9, 0.1], "metal_color": "d0cbb7"}, {"fraction": 0.935, "y": 0.3054054054054054, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 0.41081081081081083, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 0.5162162162162163, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 0.6216216216216216, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 0.7270270270270269, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 0.8324324324324324, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 0.9378378378378378, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.0432432432432432, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.1486486486486487, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.254054054054054, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.3594594594594593, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.4648648648648648, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.5702702702702702, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.6756756756756757, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.781081081081081, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.8864864864864863, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 1.9918918918918918, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 2.0972972972972976, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 2.2027027027027026, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 2.308108108108108, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 2.4135135135135135, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 2.518918918918919, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 2.6243243243243244, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 2.72972972972973, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 2.8351351351351353, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 2.9405405405405407, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.045945945945946, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.1513513513513516, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.2567567567567566, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.3621621621621625, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.4675675675675675, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.572972972972973, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.6783783783783783, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.7837837837837838, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.889189189189189, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.935, "y": 3.994594594594595, "size": [3.1, 0.024, 0.18], "metal_color": "a9a590"}, {"fraction": 0.9122339584546729, "y": 2.15, "size": [0.14, 3.9, 0.24], "metal_color": "d0cbb7"}, {"fraction": 0.9577660415453272, "y": 2.15, "size": [0.14, 3.9, 0.24], "metal_color": "d0cbb7"}, {"fraction": 0.935, "y": 4.18, "size": [3.5, 0.26, 0.42], "metal_color": "d0cbb7"}], "cladding": [{"from": 0.58, "to": 0.97, "bottom": 0.2, "top": 20.85, "color": "a49884", "finish": "small_tiles"}]}], "note": "77390-3的A1区10标识确认身份，官方详情明确主入口朝东，与照片中面向入口的南端近景对应东侧长边7。补南端卷帘门旁三列五排窗，另补最南端卷帘门上方四排窗，南端共19窗；卷帘门后来按同图补封闭浅色门板、横向卷片及边框，周围砖砌凸部暂不建，入口高段和北翼不复制。官方总6层明确包括地上5层、地下1层；floors=5保留地上外观层数，不加第六排窗或地下空间。22米壳高、边7的69%—90%三列窗段及90%—97%最南端上四窗段、2.7米窗宽、底窗3.1米/上窗2.6米、窗底0.6/5/9.2/13.4/17.6米及浅色框带均为照片比例估计。底窗含上下横分格，上窗含上亮；浅色竖框只覆盖下四排，上方另有顶排窗。77392-0用于邻接位置复核。保留官方轮廓及结构碰撞；中央凸部、入口、屋顶高低分段、其他面和室内仍待核定。 照片3的最南端卷帘门上方四排窗明确可见，延伸局部顶带与上部外缘竖框；门面不替换成底窗。深灰窗框与浅色墙面框带分色，颜色仍为照片视觉近似。 3号照片南翼与入口之间有三排四分格宽窗，顶层分为两处独立窄窗；按边7的58%—69%段补三处5.1米宽窗及顶排两处2.1米窗，沿用相邻上四排标高与2.6米窗高，共24窗。宽窗上缘补浅色短挑边，不将宽窗复制到底部入口区域。窗段、分格宽度、窗台及挑边均为照片比例近似；主入口凸出深度、低层开口、屋顶高段仍待核实。 最南端卷帘门按3号照片补浅色封闭外观：中心沿用上窗轴0.935，门板宽3.1米、高3.9米、底0.2米，36道横向卷片凸线、两侧导轨及上部卷盒；照片裁切下缘，门板高度和底标高为比例近似，不据此新增门槛、楼面或入口通道。全部为薄装饰，后方原建筑墙和碰撞保留，无开关交互或室内。 门板、导轨和卷盒使用浅色金属材质，卷片细凸线略深；不沿用墙面噪声纹理。 3号照片可见褐色墙面与浅色竖框均为细小矩形面砖；只在已配准东面58%—97%段及既有竖框使用约0.10×0.05米面砖近似纹理，细缝与轻微色差替换粗石材噪声。准确砖尺寸、色差为视觉估计，未扩展到未核实其他面；窗台和金属门保留各自材质。 近景按照片分别使用平滑深灰金属窗框、平滑浅色窗台与挑边，竖向贴砖框仍使用砖格，去除原有统一粗噪声。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77390", "frame_finish": "metal", "trim_finish": "smooth"},
   "77391": {"style": "photo_panels", "height": 10.0, "floors": 1, "color": "b9b49e", "frame_color": "c5c9bb", "trim_color": "cdcbbd", "edges": [], "photos": ["77391-0.jpg", "77392-0.jpg"], "panels": [], "note": "77391-0的实验室门牌及77392-0左侧水工大厅对应低层大厅，两排高窗。按与三层高速水流实验室及五层厚邦楼的关系，将统一18米校正为10米比例估计；蓝色大门所在边尚待可靠配准，不增窗、门洞、内部或推断入口。 2026-09-14官方详情明确记1层，并说明内部为两层高的大空间、立面设上下两排窗；floors改为1，不将窗排数等同楼层。10米仍为照片比例估计，不是实测；当前无室内楼板，主体和碰撞不变。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77391"},
   "77392": {"style": "photo_panels", "height": 14.2, "floors": 3, "color": "b5a06e", "frame_color": "c5c9bb", "trim_color": "c2b797", "edges": [5], "photos": ["77392-0.jpg"], "panels": [{"edge": 5, "rows": [{"bottom": 1.4, "count": 1, "width": 1.65, "height": 2.9, "divisions": 2, "transom": true, "from": 0.68, "to": 0.68}, {"bottom": 6.0, "count": 1, "width": 1.65, "height": 2.8, "divisions": 2, "transom": true, "from": 0.4, "to": 0.4}, {"bottom": 6.0, "count": 1, "width": 1.65, "height": 2.8, "divisions": 2, "transom": true, "from": 0.68, "to": 0.68}, {"bottom": 10.8, "count": 1, "width": 1.65, "height": 1.5, "divisions": 2, "transom": false, "from": 0.4, "to": 0.4}, {"bottom": 10.8, "count": 1, "width": 1.65, "height": 1.5, "divisions": 2, "transom": false, "from": 0.68, "to": 0.68}]}], "note": "77392-0中水工大厅在左、厚邦楼在右，对应官方轮廓的西/东邻居，配准朝南边5。仅补中央三层可见窗：底层左窗、上两层双窗，顶层窗较矮；边5由东向西，底层右侧门位不放窗。14.2米、窗距和中央段占比为比例估计。侧翼突出段、低附房、外梯和入口缺平面，不构造；其他面未细化。"},
-  "77416": {"style": "photo_panels", "height": 9.6, "floors": 1, "color": "c5c3b3", "frame_color": "c8cbb9", "trim_color": "b8b9a8", "edges": [4, 3], "photos": ["77416-0.jpg", "77416-1.jpg"], "panels": [{"edge": 4, "rows": [{"bottom": 4.5, "count": 12, "width": 3.05, "height": 3.6, "divisions": 3, "horizontal_fractions": [0.25, 0.5, 0.75], "from": 0.25, "to": 0.98}, {"bottom": 1.1, "count": 9, "width": 3.35, "height": 2.6, "divisions": 3, "transom": true, "from": 0.4, "to": 0.98}, {"bottom": 4.5, "count": 1, "width": 1.5, "height": 3.6, "divisions": 2, "transom": true, "from": 0.11, "to": 0.11}, {"bottom": 1.1, "count": 1, "width": 1.5, "height": 2.6, "divisions": 2, "transom": true, "from": 0.11, "to": 0.11}], "bands": [{"y": 9.35, "height": 0.18, "depth": 0.5, "projection": 0.24}]}, {"edge": 3, "rows": [{"bottom": 4.5, "count": 5, "width": 1.4, "height": 3.6, "divisions": 2, "transom": true}, {"bottom": 1.1, "count": 5, "width": 1.4, "height": 2.6, "divisions": 2, "transom": true}], "bands": [{"y": 9.35, "height": 0.18, "depth": 0.5, "projection": 0.24}]}], "note": "77416-1的A3区1牌号确认模具研究所，两张照片从长立面两端拍摄，按东西向长楼身与端部入口配准南侧边4和东侧边3。补上下两排窗，南面上排高窗有三道横向分格，入口对应下排区间留空，不构造通道。9.6米、窗距与重复开间数为比例估计；门廊、北/西面、屋面细部及室内未细化。 2026-09-14官方详情明确记1层，floors改为1；两排外窗不代表两层楼板。南向大窗与照片配准一致，北侧烟囱仅有文字位置，缺少形状尺寸暂不建。9.6米仍为照片比例估计，窗排、主体高度及碰撞不变，无室内楼板。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77416"},
+  "77416": {"style": "photo_panels", "height": 9.6, "floors": 1, "color": "c5c3b3", "frame_color": "c8cbb9", "trim_color": "b8b9a8", "edges": [4, 3], "photos": ["77416-0.jpg", "77416-1.jpg"], "panels": [{"edge": 4, "rows": [{"bottom": 4.5, "count": 12, "width": 3.05, "height": 3.6, "divisions": 3, "horizontal_fractions": [0.25, 0.5, 0.75], "from": 0.25, "to": 0.98}, {"bottom": 1.1, "count": 9, "width": 3.35, "height": 2.6, "divisions": 3, "transom": true, "from": 0.4, "to": 0.98}, {"bottom": 4.5, "count": 1, "width": 1.5, "height": 3.6, "divisions": 2, "transom": true, "from": 0.11, "to": 0.11}, {"bottom": 1.1, "count": 1, "width": 1.5, "height": 2.6, "divisions": 2, "transom": true, "from": 0.11, "to": 0.11}], "bands": [{"y": 9.35, "height": 0.18, "depth": 0.5, "projection": 0.24}]}, {"edge": 3, "rows": [{"bottom": 4.5, "count": 5, "width": 1.4, "height": 3.6, "divisions": 2, "transom": true}, {"bottom": 1.1, "count": 5, "width": 1.4, "height": 2.6, "divisions": 2, "transom": true}], "bands": [{"y": 9.35, "height": 0.18, "depth": 0.5, "projection": 0.24}]}], "note": "77416-1的A3区1牌号确认模具研究所，两张照片从长立面两端拍摄，按东西向长楼身与端部入口配准南侧边4和东侧边3。补上下两排窗，南面上排高窗有三道横向分格，入口对应下排区间留空，不构造通道。9.6米、窗距与重复开间数为比例估计；门廊、北/西面、屋面细部及室内未细化。 2026-09-14官方详情明确记1层，floors改为1；两排外窗不代表两层楼板。南向大窗与照片配准一致，北侧烟囱仅有文字位置，缺少形状尺寸暂不建。9.6米仍为照片比例估计，窗排、主体高度及碰撞不变，无室内楼板。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77416",
+    "osm_registration": {
+      "osm_id": "way/1381605746",
+      "osm_version": 1,
+      "expected_vertices": 4,
+      "reviewed": "2026-09-16",
+      "profile": {
+        "edges": [
+          1,
+          2
+        ],
+        "panels": [
+          {
+            "edge": 1,
+            "rows": [
+              {
+                "bottom": 4.5,
+                "count": 12,
+                "width": 3.05,
+                "height": 3.6,
+                "divisions": 3,
+                "horizontal_fractions": [
+                  0.25,
+                  0.5,
+                  0.75
+                ],
+                "from": 0.020000000000000018,
+                "to": 0.75
+              },
+              {
+                "bottom": 1.1,
+                "count": 9,
+                "width": 3.35,
+                "height": 2.6,
+                "divisions": 3,
+                "transom": true,
+                "from": 0.020000000000000018,
+                "to": 0.6
+              },
+              {
+                "bottom": 4.5,
+                "count": 1,
+                "width": 1.5,
+                "height": 3.6,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.89,
+                "to": 0.89
+              },
+              {
+                "bottom": 1.1,
+                "count": 1,
+                "width": 1.5,
+                "height": 2.6,
+                "divisions": 2,
+                "transom": true,
+                "from": 0.89,
+                "to": 0.89
+              }
+            ],
+            "bands": [
+              {
+                "y": 9.35,
+                "height": 0.18,
+                "depth": 0.5,
+                "projection": 0.24
+              }
+            ]
+          },
+          {
+            "edge": 2,
+            "rows": [
+              {
+                "bottom": 4.5,
+                "count": 5,
+                "width": 1.4,
+                "height": 3.6,
+                "divisions": 2,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              },
+              {
+                "bottom": 1.1,
+                "count": 5,
+                "width": 1.4,
+                "height": 2.6,
+                "divisions": 2,
+                "transom": true,
+                "from": 0,
+                "to": 1
+              }
+            ],
+            "bands": [
+              {
+                "y": 9.35,
+                "height": 0.18,
+                "depth": 0.5,
+                "projection": 0.24
+              }
+            ]
+          }
+        ]
+      },
+      "basis": "重新核对既有官方外观照片的南端及东侧关系；对应OSM边方向与旧参数相反，窗段及装饰fraction整体反转，保持可见构件在同一物理端部。旧边→新边：{4: 1, 3: 2}",
+      "limits": "保留照片可见范围、原高度/窗尺寸估计及77416官方单层状态；门廊、连接体和未见立面没有新增完整几何。"
+    }
+  },
   "2122498": {"style": "photo_panels", "height": 14.0, "floors": 3, "color": "b9b5a2", "frame_color": "c8cbbd", "trim_color": "b5b6a8", "edges": [3, 1], "photos": ["77436-1.jpg"], "panels": [{"edge": 3, "rows": [{"bottom": 5.4, "count": 8, "width": 2.4, "height": 3.0, "divisions": 3, "horizontal_fractions": [0.33, 0.66]}, {"bottom": 10.6, "count": 8, "width": 2.4, "height": 1.55, "divisions": 3, "transom": true}]}, {"edge": 1, "rows": [{"bottom": 5.4, "count": 3, "width": 2.05, "height": 3.0, "divisions": 3, "horizontal_fractions": [0.33, 0.66]}, {"bottom": 10.6, "count": 3, "width": 2.05, "height": 1.55, "divisions": 3, "transom": true}, {"bottom": 1.05, "count": 1, "width": 2.05, "height": 3.4, "divisions": 3, "horizontal_fractions": [0.33, 0.66], "from": 0.84, "to": 0.84}]}], "note": "77436-1楼牌A3区26确认本对象2122498，右侧坡顶装配车间位于地图南侧，结合东西向长楼身对应北侧边3与西侧边1。补中层高窗和顶层矮窗，西侧底层仅补北端可见窗；北面底层被棚屋/植物遮挡，门位不生成窗或通道。14米、开间数、窗距为比例估计；西北折角、南/东面、门廊、屋顶细节与室内未细化。"},
   "77519": {"style": "gabled_shell", "height": 12.3, "eave_height": 10.8, "ridge_z": -556.0, "floors": 3, "color": "9c634d", "photos": ["77519-0.jpg", "77413-0.jpg"], "note": "77519-0端面楼号5确认身份，77413-0右侧红砖邻楼与77519-0左后黄色东灰楼互证东西关系，配准南侧长边6。补南侧上两层窗及底层东段可见窗、层间横带；底层西段遮挡不复制窗排。保留官方轮廓、东西向屋脊Z=-556，檐高10.8米/脊高12.3米、开间与窗距均为比例估计。阳台、附房、其他面及室内未细化。", "frame_color": "c4c7b4", "trim_color": "bcb59d", "edges": [6], "panels": [{"edge": 6, "rows": [{"bottom": 7.5, "count": 12, "width": 1.45, "height": 2.1, "divisions": 2, "transom": true}, {"bottom": 4.1, "count": 12, "width": 1.45, "height": 2.3, "divisions": 3, "horizontal_fractions": [0.5, 0.8]}, {"bottom": 0.9, "count": 5, "width": 1.45, "height": 2.2, "divisions": 3, "horizontal_fractions": [0.5, 0.8], "from": 0.0, "to": 0.42}], "bands": [{"y": 3.4, "height": 0.14, "depth": 0.22}, {"y": 6.9, "height": 0.14, "depth": 0.22}, {"y": 10.45, "height": 0.18, "depth": 0.3}]}]},
   "35995473": {"style": "photo_panels", "height": 13.4, "floors": 3, "color": "b17959", "frame_color": "bcc6bf", "trim_color": "b7b6ab", "edges": [8, 9], "photos": ["35995473-2.jpg"], "panels": [{"edge": 8, "rows": [{"bottom": 5.3, "count": 1, "width": 2.05, "height": 2.4, "divisions": 2, "transom": true, "from": 0.15, "to": 0.15}, {"bottom": 5.3, "count": 1, "width": 3.2, "height": 2.4, "divisions": 4, "transom": true, "from": 0.5, "to": 0.5}, {"bottom": 5.3, "count": 1, "width": 2.05, "height": 2.4, "divisions": 2, "transom": true, "from": 0.85, "to": 0.85}, {"bottom": 9.4, "count": 1, "width": 2.05, "height": 2.6, "divisions": 2, "transom": true, "from": 0.15, "to": 0.15}, {"bottom": 9.4, "count": 1, "width": 3.2, "height": 2.6, "divisions": 4, "transom": true, "from": 0.5, "to": 0.5}, {"bottom": 9.4, "count": 1, "width": 2.05, "height": 2.6, "divisions": 2, "transom": true, "from": 0.85, "to": 0.85}], "bands": [{"y": 8.9, "height": 8.6, "depth": 0.04, "projection": 0.03}, {"y": 4.6, "height": 0.35, "depth": 0.3}, {"y": 8.5, "height": 0.85, "depth": 0.24}, {"y": 13.1, "height": 0.2, "depth": 0.35}], "accents": [{"fraction": 0.015, "y": 6.7, "size": [0.35, 13.1, 0.28]}, {"fraction": 0.3, "y": 6.7, "size": [0.35, 13.1, 0.28]}, {"fraction": 0.7, "y": 6.7, "size": [0.35, 13.1, 0.28]}, {"fraction": 0.985, "y": 6.7, "size": [0.35, 13.1, 0.28]}]}, {"edge": 9, "rows": [{"bottom": 5.3, "count": 6, "width": 2.2, "height": 2.4, "divisions": 3, "transom": true}, {"bottom": 9.4, "count": 6, "width": 2.2, "height": 2.6, "divisions": 3, "transom": true}], "bands": [{"y": 4.6, "height": 0.35, "depth": 0.3}, {"y": 8.5, "height": 0.85, "depth": 0.24}, {"y": 13.1, "height": 0.2, "depth": 0.35}]}], "note": "仅用2号咖啡店照片状态，牌号A1区19确认身份；三开间转角及两翼关系对应东南斜边8和南侧长边9。补二/三层窗、转角灰色竖框和层间横带；13.4米、窗宽和开间数为比例估计。右侧东翼遮挡、首层店面、招牌、入口台阶和其他面不拼接旧照片补造；文件名20200108不代表已核实拍摄日期或现场现状。"},
