@@ -10,6 +10,7 @@ func _initialize() -> void:
 	assert(ResourceLoader.exists("res://scripts/client/touch_controls.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/weather_effects.gd"))
 	assert(ResourceLoader.exists("res://scripts/shared/chat_rules.gd"))
+	assert(ResourceLoader.exists("res://scripts/shared/road_geometry.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/account_session.gd"))
 	assert(ResourceLoader.exists("res://scripts/client/credential_store.gd"))
 	assert(not ResourceLoader.exists("res://scripts/client/guest_session.gd"))
@@ -18,6 +19,9 @@ func _initialize() -> void:
 	assert(not ResourceLoader.exists("res://scripts/campus_streamer.gd"))
 	assert(not FileAccess.file_exists("res://campus_packs.json"))
 	for id in ["lingshui","eda","panjin"]:
+		var roads_path: String = "res://assets/campuses/"+id+"/data/osm_roads.json"
+		assert(FileAccess.file_exists(roads_path))
+		assert(not JSON.parse_string(FileAccess.get_file_as_string(roads_path)).roads.is_empty())
 		var scene: Node = load("res://scenes/campuses/"+id+".tscn").instantiate()
 		assert(scene.get_node("CampusModel").get_child_count()>0)
 		assert(scene.has_node("Vegetation"))
@@ -27,6 +31,9 @@ func _initialize() -> void:
 		assert(FileAccess.file_exists(manifest_path))
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
 		assert(not manifest.features.is_empty())
+		if id == "lingshui":
+			assert(scene.has_node("PhotoRoadDetails"))
+			assert(scene.get_node("PhotoRoadDetails").find_children("*", "StaticBody3D", true, false).size() == 5)
 		if id == "panjin":
 			assert(manifest.features.size()==64)
 		var precipitation := scene.get_node("CampusEnvironment/Precipitation")
