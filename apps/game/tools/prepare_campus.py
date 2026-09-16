@@ -57,6 +57,7 @@ selected={'77914':'way/1422474847','77921':'way/232559719','77917':'way/14224748
           '77923':'way/1076344144',
           '2304789':'way/1076344145',
           '39327816':'way/375541050',
+          '39327169':'way/1076344139',
           '77931':'way/309375779','77933':'way/309375778','77935':'way/309375777','77937':'way/309375780','77941':'way/375541046',
           '2304775':'way/232560296','39328846':'way/232560016',
           '2304759':'way/232560269','2304752':'way/1381450450'}
@@ -72,12 +73,18 @@ for feature in features:
    parent=records[spec['osm_id']]
    assert parent['version']==spec['osm_version']
    parent_points=parent['polygons'][0]['outer']
+   containment=records[spec.get('containment_osm_id',spec['osm_id'])]['polygons'][0]['outer']
    transform=projective_map([a['pixel'] for a in spec['anchors']],[parent_points[a['osm_vertex']] for a in spec['anchors']])
    feature.setdefault('sports_surfaces',[])
    for surface in spec['surfaces']:
     points=[transform(p) for p in surface['pixels']]
-    assert valid_ring(points) and all(inside(p,parent_points) for p in points)
-    feature['sports_surfaces'].append(dict(id=surface['id'],points=points,source='official-lm30-local-registration',refinement_id=spec['id']))
+    assert valid_ring(points) and all(inside(p,containment) for p in points)
+    holes=[[transform(p) for p in ring] for ring in surface.get('holes_pixels',[])]
+    assert all(valid_ring(ring) and all(inside(p,points) for p in ring) for ring in holes)
+    feature['sports_surfaces'].append(dict(id=surface['id'],points=points,holes=holes,surface_type=surface.get('surface_type','court'),source='official-lm30-local-registration',refinement_id=spec['id']))
+  if feature['id']=='39327169':
+   football=records['way/1076344143']
+   feature['sports_lines']=[dict(osm_id=football['osm_id'],osm_version=football['version'],points=football['polygons'][0]['outer'],closed=True)]
   if feature['id']=='39327816':
    parts=[records[k] for k in ['way/375541050','way/1381450455','way/1381450456']]
    feature['osm_geometry_sources']=[dict(osm_id=p['osm_id'],osm_version=p['version']) for p in parts]
