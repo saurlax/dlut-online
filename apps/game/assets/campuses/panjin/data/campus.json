@@ -662,131 +662,107 @@
       "source_index": 211,
       "points": [
         [
-          25.79175934540945,
-          -199.00548601005553
+          21.67721865041715,
+          -217.9311640006125
         ],
         [
-          9.91177593232169,
-          -215.8404860100555
+          29.17307930518945,
+          -216.561928000431
         ],
         [
-          11.523774248562086,
-          -228.4704860100555
+          73.42229276492147,
+          -208.4912280002422
         ],
         [
-          163.61261538918578,
-          -200.50848601005552
+          169.12113538046535,
+          -191.04738400046358
         ],
         [
-          180.69859754258738,
-          -183.43748601005555
+          166.68160415354654,
+          -177.68898400017832
         ],
         [
-          176.8076016067987,
-          -170.49048601005555
+          19.237687423498347,
+          -204.55050000006707
         ]
       ],
       "render_polygons": [
         [
           [
-            25.79175934540945,
-            -199.00548601005553
+            21.67721865041715,
+            -217.9311640006125
           ],
           [
-            9.91177593232169,
-            -215.8404860100555
+            29.17307930518945,
+            -216.561928000431
           ],
           [
-            11.523774248562086,
-            -228.4704860100555
+            73.42229276492147,
+            -208.4912280002422
           ],
           [
-            163.61261538918578,
-            -200.50848601005552
+            169.12113538046535,
+            -191.04738400046358
           ],
           [
-            180.69859754258738,
-            -183.43748601005555
+            166.68160415354654,
+            -177.68898400017832
           ],
           [
-            176.8076016067987,
-            -170.49048601005555
+            19.237687423498347,
+            -204.55050000006707
           ]
         ]
       ],
       "height": 19.0,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
+        "osm_registration": {
+          "osm_id": "way/1318388516",
+          "osm_version": 1,
+          "expected_vertices": 6,
+          "edges": [
+            5,
+            4
+          ],
+          "duct_edges": [
+            4
+          ],
+          "review_date": "2026-09-16",
+          "photo": "photos/77955-0.jpg",
+          "photo_id": 80114,
+          "basis": "Photo shows D03 south long facade with exposed ducts and west short facade, D04 behind. Old west edge 1 maps to OSM edge 5; old south edge 5 maps to OSM edge 4. OSM vertices 0,1,2,3 lie along the north facade and are retained as source connection points.",
+          "limits": "Preserve existing estimated height and visible facade styles. Window and pipe spacing remain approximations; photo does not establish surveyed ground corners or interior geometry."
+        },
         "height": 19.0,
         "floors": 4,
         "style": "laboratory",
         "color": "895e4d",
         "edges": [
-          1,
-          5
+          5,
+          4
         ],
         "photos": [
           "photos/77955-0.jpg"
         ],
         "coverage": "南侧长边与西端短边；照片左后方为D04，保留南侧可见竖窗、玻璃分段和白色外露管道。",
-        "precision": "管道直径、间距、折弯及楼高按照片比例估算；不向未见北侧复制。"
+        "precision": "管道直径、间距、折弯及楼高按照片比例估算；不向未见北侧复制。",
+        "osm_id": "way/1318388516",
+        "osm_version": 1,
+        "expected_vertices": 6,
+        "duct_edges": [
+          4
+        ],
+        "review_date": "2026-09-16",
+        "photo": "photos/77955-0.jpg",
+        "photo_id": 80114,
+        "basis": "Photo shows D03 south long facade with exposed ducts and west short facade, D04 behind. Old west edge 1 maps to OSM edge 5; old south edge 5 maps to OSM edge 4. OSM vertices 0,1,2,3 lie along the north facade and are retained as source connection points.",
+        "limits": "Preserve existing estimated height and visible facade styles. Window and pipe spacing remain approximations; photo does not establish surveyed ground corners or interior geometry."
       },
-      "reference_points": [
-        [
-          26.141,
-          -421.651
-        ],
-        [
-          10.261,
-          -438.486
-        ],
-        [
-          11.873,
-          -451.116
-        ],
-        [
-          163.962,
-          -423.154
-        ],
-        [
-          181.048,
-          -406.083
-        ],
-        [
-          177.157,
-          -393.136
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            26.141,
-            -421.651
-          ],
-          [
-            10.261,
-            -438.486
-          ],
-          [
-            11.873,
-            -451.116
-          ],
-          [
-            163.962,
-            -423.154
-          ],
-          [
-            181.048,
-            -406.083
-          ],
-          [
-            177.157,
-            -393.136
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1318388516",
+      "osm_version": 1,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified"
     },
     {
       "id": "77956",

@@ -52,11 +52,16 @@ def main():
         match = matched.get(feature['id'])
         # Photo-covered facades require reviewed edge registrations before replacing
         # their source ring. Retain them explicitly rather than copying old indexes.
-        if match and not feature['facade']:
+        registration=feature['facade'].get('osm_registration')
+        if match and (not feature['facade'] or registration):
             assert len(match['osm_candidates'])==1 and match['official_parts']==1
             record = match['osm_candidates'][0]
             assert len(record['polygons'])==1 and not record['polygons'][0]['holes']
             ring = record['polygons'][0]['outer']
+            if registration:
+                assert record['osm_id']==registration['osm_id'] and record['osm_version']==registration['osm_version']
+                assert len(ring)==registration['expected_vertices']
+                feature['facade']=dict(feature['facade'],**registration)
             feature.update(points=ring,render_polygons=[ring],osm_id=record['osm_id'],
                            osm_version=record['osm_version'],footprint_source='osm',
                            geometry_status='osm-source-outline; absolute accuracy unverified')

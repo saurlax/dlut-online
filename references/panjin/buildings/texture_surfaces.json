@@ -54,6 +54,10 @@
       "observation": "红褐色板面颜色与细纹近似；板缝沿用已建几何，不在贴图中编造新接缝。"
     },
     "77955": {
+      "osm_regions": [
+        {"edge": 5, "span": [0, 1], "bottom": 0.7, "top": 18.25},
+        {"edge": 4, "span": [0, 1], "bottom": 0.7, "top": 18.25}
+      ],
       "finish": "terracotta",
       "reference": {
         "photo": "photos/77955-0.jpg",
