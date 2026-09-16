@@ -20,6 +20,10 @@ on:
       - ".gitattributes"
   workflow_dispatch:
   workflow_call:
+    secrets:
+      DO_ANDROID_KEYSTORE_BASE64:
+        description: Fixed Android test keystore encoded as Base64
+        required: false
     inputs:
       release:
         type: boolean
@@ -83,6 +87,24 @@ jobs:
     env:
       GODOT_VERSION: 4.7.2
     steps:
+      - name: Restore Android signing key
+        id: signing
+        env:
+          DO_ANDROID_KEYSTORE_BASE64: ${{ secrets.DO_ANDROID_KEYSTORE_BASE64 }}
+          DO_ALLOW_TEMPORARY_SIGNING: ${{ github.event_name == 'pull_request' && (github.event.pull_request.head.repo.full_name != github.repository || github.actor == 'dependabot[bot]') }}
+        run: |
+          if [[ -n "$DO_ANDROID_KEYSTORE_BASE64" ]]; then
+            umask 077
+            mkdir -p "$HOME/.android"
+            printf '%s' "$DO_ANDROID_KEYSTORE_BASE64" | base64 --decode > "$HOME/.android/debug.keystore"
+            test -s "$HOME/.android/debug.keystore"
+            echo 'description=使用仓库 Secrets 中的固定测试签名，可覆盖安装使用同一密钥的版本。' >> "$GITHUB_OUTPUT"
+          elif [[ "$DO_ALLOW_TEMPORARY_SIGNING" == 'true' ]]; then
+            echo 'description=外部 fork 或 Dependabot PR 无法读取签名 Secret，本次使用临时测试签名；安装时可能需要卸载旧版。' >> "$GITHUB_OUTPUT"
+          else
+            echo '::error::Missing repository secret DO_ANDROID_KEYSTORE_BASE64'
+            exit 1
+          fi
       - uses: actions/checkout@v4
         with:
           lfs: true
@@ -94,7 +116,7 @@ jobs:
         with:
           packages: platform-tools
       - name: Install Android build tools
-        run: sdkmanager 'platform-tools' 'platforms;android-36' 'build-tools;35.0.0'
+        run: sdkmanager 'platform-tools' 'platforms;android-36' 'build-tools;36.1.0' 'ndk;29.0.14206865'
       - name: Install Godot and Android export templates
         run: |
           release="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-stable"
@@ -102,10 +124,10 @@ jobs:
           unzip -q "$RUNNER_TEMP/godot.zip" -d "$RUNNER_TEMP/godot"
           sudo install "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" /usr/local/bin/godot
           curl -fL --retry 3 "$release/Godot_v${GODOT_VERSION}-stable_export_templates.tpz" -o "$RUNNER_TEMP/templates.tpz"
-          unzip -q "$RUNNER_TEMP/templates.tpz" 'templates/android_debug.apk' 'templates/android_release.apk' -d "$RUNNER_TEMP/godot-templates"
+          unzip -q "$RUNNER_TEMP/templates.tpz" 'templates/android_source.zip' -d "$RUNNER_TEMP/godot-templates"
           templates="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
           mkdir -p "$templates"
-          mv "$RUNNER_TEMP/godot-templates/templates/"*.apk "$templates/"
+          mv "$RUNNER_TEMP/godot-templates/templates/android_source.zip" "$templates/"
       - name: Export and verify Android test APK
         env:
           DO_ENV: production
@@ -122,13 +144,14 @@ jobs:
       - name: Add APK download instructions
         env:
           ARTIFACT_URL: ${{ steps.apk.outputs.artifact-url }}
+          DO_SIGNING_DESCRIPTION: ${{ steps.signing.outputs.description }}
         run: |
           cat >> "$GITHUB_STEP_SUMMARY" <<EOF
           ## Android arm64 测试 APK
 
           [下载 APK artifact]($ARTIFACT_URL)，解压后安装其中的 APK。下载需登录 GitHub，保留 7 天。
 
-          使用 Android 默认 debug keystore 签名（缺失时按标准参数初始化），不需要配置证书或 Secrets。不同 runner 的默认测试签名可能不同，覆盖安装失败时需卸载旧版；卸载会清除本地数据。
+          $DO_SIGNING_DESCRIPTION 卸载会清除本地数据。固定密钥沿用现有 debug keystore，仍是测试签名。
 
           当前为 Release 测试包，默认连接 https://dlut.online，尚未通过 Android 真机性能及联网验收，不用于应用商店发行。
           EOF

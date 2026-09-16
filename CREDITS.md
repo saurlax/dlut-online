@@ -109,7 +109,7 @@ DLUT Online 服务端通过 [Open-Meteo Forecast API](https://open-meteo.com/en/
 
 ### 3.4 Android 图标与资源表技术资料
 
-Android 图标布局参考 [Android 自适应图标文档](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive)与 [Godot Android 导出文档](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_android.html)。非 Gradle 导出资源包名兼容处理参考 [Godot 导出实现](https://github.com/godotengine/godot/blob/4.7-stable/platform/android/export/export_plugin.cpp)和 [AOSP ResourceTypes.h](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/libs/androidfw/include/androidfw/ResourceTypes.h) 中的资源表格式，读取日期为 2026-09-16。相关上游代码分别适用 MIT 和 Apache-2.0，文档许可见各来源页；本项目工具独立实现固定字段读写，未引入额外运行库或外部图标素材。
+Android 图标布局参考 [Android 自适应图标文档](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive)与 [Godot Android 导出文档](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_android.html)。Android 打包采用 [Godot 官方 Gradle 构建](https://docs.godotengine.org/en/4.7/tutorials/export/android_gradle_build.html)，使用对应版本的官方模板与 Gradle Wrapper，不自行改写 APK 资源表。读取日期为 2026-09-16。Godot 代码适用 MIT，Gradle 适用 [Apache-2.0](https://github.com/gradle/gradle/blob/master/LICENSE)，文档许可见各来源页；未引入外部图标素材。
 
 ## 四、字体
 
@@ -138,3 +138,9 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 ## 六、名称与商标
 
 本声明所列机构名称、产品名称及商标归各自权利人所有，用于识别资料、服务或软件来源。除另有明确授权文件外，相关列示不表示权利人对 DLUT Online 的赞助、认可、认证或合作关系。
+
+## 校园植被参考与树皮材质
+
+- 大连理工大学[校园风光](https://www.dlut.edu.cn/xxgk/xyfg.htm)及其[凌水湖图集 92404](https://news.dlut.edu.cn/info/1020/92404.htm)、[图书馆阅读空间 117214](https://news.dlut.edu.cn/info/1292/117214.htm)、[景观建设 143385](https://news.dlut.edu.cn/info/1022/143385.htm)、[开发区双湖改造 147345](https://news.dlut.edu.cn/info/1292/147345.htm)、[盘锦春季绿化 3901](https://pjxqzwb.dlut.edu.cn/info/1071/3901.htm)，用于植被形态和可见区域参考。读取日期 2026-09-16。具体对象、原图 URL、压缩方法与哈希见各校区 references/vegetation 档案（实际路径为 references/<campus_id>/vegetation）。照片授权适用第 2.1 条，只作离线参考，不打入客户端。
+- 树皮：[Bark Brown 02](https://polyhaven.com/a/bark_brown_02)，作者 Rob Tuytel，由 Poly Haven 发布，采用 [CC0 1.0](https://polyhaven.com/license)。客户端使用 1K JPEG 漫反射与 OpenGL 法线贴图，三校区共享；只是通用树皮表面，不是对应校园树种扫描。[下载、SHA-256 与许可记录](references/shared/vegetation/textures.json)。
+- 折面叶片、枝干结构、草簇、花瓣、草坪细节与近远级别由本项目原生生成工具制作；不包含新闻照片像素，不将程序化种植数量写成实测数据。植物冠形、尺寸及材质效果属于参考支持的近似表达。

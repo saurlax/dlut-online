@@ -55,11 +55,11 @@ Android SHALL 保持单人离线无账号，多人使用真实账号；账号 to
 - **THEN** 上传 `client-android-release-<github.sha>` artifact，仅含 APK，保留 7 天，并在 Actions 摘要提供下载链接和解压安装说明
 - **AND** 用户可从 PR Checks 打开构建下载，无需等待其他平台产物；其他构建仍必须通过才算整体 CI 成功
 
-#### Scenario: No managed release certificate
+#### Scenario: Fixed test signing identity
 
 - **WHEN** 干净的 CI runner 打包测试 APK
-- **THEN** 复用 `~/.android/debug.keystore` 并签名；缺失时按 Android 标准 debug 参数初始化，不为每次构建另设密钥路径，不需用户上传证书或配置 Secrets，不缓存、提交或上传密钥
-- **AND** 摘要说明不同 runner 的默认测试签名可能不同，覆盖安装失败时需卸载旧版，卸载会清除本地数据；不宣称存在通用的默认正式签名
+- **THEN** 从 Actions Secret `DO_ANDROID_KEYSTORE_BASE64` 恢复固定 `~/.android/debug.keystore` 并签名；常规 CI 缺失 Secret 时失败，外部 fork/Dependabot PR 才允许生成临时测试密钥；不缓存、提交或将密钥上传到 artifact
+- **AND** 摘要区分固定与临时测试签名；固定签名支持同一密钥版本间覆盖更新，签名不同时需卸载旧版并清除本地数据；不宣称测试签名是商店正式发行签名
 - **AND** APK 不作为 GitHub Release 附件或应用商店正式发行包
 
 ### Requirement: Release mode with test signing

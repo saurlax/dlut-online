@@ -1,0 +1,14 @@
+[
+  {
+    "file": "references/eda/vegetation/photos/eda-slope-6.jpg",
+    "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=4n7-8inlW2L7n2Li4A7ol7Dozf7ozfDRo7VVnmM7U4UYL8L0gihFp2hmCIa0oSyiM1h2LYhkUm7DUmlsM4UZnmU4n7CZUlUao7LsMl7bM8rFo7lbLRnkMR6FLz7bMzVkgtXaQ4Oeo4xNp2PjQdAZ6sv0qIbtpYyPLR-Yg478L4LZMSbw62s8c&oid=1819948287&tid=1022&nid=143385&e=.jpg",
+    "source_page": "https://news.dlut.edu.cn/info/1022/143385.htm",
+    "object_id": "eda-slope:6",
+    "retrieved": "2026-09-16",
+    "original_sha256": "4def66938dfa54459b27dc5d0738a3f8be83f312aea918ac45dbcea94b8228a1",
+    "sha256": "f2797a3c9c4b7fdfec51e0cb463128456e7711eb20f2e1999f1847ae58cc222e",
+    "processing": "max 1600x1200 JPEG quality 82",
+    "usage": "offline vegetation reference",
+    "license": "Not confirmed; no runtime redistribution"
+  }
+]

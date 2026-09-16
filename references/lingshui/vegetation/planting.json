@@ -1,0 +1,478 @@
+{
+  "schema_version": 1,
+  "campus": "lingshui",
+  "retrieved": "2026-09-16",
+  "coordinates": "Campus local metres, X east Z south. Hand-aligned to official feature outlines.",
+  "source_pages": [
+    "https://news.dlut.edu.cn/info/1292/117214.htm",
+    "https://news.dlut.edu.cn/info/1022/143385.htm",
+    "https://www.dlut.edu.cn/xxgk/xyfg.htm",
+    "https://news.dlut.edu.cn/info/1020/92404.htm"
+  ],
+  "precision": "Zones and all positions/heights/counts approximate. Photographs confirm presence, not surveyed placement.",
+  "zones": [
+    {
+      "id": "library-south-east",
+      "seed": 16093865,
+      "polygon": [
+        [
+          -856,
+          -431
+        ],
+        [
+          -820,
+          -431
+        ],
+        [
+          -820,
+          -370
+        ],
+        [
+          -856,
+          -370
+        ]
+      ],
+      "photos": [
+        "photos/ls-library-5.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "pine",
+          "spacing": 10,
+          "height": [
+            6,
+            8
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "grass",
+          "spacing": 0.85,
+          "height": [
+            0.1,
+            0.17
+          ],
+          "clearance": 0.6,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "library-south-west",
+      "seed": 16093887,
+      "polygon": [
+        [
+          -914,
+          -434
+        ],
+        [
+          -875,
+          -434
+        ],
+        [
+          -875,
+          -366
+        ],
+        [
+          -914,
+          -366
+        ]
+      ],
+      "photos": [
+        "photos/ls-library-5.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "cedar",
+          "spacing": 10,
+          "height": [
+            7,
+            9
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "cherry",
+          "spacing": 8,
+          "height": [
+            3.5,
+            4.7
+          ],
+          "clearance": 2,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "library-ginkgo-walk-east",
+      "seed": 16094417,
+      "polygon": [
+        [
+          -867,
+          -430
+        ],
+        [
+          -860,
+          -430
+        ],
+        [
+          -860,
+          -366
+        ],
+        [
+          -867,
+          -366
+        ]
+      ],
+      "photos": [
+        "photos/ls-library-5.jpg",
+        "photos/ls-library-6.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "ginkgo",
+          "spacing": 7,
+          "height": [
+            7.5,
+            10
+          ],
+          "clearance": 2,
+          "jitter": 0
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "library-ginkgo-walk-west",
+      "seed": 16094439,
+      "polygon": [
+        [
+          -875,
+          -430
+        ],
+        [
+          -868,
+          -430
+        ],
+        [
+          -868,
+          -366
+        ],
+        [
+          -875,
+          -366
+        ]
+      ],
+      "photos": [
+        "photos/ls-library-5.jpg",
+        "photos/ls-library-6.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "ginkgo",
+          "spacing": 7,
+          "height": [
+            7.5,
+            10
+          ],
+          "clearance": 2,
+          "jitter": 0
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "library-border",
+      "seed": 16093466,
+      "polygon": [
+        [
+          -916,
+          -365
+        ],
+        [
+          -825,
+          -365
+        ],
+        [
+          -825,
+          -363
+        ],
+        [
+          -916,
+          -363
+        ]
+      ],
+      "photos": [
+        "photos/ls-library-5.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "hedge",
+          "spacing": 0.9,
+          "height": [
+            0.65,
+            0.85
+          ],
+          "clearance": 0.7,
+          "jitter": 0
+        }
+      ],
+      "lawn": false,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "library-northwest-maples",
+      "seed": 16094521,
+      "polygon": [
+        [
+          -937,
+          -591
+        ],
+        [
+          -922,
+          -591
+        ],
+        [
+          -922,
+          -536
+        ],
+        [
+          -937,
+          -536
+        ]
+      ],
+      "photos": [
+        "photos/ls-library-5.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "maple",
+          "spacing": 7,
+          "height": [
+            5.5,
+            8
+          ],
+          "clearance": 2,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": "Northwest grove presence and maple species supported by 143385; exact tree positions estimated."
+    },
+    {
+      "id": "main-west-pines",
+      "seed": 16093531,
+      "polygon": [
+        [
+          31,
+          -18
+        ],
+        [
+          57,
+          -18
+        ],
+        [
+          57,
+          10
+        ],
+        [
+          31,
+          10
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77386-0.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "pine",
+          "spacing": 8,
+          "height": [
+            5,
+            7
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "hedge",
+          "spacing": 2,
+          "height": [
+            0.65,
+            0.85
+          ],
+          "clearance": 0.8,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "main-east-pines",
+      "seed": 16093509,
+      "polygon": [
+        [
+          116,
+          -18
+        ],
+        [
+          139,
+          -18
+        ],
+        [
+          139,
+          8
+        ],
+        [
+          116,
+          8
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77386-0.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "pine",
+          "spacing": 8,
+          "height": [
+            5,
+            7
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "grass",
+          "spacing": 0.85,
+          "height": [
+            0.09,
+            0.16
+          ],
+          "clearance": 0.6,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "training-east-row",
+      "seed": 16093749,
+      "polygon": [
+        [
+          525,
+          -34
+        ],
+        [
+          532,
+          -34
+        ],
+        [
+          532,
+          13
+        ],
+        [
+          525,
+          13
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77420-3.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "broadleaf",
+          "spacing": 7,
+          "height": [
+            7,
+            9
+          ],
+          "clearance": 2,
+          "jitter": 0
+        },
+        {
+          "kind": "shrub",
+          "spacing": 3,
+          "height": [
+            0.65,
+            0.9
+          ],
+          "clearance": 1,
+          "jitter": 1
+        }
+      ],
+      "lawn": false,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": "Upright deciduous outline only; photo insufficient for species identification."
+    },
+    {
+      "id": "lake-east-lawn",
+      "seed": 16093392,
+      "polygon": [
+        [
+          -213,
+          -336
+        ],
+        [
+          -201,
+          -328
+        ],
+        [
+          -198,
+          -299
+        ],
+        [
+          -211,
+          -302
+        ]
+      ],
+      "photos": [
+        "photos/spring-3.jpg",
+        "photos/spring-4.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "willow",
+          "spacing": 6,
+          "height": [
+            7,
+            10
+          ],
+          "clearance": 2,
+          "jitter": 0.25
+        },
+        {
+          "kind": "grass",
+          "spacing": 0.85,
+          "height": [
+            0.1,
+            0.17
+          ],
+          "clearance": 0.6,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    }
+  ]
+}
