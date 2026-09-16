@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "reviewed": "2026-09-17",
+  "coordinate_frame": "references/shared/mapping/osm-world-frame.json",
+  "objects": {
+    "81106": {
+      "name": "七七足球场",
+      "osm_id": "way/894092911",
+      "osm_version": 4,
+      "expected_vertices": 4
+    },
+    "81107": {
+      "name": "福佳足球场",
+      "osm_id": "way/543818291",
+      "osm_version": 2,
+      "expected_vertices": 4
+    }
+  },
+  "basis": "与官方对象同名、同地点的OSM leisure=pitch、sport=soccer闭合区域；两处来源均标注surface=artificial_turf。",
+  "limits": "仅迁移场地外边界。原场景没有这两场的内部划线或设施注册，不添加标准比赛尺寸、球门、灯柱及围栏；材质类型取自OSM，绿色为近似表达。OSM不是实测边界或现状测绘。"
+}

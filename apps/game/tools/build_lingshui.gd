@@ -52,7 +52,8 @@ func build() -> void:
 					if feature.has("sports"):
 						sports_builder.build(self, group, points, feature.sports)
 					else:
-						polygon(group,points,0.06,material("Lingshui sports",Color("92776a")),"Sports")
+						var turf: bool = feature.get("surface_type", "") == "artificial_turf"
+						polygon(group,points,0.06,material("Lingshui artificial turf" if turf else "Lingshui sports",Color("65824d") if turf else Color("92776a")),"Sports")
 				"plaza", "gate":
 					polygon(group,points,0.06,material("Lingshui paving",Color("aaa799")),"Paving")
 				"reserve":
