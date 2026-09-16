@@ -33,7 +33,7 @@ func build() -> void:
 				"road":
 					polygon(group,points,0.04,material("Panjin asphalt",Color("656966")),"Road")
 				"water":
-					polygon(group,points,0.05,material("Water",Color("526b6a")),"Water")
+					polygon(group,points,0.05,preload("res://assets/water/campus_water.tres"),"Water")
 				"sports":
 					polygon(group,points,0.06,material("Panjin sports",Color("92776a")),"Sports")
 				"plaza", "gate":
