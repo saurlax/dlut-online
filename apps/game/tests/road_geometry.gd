@@ -42,6 +42,21 @@ func _run() -> void:
 	assert(covered(Vector2(-0.5,20.5), roads.tessellate(joined)))
 	centerlines[1].points = [[0,24],[20,24]]
 	assert(not covered(Vector2(0,21), roads.tessellate(preload("res://scripts/shared/road_geometry.gd").polygons(centerlines))))
+	# Check the complete road width at the source-reviewed northwest bend.
+	var lingshui: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
+	var haiying := PackedVector2Array()
+	for feature in lingshui.features:
+		if feature.id=="77411":
+			for point in feature.points: haiying.append(Vector2(point[0],point[1]))
+	var source_roads: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json"))
+	var checked_haiying := false
+	for road in source_roads.roads:
+		if road.osm_way_id!=33126275: continue
+		checked_haiying = true
+		for polygon in preload("res://scripts/shared/road_geometry.gd").polygons([road]):
+			assert(absf(area(Geometry2D.intersect_polygons(polygon,haiying)))<0.01,"Full road width cuts through Haiying northwest wall")
+	assert(checked_haiying)
+	print("HAIYING ROAD CLEARANCE PASS: full-width bend outside building")
 	# Real saved meshes follow the exact terrain plane within 2 mm, including
 	# edge midpoints and triangle interiors, not only their sampled vertices.
 	for campus in ["eda", "lingshui"]:
