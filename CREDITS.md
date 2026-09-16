@@ -107,7 +107,7 @@ DLUT Online 服务端通过 [Open-Meteo Forecast API](https://open-meteo.com/en/
 
 ### 3.4 Android 图标与资源表技术资料
 
-Android 图标布局参考 [Android 自适应图标文档](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive)与 [Godot Android 导出文档](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_android.html)。非 Gradle 导出资源包名兼容处理参考 [Godot 导出实现](https://github.com/godotengine/godot/blob/4.7-stable/platform/android/export/export_plugin.cpp)和 [AOSP ResourceTypes.h](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/libs/androidfw/include/androidfw/ResourceTypes.h) 中的资源表格式，读取日期为 2026-09-16。相关上游代码分别适用 MIT 和 Apache-2.0，文档许可见各来源页；本项目工具独立实现固定字段读写，未引入额外运行库或外部图标素材。
+Android 图标布局参考 [Android 自适应图标文档](https://developer.android.com/develop/ui/compose/system/icon_design_adaptive)与 [Godot Android 导出文档](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_android.html)。Android 打包采用 [Godot 官方 Gradle 构建](https://docs.godotengine.org/en/4.7/tutorials/export/android_gradle_build.html)，使用对应版本的官方模板与 Gradle Wrapper，不自行改写 APK 资源表。读取日期为 2026-09-16。Godot 代码适用 MIT，Gradle 适用 [Apache-2.0](https://github.com/gradle/gradle/blob/master/LICENSE)，文档许可见各来源页；未引入外部图标素材。
 
 ## 四、字体
 
