@@ -1,0 +1,1494 @@
+{
+  "reviewed": "2026-09-16",
+  "scope": "仅已配准、已建模的照片可见区段；材质类别与颜色是视觉近似，非施工材料鉴定或实测。细节比例未重新测量。",
+  "buildings": {
+    "77386": {
+      "finish": "mineral",
+      "reference": {
+        "photo": "photos/77386-0.jpg",
+        "photo_id": 825330,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77386_20190923155019942.jpg"
+      },
+      "profile": "facades.json#77386",
+      "status": "applied",
+      "coverage": "registered_edges",
+      "observation": "沿用已登记外边，仅表现场景既有墙面。主楼系矿物颗粒面；令希为已记录红砖外观。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77395": {
+      "finish": "mineral",
+      "reference": {
+        "photo": "photos/77395-0.jpg",
+        "photo_id": 825492,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77395_20190923164942375.jpg"
+      },
+      "profile": "facades.json#77395",
+      "status": "applied",
+      "coverage": "registered_edges",
+      "observation": "沿用已登记外边，仅表现场景既有墙面。主楼系矿物颗粒面；令希为已记录红砖外观。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77396": {
+      "finish": "mineral",
+      "reference": {
+        "photo": "photos/77396-1.jpg",
+        "photo_id": 825356,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77396_2019092316001470.jpg"
+      },
+      "profile": "facades.json#77396",
+      "status": "applied",
+      "coverage": "registered_edges",
+      "observation": "沿用已登记外边，仅表现场景既有墙面。主楼系矿物颗粒面；令希为已记录红砖外观。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77357": {
+      "finish": "brick",
+      "reference": {
+        "photo": "photos/77357-7.jpg",
+        "photo_id": 875235,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77357_20200108082812827.png"
+      },
+      "profile": "facades.json#77357",
+      "status": "applied",
+      "coverage": "registered_edges",
+      "observation": "沿用已登记外边，仅表现场景既有墙面。主楼系矿物颗粒面；令希为已记录红砖外观。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77447": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77447-5.jpg",
+        "photo_id": 827352,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77447_2019092416380695.jpg"
+      },
+      "profile": "facades.json#77447",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77385": {
+      "finish": "mineral",
+      "reference": {
+        "photo": "photos/77385-0.jpg",
+        "photo_id": 825472,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77385_20190923164156134.jpg"
+      },
+      "profile": "facades.json#77385",
+      "status": "applied",
+      "coverage": "registered_edges",
+      "observation": "沿用已登记外边，仅表现场景既有墙面。主楼系矿物颗粒面；令希为已记录红砖外观。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77378": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77378-7.jpg",
+        "photo_id": 875286,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77378_2020010809051462.png"
+      },
+      "profile": "facades.json#77378",
+      "status": "deferred",
+      "reason": "照片已查看，但墙面尚无有效区段配准；不把照片覆盖推定为整个外壳。"
+    },
+    "77445": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77445-0.jpg",
+        "photo_id": 874890,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77445_20200107092649670.jpg"
+      },
+      "profile": "facades.json#77445",
+      "status": "deferred",
+      "reason": "现有精修主要为玻璃与金属曲面屋顶，不套用墙面砖或粗粒纹理；石质基座的具体照片覆盖尚未独立划定。"
+    },
+    "77355": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77355-0.jpg",
+        "photo_id": 851405,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77355_20191108144154998.jpg"
+      },
+      "profile": "facades.json#77355",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77356": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77356-0.jpg",
+        "photo_id": 851425,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77356_2019110814460272.png"
+      },
+      "profile": "facades.json#77356",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77358": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77358-6.jpg",
+        "photo_id": 875243,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77358_20200108083341751.png"
+      },
+      "profile": "facades.json#77358",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77380": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77380-0.jpg",
+        "photo_id": 78244,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77380_20160224164755598.jpg"
+      },
+      "profile": "facades.json#77380",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77382": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77382-0.jpg",
+        "photo_id": 78235,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77382_20160224162649247.jpg"
+      },
+      "profile": "facades.json#77382",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77394": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77394-0.jpg",
+        "photo_id": 78354,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77394_20160225152319603.jpg"
+      },
+      "profile": "facades.json#77394",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77387": {
+      "finish": "mineral",
+      "reference": {
+        "photo": "photos/77387-0.jpg",
+        "photo_id": 825402,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77387_20190923161500425.jpg"
+      },
+      "profile": "facades.json#77387",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77389": {
+      "finish": "mineral",
+      "reference": {
+        "photo": "photos/77389-0.jpg",
+        "photo_id": 825431,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77389_20190923162629522.jpg"
+      },
+      "profile": "facades.json#77389",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77383": {
+      "finish": "mineral",
+      "reference": {
+        "photo": "photos/77383-1.jpg",
+        "photo_id": 840577,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77383_20191018151516761.jpg"
+      },
+      "profile": "facades.json#77383",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77427": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77427-0.jpg",
+        "photo_id": 78343,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77427_20160225145751550.jpg"
+      },
+      "profile": "facades.json#77427",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77426": {
+      "finish": "mineral",
+      "reference": {
+        "photo": "photos/77426-0.jpg",
+        "photo_id": 78345,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77426_20160225145846944.jpg"
+      },
+      "profile": "facades.json#77426",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77429": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77429-1.jpg",
+        "photo_id": 273996031,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77429_20170913095328453.jpg"
+      },
+      "profile": "facades.json#77429",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77430": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77430-1.jpg",
+        "photo_id": 78316,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77430_20160225105542316.jpg"
+      },
+      "profile": "facades.json#77430",
+      "status": "deferred",
+      "reason": "照片已查看，但墙面尚无有效区段配准；不把照片覆盖推定为整个外壳。"
+    },
+    "77431": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77431-0.jpg",
+        "photo_id": 273996064,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77431_2017091310065561.jpg"
+      },
+      "profile": "facades.json#77431",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77439": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77439-1.jpg",
+        "photo_id": 851444,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77439_20191108145452420.png"
+      },
+      "profile": "facades.json#77439",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77441": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77441-0.jpg",
+        "photo_id": 851378,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77441_20191108143329221.png"
+      },
+      "profile": "facades.json#77441",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77440": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77440-0.jpg",
+        "photo_id": 851437,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77440_20191108145246714.png"
+      },
+      "profile": "facades.json#77440",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77398": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77398-0.jpg",
+        "photo_id": 78373,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77398_20160225165020710.jpg"
+      },
+      "profile": "facades.json#77398",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77446": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77446-0.jpg",
+        "photo_id": 78471,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77446_20160226112745893.jpg"
+      },
+      "profile": "facades.json#77446",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77500": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77500-0.jpg",
+        "photo_id": 78640,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77500_20160226165324707.jpg"
+      },
+      "profile": "facades.json#77500",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77390": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77390-3.jpg",
+        "photo_id": 825441,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77390_20190923162856865.jpg"
+      },
+      "profile": "facades.json#77390",
+      "status": "applied",
+      "coverage": "existing_cladding",
+      "observation": "沿用第一轮已生成小面砖的既有墙片；本轮只改善其余已配准饰面。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77391": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77391-0.jpg",
+        "photo_id": 825461,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77391_20190923163930878.jpg"
+      },
+      "profile": "facades.json#77391",
+      "status": "deferred",
+      "reason": "照片已查看，但墙面尚无有效区段配准；不把照片覆盖推定为整个外壳。"
+    },
+    "77392": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77392-0.jpg",
+        "photo_id": 78348,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77392_20160225150056642.jpg"
+      },
+      "profile": "facades.json#77392",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77416": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77416-0.jpg",
+        "photo_id": 78300,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77416_20160225104334569.jpg"
+      },
+      "profile": "facades.json#77416",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "2122498": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77436-1.jpg",
+        "photo_id": 78331,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77436_20160225115939928.jpg"
+      },
+      "profile": "facades.json#2122498",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77519": {
+      "finish": "brick",
+      "reference": {
+        "photo": "photos/77519-0.jpg",
+        "photo_id": 78533,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77519_20160226151146395.jpg"
+      },
+      "profile": "facades.json#77519",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "35995473": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/35995473-2.jpg",
+        "photo_id": 875265,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/35995473_20200108085557848.png"
+      },
+      "profile": "facades.json#35995473",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "625864": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/625864-0.jpg",
+        "photo_id": 825410,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/625864_2019092316170799.jpg"
+      },
+      "profile": "facades.json#625864",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "34785233": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/34785233-2.jpg",
+        "photo_id": 827319,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/34785233_20190924162046549.jpg"
+      },
+      "profile": "facades.json#34785233",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77413": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77413-0.jpg",
+        "photo_id": 78534,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77413_20160226151250494.jpg"
+      },
+      "profile": "facades.json#77413",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77412": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77412-0.jpg",
+        "photo_id": 78536,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77412_20160226151326311.jpg"
+      },
+      "profile": "facades.json#77412",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "17937827": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/17937827-0.jpg",
+        "photo_id": 825392,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/17937827_20190923160928451.jpg"
+      },
+      "profile": "facades.json#17937827",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77542": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77542-0.jpg",
+        "photo_id": 78380,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77542_20160226095905949.jpg"
+      },
+      "profile": "facades.json#77542",
+      "status": "deferred",
+      "reason": "照片已查看，但墙面尚无有效区段配准；不把照片覆盖推定为整个外壳。"
+    },
+    "77539": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77539-0.jpg",
+        "photo_id": 78377,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77539_20160226095736865.jpg"
+      },
+      "profile": "facades.json#77539",
+      "status": "deferred",
+      "reason": "照片已查看，但墙面尚无有效区段配准；不把照片覆盖推定为整个外壳。"
+    },
+    "77553": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77553-0.jpg",
+        "photo_id": 78381,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77553_2016022609594661.jpg"
+      },
+      "profile": "facades.json#77553",
+      "status": "deferred",
+      "reason": "照片已查看，但墙面尚无有效区段配准；不把照片覆盖推定为整个外壳。"
+    },
+    "77540": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77540-0.jpg",
+        "photo_id": 78378,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77540_20160226095821449.jpg"
+      },
+      "profile": "facades.json#77540",
+      "status": "deferred",
+      "reason": "照片已查看，但墙面尚无有效区段配准；不把照片覆盖推定为整个外壳。"
+    },
+    "77556": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77556-0.jpg",
+        "photo_id": 78389,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77556_20160226100551964.jpg"
+      },
+      "profile": "facades.json#77556",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77557": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77557-0.jpg",
+        "photo_id": 78388,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77557_20160226100522338.jpg"
+      },
+      "profile": "facades.json#77557",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77558": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77558-0.jpg",
+        "photo_id": 78387,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77558_20160226100451719.jpg"
+      },
+      "profile": "facades.json#77558",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77555": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77555-0.jpg",
+        "photo_id": 78383,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77555_2016022610014757.jpg"
+      },
+      "profile": "facades.json#77555",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77559": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77559-0.jpg",
+        "photo_id": 78385,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77559_2016022610032732.jpg"
+      },
+      "profile": "facades.json#77559",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77564": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77564-0.jpg",
+        "photo_id": 78384,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77564_20160226100221779.jpg"
+      },
+      "profile": "facades.json#77564",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77562": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77562-0.jpg",
+        "photo_id": 78390,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77562_201602261006458.jpg"
+      },
+      "profile": "facades.json#77562",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77563": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77563-0.jpg",
+        "photo_id": 78386,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77563_20160226100414402.jpg"
+      },
+      "profile": "facades.json#77563",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77565": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77565-0.jpg",
+        "photo_id": 78393,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77565_20160226100804182.jpg"
+      },
+      "profile": "facades.json#77565",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77566": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77566-0.jpg",
+        "photo_id": 78394,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77566_20160226100825605.jpg"
+      },
+      "profile": "facades.json#77566",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77567": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77567-0.jpg",
+        "photo_id": 78395,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77567_20160226100859762.jpg"
+      },
+      "profile": "facades.json#77567",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77506": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77506-0.jpg",
+        "photo_id": 78641,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77506_20160226165422513.jpg"
+      },
+      "profile": "facades.json#77506",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77505": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77505-0.jpg",
+        "photo_id": 78643,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77505_20160226165546821.jpg"
+      },
+      "profile": "facades.json#77505",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77458": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77458-0.jpg",
+        "photo_id": 78135,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77458_20160224144358545.jpg"
+      },
+      "profile": "facades.json#77458",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77462": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77462-0.jpg",
+        "photo_id": 78138,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77462_20160224144636999.jpg"
+      },
+      "profile": "facades.json#77462",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77461": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77461-0.jpg",
+        "photo_id": 78139,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77461_20160224144743489.jpg"
+      },
+      "profile": "facades.json#77461",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "78148": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/78148-0.jpg",
+        "photo_id": 78150,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/78148_20160224145836600.jpg"
+      },
+      "profile": "facades.json#78148",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77481": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77481-0.jpg",
+        "photo_id": 78261,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77481_20160224170620800.jpg"
+      },
+      "profile": "facades.json#77481",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77483": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77483-0.jpg",
+        "photo_id": 78619,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77483_2016022616265717.jpg"
+      },
+      "profile": "facades.json#77483",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77496": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77496-0.jpg",
+        "photo_id": 78625,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77496_20160226164054916.jpg"
+      },
+      "profile": "facades.json#77496",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77495": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77495-0.jpg",
+        "photo_id": 78624,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77495_20160226164039650.jpg"
+      },
+      "profile": "facades.json#77495",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77514": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77514-0.jpg",
+        "photo_id": 78656,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77514_20160226170354127.jpg"
+      },
+      "profile": "facades.json#77514",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77513": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77513-0.jpg",
+        "photo_id": 78655,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77513_20160226170319645.jpg"
+      },
+      "profile": "facades.json#77513",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77512": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77512-0.jpg",
+        "photo_id": 78654,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77512_20160226170256338.jpg"
+      },
+      "profile": "facades.json#77512",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77510": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77510-0.jpg",
+        "photo_id": 78651,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77510_20160226170057209.jpg"
+      },
+      "profile": "facades.json#77510",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77511": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77511-0.jpg",
+        "photo_id": 78653,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77511_20160226170209268.jpg"
+      },
+      "profile": "facades.json#77511",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77507": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77507-0.jpg",
+        "photo_id": 78647,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77507_20160226165852574.jpg"
+      },
+      "profile": "facades.json#77507",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77508": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77508-0.jpg",
+        "photo_id": 78648,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77508_20160226165925769.jpg"
+      },
+      "profile": "facades.json#77508",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77509": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77509-0.jpg",
+        "photo_id": 78649,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77509_20160226170011230.jpg"
+      },
+      "profile": "facades.json#77509",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77504": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77504-0.jpg",
+        "photo_id": 78644,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77504_20160226165619130.jpg"
+      },
+      "profile": "facades.json#77504",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77499": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77499-0.jpg",
+        "photo_id": 78642,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77499_20160226165505813.jpg"
+      },
+      "profile": "facades.json#77499",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77502": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77502-0.jpg",
+        "photo_id": 78637,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77502_20160226164945612.jpg"
+      },
+      "profile": "facades.json#77502",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77379": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77379-0.jpg",
+        "photo_id": 851367,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77379_2019110814302096.jpg"
+      },
+      "profile": "facades.json#77379",
+      "status": "applied",
+      "coverage": "panel_rows",
+      "observation": "仅在既有照片窗段首排窗底至末排窗顶之间表达墙面细粒与原配色，不推定微观材质和砖缝。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    },
+    "77487": {
+      "finish": "plaster",
+      "reference": {
+        "photo": "photos/77487-0.jpg",
+        "photo_id": 78259,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77487_20160224170526326.jpg"
+      },
+      "profile": "facades.json#77487",
+      "status": "applied",
+      "coverage": "existing_cladding",
+      "observation": "沿用第一轮已生成小面砖的既有墙片；本轮只改善其余已配准饰面。",
+      "detail_finishes": {
+        "Photo wall finish ": "plaster",
+        "Photo smooth wall ": "plaster",
+        "Photo facade trim ": "plaster",
+        "Photo smooth trim ": "plaster",
+        "Lingshui stone trim": "plaster",
+        "Photo facade frames ": "window_frame"
+      }
+    }
+  }
+}

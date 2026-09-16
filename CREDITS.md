@@ -68,6 +68,17 @@ DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格�
 
 DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与官方校园地图的同名建筑匹配，以估算地形预览的水平平移。所使用的 OSM 数据摘录及其转换记录载于两校区 `terrain/alignment.json`；该等数据库内容按 ODbL 1.0 提供，后续使用者须遵守其署名、共享及数据库分发条件。
 
+### 2.6 建筑表面贴图
+
+照片支持的建筑局部立面使用共享材质，逐栋照片 URL、对象 ID、读取日期、覆盖区段与暂缓理由记录于各校区的 texture_surfaces.json。累计覆盖凌水 70 栋、开发区 13 栋、盘锦 2 栋；不代表完整建筑复刻或全校覆盖。原始照片仅离线参考，不打入客户端。
+
+- [Poly Haven Beige Wall 001](https://polyhaven.com/a/beige_wall_001)：Dimitrios Savva 摄影、Rico Cilliers 处理，用于细抹灰表面。
+- [Poly Haven Red Brick](https://polyhaven.com/a/red_brick)：Rob Tuytel，用于照片确认的令希图书馆和东山 5 栋局部砖墙。
+- 上述两套材质采用 [CC0](https://polyhaven.com/license)，下载未修改的 1K 颜色、粗糙度和 OpenGL 法线图；运行时调整颜色与法线强度。公共素材不是校园建筑的实测扫描。
+- 面砖、细矿物颗粒、陶土微表面为 2026-09-16 使用 OpenAI 内置 image_gen 生成，参考已归档照片的材料类别，未标记为 CC0。颜色、纹理尺度和微观细节为视觉近似，不代表测量或施工材料鉴定。
+
+下载直链、作者、SHA-256、完整生成提示词、尺度和使用索引见 [共享纹理来源](references/shared/buildings/textures.json)。首次面砖生成记录见 [凌水纹理来源](references/lingshui/buildings/texture_sources.json)。选材时还核对了 [Long White Tiles](https://polyhaven.com/a/long_white_tiles) 与 [ambientCG 许可](https://docs.ambientcg.com/license/)，但未使用这些候选资产。
+
 ## 三、天气数据与计算方法
 
 ### 3.1 Open-Meteo

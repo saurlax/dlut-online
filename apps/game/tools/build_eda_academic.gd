@@ -18,6 +18,8 @@ func frame_for(points: PackedVector2Array, edge: int) -> void:
 func panel(x: float, y: float, width: float, height: float, depth: float, offset: float, mat: Material, solid := false) -> void:
 	var p := origin+axis*x+out*offset
 	var node: MeshInstance3D = host.box(group,Vector3(p.x,y,p.y),Vector3(width,height,depth),mat,"AcademicDetail")
+	if mat.resource_name.begins_with("Surface square_ceramic "):
+		preload("res://tools/build_surface_materials.gd").new().map_box(node,Vector2(x,y))
 	node.rotation.y = -atan2(axis.y,axis.x)
 	node.set_meta("walk_collision",solid)
 
