@@ -3009,8 +3009,694 @@
   "77507": {"style": "photo_panels", "height": 19.0, "floors": 5, "color": "ad7059", "frame_color": "c7c8b8", "trim_color": "c5c2ab", "edges": [4, 7], "photos": ["77507-0.jpg", "77508-0.jpg"], "note": "77507-0可读24号、五层；左后方五层楼的近端两列宽窗、浅色顶层和灰色基座与77508-0的22号相符，结合22号在西侧的官方邻接，配准东侧边4及南端靠西边7。东侧近端两列五层宽窗、框内六列上四层窄窗和框内靠南三列底窗共37窗；近端最南底窗与框内三窗补防护栏，另一近端底窗的栏杆被灌木遮挡，不补栏杆。框内北侧底窗被枝叶遮挡，不复制。补浅色顶层、灰色基座与六列外围墙框；南端四层金属阳台和放射状交叉杆按本楼可见外观表达。五层19米、宽窗1.8米、窄窗1.35米、底窗1.6米、窗高2.05米、框内区间44%—86%、阳台边7的20%位置及宽2.4米深1米、楼板高3.5/7/10.5/14米、栏高1.05米均为照片比例估计，未实测。保持官方八点轮廓，只有阳台楼板加入结构碰撞；入口、其他立面、阳台后方门窗、屋檐和室内仍待核实。", "panels": [{"edge": 4, "rows": [{"bottom": 4.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 1.0}, {"bottom": 8.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 1.0}, {"bottom": 11.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 1.0}, {"bottom": 15.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 1.0}, {"bottom": 1.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 0.9299999999999999}, {"bottom": 1.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.93, "to": 1.0, "grille": {"bars": 10, "depth": 0.25}}, {"bottom": 4.6, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.44, "to": 0.86}, {"bottom": 8.1, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.44, "to": 0.86}, {"bottom": 11.6, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.44, "to": 0.86}, {"bottom": 15.1, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.44, "to": 0.86}, {"bottom": 1.1, "count": 3, "width": 1.6, "height": 2.05, "divisions": 2, "transom": true, "grille": {"bars": 10, "depth": 0.25}, "from": 0.65, "to": 0.86}], "accents": [{"fraction": 0.44, "y": 9.0, "size": [0.25, 11.0, 0.26]}, {"fraction": 0.86, "y": 9.0, "size": [0.25, 11.0, 0.26]}, {"fraction": 0.65, "y": 3.5, "size": [24.964642075543566, 0.22, 0.28]}, {"fraction": 0.65, "y": 14.5, "size": [24.964642075543566, 0.22, 0.28]}], "cladding": [{"from": 0.44, "to": 1.0, "bottom": 14.5, "top": 19.0, "color": "c4c4b7"}, {"from": 0.44, "to": 0.86, "bottom": 0.0, "top": 3.5, "color": "9c9f93"}, {"from": 0.86, "to": 1.0, "bottom": 0.0, "top": 0.6, "color": "9c9f93"}]}, {"edge": 7, "rows": [], "cladding": [{"from": 0.05, "to": 0.35, "bottom": 0.0, "top": 18.0, "color": "abae9f"}], "window_platforms": [{"fraction": 0.2, "width": 2.4, "depth": 1.0, "top": 3.5, "thickness": 0.18, "rail_height": 1.05, "front_bars": 6, "metal_color": "c5c8bb", "radial_ornaments": {"front_count": 2, "half_width": 0.43, "side_half_width": 0.38, "half_height": 0.4}}, {"fraction": 0.2, "width": 2.4, "depth": 1.0, "top": 7.0, "thickness": 0.18, "rail_height": 1.05, "front_bars": 6, "metal_color": "c5c8bb", "radial_ornaments": {"front_count": 2, "half_width": 0.43, "side_half_width": 0.38, "half_height": 0.4}}, {"fraction": 0.2, "width": 2.4, "depth": 1.0, "top": 10.5, "thickness": 0.18, "rail_height": 1.05, "front_bars": 6, "metal_color": "c5c8bb", "radial_ornaments": {"front_count": 2, "half_width": 0.43, "side_half_width": 0.38, "half_height": 0.4}}, {"fraction": 0.2, "width": 2.4, "depth": 1.0, "top": 14.0, "thickness": 0.18, "rail_height": 1.05, "front_bars": 6, "metal_color": "c5c8bb", "radial_ornaments": {"front_count": 2, "half_width": 0.43, "side_half_width": 0.38, "half_height": 0.4}}]}]},
   "77508": {"style": "photo_panels", "height": 19.0, "floors": 5, "color": "b17a5b", "frame_color": "c7c8b8", "trim_color": "c5c2ab", "edges": [4, 5], "photos": ["77508-0.jpg", "77509-0.jpg"], "note": "77508-0的22号楼号与五层可辨，左后方六层红楼的浅色顶带、近端两列宽窗及窗上挑檐对应77509-0的26号，结合26号位于西侧的官方位置关系配准东侧边4、南端边5。东侧近端两列五层宽窗、框内六列上四层窄窗及靠南四列底窗共38窗；近端两窗及框内南数第一、第三、第四底窗补防护栏，第二底窗局部被灌木遮挡，不补栏杆；框内更北两列底窗被树木及入口遮挡，不补。补浅色顶带、外围墙框和灰色底层，南端靠西补四层金属阳台及交叉杆。五层19米、窗宽1.8/1.35/1.6米、窗高2.05米、框内区间44%—86%、阳台沿边5的80%位置、宽2.4米深1米及楼板高3.5/7/10.5/14米、栏高1.05米均为照片比例估计。保留官方六点轮廓，不复制23/24/25号的折角；阳台楼板进入同源碰撞，栏杆和窗框仅装饰。入口、中央窗段、其他立面、阳台后方门窗、屋檐及室内继续待核实。", "panels": [{"edge": 4, "rows": [{"bottom": 1.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 1.0, "grille": {"bars": 10, "depth": 0.25}}, {"bottom": 4.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 1.0}, {"bottom": 8.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 1.0}, {"bottom": 11.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 1.0}, {"bottom": 15.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.86, "to": 1.0}, {"bottom": 4.6, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.44, "to": 0.86}, {"bottom": 8.1, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.44, "to": 0.86}, {"bottom": 11.6, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.44, "to": 0.86}, {"bottom": 15.1, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.44, "to": 0.86}, {"bottom": 1.1, "count": 1, "width": 1.6, "height": 2.05, "divisions": 2, "transom": true, "from": 0.58, "to": 0.6499999999999999, "grille": {"bars": 10, "depth": 0.25}}, {"bottom": 1.1, "count": 1, "width": 1.6, "height": 2.05, "divisions": 2, "transom": true, "from": 0.6499999999999999, "to": 0.72, "grille": {"bars": 10, "depth": 0.25}}, {"bottom": 1.1, "count": 1, "width": 1.6, "height": 2.05, "divisions": 2, "transom": true, "from": 0.72, "to": 0.79}, {"bottom": 1.1, "count": 1, "width": 1.6, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.8600000000000001, "grille": {"bars": 10, "depth": 0.25}}], "accents": [{"fraction": 0.44, "y": 9.0, "size": [0.25, 11.0, 0.26]}, {"fraction": 0.86, "y": 9.0, "size": [0.25, 11.0, 0.26]}, {"fraction": 0.65, "y": 3.5, "size": [25.962310684297726, 0.22, 0.28]}, {"fraction": 0.65, "y": 14.5, "size": [25.962310684297726, 0.22, 0.28]}], "cladding": [{"from": 0.44, "to": 1.0, "bottom": 14.5, "top": 19.0, "color": "c4c4b7"}, {"from": 0.44, "to": 0.86, "bottom": 0.0, "top": 3.5, "color": "9c9f93"}, {"from": 0.86, "to": 1.0, "bottom": 0.0, "top": 0.6, "color": "9c9f93"}]}, {"edge": 5, "rows": [], "cladding": [{"from": 0.71, "to": 0.89, "bottom": 0.0, "top": 18.0, "color": "abae9f"}], "window_platforms": [{"fraction": 0.8, "width": 2.4, "depth": 1.0, "top": 3.5, "thickness": 0.18, "rail_height": 1.05, "front_bars": 6, "metal_color": "c5c8bb", "radial_ornaments": {"front_count": 2, "half_width": 0.43, "side_half_width": 0.38, "half_height": 0.4}}, {"fraction": 0.8, "width": 2.4, "depth": 1.0, "top": 7.0, "thickness": 0.18, "rail_height": 1.05, "front_bars": 6, "metal_color": "c5c8bb", "radial_ornaments": {"front_count": 2, "half_width": 0.43, "side_half_width": 0.38, "half_height": 0.4}}, {"fraction": 0.8, "width": 2.4, "depth": 1.0, "top": 10.5, "thickness": 0.18, "rail_height": 1.05, "front_bars": 6, "metal_color": "c5c8bb", "radial_ornaments": {"front_count": 2, "half_width": 0.43, "side_half_width": 0.38, "half_height": 0.4}}, {"fraction": 0.8, "width": 2.4, "depth": 1.0, "top": 14.0, "thickness": 0.18, "rail_height": 1.05, "front_bars": 6, "metal_color": "c5c8bb", "radial_ornaments": {"front_count": 2, "half_width": 0.43, "side_half_width": 0.38, "half_height": 0.4}}]}]},
   "77509": {"style": "photo_panels", "height": 22.5, "floors": 6, "color": "a96550", "frame_color": "c7c8b8", "trim_color": "c5c2ab", "edges": [6, 7], "photos": ["77509-0.jpg", "77509-1.jpg", "77508-0.jpg"], "note": "77509-0可读26号、六层，两列近端宽窗之间的浅色排水管和逐窗上挑檐与1号照片连续对应；77508-0左后六层邻楼同样可见挑檐，结合26号位于22号西侧的官方关系，配准东侧边6。制作近端两列及框内七列的六层54窗、九个底窗防护栏，顶层以下45处窗上小挑檐；不将挑檐误作窗下平台。补框内灰色底层、浅色顶窗带和外围墙框。六层22.5米、近端两列占末端12%、框内七列占40%—88%、窗宽1.8米高2.05米、挑檐宽2.06米厚0.18米总深0.6米、栏杆10根及深0.18米均为照片比例估计，未实测。保留官方八点轮廓，窗、挑檐和栏杆仅装饰，不加入结构碰撞。排水管的贴墙转折、中央入口与长竖窗、北段、其他立面、屋檐和室内仍待逐段核实，不用相邻宿舍阳台替代本楼结构。补核77509-0的南侧边7：灰色墙裙内六列六层窗、西端红墙一列上五层窗可辨，新增41窗、六窗防护栏及顶层以下34处上挑檐。最西端底窗较暗，不补；东端保留照片所见的大片实墙。灰色段沿边7的35%—90%、西端上层窗90%—100%、窗宽1.35米高2.05米、挑檐宽1.61米厚0.18米总深0.6米、栏杆8根及深0.18米为照片比例估计，不是测绘。南侧顶层只在已核窗段补浅色墙带，不推断东端分色转折。南侧构件均为装饰，不新增碰撞；排水管转折、屋檐、中央入口和其余立面仍需资料，未建室内。", "panels": [{"edge": 6, "rows": [{"bottom": 1.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0, "grille": {"bars": 10, "depth": 0.18}}, {"bottom": 4.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 8.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 11.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 15.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 18.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 1.1, "count": 7, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.4, "to": 0.88, "grille": {"bars": 10, "depth": 0.18}}, {"bottom": 4.6, "count": 7, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.4, "to": 0.88}, {"bottom": 8.1, "count": 7, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.4, "to": 0.88}, {"bottom": 11.6, "count": 7, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.4, "to": 0.88}, {"bottom": 15.1, "count": 7, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.4, "to": 0.88}, {"bottom": 18.6, "count": 7, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.4, "to": 0.88}], "accents": [{"fraction": 0.91, "y": 3.3200000000000003, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.97, "y": 3.3200000000000003, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.91, "y": 6.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.97, "y": 6.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.91, "y": 10.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.97, "y": 10.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.91, "y": 13.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.97, "y": 13.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.91, "y": 17.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.97, "y": 17.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.43428571428571433, "y": 3.3200000000000003, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5028571428571429, "y": 3.3200000000000003, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5714285714285714, "y": 3.3200000000000003, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.64, "y": 3.3200000000000003, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7085714285714286, "y": 3.3200000000000003, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7771428571428571, "y": 3.3200000000000003, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.8457142857142858, "y": 3.3200000000000003, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.43428571428571433, "y": 6.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5028571428571429, "y": 6.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5714285714285714, "y": 6.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.64, "y": 6.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7085714285714286, "y": 6.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7771428571428571, "y": 6.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.8457142857142858, "y": 6.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.43428571428571433, "y": 10.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5028571428571429, "y": 10.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5714285714285714, "y": 10.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.64, "y": 10.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7085714285714286, "y": 10.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7771428571428571, "y": 10.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.8457142857142858, "y": 10.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.43428571428571433, "y": 13.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5028571428571429, "y": 13.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5714285714285714, "y": 13.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.64, "y": 13.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7085714285714286, "y": 13.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7771428571428571, "y": 13.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.8457142857142858, "y": 13.82, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.43428571428571433, "y": 17.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5028571428571429, "y": 17.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.5714285714285714, "y": 17.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.64, "y": 17.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7085714285714286, "y": 17.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.7771428571428571, "y": 17.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.8457142857142858, "y": 17.32, "size": [2.06, 0.18, 0.6]}, {"fraction": 0.4, "y": 10.75, "size": [0.25, 14.5, 0.26]}, {"fraction": 0.88, "y": 10.75, "size": [0.25, 14.5, 0.26]}, {"fraction": 0.64, "y": 3.5, "size": [37.924777962276856, 0.22, 0.28]}, {"fraction": 0.64, "y": 18.0, "size": [37.924777962276856, 0.22, 0.28]}], "cladding": [{"from": 0.4, "to": 1.0, "bottom": 18.0, "top": 22.5, "color": "c4c4b7"}, {"from": 0.4, "to": 0.88, "bottom": 0.0, "top": 3.5, "color": "9c9f93"}, {"from": 0.88, "to": 1.0, "bottom": 0.0, "top": 0.6, "color": "9c9f93"}]}, {"edge": 7, "rows": [{"bottom": 1.1, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.35, "to": 0.9, "grille": {"bars": 8, "depth": 0.18}}, {"bottom": 4.6, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.35, "to": 0.9}, {"bottom": 8.1, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.35, "to": 0.9}, {"bottom": 11.6, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.35, "to": 0.9}, {"bottom": 15.1, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.35, "to": 0.9}, {"bottom": 18.6, "count": 6, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.35, "to": 0.9}, {"bottom": 4.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.9, "to": 1.0}, {"bottom": 8.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.9, "to": 1.0}, {"bottom": 11.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.9, "to": 1.0}, {"bottom": 15.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.9, "to": 1.0}, {"bottom": 18.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.9, "to": 1.0}], "accents": [{"fraction": 0.3958333333333333, "y": 3.3200000000000003, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.4875, "y": 3.3200000000000003, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.5791666666666666, "y": 3.3200000000000003, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.6708333333333334, "y": 3.3200000000000003, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.7625, "y": 3.3200000000000003, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.8541666666666667, "y": 3.3200000000000003, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.3958333333333333, "y": 6.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.4875, "y": 6.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.5791666666666666, "y": 6.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.6708333333333334, "y": 6.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.7625, "y": 6.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.8541666666666667, "y": 6.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.3958333333333333, "y": 10.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.4875, "y": 10.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.5791666666666666, "y": 10.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.6708333333333334, "y": 10.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.7625, "y": 10.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.8541666666666667, "y": 10.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.3958333333333333, "y": 13.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.4875, "y": 13.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.5791666666666666, "y": 13.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.6708333333333334, "y": 13.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.7625, "y": 13.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.8541666666666667, "y": 13.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.3958333333333333, "y": 17.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.4875, "y": 17.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.5791666666666666, "y": 17.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.6708333333333334, "y": 17.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.7625, "y": 17.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.8541666666666667, "y": 17.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.95, "y": 6.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.95, "y": 10.32, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.95, "y": 13.82, "size": [1.61, 0.18, 0.6]}, {"fraction": 0.95, "y": 17.32, "size": [1.61, 0.18, 0.6]}], "cladding": [{"from": 0.35, "to": 1.0, "bottom": 18.0, "top": 22.5, "color": "c4c4b7"}, {"from": 0.35, "to": 0.9, "bottom": 0.0, "top": 3.5, "color": "9c9f93"}]}]},
-  "77504": {"style": "gabled_shell", "height": 26.0, "eave_height": 22.5, "roof_rotation": -0.10598151547005581, "ridge_x": -431.7298694887195, "floors": 6, "color": "b29a8e", "frame_color": "c7c8b8", "trim_color": "c5c2ab", "edges": [7, 8], "photos": ["77504-0.jpg", "77505-0.jpg"], "note": "77504-0清晰1号楼号与77505-0左后方老虎窗、长阳台互证，结合官方东西关系配准东侧边7与南侧边8。六层主体檐高22.5米、坡顶脊高26米，沿东侧长边的斜向长轴设置双坡屋脊，保留全部十点轮廓及北端折角；屋脊通过南侧窗轴并平行东侧长边；这些高度及屋脊位置为照片比例估计，非实测屋面图。南端补五个主体上层窗与一个阁楼窗；东侧近端两列补上五层十窗，底层只补较北一窗，最南底窗被树遮挡不补，共17窗。南窗宽1.35米、东窗宽1.8米、窗高2.05米，阁楼窗高1.5米；东侧末端12%作为两列范围、南端边8中点作为窗轴，均为比例估计。东侧可见底窗补10根栏杆、挑深0.18米，底层灰色墙裙只覆盖已建窗段。坡顶只建立封闭基础壳体，老虎窗、多组长阳台、檐口、北端屋顶细部、其余窗段、入口与台阶仍需逐项配准，不生成室内。补核77504-0东侧靠南第一组长阳台：连续四块外挑楼板位于主体第三至第六层，第二层下方窗上不另加阳台；按东侧边7的82%处设中心，宽6.5米、深1.2米、楼板顶高7/10.5/14/17.5米、厚0.20米和栏高1.05米均为照片比例估计。补深色金属栏杆主框与24根竖杆作疏密近似，照片中的细碎曲线花纹仍待细化，不宣称栏花精确复刻。仅楼板进入同源碰撞；不开放阳台后方门窗或推断室内。后续其他阳台组、老虎窗、檐口和未建窗段继续按本楼照片分别配准。补核77504-0近南第一组长阳台靠南两列可见玻璃窗段：上四层栏杆后方、第二层及首层各两处，共新增12窗，首层两窗补外弯防护栏。上层只表达照片可见玻璃和窗框，栏杆遮挡处不推断落地门、开启方式或通行。两列置于东侧边7的79%—85%，窗宽1.8米高2.05米、底标高1.1/4.6/8.1/11.6/15.1/18.6米、底窗栏杆10根及挑深0.18米均为照片比例估计。阳台北端其他窗段、排水管、墙框和栏花继续核实；本批窗面仅装饰，不改变楼身、屋顶和阳台碰撞。77504-0南端原图补充：浅色横带分别位于底层与二层之间、四层与五层之间、主体檐口处，两侧浅色竖向转角条和入口东侧浅灰墙脚可辨。沿南侧边8补标高3.5/14/22.5米、宽0.28米的横带；两端竖条宽0.8米高22.5米，灰墙脚仅补靠东0%—45%区间、高0.8米。上述标高、宽度和区间均为照片比例估计；不把有遮挡的入口西侧墙脚补成连续墙裙，也不新增入口、台阶或室内。横带、竖条和墙脚均为表面装饰，不改变官方轮廓、坡顶与碰撞。坡顶斜檐边、细部接缝、老虎窗和其余立面继续待核实。", "panels": [{"edge": 7, "rows": [{"bottom": 4.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 8.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 11.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 15.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 18.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 1.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "grille": {"bars": 10, "depth": 0.18}, "from": 0.88, "to": 0.94}, {"bottom": 1.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85, "grille": {"bars": 10, "depth": 0.18}}, {"bottom": 4.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 8.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 11.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 15.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 18.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}], "cladding": [{"from": 0.88, "to": 1.0, "bottom": 0.0, "top": 0.65, "color": "aaa99a"}], "window_platforms": [{"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 7.0, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 10.5, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 14.0, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 17.5, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}]}, {"edge": 8, "rows": [{"bottom": 4.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 8.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 11.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 15.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 18.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 23.2, "count": 1, "width": 1.35, "height": 1.5, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}], "bands": [{"y": 3.5, "height": 0.28, "depth": 0.22}, {"y": 14.0, "height": 0.28, "depth": 0.22}, {"y": 22.5, "height": 0.28, "depth": 0.22}], "accents": [{"fraction": 0.025, "y": 11.25, "size": [0.8, 22.5, 0.2]}, {"fraction": 0.975, "y": 11.25, "size": [0.8, 22.5, 0.2]}], "cladding": [{"from": 0.0, "to": 0.45, "bottom": 0.0, "top": 0.8, "color": "aaa99a"}]}]},
-  "77499": {"style": "gabled_shell", "height": 26.0, "eave_height": 22.5, "roof_rotation": -0.09558557572573331, "ridge_x": -437.1698086499711, "floors": 6, "color": "b5a08f", "frame_color": "c7c8b8", "trim_color": "c5c2ab", "edges": [5, 6], "photos": ["77499-0.jpg", "77500-0.jpg"], "note": "77499-0可读4号楼号；77500-0左后方浅色坡顶楼的长阳台与独立老虎窗对应4号，结合4号位于5号西侧的官方位置，配准东侧边5、南端边6。六层主体檐高22.5米、脊高26米，屋脊通过南端窗轴且平行东侧长边，保留七点轮廓和北端折角；高度及屋脊位置为照片比例估计。按本图东侧近端南列宽窗1.8米、北列窄窗1.35米各六层，近南阳台组靠南两列六层窄窗1.35米，南端五个主体上层窗及一个阁楼窗，共30窗；四处可见底窗补防护栏，绿篱遮挡处不推断通行。东侧近南第三至第六层四块长阳台置于边5的82%，宽6.5米深1.2米，楼板顶高7/10.5/14/17.5米、厚0.20米、栏高1.05米和竖杆疏密为估计，曲线栏花未精修。南端三条浅色横带标高3.5/14/22.5米、两端0.8米竖条和入口东侧0.8米墙脚按照片分段表达。窗高2.05米、阁楼窗高1.5米、窗距、分色宽度与阳台位置均为照片比例，不是实测。坡顶基础壳和阳台楼板进入同源碰撞，细杆窗框只装饰。老虎窗、其余阳台组、檐口、北端屋面细部、入口台阶与室内未建，遮挡玻璃不解释为可通行门洞。", "panels": [{"edge": 5, "rows": [{"bottom": 1.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0, "grille": {"bars": 10, "depth": 0.18}}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 8.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 11.6, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 15.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 18.6, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 1.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94, "grille": {"bars": 10, "depth": 0.18}}, {"bottom": 4.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 8.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 11.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 15.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 18.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 1.1, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85, "grille": {"bars": 8, "depth": 0.18}}, {"bottom": 4.6, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 8.1, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 11.6, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 15.1, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 18.6, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}], "cladding": [{"from": 0.88, "to": 1.0, "bottom": 0.0, "top": 0.65, "color": "aaa99a"}], "window_platforms": [{"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 7.0, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 10.5, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 14.0, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 17.5, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}]}, {"edge": 6, "rows": [{"bottom": 4.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 8.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 11.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 15.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 18.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 23.2, "count": 1, "width": 1.35, "height": 1.5, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}], "bands": [{"y": 3.5, "height": 0.28, "depth": 0.22}, {"y": 14.0, "height": 0.28, "depth": 0.22}, {"y": 22.5, "height": 0.28, "depth": 0.22}], "accents": [{"fraction": 0.025, "y": 11.25, "size": [0.8, 22.5, 0.2]}, {"fraction": 0.975, "y": 11.25, "size": [0.8, 22.5, 0.2]}], "cladding": [{"from": 0.0, "to": 0.45, "bottom": 0.0, "top": 0.8, "color": "aaa99a"}]}]},
+  "77504": {"style": "gabled_shell", "height": 26.0, "eave_height": 22.5, "roof_rotation": -0.10598151547005581, "ridge_x": -431.7298694887195, "floors": 6, "color": "b29a8e", "frame_color": "c7c8b8", "trim_color": "c5c2ab", "edges": [7, 8], "photos": ["77504-0.jpg", "77505-0.jpg"], "note": "77504-0清晰1号楼号与77505-0左后方老虎窗、长阳台互证，结合官方东西关系配准东侧边7与南侧边8。六层主体檐高22.5米、坡顶脊高26米，沿东侧长边的斜向长轴设置双坡屋脊，保留全部十点轮廓及北端折角；屋脊通过南侧窗轴并平行东侧长边；这些高度及屋脊位置为照片比例估计，非实测屋面图。南端补五个主体上层窗与一个阁楼窗；东侧近端两列补上五层十窗，底层只补较北一窗，最南底窗被树遮挡不补，共17窗。南窗宽1.35米、东窗宽1.8米、窗高2.05米，阁楼窗高1.5米；东侧末端12%作为两列范围、南端边8中点作为窗轴，均为比例估计。东侧可见底窗补10根栏杆、挑深0.18米，底层灰色墙裙只覆盖已建窗段。坡顶只建立封闭基础壳体，老虎窗、多组长阳台、檐口、北端屋顶细部、其余窗段、入口与台阶仍需逐项配准，不生成室内。补核77504-0东侧靠南第一组长阳台：连续四块外挑楼板位于主体第三至第六层，第二层下方窗上不另加阳台；按东侧边7的82%处设中心，宽6.5米、深1.2米、楼板顶高7/10.5/14/17.5米、厚0.20米和栏高1.05米均为照片比例估计。补深色金属栏杆主框与24根竖杆作疏密近似，照片中的细碎曲线花纹仍待细化，不宣称栏花精确复刻。仅楼板进入同源碰撞；不开放阳台后方门窗或推断室内。后续其他阳台组、老虎窗、檐口和未建窗段继续按本楼照片分别配准。补核77504-0近南第一组长阳台靠南两列可见玻璃窗段：上四层栏杆后方、第二层及首层各两处，共新增12窗，首层两窗补外弯防护栏。上层只表达照片可见玻璃和窗框，栏杆遮挡处不推断落地门、开启方式或通行。两列置于东侧边7的79%—85%，窗宽1.8米高2.05米、底标高1.1/4.6/8.1/11.6/15.1/18.6米、底窗栏杆10根及挑深0.18米均为照片比例估计。阳台北端其他窗段、排水管、墙框和栏花继续核实；本批窗面仅装饰，不改变楼身、屋顶和阳台碰撞。77504-0南端原图补充：浅色横带分别位于底层与二层之间、四层与五层之间、主体檐口处，两侧浅色竖向转角条和入口东侧浅灰墙脚可辨。沿南侧边8补标高3.5/14/22.5米、宽0.28米的横带；两端竖条宽0.8米高22.5米，灰墙脚仅补靠东0%—45%区间、高0.8米。上述标高、宽度和区间均为照片比例估计；不把有遮挡的入口西侧墙脚补成连续墙裙，也不新增入口、台阶或室内。横带、竖条和墙脚均为表面装饰，不改变官方轮廓、坡顶与碰撞。坡顶斜檐边、细部接缝、老虎窗和其余立面继续待核实。", "panels": [{"edge": 7, "rows": [{"bottom": 4.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 8.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 11.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 15.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 18.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 1.0}, {"bottom": 1.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "grille": {"bars": 10, "depth": 0.18}, "from": 0.88, "to": 0.94}, {"bottom": 1.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85, "grille": {"bars": 10, "depth": 0.18}}, {"bottom": 4.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 8.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 11.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 15.1, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 18.6, "count": 2, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}], "cladding": [{"from": 0.88, "to": 1.0, "bottom": 0.0, "top": 0.65, "color": "aaa99a"}], "window_platforms": [{"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 7.0, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 10.5, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 14.0, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 17.5, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}]}, {"edge": 8, "rows": [{"bottom": 4.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 8.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 11.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 15.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 18.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 23.2, "count": 1, "width": 1.35, "height": 1.5, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}], "bands": [{"y": 3.5, "height": 0.28, "depth": 0.22}, {"y": 14.0, "height": 0.28, "depth": 0.22}, {"y": 22.5, "height": 0.28, "depth": 0.22}], "accents": [{"fraction": 0.025, "y": 11.25, "size": [0.8, 22.5, 0.2]}, {"fraction": 0.975, "y": 11.25, "size": [0.8, 22.5, 0.2]}], "cladding": [{"from": 0.0, "to": 0.45, "bottom": 0.0, "top": 0.8, "color": "aaa99a"}]}], "osm_registration": {
+  "osm_id": "way/543818287",
+  "osm_version": 2,
+  "expected_vertices": 4,
+  "basis": "77504-0确认楼号、南端山墙窗轴、东侧长阳台；归档OSM按名称与相邻关系确定身份。旧东/南边7/8重登记到1/0，反向边翻转窗段、墙裙和阳台参数。屋脊平行新东侧长边并通过新南端窗轴；照片优先，OSM只是暂定平面底稿。",
+  "limits": "檐高22.5米、脊高26米和窗/阳台尺寸仍为照片比例估计。旧北端折角没有独立地面轮廓依据；不由透视屋顶外缘扩大基底。老虎窗、其余未登记立面、入口台阶及室内仍未建设。",
+  "profile": {
+    "edges": [
+      1,
+      0
+    ],
+    "panels": [
+      {
+        "edge": 1,
+        "rows": [
+          {
+            "bottom": 4.6,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.0,
+            "to": 0.12
+          },
+          {
+            "bottom": 8.1,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.0,
+            "to": 0.12
+          },
+          {
+            "bottom": 11.6,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.0,
+            "to": 0.12
+          },
+          {
+            "bottom": 15.1,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.0,
+            "to": 0.12
+          },
+          {
+            "bottom": 18.6,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.0,
+            "to": 0.12
+          },
+          {
+            "bottom": 1.1,
+            "count": 1,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "grille": {
+              "bars": 10,
+              "depth": 0.18
+            },
+            "from": 0.06000000000000005,
+            "to": 0.12
+          },
+          {
+            "bottom": 1.1,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.15000000000000002,
+            "to": 0.20999999999999996,
+            "grille": {
+              "bars": 10,
+              "depth": 0.18
+            }
+          },
+          {
+            "bottom": 4.6,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.15000000000000002,
+            "to": 0.20999999999999996
+          },
+          {
+            "bottom": 8.1,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.15000000000000002,
+            "to": 0.20999999999999996
+          },
+          {
+            "bottom": 11.6,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.15000000000000002,
+            "to": 0.20999999999999996
+          },
+          {
+            "bottom": 15.1,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.15000000000000002,
+            "to": 0.20999999999999996
+          },
+          {
+            "bottom": 18.6,
+            "count": 2,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.15000000000000002,
+            "to": 0.20999999999999996
+          }
+        ],
+        "cladding": [
+          {
+            "from": 0.0,
+            "to": 0.12,
+            "bottom": 0.0,
+            "top": 0.65,
+            "color": "aaa99a"
+          }
+        ],
+        "window_platforms": [
+          {
+            "fraction": 0.18000000000000005,
+            "width": 6.5,
+            "depth": 1.2,
+            "top": 7.0,
+            "thickness": 0.2,
+            "rail_height": 1.05,
+            "front_bars": 24,
+            "metal_color": "454b49"
+          },
+          {
+            "fraction": 0.18000000000000005,
+            "width": 6.5,
+            "depth": 1.2,
+            "top": 10.5,
+            "thickness": 0.2,
+            "rail_height": 1.05,
+            "front_bars": 24,
+            "metal_color": "454b49"
+          },
+          {
+            "fraction": 0.18000000000000005,
+            "width": 6.5,
+            "depth": 1.2,
+            "top": 14.0,
+            "thickness": 0.2,
+            "rail_height": 1.05,
+            "front_bars": 24,
+            "metal_color": "454b49"
+          },
+          {
+            "fraction": 0.18000000000000005,
+            "width": 6.5,
+            "depth": 1.2,
+            "top": 17.5,
+            "thickness": 0.2,
+            "rail_height": 1.05,
+            "front_bars": 24,
+            "metal_color": "454b49"
+          }
+        ]
+      },
+      {
+        "edge": 0,
+        "rows": [
+          {
+            "bottom": 4.6,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.44999999999999996,
+            "to": 0.55
+          },
+          {
+            "bottom": 8.1,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.44999999999999996,
+            "to": 0.55
+          },
+          {
+            "bottom": 11.6,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.44999999999999996,
+            "to": 0.55
+          },
+          {
+            "bottom": 15.1,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.44999999999999996,
+            "to": 0.55
+          },
+          {
+            "bottom": 18.6,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.44999999999999996,
+            "to": 0.55
+          },
+          {
+            "bottom": 23.2,
+            "count": 1,
+            "width": 1.35,
+            "height": 1.5,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.44999999999999996,
+            "to": 0.55
+          }
+        ],
+        "bands": [
+          {
+            "y": 3.5,
+            "height": 0.28,
+            "depth": 0.22
+          },
+          {
+            "y": 14.0,
+            "height": 0.28,
+            "depth": 0.22
+          },
+          {
+            "y": 22.5,
+            "height": 0.28,
+            "depth": 0.22
+          }
+        ],
+        "accents": [
+          {
+            "fraction": 0.975,
+            "y": 11.25,
+            "size": [
+              0.8,
+              22.5,
+              0.2
+            ]
+          },
+          {
+            "fraction": 0.025000000000000022,
+            "y": 11.25,
+            "size": [
+              0.8,
+              22.5,
+              0.2
+            ]
+          }
+        ],
+        "cladding": [
+          {
+            "from": 0.55,
+            "to": 1.0,
+            "bottom": 0.0,
+            "top": 0.8,
+            "color": "aaa99a"
+          }
+        ]
+      }
+    ],
+    "roof_rotation": -0.11435033203083596,
+    "ridge_x": -312.44905642866604
+  }
+}},
+  "77499": {"style": "gabled_shell", "height": 26.0, "eave_height": 22.5, "roof_rotation": -0.09558557572573331, "ridge_x": -437.1698086499711, "floors": 6, "color": "b5a08f", "frame_color": "c7c8b8", "trim_color": "c5c2ab", "edges": [5, 6], "photos": ["77499-0.jpg", "77500-0.jpg"], "note": "77499-0可读4号楼号；77500-0左后方浅色坡顶楼的长阳台与独立老虎窗对应4号，结合4号位于5号西侧的官方位置，配准东侧边5、南端边6。六层主体檐高22.5米、脊高26米，屋脊通过南端窗轴且平行东侧长边，保留七点轮廓和北端折角；高度及屋脊位置为照片比例估计。按本图东侧近端南列宽窗1.8米、北列窄窗1.35米各六层，近南阳台组靠南两列六层窄窗1.35米，南端五个主体上层窗及一个阁楼窗，共30窗；四处可见底窗补防护栏，绿篱遮挡处不推断通行。东侧近南第三至第六层四块长阳台置于边5的82%，宽6.5米深1.2米，楼板顶高7/10.5/14/17.5米、厚0.20米、栏高1.05米和竖杆疏密为估计，曲线栏花未精修。南端三条浅色横带标高3.5/14/22.5米、两端0.8米竖条和入口东侧0.8米墙脚按照片分段表达。窗高2.05米、阁楼窗高1.5米、窗距、分色宽度与阳台位置均为照片比例，不是实测。坡顶基础壳和阳台楼板进入同源碰撞，细杆窗框只装饰。老虎窗、其余阳台组、檐口、北端屋面细部、入口台阶与室内未建，遮挡玻璃不解释为可通行门洞。", "panels": [{"edge": 5, "rows": [{"bottom": 1.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0, "grille": {"bars": 10, "depth": 0.18}}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 8.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 11.6, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 15.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 18.6, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "transom": true, "from": 0.94, "to": 1.0}, {"bottom": 1.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94, "grille": {"bars": 10, "depth": 0.18}}, {"bottom": 4.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 8.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 11.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 15.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 18.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.88, "to": 0.94}, {"bottom": 1.1, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85, "grille": {"bars": 8, "depth": 0.18}}, {"bottom": 4.6, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 8.1, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 11.6, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 15.1, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}, {"bottom": 18.6, "count": 2, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.79, "to": 0.85}], "cladding": [{"from": 0.88, "to": 1.0, "bottom": 0.0, "top": 0.65, "color": "aaa99a"}], "window_platforms": [{"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 7.0, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 10.5, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 14.0, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}, {"fraction": 0.82, "width": 6.5, "depth": 1.2, "top": 17.5, "thickness": 0.2, "rail_height": 1.05, "front_bars": 24, "metal_color": "454b49"}]}, {"edge": 6, "rows": [{"bottom": 4.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 8.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 11.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 15.1, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 18.6, "count": 1, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}, {"bottom": 23.2, "count": 1, "width": 1.35, "height": 1.5, "divisions": 2, "transom": true, "from": 0.45, "to": 0.55}], "bands": [{"y": 3.5, "height": 0.28, "depth": 0.22}, {"y": 14.0, "height": 0.28, "depth": 0.22}, {"y": 22.5, "height": 0.28, "depth": 0.22}], "accents": [{"fraction": 0.025, "y": 11.25, "size": [0.8, 22.5, 0.2]}, {"fraction": 0.975, "y": 11.25, "size": [0.8, 22.5, 0.2]}], "cladding": [{"from": 0.0, "to": 0.45, "bottom": 0.0, "top": 0.8, "color": "aaa99a"}]}], "osm_registration": {
+  "osm_id": "way/543818282",
+  "osm_version": 2,
+  "expected_vertices": 4,
+  "basis": "77499-0确认楼号、南端山墙窗轴、东侧长阳台；归档OSM按名称与相邻关系确定身份。旧东/南边5/6重登记到1/2，反向边翻转窗段、墙裙和阳台参数。屋脊平行新东侧长边并通过新南端窗轴；照片优先，OSM只是暂定平面底稿。",
+  "limits": "檐高22.5米、脊高26米和窗/阳台尺寸仍为照片比例估计。旧北端折角没有独立地面轮廓依据；不由透视屋顶外缘扩大基底。老虎窗、其余未登记立面、入口台阶及室内仍未建设。",
+  "profile": {
+    "edges": [
+      1,
+      2
+    ],
+    "panels": [
+      {
+        "edge": 1,
+        "rows": [
+          {
+            "bottom": 1.1,
+            "count": 1,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.94,
+            "to": 1.0,
+            "grille": {
+              "bars": 10,
+              "depth": 0.18
+            }
+          },
+          {
+            "bottom": 4.6,
+            "count": 1,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.94,
+            "to": 1.0
+          },
+          {
+            "bottom": 8.1,
+            "count": 1,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.94,
+            "to": 1.0
+          },
+          {
+            "bottom": 11.6,
+            "count": 1,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.94,
+            "to": 1.0
+          },
+          {
+            "bottom": 15.1,
+            "count": 1,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.94,
+            "to": 1.0
+          },
+          {
+            "bottom": 18.6,
+            "count": 1,
+            "width": 1.8,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.94,
+            "to": 1.0
+          },
+          {
+            "bottom": 1.1,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.88,
+            "to": 0.94,
+            "grille": {
+              "bars": 10,
+              "depth": 0.18
+            }
+          },
+          {
+            "bottom": 4.6,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.88,
+            "to": 0.94
+          },
+          {
+            "bottom": 8.1,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.88,
+            "to": 0.94
+          },
+          {
+            "bottom": 11.6,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.88,
+            "to": 0.94
+          },
+          {
+            "bottom": 15.1,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.88,
+            "to": 0.94
+          },
+          {
+            "bottom": 18.6,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.88,
+            "to": 0.94
+          },
+          {
+            "bottom": 1.1,
+            "count": 2,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.79,
+            "to": 0.85,
+            "grille": {
+              "bars": 8,
+              "depth": 0.18
+            }
+          },
+          {
+            "bottom": 4.6,
+            "count": 2,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.79,
+            "to": 0.85
+          },
+          {
+            "bottom": 8.1,
+            "count": 2,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.79,
+            "to": 0.85
+          },
+          {
+            "bottom": 11.6,
+            "count": 2,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.79,
+            "to": 0.85
+          },
+          {
+            "bottom": 15.1,
+            "count": 2,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.79,
+            "to": 0.85
+          },
+          {
+            "bottom": 18.6,
+            "count": 2,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.79,
+            "to": 0.85
+          }
+        ],
+        "cladding": [
+          {
+            "from": 0.88,
+            "to": 1.0,
+            "bottom": 0.0,
+            "top": 0.65,
+            "color": "aaa99a"
+          }
+        ],
+        "window_platforms": [
+          {
+            "fraction": 0.82,
+            "width": 6.5,
+            "depth": 1.2,
+            "top": 7.0,
+            "thickness": 0.2,
+            "rail_height": 1.05,
+            "front_bars": 24,
+            "metal_color": "454b49"
+          },
+          {
+            "fraction": 0.82,
+            "width": 6.5,
+            "depth": 1.2,
+            "top": 10.5,
+            "thickness": 0.2,
+            "rail_height": 1.05,
+            "front_bars": 24,
+            "metal_color": "454b49"
+          },
+          {
+            "fraction": 0.82,
+            "width": 6.5,
+            "depth": 1.2,
+            "top": 14.0,
+            "thickness": 0.2,
+            "rail_height": 1.05,
+            "front_bars": 24,
+            "metal_color": "454b49"
+          },
+          {
+            "fraction": 0.82,
+            "width": 6.5,
+            "depth": 1.2,
+            "top": 17.5,
+            "thickness": 0.2,
+            "rail_height": 1.05,
+            "front_bars": 24,
+            "metal_color": "454b49"
+          }
+        ]
+      },
+      {
+        "edge": 2,
+        "rows": [
+          {
+            "bottom": 4.6,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.45,
+            "to": 0.55
+          },
+          {
+            "bottom": 8.1,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.45,
+            "to": 0.55
+          },
+          {
+            "bottom": 11.6,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.45,
+            "to": 0.55
+          },
+          {
+            "bottom": 15.1,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.45,
+            "to": 0.55
+          },
+          {
+            "bottom": 18.6,
+            "count": 1,
+            "width": 1.35,
+            "height": 2.05,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.45,
+            "to": 0.55
+          },
+          {
+            "bottom": 23.2,
+            "count": 1,
+            "width": 1.35,
+            "height": 1.5,
+            "divisions": 2,
+            "transom": true,
+            "from": 0.45,
+            "to": 0.55
+          }
+        ],
+        "bands": [
+          {
+            "y": 3.5,
+            "height": 0.28,
+            "depth": 0.22
+          },
+          {
+            "y": 14.0,
+            "height": 0.28,
+            "depth": 0.22
+          },
+          {
+            "y": 22.5,
+            "height": 0.28,
+            "depth": 0.22
+          }
+        ],
+        "accents": [
+          {
+            "fraction": 0.025,
+            "y": 11.25,
+            "size": [
+              0.8,
+              22.5,
+              0.2
+            ]
+          },
+          {
+            "fraction": 0.975,
+            "y": 11.25,
+            "size": [
+              0.8,
+              22.5,
+              0.2
+            ]
+          }
+        ],
+        "cladding": [
+          {
+            "from": 0.0,
+            "to": 0.45,
+            "bottom": 0.0,
+            "top": 0.8,
+            "color": "aaa99a"
+          }
+        ]
+      }
+    ],
+    "roof_rotation": -0.10652329342499818,
+    "ridge_x": -308.8710159507246
+  }
+}},
   "77502": {"style": "photo_panels", "height": 22.5, "floors": 6, "color": "b06853", "frame_color": "c9c8b4", "trim_color": "c5c4b0", "edges": [4, 5], "photos": ["77502-0.jpg", "77503-0.jpg"], "panels": [{"edge": 4, "rows": [{"bottom": 1.1, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.82, "to": 1.0, "grille": {"bars": 10, "depth": 0.18}}, {"bottom": 4.6, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.82, "to": 1.0}, {"bottom": 8.1, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.82, "to": 1.0}, {"bottom": 11.6, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.82, "to": 1.0}, {"bottom": 15.1, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.82, "to": 1.0}, {"bottom": 18.6, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.82, "to": 1.0}, {"bottom": 4.6, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.64, "to": 0.82}, {"bottom": 8.1, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.64, "to": 0.82}, {"bottom": 11.6, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.64, "to": 0.82}, {"bottom": 15.1, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.64, "to": 0.82}, {"bottom": 18.6, "count": 3, "width": 1.35, "height": 2.05, "divisions": 2, "transom": true, "from": 0.64, "to": 0.82}], "bands": [{"y": 0.45, "height": 0.85, "depth": 0.22}, {"y": 22.05, "height": 0.25, "projection": 0.3, "depth": 0.6}], "cladding": [{"from": 0.64, "to": 1.0, "bottom": 18.0, "top": 22.5, "color": "c4c4b7"}, {"from": 0.64, "to": 0.82, "bottom": 0.0, "top": 3.5, "color": "9c9f93"}]}, {"edge": 5, "rows": [{"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "horizontal_fractions": [0.72], "from": 0.55, "to": 0.65}, {"bottom": 8.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "horizontal_fractions": [0.72], "from": 0.55, "to": 0.65}, {"bottom": 11.6, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "horizontal_fractions": [0.72], "from": 0.55, "to": 0.65}, {"bottom": 15.1, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "horizontal_fractions": [0.72], "from": 0.55, "to": 0.65}, {"bottom": 18.6, "count": 1, "width": 1.8, "height": 2.05, "divisions": 2, "horizontal_fractions": [], "from": 0.55, "to": 0.65}], "cladding": [{"from": 0.49, "to": 0.71, "bottom": 0.0, "top": 17.3, "color": "c7c8bc"}, {"from": 0.0, "to": 0.49, "bottom": 0.0, "top": 1.1, "color": "9c9f93"}, {"from": 0.71, "to": 1.0, "bottom": 0.0, "top": 1.1, "color": "9c9f93"}], "balconies": [{"fraction": 0.6, "width": 3.6, "depth": 1.4, "thickness": 0.2, "rail_height": 1.05, "panel_bottom": 0.12, "panel_height": 0.52, "front_insets": 4, "side_insets": 2, "inset_width": 0.48, "inset_height": 0.32, "inset_bevel": 0.07, "upper_bottom": 0.7, "upper_height": 0.3, "color": "c7c8bc", "inset_color": "c99847", "top": 3.5}, {"fraction": 0.6, "width": 3.6, "depth": 1.4, "thickness": 0.2, "rail_height": 1.05, "panel_bottom": 0.12, "panel_height": 0.52, "front_insets": 4, "side_insets": 2, "inset_width": 0.48, "inset_height": 0.32, "inset_bevel": 0.07, "upper_bottom": 0.7, "upper_height": 0.3, "color": "c7c8bc", "inset_color": "c99847", "top": 7.0}, {"fraction": 0.6, "width": 3.6, "depth": 1.4, "thickness": 0.2, "rail_height": 1.05, "panel_bottom": 0.12, "panel_height": 0.52, "front_insets": 4, "side_insets": 2, "inset_width": 0.48, "inset_height": 0.32, "inset_bevel": 0.07, "upper_bottom": 0.7, "upper_height": 0.3, "color": "c7c8bc", "inset_color": "c99847", "top": 10.5}, {"fraction": 0.6, "width": 3.6, "depth": 1.4, "thickness": 0.2, "rail_height": 1.05, "panel_bottom": 0.12, "panel_height": 0.52, "front_insets": 4, "side_insets": 2, "inset_width": 0.48, "inset_height": 0.32, "inset_bevel": 0.07, "upper_bottom": 0.7, "upper_height": 0.3, "color": "c7c8bc", "inset_color": "c99847", "top": 14.0}, {"fraction": 0.6, "width": 3.6, "depth": 1.4, "thickness": 0.2, "rail_height": 1.05, "panel_bottom": 0.12, "panel_height": 0.52, "front_insets": 4, "side_insets": 2, "inset_width": 0.48, "inset_height": 0.32, "inset_bevel": 0.07, "upper_bottom": 0.7, "upper_height": 0.3, "color": "c7c8bc", "inset_color": "c99847", "top": 17.5}], "bands": [{"y": 17.3, "height": 0.18, "depth": 0.18}, {"y": 22.05, "height": 0.25, "projection": 0.3, "depth": 0.6}], "accents": [{"fraction": 0.02, "y": 19.675, "size": [0.65, 4.75, 0.2]}, {"fraction": 0.98, "y": 19.675, "size": [0.65, 4.75, 0.2]}]}], "note": "77502-0清晰7号楼号；77503-0左后红楼的三列近端窗、浅色顶带、排水管和灰色墙裙与7号本图相符，结合7号位于8号西侧的官方关系配准东侧边4和南端边5。东侧三列近端六层窗与其北侧三列上五层窗共33窗；近端三处底窗补防护栏，中段首层受枝干和桶等遮挡不补。黄色栏板下部为削角实心嵌面、上部矩形嵌面，不做贯通圆孔；南端补五层阳台，正面四块和侧面两块黄色嵌面与本图对应。沿边5的60%设置阳台中心，宽3.6米深1.4米，板顶3.5/7/10.5/14/17.5米、板厚0.2米、栏高1.05米；后墙浅色带49%—71%。六层22.5米、近端三列82%—100%与北侧三列64%—82%区间、窗宽1.35米高2.05米、分色、栏杆密度和阳台尺寸均为照片比例估计。保留官方六点轮廓，仅阳台楼板新增结构碰撞，窗框和嵌面为装饰。入口、阳台后方门窗、远段与其余立面、屋顶和室内待核实；左侧独立邻楼仍不冒认6号。77502-0南端顶部可辨浅色矩形边框和突出檐带，底部入口两侧为灰色墙裙。沿边5补17.3米下横带、22.05米檐带及两端宽0.65米竖条；竖条高4.75米，檐带厚0.25米、挑出0.3米和深0.6米均为照片比例估计。灰墙裙仅补0%—49%与71%—100%两段、高1.1米，中央入口区留待独立配准，不生成门洞或台阶。保留已有六点轮廓、楼高和五层阳台，新增边框与墙裙均仅装饰，不增加碰撞。檐口转角细部、墙砖缝、阳台后方门窗及室内仍未建。77502-0阳台近照补核：五层栏板上方均可辨浅色双列玻璃框，下四层有上部横框，最上层横框受物品遮挡，不补。沿南端边5的60%窗轴，仅表达栏高以上可见段，宽1.8米、高2.05米，底标高为各阳台板顶加1.1米，横框位于窗高72%，均为照片比例估计。栏板遮挡下方不推断玻璃、门扇开启或通行。原浅色竖带顶高21米过高，照片中竖带止于最上层阳台楼板下方，修正为17.3米，恢复顶层阳台后方红墙；顶部边框下横带同步对齐17.3米板底，避免穿过新补玻璃。新增玻璃与窗框仅装饰，不改结构碰撞；入口和室内仍未建。"},
   "77379": {"style": "photo_panels", "height": 21.0, "floors": 6, "color": "96978d", "frame_color": "686e6b", "trim_color": "d0cdbd", "edges": [13, 9, 10, 11, 12], "photos": ["77379-0.jpg", "77379-1.jpg", "77379-2.jpg", "77379-5.jpg", "77379-6.jpg"], "panels": [{"edge": 13, "rows": [{"bottom": 4.4, "count": 10, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.0, "to": 0.8333333333333334, "sill": 0.4}, {"bottom": 7.6, "count": 10, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.0, "to": 0.8333333333333334, "sill": 0.4}, {"bottom": 10.8, "count": 10, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.0, "to": 0.8333333333333334, "sill": 0.4}, {"bottom": 14.0, "count": 10, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.0, "to": 0.8333333333333334, "sill": 0.4}, {"bottom": 17.2, "count": 10, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.0, "to": 0.8333333333333334, "sill": 0.4}, {"bottom": 1.2, "count": 2, "width": 2.4, "height": 2.4, "divisions": 2, "horizontal_fractions": [], "sill": 0.4, "grille": {"style": "flat_horizontal", "bars": 9, "depth": 0.18}, "from": 0.0, "to": 0.16666666666666666}], "accents": [{"fraction": 0.0, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.08333333333333334, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.16666666666666669, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.25, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.33333333333333337, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.4166666666666667, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.5, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.5833333333333334, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.6666666666666667, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.75, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.8333333333333334, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.4166666666666667, "y": 4.0, "size": [33.91523358970781, 0.22, 0.4]}, {"fraction": 0.4166666666666667, "y": 7.2, "size": [33.91523358970781, 0.22, 0.4]}, {"fraction": 0.4166666666666667, "y": 10.4, "size": [33.91523358970781, 0.22, 0.4]}, {"fraction": 0.4166666666666667, "y": 13.6, "size": [33.91523358970781, 0.22, 0.4]}, {"fraction": 0.4166666666666667, "y": 16.8, "size": [33.91523358970781, 0.22, 0.4]}, {"fraction": 0.4166666666666667, "y": 20.3, "size": [33.91523358970781, 0.22, 0.4]}], "cladding": [{"from": 0.0, "to": 0.8333333333333334, "bottom": 4.0, "top": 20.3, "color": "96978d", "finish": "smooth"}]}, {"edge": 9, "rows": [{"bottom": 4.4, "count": 8, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.2, "to": 1.0, "sill": 0.4}, {"bottom": 7.6, "count": 8, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.2, "to": 1.0, "sill": 0.4}, {"bottom": 10.8, "count": 8, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.2, "to": 1.0, "sill": 0.4}, {"bottom": 14.0, "count": 8, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.2, "to": 1.0, "sill": 0.4}, {"bottom": 17.2, "count": 8, "width": 2.4, "height": 2.4, "divisions": 2, "transom": true, "from": 0.2, "to": 1.0, "sill": 0.4}], "accents": [{"fraction": 0.2, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.30000000000000004, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.4, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.5, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.6000000000000001, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.7, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.8, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.9000000000000001, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 1.0, "y": 10.5, "size": [0.4, 21.0, 0.35]}, {"fraction": 0.6, "y": 4.0, "size": [23.867878746130753, 0.22, 0.4]}, {"fraction": 0.6, "y": 7.2, "size": [23.867878746130753, 0.22, 0.4]}, {"fraction": 0.6, "y": 10.4, "size": [23.867878746130753, 0.22, 0.4]}, {"fraction": 0.6, "y": 13.6, "size": [23.867878746130753, 0.22, 0.4]}, {"fraction": 0.6, "y": 16.8, "size": [23.867878746130753, 0.22, 0.4]}, {"fraction": 0.6, "y": 20.3, "size": [23.867878746130753, 0.22, 0.4]}], "cladding": [{"from": 0.2, "to": 1.0, "bottom": 4.0, "top": 20.3, "color": "96978d", "finish": "smooth"}]}, {"edge": 10, "rows": [{"bottom": 4.1, "count": 1, "width": 4.3863413624169185, "height": 16.2, "divisions": 3, "horizontal_fractions": [0.08333333333333333, 0.16666666666666666, 0.25, 0.3333333333333333, 0.4166666666666667, 0.5, 0.5833333333333334, 0.6666666666666666, 0.75, 0.8333333333333334, 0.9166666666666666], "from": 0.5, "to": 0.5}], "accents": [{"fraction": 0.05, "y": 12.2, "size": [0.45, 16.2, 0.35]}, {"fraction": 0.95, "y": 12.2, "size": [0.45, 16.2, 0.35]}]}, {"edge": 11, "rows": [{"bottom": 4.1, "count": 1, "width": 4.16552001279237, "height": 16.2, "divisions": 3, "horizontal_fractions": [0.08333333333333333, 0.16666666666666666, 0.25, 0.3333333333333333, 0.4166666666666667, 0.5, 0.5833333333333334, 0.6666666666666666, 0.75, 0.8333333333333334, 0.9166666666666666], "from": 0.5, "to": 0.5}], "accents": [{"fraction": 0.05, "y": 12.2, "size": [0.45, 16.2, 0.35]}, {"fraction": 0.95, "y": 12.2, "size": [0.45, 16.2, 0.35]}]}, {"edge": 12, "rows": [{"bottom": 4.1, "count": 1, "width": 3.1836000048976367, "height": 16.2, "divisions": 3, "horizontal_fractions": [0.08333333333333333, 0.16666666666666666, 0.25, 0.3333333333333333, 0.4166666666666667, 0.5, 0.5833333333333334, 0.6666666666666666, 0.75, 0.8333333333333334, 0.9166666666666666], "from": 0.5, "to": 0.5}], "accents": [{"fraction": 0.05, "y": 12.2, "size": [0.45, 16.2, 0.35]}, {"fraction": 0.95, "y": 12.2, "size": [0.45, 16.2, 0.35]}]}], "note": "77379官方海涵楼相册1号入口标识为汽车工程学院，0/1/2/5/6号共同弧形蓝玻璃、玻璃雨棚和浅色两翼可连续对应。按官方十六点L形轮廓，内院入口折线对应边10—12，左侧长翼内面对应边13，右侧翼内面对应边9；保留全部轮廓，不新切体量。两翼可辨五层，基础壳高21米；中央高出的圆形顶冠及其后缘尚未建。院落两翼靠入口各补六列上四层，共48窗，左翼范围0%—50%，右翼40%—100%；底层受车辆及雨棚遮挡，暂不复制窗排。窗宽1.8米高2.4米、底标高5/8.9/12.8/16.7米，白色竖框宽0.4米、横框厚0.22米及各范围均为照片比例估计。中央玻璃沿三段官方折线近似弧面，底4.1米高16.2米，每段三列十二排分格仅作疏密近似，不宣称准确玻璃分块；两端浅色竖条宽0.45米。蓝玻璃反光不作为室内依据；不生成入口通行、台阶、雨棚结构或顶冠圆环。未见外侧立面、两翼剩余窗段、首层及完整屋顶仍需逐项核实。77379-2/5/6窗框比例复核：两翼窗宽占据柱间大部，原1.8米宽窗偏窄，将已有48窗改为2.4米，层数、位置与2.4米窗高保持不变。浅色结构竖框与深灰色玻璃窗框分开，窗框色改为686e6b，中央玻璃分格也用深灰色，原浅色外框保留。每窗补浅色窗下挑边，宽2.64米、厚0.2米、深0.4米，位于窗底下0.12米；这些尺寸及颜色均为照片比例和视觉估计，未测量。仅调整已配准窗段，不扩展到未见外侧或遮挡首层；挑边只装饰，不新增碰撞。77379-2/6可确认两翼已有窗段之外仍有连续可见上层窗：沿原配准窗距，左翼边13由近入口六列扩至十列、范围0%—83.33%，右翼边9由六列扩至八列、范围20%—100%，均仅上四层，新增24窗后共72窗。相应浅色竖框、横带及窗下挑边延伸到这两段，不新增或移动原有窗轴。窗宽高2.4米、层高3.9米、范围与框尺寸仍为照片比例估计，并非完整窗列清单或实测。画面之外两端仍保留待核实部分，首层因车辆、雨棚和近景裁切不复制上层窗；三段中央玻璃、主体轮廓和结构碰撞保持不变。77379-1入口近照可辨左侧相邻两处首层窗，结合5号院落连续窗列定位为边13近入口前两列；补底标高1.2米、宽高2.4米的玻璃及浅色窗台，与上层窗轴对齐。首层栏杆为平面水平横杆加中央竖杆，不套用宿舍外弯竖栏。按九根内部横杆、外周框与中央竖杆作疏密近似，杆厚0.035米、离墙0.18米均为照片估计；招牌遮挡的窗底及栏杆连接不宣称精确复刻。其他首层受车辆/雨棚遮挡仍不补，中央门洞、台阶与室内不生成。新增两窗后两翼共74窗，玻璃与栏杆仅装饰，碰撞不变。 2026-09-14再次逐排核对0号右翼近景及2号左翼：均可辨五排上层窗，下面另有首层，与官方六层说明一致；旧四排上窗/五层结论撤销。已配准左十列及右八列改为五排上窗，窗底4.4/7.6/10.8/14/17.2米，宽高仍2.4米，保留21米比例估计壳高、窗轴、首层两窗、入口三段玻璃和结构碰撞。层间横带相应移至4/7.2/10.4/13.6/16.8/20.3米；上窗90扇加首层两扇共92窗。新增18窗仅在已有列范围，不扩展未见首层和外侧；顶冠及完整屋顶分段仍未完成。新标高为六层外观在现有估计壳中的比例分配，不声称实测层高。 2026-09-14按0/2/5号近景调整已建构件表面：深灰窗框与入口玻璃分格改为平滑金属材质，浅色竖框、横带和窗台改为平滑饰面，去除默认石材噪点；保持既有颜色和几何。材质粗糙度与金属度为视觉近似，不新增玻璃反射贴图或替换未核实主体墙面。 2026-09-14按2/5号照片平整灰色窗间墙修正已配准两翼上部墙面：边13的0%—83.33%与边9的20%—100%、高4—20.3米使用同色平滑薄饰面，逐窗留空，移除粗颗粒石材噪点。仅覆盖照片确认的窗段，首层、两端剩余面及外侧主体维持原基础壳；饰面厚0.03米、外移0.025米为避免重面的渲染近似，不代表实测构造。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77379", "frame_finish": "metal", "trim_finish": "smooth"},
   "77487": {"style": "photo_panels", "height": 18.0, "height_source": "unmeasured-outline-estimate", "floors": 6, "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77487", "color": "b0aca0", "frame_color": "686958", "trim_color": "d8d1af", "frame_finish": "metal", "trim_finish": "smooth", "edges": [10, 9], "photos": ["77487-0.jpg", "77487-1.jpg"], "panels": [{"edge": 10, "rows": [{"bottom": 3.2, "count": 1, "width": 8.660342790559735, "height": 2.1, "divisions": 6, "transom": true, "from": 0, "to": 0.25}, {"bottom": 6.2, "count": 1, "width": 8.660342790559735, "height": 2.1, "divisions": 6, "transom": true, "from": 0, "to": 0.25}, {"bottom": 9.2, "count": 1, "width": 8.660342790559735, "height": 2.1, "divisions": 6, "transom": true, "from": 0, "to": 0.25}, {"bottom": 12.2, "count": 1, "width": 8.660342790559735, "height": 2.1, "divisions": 6, "transom": true, "from": 0, "to": 0.25}, {"bottom": 15.2, "count": 1, "width": 8.660342790559735, "height": 2.1, "divisions": 6, "transom": true, "from": 0, "to": 0.25}], "cladding": [{"from": 0, "to": 0.25, "bottom": 0.2, "top": 18.0, "color": "b5ae83", "finish": "small_tiles"}]}, {"edge": 9, "rows": [{"bottom": 3.2, "count": 1, "width": 2.42557303975782, "height": 2.1, "divisions": 2, "transom": true, "from": 0.87, "to": 1}, {"bottom": 6.2, "count": 1, "width": 2.42557303975782, "height": 2.1, "divisions": 2, "transom": true, "from": 0.87, "to": 1}, {"bottom": 9.2, "count": 1, "width": 2.42557303975782, "height": 2.1, "divisions": 2, "transom": true, "from": 0.87, "to": 1}, {"bottom": 12.2, "count": 1, "width": 2.42557303975782, "height": 2.1, "divisions": 2, "transom": true, "from": 0.87, "to": 1}, {"bottom": 15.2, "count": 1, "width": 2.42557303975782, "height": 2.1, "divisions": 2, "transom": true, "from": 0.87, "to": 1}], "cladding": [{"from": 0.87, "to": 1, "bottom": 0.2, "top": 18.0, "color": "b5ae83", "finish": "small_tiles"}]}], "note": "官方详情明确南侧临街主入口及东侧锯齿退进，照片0/1的同一连续转角窗互证东南角，对应南侧边10东端及东侧边9南端。只补五排上层转角窗，各排由南向六分格宽窗与东向两分格短窗组成，共10片窗面；底层入口不据照片生成通道。南段占边10的0%—25%，东段占边9的87%—100%，分格数量、窗高2.1米及窗底3.2/6.2/9.2/12.2/15.2米为外观比例近似。官方6层不提供楼高或分段尺寸，暂保留原18米未测基础壳及原轮廓，不宣称高度已校正；中央高起段、东侧退进、低附房、地形高差、入口与未见面仍待核定。只给已配准角部墙面加浅黄细砖近似，不扩展到其他面；主体、屋面与结构碰撞不变，无室内。 0/1号照片可见转角上方浅色檐带及外挑顶边，沿既有两面窗段补17.625米高、0.35米厚浅色檐带和18.02米高、0.16米厚顶边，挑深0.65米为比例近似；只处理已配准转角，不将檐口复制到中央高起段或未见屋顶。檐带为装饰，不新增楼面或碰撞。 两层檐口均沿两侧偏移边线求交生成连续斜接转角网格，避免独立矩形拼接的缺口和重叠。", "corner_bands": [{"vertex": 10, "previous_from": 0.87, "next_to": 0.25, "bottom": 17.45, "height": 0.35, "depth": 0.3, "projection": 0.17}, {"vertex": 10, "previous_from": 0.87, "next_to": 0.25, "bottom": 17.94, "height": 0.16, "depth": 0.65, "projection": 0.17}]}
