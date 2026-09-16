@@ -59,7 +59,17 @@ class OSMWorldTests(unittest.TestCase):
         self.assertEqual({r['osm_id'] for r in records['2304982']['osm_candidates']},
                          {'way/375541049','way/1381473266'})
         self.assertEqual(records['77914']['osm_candidates'][0]['osm_id'],'way/1422474847')
-        self.assertEqual(records['77943']['status'],'missing')
+        self.assertEqual(records['77943']['status'],'matched')
+        self.assertEqual(records['77943']['osm_candidates'][0]['osm_id'],'way/375541048')
+
+    def test_dining_area_does_not_require_or_invent_building_tag(self):
+        records={r['osm_id']:r for r in build('eda')['areas']}
+        dining=records['way/375541048']
+        self.assertEqual(dining['category'],'amenity-area')
+        self.assertEqual(dining['tags']['amenity'],'restaurant')
+        self.assertNotIn('building',dining['tags'])
+        self.assertEqual(dining['version'],5)
+        self.assertEqual(len(dining['polygons'][0]['outer']),19)
 
     def test_courtyards_are_not_filled(self):
         _,nodes,ways,relations=osm.archive('eda')
