@@ -20,12 +20,18 @@ func shell(points: PackedVector2Array, top: float, base: float, mat: Material, t
 	node.mesh = indexed.commit()
 	node.set_meta("walk_collision",true)
 
-func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -> void:
+func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool, registration: Dictionary = {}) -> void:
 	builder = host
 	group = parent
 	var profile_path := ProjectSettings.globalize_path("res://").path_join("../../references/eda/buildings/library_information_profiles.json").simplify_path()
 	var profiles: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profile_path))
 	var profile: Dictionary = profiles["77917" if is_library else "77914"]
+	if not registration.is_empty():
+		profile.merge(registration,true)
+		assert(points.size() == int(profile.expected_vertices),"Photo facade footprint/profile mismatch")
+		group.set_meta("osm_id",profile.osm_id)
+		group.set_meta("osm_version",profile.osm_version)
+		group.set_meta("footprint_refinement",profile.footprint_refinement)
 	# Photo proportions remain estimates; share the source with campus data.
 	var storey: float = profile.storey
 	var height: float = profile.height
@@ -59,6 +65,7 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 	else:
 		shell(points,height,0,wall,"Building")
 		shell(points,height+0.22,height,trim,"Roof")
+	var observed_edges := PackedInt32Array(profile.get("observed_edges",[1,2,6,8]))
 	for edge in points.size():
 		var a := points[edge]
 		var b := points[(edge+1)%points.size()]
@@ -90,7 +97,7 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 		# Photos show the library's curved curtain wall and information building's
 		# long facade. Unverified faces keep the pre-existing footprint shell.
 		var curved_glass := is_library and edge >= 2 and edge <= 19
-		var observed := curved_glass or (not is_library and edge in [1,2,6,8])
+		var observed: bool = curved_glass or (not is_library and edge in observed_edges)
 		if not observed:
 			continue
 		for level in floors:
@@ -124,10 +131,27 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool) -
 	if not is_library:
 		# Open roof frame visible on the long wing; its dimensions are estimates.
 		var roof_frame: Dictionary = profile.roof_frame
-		var a0 := Vector2(roof_frame.side_a[0][0],roof_frame.side_a[0][1])
-		var a1 := Vector2(roof_frame.side_a[1][0],roof_frame.side_a[1][1])
-		var b0 := Vector2(roof_frame.side_b[0][0],roof_frame.side_b[0][1])
-		var b1 := Vector2(roof_frame.side_b[1][0],roof_frame.side_b[1][1])
+		var a0: Vector2
+		var a1: Vector2
+		var b0: Vector2
+		var b1: Vector2
+		if roof_frame.has("edge"):
+			var start := points[int(roof_frame.edge)]
+			var finish := points[(int(roof_frame.edge)+1)%points.size()]
+			var axis := (finish-start).normalized()
+			var inward := Vector2(-axis.y,axis.x)
+			if not Geometry2D.is_point_in_polygon((start+finish)/2.0+inward,points): inward = -inward
+			a0 = start.lerp(finish,float(roof_frame.span[0]))+inward*float(roof_frame.depths[0])
+			a1 = start.lerp(finish,float(roof_frame.span[1]))+inward*float(roof_frame.depths[0])
+			b0 = start.lerp(finish,float(roof_frame.span[0]))+inward*float(roof_frame.depths[1])
+			b1 = start.lerp(finish,float(roof_frame.span[1]))+inward*float(roof_frame.depths[1])
+		else:
+			a0 = Vector2(roof_frame.side_a[0][0],roof_frame.side_a[0][1])
+			a1 = Vector2(roof_frame.side_a[1][0],roof_frame.side_a[1][1])
+			b0 = Vector2(roof_frame.side_b[0][0],roof_frame.side_b[0][1])
+			b1 = Vector2(roof_frame.side_b[1][0],roof_frame.side_b[1][1])
+		for point in [a0,a1,b0,b1]:
+			assert(Geometry2D.is_point_in_polygon(point,points),"Information roof frame outside footprint")
 		var beam_y: float = roof_frame.beam_center
 		var base_y: float = roof_frame.base
 		edge_box(a0,a1,beam_y,0.4,0.45,trim,true)

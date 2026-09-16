@@ -68,6 +68,44 @@
       },
       "visible_column_diameter": 0.5,
       "column_note": "77914-roof-2023.jpg中右幅近照确认可见屋顶支柱圆截面；与KFQ00-front长翼朝广场一排互证，仅将既有side_a的9根方柱替换为圆柱。保留估计直径0.5米、2米柱高和原柱位，16边近似圆截面；背排side_b不据此改形，完整梁架两端及间距仍为估计。"
+    },
+    "osm_registration": {
+      "osm_id": "way/1422474847",
+      "osm_version": 2,
+      "footprint_refinement": "eda-information-notch-v1",
+      "expected_vertices": 12,
+      "observed_edges": [
+        0,
+        5,
+        6,
+        10,
+        11
+      ],
+      "roof_frame": {
+        "base": 17.82,
+        "beam_center": 19.82,
+        "bays": 8,
+        "note": "依 OSM 凹口修正后的长翼北边注册屋面梁架；纵向跨度沿用既有照片估计比例，5米和13.5米内偏移保留原约8.5米框宽。用边段相对坐标替代旧校园绝对点，不改变原估计高度和跨数。",
+        "source": {
+          "file": "../imagery/panoramas/KFQ00-front.jpg",
+          "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/vr/pano_f.jpg",
+          "scene": "DUT_KFQ00",
+          "retrieved": "2026-09-14",
+          "sha256": "6de1003871e8ef34bcbaed9ad98dfb090624f75913db47416390be829b24c769"
+        },
+        "visible_column_diameter": 0.5,
+        "column_note": "77914-roof-2023.jpg中右幅近照确认可见屋顶支柱圆截面；与KFQ00-front长翼朝广场一排互证，仅将既有side_a的9根方柱替换为圆柱。保留估计直径0.5米、2米柱高和原柱位，16边近似圆截面；背排side_b不据此改形，完整梁架两端及间距仍为估计。",
+        "edge": 4,
+        "span": [
+          0.04,
+          0.975
+        ],
+        "depths": [
+          5.0,
+          13.5
+        ]
+      },
+      "basis": "官网俯视图两翼和连接段凹口由 references/eda/mapping/footprint-refinements.json 记录。外角保留 OSM 定位，立面从旧外包边重新分配到对应外侧边，不向新凹口内侧添加未核对窗段。估计高度不变，连接段精确高度仍待分区核实。"
     }
   },
   "77917": {

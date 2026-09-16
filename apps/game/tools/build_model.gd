@@ -258,7 +258,15 @@ func build() -> void:
 					generated_count += 1
 					continue
 				if feature.id in ["77914","77917"]:
-					preload("res://tools/build_photo_facades.gd").new().build(self,group,points,feature.id=="77917")
+					var registration: Dictionary = {}
+					if feature.has("osm_id"):
+						var profiles_path := reference_path.get_base_dir().path_join("library_information_profiles.json")
+						var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profiles_path))[feature.id]
+						assert(profile.has("osm_registration"),"OSM photo facade registration missing")
+						registration = profile.osm_registration
+						assert(feature.osm_id == registration.osm_id and int(feature.get("osm_version",-1)) == int(registration.osm_version),"OSM photo facade source changed")
+						assert(feature.get("footprint_refinement","") == registration.footprint_refinement,"Photo facade refinement mismatch")
+					preload("res://tools/build_photo_facades.gd").new().build(self,group,points,feature.id=="77917",registration)
 					generated_count += 1
 					continue
 				var color := Color("967c6c") if "宿舍" in feature.name else Color("b9b6ab")

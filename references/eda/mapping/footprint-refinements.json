@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "campus_id": "eda",
+  "refinements": [
+    {
+      "id": "eda-information-notch-v1",
+      "official_id": "77914",
+      "osm_id": "way/1422474847",
+      "osm_version": 2,
+      "original_vertex_count": 4,
+      "status": "provisional-image-supported-refinement",
+      "review_date": "2026-09-16",
+      "pixel_origin": [
+        112524960,
+        51255616
+      ],
+      "zoom": 19,
+      "tile_sources": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439550&y=200217&z=19",
+          "retrieved": "2026-09-16T09:29:51.332691+00:00",
+          "sha256": "c8a8825c203bdfc42953a0c2eb06b5819d181b90d7788c1289d026b249a54745"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439550&y=200218&z=19",
+          "retrieved": "2026-09-16T09:29:51.890116+00:00",
+          "sha256": "a86207d1e7fc3dd4f49f9e13aa3d3e231295062609822450220e90017e416987"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439550&y=200219&z=19",
+          "retrieved": "2026-09-16T09:29:52.429093+00:00",
+          "sha256": "134e432fc94875d9d11598785e8403be5bcb8b888edec8dd01c1470e89baac38"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439551&y=200217&z=19",
+          "retrieved": "2026-09-16T09:29:53.016372+00:00",
+          "sha256": "7f9f1e96bdbe5e595973b4708833b8858e2818b0e07bf0b6098a74697d116b2d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439551&y=200218&z=19",
+          "retrieved": "2026-09-16T09:29:53.635634+00:00",
+          "sha256": "3033a15a74f12200b0379730f2f643cef3f56ac6bba0df2ec624ee82f49d5ac8"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439551&y=200219&z=19",
+          "retrieved": "2026-09-16T09:29:54.191066+00:00",
+          "sha256": "4c57de8bfe27419b234b2eafebd32636a0f8b2a5a7288297baae538342e94de5"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439552&y=200217&z=19",
+          "retrieved": "2026-09-16T09:29:54.805699+00:00",
+          "sha256": "4e5eecaba2354079dc793963a99092618a6632456c393f9240557cdcef46850f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439552&y=200218&z=19",
+          "retrieved": "2026-09-16T09:29:55.365774+00:00",
+          "sha256": "6b68125a801345aa9352ec87038f714a1e5ccfe32ef946c2be0b6fdb92a66e3e"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439552&y=200219&z=19",
+          "retrieved": "2026-09-16T09:29:55.937475+00:00",
+          "sha256": "9dd13852bfc65a36c9f4c3a32c1b9efc9e05d721435699a7793624a4413a230b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200217&z=19",
+          "retrieved": "2026-09-16T09:29:56.569738+00:00",
+          "sha256": "48077d57d668b336415cd3f0abf5765d221a0f0c278c79805cc2316d9a79e709"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200218&z=19",
+          "retrieved": "2026-09-16T09:29:57.164369+00:00",
+          "sha256": "1ce9b292489f13f2b197248e0e06722f372eebcce1656a1945d25c75050b68a5"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200219&z=19",
+          "retrieved": "2026-09-16T09:29:57.772020+00:00",
+          "sha256": "26e17e4e6b21049432efd94ec2b7c552b16b6448ce76de627ce82ac3a976ee2f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200217&z=19",
+          "retrieved": "2026-09-16T09:29:58.372514+00:00",
+          "sha256": "3ce14020f236fa78351fcdb6efc47dc4507775fc6e86b6e553afd42ee78c6452"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200218&z=19",
+          "retrieved": "2026-09-16T09:29:58.968450+00:00",
+          "sha256": "ec8483ceff437824ffb66e9f278d16b987f49d4ee2bbd1d42bf001568602ed12"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200219&z=19",
+          "retrieved": "2026-09-16T09:29:59.579010+00:00",
+          "sha256": "2d848bd5db4dfd2a54de6a431f50d7a30cf0e5589555e7471aca1571db3d9d2c"
+        }
+      ],
+      "anchors": [
+        {
+          "pixel": [
+            251,
+            195
+          ],
+          "osm_vertex": 0
+        },
+        {
+          "pixel": [
+            900,
+            202
+          ],
+          "osm_vertex": 1
+        },
+        {
+          "pixel": [
+            900,
+            314
+          ],
+          "osm_vertex": 2
+        },
+        {
+          "pixel": [
+            289,
+            385
+          ],
+          "osm_vertex": 3
+        }
+      ],
+      "pixel_outline": [
+        [
+          251,
+          195
+        ],
+        [
+          431,
+          197
+        ],
+        [
+          431,
+          242
+        ],
+        [
+          494,
+          242
+        ],
+        [
+          494,
+          198
+        ],
+        [
+          900,
+          202
+        ],
+        [
+          900,
+          314
+        ],
+        [
+          494,
+          354
+        ],
+        [
+          494,
+          301
+        ],
+        [
+          431,
+          301
+        ],
+        [
+          431,
+          361
+        ],
+        [
+          289,
+          385
+        ]
+      ],
+      "area_ratio_limits": [
+        0.7,
+        1.0
+      ],
+      "photo_cross_check": "references/eda/imagery/panoramas/KFQ00-front.jpg shows the main wing and lower connecting volume; references/eda/buildings/photos/77914-1.jpg shows exterior stair/wing junction. No interior is inferred.",
+      "limits": [
+        "保留 OSM 四个外角及整体位置，仅从 lm30 图面补两翼之间的凹口；不将官网斜视 bound 平均进轮廓。",
+        "四角投影转移是局部形状注册，不是底图正射校正，不证明米制尺寸或绝对定位准确。",
+        "官网图面包含屋面、台阶和立面表达；所描凹口为体量近似，墙脚和连接体精确边界尚未经测绘。",
+        "未根据地图新增门洞、台阶或室内，外部台阶也不并入建筑基底。"
+      ]
+    }
+  ]
+}
