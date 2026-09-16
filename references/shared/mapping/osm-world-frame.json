@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "crs": "EPSG:4326",
+  "units": "approximate meters",
+  "x": "east",
+  "z": "south",
+  "meter_per_degree": 111320,
+  "longitude_scale": "111320 * cos(origin_latitude)",
+  "old_official_shift_applied": false,
+  "status": "migration-in-progress; runtime not switched yet",
+  "campuses": {
+    "lingshui": {
+      "origin_lon_lat": [
+        121.520186,
+        38.881499
+      ],
+      "origin_basis": "midpoint of archived university boundary coordinate bounds; arbitrary local origin, not a control point",
+      "boundary_way": "443031231",
+      "archive": "references/lingshui/mapping/osm-world.osm.gz"
+    },
+    "eda": {
+      "origin_lon_lat": [
+        121.811878,
+        39.085291
+      ],
+      "origin_basis": "midpoint of archived university boundary coordinate bounds; arbitrary local origin, not a control point",
+      "boundary_way": "215560705",
+      "archive": "references/eda/mapping/osm-world.osm.gz"
+    },
+    "panjin": {
+      "origin_lon_lat": [
+        122.11917,
+        40.686319
+      ],
+      "origin_basis": "midpoint of archived university boundary coordinate bounds; arbitrary local origin, not a control point",
+      "boundary_way": "463862869",
+      "archive": "references/panjin/mapping/osm-world.osm.gz"
+    }
+  }
+}

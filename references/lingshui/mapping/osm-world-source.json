@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "campus": "lingshui",
+  "url": "https://api.openstreetmap.org/api/0.6/map?bbox=121.50,38.86,121.55,38.90",
+  "retrieved": "2026-09-16",
+  "sha256_uncompressed": "30d4be89d3c4ca21f6600c685dad013d65c18a58cc1fcbe41805848557a7ea66",
+  "archive": "osm-world.osm.gz",
+  "license": "ODbL 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "crs": "EPSG:4326",
+  "scope": "Original downloaded bbox, includes neighboring features; filter and match before runtime generation",
+  "campus_boundary_way": "443031231",
+  "boundary_version": "15",
+  "note": "Raw OSM node/way/relation versions and timestamps preserved; no geometry rounding or correction"
+}
