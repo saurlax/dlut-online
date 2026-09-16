@@ -1,0 +1,155 @@
+{
+  "reviewed": "2026-09-16",
+  "coverage": {
+    "lingshui": "references/lingshui/buildings/texture_surfaces.json",
+    "eda": "references/eda/buildings/texture_surfaces.json",
+    "panjin": "references/panjin/buildings/texture_surfaces.json"
+  },
+  "import": {
+    "max_size": 1024,
+    "mipmaps": true,
+    "compression": "S3TC / ETC2",
+    "normal_convention": "OpenGL"
+  },
+  "precision": "公共/生成微表面仅用于照片支持的材料类别，不证明建筑采用同一产品；颜色与尺度为视觉近似。未知背面、未配准部位及室内不扩展。",
+  "assets": [
+    {
+      "name": "beige_wall_001",
+      "type": "public PBR",
+      "url": "https://polyhaven.com/a/beige_wall_001",
+      "authors": [
+        "Dimitrios Savva (photography)",
+        "Rico Cilliers (processing)"
+      ],
+      "license": "CC0",
+      "license_url": "https://polyhaven.com/license",
+      "files": [
+        {
+          "path": "apps/game/assets/textures/buildings/beige_wall_001_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/beige_wall_001/beige_wall_001_diff_1k.jpg",
+          "sha256": "72104704d0b9bd3713c5f6238971252b63eccf6e61263059c674caa8f3d0fa6d"
+        },
+        {
+          "path": "apps/game/assets/textures/buildings/beige_wall_001_rough_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/beige_wall_001/beige_wall_001_rough_1k.jpg",
+          "sha256": "fc8328f47f4d2d82d5311a75bcb5c8cd8979d171a0ee097ad9e44ca9c5a00d60"
+        },
+        {
+          "path": "apps/game/assets/textures/buildings/beige_wall_001_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/beige_wall_001/beige_wall_001_nor_gl_1k.jpg",
+          "sha256": "cec747be50f91da0693986080b6f59ef868d53cb2ab7d577982165ece63ed75e"
+        }
+      ],
+      "repeat_metres": [
+        3.0,
+        3.0
+      ],
+      "modifications": "下载文件未修改；Godot 归一化平均颜色并按既有立面调色，法线强度 0.25。三平面装饰仅颜色与粗糙度，不使用法线。"
+    },
+    {
+      "name": "red_brick",
+      "type": "public PBR",
+      "url": "https://polyhaven.com/a/red_brick",
+      "authors": [
+        "Rob Tuytel"
+      ],
+      "license": "CC0",
+      "license_url": "https://polyhaven.com/license",
+      "files": [
+        {
+          "path": "apps/game/assets/textures/buildings/red_brick_diff_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick/red_brick_diff_1k.jpg",
+          "sha256": "6dea3a2b5a3185ff48d299d182c405a9f787129d79677792db6de4afd81c47f6"
+        },
+        {
+          "path": "apps/game/assets/textures/buildings/red_brick_rough_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick/red_brick_rough_1k.jpg",
+          "sha256": "9bc9ece8264eb53d6f290bd2950ece5e462f83ce9e65b945fb1caf9972973ab9"
+        },
+        {
+          "path": "apps/game/assets/textures/buildings/red_brick_nor_gl_1k.jpg",
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick/red_brick_nor_gl_1k.jpg",
+          "sha256": "99bd2c60dfdb02b011cc3551bd9ab51d9b0be2807e3ba8f7a53c8a4c945b2f87"
+        }
+      ],
+      "repeat_metres": [
+        1.4,
+        1.4
+      ],
+      "modifications": "下载文件未修改；Godot 归一化平均颜色并按既有立面调色，法线强度 0.25。三平面装饰仅颜色与粗糙度，不使用法线。"
+    },
+    {
+      "name": "small_ceramic_tiles_albedo.png",
+      "type": "built-in image_gen",
+      "date": "2026-09-16",
+      "path": "apps/game/assets/textures/buildings/small_ceramic_tiles_albedo.png",
+      "sha256": "b6f9b02fd6bf4ece5b37f848869d50fc8825e31f7976b627aae0278a263917b6",
+      "prompt": "Use case: photorealistic-natural. Asset type: seamless tileable 3D game exterior ceramic wall ALBEDO texture, square 1024x1024. Create a neutral near-white small rectangular ceramic facing tile texture, inspired only by the material category visible in the attached campus photos (reference only; do not reproduce buildings or photos). Exactly 4 columns and 8 rows of horizontally elongated tiles, aligned stack bond, each tile twice as wide as tall. Perfect orthographic front view, full-bleed edge-to-edge repeat with continuous narrow cool-gray grout lines, including matching half-width grout at opposing outer edges. Clean lightly aged exterior glazed ceramic with subtle fine grain, very restrained individual tile tone variation, no cracks or damage. Near-white neutral color so the game can tint it pale yellow or ivory. Flat diffuse lighting, no directional shadows, no reflections, no vignette, no gradients, no perspective. No windows, buildings, objects, vegetation, text or watermark. One material swatch only, not a collage, not a rendered sphere. Seamless left/right and top/bottom.",
+      "reference": [
+        {
+          "feature_id": "77390",
+          "photo": "photos/77390-3.jpg",
+          "index": "photos/77390.json",
+          "use": "厚邦楼已配准的矩形面砖墙面，材料类别参考，沿用原有颜色与覆盖范围",
+          "photo_id": 825441,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77390_20190923162856865.jpg"
+        },
+        {
+          "feature_id": "77487",
+          "photo": "photos/77487-0.jpg",
+          "index": "photos/77487.json",
+          "photo_id": 78259,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77487_20160224170526326.jpg",
+          "use": "校医院已配准转角浅黄色小面砖，材料类别参考"
+        }
+      ],
+      "reference_root": "references/lingshui/buildings/",
+      "license_note": "项目生成资产，未标记为 CC0；离线参考照片不作为运行时贴图。",
+      "repeat_metres": [
+        0.4,
+        0.4
+      ],
+      "limitations": "不是实景扫描；微观结构、尺寸及粗糙度均为近似。生成结果不保证逐像素无缝，已检查重复铺贴。方砖变体重复尺度为 0.4 × 0.8 米；矿物面最终采用 0.5 米尺度缩小颗粒。"
+    },
+    {
+      "name": "mineral_render_albedo.png",
+      "type": "built-in image_gen",
+      "date": "2026-09-16",
+      "path": "apps/game/assets/textures/buildings/mineral_render_albedo.png",
+      "sha256": "7482b6de15e0649054a3bea2a1adbdead81feec30ff5f1fdde2ed92b8fbbb940",
+      "prompt": "Use case: photorealistic-natural. Asset type: seamless square albedo texture for campus architectural mineral render, intended to repeat over a 1 metre square. Reference image is for material category only: the fine sandy mineral aggregate of the recessed wall areas between windows, not the smooth columns. Generate one full-bleed orthographic neutral light gray-beige mineral render swatch with densely distributed tiny cream, gray and muted ochre mineral grains, subtle natural microvariation, consistent average color around RGB 210,208,202. Fine grains about 1-2 mm, no large gravel. Flat diffuse albedo illumination, no shadows, stains, lighting gradients, directional effects or reflections. Seamlessly repeat on all four edges. Do not include windows, walls as objects, architecture, panels, joints, text, damage, vines or any elements of the reference composition. Just a plain fine mineral material swatch, suitable for tinting in Godot. Square 1024 by 1024.",
+      "reference": {
+        "photo": "photos/77395-0.jpg",
+        "photo_id": 825492,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77395_20190923164942375.jpg"
+      },
+      "reference_root": "references/lingshui/buildings/",
+      "license_note": "项目生成资产，未标记为 CC0；离线参考照片不作为运行时贴图。",
+      "repeat_metres": [
+        0.5,
+        0.5
+      ],
+      "limitations": "不是实景扫描；微观结构、尺寸及粗糙度均为近似。生成结果不保证逐像素无缝，已检查重复铺贴。方砖变体重复尺度为 0.4 × 0.8 米；矿物面最终采用 0.5 米尺度缩小颗粒。"
+    },
+    {
+      "name": "terracotta_albedo.png",
+      "type": "built-in image_gen",
+      "date": "2026-09-16",
+      "path": "apps/game/assets/textures/buildings/terracotta_albedo.png",
+      "sha256": "6f335c99f023e0f90f608ae200f1463c0801d9efc6a3b83c68de0ca57cd78496",
+      "prompt": "Use case: photorealistic-natural. Asset type: square seamless color texture for architectural fired-clay facade panels in Godot. Use attached campus photo only to identify the fine, even, warm red-brown terracotta panel material. Generate a single orthographic full-bleed 1024x1024 swatch of smooth unglazed architectural terracotta, neutral pale warm gray base suitable for multiplying a red-brown tint in the game. Extremely subtle fine horizontal extrusion grain, uniform understated micropores, no macro blotches. This is the continuous surface of ONE material: NO panel edges, seams, mortar, joints, windows, architecture, lettering, logos, stains, scratches or damage. Flat diffuse illumination, no directional shadows, highlights, ambient occlusion or vignette. Seamless repeat left/right and top/bottom. Existing model geometry already provides the panel joints; do not draw any joints.",
+      "reference": {
+        "photo": "photos/77986-0.jpg",
+        "photo_id": 80105,
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77986_20160302170637357.jpg"
+      },
+      "reference_root": "references/panjin/buildings/",
+      "license_note": "项目生成资产，未标记为 CC0；离线参考照片不作为运行时贴图。",
+      "repeat_metres": [
+        1,
+        1
+      ],
+      "limitations": "不是实景扫描；微观结构、尺寸及粗糙度均为近似。生成结果不保证逐像素无缝，已检查重复铺贴。方砖变体重复尺度为 0.4 × 0.8 米；矿物面最终采用 0.5 米尺度缩小颗粒。"
+    }
+  ]
+}

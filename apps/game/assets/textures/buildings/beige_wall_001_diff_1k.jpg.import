@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7wnuippk4bee"
-path.s3tc="res://.godot/imported/small_ceramic_tiles_albedo.png-a58ddee146a7fa1760d822c480980cab.s3tc.ctex"
-path.etc2="res://.godot/imported/small_ceramic_tiles_albedo.png-a58ddee146a7fa1760d822c480980cab.etc2.ctex"
+uid="uid://cjexub8gpe4et"
+path.s3tc="res://.godot/imported/beige_wall_001_diff_1k.jpg-61c07fe3e1ec4f34c208674a012591da.s3tc.ctex"
+path.etc2="res://.godot/imported/beige_wall_001_diff_1k.jpg-61c07fe3e1ec4f34c208674a012591da.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/campuses/lingshui/textures/small_ceramic_tiles_albedo.png"
-dest_files=["res://.godot/imported/small_ceramic_tiles_albedo.png-a58ddee146a7fa1760d822c480980cab.s3tc.ctex", "res://.godot/imported/small_ceramic_tiles_albedo.png-a58ddee146a7fa1760d822c480980cab.etc2.ctex"]
+source_file="res://assets/textures/buildings/beige_wall_001_diff_1k.jpg"
+dest_files=["res://.godot/imported/beige_wall_001_diff_1k.jpg-61c07fe3e1ec4f34c208674a012591da.s3tc.ctex", "res://.godot/imported/beige_wall_001_diff_1k.jpg-61c07fe3e1ec4f34c208674a012591da.etc2.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 {
   "date": "2026-09-16",
-  "asset": "apps/game/assets/campuses/lingshui/textures/small_ceramic_tiles_albedo.png",
+  "asset": "apps/game/assets/textures/buildings/small_ceramic_tiles_albedo.png",
   "mode": "built-in image_gen",
   "prompt": "Use case: photorealistic-natural. Asset type: seamless tileable 3D game exterior ceramic wall ALBEDO texture, square 1024x1024. Create a neutral near-white small rectangular ceramic facing tile texture, inspired only by the material category visible in the attached campus photos (reference only; do not reproduce buildings or photos). Exactly 4 columns and 8 rows of horizontally elongated tiles, aligned stack bond, each tile twice as wide as tall. Perfect orthographic front view, full-bleed edge-to-edge repeat with continuous narrow cool-gray grout lines, including matching half-width grout at opposing outer edges. Clean lightly aged exterior glazed ceramic with subtle fine grain, very restrained individual tile tone variation, no cracks or damage. Near-white neutral color so the game can tint it pale yellow or ivory. Flat diffuse lighting, no directional shadows, no reflections, no vignette, no gradients, no perspective. No windows, buildings, objects, vegetation, text or watermark. One material swatch only, not a collage, not a rendered sphere. Seamless left/right and top/bottom.",
   "references": [
@@ -57,7 +57,7 @@
       "license": "CC0",
       "license_url": "https://polyhaven.com/license",
       "authors": "Dimitrios Savva, Rico Cilliers",
-      "decision": "未接入：可供后续经照片确认的抹灰面选材，不替代面砖"
+      "decision": "第一轮未替代面砖；后续扩展用于照片支持的细抹灰墙面，见 references/shared/buildings/textures.json。"
     },
     {
       "name": "ambientCG",
@@ -67,5 +67,6 @@
       "decision": "已核对素材库许可，未下载或接入具体资产"
     }
   ],
-  "sha256": "b6f9b02fd6bf4ece5b37f848869d50fc8825e31f7976b627aae0278a263917b6"
+  "sha256": "b6f9b02fd6bf4ece5b37f848869d50fc8825e31f7976b627aae0278a263917b6",
+  "current_usage": "共享资源与后续三校区覆盖见 references/shared/buildings/textures.json 及各校区 texture_surfaces.json。本文件保留首次生成与两栋面砖依据。"
 }

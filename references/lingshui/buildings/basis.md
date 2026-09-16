@@ -408,3 +408,9 @@
 ## 再生成
 
 在仓库根目录依次运行 `python3 apps/game/tools/prepare_lingshui.py`、`godot --headless --path apps/game --script tools/build_lingshui.gd` 和 `godot --headless --path apps/game --script tools/server_export/build_worlds.gd`。工具从自身路径解析资料，只读取已归档数据，不依赖在线接口。桌面与服务端导出方式见 [应用技术文档](../../../apps/api/README.md)。
+
+## 照片限定表面贴图（2026-09-16）
+
+本轮核对的档案对象中，70 栋已有模型的照片配准局部使用共享表面材质，8 个对象暂缓。逐栋状态、照片 URL / ID、区段和理由见 [覆盖登记](texture_surfaces.json)，公开材质许可与生成提示词见 [共享来源](../../shared/buildings/textures.json)。
+
+贴图仅覆盖登记墙段及已有照片细部；连续窗段采用已登记窗行的包围范围，不延伸到未知背面或未确认楼层。新增表面裁剪自原墙体三角形，不封闭缺口、不创建碰撞。材料类别和细节尺度属于照片视觉近似，不证明真实材料型号、砖尺寸或微观粗糙度；玻璃反射继续使用既有材质，未新建室内。

@@ -3,7 +3,7 @@ extends RefCounted
 # ImageGen surface approximation for photo-registered exterior patches only.
 # One repeat covers 0.4 m, with four columns and eight rows of tiles.
 # Dimensions are inherited estimates, not measured ceramic sizes.
-const ALBEDO_PATH := "res://assets/campuses/lingshui/textures/small_ceramic_tiles_albedo.png"
+const ALBEDO_PATH := "res://assets/textures/buildings/small_ceramic_tiles_albedo.png"
 
 func build(builder, color: String) -> StandardMaterial3D:
 	var key := "Photo tile " + color
@@ -21,12 +21,4 @@ func build(builder, color: String) -> StandardMaterial3D:
 # Use facade-local metres so rotated walls retain tile proportions, and pieces
 # cut around windows share the same grid even after static mesh merging.
 func map_piece(node: MeshInstance3D, middle: Vector2) -> void:
-	var arrays: Array = node.mesh.surface_get_arrays(0)
-	var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
-	var uv := PackedVector2Array()
-	for vertex in vertices:
-		uv.append(Vector2(vertex.x + middle.x, -(vertex.y + middle.y)))
-	arrays[Mesh.ARRAY_TEX_UV] = uv
-	var mesh := ArrayMesh.new()
-	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-	node.mesh = mesh
+	preload("res://tools/build_surface_materials.gd").new().map_box(node,middle)

@@ -44,6 +44,9 @@ func build() -> void:
 					# Point-of-interest outlines are retained as metadata, not invented statues or bridges.
 					pass
 		generated_count += 1
+	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "panjin"):
+		quit(1)
+		return
 	merge_meshes(scene)
 	for mat in materials.values():
 		if mat.albedo_texture is NoiseTexture2D and mat.albedo_texture.get_image() == null:
