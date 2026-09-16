@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "campus": "panjin",
+  "url": "https://api.openstreetmap.org/api/0.6/map?bbox=122.10,40.67,122.15,40.71",
+  "retrieved": "2026-09-16",
+  "sha256_uncompressed": "a09794db10a08a76c44a4d4a9a1519a36d1285d991a4bf03da7eb5e86194d1d9",
+  "archive": "osm-world.osm.gz",
+  "license": "ODbL 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "crs": "EPSG:4326",
+  "scope": "Original downloaded bbox, includes neighboring features; filter and match before runtime generation",
+  "campus_boundary_way": "463862869",
+  "boundary_version": "6",
+  "note": "Raw OSM node/way/relation versions and timestamps preserved; no geometry rounding or correction"
+}

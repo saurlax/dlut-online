@@ -73,7 +73,10 @@ DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与�
 三校区建筑轮廓的离线复核另使用 [样本登记](references/shared/mapping/footprint-review.json) 中的 OSM way，并与官网 `lm30` 俯视瓦片、原始 `bound` 对比。[复核工具及边界](references/shared/mapping/map-coordinate-handling.json)保存源 URL、读取时间、摘要、way/node 版本、初始定位与未验证草稿。下载资料和底图仅置于 `.local/`，不随游戏分发；官网底图仍适用第 2.1 条授权说明。OSM 摘录及其衍生数据库保留 ODbL 署名和许可信息。官网 bound 存在斜视外轮廓，既有质心平移不能再作为已验证的建筑基底配准。
 三个校区的道路中心线和校园范围使用 2026-09-16 读取的 OSM 数据，原始查询、way/node ID 与版本归档于 `references/<campus_id>/mapping/osm-roads.json`；盘锦建筑配准控制点另存 `references/panjin/mapping/road-alignment.json`。离线裁剪、坐标转换及估计宽度生成的 `apps/game/assets/campuses/<campus_id>/data/osm_roads.json` 同样按 ODbL 1.0 提供，随仓库公开分发。道路模型及游戏地图含 © OpenStreetMap contributors 数据，转换方式及精度限制见 [道路数据依据](references/shared/mapping/roads.md)。
 
+三校区统一平面基准迁移使用 2026-09-16 已下载 OSM 原始数据，压缩归档及校验摘要见 `references/<campus_id>/mapping/osm-world.osm.gz` 与 `osm-world-source.json`。这些原始数据库摘录保留节点、道路、建筑、地表和关系对象的 ID、版本及时间戳，按 ODbL 1.0 提供。统一 WGS84 局部原点见 `references/shared/mapping/osm-world-frame.json`；归档范围包含校外要素，不能将归档数量视为校园建筑总数。地形高程继续单独标注 Copernicus 来源，不声称由 OSM 提供连续高程。
+
 ### 2.6 建筑表面贴图
+
 
 照片支持的建筑局部立面使用共享材质，逐栋照片 URL、对象 ID、读取日期、覆盖区段与暂缓理由记录于各校区的 texture_surfaces.json。累计覆盖凌水 70 栋、开发区 13 栋、盘锦 2 栋；不代表完整建筑复刻或全校覆盖。原始照片仅离线参考，不打入客户端。
 
