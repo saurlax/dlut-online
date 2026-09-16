@@ -19,6 +19,7 @@ ambient_light_source = 2
 ambient_light_color = Color(0.78, 0.84, 0.94, 1)
 ambient_light_energy = 0.48
 reflected_light_source = 2
+ssr_max_steps = 32
 fog_enabled = true
 fog_sky_affect = 0.08
 fog_density = 0.000025

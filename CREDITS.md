@@ -90,6 +90,10 @@ DLUT Online 服务端通过 [Open-Meteo Forecast API](https://open-meteo.com/en/
 
 太阳位置计算参考美国国家海洋和大气管理局（NOAA）发布的 [Solar Calculation Details](https://gml.noaa.gov/grad/solcalc/calcdetails.html)，涉及太阳赤纬、时间方程等近似计算方法。该署名用于标明计算方法的来源。
 
+### 3.3 水面着色技术资料
+
+水面着色实现参考 Godot 官方 [Spatial shaders](https://docs.godotengine.org/en/stable/tutorials/shaders/shader_reference/spatial_shader.html) 与 [Environment and post-processing](https://docs.godotengine.org/en/stable/tutorials/3d/environment_and_post_processing.html)（读取日期：2026-09-16），用于法线空间、物理材质参数和屏幕空间反射兼容性核对。文档适用 [CC BY 3.0](https://docs.godotengine.org/en/stable/about/complying_with_licenses.html)。波纹法线由项目内 FastNoiseLite 参数程序化生成，没有引入外部水面图片；沿用已有官方水体轮廓，不新增水文测绘数据。
+
 ## 四、字体
 
 | 字体 | 提供者与来源 | 使用形式 | 许可文本 |
