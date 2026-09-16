@@ -3,6 +3,7 @@ import json
 import math
 import statistics
 from pathlib import Path
+import osm_world
 
 ROOT = Path(__file__).resolve().parents[3]
 STEP = 10.0
@@ -27,10 +28,12 @@ def edge_distance(x, z, polygon):
 
 def build(campus):
     directory = ROOT / f'apps/game/assets/campuses/{campus}/data'
-    manifest = json.loads((directory/'campus.json').read_text())
+    manifest = json.loads((directory/'campus.json').read_text(encoding='utf-8'))
     refs = ROOT / f'references/{campus}/terrain'
-    grid = json.loads((refs/'heightfield.json').read_text())
-    alignment = json.loads((refs/'alignment.json').read_text())
+    grid = json.loads((refs/'heightfield.json').read_text(encoding='utf-8'))
+    canonical = manifest.get('geographic_crs') == 'EPSG:4326'
+    alignment = {'offset_xz_m':[0,0]} if canonical else json.loads((refs/'alignment.json').read_text(encoding='utf-8'))
+    if canonical: assert manifest['origin'] == osm_world.frame(campus)['origin_lon_lat']
     raw = grid['rows_north_to_south']; h = len(raw); w = len(raw[0])
     # Lower-envelope then mean, each 3x3 source cells: an estimate, never a measured DTM.
     lower = [[min(raw[rr][cc] for rr in range(max(0,r-1),min(h,r+2)) for cc in range(max(0,c-1),min(w,c+2))) for c in range(w)] for r in range(h)]
@@ -45,7 +48,7 @@ def build(campus):
         return (smooth[r][c]*(1-u)+smooth[r][c+1]*u)*(1-v)+(smooth[r+1][c]*(1-u)+smooth[r+1][c+1]*u)*v
     bounds=manifest.get('bounds',[-640,-410,1280,930]);x0,z0,bw,bh=bounds
     nx=math.ceil(bw/STEP)+1;nz=math.ceil(bh/STEP)+1
-    spawn=[96,28] if campus=='lingshui' else [12,387]
+    spawn=manifest.get('spawn_xz',[96,28] if campus=='lingshui' else [12,387])
     datum=sample(*spawn)
     rows=[[sample(x0+c*STEP,z0+r*STEP)-datum for c in range(nx)] for r in range(nz)]
     pads={}
@@ -70,6 +73,8 @@ def build(campus):
                     weight=1 if signed_distance<7.5 else max(0,1-(signed_distance-7.5)/12.5)
                     rows[r][c]=(sample(x,z)-datum)*(1-weight)+level*weight
     output={'schema_version':1,'campus_id':campus,'origin_xz':[x0,z0],'step_m':STEP,'width':nx,'height':nz,'absolute_y_offset_egm2008_m':datum,'feature_base_y':pads,'rows':[[round(v,4) for v in row] for row in rows],'basis':f'references/{campus}/terrain/alignment.json','classification':'provisional filtered DSM with estimated feature pads; 10m is mesh spacing, not survey accuracy'}
+    if canonical:
+        output.update(basis=manifest['coordinate_frame'],horizontal_crs='EPSG:4326',old_official_shift_applied=False)
     (directory/'terrain.json').write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n')
     print(campus,nx,nz,'vertical origin',datum)
 

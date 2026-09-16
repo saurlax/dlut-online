@@ -19,10 +19,15 @@ func build(builder, campus: String) -> bool:
 		var group_name: String = "Feature_" + feature.id + ("_" + str(int(feature.part)) if feature.has("part") else "")
 		var group: Node3D = builder.scene.get_node(group_name)
 		var points := PackedVector2Array()
-		for p in feature.points:
+		for p in feature.get("reference_points",feature.points):
 			points.append(Vector2(p[0], p[1]))
 		var profile: Dictionary = feature.get("facade", {})
 		var regions: Array = entry.get("regions", []).duplicate(true)
+		if feature.has("osm_id"):
+			if not entry.has("osm_regions"):
+				push_error("OSM photo surface registration missing: "+feature.id)
+				return false
+			regions = entry.osm_regions.duplicate(true)
 		if entry.get("coverage", "") == "panel_rows":
 			regions = panel_regions(profile, points)
 		elif entry.get("coverage", "") == "registered_edges":
