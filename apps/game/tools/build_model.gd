@@ -289,7 +289,12 @@ func build() -> void:
 					generated_count += 1
 					continue
 				if feature.id == "2304982":
-					preload("res://tools/build_eda_seventh.gd").new().build(self,group,points,seventh_profile)
+					var profile: Dictionary = seventh_profile.duplicate(true)
+					if feature.has("building_parts"):
+						profile.merge(profile.osm_registration,true)
+						profile.tower_points = feature.building_parts[0].points
+						assert(feature.building_parts[0].osm_id=="way/375541049" and feature.building_parts[1].osm_id=="way/1381473266")
+					preload("res://tools/build_eda_seventh.gd").new().build(self,group,points,profile)
 					generated_count += 1
 					continue
 				if residence_profiles.has(feature.id):

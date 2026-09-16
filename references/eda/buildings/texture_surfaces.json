@@ -724,7 +724,8 @@
     "2304982": {
       "status": "deferred",
       "profile": "seventh-residence/profile.json",
-      "reason": "竣工照片已归档但外墙尚未配准，施工照与设计效果图不能证明最终面材，不新增纹理。"
+      "reason": "竣工照片已归档但外墙尚未配准，施工照与设计效果图不能证明最终面材，不新增纹理。",
+      "osm_regions": []
     },
     "77912": {
       "status": "deferred",
