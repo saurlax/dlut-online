@@ -301,7 +301,27 @@
         }
       ],
       "observation": "照片可见灰色细粒墙面，只覆盖已配准窗段，塔体与其他折面不外推。",
-      "profile": "academic_facades.json#77927"
+      "profile": "academic_facades.json#77927",
+      "osm_regions": [
+        {
+          "edge": 1,
+          "span": [
+            0.15,
+            0.95
+          ],
+          "bottom": 4.55,
+          "top": 22.25
+        },
+        {
+          "edge": 2,
+          "span": [
+            0.12,
+            0.88
+          ],
+          "bottom": 4.75,
+          "top": 18.25
+        }
+      ]
     },
     "77921": {
       "status": "applied",
