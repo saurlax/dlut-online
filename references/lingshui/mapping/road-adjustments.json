@@ -130,7 +130,9 @@
           "retrieved": "2026-09-16T09:29:43.255064+00:00",
           "sha256": "81e5e92ea4d4be30af4be995ef2a08afd852e318f709634fcd9c40f2d4d067cc"
         }
-      ]
+      ],
+      "verification_status": "provisional; independent ground-position verification pending",
+      "independent_review": "2026-09-17：西山8舍及博留6舍的lm30叠图仍存在楼顶与道路相对偏移，既有全局预览平移不足以判定应移动哪一类要素。新取得2023年正射影像不覆盖海映楼；当前无独立地面控制点核准15.1米北移量。全路宽不侵楼仅是几何一致性检查，不能证明现场位置正确。"
     }
   ]
 }
