@@ -20,6 +20,9 @@ func _initialize() -> void:
 	for id in ["lingshui","eda","panjin"]:
 		var scene: Node = load("res://scenes/campuses/"+id+".tscn").instantiate()
 		assert(scene.get_node("CampusModel").get_child_count()>0)
+		assert(scene.has_node("Vegetation"))
+		assert(not scene.get_node("Vegetation").find_children("*", "MultiMeshInstance3D", true, false).is_empty())
+		assert(FileAccess.file_exists("res://assets/campuses/"+id+"/data/vegetation.json"))
 		var manifest_path: String = "res://assets/campuses/"+id+"/data/campus.json"
 		assert(FileAccess.file_exists(manifest_path))
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
@@ -31,5 +34,8 @@ func _initialize() -> void:
 		assert(precipitation.get_node("Snow") is GPUParticles3D)
 		assert(precipitation.get_node("Shelter") is GPUParticlesCollisionHeightField3D)
 		scene.free()
+	assert(ResourceLoader.exists("res://assets/vegetation/leaves.gdshader"))
+	assert(ResourceLoader.exists("res://assets/vegetation/bark_brown_02_diff_1k.jpg"))
+	assert(not FileAccess.file_exists("res://../../references/eda/vegetation/planting.json"))
 	print("PASS: desktop package has three full local campuses, API config and no server or Web download code")
 	quit()

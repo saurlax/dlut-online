@@ -136,3 +136,9 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 ## 六、名称与商标
 
 本声明所列机构名称、产品名称及商标归各自权利人所有，用于识别资料、服务或软件来源。除另有明确授权文件外，相关列示不表示权利人对 DLUT Online 的赞助、认可、认证或合作关系。
+
+## 校园植被参考与树皮材质
+
+- 大连理工大学[校园风光](https://www.dlut.edu.cn/xxgk/xyfg.htm)及其[凌水湖图集 92404](https://news.dlut.edu.cn/info/1020/92404.htm)、[图书馆阅读空间 117214](https://news.dlut.edu.cn/info/1292/117214.htm)、[景观建设 143385](https://news.dlut.edu.cn/info/1022/143385.htm)、[开发区双湖改造 147345](https://news.dlut.edu.cn/info/1292/147345.htm)、[盘锦春季绿化 3901](https://pjxqzwb.dlut.edu.cn/info/1071/3901.htm)，用于植被形态和可见区域参考。读取日期 2026-09-16。具体对象、原图 URL、压缩方法与哈希见各校区 references/vegetation 档案（实际路径为 references/<campus_id>/vegetation）。照片授权适用第 2.1 条，只作离线参考，不打入客户端。
+- 树皮：[Bark Brown 02](https://polyhaven.com/a/bark_brown_02)，作者 Rob Tuytel，由 Poly Haven 发布，采用 [CC0 1.0](https://polyhaven.com/license)。客户端使用 1K JPEG 漫反射与 OpenGL 法线贴图，三校区共享；只是通用树皮表面，不是对应校园树种扫描。[下载、SHA-256 与许可记录](references/shared/vegetation/textures.json)。
+- 折面叶片、枝干结构、草簇、花瓣、草坪细节与近远级别由本项目原生生成工具制作；不包含新闻照片像素，不将程序化种植数量写成实测数据。植物冠形、尺寸及材质效果属于参考支持的近似表达。
