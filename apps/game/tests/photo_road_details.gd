@@ -39,6 +39,12 @@ func _run() -> void:
 	var right := Vector2(cos(angle),sin(angle))
 	var forward := Vector2(-sin(angle),cos(angle))
 	var origin := Vector2(profile.origin_xz[0],profile.origin_xz[1])
+	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
+	if manifest.has("legacy_reference_transform"):
+		var registration: Dictionary = manifest.legacy_reference_transform
+		origin = Vector2(origin.x*float(registration.scale_x)+float(registration.offset_xz[0]),origin.y+float(registration.offset_xz[1]))
+		right.x *= float(registration.scale_x)
+		forward.x *= float(registration.scale_x)
 	for stair in profile.stairs:
 		for direction in [-1.0,1.0]:
 			var body := CharacterBody3D.new()

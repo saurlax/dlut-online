@@ -409,6 +409,12 @@
 
 在仓库根目录依次运行 `python3 apps/game/tools/prepare_lingshui.py`、`godot --headless --path apps/game --script tools/build_lingshui.gd` 和 `godot --headless --path apps/game --script tools/server_export/build_worlds.gd`。工具从自身路径解析资料，只读取已归档数据，不依赖在线接口。桌面与服务端导出方式见 [应用技术文档](../../../apps/api/README.md)。
 
+## OSM 平面迁移（2026-09-16，进行中）
+
+运行场景已使用共享 WGS84 原点。96 栋无需迁移照片立面锚点的简单建筑，使用归档 OSM 对应轮廓，保留原有官方 ID 和 OSM 版本；这是来源替换，不代表经过现场测绘。复杂多环、照片建筑及未匹配对象仍保留旧参考几何和待替换状态，不能把名称对应等同于轮廓复核。
+
+全部 282 个对象 ID、313 个部分保留，北山等校园边界外的既有对象不裁掉。原参考点保存在 `reference_points` 和 `reference_render_polygons`，通过 manifest 的 `legacy_reference_transform` 临时迁入共同坐标系，尚未证明这些旧形状正确。道路、高程、植被、体育设施、凌希图书馆南侧台阶、地图范围和出生点同步生成；现有道路摘录仍缺北部覆盖，完整归档补取与逐栋照片配准继续由 OpenSpec 跟踪。高程仍为过滤 DSM 及估计场地平整，并非 OSM 实测高程。
+
 ## 照片限定表面贴图（2026-09-16）
 
 本轮核对的档案对象中，70 栋已有模型的照片配准局部使用共享表面材质，8 个对象暂缓。逐栋状态、照片 URL / ID、区段和理由见 [覆盖登记](texture_surfaces.json)，公开材质许可与生成提示词见 [共享来源](../../shared/buildings/textures.json)。

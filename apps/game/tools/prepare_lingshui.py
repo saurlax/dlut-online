@@ -1,6 +1,7 @@
 """Prepare Lingshui from archived official polygons; never fetch during export."""
 import json
 import math
+import re
 from pathlib import Path
 
 CLIENT = Path(__file__).resolve().parents[1]
@@ -57,9 +58,11 @@ def split_crossings(points):
 
 
 def main():
-    source = json.loads((REFERENCES / 'mapping/bounds.json').read_text())
-    profiles = json.loads((REFERENCES / 'buildings/facades.json').read_text())
-    sports = json.loads((REFERENCES / 'facilities/sports.json').read_text())
+    import osm_world
+    from prepare_osm_identities import build as identities
+    source = json.loads((REFERENCES / 'mapping/bounds.json').read_text(encoding='utf-8'))
+    profiles = json.loads((REFERENCES / 'buildings/facades.json').read_text(encoding='utf-8'))
+    sports = json.loads((REFERENCES / 'facilities/sports.json').read_text(encoding='utf-8'))
     features, excluded = [], []
     parts = {}
     for source_index, item in enumerate(source['result']):
@@ -85,16 +88,47 @@ def main():
                          'render_polygons': split_crossings(points)})
         if feature_id in sports:
             features[-1]['sports'] = sports[feature_id]
+    mapping=identities('lingshui',{'features':features})
+    matches={m['official_id']:m for m in mapping['buildings'] if m['status']=='matched'}
+    origin=osm_world.frame('lingshui')['origin_lon_lat']
+    alignment=json.loads((REFERENCES/'terrain/alignment.json').read_text(encoding='utf-8'))
+    scale=math.cos(math.radians(origin[1]))/math.cos(math.radians(ORIGIN[1]))
+    delta=osm_world.local('lingshui',*ORIGIN)
+    offset=[delta[0]+alignment['offset_xz_m'][0]*scale,delta[1]+alignment['offset_xz_m'][1]]
+    def moved(p):return [p[0]*scale+offset[0],p[1]+offset[1]]
+    for feature in features:
+        match=matches.get(feature['id'])
+        candidate=match['osm_candidates'][0] if match and len(match['osm_candidates'])==1 else None
+        if candidate and not feature['facade'] and match['official_parts']==1 and len(candidate['polygons'])==1 and not candidate['polygons'][0]['holes']:
+            ring=candidate['polygons'][0]['outer']
+            feature.update(points=ring,render_polygons=[ring],osm_id=candidate['osm_id'],
+                           osm_version=candidate['osm_version'],footprint_source='osm',
+                           geometry_status='osm-source-outline; absolute accuracy unverified')
+        else:
+            feature['reference_points']=feature['points']
+            feature['reference_render_polygons']=feature['render_polygons']
+            feature['points']=[moved(p) for p in feature['points']]
+            feature['render_polygons']=[[moved(p) for p in ring] for ring in feature['render_polygons']]
+            feature['geometry_status']='legacy-silhouette-pending-replacement'
     all_points = [p for f in features for p in f['points']]
     low = [math.floor(min(p[i] for p in all_points)/10)*10-30 for i in range(2)]
     high = [math.ceil(max(p[i] for p in all_points)/10)*10+30 for i in range(2)]
-    data = {'campus_id': 'lingshui', 'origin': ORIGIN, 'units': 'approximate meters',
+    data = {'campus_id': 'lingshui', 'origin': origin, 'units': 'approximate meters',
+            'geographic_crs':'EPSG:4326','coordinate_frame':'references/shared/mapping/osm-world-frame.json',
+            'legacy_reference_transform':{'scale_x':scale,'offset_xz':offset,
+                'basis':'references/lingshui/terrain/alignment.json',
+                'status':'temporary placement for retained references; not shape validation'},
+            'spawn_xz':moved([96,28]),
             'source': source['source'], 'retrieved': source['retrieved'],
             'bounds': low + [high[i]-low[i] for i in range(2)],
             'features': features}
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    (OUTPUT/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n')
-    (REFERENCES/'mapping/excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n')
+    (OUTPUT/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n',encoding='utf-8')
+    (REFERENCES/'mapping/excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n',encoding='utf-8')
+    scene_path=CLIENT/'scenes/campuses/lingshui.tscn'
+    scene=scene_path.read_text(encoding='utf-8')
+    scene=re.sub(r'^spawn_position = Vector3\([^\n]+\)',f'spawn_position = Vector3({data["spawn_xz"][0]:.6f}, 0.35, {data["spawn_xz"][1]:.6f})',scene,flags=re.MULTILINE)
+    scene_path.write_text(scene,encoding='utf-8')
     print(f'Lingshui: {len(features)} polygons, {len(parts)} IDs, {len(excluded)} surrounding polygons excluded')
 
 

@@ -20,7 +20,7 @@ func build() -> void:
 		group.set_meta("height_is_approximate",true)
 		scene.add_child(group)
 		group.owner = scene
-		for render_points in feature.render_polygons:
+		for render_points in feature.get("reference_render_polygons",feature.render_polygons):
 			var points := PackedVector2Array()
 			for p in render_points:
 				points.append(Vector2(p[0],p[1]))
@@ -65,7 +65,16 @@ func build() -> void:
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "lingshui"):
 		quit(1)
 		return
+	if manifest.has("legacy_reference_transform"):
+		var registration: Dictionary = manifest.legacy_reference_transform
+		var conversion := Transform3D(Basis.from_scale(Vector3(float(registration.scale_x),1,1)),Vector3(registration.offset_xz[0],0,registration.offset_xz[1]))
+		for feature: Dictionary in manifest.features:
+			if not feature.has("reference_points"): continue
+			var group: Node3D = scene.get_node("Feature_"+feature.id+"_"+str(int(feature.part)))
+			for child in group.get_children():
+				if child is MeshInstance3D: child.transform = conversion * child.transform
 	preload("res://tools/build_terrain.gd").new().build(self, "lingshui")
+	preload("res://tools/build_vegetation.gd").new().build(self,"lingshui")
 	merge_meshes(scene)
 	for mat in materials.values():
 		if mat.albedo_texture is NoiseTexture2D and mat.albedo_texture.get_image() == null:
