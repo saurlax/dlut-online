@@ -65,24 +65,42 @@ func triangle(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
 	st.add_vertex(b)
 	st.add_vertex(c)
 
-func polygon(parent: Node3D, points: PackedVector2Array, height: float, mat: Material, title: String, base := 0.0) -> void:
+func polygon(parent: Node3D, points: PackedVector2Array, height: float, mat: Material, title: String, base := 0.0, holes: Array = []) -> void:
 	var indices := Geometry2D.triangulate_polygon(points)
 	assert(not indices.is_empty(), "Invalid source polygon: " + title)
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	st.set_smooth_group(-1)
-	for index in indices:
-		st.add_vertex(Vector3(points[index].x, height, points[index].y))
+	var rings: Array[PackedVector2Array] = [points]
+	var cutouts: Array[PackedVector2Array] = []
+	for hole: Array in holes:
+		var inner := PackedVector2Array()
+		for p: Array in hole: inner.append(Vector2(p[0],p[1]))
+		if Geometry2D.is_polygon_clockwise(inner): inner.reverse()
+		cutouts.append(inner)
+		var wall_ring := inner.duplicate()
+		wall_ring.reverse()
+		rings.append(wall_ring)
+	if holes.is_empty():
+		for index in indices:
+			st.add_vertex(Vector3(points[index].x, height, points[index].y))
+	else:
+		var outer := points.duplicate()
+		if Geometry2D.is_polygon_clockwise(outer): outer.reverse()
+		for quad in preload("res://tools/build_roads.gd").new().tessellate([outer],cutouts):
+			for index in [0,2,1,0,3,2]:
+				st.add_vertex(Vector3(quad[index].x,height,quad[index].y))
 	if height - base > 0.2:
-		for i in points.size():
-			var p := points[i]
-			var q := points[(i+1)%points.size()]
-			var a := Vector3(p.x, base, p.y)
-			var b := Vector3(q.x, base, q.y)
-			var c := Vector3(q.x, height, q.y)
-			var d := Vector3(p.x, height, p.y)
-			triangle(st, a, b, c)
-			triangle(st, a, c, d)
+		for ring in rings:
+			for i in ring.size():
+				var p := ring[i]
+				var q := ring[(i+1)%ring.size()]
+				var a := Vector3(p.x, base, p.y)
+				var b := Vector3(q.x, base, q.y)
+				var c := Vector3(q.x, height, q.y)
+				var d := Vector3(p.x, height, p.y)
+				triangle(st, a, b, c)
+				triangle(st, a, c, d)
 	st.generate_normals()
 	mesh_node(parent, st.commit(), mat, title)
 

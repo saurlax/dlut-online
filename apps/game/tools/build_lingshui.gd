@@ -37,9 +37,9 @@ func build() -> void:
 						halls_builder.build(self, group, points, profile)
 						continue
 					var color: String = profile.get("color","b0aca0")
-					polygon(group,points,feature.height,material("Lingshui "+color,Color(color)),"Building")
+					polygon(group,points,feature.height,material("Lingshui "+color,Color(color)),"Building",0.0,feature.get("holes",[]))
 					group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
-					polygon(group,points,feature.height+0.18,material("Lingshui roof",Color("85867d")),"Roof",feature.height)
+					polygon(group,points,feature.height+0.18,material("Lingshui roof",Color("85867d")),"Roof",feature.height,feature.get("holes",[]))
 					if profile.get("style", "") == "photo_panels":
 						panel_builder.build(self, group, points, profile)
 					elif not profile.is_empty():

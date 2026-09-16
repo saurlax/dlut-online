@@ -99,11 +99,12 @@ def main():
     for feature in features:
         match=matches.get(feature['id'])
         candidate=match['osm_candidates'][0] if match and len(match['osm_candidates'])==1 else None
-        if candidate and not feature['facade'] and match['official_parts']==1 and len(candidate['polygons'])==1 and not candidate['polygons'][0]['holes']:
+        if candidate and not feature['facade'] and match['official_parts']==1 and len(candidate['polygons'])==1:
             ring=candidate['polygons'][0]['outer']
             feature.update(points=ring,render_polygons=[ring],osm_id=candidate['osm_id'],
                            osm_version=candidate['osm_version'],footprint_source='osm',
                            geometry_status='osm-source-outline; absolute accuracy unverified')
+            feature['holes']=candidate['polygons'][0]['holes']
         else:
             feature['reference_points']=feature['points']
             feature['reference_render_polygons']=feature['render_polygons']

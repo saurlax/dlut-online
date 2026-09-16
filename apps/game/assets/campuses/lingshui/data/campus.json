@@ -2178,7 +2178,8 @@
       ],
       "osm_id": "way/1381605717",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77374",
@@ -2558,7 +2559,8 @@
       ],
       "osm_id": "way/1381605731",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77377",
@@ -2778,7 +2780,8 @@
       ],
       "osm_id": "way/1381605725",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77378",
@@ -4773,7 +4776,8 @@
       ],
       "osm_id": "way/1381605728",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77382",
@@ -6001,7 +6005,8 @@
       ],
       "osm_id": "way/543818292",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77385",
@@ -9676,7 +9681,8 @@
       ],
       "osm_id": "way/1381605737",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77398",
@@ -9971,7 +9977,8 @@
       ],
       "osm_id": "way/1381605736",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77403",
@@ -10023,7 +10030,8 @@
       ],
       "osm_id": "way/1381605734",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77410",
@@ -10033,453 +10041,165 @@
       "kind": "building",
       "points": [
         [
-          211.2292989755136,
-          -271.1993245962012
+          249.7876359161152,
+          -250.31415200016568
         ],
         [
-          211.2402986221303,
-          -291.57832459620124
+          276.98047551739745,
+          -250.31415200016568
         ],
         [
-          213.34823090104055,
-          -294.7053245962013
+          294.4157824898043,
+          -270.41854400018764
         ],
         [
-          209.18836454417783,
-          -298.42932459620124
+          293.94783687470914,
+          -294.58611600023374
         ],
         [
-          222.57493447670697,
-          -311.9443245962012
+          275.58530433358914,
+          -313.06523600024605
         ],
         [
-          225.73683289507233,
-          -309.18832459620126
+          246.76332074156673,
+          -313.06523600024605
         ],
         [
-          229.85270066546823,
-          -311.3353245962013
+          228.99005304789924,
+          -292.30405600045856
         ],
         [
-          252.74496521057836,
-          -311.0673245962013
-        ],
-        [
-          256.8858321778304,
-          -311.2483245962013
-        ],
-        [
-          290.8747402234467,
-          -279.4653245962013
-        ],
-        [
-          288.00383245648686,
-          -277.0793245962012
-        ],
-        [
-          289.10979692540275,
-          -274.7093245962013
-        ],
-        [
-          293.91164265753133,
-          -274.5703245962013
-        ],
-        [
-          297.73951968014444,
-          -271.4903245962013
-        ],
-        [
-          298.2345037778961,
-          -257.0903245962013
-        ],
-        [
-          291.1307319992536,
-          -256.8823245962012
-        ],
-        [
-          292.02070340733246,
-          -251.81032459620133
-        ],
-        [
-          288.4188191242989,
-          -249.16632459620132
-        ],
-        [
-          291.9477057525125,
-          -244.7633245962013
-        ],
-        [
-          279.54010436887006,
-          -231.26732459620132
-        ],
-        [
-          276.2612097092179,
-          -235.4273245962013
-        ],
-        [
-          272.00234653280484,
-          -232.12732459620122
-        ],
-        [
-          253.43294310805953,
-          -230.78032459620124
-        ],
-        [
-          249.51006913739306,
-          -234.27432459620127
-        ],
-        [
-          246.40816879148247,
-          -231.1433245962013
-        ],
-        [
-          210.94830800285052,
-          -265.96732459620125
-        ],
-        [
-          213.56722386550038,
-          -268.5993245962013
+          228.89473079258474,
+          -266.1661200003249
         ]
       ],
       "height": 18.0,
       "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {},
       "render_polygons": [
         [
           [
-            211.2292989755136,
-            -271.1993245962012
+            249.7876359161152,
+            -250.31415200016568
           ],
           [
-            211.2402986221303,
-            -291.57832459620124
+            276.98047551739745,
+            -250.31415200016568
           ],
           [
-            213.34823090104055,
-            -294.7053245962013
+            294.4157824898043,
+            -270.41854400018764
           ],
           [
-            209.18836454417783,
-            -298.42932459620124
+            293.94783687470914,
+            -294.58611600023374
           ],
           [
-            222.57493447670697,
-            -311.9443245962012
+            275.58530433358914,
+            -313.06523600024605
           ],
           [
-            225.73683289507233,
-            -309.18832459620126
+            246.76332074156673,
+            -313.06523600024605
           ],
           [
-            229.85270066546823,
-            -311.3353245962013
+            228.99005304789924,
+            -292.30405600045856
           ],
           [
-            252.74496521057836,
-            -311.0673245962013
-          ],
-          [
-            256.8858321778304,
-            -311.2483245962013
-          ],
-          [
-            290.8747402234467,
-            -279.4653245962013
-          ],
-          [
-            288.00383245648686,
-            -277.0793245962012
-          ],
-          [
-            289.10979692540275,
-            -274.7093245962013
-          ],
-          [
-            293.91164265753133,
-            -274.5703245962013
-          ],
-          [
-            297.73951968014444,
-            -271.4903245962013
-          ],
-          [
-            298.2345037778961,
-            -257.0903245962013
-          ],
-          [
-            291.1307319992536,
-            -256.8823245962012
-          ],
-          [
-            292.02070340733246,
-            -251.81032459620133
-          ],
-          [
-            288.4188191242989,
-            -249.16632459620132
-          ],
-          [
-            291.9477057525125,
-            -244.7633245962013
-          ],
-          [
-            279.54010436887006,
-            -231.26732459620132
-          ],
-          [
-            276.2612097092179,
-            -235.4273245962013
-          ],
-          [
-            272.00234653280484,
-            -232.12732459620122
-          ],
-          [
-            253.43294310805953,
-            -230.78032459620124
-          ],
-          [
-            249.51006913739306,
-            -234.27432459620127
-          ],
-          [
-            246.40816879148247,
-            -231.1433245962013
-          ],
-          [
-            210.94830800285052,
-            -265.96732459620125
-          ],
-          [
-            213.56722386550038,
-            -268.5993245962013
+            228.89473079258474,
+            -266.1661200003249
           ]
         ]
       ],
-      "reference_points": [
-        [
-          55.192,
-          -621.353
-        ],
-        [
-          55.203,
-          -641.732
-        ],
-        [
-          57.311,
-          -644.859
-        ],
-        [
-          53.151,
-          -648.583
-        ],
-        [
-          66.538,
-          -662.098
-        ],
-        [
-          69.7,
-          -659.342
-        ],
-        [
-          73.816,
-          -661.489
-        ],
-        [
-          96.709,
-          -661.221
-        ],
-        [
-          100.85,
-          -661.402
-        ],
-        [
-          134.84,
-          -629.619
-        ],
-        [
-          131.969,
-          -627.233
-        ],
-        [
-          133.075,
-          -624.863
-        ],
-        [
-          137.877,
-          -624.724
-        ],
-        [
-          141.705,
-          -621.644
-        ],
-        [
-          142.2,
-          -607.244
-        ],
-        [
-          135.096,
-          -607.036
-        ],
-        [
-          135.986,
-          -601.964
-        ],
-        [
-          132.384,
-          -599.32
-        ],
-        [
-          135.913,
-          -594.917
-        ],
-        [
-          123.505,
-          -581.421
-        ],
-        [
-          120.226,
-          -585.581
-        ],
-        [
-          115.967,
-          -582.281
-        ],
-        [
-          97.397,
-          -580.934
-        ],
-        [
-          93.474,
-          -584.428
-        ],
-        [
-          90.372,
-          -581.297
-        ],
-        [
-          54.911,
-          -616.121
-        ],
-        [
-          57.53,
-          -618.753
-        ]
-      ],
-      "reference_render_polygons": [
+      "osm_id": "relation/12166305",
+      "osm_version": 5,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": [
         [
           [
-            55.192,
-            -621.353
+            253.05458955907275,
+            -300.46381200010615
           ],
           [
-            55.203,
-            -641.732
+            272.01505260789105,
+            -300.63079200047554
           ],
           [
-            57.311,
-            -644.859
+            278.15900521353393,
+            -293.7957440004891
           ],
           [
-            53.151,
-            -648.583
+            274.58008782882155,
+            -290.21124000052197
           ],
           [
-            66.538,
-            -662.098
+            274.7447353599447,
+            -285.76957200002965
           ],
           [
-            69.7,
-            -659.342
+            272.52632652052057,
+            -285.60259200045124
           ],
           [
-            73.816,
-            -661.489
+            272.5696548180549,
+            -277.60981600038207
           ],
           [
-            96.709,
-            -661.221
+            274.39810897843836,
+            -277.5207600001323
           ],
           [
-            100.85,
-            -661.402
+            275.03936778367097,
+            -271.8434400002286
           ],
           [
-            134.84,
-            -629.619
+            278.3323184049028,
+            -269.00478000027675
           ],
           [
-            131.969,
-            -627.233
+            272.3790103086574,
+            -262.78199200032645
           ],
           [
-            133.075,
-            -624.863
+            252.43066207310017,
+            -262.05841200057137
           ],
           [
-            137.877,
-            -624.724
+            245.4721374708557,
+            -269.1049679998656
           ],
           [
-            141.705,
-            -621.644
+            247.66454933200552,
+            -272.12174000031695
           ],
           [
-            142.2,
-            -607.244
+            247.30059163247057,
+            -275.96228000011223
           ],
           [
-            135.096,
-            -607.036
+            249.5883257477034,
+            -276.5188800002889
           ],
           [
-            135.986,
-            -601.964
+            249.224368046937,
+            -285.8474960001493
           ],
           [
-            132.384,
-            -599.32
+            247.03195618701866,
+            -285.75843999989957
           ],
           [
-            135.913,
-            -594.917
+            246.47735397685474,
+            -289.05351200043924
           ],
           [
-            123.505,
-            -581.421
-          ],
-          [
-            120.226,
-            -585.581
-          ],
-          [
-            115.967,
-            -582.281
-          ],
-          [
-            97.397,
-            -580.934
-          ],
-          [
-            93.474,
-            -584.428
-          ],
-          [
-            90.372,
-            -581.297
-          ],
-          [
-            54.911,
-            -616.121
-          ],
-          [
-            57.53,
-            -618.753
+            244.37159871077367,
+            -291.98122799984986
           ]
         ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      ]
     },
     {
       "id": "77411",
@@ -10579,7 +10299,8 @@
       ],
       "osm_id": "way/1381605756",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77412",
@@ -11239,7 +10960,8 @@
       ],
       "osm_id": "way/1381605755",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77415",
@@ -11467,7 +11189,8 @@
       ],
       "osm_id": "way/277568583",
       "osm_version": 3,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77416",
@@ -12104,7 +11827,8 @@
       ],
       "osm_id": "way/233806458",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77419",
@@ -12318,181 +12042,101 @@
       "kind": "building",
       "points": [
         [
-          676.4273536570461,
-          371.02367540379873
+          598.606428927744,
+          360.76585600004194
         ],
         [
-          668.9255946644537,
-          367.36267540379873
+          598.207808589689,
+          337.5778999995791
         ],
         [
-          596.2539293715112,
-          368.23467540379875
+          608.1126574304275,
+          337.39978799987057
         ],
         [
-          595.9329396838783,
-          353.42667540379875
+          607.766031048921,
+          317.4401119999578
         ],
         [
-          604.4456661973331,
-          352.8926754037987
+          659.9679640505815,
+          316.53841999970325
         ],
         [
-          604.7126576197568,
-          331.92467540379874
+          661.5711110630473,
+          409.11213199947326
         ],
         [
-          616.4202814914272,
-          331.38667540379873
+          588.2163031526503,
+          410.3811800000659
         ],
         [
-          618.1822248858484,
-          312.90767540379875
-        ],
-        [
-          670.5945410465702,
-          309.9626754037987
-        ],
-        [
-          677.2053286632095,
-          316.90067540379874
+          587.3584028597459,
+          360.9662320000106
         ]
       ],
       "height": 18.0,
       "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {},
       "render_polygons": [
         [
           [
-            676.4273536570461,
-            371.02367540379873
+            598.606428927744,
+            360.76585600004194
           ],
           [
-            668.9255946644537,
-            367.36267540379873
+            598.207808589689,
+            337.5778999995791
           ],
           [
-            596.2539293715112,
-            368.23467540379875
+            608.1126574304275,
+            337.39978799987057
           ],
           [
-            595.9329396838783,
-            353.42667540379875
+            607.766031048921,
+            317.4401119999578
           ],
           [
-            604.4456661973331,
-            352.8926754037987
+            659.9679640505815,
+            316.53841999970325
           ],
           [
-            604.7126576197568,
-            331.92467540379874
+            661.5711110630473,
+            409.11213199947326
           ],
           [
-            616.4202814914272,
-            331.38667540379873
+            588.2163031526503,
+            410.3811800000659
           ],
           [
-            618.1822248858484,
-            312.90767540379875
-          ],
-          [
-            670.5945410465702,
-            309.9626754037987
-          ],
-          [
-            677.2053286632095,
-            316.90067540379874
+            587.3584028597459,
+            360.9662320000106
           ]
         ]
       ],
-      "reference_points": [
-        [
-          520.405,
-          20.87
-        ],
-        [
-          512.903,
-          17.209
-        ],
-        [
-          440.229,
-          18.081
-        ],
-        [
-          439.908,
-          3.273
-        ],
-        [
-          448.421,
-          2.739
-        ],
-        [
-          448.688,
-          -18.229
-        ],
-        [
-          460.396,
-          -18.767
-        ],
-        [
-          462.158,
-          -37.246
-        ],
-        [
-          514.572,
-          -40.191
-        ],
-        [
-          521.183,
-          -33.253
-        ]
-      ],
-      "reference_render_polygons": [
+      "osm_id": "relation/2898296",
+      "osm_version": 2,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": [
         [
           [
-            520.405,
-            20.87
+            598.2338055679633,
+            393.8056320001516
           ],
           [
-            512.903,
-            17.209
+            597.8438508889226,
+            377.48612000006545
           ],
           [
-            440.229,
-            18.081
+            650.6783770355698,
+            376.2059400001337
           ],
           [
-            439.908,
-            3.273
-          ],
-          [
-            448.421,
-            2.739
-          ],
-          [
-            448.688,
-            -18.229
-          ],
-          [
-            460.396,
-            -18.767
-          ],
-          [
-            462.158,
-            -37.246
-          ],
-          [
-            514.572,
-            -40.191
-          ],
-          [
-            521.183,
-            -33.253
+            651.0683317146106,
+            392.53658399955896
           ]
         ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      ]
     },
     {
       "id": "77421",
@@ -12544,7 +12188,8 @@
       ],
       "osm_id": "way/233806477",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77422",
@@ -12612,7 +12257,8 @@
       ],
       "osm_id": "way/1381605749",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77423",
@@ -15143,7 +14789,8 @@
       ],
       "osm_id": "way/1381605742",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77429",
@@ -16354,7 +16001,8 @@
       ],
       "osm_id": "way/1381605723",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77439",
@@ -19877,7 +19525,8 @@
       ],
       "osm_id": "way/277569208",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77449",
@@ -19993,7 +19642,8 @@
       ],
       "osm_id": "way/277568570",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77450",
@@ -20093,7 +19743,8 @@
       ],
       "osm_id": "way/277568561",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77451",
@@ -20177,7 +19828,8 @@
       ],
       "osm_id": "way/277569550",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77452",
@@ -20349,7 +20001,8 @@
       ],
       "osm_id": "way/277569362",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77454",
@@ -20465,7 +20118,8 @@
       ],
       "osm_id": "way/1384296480",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77456",
@@ -20549,7 +20203,8 @@
       ],
       "osm_id": "way/1384296476",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77457",
@@ -20641,7 +20296,8 @@
       ],
       "osm_id": "way/1384296477",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77458",
@@ -21011,7 +20667,8 @@
       ],
       "osm_id": "way/277568559",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77460",
@@ -21095,7 +20752,8 @@
       ],
       "osm_id": "way/277569533",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77461",
@@ -21817,7 +21475,8 @@
       ],
       "osm_id": "way/277569447",
       "osm_version": 4,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77464",
@@ -21901,7 +21560,8 @@
       ],
       "osm_id": "way/277569572",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77465",
@@ -21953,7 +21613,8 @@
       ],
       "osm_id": "way/277568642",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77466",
@@ -22005,7 +21666,8 @@
       ],
       "osm_id": "way/277568798",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77467",
@@ -22057,7 +21719,8 @@
       ],
       "osm_id": "way/277569327",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77468",
@@ -22141,7 +21804,8 @@
       ],
       "osm_id": "way/277569538",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77472",
@@ -22193,7 +21857,8 @@
       ],
       "osm_id": "way/277568910",
       "osm_version": 4,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77474",
@@ -22277,7 +21942,8 @@
       ],
       "osm_id": "way/1381605744",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77479",
@@ -22329,7 +21995,8 @@
       ],
       "osm_id": "way/1381605745",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77480",
@@ -23332,7 +22999,8 @@
       ],
       "osm_id": "way/1384290223",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77485",
@@ -23448,7 +23116,8 @@
       ],
       "osm_id": "way/1384290221",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77486",
@@ -23500,7 +23169,8 @@
       ],
       "osm_id": "way/543818281",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77487",
@@ -23940,7 +23610,8 @@
       ],
       "osm_id": "way/1384290226",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77490",
@@ -24048,7 +23719,8 @@
       ],
       "osm_id": "way/1383545735",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77491",
@@ -24100,7 +23772,8 @@
       ],
       "osm_id": "way/1384290231",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77492",
@@ -24208,7 +23881,8 @@
       ],
       "osm_id": "way/544330656",
       "osm_version": 3,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77493",
@@ -24260,7 +23934,8 @@
       ],
       "osm_id": "way/1384290228",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77494",
@@ -24312,7 +23987,8 @@
       ],
       "osm_id": "way/1384290227",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77495",
@@ -24933,7 +24609,8 @@
       ],
       "osm_id": "way/1384290232",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77498",
@@ -24985,7 +24662,8 @@
       ],
       "osm_id": "way/1383545736",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77499",
@@ -26036,7 +25714,8 @@
       ],
       "osm_id": "way/543818284",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77502",
@@ -26638,7 +26317,8 @@
       ],
       "osm_id": "way/543818286",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77504",
@@ -31851,7 +31531,8 @@
       ],
       "osm_id": "way/543818290",
       "osm_version": 3,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77516",
@@ -32965,7 +32646,8 @@
       ],
       "osm_id": "way/1384290191",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77542",
@@ -33164,7 +32846,8 @@
       ],
       "osm_id": "way/1384290168",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77544",
@@ -33216,7 +32899,8 @@
       ],
       "osm_id": "way/1384290169",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77545",
@@ -33268,7 +32952,8 @@
       ],
       "osm_id": "way/1384290170",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77546",
@@ -33320,7 +33005,8 @@
       ],
       "osm_id": "way/1384290171",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77547",
@@ -33372,7 +33058,8 @@
       ],
       "osm_id": "way/1384290172",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77548",
@@ -33424,7 +33111,8 @@
       ],
       "osm_id": "way/1384290165",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77549",
@@ -33476,7 +33164,8 @@
       ],
       "osm_id": "way/1384290166",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77550",
@@ -33528,7 +33217,8 @@
       ],
       "osm_id": "way/1384290167",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77551",
@@ -33580,7 +33270,8 @@
       ],
       "osm_id": "way/1384290173",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77552",
@@ -33632,7 +33323,8 @@
       ],
       "osm_id": "way/1384290174",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77553",
@@ -35555,7 +35247,8 @@
       ],
       "osm_id": "way/1384290181",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77561",
@@ -35607,7 +35300,8 @@
       ],
       "osm_id": "way/1384290182",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77562",
@@ -37744,7 +37438,8 @@
       ],
       "osm_id": "way/1384290175",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77569",
@@ -37796,7 +37491,8 @@
       ],
       "osm_id": "way/1384290176",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77570",
@@ -37864,7 +37560,8 @@
       ],
       "osm_id": "way/233806546",
       "osm_version": 3,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77571",
@@ -37932,7 +37629,8 @@
       ],
       "osm_id": "way/1381605752",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77572",
@@ -37984,7 +37682,8 @@
       ],
       "osm_id": "way/1381605754",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77611",
@@ -41757,7 +41456,8 @@
       ],
       "osm_id": "way/1381605751",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "78293",
@@ -50679,7 +50379,8 @@
       ],
       "osm_id": "way/1381605740",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "83977",
@@ -50795,7 +50496,8 @@
       ],
       "osm_id": "way/1381605719",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "83979",
@@ -50847,7 +50549,8 @@
       ],
       "osm_id": "way/1381605735",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "83981",
@@ -51925,7 +51628,8 @@
       ],
       "osm_id": "way/1381605718",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1502851",
@@ -52025,7 +51729,8 @@
       ],
       "osm_id": "way/1381605753",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1503000",
@@ -52093,7 +51798,8 @@
       ],
       "osm_id": "way/1381605741",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1503015",
@@ -52401,7 +52107,8 @@
       ],
       "osm_id": "way/1384290197",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1512970",
@@ -52453,7 +52160,8 @@
       ],
       "osm_id": "way/1384290198",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1512976",
@@ -52505,7 +52213,8 @@
       ],
       "osm_id": "way/1384290199",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1512982",
@@ -52557,7 +52266,8 @@
       ],
       "osm_id": "way/1384290200",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1512984",
@@ -52609,7 +52319,8 @@
       ],
       "osm_id": "way/1384290201",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1512987",
@@ -52661,7 +52372,8 @@
       ],
       "osm_id": "way/1384290202",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1512992",
@@ -52713,7 +52425,8 @@
       ],
       "osm_id": "way/1384290210",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1512994",
@@ -52765,7 +52478,8 @@
       ],
       "osm_id": "way/1384290209",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1512998",
@@ -52817,7 +52531,8 @@
       ],
       "osm_id": "way/1384290208",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1513002",
@@ -52869,7 +52584,8 @@
       ],
       "osm_id": "way/1384290207",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1513009",
@@ -52921,7 +52637,8 @@
       ],
       "osm_id": "way/1384290206",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1513018",
@@ -52973,7 +52690,8 @@
       ],
       "osm_id": "way/1384290205",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1513022",
@@ -53025,7 +52743,8 @@
       ],
       "osm_id": "way/1384290204",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1513025",
@@ -53077,7 +52796,8 @@
       ],
       "osm_id": "way/1384290203",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1513030",
@@ -53129,7 +52849,8 @@
       ],
       "osm_id": "way/1384290212",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "1582228",
@@ -53213,7 +52934,8 @@
       ],
       "osm_id": "way/1384290225",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "2034735",
@@ -53847,7 +53569,8 @@
       ],
       "osm_id": "way/1381605761",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "2145432",
@@ -54299,7 +54022,8 @@
       ],
       "osm_id": "way/1381605730",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "2283170",
@@ -54351,7 +54075,8 @@
       ],
       "osm_id": "way/1381605729",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "2283256",
@@ -58679,7 +58404,8 @@
       ],
       "osm_id": "way/277569302",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "17929178",
@@ -59984,7 +59710,8 @@
       ],
       "osm_id": "way/1381605724",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "29813247",
@@ -61087,7 +60814,8 @@
       ],
       "osm_id": "way/1381605716",
       "osm_version": 1,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified"
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "266074567",

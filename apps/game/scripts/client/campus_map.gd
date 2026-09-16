@@ -150,6 +150,10 @@ func _draw() -> void:
 			for p in polygon_points:
 				poly.append(Vector2(p[0],p[1]))
 			paint(poly,origin,scale_factor,clip,color)
+		for hole: Array in feature.get("holes", []):
+			var inner := PackedVector2Array()
+			for p: Array in hole: inner.append(Vector2(p[0],p[1]))
+			paint(inner,origin,scale_factor,clip,Color("293931"))
 	if campus.manifest.features.is_empty():
 		paint(PackedVector2Array([Vector2(-5,-75),Vector2(5,-75),Vector2(5,75),Vector2(-5,75)]),origin,scale_factor,clip,Color("778177"))
 		paint(PackedVector2Array([Vector2(-42,-21),Vector2(-14,-21),Vector2(-14,-3),Vector2(-42,-3)]),origin,scale_factor,clip,Color("a8ad9e"))
