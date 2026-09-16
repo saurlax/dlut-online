@@ -246,7 +246,13 @@ func build() -> void:
 		match kind:
 			"building":
 				if feature.id == "77943":
-					preload("res://tools/build_eda_dining.gd").new().build(self,group,points)
+					var registration: Dictionary = {}
+					if feature.has("osm_id"):
+						var profile_path := reference_path.get_base_dir().path_join("dining_profile.json")
+						registration = JSON.parse_string(FileAccess.get_file_as_string(profile_path))["77943"].osm_registration
+						assert(feature.osm_id==registration.osm_id and int(feature.osm_version)==int(registration.osm_version),"Dining OSM source changed")
+						assert(points.size()==int(registration.expected_vertices),"Dining OSM ring changed")
+					preload("res://tools/build_eda_dining.gd").new().build(self,group,points,registration)
 					generated_count += 1
 					continue
 				if feature.id == "77921":
