@@ -51,6 +51,8 @@ class OSMWorldTests(unittest.TestCase):
         self.assertEqual(records['77490']['status'],'matched')
         self.assertEqual(records['77490']['osm_candidates'][0]['osm_id'],'way/1383545735')
         self.assertEqual(records['2554118']['status'],'missing')
+        self.assertEqual(records['29813247']['osm_candidates'][0]['osm_id'],'way/1384296479')
+        self.assertEqual(records['83981']['status'],'missing')
         self.assertEqual(len(records),209)
 
     def test_shared_official_identity_retains_both_osm_buildings(self):
