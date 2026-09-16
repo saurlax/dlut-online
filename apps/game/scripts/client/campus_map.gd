@@ -33,6 +33,7 @@ var campus: Node3D
 var round_map := true
 var elapsed := 0.0
 var roads: Array = []
+var road_polygons: Array[PackedVector2Array] = []
 var map_bounds := Rect2(-90,-90,180,180)
 
 func configure(world: Node3D, circular: bool) -> void:
@@ -43,6 +44,7 @@ func configure(world: Node3D, circular: bool) -> void:
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND if circular else Control.CURSOR_ARROW
 	if not campus.manifest.features.is_empty():
 		roads = campus.roads
+		road_polygons = preload("res://scripts/shared/road_geometry.gd").polygons(roads)
 		map_bounds = Rect2(Vector2(campus.spawn_position.x,campus.spawn_position.z),Vector2.ZERO)
 		for feature in campus.manifest.features:
 			for point in feature.points:
@@ -125,14 +127,10 @@ func _draw() -> void:
 		constrain_view()
 	var origin := player_point if round_map else view_center
 	var scale_factor := radius/100.0 if round_map else map_scale
-	for road in roads:
-		for i in range(road.points.size()-1):
-			var a := Vector2(road.points[i][0],road.points[i][1])
-			var b := Vector2(road.points[i+1][0],road.points[i+1][1])
-			var normal := (b-a).normalized().orthogonal()*float(road.width)*0.5
-			paint(PackedVector2Array([a+normal,b+normal,b-normal,a-normal]),origin,scale_factor,clip,Color("778177"))
+	for polygon in road_polygons:
+		paint(polygon,origin,scale_factor,clip,Color("778177"))
 	for feature in campus.manifest.features:
-		if feature.kind == "reference":
+		if feature.kind in ["reference", "road"]:
 			continue
 		var color := Color("a8ad9e") if feature.kind=="building" else Color("51684e")
 		if feature.kind=="water":
