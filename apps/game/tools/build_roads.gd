@@ -5,26 +5,50 @@ const Geometry = preload("res://scripts/shared/road_geometry.gd")
 
 func build(builder, campus: String) -> void:
 	var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/%s/data/osm_roads.json" % campus)).roads
+	var painted: Array = []
 	if campus == "eda":
+		var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/road-details.json"))
+		var split: Array = []
+		for road in roads:
+			for i in range(road.points.size() - 1):
+				var segment: Dictionary = road.duplicate()
+				segment.points = [road.points[i], road.points[i + 1]]
+				for selection in profile.red_paths:
+					if int(road.osm_way_id) == int(selection.osm_way_id) and i >= int(selection.get("from_vertex", 0)) and i < int(selection.get("to_vertex", road.points.size()-1)):
+						segment.edge_width = float(profile.edge_width)
+						painted.append(segment)
+						break
+				split.append(segment)
+		roads = split
 		emit(builder, Geometry.polygons(roads, 1.5), 0.08, builder.material("Road edge", Color("a9a69c")))
+		var edging := emit(builder, Geometry.polygons(painted, profile.edge_width), 0.10, builder.material("Photo path edging", Color("d0cec2")))
+		edging.set_meta("walk_collision", false)
+	var rings := Geometry.polygons(roads)
+	var colored := Geometry.polygons(painted)
 	var key: String = "Road" if campus == "eda" else campus.capitalize() + " asphalt"
-	emit(builder, Geometry.polygons(roads), 0.14 if campus == "eda" else 0.04, builder.material(key, Color("555a5b") if campus == "eda" else Color("656966")))
+	emit(builder, rings, 0.14 if campus == "eda" else 0.04, builder.material(key, Color("555a5b") if campus == "eda" else Color("656966")), colored)
+	if not colored.is_empty():
+		emit(builder, colored, 0.14, preload("res://assets/roads/red_path.tres"))
 
 func edge_y(edge: PackedVector2Array, x: float) -> float:
 	return lerpf(edge[0].y, edge[1].y, (x - edge[0].x) / (edge[1].x - edge[0].x))
 
 ## Sweep the polygon union into non-overlapping trapezoids. Winding keeps
 ## islands/holes empty, unlike triangulating only a union's outer contour.
-func tessellate(rings: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
+func tessellate(rings: Array[PackedVector2Array], cutouts: Array[PackedVector2Array] = []) -> Array[PackedVector2Array]:
 	var edges: Array[PackedVector2Array] = []
 	var cuts: Array[float] = []
-	for ring in rings:
+	var layers: Array[int] = []
+	var all_rings := rings + cutouts
+	for ring_index in all_rings.size():
+		var ring: PackedVector2Array = all_rings[ring_index]
 		for i in ring.size():
 			var a := ring[i]
 			var b := ring[(i + 1) % ring.size()]
 			cuts.append(a.x)
 			if absf(a.x - b.x) > EPS:
 				edges.append(PackedVector2Array([a, b]))
+				layers.append(0 if ring_index < rings.size() else 1)
 	for i in edges.size():
 		for j in range(i + 1, edges.size()):
 			var hit = Geometry2D.segment_intersects_segment(edges[i][0], edges[i][1], edges[j][0], edges[j][1])
@@ -46,15 +70,20 @@ func tessellate(rings: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
 				crossings.append({"index": edge_index, "y": edge_y(edge, middle), "edge": edge, "delta": 1 if edge[1].x > edge[0].x else -1})
 		crossings.sort_custom(func(a, b): return a.y < b.y)
 		var depth := 0
+		var cut_depth := 0
 		var start := PackedVector2Array()
 		var start_index := -1
 		for crossing in crossings:
-			var previous := depth
-			depth += int(crossing.delta)
-			if previous == 0 and depth > 0:
+			var previous := depth > 0 and cut_depth == 0
+			if layers[crossing.index] == 0:
+				depth += int(crossing.delta)
+			else:
+				cut_depth += int(crossing.delta)
+			var inside := depth > 0 and cut_depth == 0
+			if not previous and inside:
 				start = crossing.edge
 				start_index = crossing.index
-			elif previous > 0 and depth == 0:
+			elif previous and not inside:
 				var finish: PackedVector2Array = crossing.edge
 				var key := Vector2i(start_index, crossing.index)
 				if strips.has(key) and absf(result[strips[key]][1].x - left) < EPS:
@@ -65,11 +94,11 @@ func tessellate(rings: Array[PackedVector2Array]) -> Array[PackedVector2Array]:
 					result.append(PackedVector2Array([Vector2(left, edge_y(start, left)), Vector2(right, edge_y(start, right)), Vector2(right, edge_y(finish, right)), Vector2(left, edge_y(finish, left))]))
 	return result
 
-func emit(builder, rings: Array[PackedVector2Array], height: float, mat: Material) -> void:
+func emit(builder, rings: Array[PackedVector2Array], height: float, mat: Material, cutouts: Array[PackedVector2Array] = []) -> MeshInstance3D:
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	st.set_normal(Vector3.UP)
-	for quad in tessellate(rings):
+	for quad in tessellate(rings, cutouts):
 		for indices in [[0, 2, 1], [0, 3, 2]]:
 			if absf((quad[indices[1]] - quad[indices[0]]).cross(quad[indices[2]] - quad[indices[0]])) < EPS:
 				continue
@@ -79,3 +108,4 @@ func emit(builder, rings: Array[PackedVector2Array], height: float, mat: Materia
 	var node: MeshInstance3D = builder.mesh_node(builder.scene, st.commit(), mat, mat.resource_name.replace(" ", "_"))
 	node.set_meta("road_surface", true)
 	node.set_meta("walk_collision", true)
+	return node

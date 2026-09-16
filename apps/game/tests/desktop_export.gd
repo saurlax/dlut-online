@@ -28,6 +28,9 @@ func _initialize() -> void:
 		assert(FileAccess.file_exists(manifest_path))
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))
 		assert(not manifest.features.is_empty())
+		if id == "lingshui":
+			assert(scene.has_node("PhotoRoadDetails"))
+			assert(scene.get_node("PhotoRoadDetails").find_children("*", "StaticBody3D", true, false).size() == 5)
 		if id == "panjin":
 			assert(manifest.features.size()==64)
 		var precipitation := scene.get_node("CampusEnvironment/Precipitation")

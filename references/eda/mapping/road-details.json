@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source_photos": [
+    "references/eda/vegetation/photos/eda-lake-2.jpg",
+    "references/eda/vegetation/photos/eda-lake-4.jpg",
+    "references/eda/vegetation/photos/eda-slope-6.jpg"
+  ],
+  "precision": "Only photographed loop paths; colors and 0.12 m edging are visual estimates. Existing OSM plan retained, no extrapolation to unrelated paths.",
+  "red_paths": [
+    {
+      "osm_way_id": 1076344125
+    },
+    {
+      "osm_way_id": 1076344124,
+      "from_vertex": 0,
+      "to_vertex": 9
+    },
+    {
+      "osm_way_id": 1381476343
+    },
+    {
+      "osm_way_id": 1381476344
+    }
+  ],
+  "edge_width": 0.12
+}

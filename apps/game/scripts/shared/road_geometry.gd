@@ -4,7 +4,7 @@ static func polygons(roads: Array, margin := 0.0) -> Array[PackedVector2Array]:
 	var result: Array[PackedVector2Array] = []
 	var junctions: Dictionary = {}
 	for road in roads:
-		var half_width := float(road.width) * 0.5 + margin
+		var half_width := float(road.width) * 0.5 + (float(road.get("edge_width", margin)) if margin > 0.0 else 0.0)
 		for i in range(road.points.size() - 1):
 			var a := Vector2(road.points[i][0], road.points[i][1])
 			var b := Vector2(road.points[i + 1][0], road.points[i + 1][1])

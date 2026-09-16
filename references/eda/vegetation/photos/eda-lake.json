@@ -1,0 +1,26 @@
+[
+  {
+    "file": "references/eda/vegetation/photos/eda-lake-2.jpg",
+    "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=EolnekU8nVMzlZoylLanR7bLRWRUl-hPozCZU8LZUNWkUz90gihFp2hmCIa0MSy4M1yPMSyiLmn7MR-ZLRL4MN-sL4NaoRUPolVVMRVkUm6FolLPM7LZMNQFLzLaLNlbgtXaQ4Oeo4xNp2PjQdAZ6sv0qIbtpYyPLmNYg478M4L8MSbw6238c&oid=1819948287&tid=1292&nid=147345&e=.jpg",
+    "source_page": "https://news.dlut.edu.cn/info/1292/147345.htm",
+    "object_id": "eda-lake:2",
+    "retrieved": "2026-09-16",
+    "original_sha256": "31c19776532846031b67d92fc27916c3e9e32ad0d47d1eed6d23ca11afaab2fa",
+    "sha256": "df297e77f042d9185422133623308e73c7a4a668c2024c2b5a4143819be01157",
+    "processing": "max 1600x1200 JPEG quality 82",
+    "usage": "offline vegetation reference",
+    "license": "Not confirmed; no runtime redistribution"
+  },
+  {
+    "file": "references/eda/vegetation/photos/eda-lake-4.jpg",
+    "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=En7-ebLmCbLz-DLymUaozlZMzCPMNCh4LzMVnRn7L4G8M4C0gihFp2hmCIa0L1yankyaLShRnm-PnzM7Lz-ZoRUYnz-aU8LaLlUbLRAfUmfFM87PLRlZUNWFLz-DolLigtXaQ4Oeo4xNp2PjQdAZ6sv0qIbtpYyPLmNYg478M4L8MSbw6238c&oid=1819948287&tid=1292&nid=147345&e=.jpg",
+    "source_page": "https://news.dlut.edu.cn/info/1292/147345.htm",
+    "object_id": "eda-lake:4",
+    "retrieved": "2026-09-16",
+    "original_sha256": "8004d3c3bd5e08c432d0925d8ef6d11b0044eac5023ab19072ce80b03819ff0e",
+    "sha256": "431998c9ee903693f8da4a8b008755fcb85c74786dc02adca0430a45d36a13a2",
+    "processing": "max 1600x1200 JPEG quality 82",
+    "usage": "offline vegetation reference",
+    "license": "Not confirmed; no runtime redistribution"
+  }
+]
