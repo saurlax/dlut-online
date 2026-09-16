@@ -7,17 +7,25 @@ func area(ring: PackedVector2Array) -> float:
 func check() -> void:
 	create_timer(30).timeout.connect(func(): quit(2))
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
+	var west := "--west" in OS.get_cmdline_user_args()
+	var fid := "17913925" if west else "78473"
 	var feature: Dictionary
 	for f in data.features:
-		if f.id=="78473": feature=f
-	assert(feature.osm_id=="way/31305649" and feature.points.size()==22 and not feature.has("reference_points"))
+		if f.id==fid: feature=f
+	assert(feature.osm_id==("way/544331541" if west else "way/31305649") and feature.points.size()==(6 if west else 22) and not feature.has("reference_points"))
 	var ring := PackedVector2Array()
 	var pitch := PackedVector2Array()
 	for p in feature.points: ring.append(Vector2(p[0],p[1]))
-	for p in feature.sports.pitch_outline: pitch.append(Vector2(p[0],p[1]))
+	if west:
+		var profile: Dictionary = feature.sports
+		var center := Vector2(profile.center[0],profile.center[1])
+		for p in [Vector2(-1,-1),Vector2(1,-1),Vector2(1,1),Vector2(-1,1)]:
+			pitch.append(center+(p*Vector2(profile.pitch_width,profile.pitch_length)*0.5).rotated(deg_to_rad(profile.rotation_degrees)))
+	else:
+		for p in feature.sports.pitch_outline: pitch.append(Vector2(p[0],p[1]))
 	var model: Node3D = load("res://assets/campuses/lingshui/models/lingshui_campus.tscn").instantiate()
 	root.add_child(model)
-	var group: Node3D = model.get_node("Feature_78473_0")
+	var group: Node3D = model.get_node("Feature_"+fid+"_0")
 	var sums := {"apron":0.0,"pitch":0.0}
 	var stand_vertices := 0
 	for mesh: MeshInstance3D in group.get_children():
@@ -45,6 +53,6 @@ func check() -> void:
 				assert(absf(covered_area-area(tri))<0.01)
 	assert(absf(sums.apron-area(ring))<0.1)
 	assert(absf(sums.pitch-area(pitch))<0.1)
-	assert(stand_vertices>0)
-	print("STADIUM GEOMETRY PASS: source apron, source grass, track and stand within boundary")
+	assert(stand_vertices==0 if west else stand_vertices>0)
+	print("STADIUM GEOMETRY PASS: ",fid," source apron, registered grass, track and existing stand within boundary")
 	quit()
