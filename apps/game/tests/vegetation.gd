@@ -21,6 +21,11 @@ func verify() -> void:
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(entry.manifest))
 		var zones: Dictionary = {}
 		for zone: Dictionary in source.zones:
+			if manifest.has("legacy_reference_transform"):
+				var registration: Dictionary = manifest.legacy_reference_transform
+				for p: Array in zone.polygon:
+					p[0] = float(p[0]) * float(registration.scale_x) + float(registration.offset_xz[0])
+					p[1] = float(p[1]) + float(registration.offset_xz[1])
 			zones[zone.id] = zone
 			check(not zone.photos.is_empty(), "Missing source for "+zone.id)
 			for photo: String in zone.photos:

@@ -322,7 +322,64 @@
           "top": 19.3
         }
       ],
-      "observation": "照片可见灰色颗粒饰面，首层及入口保持原状态。"
+      "observation": "照片可见灰色颗粒饰面，首层及入口保持原状态。",
+      "osm_regions": [
+        {
+          "edge": 0,
+          "span": [
+            0.082,
+            1
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 1,
+          "span": [
+            0,
+            0.775
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 7,
+          "span": [
+            0.35,
+            0.65
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 5,
+          "span": [
+            0.325,
+            1
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 6,
+          "span": [
+            0,
+            0.926
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 4,
+          "span": [
+            0.28,
+            0.94
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        }
+      ],
+      "osm_registration": "way/232559719; split registered spans over original OSM edges 0/1 and 5/6"
     },
     "77914": {
       "status": "applied",
@@ -374,7 +431,55 @@
           "top": 20.25
         }
       ],
-      "observation": "照片可见灰褐细粒墙面，沿用既有上部窗面配准；底层及架空区不生成贴面。"
+      "observation": "照片可见灰褐细粒墙面，沿用既有上部窗面配准；底层及架空区不生成贴面。",
+      "osm_regions": [
+        {
+          "edge": 11,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 0,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 5,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 6,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 10,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        }
+      ],
+      "osm_registration": "eda-information-notch-v1; corresponding exterior wing faces only"
     },
     "77917": {
       "status": "applied",

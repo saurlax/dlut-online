@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 import urllib.parse
 import urllib.request
+import osm_world
 
 ROOT = Path(__file__).resolve().parents[3]
 BOUNDARIES = {'lingshui': 443031231, 'eda': 215560705, 'panjin': 463862869}
@@ -89,8 +90,13 @@ def build(campus, fetch=False):
     manifest = read(data_dir / 'campus.json')
     lon, lat = manifest['origin']
     align_path = ROOT / (f'references/{campus}/terrain/alignment.json' if campus != 'panjin' else 'references/panjin/mapping/road-alignment.json')
-    alignment = read(align_path)
-    ox, oz = alignment['offset_xz_m']
+    if manifest.get('geographic_crs') == 'EPSG:4326':
+        assert manifest['origin'] == osm_world.frame(campus)['origin_lon_lat']
+        align_path = osm_world.FRAME_PATH
+        ox, oz = 0, 0
+    else:
+        alignment = read(align_path)
+        ox, oz = alignment['offset_xz_m']
     factor = 111320*math.cos(math.radians(lat))
     def local(p):
         return [(p['lon']-lon)*factor-ox, -(p['lat']-lat)*111320-oz]

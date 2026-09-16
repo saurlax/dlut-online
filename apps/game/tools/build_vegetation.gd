@@ -25,8 +25,7 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 			for polygon: Array in feature.get("render_polygons", [feature.points]):
 				var points := polygon_points(polygon)
 				excluded.append({"points": points, "bounds": polygon_bounds(points).grow(5.0), "id": feature.id})
-	if campus == "eda":
-		roads = JSON.parse_string(FileAccess.get_file_as_string(directory + "data/roads.json")).roads
+	roads = JSON.parse_string(FileAccess.get_file_as_string(directory + "data/osm_roads.json")).roads
 	var instances: Array[Dictionary] = []
 	var lawns := SurfaceTool.new()
 	lawns.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -34,6 +33,10 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 	for zone: Dictionary in source.zones:
 		rng.seed = int(zone.seed)
 		var points := polygon_points(zone.polygon)
+		if manifest.has("legacy_reference_transform"):
+			var registration: Dictionary = manifest.legacy_reference_transform
+			for i in points.size():
+				points[i] = Vector2(points[i].x*float(registration.scale_x)+float(registration.offset_xz[0]),points[i].y+float(registration.offset_xz[1]))
 		var bounds := polygon_bounds(points)
 		for plant: Dictionary in zone.plants:
 			var spacing := float(plant.spacing)

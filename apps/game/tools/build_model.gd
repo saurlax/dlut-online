@@ -209,7 +209,8 @@ func build() -> void:
 	residence_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path))
 	academic_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("academic_facades.json")))
 	seventh_profile = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("seventh-residence/profile.json")))
-	box(scene,Vector3(0,-6,55),Vector3(1280,12,930),material("Campus base",Color("74795b")),"CampusBase")
+	var map_bounds: Array = manifest.get("bounds",[-640,-410,1280,930])
+	box(scene,Vector3(map_bounds[0]+map_bounds[2]/2.0,-6,map_bounds[1]+map_bounds[3]/2.0),Vector3(map_bounds[2],12,map_bounds[3]),material("Campus base",Color("74795b")),"CampusBase")
 	preload("res://tools/build_roads.gd").new().build(self, "eda")
 	for feature in manifest.features:
 		var group := Node3D.new()
@@ -220,7 +221,7 @@ func build() -> void:
 		scene.add_child(group)
 		group.owner = scene
 		var points := PackedVector2Array()
-		for point in feature.points:
+		for point in feature.get("reference_points",feature.points):
 			points.append(Vector2(point[0],point[1]))
 		var kind: String = feature.kind
 		var height: float = feature.height
@@ -311,6 +312,15 @@ func build() -> void:
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "eda"):
 		quit(1)
 		return
+	if manifest.has("legacy_reference_transform"):
+		var registration: Dictionary = manifest.legacy_reference_transform
+		var conversion := Transform3D(Basis.from_scale(Vector3(float(registration.scale_x),1,1)),Vector3(registration.offset_xz[0],0,registration.offset_xz[1]))
+		for feature in manifest.features:
+			if not feature.has("reference_points"): continue
+			var group: Node3D = scene.get_node("Feature_"+feature.id)
+			for child in group.get_children():
+				if child is MeshInstance3D: child.transform = conversion * child.transform
+			group.set_meta("geometry_status",feature.geometry_status)
 	preload("res://tools/build_terrain.gd").new().build(self, "eda")
 	merge_meshes(scene)
 	for mat in materials.values():
