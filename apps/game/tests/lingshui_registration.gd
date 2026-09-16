@@ -9,9 +9,9 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77412","77413","77416","77427","77429","77431","77439","77441","77512","77513","77514"]: continue
+		if feature.id not in ["77412","77413","77416","77427","77429","77431","77439","77441","77510","77511","77512","77513","77514"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
-		if feature.id in ["77512","77513","77514"]:
+		if feature.id in ["77510","77511","77512","77513","77514"]:
 			var outline := PackedVector2Array()
 			for p in feature.points: outline.append(Vector2(p[0],p[1]))
 			var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
@@ -41,7 +41,7 @@ func check() -> void:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
 		checked += 1
-	assert(checked==11)
+	assert(checked==13)
 	await physics_frame
 	await physics_frame
 	for sample in [["77412",384.25,-235],["77413",444.86,-239]]:
@@ -54,11 +54,11 @@ func check() -> void:
 		var p := Vector3(sample[1],group.position.y+6,sample[2])
 		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.BACK*4,p-Vector3.BACK*4))
 		assert(not hit.is_empty() and absf(hit.position.z-p.z)<0.1,"Registered north/south wall collision detached")
-	for sample in [["77512",-378.814,13.064],["77513",-334.055,-10.875],["77514",-292.211,-45.333]]:
+	for sample in [["77510",-379.552,93.131],["77511",-343.416,88.177],["77512",-378.814,13.064],["77513",-334.055,-10.875],["77514",-292.211,-45.333]]:
 		var residence: Node3D = model.get_node("Feature_"+str(sample[0])+"_0")
-		for level in [3.5,7.0,10.5,14.0,17.5]:
+		for level in ([3.5,7.0,10.5,14.0] if sample[0] in ["77510","77511"] else [3.5,7.0,10.5,14.0,17.5]):
 			var p := Vector3(sample[1],residence.position.y+level,sample[2])
 			var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.4,p-Vector3.UP*0.4))
 			assert(not hit.is_empty() and absf(hit.position.y-p.y)<0.02,"Registered south balcony floor detached")
-	print("LINGSHUI REGISTRATION PASS: eleven roofs, registered walls and fifteen residence balcony floors")
+	print("LINGSHUI REGISTRATION PASS: thirteen roofs, registered walls and twenty-three residence platform floors")
 	quit()
