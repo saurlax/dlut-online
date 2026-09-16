@@ -1,0 +1,24 @@
+{
+  "asset": "Bark Brown 02",
+  "author": "Rob Tuytel",
+  "source": "https://polyhaven.com/a/bark_brown_02",
+  "license": "CC0-1.0",
+  "license_url": "https://polyhaven.com/license",
+  "retrieved": "2026-09-16",
+  "files": [
+    {
+      "file": "apps/game/assets/vegetation/bark_brown_02_diff_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_diff_1k.jpg",
+      "sha256": "920fa0bed0c9d78c1d530e99795113afd532d7db746de440f4a85d7c83ed0f1a"
+    },
+    {
+      "file": "apps/game/assets/vegetation/bark_brown_02_nor_gl_1k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_nor_gl_1k.jpg",
+      "sha256": "0d5e691e8ad8bcd093a3587887fda2a6b4a948b5708a4f256f7919584c6eb857"
+    }
+  ],
+  "usage": "Generic bark detail, not a species scan",
+  "candidates_not_used": [
+    "ambientCG Bark014: download returned HTTP 403"
+  ]
+}

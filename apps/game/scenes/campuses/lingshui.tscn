@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/client/campus.gd" id="1"]
 [ext_resource type="PackedScene" path="res://assets/campuses/lingshui/models/lingshui_campus.tscn" id="2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://assets/campuses/lingshui/models/terrain.tscn" id="Terrain"]
 
 [ext_resource type="PackedScene" path="res://assets/campuses/lingshui/models/road_details.tscn" id="RoadDetails"]
+[ext_resource type="PackedScene" path="res://assets/campuses/lingshui/models/vegetation.tscn" id="Vegetation"]
 
 [node name="Campus" type="Node3D"]
 script = ExtResource("1")
@@ -21,3 +22,4 @@ spawn_position = Vector3(96, 0.35, 28)
 [node name="Terrain" parent="." instance=ExtResource("Terrain")]
 
 [node name="PhotoRoadDetails" parent="." instance=ExtResource("RoadDetails")]
+[node name="Vegetation" parent="." instance=ExtResource("Vegetation")]
