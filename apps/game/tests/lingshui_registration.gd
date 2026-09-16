@@ -9,7 +9,7 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77412","77413","77416","77427","77429"]: continue
+		if feature.id not in ["77412","77413","77416","77427","77429","77431","77439","77441"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
 		var group: Node3D = model.get_node("Feature_"+feature.id+"_0")
 		var roof := PackedVector2Array()
@@ -30,7 +30,7 @@ func check() -> void:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
 		checked += 1
-	assert(checked==5)
+	assert(checked==8)
 	await physics_frame
 	await physics_frame
 	for sample in [["77412",384.25,-235],["77413",444.86,-239]]:
@@ -38,10 +38,10 @@ func check() -> void:
 		var p := Vector3(sample[1],group.position.y+6,sample[2])
 		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.RIGHT*4,p-Vector3.RIGHT*4))
 		assert(not hit.is_empty() and absf(hit.position.x-p.x)<0.1,"East wall collision detached from registered footprint")
-	for sample in [["77416",420,410.23],["77427",470,230.24],["77429",618,225.23]]:
+	for sample in [["77416",420,410.23],["77427",470,230.24],["77429",618,225.23],["77431",470,99.23],["77439",838,73.1595],["77441",860,0.744]]:
 		var group: Node3D = model.get_node("Feature_"+str(sample[0])+"_0")
 		var p := Vector3(sample[1],group.position.y+6,sample[2])
 		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.BACK*4,p-Vector3.BACK*4))
-		assert(not hit.is_empty() and absf(hit.position.z-p.z)<0.1,"South wall collision detached from registered footprint")
-	print("LINGSHUI REGISTRATION PASS: five roofs, south-end windows and five wall collisions")
+		assert(not hit.is_empty() and absf(hit.position.z-p.z)<0.1,"Registered north/south wall collision detached")
+	print("LINGSHUI REGISTRATION PASS: eight roofs, south-end windows and eight wall collisions")
 	quit()
