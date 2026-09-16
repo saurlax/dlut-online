@@ -26,6 +26,9 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 				var points := polygon_points(polygon)
 				excluded.append({"points": points, "bounds": polygon_bounds(points).grow(5.0), "id": feature.id})
 	roads = JSON.parse_string(FileAccess.get_file_as_string(directory + "data/osm_roads.json")).roads
+	for surface: Dictionary in manifest.get("ground_overlays", []):
+		var points := polygon_points(surface.outer)
+		excluded.append({"points":points,"bounds":polygon_bounds(points).grow(5.0),"id":surface.id})
 	var instances: Array[Dictionary] = []
 	var lawns := SurfaceTool.new()
 	lawns.begin(Mesh.PRIMITIVE_TRIANGLES)

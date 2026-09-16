@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "campus_id": "eda",
+  "tile_sources": [
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200213&z=19",
+      "retrieved": "2026-09-16T11:37:51.490749+00:00",
+      "sha256": "1336604fd850585fda5fa0a501529324c598db27dd951eac545ad23668fe0de5"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200214&z=19",
+      "retrieved": "2026-09-16T11:37:52.058397+00:00",
+      "sha256": "db1c5a0b9a01d729fc760a9ea0c969e7e7d43f18b4310ad32109527e44beb74e"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200215&z=19",
+      "retrieved": "2026-09-16T11:37:52.775409+00:00",
+      "sha256": "b70e9d86bb1f73990c9fc5402733afe5839b87d02b0eaedab3aca35849dbf96d"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:53.338866+00:00",
+      "sha256": "8cfc85a37b070e8f86e72c69090a2754883ef7c41b49952ae6d50bdaa12557dc"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200213&z=19",
+      "retrieved": "2026-09-16T11:34:52.222204+00:00",
+      "sha256": "66fc0237eff6f6b6442c065b03052e9eec7de1f420360ae3837885ff18856341"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200214&z=19",
+      "retrieved": "2026-09-16T11:34:52.240304+00:00",
+      "sha256": "7958e64d6b92eaa61b8dfe7a353c1fde4ad0e98523d1454d5b3848d6fe92be0e"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200215&z=19",
+      "retrieved": "2026-09-16T11:34:52.297427+00:00",
+      "sha256": "07a833bdc7bd78a00398e4a1e7f7a2194d80e0f051644af8a8a231e5cf0dc46a"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:54.044121+00:00",
+      "sha256": "128f2812e3680f26d7d7cee1dbf69c252d47bf1652e40ec06043a4664f5db57b"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200213&z=19",
+      "retrieved": "2026-09-16T11:34:52.232784+00:00",
+      "sha256": "9bc429cf8686f78c195d337e62c0faa9ee8d4b82e0ae3cfa4ceb1be2eadd0a65"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200214&z=19",
+      "retrieved": "2026-09-16T11:34:52.380578+00:00",
+      "sha256": "6a016adb1b107eae140cccba869592fab41379e44d90a704b76bfebb017634ec"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200215&z=19",
+      "retrieved": "2026-09-16T11:34:52.771449+00:00",
+      "sha256": "bcdd666063df1537055b2a558abb2c82ab88705c77c90acff1bb6b52a9e758ef"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:54.808069+00:00",
+      "sha256": "609f9bfd9bff4f6ea0ae51e4436f44f2b8e6643896a445b9c5639fd15ad0ad9b"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200213&z=19",
+      "retrieved": "2026-09-16T11:34:52.905869+00:00",
+      "sha256": "b121671762ba720e0cce267703bba4d3d066f6323eb260d171702c0b1d18ae9e"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200214&z=19",
+      "retrieved": "2026-09-16T11:34:52.943742+00:00",
+      "sha256": "6f8fb4460ec41a28cd49babbd911cbe5ad9b2c0fa2ed9211a2138f51fe031e32"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200215&z=19",
+      "retrieved": "2026-09-16T11:34:53.004563+00:00",
+      "sha256": "b99d1f21f934fd4e06d8684ad76019613341fcb0505f4417637ed150a4dbd9e5"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:55.550861+00:00",
+      "sha256": "f232892ce1a2c233f9db04859d10b0546e6e6009503f3ab05aa44f36720b2fe0"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200213&z=19",
+      "retrieved": "2026-09-16T11:34:52.909891+00:00",
+      "sha256": "0b31559c8e9a78d22f81fbd6579c4be0f6bf8f84d49deb4d1a3be0d6667468df"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200214&z=19",
+      "retrieved": "2026-09-16T11:34:52.953249+00:00",
+      "sha256": "e1c9c4075aca8165f916b97b43825e36f42e6974b08c2e545db4ee5149eec0c6"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200215&z=19",
+      "retrieved": "2026-09-16T11:34:53.490230+00:00",
+      "sha256": "f54e78ce896a292642415fb595f719339df829944695f5690ae65d42f51ba2a1"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:56.177168+00:00",
+      "sha256": "21220d548fe08f65cd17ec7c9f25f6b4e0913604a9c2749b64b0dc3c2b36066b"
+    }
+  ],
+  "pixel_origin": [
+    112523709,
+    51254572
+  ],
+  "zoom": 19,
+  "surfaces": [
+    {
+      "id": "eda-comprehensive-south-plaza",
+      "status": "provisional-image-supported-ground-outline",
+      "osm_anchor": {
+        "way_id": "1076346767",
+        "version": 2,
+        "loop_start_vertex": 4
+      },
+      "pixel_anchor": [
+        437,
+        606
+      ],
+      "scale_direction": {
+        "way_id": "232559719",
+        "version": 7,
+        "vertices": [
+          2,
+          0
+        ],
+        "pixels": [
+          [
+            343,
+            533
+          ],
+          [
+            695,
+            533
+          ]
+        ]
+      },
+      "pixel_outer": [
+        [
+          359,
+          540
+        ],
+        [
+          392,
+          534
+        ],
+        [
+          480,
+          534
+        ],
+        [
+          521,
+          540
+        ],
+        [
+          540,
+          563
+        ],
+        [
+          552,
+          589
+        ],
+        [
+          557,
+          620
+        ],
+        [
+          553,
+          650
+        ],
+        [
+          538,
+          679
+        ],
+        [
+          516,
+          701
+        ],
+        [
+          484,
+          718
+        ],
+        [
+          447,
+          726
+        ],
+        [
+          411,
+          721
+        ],
+        [
+          380,
+          708
+        ],
+        [
+          356,
+          687
+        ],
+        [
+          340,
+          657
+        ],
+        [
+          335,
+          623
+        ],
+        [
+          338,
+          590
+        ],
+        [
+          346,
+          564
+        ]
+      ],
+      "pixel_holes": [
+        [
+          [
+            437,
+            578
+          ],
+          [
+            449,
+            581
+          ],
+          [
+            461,
+            592
+          ],
+          [
+            465,
+            606
+          ],
+          [
+            462,
+            620
+          ],
+          [
+            452,
+            630
+          ],
+          [
+            438,
+            634
+          ],
+          [
+            424,
+            630
+          ],
+          [
+            414,
+            620
+          ],
+          [
+            409,
+            606
+          ],
+          [
+            413,
+            592
+          ],
+          [
+            425,
+            581
+          ]
+        ]
+      ],
+      "method": "Local similarity: map island center to OSM loop bounding-box center, scale and direction from registered main-building south edge. Ground outline traced separately from roof; no global datum shift.",
+      "limits": "Illustrated paving outline and OSM loop are not surveyed. Bounding-box center is an estimated island anchor. Keep original road source; suppress asphalt only within this surface. Building intersections are cut out at mesh generation."
+    }
+  ]
+}
