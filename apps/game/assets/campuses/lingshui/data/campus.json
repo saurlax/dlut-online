@@ -31569,33 +31569,25 @@
       "kind": "building",
       "points": [
         [
-          -353.0835714655186,
-          15.734675403798747
+          -352.1290749508892,
+          -82.08736799982688
         ],
         [
-          -371.29698632703236,
-          -1.6663245962012638
+          -344.0266832910284,
+          -10.452948000343838
         ],
         [
-          -376.42482158616514,
-          -73.97832459620128
+          -324.2429825865943,
+          -12.690480000389641
         ],
         [
-          -358.763388991235,
-          -75.88732459620127
-        ],
-        [
-          -338.46804101554136,
-          -57.10932459620125
-        ],
-        [
-          -334.27917559032545,
-          12.671675403798702
+          -332.3627055657152,
+          -84.32489999987268
         ]
       ],
       "height": 22.5,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 22.5,
@@ -31604,8 +31596,8 @@
         "frame_color": "c7c8b8",
         "trim_color": "c5c2ab",
         "edges": [
-          4,
-          5
+          2,
+          1
         ],
         "photos": [
           "77513-0.jpg",
@@ -31614,7 +31606,7 @@
         "note": "77513-0楼号28清晰，东邻29号77514-0左侧同框长面和竖框与本楼互证，配准东侧边4。南端两列六层12窗与首层两窗下部外弯防护栏保留；补紧邻北侧浅色框内八列上五层共40窗、框的两侧竖边及上下横线、局部灰色首层和浅色顶层。中段首层树篱/树木遮挡，不推算八个底窗。新增中段后按同图相对位置将南端两列从南侧18%调整到12%，框内八列占边4的40%—88%，位置、22.5米楼高、1.8米窗宽、2.05米窗高、框厚和分色标高均为照片比例估计。首层已有防护栏每窗10根、杆粗0.028米、外弯0.25米为近似；所有新窗与墙框仅装饰，不改变结构碰撞。北端入口及其上方窗列、其余立面、屋檐细部和室内待核实。 南端边5按本楼0号原图补五层外挑阳台和后方浅色墙带。放大原图可见下部红色削角多边形装饰面及上部红色矩形嵌板，不以白色板上的贯通孔代替；29号此前镂空解释已纠正。各阳台正面下部四块、侧面两块红色装饰面，正面上部两块、侧面一块矩形嵌板，数量按可辨节奏表达。楼板顶标高3.5/7/10.5/14/17.5米、宽3.6米、深1.4米、厚0.2米、栏高1.05米、下部红面0.48×0.32米及削角0.07米、上部红面高0.30米、墙带范围39%—61%为照片比例估计。仅五块楼板带结构碰撞，栏板和立柱为装饰；阳台后方遮挡门窗、板底附属件、入口与室内通行未建。",
         "panels": [
           {
-            "edge": 4,
+            "edge": 2,
             "rows": [
               {
                 "bottom": 1.1,
@@ -31623,8 +31615,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.88,
-                "to": 1.0,
+                "from": 0.0,
+                "to": 0.12,
                 "grille": {
                   "bars": 10,
                   "depth": 0.25
@@ -31637,8 +31629,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.88,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.12
               },
               {
                 "bottom": 8.1,
@@ -31647,8 +31639,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.88,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.12
               },
               {
                 "bottom": 11.6,
@@ -31657,8 +31649,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.88,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.12
               },
               {
                 "bottom": 15.1,
@@ -31667,8 +31659,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.88,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.12
               },
               {
                 "bottom": 18.6,
@@ -31677,8 +31669,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.88,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.12
               },
               {
                 "bottom": 4.6,
@@ -31687,8 +31679,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.4,
-                "to": 0.88
+                "from": 0.12,
+                "to": 0.6
               },
               {
                 "bottom": 8.1,
@@ -31697,8 +31689,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.4,
-                "to": 0.88
+                "from": 0.12,
+                "to": 0.6
               },
               {
                 "bottom": 11.6,
@@ -31707,8 +31699,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.4,
-                "to": 0.88
+                "from": 0.12,
+                "to": 0.6
               },
               {
                 "bottom": 15.1,
@@ -31717,8 +31709,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.4,
-                "to": 0.88
+                "from": 0.12,
+                "to": 0.6
               },
               {
                 "bottom": 18.6,
@@ -31727,28 +31719,28 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.4,
-                "to": 0.88
+                "from": 0.12,
+                "to": 0.6
               }
             ],
             "cladding": [
               {
-                "from": 0.4,
-                "to": 1.0,
+                "from": 0.0,
+                "to": 0.6,
                 "bottom": 18.0,
                 "top": 22.5,
                 "color": "c4c4b7"
               },
               {
-                "from": 0.88,
-                "to": 1.0,
+                "from": 0.0,
+                "to": 0.12,
                 "bottom": 0.0,
                 "top": 0.8,
                 "color": "95998d"
               },
               {
-                "from": 0.4,
-                "to": 0.88,
+                "from": 0.12,
+                "to": 0.6,
                 "bottom": 0.0,
                 "top": 3.5,
                 "color": "95998d"
@@ -31756,7 +31748,7 @@
             ],
             "accents": [
               {
-                "fraction": 0.4,
+                "fraction": 0.6,
                 "y": 10.75,
                 "size": [
                   0.26,
@@ -31765,7 +31757,7 @@
                 ]
               },
               {
-                "fraction": 0.88,
+                "fraction": 0.12,
                 "y": 10.75,
                 "size": [
                   0.26,
@@ -31774,19 +31766,19 @@
                 ]
               },
               {
-                "fraction": 0.64,
+                "fraction": 0.36,
                 "y": 3.5,
                 "size": [
-                  33.55517815677333,
+                  34.60470851144004,
                   0.22,
                   0.3
                 ]
               },
               {
-                "fraction": 0.64,
+                "fraction": 0.36,
                 "y": 18.0,
                 "size": [
-                  33.55517815677333,
+                  34.60470851144004,
                   0.22,
                   0.3
                 ]
@@ -31794,7 +31786,7 @@
             ]
           },
           {
-            "edge": 5,
+            "edge": 1,
             "rows": [],
             "cladding": [
               {
@@ -31903,91 +31895,338 @@
               }
             ]
           }
-        ]
+        ],
+        "osm_registration": {
+          "osm_id": "way/1384296474",
+          "osm_version": 1,
+          "expected_vertices": 4,
+          "reviewed": "2026-09-16",
+          "profile": {
+            "edges": [
+              2,
+              1
+            ],
+            "panels": [
+              {
+                "edge": 2,
+                "rows": [
+                  {
+                    "bottom": 1.1,
+                    "count": 2,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.12,
+                    "grille": {
+                      "bars": 10,
+                      "depth": 0.25
+                    }
+                  },
+                  {
+                    "bottom": 4.6,
+                    "count": 2,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.12
+                  },
+                  {
+                    "bottom": 8.1,
+                    "count": 2,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.12
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 2,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.12
+                  },
+                  {
+                    "bottom": 15.1,
+                    "count": 2,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.12
+                  },
+                  {
+                    "bottom": 18.6,
+                    "count": 2,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.12
+                  },
+                  {
+                    "bottom": 4.6,
+                    "count": 8,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.12,
+                    "to": 0.6
+                  },
+                  {
+                    "bottom": 8.1,
+                    "count": 8,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.12,
+                    "to": 0.6
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 8,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.12,
+                    "to": 0.6
+                  },
+                  {
+                    "bottom": 15.1,
+                    "count": 8,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.12,
+                    "to": 0.6
+                  },
+                  {
+                    "bottom": 18.6,
+                    "count": 8,
+                    "width": 1.8,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.12,
+                    "to": 0.6
+                  }
+                ],
+                "cladding": [
+                  {
+                    "from": 0.0,
+                    "to": 0.6,
+                    "bottom": 18.0,
+                    "top": 22.5,
+                    "color": "c4c4b7"
+                  },
+                  {
+                    "from": 0.0,
+                    "to": 0.12,
+                    "bottom": 0.0,
+                    "top": 0.8,
+                    "color": "95998d"
+                  },
+                  {
+                    "from": 0.12,
+                    "to": 0.6,
+                    "bottom": 0.0,
+                    "top": 3.5,
+                    "color": "95998d"
+                  }
+                ],
+                "accents": [
+                  {
+                    "fraction": 0.6,
+                    "y": 10.75,
+                    "size": [
+                      0.26,
+                      14.5,
+                      0.28
+                    ]
+                  },
+                  {
+                    "fraction": 0.12,
+                    "y": 10.75,
+                    "size": [
+                      0.26,
+                      14.5,
+                      0.28
+                    ]
+                  },
+                  {
+                    "fraction": 0.36,
+                    "y": 3.5,
+                    "size": [
+                      34.60470851144004,
+                      0.22,
+                      0.3
+                    ]
+                  },
+                  {
+                    "fraction": 0.36,
+                    "y": 18.0,
+                    "size": [
+                      34.60470851144004,
+                      0.22,
+                      0.3
+                    ]
+                  }
+                ]
+              },
+              {
+                "edge": 1,
+                "rows": [],
+                "cladding": [
+                  {
+                    "from": 0.39,
+                    "to": 0.61,
+                    "bottom": 0.0,
+                    "top": 21.0,
+                    "color": "c7c8bc"
+                  }
+                ],
+                "balconies": [
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 3.5
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 7.0
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 10.5
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 14.0
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 17.5
+                  }
+                ]
+              }
+            ]
+          },
+          "basis": "77513-0楼号28及南端五层阳台可辨，东长面旧4→新2、南端旧5→新1，反转窗段、墙面覆盖和阳台中心参数。水平长饰带按对应墙长同比重新定位，固定窗宽、阳台深度及层高仍保留原估计。",
+          "limits": "仅照片已登记的可见东墙及南端阳台，未扩展北侧/西侧或室内。OSM四角属于暂定主楼外边界，照片优先。"
+        }
       },
       "render_polygons": [
         [
           [
-            -353.0835714655186,
-            15.734675403798747
+            -352.1290749508892,
+            -82.08736799982688
           ],
           [
-            -371.29698632703236,
-            -1.6663245962012638
+            -344.0266832910284,
+            -10.452948000343838
           ],
           [
-            -376.42482158616514,
-            -73.97832459620128
+            -324.2429825865943,
+            -12.690480000389641
           ],
           [
-            -358.763388991235,
-            -75.88732459620127
-          ],
-          [
-            -338.46804101554136,
-            -57.10932459620125
-          ],
-          [
-            -334.27917559032545,
-            12.671675403798702
+            -332.3627055657152,
+            -84.32489999987268
           ]
         ]
       ],
-      "reference_points": [
-        [
-          -509.139,
-          -334.419
-        ],
-        [
-          -527.353,
-          -351.82
-        ],
-        [
-          -532.481,
-          -424.132
-        ],
-        [
-          -514.819,
-          -426.041
-        ],
-        [
-          -494.523,
-          -407.263
-        ],
-        [
-          -490.334,
-          -337.482
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -509.139,
-            -334.419
-          ],
-          [
-            -527.353,
-            -351.82
-          ],
-          [
-            -532.481,
-            -424.132
-          ],
-          [
-            -514.819,
-            -426.041
-          ],
-          [
-            -494.523,
-            -407.263
-          ],
-          [
-            -490.334,
-            -337.482
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1384296474",
+      "osm_version": 1,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77514",

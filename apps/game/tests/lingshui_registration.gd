@@ -9,8 +9,19 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77412","77413","77416","77427","77429","77431","77439","77441"]: continue
+		if feature.id not in ["77412","77413","77416","77427","77429","77431","77439","77441","77513"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
+		if feature.id=="77513":
+			var outline := PackedVector2Array()
+			for p in feature.points: outline.append(Vector2(p[0],p[1]))
+			var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
+			for road in roads:
+				var line := PackedVector2Array()
+				for p in road.points: line.append(Vector2(p[0],p[1]))
+				var length := 0.0
+				for piece in Geometry2D.intersect_polyline_with_polygon(line,outline):
+					for i in range(1,piece.size()): length += piece[i-1].distance_to(piece[i])
+				assert(length<0.5,"Residence 28 again covers a road centerline")
 		var group: Node3D = model.get_node("Feature_"+feature.id+"_0")
 		var roof := PackedVector2Array()
 		var lower_windows := 0
@@ -30,7 +41,7 @@ func check() -> void:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
 		checked += 1
-	assert(checked==8)
+	assert(checked==9)
 	await physics_frame
 	await physics_frame
 	for sample in [["77412",384.25,-235],["77413",444.86,-239]]:
@@ -43,5 +54,10 @@ func check() -> void:
 		var p := Vector3(sample[1],group.position.y+6,sample[2])
 		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.BACK*4,p-Vector3.BACK*4))
 		assert(not hit.is_empty() and absf(hit.position.z-p.z)<0.1,"Registered north/south wall collision detached")
-	print("LINGSHUI REGISTRATION PASS: eight roofs, south-end windows and eight wall collisions")
+	var residence: Node3D = model.get_node("Feature_77513_0")
+	for level in [3.5,7.0,10.5,14.0,17.5]:
+		var p := Vector3(-334.055,residence.position.y+level,-10.875)
+		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.4,p-Vector3.UP*0.4))
+		assert(not hit.is_empty() and absf(hit.position.y-p.y)<0.02,"Residence 28 south balcony floor detached")
+	print("LINGSHUI REGISTRATION PASS: nine roofs, registered walls and five residence balcony floors")
 	quit()
