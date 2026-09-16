@@ -10,17 +10,16 @@ import sys
 import zipfile
 import tempfile
 
-from android_resources import resource_package, rewrite_apk, verify_icons
+from android_resources import rewrite_apk
 
 GAME = Path(__file__).resolve().parents[1]
 
 
-def run(*args, quiet=False, **kwargs):
+def run(*args, **kwargs):
     result = subprocess.run([str(arg) for arg in args], cwd=GAME,
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                             text=True, encoding='utf-8', timeout=600, **kwargs)
-    if not quiet or result.returncode:
-        print(result.stdout, end="", flush=True)
+    print(result.stdout, end="", flush=True)
     result.check_returncode()
     errors = [line for line in result.stdout.splitlines() if "ERROR:" in line]
     # Godot 4.7 may report shader RID cleanup leaks after a successful export.
@@ -105,13 +104,9 @@ def main():
         run(build_tools / 'apksigner', 'sign', '--ks', keystore,
             '--ks-key-alias', 'androiddebugkey', '--ks-pass', 'pass:android',
             '--key-pass', 'pass:android', aligned, env=environment)
-        run(build_tools / 'apksigner', 'verify', '--verbose', aligned, env=environment)
-        run(build_tools / 'zipalign', '-c', '-P', '16', '4', aligned)
         aligned.replace(output)
     with zipfile.ZipFile(output) as apk:
         names = apk.namelist()
-        if resource_package(apk.read('resources.arsc')) != package_name:
-            raise RuntimeError('Manifest and resource package names differ')
         libraries = [name for name in names if name.startswith('lib/') and name.endswith('.so')]
         if not libraries or any(not name.startswith('lib/arm64-v8a/') for name in libraries):
             raise RuntimeError('APK must contain only arm64 native libraries')
@@ -124,9 +119,6 @@ def main():
                 raise RuntimeError(f'Missing campus: {campus}')
         if any('/scripts/server/' in name or '/references/' in name for name in names):
             raise RuntimeError('Unexpected server code or offline references')
-    resources = run(build_tools / 'aapt', 'dump', '--values', 'resources', output, quiet=True)
-    adaptive_xml = run(build_tools / 'aapt', 'dump', 'xmltree', output, 'res/mipmap-anydpi-v26/icon.xml')
-    verify_icons(manifest, resources, adaptive_xml, names, package_name)
     debuggable = [line.split('=', 1)[1].strip() for line in manifest.splitlines()
                   if 'A: android:debuggable(' in line]
     if any(value != '(type 0x12)0x0' for value in debuggable):

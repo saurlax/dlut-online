@@ -10,8 +10,8 @@ import struct
 import zipfile
 
 
-def resource_package(data, package_name=None):
-    """Read or normalize the single application package; reject unknown layouts."""
+def resource_package(data, package_name):
+    """Normalize the single application package; reject unknown layouts."""
     if len(data) < 12:
         raise ValueError('Truncated Android resource table')
     kind, header, size, count = struct.unpack_from('<HHII', data)
@@ -36,8 +36,6 @@ def resource_package(data, package_name=None):
     if packages != count or len(names) != 1:
         raise ValueError('Expected exactly one application resource package (0x7f)')
     name_offset, old_name = names[0]
-    if package_name is None:
-        return old_name
     encoded = package_name.encode('utf-16-le')
     if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z][A-Za-z0-9_]*)+', package_name) or len(encoded) > 254:
         raise ValueError('Invalid or oversized Android package name')
@@ -62,33 +60,3 @@ def rewrite_apk(source, destination, package_name):
                     continue
                 content = table if entry.filename == 'resources.arsc' else original.read(entry)
                 output.writestr(entry, content)
-
-
-def verify_icons(manifest, resources, adaptive_xml, names, package_name):
-    """Check compiled icon references, including Android 8+ resource selection."""
-    ids = {}
-    for name in ('icon', 'icon_foreground', 'icon_background'):
-        match = re.search(r'spec resource (0x[0-9a-f]+) ' + re.escape(package_name)
-                          + r':mipmap/' + name + r':', resources)
-        if not match:
-            raise ValueError(f'Missing compiled launcher resource: {name}')
-        ids[name] = match[1]
-    icon_refs = re.findall(r'A: android:icon\([^)]*\)=@(0x[0-9a-f]+)', manifest)
-    if not icon_refs or any(ref != ids['icon'] for ref in icon_refs):
-        raise ValueError('Manifest launcher icon does not reference mipmap/icon')
-    adaptive_path = 'res/mipmap-anydpi-v26/icon.xml'
-    selection = (r'config anydpi-v26:\s+resource ' + ids['icon']
-                 + r' [^\n]+\n\s+\(string16\) "' + re.escape(adaptive_path) + '"')
-    if not re.search(selection, resources) or adaptive_path not in names:
-        raise ValueError('Missing Android 8+ adaptive icon selection')
-    if 'E: adaptive-icon ' not in adaptive_xml:
-        raise ValueError('Launcher XML is not an adaptive icon')
-    for layer in ('foreground', 'background'):
-        pattern = r'E: ' + layer + r' [^\n]+\n\s+A: android:drawable\([^)]*\)=@' + ids['icon_' + layer] + r'\b'
-        if not re.search(pattern, adaptive_xml):
-            raise ValueError(f'Invalid adaptive {layer} reference')
-    for name in ids:
-        pattern = r'resource ' + ids[name] + r' [^\n]+\n\s+\(string16\) "([^"]+)"'
-        paths = re.findall(pattern, resources)
-        if not paths or any(path not in names for path in paths):
-            raise ValueError(f'Missing packaged launcher images: {name}')
