@@ -31,7 +31,7 @@ func build() -> void:
 					if not profile.is_empty():
 						facade_builder.build(self,group,points,profile)
 				"road":
-					polygon(group,points,0.04,material("Panjin asphalt",Color("656966")),"Road")
+					pass # Built together below so junctions share one surface.
 				"water":
 					polygon(group,points,0.05,preload("res://assets/water/campus_water.tres"),"Water")
 				"sports":
@@ -44,6 +44,7 @@ func build() -> void:
 					# Point-of-interest outlines are retained as metadata, not invented statues or bridges.
 					pass
 		generated_count += 1
+	preload("res://tools/build_roads.gd").new().build(self, "panjin")
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "panjin"):
 		quit(1)
 		return
