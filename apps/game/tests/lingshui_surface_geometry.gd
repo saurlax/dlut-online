@@ -13,7 +13,7 @@ func check() -> void:
 	terrain.load_campus("lingshui")
 	var count := 0
 	for f in data.features:
-		if f.id not in ["1331412","2145432","81106","81107","81675"]: continue
+		if f.id not in ["1331412","2145432","81106","81107","81675","81654","81656"]: continue
 		var height := 0.05 if f.kind=="water" else 0.06
 		assert(f.footprint_source=="osm" and not f.has("reference_points"))
 		var ring := PackedVector2Array()
@@ -39,6 +39,6 @@ func check() -> void:
 				assert(terrain.elevation(center.x,center.y)<group.position.y+height,"Surface buried at "+str(center))
 		assert(absf(total-area(ring))<0.1,"Saved surface differs from source area")
 		count += 1
-	assert(count==5)
-	print("SURFACE GEOMETRY PASS: two water areas and three sports fields, saved boundaries/areas and surface heights")
+	assert(count==7)
+	print("SURFACE GEOMETRY PASS: two water areas and five sports fields, saved boundaries/areas and surface heights")
 	quit()
