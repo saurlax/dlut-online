@@ -277,6 +277,98 @@
       "depth": 0.8,
       "source": "77927-0 / 79687 and 77927-1 / 79688",
       "note": "两照显示东侧主楼南端四排窗所在墙面凹入，顶层横跨其上。沿官方边3的85%—98.5%分区，中段3.8—19米退0.8米，均为照片比例估计；底层与顶部保留官方轮廓，未改入口和室内。"
+    },
+    "osm_registration": {
+      "osm_id": "way/1422474849",
+      "osm_version": 2,
+      "expected_vertices": 25,
+      "footprint_refinement": "eda-academic-c-connector-v1",
+      "faces": [
+        {
+          "edge": 1,
+          "span": [
+            0.15,
+            0.95
+          ],
+          "columns": 18,
+          "rows": 5,
+          "first_y": 5.8,
+          "storey": 3.8,
+          "window_height": 2.5,
+          "width_ratio": 0.6
+        },
+        {
+          "edge": 2,
+          "span": [
+            0.12,
+            0.88
+          ],
+          "columns": 2,
+          "rows": 4,
+          "first_y": 5.8,
+          "storey": 3.8,
+          "window_height": 2.1,
+          "width_ratio": 0.27,
+          "note": "77927-0/1主楼南端短墙上部可见窄窗，按官方边4配准两列四排，与东侧长面宽窗区分。窄窗宽按列距27%、高2.1米和标高均为照片比例估计；不补顶排遮挡段和底层，不推定连接凹槽深度。"
+        }
+      ],
+      "rotunda": {
+        "edges": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        "window_edges": [
+          4,
+          5,
+          6
+        ],
+        "bands": [
+          8.8,
+          12.4,
+          16.0,
+          19.6,
+          23.0,
+          24.7
+        ],
+        "window_centers": [
+          14.2,
+          21.3
+        ],
+        "column_edges": [
+          6,
+          11,
+          14,
+          16
+        ],
+        "note": "77927-0/1南端圆体，东侧弧面6/7/8上有两排局部窗带，南侧大段实墙；可见范围6至16补环带和顶部暗缝，不把窗带绕满整圆。环带标高、窗高2.4米、0.7米柱宽/8.8米柱高及挑出量均为照片比例估计。西侧大圆窗、底层开敞区与连接凹槽仍待单独配准。"
+      },
+      "recess": {
+        "edge": 1,
+        "span": [
+          0.85,
+          0.985
+        ],
+        "bottom": 3.8,
+        "top": 19.0,
+        "depth": 0.8,
+        "source": "77927-0 / 79687 and 77927-1 / 79688",
+        "note": "两照显示东侧主楼南端四排窗所在墙面凹入，顶层横跨其上。沿官方边3的85%—98.5%分区，中段3.8—19米退0.8米，均为照片比例估计；底层与顶部保留官方轮廓，未改入口和室内。"
+      },
+      "review_date": "2026-09-16",
+      "basis": "lm30 traced main-block south wall and narrow connection, anchored to OSM. Old long edge 3 maps to refined edge 1; old short edge 4 maps to refined edge 2. Keep photo-visible east/south round-body arcs only.",
+      "limits": "Mapped roof outline remains provisional; profile dimensions remain estimates."
     }
   }
 }

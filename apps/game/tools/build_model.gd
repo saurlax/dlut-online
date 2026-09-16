@@ -271,6 +271,7 @@ func build() -> void:
 						var registration: Dictionary = profile.osm_registration
 						assert(feature.osm_id==registration.osm_id and int(feature.osm_version)==int(registration.osm_version),"Academic OSM version changed")
 						assert(points.size()==int(registration.expected_vertices),"Academic OSM ring changed")
+						assert(feature.get("footprint_refinement","")==registration.get("footprint_refinement",""),"Academic footprint refinement changed")
 						profile.merge(registration,true)
 					preload("res://tools/build_eda_academic.gd").new().build(self,group,points,profile)
 					generated_count += 1

@@ -183,6 +183,244 @@
         "官网图面包含屋面、台阶和立面表达；所描凹口为体量近似，墙脚和连接体精确边界尚未经测绘。",
         "未根据地图新增门洞、台阶或室内，外部台阶也不并入建筑基底。"
       ]
+    },
+    {
+      "id": "eda-academic-c-connector-v1",
+      "official_id": "77927",
+      "osm_id": "way/1422474849",
+      "osm_version": 2,
+      "original_vertex_count": 13,
+      "status": "provisional-image-supported-refinement",
+      "review_date": "2026-09-16",
+      "pixel_origin": [
+        112525604,
+        51253517
+      ],
+      "zoom": 19,
+      "tile_sources": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200209&z=19",
+          "retrieved": "2026-09-16T13:12:37.139309+00:00",
+          "sha256": "89127722a946d2c071220dd5a5f9ef3f99953709d80c057a91961f63e33ef44a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200210&z=19",
+          "retrieved": "2026-09-16T13:12:37.633450+00:00",
+          "sha256": "427bb2140a29437c50aca3a3aec91820d9617d6249e6e9d49574e3001fe68983"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200211&z=19",
+          "retrieved": "2026-09-16T13:12:38.123050+00:00",
+          "sha256": "518b48c3f5280503f549f3917d4a4b6f8c154aab9c8a5c58843cbba0333a7556"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200212&z=19",
+          "retrieved": "2026-09-16T13:12:38.747549+00:00",
+          "sha256": "d25fd130076ae39e115f18f193daeeb0af97962bd7bb298fb1dcefcce623e01c"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200209&z=19",
+          "retrieved": "2026-09-16T13:12:39.247622+00:00",
+          "sha256": "19e3ae3b0ebe952a8cde74e9ef774e6f45fd1b6fcb994bd1a7b738ee17346d49"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200210&z=19",
+          "retrieved": "2026-09-16T13:12:39.840788+00:00",
+          "sha256": "04759fcc63914de03ebd4c3affe9435d736f813945e3772bea867c44a16e940f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200211&z=19",
+          "retrieved": "2026-09-16T13:12:40.358921+00:00",
+          "sha256": "664793721e42f6c515f1749fe767157df3603485a4a39c110a209527947f758e"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200212&z=19",
+          "retrieved": "2026-09-16T13:12:40.951577+00:00",
+          "sha256": "79a4e2af42f58c64f647a7f797937c3df3bab1b6fb13a88bd4bafc47e40d66e8"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200209&z=19",
+          "retrieved": "2026-09-16T13:12:41.522231+00:00",
+          "sha256": "7a629ba57ebec3a29060cfcdfeb6d12795568614b28bc69e6f6ba7e5037672c4"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200210&z=19",
+          "retrieved": "2026-09-16T13:12:42.085401+00:00",
+          "sha256": "872ecdd18a9889d164d737c0f7c56cb0df7bc7ee54ab6adeaa65d7c8c927bc25"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200211&z=19",
+          "retrieved": "2026-09-16T13:12:42.690327+00:00",
+          "sha256": "30d24c0dd62a2d7ef522c07306cabb19968077edd6885d5dea34359974375ce4"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200212&z=19",
+          "retrieved": "2026-09-16T13:12:43.368389+00:00",
+          "sha256": "cc7ad6bc83c0e7cbd5dcf56d2c00c86b970feed3ed8e40f9a90ef539dd6f3147"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200209&z=19",
+          "retrieved": "2026-09-16T13:12:43.950982+00:00",
+          "sha256": "61a2d34d32c581fd49da93046d60e7ea8614b33c68e15184ed1e575f90cb06a3"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200210&z=19",
+          "retrieved": "2026-09-16T13:12:44.412976+00:00",
+          "sha256": "6a2c85ff2a02d4ae3f167c389f9c1ad0cb5fe8e241b46da40d01c53f2ff71dd3"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200211&z=19",
+          "retrieved": "2026-09-16T13:12:44.939617+00:00",
+          "sha256": "d6e3348d9e6f3afff2e6cddc72d69ec06839f63988becde8c960d367913fc098"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200212&z=19",
+          "retrieved": "2026-09-16T13:12:45.537410+00:00",
+          "sha256": "c0186ffd99fbe6c0077a45853beebe2a0d123f469e179bb9818dce788f523286"
+        }
+      ],
+      "anchors": [
+        {
+          "pixel": [
+            449,
+            207
+          ],
+          "osm_vertex": 0
+        },
+        {
+          "pixel": [
+            609,
+            207
+          ],
+          "osm_vertex": 12
+        },
+        {
+          "pixel": [
+            606,
+            588
+          ],
+          "osm_vertex": 11
+        },
+        {
+          "pixel": [
+            541,
+            742
+          ],
+          "osm_vertex": 5
+        }
+      ],
+      "pixel_outline": [
+        [
+          449,
+          207
+        ],
+        [
+          609,
+          207
+        ],
+        [
+          606,
+          588
+        ],
+        [
+          545,
+          588
+        ],
+        [
+          545,
+          613
+        ],
+        [
+          562,
+          620
+        ],
+        [
+          577,
+          637
+        ],
+        [
+          588,
+          658
+        ],
+        [
+          593,
+          680
+        ],
+        [
+          590,
+          705
+        ],
+        [
+          580,
+          725
+        ],
+        [
+          562,
+          738
+        ],
+        [
+          541,
+          742
+        ],
+        [
+          519,
+          738
+        ],
+        [
+          498,
+          725
+        ],
+        [
+          484,
+          707
+        ],
+        [
+          474,
+          688
+        ],
+        [
+          469,
+          668
+        ],
+        [
+          470,
+          648
+        ],
+        [
+          480,
+          629
+        ],
+        [
+          494,
+          617
+        ],
+        [
+          512,
+          611
+        ],
+        [
+          525,
+          611
+        ],
+        [
+          525,
+          588
+        ],
+        [
+          447,
+          588
+        ]
+      ],
+      "area_ratio_limits": [
+        0.7,
+        1.15
+      ],
+      "photo_cross_check": "77927-0 / 79687 confirms rectangular main block, short southern wall and attached round body; lm30 shows narrow connecting segment.",
+      "limits": [
+        "Four OSM anchors retained at main-block northern corners, southeast corner and round-body southern tip.",
+        "Illustrated roof edges transferred as provisional massing; not surveyed ground corners.",
+        "No new interior or stair/door geometry. Connector height retains the previous estimate."
+      ]
     }
   ]
 }
