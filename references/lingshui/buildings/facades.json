@@ -8,12 +8,373 @@
   "77378": {"style": "teaching", "height": 23, "floors": 6, "color": "c7b69b", "edges": [], "photos": ["77378-7.jpg", "77378-2.jpg"], "note": "2026-09-14复核2/7号照片：2号可读A1区31，近端五层翼楼与7号庭院两侧五层翼楼相符；7号中央六层窗墙位于退进庭院内，不能配准到跨越整个南侧的边33，也没有证据把相同六排网格放到边34。撤销原两边通用窗、竖饰柱和檐带。官方详情为7层，但不表示全部翼楼七层；36点外轮廓未给出庭院边界、翼楼厚度与高低分界。仅保留23米早期比例估计壳和颜色，未表达庭院和分段体量，不计入局部立面已建数量。入口、雨棚、台阶和室内须有有效范围资料后再建。floors字段6为原生成参数留档，当前edges为空，不生成六层窗。", "model_status": "outline_only_registration_pending"},
   "77445": {"style": "sports_halls", "height": 28, "floors": 2, "color": "bbbcb5", "edges": [], "photos": ["77445-0.jpg", "77445-1.jpg", "77445-2.jpg", "77445-3.jpg", "77445-4.jpg", "77445-5.jpg", "77445-6.jpg"], "podium_height": 4.0, "main_ring_indices": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35], "pool_ring_indices": [0, 1, 2, 3, 4, 5, 6, 35, 36, 37, 38, 39, 40, 41], "note": "官方共用轮廓保留；北侧弧形馆与南侧游泳馆分体及屋面形式由照片77445-5鸟瞰、0/1/3/4外观和2/6游泳馆确认。分体接缝、屋高、曲率、窗格和构件间距为比例估计。主馆采用双叶曲面金属屋顶，游泳馆采用较低拱顶。仅封闭外壳，不生成照片无法提供平面的入口、室内、外梯和平台通道。"},
   "77355": {"style": "photo_panels", "height": 24.5, "floors": 0, "color": "a85d4b", "frame_color": "a9aaa3", "trim_color": "bcbbae", "edges": [7, 6], "photos": ["77355-0.jpg", "77355-3.jpg", "77355-5.jpg", "77355-6.jpg"], "panels": [{"edge": 7, "rows": [{"bottom": 1.0, "count": 14, "width": 2.05, "height": 2.35, "apron": 0.38, "sill": 0.4, "transom": true}, {"bottom": 4.8, "count": 14, "width": 2.05, "height": 2.35, "apron": 0.38, "sill": 0.4, "transom": true}, {"bottom": 8.6, "count": 14, "width": 2.05, "height": 2.35, "apron": 0.38, "sill": 0.4, "transom": true}, {"bottom": 12.4, "count": 14, "width": 2.05, "height": 2.35, "apron": 0.38, "sill": 0.4, "transom": true}, {"bottom": 16.2, "count": 14, "width": 2.05, "height": 2.35, "apron": 0.38, "sill": 0.4, "transom": true}, {"bottom": 20.0, "count": 14, "width": 2.05, "height": 2.35, "apron": 0.38, "sill": 0.4, "transom": true}]}, {"edge": 6, "rows": [{"bottom": 1.0, "count": 10, "width": 3.35, "height": 2.2, "apron": 0.45}, {"bottom": 4.8, "count": 10, "width": 3.35, "height": 2.2, "apron": 0.45}, {"bottom": 8.6, "count": 10, "width": 3.35, "height": 2.2, "apron": 0.45}, {"bottom": 12.4, "count": 10, "width": 1.9, "height": 3.15, "transom": true}, {"bottom": 16.2, "count": 10, "width": 1.9, "height": 3.15, "transom": true}, {"bottom": 20.0, "count": 10, "width": 1.9, "height": 3.15, "transom": true}], "bands": [{"y": 24.1, "height": 0.25, "projection": 0.4, "depth": 0.8}]}], "note": "照片3/6正面和侧面对应南边7及东边6，0/5核对竖窗与灰色窗下板。六层、24.5米及窗距为照片比例估计；保留原轮廓，未核对北/西及内院，不生成入口。"},
-  "77356": {"style": "photo_panels", "height": 21, "floors": 0, "color": "a35c4e", "frame_color": "b4b8af", "trim_color": "c8c6b7", "edges": [0, 12, 13], "photos": ["77356-0.jpg"], "panels": [{"edge": 0, "rows": [{"bottom": 1.2, "count": 7, "width": 3.5, "height": 2.0, "apron": 0.35, "divisions": 3}, {"bottom": 5.1, "count": 7, "width": 3.5, "height": 2.0, "apron": 0.35, "divisions": 3}, {"bottom": 9.0, "count": 7, "width": 3.5, "height": 2.0, "apron": 0.35, "divisions": 3}, {"bottom": 12.9, "count": 7, "width": 3.5, "height": 2.0, "apron": 0.35, "divisions": 3}, {"bottom": 17.0, "count": 24, "width": 0.62, "height": 2.4, "divisions": 1}]}, {"edge": 12, "rows": [{"bottom": 1.1, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}, {"bottom": 5.0, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}, {"bottom": 8.9, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}, {"bottom": 12.8, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}, {"bottom": 16.7, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}]}, {"edge": 13, "rows": [{"bottom": 5, "count": 1, "width": 1.4, "height": 2.5, "from": 0.1, "to": 0.3}, {"bottom": 8.9, "count": 1, "width": 1.4, "height": 2.5, "from": 0.1, "to": 0.3}, {"bottom": 12.8, "count": 1, "width": 1.4, "height": 2.5, "from": 0.1, "to": 0.3}, {"bottom": 16.7, "count": 1, "width": 1.4, "height": 2.5, "from": 0.1, "to": 0.3}, {"bottom": 5, "count": 1, "width": 1.4, "height": 2.5, "from": 0.6, "to": 0.76}, {"bottom": 8.9, "count": 1, "width": 1.4, "height": 2.5, "from": 0.6, "to": 0.76}, {"bottom": 12.8, "count": 1, "width": 3.2, "height": 6.4, "from": 0.6, "to": 0.76}], "accents": [{"fraction": 0.68, "y": 16, "size": [0.3, 6.6, 0.28]}, {"fraction": 0.68, "y": 16.2, "size": [3.4, 0.3, 0.28]}]}], "note": "唯一照片0核对沿道路西面0、南面12及西南转角13：五层红砖、横向成组窗、顶部窄窗和浅色十字分隔。方向按官方转角与道路关系配准，尺度及窗距为比例估计；其余立面、入口和内院不细化。"},
+  "77356": {"style": "photo_panels", "height": 21, "floors": 0, "color": "a35c4e", "frame_color": "b4b8af", "trim_color": "c8c6b7", "edges": [0, 12, 13], "photos": ["77356-0.jpg"], "panels": [{"edge": 0, "rows": [{"bottom": 1.2, "count": 7, "width": 3.5, "height": 2.0, "apron": 0.35, "divisions": 3}, {"bottom": 5.1, "count": 7, "width": 3.5, "height": 2.0, "apron": 0.35, "divisions": 3}, {"bottom": 9.0, "count": 7, "width": 3.5, "height": 2.0, "apron": 0.35, "divisions": 3}, {"bottom": 12.9, "count": 7, "width": 3.5, "height": 2.0, "apron": 0.35, "divisions": 3}, {"bottom": 17.0, "count": 24, "width": 0.62, "height": 2.4, "divisions": 1}]}, {"edge": 12, "rows": [{"bottom": 1.1, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}, {"bottom": 5.0, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}, {"bottom": 8.9, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}, {"bottom": 12.8, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}, {"bottom": 16.7, "count": 8, "width": 4.0, "height": 2.3, "apron": 0.4, "divisions": 3}]}, {"edge": 13, "rows": [{"bottom": 5, "count": 1, "width": 1.4, "height": 2.5, "from": 0.1, "to": 0.3}, {"bottom": 8.9, "count": 1, "width": 1.4, "height": 2.5, "from": 0.1, "to": 0.3}, {"bottom": 12.8, "count": 1, "width": 1.4, "height": 2.5, "from": 0.1, "to": 0.3}, {"bottom": 16.7, "count": 1, "width": 1.4, "height": 2.5, "from": 0.1, "to": 0.3}, {"bottom": 5, "count": 1, "width": 1.4, "height": 2.5, "from": 0.6, "to": 0.76}, {"bottom": 8.9, "count": 1, "width": 1.4, "height": 2.5, "from": 0.6, "to": 0.76}, {"bottom": 12.8, "count": 1, "width": 3.2, "height": 6.4, "from": 0.6, "to": 0.76}], "accents": [{"fraction": 0.68, "y": 16, "size": [0.3, 6.6, 0.28]}, {"fraction": 0.68, "y": 16.2, "size": [3.4, 0.3, 0.28]}]}], "note": "唯一照片0核对沿道路西面0、南面12及西南转角13：五层红砖、横向成组窗、顶部窄窗和浅色十字分隔。方向按官方转角与道路关系配准，尺度及窗距为比例估计；其余立面、入口和内院不细化。", "osm_registration": {
+  "osm_id": "way/544330659",
+  "osm_version": 2,
+  "expected_vertices": 12,
+  "basis": "77356-0可见西侧窄顶窗翼、退进及主楼西端十字窗墙。旧边0/12分别重登记到新11/4反向；十字窗端墙按照片重新定位到凹口东侧新边3，沿北到南保留窄窗在北、十字窗在南的次序。保留12点落地凹口，旧斜视转角不作为落地斜墙。",
+  "limits": "照片优先于俯视图及OSM。主楼高度、窗宽和窗距仍是原照片比例估计；来源轮廓绝对准确度未验证。窗面按已登记范围迁移，未核实入口、台阶和室内不生成。",
+  "profile": {
+    "edges": [
+      11,
+      4,
+      3
+    ],
+    "panels": [
+      {
+        "edge": 11,
+        "rows": [
+          {
+            "bottom": 1.2,
+            "count": 7,
+            "width": 3.5,
+            "height": 2.0,
+            "apron": 0.35,
+            "divisions": 3,
+            "from": 0,
+            "to": 1
+          },
+          {
+            "bottom": 5.1,
+            "count": 7,
+            "width": 3.5,
+            "height": 2.0,
+            "apron": 0.35,
+            "divisions": 3,
+            "from": 0,
+            "to": 1
+          },
+          {
+            "bottom": 9.0,
+            "count": 7,
+            "width": 3.5,
+            "height": 2.0,
+            "apron": 0.35,
+            "divisions": 3,
+            "from": 0,
+            "to": 1
+          },
+          {
+            "bottom": 12.9,
+            "count": 7,
+            "width": 3.5,
+            "height": 2.0,
+            "apron": 0.35,
+            "divisions": 3,
+            "from": 0,
+            "to": 1
+          },
+          {
+            "bottom": 17.0,
+            "count": 24,
+            "width": 0.62,
+            "height": 2.4,
+            "divisions": 1,
+            "from": 0,
+            "to": 1
+          }
+        ]
+      },
+      {
+        "edge": 4,
+        "rows": [
+          {
+            "bottom": 1.1,
+            "count": 8,
+            "width": 4.0,
+            "height": 2.3,
+            "apron": 0.4,
+            "divisions": 3,
+            "from": 0,
+            "to": 1
+          },
+          {
+            "bottom": 5.0,
+            "count": 8,
+            "width": 4.0,
+            "height": 2.3,
+            "apron": 0.4,
+            "divisions": 3,
+            "from": 0,
+            "to": 1
+          },
+          {
+            "bottom": 8.9,
+            "count": 8,
+            "width": 4.0,
+            "height": 2.3,
+            "apron": 0.4,
+            "divisions": 3,
+            "from": 0,
+            "to": 1
+          },
+          {
+            "bottom": 12.8,
+            "count": 8,
+            "width": 4.0,
+            "height": 2.3,
+            "apron": 0.4,
+            "divisions": 3,
+            "from": 0,
+            "to": 1
+          },
+          {
+            "bottom": 16.7,
+            "count": 8,
+            "width": 4.0,
+            "height": 2.3,
+            "apron": 0.4,
+            "divisions": 3,
+            "from": 0,
+            "to": 1
+          }
+        ]
+      },
+      {
+        "edge": 3,
+        "rows": [
+          {
+            "bottom": 5,
+            "count": 1,
+            "width": 1.4,
+            "height": 2.5,
+            "from": 0.1,
+            "to": 0.3
+          },
+          {
+            "bottom": 8.9,
+            "count": 1,
+            "width": 1.4,
+            "height": 2.5,
+            "from": 0.1,
+            "to": 0.3
+          },
+          {
+            "bottom": 12.8,
+            "count": 1,
+            "width": 1.4,
+            "height": 2.5,
+            "from": 0.1,
+            "to": 0.3
+          },
+          {
+            "bottom": 16.7,
+            "count": 1,
+            "width": 1.4,
+            "height": 2.5,
+            "from": 0.1,
+            "to": 0.3
+          },
+          {
+            "bottom": 5,
+            "count": 1,
+            "width": 1.4,
+            "height": 2.5,
+            "from": 0.6,
+            "to": 0.76
+          },
+          {
+            "bottom": 8.9,
+            "count": 1,
+            "width": 1.4,
+            "height": 2.5,
+            "from": 0.6,
+            "to": 0.76
+          },
+          {
+            "bottom": 12.8,
+            "count": 1,
+            "width": 3.2,
+            "height": 6.4,
+            "from": 0.6,
+            "to": 0.76
+          }
+        ],
+        "accents": [
+          {
+            "fraction": 0.68,
+            "y": 16,
+            "size": [
+              0.3,
+              6.6,
+              0.28
+            ]
+          },
+          {
+            "fraction": 0.68,
+            "y": 16.2,
+            "size": [
+              3.4,
+              0.3,
+              0.28
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}},
   "77358": {"style": "photo_panels", "height": 21, "floors": 0, "color": "a55e4c", "frame_color": "a7aaa4", "trim_color": "b6b7ac", "edges": [1, 2, 3, 4, 5, 6], "photos": ["77358-6.jpg", "77358-9.jpg"], "panels": [{"edge": 1, "rows": [{"bottom": 1.1, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 5.0, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 8.9, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 12.8, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}, {"bottom": 16.7, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}], "bands": [{"y": 20.65, "height": 0.22, "projection": 0.35, "depth": 0.7}]}, {"edge": 2, "rows": [{"bottom": 1.1, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 5.0, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 8.9, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 12.8, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}, {"bottom": 16.7, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}], "bands": [{"y": 20.65, "height": 0.22, "projection": 0.35, "depth": 0.7}]}, {"edge": 3, "rows": [{"bottom": 1.1, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 5.0, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 8.9, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 12.8, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}, {"bottom": 16.7, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}], "bands": [{"y": 20.65, "height": 0.22, "projection": 0.35, "depth": 0.7}]}, {"edge": 4, "rows": [{"bottom": 1.1, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 5.0, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 8.9, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 12.8, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}, {"bottom": 16.7, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}], "bands": [{"y": 20.65, "height": 0.22, "projection": 0.35, "depth": 0.7}]}, {"edge": 5, "rows": [{"bottom": 1.1, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 5.0, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 8.9, "count": 3, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 12.8, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}, {"bottom": 16.7, "count": 3, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}], "bands": [{"y": 20.65, "height": 0.22, "projection": 0.35, "depth": 0.7}]}, {"edge": 6, "rows": [{"bottom": 1.1, "count": 2, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 5.0, "count": 2, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 8.9, "count": 2, "width": 2.65, "height": 2.5, "apron": 0.35}, {"bottom": 12.8, "count": 2, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}, {"bottom": 16.7, "count": 2, "width": 1.8, "height": 3.05, "apron": 0.6, "transom": true}], "bands": [{"y": 20.65, "height": 0.22, "projection": 0.35, "depth": 0.7}]}], "note": "照片6/9支持西南弧形体量边1至6的五层立面、上两层竖窗与灰色窗下板、连续浅色檐口。高度21米与窗距估计；官方总轮廓仍包含没有平面数据可分解的其他体量，仅处理已对应的弧面，不生成中庭或外梯。"},
   "77380": {"style": "photo_panels", "height": 6.5, "floors": 0, "color": "b9ad87", "frame_color": "727b6d", "trim_color": "a3a28e", "edges": [0], "photos": ["77380-0.jpg"], "panels": [{"edge": 0, "rows": [{"bottom": 1.25, "count": 12, "width": 2.7, "height": 2.0, "divisions": 4, "transom": true}, {"bottom": 4.65, "count": 12, "width": 1.8, "height": 0.48, "divisions": 2}], "bands": [{"y": 6.15, "height": 0.2}]}], "note": "照片0为修齐路一侧西立面，对应边0；单层高实验厂房，低处多格钢窗、上部窄窗和浅色墙面。6.5米为比例估计；照片烟囱未有完整位置/结构数据，本轮不建烟囱、未见立面或入口。 2026-09-14复核官方说明：建筑由四层体量和矩形单层体量共同组成，0号照片左后方高段与此相符。现有6.5米只来自可见低厂房比例，统一基础壳尚未表达四层高段，不代表整栋高度已校正；floors=0为现有显式窗排配置，不能理解为建筑零层。14点外轮廓缺少内部高低分界，北侧高段的落地范围与连接仍待侧视/平面核定，不机械将全部轮廓拉高，也不按照片透视任意横切。西侧已有窗段与高低分界的关系需一并复核，不能把当前窗网格当作完整实测立面。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77380"},
   "77382": {"style": "photo_panels", "height": 7.8, "floors": 0, "color": "b6b0a1", "frame_color": "c5c7bf", "trim_color": "b47151", "edges": [10], "photos": ["77382-0.jpg"], "panels": [{"edge": 10, "rows": [{"bottom": 1.0, "count": 18, "width": 2.1, "height": 2.2, "divisions": 3, "transom": true, "apron": 0.65}, {"bottom": 4.55, "count": 18, "width": 2.1, "height": 2.2, "divisions": 3, "transom": true, "apron": 0.65}], "bands": [{"y": 0.45, "height": 0.7}]}], "note": "照片0与敏行路西侧长条楼对应，制作东面边10的两层分格窗、红褐色窗下板及墙裙。7.8米、窗距及重复数量为照片比例估计；不从遮挡部分推断门洞，其他面保持轮廓。"},
   "77394": {"style": "photo_panels", "height": 26, "floors": 0, "color": "b9b8aa", "frame_color": "9aa79e", "trim_color": "c5c5b8", "edges": [14], "photos": ["77394-0.jpg"], "panels": [{"edge": 14, "rows": [{"bottom": 16.0, "count": 17, "width": 3.55, "height": 2.25, "divisions": 3}, {"bottom": 19.4, "count": 17, "width": 3.55, "height": 2.25, "divisions": 3}, {"bottom": 22.8, "count": 17, "width": 3.55, "height": 2.25, "divisions": 3}], "bands": [{"y": 25.5, "height": 0.45}]}], "note": "照片0支持南侧边14的浅灰墙面、上部三排横向分格窗和宽檐，树木遮挡的下部不套用窗格。约26米为可见比例估计，非实测；其他面及入口没有细化。"},
-  "77387": {"style": "photo_panels", "height": 23, "floors": 5, "color": "b7aa8e", "frame_color": "6e6c60", "trim_color": "c7bfa8", "edges": [0], "photos": ["77387-0.jpg", "77387-1.jpg", "77387-4.jpg"], "panoramas": ["../imagery/panoramas/BC02-l.jpg"], "panels": [{"edge": 0, "rows": [{"bottom": 1.0, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 5.3, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 9.6, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 13.9, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 18.2, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 4.0, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 8.3, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 12.6, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 16.9, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 21.2, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}], "bands": [{"y": 0.65, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 4.8, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 9.1, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 13.4, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 17.7, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 22.55, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 3.8, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 8.1, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 12.4, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 16.7, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 21.0, "height": 0.15, "projection": 0.3, "depth": 0.6}]}], "note": "官方照片0/1/4核对五层主窗排、深色分格窗及连续浅色水平挑檐；BC02左视航拍用主楼东翼、体育馆的相对位置确认厚民楼西面为边0。2026-09-14官方详情明确5层，0/1号照片从地面至屋檐也仅五排主窗，撤销旧六排窗判断。西侧改为五排、每排18处现有开间；窗底1/5.3/9.6/13.9/18.2米，窗高2.5米与水平分隔位置为照片比例近似，不代表实测。23米壳高仍沿用早期估计，须后续核准；各窗准确宽窄及门廊仍待精修。其他面及入口通行未建，不复制西面到背面。 77387-0/1/4显示主窗上方独立矮横窗及下缘浅色挑带。沿已有18列窗轴补五排矮横窗，共90处，底4/8.3/12.6/16.9/21.2米、高0.65米、宽2.25米、三分格；分隔挑带厚0.15米深0.6米。尺寸、疏密及分格为照片估计，不是完整实测窗表；只在已配准西面添加，不把小横窗计作楼层，主体、主窗、既有横带和结构碰撞不变。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77387"},
+  "77387": {"style": "photo_panels", "height": 23, "floors": 5, "color": "b7aa8e", "frame_color": "6e6c60", "trim_color": "c7bfa8", "edges": [0], "photos": ["77387-0.jpg", "77387-1.jpg", "77387-4.jpg"], "panoramas": ["../imagery/panoramas/BC02-l.jpg"], "panels": [{"edge": 0, "rows": [{"bottom": 1.0, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 5.3, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 9.6, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 13.9, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 18.2, "count": 18, "width": 2.25, "height": 2.5, "divisions": 2}, {"bottom": 4.0, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 8.3, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 12.6, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 16.9, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}, {"bottom": 21.2, "count": 18, "width": 2.25, "height": 0.65, "divisions": 3}], "bands": [{"y": 0.65, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 4.8, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 9.1, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 13.4, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 17.7, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 22.55, "height": 0.22, "projection": 0.35, "depth": 0.7}, {"y": 3.8, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 8.1, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 12.4, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 16.7, "height": 0.15, "projection": 0.3, "depth": 0.6}, {"y": 21.0, "height": 0.15, "projection": 0.3, "depth": 0.6}]}], "note": "官方照片0/1/4核对五层主窗排、深色分格窗及连续浅色水平挑檐；BC02左视航拍用主楼东翼、体育馆的相对位置确认厚民楼西面为边0。2026-09-14官方详情明确5层，0/1号照片从地面至屋檐也仅五排主窗，撤销旧六排窗判断。西侧改为五排、每排18处现有开间；窗底1/5.3/9.6/13.9/18.2米，窗高2.5米与水平分隔位置为照片比例近似，不代表实测。23米壳高仍沿用早期估计，须后续核准；各窗准确宽窄及门廊仍待精修。其他面及入口通行未建，不复制西面到背面。 77387-0/1/4显示主窗上方独立矮横窗及下缘浅色挑带。沿已有18列窗轴补五排矮横窗，共90处，底4/8.3/12.6/16.9/21.2米、高0.65米、宽2.25米、三分格；分隔挑带厚0.15米深0.6米。尺寸、疏密及分格为照片估计，不是完整实测窗表；只在已配准西面添加，不把小横窗计作楼层，主体、主窗、既有横带和结构碰撞不变。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77387", "osm_registration": {
+  "osm_id": "way/300180515",
+  "osm_version": 3,
+  "expected_vertices": 4,
+  "basis": "77387-0确认西侧五层主窗与各层上方矮横窗，按既有官方照片及BC02航拍方向登记，旧西边0对应新西边2且同向；不复制到其他立面。",
+  "limits": "照片优先于俯视图及OSM。主楼高度、窗宽和窗距仍是原照片比例估计；来源轮廓绝对准确度未验证。窗面按已登记范围迁移，未核实入口、台阶和室内不生成。",
+  "profile": {
+    "edges": [
+      2
+    ],
+    "panels": [
+      {
+        "edge": 2,
+        "rows": [
+          {
+            "bottom": 1.0,
+            "count": 18,
+            "width": 2.25,
+            "height": 2.5,
+            "divisions": 2
+          },
+          {
+            "bottom": 5.3,
+            "count": 18,
+            "width": 2.25,
+            "height": 2.5,
+            "divisions": 2
+          },
+          {
+            "bottom": 9.6,
+            "count": 18,
+            "width": 2.25,
+            "height": 2.5,
+            "divisions": 2
+          },
+          {
+            "bottom": 13.9,
+            "count": 18,
+            "width": 2.25,
+            "height": 2.5,
+            "divisions": 2
+          },
+          {
+            "bottom": 18.2,
+            "count": 18,
+            "width": 2.25,
+            "height": 2.5,
+            "divisions": 2
+          },
+          {
+            "bottom": 4.0,
+            "count": 18,
+            "width": 2.25,
+            "height": 0.65,
+            "divisions": 3
+          },
+          {
+            "bottom": 8.3,
+            "count": 18,
+            "width": 2.25,
+            "height": 0.65,
+            "divisions": 3
+          },
+          {
+            "bottom": 12.6,
+            "count": 18,
+            "width": 2.25,
+            "height": 0.65,
+            "divisions": 3
+          },
+          {
+            "bottom": 16.9,
+            "count": 18,
+            "width": 2.25,
+            "height": 0.65,
+            "divisions": 3
+          },
+          {
+            "bottom": 21.2,
+            "count": 18,
+            "width": 2.25,
+            "height": 0.65,
+            "divisions": 3
+          }
+        ],
+        "bands": [
+          {
+            "y": 0.65,
+            "height": 0.22,
+            "projection": 0.35,
+            "depth": 0.7
+          },
+          {
+            "y": 4.8,
+            "height": 0.22,
+            "projection": 0.35,
+            "depth": 0.7
+          },
+          {
+            "y": 9.1,
+            "height": 0.22,
+            "projection": 0.35,
+            "depth": 0.7
+          },
+          {
+            "y": 13.4,
+            "height": 0.22,
+            "projection": 0.35,
+            "depth": 0.7
+          },
+          {
+            "y": 17.7,
+            "height": 0.22,
+            "projection": 0.35,
+            "depth": 0.7
+          },
+          {
+            "y": 22.55,
+            "height": 0.22,
+            "projection": 0.35,
+            "depth": 0.7
+          },
+          {
+            "y": 3.8,
+            "height": 0.15,
+            "projection": 0.3,
+            "depth": 0.6
+          },
+          {
+            "y": 8.1,
+            "height": 0.15,
+            "projection": 0.3,
+            "depth": 0.6
+          },
+          {
+            "y": 12.4,
+            "height": 0.15,
+            "projection": 0.3,
+            "depth": 0.6
+          },
+          {
+            "y": 16.7,
+            "height": 0.15,
+            "projection": 0.3,
+            "depth": 0.6
+          },
+          {
+            "y": 21.0,
+            "height": 0.15,
+            "projection": 0.3,
+            "depth": 0.6
+          }
+        ]
+      }
+    ]
+  }
+}},
   "77389": {"style": "photo_panels", "height": 22, "floors": 6, "color": "b29d83", "frame_color": "c2c7bc", "trim_color": "d0c8b5", "edges": [7], "photos": ["77389-0.jpg", "77389-2.jpg", "77389-4.jpg"], "panoramas": ["../imagery/panoramas/BC02-b.jpg", "../imagery/panoramas/BC02-l.jpg"], "panels": [{"edge": 7, "rows": [{"bottom": 0.8, "count": 7, "width": 2.05, "height": 1.8, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 4, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 7.6, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 11.2, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 14.8, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 18.4, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.025, "to": 0.3}, {"bottom": 0.8, "count": 7, "width": 2.05, "height": 1.8, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 4, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 7.6, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 11.2, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 14.8, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 18.4, "count": 7, "width": 2.05, "height": 2.55, "transom": true, "from": 0.7, "to": 0.975}, {"bottom": 11.2, "count": 4, "width": 2.35, "height": 2.55, "transom": true, "from": 0.39, "to": 0.61}, {"bottom": 14.8, "count": 4, "width": 2.35, "height": 2.55, "transom": true, "from": 0.39, "to": 0.61}, {"bottom": 18.4, "count": 4, "width": 2.35, "height": 1.0, "transom": true, "from": 0.39, "to": 0.61}], "bands": [{"y": 21.65, "height": 0.25, "depth": 0.4}], "accents": [{"fraction": 0.32, "y": 11, "size": [0.55, 21, 0.35]}, {"fraction": 0.68, "y": 11, "size": [0.55, 21, 0.35]}, {"fraction": 0.39, "y": 14.5, "size": [0.45, 12, 0.32]}, {"fraction": 0.445, "y": 14.5, "size": [0.45, 12, 0.32]}, {"fraction": 0.5, "y": 14.5, "size": [0.45, 12, 0.32]}, {"fraction": 0.555, "y": 14.5, "size": [0.45, 12, 0.32]}, {"fraction": 0.61, "y": 14.5, "size": [0.45, 12, 0.32]}], "arches": [{"center": 0.5, "half_width": 9.3, "bottom": 18.8, "rise": 2.1, "thickness": 0.23, "depth": 0.32, "segments": 24}]}], "note": "官方0/2/4号照片与详情6层说明互证：台阶下有较矮底排窗，入口所在层之上有连廊窗，再上为中央三排窗。旧五层判断漏计底层差异；南侧边7两翼改为六排，既有横向七列位置及范围保留，底排窗高1.8米，其余2.55米，窗底0.8/4/7.6/11.2/14.8/18.4米；中央上三排仍各四窗，底11.2/14.8/18.4米。BC02后视及左视以主楼、厚民楼相对位置核对南侧边7。22米、窗距、标高、中央分段和弧度仍为比例估计，不是测绘数据。低层中央门廊与外梯尚缺平面，保持封闭原轮廓，不构造通道；北/东西面和屋顶设备未精修。 4号照片中央顶排位于弧带下，为较矮窗，按1米窗高近似，与两翼顶排高窗区分，避免窗框穿越弧带。", "floors_source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=77389"},
   "77383": {"style": "photo_panels", "height": 18.5, "floors": 4, "color": "b7a07c", "frame_color": "c3c6b9", "trim_color": "c9c1ab", "edges": [12], "photos": ["77383-1.jpg", "77383-3.jpg", "77383-12.jpg"], "panoramas": ["../imagery/panoramas/BC02-b.jpg"], "panels": [{"edge": 12, "rows": [{"bottom": 1.1, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.015, "to": 0.32}, {"bottom": 5.2, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.015, "to": 0.32}, {"bottom": 9.3, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.015, "to": 0.32}, {"bottom": 13.4, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.015, "to": 0.32}, {"bottom": 1.1, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.68, "to": 0.985}, {"bottom": 5.2, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.68, "to": 0.985}, {"bottom": 9.3, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.68, "to": 0.985}, {"bottom": 13.4, "count": 10, "width": 1.9, "height": 2.75, "divisions": 2, "transom": true, "from": 0.68, "to": 0.985}, {"bottom": 5.2, "count": 3, "width": 2.65, "height": 2.75, "divisions": 3, "transom": true, "from": 0.415, "to": 0.585}, {"bottom": 9.3, "count": 3, "width": 2.65, "height": 2.75, "divisions": 3, "transom": true, "from": 0.415, "to": 0.585}, {"bottom": 13.4, "count": 3, "width": 2.65, "height": 2.75, "divisions": 3, "transom": true, "from": 0.415, "to": 0.585}, {"bottom": 1.1, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.365, "to": 0.365}, {"bottom": 5.2, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.365, "to": 0.365}, {"bottom": 9.3, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.365, "to": 0.365}, {"bottom": 13.4, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.365, "to": 0.365}, {"bottom": 1.1, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.635, "to": 0.635}, {"bottom": 5.2, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.635, "to": 0.635}, {"bottom": 9.3, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.635, "to": 0.635}, {"bottom": 13.4, "count": 1, "width": 1.1, "height": 2.7, "divisions": 2, "transom": true, "from": 0.635, "to": 0.635}], "accents": [{"fraction": 0.015, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.0455, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.076, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.1065, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.137, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.16749999999999998, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.198, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.22849999999999998, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.259, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.28950000000000004, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.32, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.68, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.7105, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.741, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.7715000000000001, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.802, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.8325, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.863, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.8935, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.9239999999999999, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.9544999999999999, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.985, "y": 9, "size": [0.6, 16.8, 0.22]}, {"fraction": 0.415, "y": 9, "size": [0.75, 16.8, 0.24]}, {"fraction": 0.4717, "y": 9, "size": [0.75, 16.8, 0.24]}, {"fraction": 0.5283, "y": 9, "size": [0.75, 16.8, 0.24]}, {"fraction": 0.585, "y": 9, "size": [0.75, 16.8, 0.24]}], "bands": [{"y": 18.1, "height": 0.22, "depth": 0.35}]}], "note": "照片1/3/12的A1区16标识确认第二教学馆，四层浅褐墙、成组窗、中央窄窗与浅色竖向分隔；BC02后视按第一教学馆后方偏西的相对位置核对南面边12。18.5米楼高、开间数、中央分段和窗距是比例估计。中央底层入口不生成门洞或通道，其他面及屋顶小体量未精修。"},
   "77427": {"style": "photo_panels", "height": 8.5, "floors": 2, "color": "96534b", "frame_color": "c2c6b6", "trim_color": "c9c6af", "edges": [5, 4], "photos": ["77427-0.jpg", "77427-1.jpg"], "panels": [{"edge": 5, "rows": [{"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.1, "to": 0.1}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.1, "to": 0.1}, {"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.3, "to": 0.3}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.3, "to": 0.3}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.5, "to": 0.5}, {"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.7, "to": 0.7}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.7, "to": 0.7}, {"bottom": 1.0, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.9, "to": 0.9}, {"bottom": 4.6, "count": 1, "width": 1.8, "height": 2.5, "divisions": 2, "transom": true, "from": 0.9, "to": 0.9}], "accents": [{"fraction": 0.0, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.2, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.4, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.6, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 0.8, "y": 4.35, "size": [0.27, 8.1, 0.24]}, {"fraction": 1.0, "y": 4.35, "size": [0.27, 8.1, 0.24]}], "bands": [{"y": 0.35, "height": 0.25, "depth": 0.26}, {"y": 4.15, "height": 0.25, "depth": 0.26}, {"y": 8.25, "height": 0.25, "depth": 0.26}]}, {"edge": 4, "rows": [{"bottom": 1.0, "count": 12, "width": 1.85, "height": 2.5, "divisions": 2, "transom": true}, {"bottom": 4.6, "count": 12, "width": 1.85, "height": 2.5, "divisions": 2, "transom": true}], "accents": [{"fraction": 0.0, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.08333333333333333, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.16666666666666666, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.25, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.3333333333333333, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.4166666666666667, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.5, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.5833333333333334, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.6666666666666666, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.75, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.8333333333333334, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 0.9166666666666666, "y": 4.35, "size": [0.25, 8.1, 0.24]}, {"fraction": 1.0, "y": 4.35, "size": [0.25, 8.1, 0.24]}], "bands": [{"y": 0.35, "height": 0.25, "depth": 0.26}, {"y": 4.15, "height": 0.25, "depth": 0.26}, {"y": 8.25, "height": 0.25, "depth": 0.26}]}], "note": "照片0/1核对博物馆红色两层外墙、浅色矩形分隔和分格窗。按官方长条轮廓、短端前场与长边延伸关系对应南侧短边5及东侧长边4；南面底层中央为入口，不生成窗或通道。8.5米、侧窗数量与窗距为照片比例估计。西面、北面、门廊和屋面细部未精修。",
