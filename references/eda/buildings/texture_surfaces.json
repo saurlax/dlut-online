@@ -44,7 +44,45 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77931"
+      "profile": "residence_facades.json#77931",
+      "osm_regions": [
+        {
+          "edge": 2,
+          "span": [
+            0.0,
+            0.8186262164633017
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 1,
+          "span": [
+            0.6137299401833753,
+            1.0
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 0,
+          "span": [
+            0.26174067272345686,
+            0.3382593272765431
+          ],
+          "bottom": 3.9,
+          "top": 21.45
+        },
+        {
+          "edge": 0,
+          "span": [
+            0.6617406727234568,
+            0.7382593272765431
+          ],
+          "bottom": 3.9,
+          "top": 21.45
+        }
+      ]
     },
     "77933": {
       "status": "applied",
@@ -79,7 +117,36 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77933"
+      "profile": "residence_facades.json#77933",
+      "osm_regions": [
+        {
+          "edge": 2,
+          "span": [
+            0.0,
+            0.29317458815216313
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 1,
+          "span": [
+            0.17457854850950394,
+            1.0
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 3,
+          "span": [
+            0.40164803987221637,
+            0.5983519601277836
+          ],
+          "bottom": 3.9,
+          "top": 18.299999999999997
+        }
+      ]
     },
     "77935": {
       "status": "applied",
@@ -105,7 +172,27 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77935"
+      "profile": "residence_facades.json#77935",
+      "osm_regions": [
+        {
+          "edge": 1,
+          "span": [
+            0.6150840892772048,
+            1.0
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 2,
+          "span": [
+            0.0,
+            0.8187441456315249
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        }
+      ]
     },
     "77937": {
       "status": "applied",
@@ -131,7 +218,18 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77937"
+      "profile": "residence_facades.json#77937",
+      "osm_regions": [
+        {
+          "edge": 4,
+          "span": [
+            0.18,
+            0.82
+          ],
+          "bottom": 3.7,
+          "top": 15.325
+        }
+      ]
     },
     "77938": {
       "status": "applied",
@@ -194,7 +292,18 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77941"
+      "profile": "residence_facades.json#77941",
+      "osm_regions": [
+        {
+          "edge": 1,
+          "span": [
+            0.10174012951733814,
+            0.9156611656560432
+          ],
+          "bottom": 3.7,
+          "top": 21.625
+        }
+      ]
     },
     "77925": {
       "status": "applied",
