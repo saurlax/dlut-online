@@ -143,9 +143,12 @@ def run(output):
         all_points=official+osm+candidate
         low=[min(p[i] for p in all_points)-5 for i in (0,1)]
         high=[max(p[i] for p in all_points)+5 for i in (0,1)]
-        shapes=''.join('<polygon fill="none" stroke="'+color+'" stroke-width="0.7" points="'+
+        shapes=''.join('<polygon class="'+layer+'" fill="none" stroke="'+color+'" vector-effect="non-scaling-stroke" stroke-width="'+width+'" '+dash+' points="'+
                        ' '.join(f'{x},{y}' for x,y in pts)+'"/>'
-                       for color,pts in [('#e05252',official),('#3284df',osm),('#c79400',candidate)])
+                       for layer,color,width,dash,pts in [
+                           ('official','#e05252','2','',official),
+                           ('osm','#3284df','4','',osm),
+                           ('candidate','#c79400','2','stroke-dasharray="8 6"',candidate)])
         panels.append('<article><h2>'+html.escape(c['name'])+'</h2><svg viewBox="'+
                       f'{low[0]} {low[1]} {high[0]-low[0]} {high[1]-low[1]}'+
                       '">'+shapes+'</svg><p>'+('矩形约束通过' if fit['accepted'] else '拒绝矩形约束，保留原形')+
@@ -173,10 +176,27 @@ def run(output):
     (output/'report.md').write_text('\n'.join(rows),encoding='utf-8')
     (output/'comparison.html').write_text('<!doctype html><meta charset="utf-8"><title>轮廓候选拟合</title>'
         '<style>body{font:16px sans-serif;margin:30px;background:#fafafa}main{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}'
-        'article{background:white;border:1px solid #ddd;padding:16px}svg{width:100%;height:320px}h2{font-size:18px}</style>'
-        '<h1>轮廓候选拟合</h1><p>红：官网交互轮廓　蓝：OSM 初始定位　黄：候选。位置未验证，非测绘精度。</p>'
+        'article{background:white;border:1px solid #ddd;padding:16px}svg{width:100%;height:320px}h2{font-size:18px}'
+        'table{border-collapse:collapse;width:100%;background:white}td,th{padding:9px;border:1px solid #ddd;text-align:left}'
+        'label{display:inline-block;margin:12px 20px 12px 0}@media(max-width:900px){main{grid-template-columns:1fr}}</style>'
+        '<h1>2 份几何来源，6 个建筑样本</h1><p>黄框是派生候选，不是第三份独立来源；之前列出的其他来源尚未取得可绘制的建筑轮廓。</p>'
+        '<table><tr><th>来源</th><th>已取得资料</th><th>当前可绘制 bound</th></tr>'
+        '<tr><td>官网校园地图</td><td>交互多边形、二维瓦片</td><td>红色实线，不能直接认作基底</td></tr>'
+        '<tr><td>OSM</td><td>建筑多边形</td><td>蓝色粗实线，初始位置未验证</td></tr>'
+        '<tr><td>高德</td><td>地图页面</td><td>无，尚未取得几何</td></tr>'
+        '<tr><td>百度</td><td>地图页面和 POI</td><td>无，尚未取得几何</td></tr>'
+        '<tr><td>校园正射 PDF</td><td>压缩影像</td><td>无，尚未配准、描绘</td></tr>'
+        '<tr><td>Overture</td><td>来源文档</td><td>无，尚未提取校园数据</td></tr>'
+        '<tr><td>东亚建筑数据集</td><td>数据目录</td><td>无，尚未提取校园数据</td></tr>'
+        '<tr><td>武汉大学 CBF</td><td>数据目录，文件受限</td><td>无，尚未取得数据</td></tr></table>'
+        '<p>重合处以蓝色粗实线承托黄色细虚线，开关可分别查看；没有人为移动轮廓来制造差异。</p>'
+        '<label><input type="checkbox" checked data-layer="official">官网红线</label>'
+        '<label><input type="checkbox" checked data-layer="osm">OSM 蓝线</label>'
+        '<label><input type="checkbox" checked data-layer="candidate">派生候选黄虚线</label>'
         '<p>只对已配对的六个样本做保守形状约束，不平均斜视轮廓。不把图面拟合残差当作真实误差。</p><main>'+
-        ''.join(panels)+'</main>',encoding='utf-8')
+        ''.join(panels)+'</main><script>document.querySelectorAll("input[data-layer]").forEach(input=>'
+        'input.addEventListener("change",()=>document.querySelectorAll("polygon."+input.dataset.layer)'
+        '.forEach(p=>p.style.display=input.checked?"":"none")))</script>',encoding='utf-8')
     print(json.dumps({'records':len(records),'invalid':sum(not r['valid'] for r in records),
                       'samples':len(results),'rectangle_fits':sum(r['fit']['accepted'] for r in results)}))
 
