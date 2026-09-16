@@ -13,8 +13,8 @@
       "id": "77912",
       "name": "开发区校区南门",
       "kind": "gate",
-      "height": 5.0,
-      "height_source": "approximation",
+      "height": null,
+      "height_source": "unavailable",
       "footprint_source": "official-map",
       "points": [
         [
@@ -60,7 +60,8 @@
           420.078
         ]
       ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "source-reference-only; gate geometry pending photo registration",
+      "render_polygons": []
     },
     {
       "id": "77914",
@@ -919,8 +920,8 @@
       "id": "81823",
       "name": "生活区正门（机动车可通行）",
       "kind": "gate",
-      "height": 5.0,
-      "height_source": "approximation",
+      "height": null,
+      "height_source": "unavailable",
       "footprint_source": "official-map",
       "points": [
         [
@@ -958,7 +959,8 @@
           38.649
         ]
       ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "source-reference-only; gate geometry pending photo registration",
+      "render_polygons": []
     },
     {
       "id": "96575",
@@ -1588,8 +1590,8 @@
       "id": "2304919",
       "name": "生活区东门（只可行人通行）",
       "kind": "gate",
-      "height": 5.0,
-      "height_source": "approximation",
+      "height": null,
+      "height_source": "unavailable",
       "footprint_source": "official-map",
       "points": [
         [
@@ -1635,7 +1637,8 @@
           -227.537
         ]
       ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "source-reference-only; gate geometry pending photo registration",
+      "render_polygons": []
     },
     {
       "id": "2304982",
