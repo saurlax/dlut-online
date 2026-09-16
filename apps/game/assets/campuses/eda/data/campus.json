@@ -2461,6 +2461,7 @@
     {
       "id": "eda-comprehensive-south-plaza",
       "kind": "plaza",
+      "surface_type": "asphalt",
       "outer": [
         [
           -330.4628560087533,
@@ -2592,7 +2593,7 @@
         ]
       ],
       "source": "references/eda/mapping/ground-surfaces.json",
-      "source_sha256": "b971ac5b0badb228669e5f54bea1d8f51ecfa9851ee8780cb318b4fe05a05f96",
+      "source_sha256": "4c3db73376b898ecc259533e78d2e50c6fa05e413fa88bd9547a4f7f51580340",
       "status": "provisional-image-supported-ground-outline",
       "osm_anchor_way": "1076346767",
       "absolute_accuracy_m": null

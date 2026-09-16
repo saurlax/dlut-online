@@ -270,7 +270,16 @@
         ]
       ],
       "method": "Local similarity: map island center to OSM loop bounding-box center, scale and direction from registered main-building south edge. Ground outline traced separately from roof; no global datum shift.",
-      "limits": "Illustrated paving outline and OSM loop are not surveyed. Bounding-box center is an estimated island anchor. Keep original road source; suppress asphalt only within this surface. Building intersections are cut out at mesh generation."
+      "limits": "Illustrated paving outline and OSM loop are not surveyed. Bounding-box center is an estimated island anchor. Keep original road source; suppress asphalt only within this surface. Building intersections are cut out at mesh generation.",
+      "surface_type": "asphalt",
+      "surface_basis": {
+        "photo": "references/eda/buildings/photos/77921-0.jpg",
+        "image_id": 79694,
+        "photo_index": "references/eda/buildings/comprehensive_profile.json",
+        "reviewed": "2026-09-17",
+        "observation": "院内照片可见深色连续沥青车行面、黄色车道线、浅色路缘及中央绿岛；不采用俯视图绘画色作为浅色铺砖依据。",
+        "limits": "颜色沿用道路近似材质；照片年代及遮挡不能证明现状铺装，未补未经配准的车道线或路缘尺寸。"
+      }
     }
   ]
 }

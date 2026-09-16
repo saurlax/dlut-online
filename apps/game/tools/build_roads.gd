@@ -50,7 +50,10 @@ func build(builder, campus: String) -> void:
 			for p: Array in feature.points: building.append(Vector2(p[0],p[1]))
 			if Geometry2D.is_polygon_clockwise(building): building.reverse()
 			cutouts.append(building)
-		var paving := emit(builder,outer,0.08,builder.material("Map plaza paving",Color("c1b7a1")),cutouts)
+		var surface_material: Material = builder.material("Map plaza paving",Color("c1b7a1"))
+		if surface.get("surface_type", "paving") == "asphalt":
+			surface_material = builder.material(key, Color("555a5b") if campus == "eda" else Color("656966"))
+		var paving := emit(builder,outer,0.08,surface_material,cutouts)
 		paving.set_meta("ground_surface_id",surface.id)
 
 func edge_y(edge: PackedVector2Array, x: float) -> float:

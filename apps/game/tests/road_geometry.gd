@@ -72,6 +72,8 @@ func _run() -> void:
 			var clearance := 0.12 if campus == "lingshui" else (0.22 if child.material_override.resource_name in ["Road", "Photo red path"] else (0.18 if child.material_override.resource_name == "Photo path edging" else 0.16))
 			var faces: PackedVector3Array = child.mesh.get_faces()
 			if child.has_meta("ground_surface_id"):
+				# Ground overlays keep their 0.08 m lift plus the terrain fit offset, regardless of material.
+				clearance = 0.16
 				var forbidden: Array[PackedVector2Array] = []
 				for feature: Dictionary in manifest.features:
 					if feature.kind == "building":
