@@ -36,7 +36,39 @@
         "reviewed": "2026-09-14",
         "sha256": "b6dd355d42ec870f8fb3291e00663aefabc02b662729cc81dca3162359da1370"
       }
-    ]
+    ],
+    "osm_registration": {
+      "osm_id": "way/232559611",
+      "osm_version": 8,
+      "expected_vertices": 8,
+      "faces": [
+        {
+          "edge": 3,
+          "span": [
+            0.03,
+            0.97
+          ],
+          "columns": 17,
+          "rows": 4,
+          "first_y": 6.2,
+          "storey": 4.0,
+          "window_height": 2.45,
+          "width_ratio": 0.62
+        }
+      ],
+      "tower": {
+        "edge": 3,
+        "fraction": 0.13,
+        "height": 29.0,
+        "width": 4.8,
+        "body_height": 27.0,
+        "head_beam_y": 28.5,
+        "head_note": "77925-0顶部可见两侧竖片和横梁围成的空隙，原全高实心盒体改为27米主体、28.5米横梁，两侧竖片顶29.3米。原29米塔高为估计参数，竖片仍沿既有0.3米超出量；各尺寸均为照片比例估计。只补可见框架，照片中弧形细部及背部连接未重建。"
+      },
+      "review_date": "2026-09-16",
+      "basis": "Photo 77925-0 (79686) identifies A as the central south-facing block, with B left and C right. Old edge 12 corresponds to OSM edge 3 (south central section, east to west). Preserve source connection vertices instead of deleting collinear points.",
+      "limits": "Existing facade coverage, tower height, and window proportions remain estimates. No new entrance or indoor geometry."
+    }
   },
   "77928": {
     "height": 9.6,

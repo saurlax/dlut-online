@@ -48,6 +48,7 @@ origin_offset=osm_world.local('eda',*origin)
 offset=[origin_offset[0]+alignment['offset_xz_m'][0]*scale,origin_offset[1]+alignment['offset_xz_m'][1]]
 def moved(p):return [p[0]*scale+offset[0],p[1]+offset[1]]
 selected={'77914':'way/1422474847','77921':'way/232559719','77917':'way/1422474848',
+          '77925':'way/232559611','96575':'way/1381450451',
           '2304775':'way/232560296','39328846':'way/232560016',
           '2304759':'way/232560269','2304752':'way/1381450450'}
 records={r['osm_id']:r for r in world['areas']}
