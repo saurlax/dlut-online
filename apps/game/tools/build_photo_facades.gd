@@ -52,11 +52,11 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool, r
 	glass.metallic = 0.55
 	glass.roughness = 0.2
 	if is_library:
-		# Official outline divides at the two corners where the wing meets the rotunda.
+		# Use the registered junction corners for each source geometry version.
 		var rotunda := PackedVector2Array()
-		for i in range(2,21): rotunda.append(points[i])
+		for i in profile.get("rotunda_vertices",range(2,21)): rotunda.append(points[int(i)])
 		var wing := PackedVector2Array()
-		for i in [0,1,2,20,21,22,23]: wing.append(points[i])
+		for i in profile.get("wing_vertices",[0,1,2,20,21,22,23]): wing.append(points[int(i)])
 		var wing_height: float = profile.wing_height
 		shell(rotunda,height,0,wall,"Rotunda")
 		shell(rotunda,height+0.22,height,trim,"RotundaRoof")
@@ -74,8 +74,11 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool, r
 		var outward := Vector2(axis.y,-axis.x)
 		if Geometry2D.is_point_in_polygon((a+b)*0.5+outward,points):
 			outward = -outward
-		if is_library and edge==int(profile.wing_windows.edge):
-			var windows: Dictionary = profile.wing_windows
+		var windows: Dictionary = {}
+		if is_library:
+			for region: Dictionary in profile.get("wing_window_regions",[profile.wing_windows]):
+				if edge==int(region.edge): windows=region
+		if not windows.is_empty():
 			var first := a.lerp(b,float(windows.span[0]))
 			var last := a.lerp(b,float(windows.span[1]))
 			var columns := int(windows.columns)
@@ -96,7 +99,7 @@ func build(host, parent: Node3D, points: PackedVector2Array, is_library: bool, r
 			continue
 		# Photos show the library's curved curtain wall and information building's
 		# long facade. Unverified faces keep the pre-existing footprint shell.
-		var curved_glass := is_library and edge >= 2 and edge <= 19
+		var curved_glass := is_library and edge in PackedInt32Array(profile.get("curved_edges",range(2,20)))
 		var observed: bool = curved_glass or (not is_library and edge in observed_edges)
 		if not observed:
 			continue

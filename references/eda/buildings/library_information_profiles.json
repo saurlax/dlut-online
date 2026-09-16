@@ -156,6 +156,128 @@
       "width_fraction": 0.78,
       "source": "77917-0.jpg / 79691",
       "note": "近照中圆体左侧连接翼可见由墙柱分隔的上三排矩形窗段，配准官方西侧边1。8组窗为照片离散近似，跨度8%至96%、3.2米窗高、4.4米层距及窗宽为估计；每组以三分格表现可见竖框。底层被树木遮挡，不补底层窗或入口，不延伸到南侧低连接段或东面。"
+    },
+    "osm_registration": {
+      "osm_id": "way/1422474848",
+      "osm_version": 2,
+      "footprint_refinement": "",
+      "expected_vertices": 39,
+      "rotunda_vertices": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "wing_vertices": [
+        0,
+        1,
+        2,
+        37,
+        38
+      ],
+      "curved_edges": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "wing_window_regions": [
+        {
+          "edge": 37,
+          "span": [
+            0.23,
+            1.0
+          ],
+          "columns": 2,
+          "centers_y": [
+            6.6,
+            11.0,
+            15.4
+          ],
+          "height": 3.2,
+          "width_fraction": 0.78,
+          "source": "77917-0.jpg / 79691",
+          "note": "近照中圆体左侧连接翼可见由墙柱分隔的上三排矩形窗段，配准官方西侧边1。8组窗为照片离散近似，跨度8%至96%、3.2米窗高、4.4米层距及窗宽为估计；每组以三分格表现可见竖框。底层被树木遮挡，不补底层窗或入口，不延伸到南侧低连接段或东面。"
+        },
+        {
+          "edge": 38,
+          "span": [
+            0,
+            0.445
+          ],
+          "columns": 6,
+          "centers_y": [
+            6.6,
+            11.0,
+            15.4
+          ],
+          "height": 3.2,
+          "width_fraction": 0.78,
+          "source": "77917-0.jpg / 79691",
+          "note": "近照中圆体左侧连接翼可见由墙柱分隔的上三排矩形窗段，配准官方西侧边1。8组窗为照片离散近似，跨度8%至96%、3.2米窗高、4.4米层距及窗宽为估计；每组以三分格表现可见竖框。底层被树木遮挡，不补底层窗或入口，不延伸到南侧低连接段或东面。"
+        }
+      ],
+      "review_date": "2026-09-16",
+      "basis": "Photo 77917-0 / 79691 supports a taller rotunda and lower west-facing wing. Split at OSM vertices 2 and 37. Original eight window groups transfer to west edges 37 and 38 in two and six groups, following each edge direction rather than a chord. The source west-side projection at edges 26-30 has no added curtain wall.",
+      "limits": "Existing height and window sizes remain photo estimates; no unobserved entrance or interior. OSM connection points are retained, not smoothed into a circle."
     }
   }
 }
