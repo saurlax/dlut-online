@@ -34,6 +34,13 @@
       "python apps/game/tools/footprint_review.py --serve"
     ],
     "operation": "默认本机 8769 端口，可用 --port 指定。滚轮缩放、浏览模式拖图；黄线草稿可整体移动、拖顶点、Shift 点击边加点、删除选中点或重新描绘，支持撤销。点击保存后写入 .local/footprint-review/draft.json，刷新和再次生成会校验来源后恢复。缓存不自动刷新；更新来源应使用新的 --output 目录，旧草稿不跨源套用。",
-    "draft_limits": "所有保存结果均为未验证图面草稿，不自动更新校园 manifest、模型、立面索引或碰撞。当前仅闭合单 way 样本，不处理 OSM multipolygon、内院或全校区批量匹配。底图可见范围之外不修正；全部修改需继续结合照片或平面数据复核。"
+    "draft_limits": "所有保存结果均为未验证图面草稿，不自动更新校园 manifest、模型、立面索引或碰撞。当前仅闭合单 way 样本，不处理 OSM multipolygon、内院或全校区批量匹配。底图可见范围之外不修正；全部修改需继续结合照片或平面数据复核。",
+    "candidate_fit": {
+      "tool": "apps/game/tools/footprint_consensus.py",
+      "command": "python apps/game/tools/footprint_consensus.py",
+      "inputs": "已下载的 .local/osm-audit/*.osm、官网 bounds、复核工具缓存和可选 draft.json",
+      "outputs": ".local/footprint-consensus/ 下 normalized-bounds.json、candidate-bounds.json、sources.json、report.md 和 comparison.html",
+      "limits": "官网及 OSM 标准化并非完整校园建筑清单；关系对象保留待处理。仅六个配对样本做形状约束，0.6 米/3% 是候选约束阈值而非真实精度；所有候选未验证，无地面控制点，禁止跨来源盲目平均。"
+    }
   }
 }
