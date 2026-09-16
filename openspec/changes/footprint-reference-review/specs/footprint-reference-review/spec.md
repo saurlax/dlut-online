@@ -1,5 +1,20 @@
 ## ADDED Requirements
 
+### Requirement: Normalize sources without fabricating consensus
+
+工具 SHALL 将已取得多边形转换为带 source、frame、摘要和有效性标记的 bound；未取得几何的地图页面、栅格 PDF 和数据目录 MUST 列为缺口。OSM 下载框不等于校园边界，官网记录不等于建筑清单。关系对象 MUST 保留成员，不得丢弃内院后冒充单环轮廓。
+
+#### Scenario: Conservative fitting
+
+- **WHEN** 已配对样本具有有效图面多边形
+- **THEN** 可尝试边方向矩形约束，仅当采样边界差不超过 0.6 米且面积变化不超过 3% 时采用，其他情况保留原形
+- **AND** 结果保持未验证，绝对精度未知；图面误差不得解释为实测精度，官网交互轮廓不得参与平均
+
+#### Scenario: Source is not acquired
+
+- **WHEN** 来源只有可浏览页面、目录或未配准栅格
+- **THEN** 不生成虚假 bound，不将其计为独立几何证据
+
 ### Requirement: Separate source outlines from review drafts
 
 工具 SHALL 使用官网 `lm30` 二维瓦片图面为参考，分别保留官网 bound、OSM 原始点与初始定位、人工修正草稿。地图来源未知的地理基准和精度 MUST 明示，初始质心平移不得标为已通过配准。

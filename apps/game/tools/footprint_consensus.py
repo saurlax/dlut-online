@@ -1,0 +1,187 @@
+"""Normalize acquired outlines and fit review candidates; never writes game data.
+
+Run after footprint_review.py, using its cached, source-validated review cases.
+Outputs stay in .local/footprint-consensus. No networking or dependencies.
+"""
+import argparse
+import hashlib
+import html
+import json
+import math
+from pathlib import Path
+import xml.etree.ElementTree as ET
+
+from footprint_review import ROOT, CONFIG, build_case, restore_drafts, simple_polygon
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def ring(points):
+    points = [list(p) for p in points]
+    if points and points[0] == points[-1]:
+        points.pop()
+    return points
+
+
+def area(points):
+    return abs(sum(a[0]*b[1]-b[0]*a[1]
+                   for a,b in zip(points, points[1:]+points[:1]))) / 2
+
+
+def distance(p, a, b):
+    dx,dy=b[0]-a[0],b[1]-a[1]
+    t=max(0,min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy))) if dx or dy else 0
+    return math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy)
+
+
+def boundary_error(a,b):
+    # Densify edges: vertices alone miss large concavities / bowed boundaries.
+    def directed(x,y):
+        return max(min(distance([p[0]+(q[0]-p[0])*i/20,p[1]+(q[1]-p[1])*i/20],u,v)
+                       for u,v in zip(y,y[1:]+y[:1]))
+                   for p,q in zip(x,x[1:]+x[:1]) for i in range(21))
+    return max(directed(a,b),directed(b,a))
+
+
+def rectangle_fit(points):
+    """Try edge orientations; do not presume every building is rectangular."""
+    if not simple_polygon(points):
+        raise ValueError('Cannot fit invalid or sub-square-meter review geometry')
+    best=None
+    for a,b in zip(points,points[1:]+points[:1]):
+        angle=math.atan2(b[1]-a[1],b[0]-a[0]); c,s=math.cos(angle),math.sin(angle)
+        uv=[(x*c+y*s,-x*s+y*c) for x,y in points]
+        lo=[min(p[i] for p in uv) for i in (0,1)]
+        hi=[max(p[i] for p in uv) for i in (0,1)]
+        box=[[u*c-v*s,u*s+v*c] for u,v in
+             [(lo[0],lo[1]),(hi[0],lo[1]),(hi[0],hi[1]),(lo[0],hi[1])]]
+        score=boundary_error(points,box)
+        if best is None or score<best[0]: best=(score,box)
+    error,box=best
+    change=abs(area(box)/area(points)-1)
+    accepted=error<=0.6 and change<=0.03
+    return (box if accepted else points), {"method":"edge-oriented enclosing rectangle",
+        "accepted":accepted,"sampled_boundary_error_m":error,"relative_area_change":change,
+        "limits":{"boundary_m":0.6,"area_fraction":0.03},
+        "meaning":"shape regularization only; not positional accuracy"}
+
+
+def record(campus, source, identity, points, frame, path, **props):
+    points=ring(points)
+    # Check in a translated plane to avoid longitude cancellation.
+    local=[[(x-points[0][0])*111320*math.cos(math.radians(points[0][1])),
+            (y-points[0][1])*111320] for x,y in points] if points else []
+    return {"campus":campus,"source":source,"id":identity,"frame":frame,
+            "archive":str(path.relative_to(ROOT)).replace('\\','/'),"sha256":digest(path),
+            "source_url":('https://www.openstreetmap.org/'+identity if source=='osm' else
+                          'http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound'),
+            "license":('© OpenStreetMap contributors, ODbL 1.0' if source=='osm' else 'unconfirmed; local reference only'),
+            "bound":{"geoType":"polygon","points":[{"x":x,"y":y} for x,y in points]},
+            "valid":len(points)>=3 and simple_polygon(local),**props}
+
+
+def run(output):
+    output.mkdir(parents=True,exist_ok=True)
+    records=[]; inventory=[]
+    for campus in ('lingshui','eda','panjin'):
+        path=ROOT/f'references/{campus}/mapping/bounds.json'
+        data=json.loads(path.read_text(encoding='utf-8'))
+        for i,f in enumerate(data['result']):
+            if f.get('bound',{}).get('geoType')!='polygon': continue
+            records.append(record(campus,'official',str(f['id']),
+                [[p['x'],p['y']] for p in f['bound']['points']], 'official-numeric-datum-unverified',path,
+                part_index=i,name=f.get('name'),role='interaction-outline-not-ground-truth'))
+        path=ROOT/f'.local/osm-audit/{campus}.osm'
+        xml=ET.parse(path).getroot()
+        nodes={n.get('id'):[float(n.get('lon')),float(n.get('lat'))] for n in xml.findall('node')}
+        relations=[]; skipped=[]
+        for w in xml.findall('way'):
+            tags={t.get('k'):t.get('v') for t in w.findall('tag')}
+            if tags.get('building','no')=='no': continue
+            refs=[n.get('ref') for n in w.findall('nd')]
+            if len(refs)<4 or refs[0]!=refs[-1] or any(n not in nodes for n in refs):
+                skipped.append(w.get('id')); continue
+            records.append(record(campus,'osm','way/'+w.get('id'),[nodes[n] for n in refs],
+                'EPSG:4326',path,tags=tags,version=w.get('version'),timestamp=w.get('timestamp'),
+                role='building-candidate',scope='downloaded-bbox-not-campus-filtered'))
+        for r in xml.findall('relation'):
+            tags={t.get('k'):t.get('v') for t in r.findall('tag')}
+            if tags.get('building','no')!='no':
+                relations.append({'id':r.get('id'),'tags':tags,'members':[dict(m.attrib) for m in r.findall('member')]})
+        inventory.append({'campus':campus,'unconverted_building_relations':relations,'unclosed_or_incomplete_ways':skipped})
+    config=json.loads(CONFIG.read_text(encoding='utf-8'))
+    cases=[build_case(c,config,ROOT/'.local/footprint-review/cache',False) for c in config['cases']]
+    draft_path=ROOT/'.local/footprint-review/draft.json'
+    if draft_path.exists(): restore_drafts(json.loads(draft_path.read_text(encoding='utf-8')),cases)
+    results=[]; panels=[]
+    for c in cases:
+        scale=c['meters_per_pixel_approx']
+        convert=lambda pts:[[x*scale,y*scale] for x,y in pts]
+        osm=convert(c['osm']['points']); official=convert(c['official']['points'])
+        draft=c.get('draft',{})
+        edited=bool(draft) and draft['points']!=c['osm']['points']
+        base=convert(draft['points']) if edited else osm
+        candidate,fit=rectangle_fit(base)
+        origin=c['pixel_origin']; zoom=c['zoom']; n=256*2**zoom
+        pixels=[[x/scale,y/scale] for x,y in candidate]
+        ll=[[ (x+origin[0])/n*360-180,
+              math.degrees(math.atan(math.sinh(math.pi*(1-2*(y+origin[1])/n))))] for x,y in pixels]
+        result={'campus':c['campus'],'official_id':c['official_id'],'osm_way_id':c['osm_way_id'],
+            'name':c['name'],'status':'unverified-candidate','absolute_accuracy_m':None,
+            'frame':'official-lm30-numeric-datum-unverified','pixel_origin':origin,'zoom':zoom,
+            'selected_basis':'manual-map-draft' if edited else 'osm-provisional-placement',
+            'notes':draft.get('notes',''),'fit':fit,'initial_alignment':c['initial_alignment'],
+            'official_vs_osm_sampled_boundary_m':boundary_error(official,osm),
+            'official_vs_osm_area_ratio':area(official)/area(osm),
+            'bound':{'geoType':'polygon','points':[{'x':x,'y':y} for x,y in ll]},
+            'pixel_points':pixels,'source_hashes':{'official':c['official']['sha256'],'osm':c['osm']['source']['sha256']},
+            'excluded_from_fitting':['official interaction silhouette'],
+            'independent_verified_ground_sources':0}
+        results.append(result)
+        all_points=official+osm+candidate
+        low=[min(p[i] for p in all_points)-5 for i in (0,1)]
+        high=[max(p[i] for p in all_points)+5 for i in (0,1)]
+        shapes=''.join('<polygon fill="none" stroke="'+color+'" stroke-width="0.7" points="'+
+                       ' '.join(f'{x},{y}' for x,y in pts)+'"/>'
+                       for color,pts in [('#e05252',official),('#3284df',osm),('#c79400',candidate)])
+        panels.append('<article><h2>'+html.escape(c['name'])+'</h2><svg viewBox="'+
+                      f'{low[0]} {low[1]} {high[0]-low[0]} {high[1]-low[1]}'+
+                      '">'+shapes+'</svg><p>'+('矩形约束通过' if fit['accepted'] else '拒绝矩形约束，保留原形')+
+                      f'；约束误差 {fit["sampled_boundary_error_m"]:.2f} 米</p></article>')
+    def save(name,data): (output/name).write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
+    save('normalized-bounds.json',{'schema_version':1,'records':records,'inventory':inventory})
+    save('candidate-bounds.json',{'schema_version':1,'status':'review-only','results':results})
+    save('sources.json',{'available':['official polygons','OSM bbox XML','six cached map-plane cases'],
+        'not_convertible_yet':{'amap':'page only; no acquired geometry','baidu':'page/POI only; no acquired geometry',
+        'campus_pdf':'raster map, no validated ground control or vector extraction',
+        'overture':'no local campus extract','east_asia':'catalog only; no local campus extract',
+        'CBF':'restricted files'},'limitations':['OSM bbox is not campus boundary',
+        'building relations preserved for review, not flattened or counted as independent outlines',
+        'No cross-source average: no independent verified ground footprints or control points']})
+    rows=['# 建筑轮廓整理与候选拟合','',
+          '全部结果仅用于复核，绝对位置精度未知。官网 bound 不参与几何平均；来源未验证不能通过拟合变为测绘数据。','',
+          '| 样本 | 候选依据 | 矩形约束 | 约束边界误差（米） | 官网/OSM 面积比 |',
+          '|---|---|---|---:|---:|']
+    for r in results:
+        f=r['fit']; rows.append(f"| {r['name']} | {r['selected_basis']} | {'通过' if f['accepted'] else '拒绝，保留原形'} | {f['sampled_boundary_error_m']:.2f} | {r['official_vs_osm_area_ratio']:.2f} |")
+    rows+=['','误差是图面候选与矩形约束的差异，不是相对真实建筑的误差。',
+           '厚民楼草稿只覆盖可见主矩形体，附属部分尚未确认。信息楼身份及拆分待核实。',
+           f'标准化记录：{len(records)}；无效几何：{sum(not r["valid"] for r in records)}。',
+           'OSM relation、未闭合轮廓及未取得几何的来源见 inventory 与 sources.json。']
+    (output/'report.md').write_text('\n'.join(rows),encoding='utf-8')
+    (output/'comparison.html').write_text('<!doctype html><meta charset="utf-8"><title>轮廓候选拟合</title>'
+        '<style>body{font:16px sans-serif;margin:30px;background:#fafafa}main{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}'
+        'article{background:white;border:1px solid #ddd;padding:16px}svg{width:100%;height:320px}h2{font-size:18px}</style>'
+        '<h1>轮廓候选拟合</h1><p>红：官网交互轮廓　蓝：OSM 初始定位　黄：候选。位置未验证，非测绘精度。</p>'
+        '<p>只对已配对的六个样本做保守形状约束，不平均斜视轮廓。不把图面拟合残差当作真实误差。</p><main>'+
+        ''.join(panels)+'</main>',encoding='utf-8')
+    print(json.dumps({'records':len(records),'invalid':sum(not r['valid'] for r in records),
+                      'samples':len(results),'rectangle_fits':sum(r['fit']['accepted'] for r in results)}))
+
+
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',type=Path,default=ROOT/'.local/footprint-consensus')
+    run(parser.parse_args().output)
