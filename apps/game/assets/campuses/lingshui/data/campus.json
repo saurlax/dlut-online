@@ -31195,33 +31195,25 @@
       "kind": "building",
       "points": [
         [
-          -393.26128068484235,
-          37.64767540379876
+          -393.29962337099187,
+          -33.729960000265464
         ],
         [
-          -410.5517251984274,
-          20.820675403798703
+          -388.2648751856768,
+          13.369531999624371
         ],
         [
-          -414.1966081000534,
-          -24.46332459620129
+          -369.512387965516,
+          11.365771999937522
         ],
         [
-          -395.5692065386018,
-          -27.065324596201265
-        ],
-        [
-          -375.74884330317485,
-          -8.10032459620129
-        ],
-        [
-          -372.2289563858296,
-          33.8086754037987
+          -374.52980483280254,
+          -35.733719999952314
         ]
       ],
       "height": 22.5,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 22.5,
@@ -31230,8 +31222,8 @@
         "frame_color": "c7c8b8",
         "trim_color": "c5c2ab",
         "edges": [
-          4,
-          5
+          2,
+          1
         ],
         "photos": [
           "77512-0.jpg",
@@ -31240,7 +31232,7 @@
         "note": "77512-0楼号27清晰、六层可见；左前景五层楼的顶层浅色窗带、分层线和墙角排水管与23号77510-0相符，23号图右后方可见六层端部阳台楼，与官方地图23号在27号南侧的邻接位置互证，配准南端边5及东侧边4。先补东侧靠南四列上五层、最南两列底窗共22窗，局部灰色墙脚、浅色顶层及中间两列窗的竖框。南端补原图可见的五层阳台及浅色后墙带。放大27号原图可见红色下部削角装饰面和上部矩形嵌板，不解释为贯通圆孔。六层22.5米、近端四列占东侧40%、窗宽1.45米/高2.05米、阳台顶标高3.5/7/10.5/14/17.5米、宽3.6米/深1.4米/厚0.2米、栏高1.05米、下部红面0.48×0.32米及削角0.07米、墙带范围39%—61%均为照片比例估计。两楼同框未提供实测拍摄位姿，方位采用上述邻接和外观对应；不以相似外观复制其他楼的整面窗格。仅五块楼板新增结构碰撞，栏板和窗框为装饰；中段入口、其余窗列、阳台后方门窗、板底附属件、背面与室内仍待核实。",
         "panels": [
           {
-            "edge": 4,
+            "edge": 2,
             "rows": [
               {
                 "bottom": 4.6,
@@ -31249,8 +31241,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 8.1,
@@ -31259,8 +31251,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 11.6,
@@ -31269,8 +31261,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 15.1,
@@ -31279,8 +31271,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 18.6,
@@ -31289,8 +31281,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 1.1,
@@ -31299,13 +31291,13 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.8,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.19999999999999996
               }
             ],
             "accents": [
               {
-                "fraction": 0.6,
+                "fraction": 0.4,
                 "y": 10.75,
                 "size": [
                   0.22,
@@ -31314,7 +31306,7 @@
                 ]
               },
               {
-                "fraction": 0.8,
+                "fraction": 0.19999999999999996,
                 "y": 10.75,
                 "size": [
                   0.22,
@@ -31323,19 +31315,19 @@
                 ]
               },
               {
-                "fraction": 0.7,
+                "fraction": 0.30000000000000004,
                 "y": 3.5,
                 "size": [
-                  8.411313050885692,
+                  9.473199308468866,
                   0.22,
                   0.25
                 ]
               },
               {
-                "fraction": 0.7,
+                "fraction": 0.30000000000000004,
                 "y": 18.0,
                 "size": [
-                  8.411313050885692,
+                  9.473199308468866,
                   0.22,
                   0.25
                 ]
@@ -31343,22 +31335,22 @@
             ],
             "cladding": [
               {
-                "from": 0.6,
-                "to": 1.0,
+                "from": 0.0,
+                "to": 0.4,
                 "bottom": 18.0,
                 "top": 22.5,
                 "color": "c4c4b7"
               },
               {
-                "from": 0.6,
-                "to": 0.8,
+                "from": 0.19999999999999996,
+                "to": 0.4,
                 "bottom": 0.0,
                 "top": 3.5,
                 "color": "95998d"
               },
               {
-                "from": 0.8,
-                "to": 1.0,
+                "from": 0.0,
+                "to": 0.19999999999999996,
                 "bottom": 0.0,
                 "top": 0.8,
                 "color": "95998d"
@@ -31366,7 +31358,7 @@
             ]
           },
           {
-            "edge": 5,
+            "edge": 1,
             "rows": [],
             "cladding": [
               {
@@ -31475,91 +31467,284 @@
               }
             ]
           }
-        ]
+        ],
+        "osm_registration": {
+          "osm_id": "way/1384296475",
+          "osm_version": 1,
+          "expected_vertices": 4,
+          "reviewed": "2026-09-16",
+          "profile": {
+            "edges": [
+              2,
+              1
+            ],
+            "panels": [
+              {
+                "edge": 2,
+                "rows": [
+                  {
+                    "bottom": 4.6,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 8.1,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 15.1,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 18.6,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 1.1,
+                    "count": 2,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.19999999999999996
+                  }
+                ],
+                "accents": [
+                  {
+                    "fraction": 0.4,
+                    "y": 10.75,
+                    "size": [
+                      0.22,
+                      14.5,
+                      0.25
+                    ]
+                  },
+                  {
+                    "fraction": 0.19999999999999996,
+                    "y": 10.75,
+                    "size": [
+                      0.22,
+                      14.5,
+                      0.25
+                    ]
+                  },
+                  {
+                    "fraction": 0.30000000000000004,
+                    "y": 3.5,
+                    "size": [
+                      9.473199308468866,
+                      0.22,
+                      0.25
+                    ]
+                  },
+                  {
+                    "fraction": 0.30000000000000004,
+                    "y": 18.0,
+                    "size": [
+                      9.473199308468866,
+                      0.22,
+                      0.25
+                    ]
+                  }
+                ],
+                "cladding": [
+                  {
+                    "from": 0.0,
+                    "to": 0.4,
+                    "bottom": 18.0,
+                    "top": 22.5,
+                    "color": "c4c4b7"
+                  },
+                  {
+                    "from": 0.19999999999999996,
+                    "to": 0.4,
+                    "bottom": 0.0,
+                    "top": 3.5,
+                    "color": "95998d"
+                  },
+                  {
+                    "from": 0.0,
+                    "to": 0.19999999999999996,
+                    "bottom": 0.0,
+                    "top": 0.8,
+                    "color": "95998d"
+                  }
+                ]
+              },
+              {
+                "edge": 1,
+                "rows": [],
+                "cladding": [
+                  {
+                    "from": 0.39,
+                    "to": 0.61,
+                    "bottom": 0.0,
+                    "top": 21.0,
+                    "color": "c7c8bc"
+                  }
+                ],
+                "balconies": [
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 3.5
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 7.0
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 10.5
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 14.0
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 17.5
+                  }
+                ]
+              }
+            ]
+          },
+          "basis": "77512-0楼号与南端五层阳台可辨，结合既有相邻宿舍照片登记；东长面旧4→新2、南端旧5→新1反向，窗段、分色与阳台同步定位。水平长饰带按墙长同比调整，固定窗宽、阳台尺寸及高度仍为原估计。",
+          "limits": "仅照片已登记的东面南段和南端阳台；不把未配准中段入口、门廊、北/西立面或内部补入。"
+        }
       },
       "render_polygons": [
         [
           [
-            -393.26128068484235,
-            37.64767540379876
+            -393.29962337099187,
+            -33.729960000265464
           ],
           [
-            -410.5517251984274,
-            20.820675403798703
+            -388.2648751856768,
+            13.369531999624371
           ],
           [
-            -414.1966081000534,
-            -24.46332459620129
+            -369.512387965516,
+            11.365771999937522
           ],
           [
-            -395.5692065386018,
-            -27.065324596201265
-          ],
-          [
-            -375.74884330317485,
-            -8.10032459620129
-          ],
-          [
-            -372.2289563858296,
-            33.8086754037987
+            -374.52980483280254,
+            -35.733719999952314
           ]
         ]
       ],
-      "reference_points": [
-        [
-          -549.318,
-          -312.506
-        ],
-        [
-          -566.609,
-          -329.333
-        ],
-        [
-          -570.254,
-          -374.617
-        ],
-        [
-          -551.626,
-          -377.219
-        ],
-        [
-          -531.805,
-          -358.254
-        ],
-        [
-          -528.285,
-          -316.345
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -549.318,
-            -312.506
-          ],
-          [
-            -566.609,
-            -329.333
-          ],
-          [
-            -570.254,
-            -374.617
-          ],
-          [
-            -551.626,
-            -377.219
-          ],
-          [
-            -531.805,
-            -358.254
-          ],
-          [
-            -528.285,
-            -316.345
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1384296475",
+      "osm_version": 1,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77513",
@@ -32236,33 +32421,25 @@
       "kind": "building",
       "points": [
         [
-          -305.17311067465164,
-          -21.15732459620125
+          -306.29640170278935,
+          -91.3714559999579
         ],
         [
-          -321.4765868963559,
-          -37.994324596201295
+          -301.34831011254295,
+          -45.25158000044229
         ],
         [
-          -326.0784390536353,
-          -84.54732459620129
+          -283.193753398849,
+          -46.810060000462386
         ],
         [
-          -306.3490728947648,
-          -87.03632459620127
-        ],
-        [
-          -288.7206392396848,
-          -70.52632459620128
-        ],
-        [
-          -285.2727500092851,
-          -22.831324596201284
+          -288.2718298829299,
+          -93.35295200017555
         ]
       ],
       "height": 22.5,
       "height_source": "photo-proportion-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "footprint_source": "osm",
       "facade": {
         "style": "photo_panels",
         "height": 22.5,
@@ -32271,8 +32448,8 @@
         "frame_color": "c7c8b8",
         "trim_color": "c5c2ab",
         "edges": [
-          4,
-          5
+          2,
+          1
         ],
         "photos": [
           "77514-0.jpg",
@@ -32281,7 +32458,7 @@
         "note": "77514-0楼号29清晰，左侧同框窗带和竖框与77513-0的28号长面互证，按28号位于西侧配准29号东侧边4。靠南四列上五层窗和最南两列底窗共22窗，补局部浅色顶层、两列窗外的浅色竖框及分段灰色底层。六层22.5米、四列占边4南侧40%、窗宽1.45米/高2.05米、竖框范围0.6—0.8及标高3.5—18米、框宽0.22米和挑深0.25米均为照片比例估计。底层框内墙面不推断窗洞；入口平台、其余窗段、屋顶和室内待核实。 南端边5按本楼0号原图补五层外挑阳台和后方浅色墙带。放大原图可见下部红色削角多边形装饰面及上部红色矩形嵌板，不以白色板上的贯通孔代替；29号此前镂空解释已纠正。各阳台正面下部四块、侧面两块红色装饰面，正面上部两块、侧面一块矩形嵌板，数量按可辨节奏表达。楼板顶标高3.5/7/10.5/14/17.5米、宽3.6米、深1.4米、厚0.2米、栏高1.05米、下部红面0.48×0.32米及削角0.07米、上部红面高0.30米、墙带范围39%—61%为照片比例估计。仅五块楼板带结构碰撞，栏板和立柱为装饰；阳台后方遮挡门窗、板底附属件、入口与室内通行未建。",
         "panels": [
           {
-            "edge": 4,
+            "edge": 2,
             "rows": [
               {
                 "bottom": 4.6,
@@ -32290,8 +32467,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 8.1,
@@ -32300,8 +32477,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 11.6,
@@ -32310,8 +32487,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 15.1,
@@ -32320,8 +32497,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 18.6,
@@ -32330,8 +32507,8 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.6,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.4
               },
               {
                 "bottom": 1.1,
@@ -32340,13 +32517,13 @@
                 "height": 2.05,
                 "divisions": 2,
                 "transom": true,
-                "from": 0.8,
-                "to": 1.0
+                "from": 0.0,
+                "to": 0.19999999999999996
               }
             ],
             "accents": [
               {
-                "fraction": 0.6,
+                "fraction": 0.4,
                 "y": 10.75,
                 "size": [
                   0.22,
@@ -32355,7 +32532,7 @@
                 ]
               },
               {
-                "fraction": 0.8,
+                "fraction": 0.19999999999999996,
                 "y": 10.75,
                 "size": [
                   0.22,
@@ -32364,19 +32541,19 @@
                 ]
               },
               {
-                "fraction": 0.7,
+                "fraction": 0.30000000000000004,
                 "y": 3.5,
                 "size": [
-                  9.563894037472393,
+                  9.363820563648455,
                   0.22,
                   0.25
                 ]
               },
               {
-                "fraction": 0.7,
+                "fraction": 0.30000000000000004,
                 "y": 18.0,
                 "size": [
-                  9.563894037472393,
+                  9.363820563648455,
                   0.22,
                   0.25
                 ]
@@ -32384,22 +32561,22 @@
             ],
             "cladding": [
               {
-                "from": 0.6,
-                "to": 1.0,
+                "from": 0.0,
+                "to": 0.4,
                 "bottom": 18.0,
                 "top": 22.5,
                 "color": "c4c4b7"
               },
               {
-                "from": 0.6,
-                "to": 0.8,
+                "from": 0.19999999999999996,
+                "to": 0.4,
                 "bottom": 0.0,
                 "top": 3.5,
                 "color": "95998d"
               },
               {
-                "from": 0.8,
-                "to": 1.0,
+                "from": 0.0,
+                "to": 0.19999999999999996,
                 "bottom": 0.0,
                 "top": 0.8,
                 "color": "95998d"
@@ -32407,7 +32584,7 @@
             ]
           },
           {
-            "edge": 5,
+            "edge": 1,
             "rows": [],
             "cladding": [
               {
@@ -32516,91 +32693,284 @@
               }
             ]
           }
-        ]
+        ],
+        "osm_registration": {
+          "osm_id": "way/1383545737",
+          "osm_version": 2,
+          "expected_vertices": 4,
+          "reviewed": "2026-09-16",
+          "profile": {
+            "edges": [
+              2,
+              1
+            ],
+            "panels": [
+              {
+                "edge": 2,
+                "rows": [
+                  {
+                    "bottom": 4.6,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 8.1,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 11.6,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 15.1,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 18.6,
+                    "count": 4,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.4
+                  },
+                  {
+                    "bottom": 1.1,
+                    "count": 2,
+                    "width": 1.45,
+                    "height": 2.05,
+                    "divisions": 2,
+                    "transom": true,
+                    "from": 0.0,
+                    "to": 0.19999999999999996
+                  }
+                ],
+                "accents": [
+                  {
+                    "fraction": 0.4,
+                    "y": 10.75,
+                    "size": [
+                      0.22,
+                      14.5,
+                      0.25
+                    ]
+                  },
+                  {
+                    "fraction": 0.19999999999999996,
+                    "y": 10.75,
+                    "size": [
+                      0.22,
+                      14.5,
+                      0.25
+                    ]
+                  },
+                  {
+                    "fraction": 0.30000000000000004,
+                    "y": 3.5,
+                    "size": [
+                      9.363820563648455,
+                      0.22,
+                      0.25
+                    ]
+                  },
+                  {
+                    "fraction": 0.30000000000000004,
+                    "y": 18.0,
+                    "size": [
+                      9.363820563648455,
+                      0.22,
+                      0.25
+                    ]
+                  }
+                ],
+                "cladding": [
+                  {
+                    "from": 0.0,
+                    "to": 0.4,
+                    "bottom": 18.0,
+                    "top": 22.5,
+                    "color": "c4c4b7"
+                  },
+                  {
+                    "from": 0.19999999999999996,
+                    "to": 0.4,
+                    "bottom": 0.0,
+                    "top": 3.5,
+                    "color": "95998d"
+                  },
+                  {
+                    "from": 0.0,
+                    "to": 0.19999999999999996,
+                    "bottom": 0.0,
+                    "top": 0.8,
+                    "color": "95998d"
+                  }
+                ]
+              },
+              {
+                "edge": 1,
+                "rows": [],
+                "cladding": [
+                  {
+                    "from": 0.39,
+                    "to": 0.61,
+                    "bottom": 0.0,
+                    "top": 21.0,
+                    "color": "c7c8bc"
+                  }
+                ],
+                "balconies": [
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 3.5
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 7.0
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 10.5
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 14.0
+                  },
+                  {
+                    "fraction": 0.5,
+                    "width": 3.6,
+                    "depth": 1.4,
+                    "thickness": 0.2,
+                    "rail_height": 1.05,
+                    "panel_bottom": 0.12,
+                    "panel_height": 0.52,
+                    "front_insets": 4,
+                    "side_insets": 2,
+                    "inset_width": 0.48,
+                    "inset_height": 0.32,
+                    "inset_bevel": 0.07,
+                    "upper_bottom": 0.7,
+                    "upper_height": 0.3,
+                    "color": "c7c8bc",
+                    "inset_color": "ad6551",
+                    "top": 17.5
+                  }
+                ]
+              }
+            ]
+          },
+          "basis": "77514-0楼号与南端五层阳台可辨，结合既有相邻宿舍照片登记；东长面旧4→新2、南端旧5→新1反向，窗段、分色与阳台同步定位。水平长饰带按墙长同比调整，固定窗宽、阳台尺寸及高度仍为原估计。",
+          "limits": "仅照片已登记的东面南段和南端阳台；不把未配准中段入口、门廊、北/西立面或内部补入。"
+        }
       },
       "render_polygons": [
         [
           [
-            -305.17311067465164,
-            -21.15732459620125
+            -306.29640170278935,
+            -91.3714559999579
           ],
           [
-            -321.4765868963559,
-            -37.994324596201295
+            -301.34831011254295,
+            -45.25158000044229
           ],
           [
-            -326.0784390536353,
-            -84.54732459620129
+            -283.193753398849,
+            -46.810060000462386
           ],
           [
-            -306.3490728947648,
-            -87.03632459620127
-          ],
-          [
-            -288.7206392396848,
-            -70.52632459620128
-          ],
-          [
-            -285.2727500092851,
-            -22.831324596201284
+            -288.2718298829299,
+            -93.35295200017555
           ]
         ]
       ],
-      "reference_points": [
-        [
-          -461.227,
-          -371.311
-        ],
-        [
-          -477.531,
-          -388.148
-        ],
-        [
-          -482.133,
-          -434.701
-        ],
-        [
-          -462.403,
-          -437.19
-        ],
-        [
-          -444.774,
-          -420.68
-        ],
-        [
-          -441.326,
-          -372.985
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -461.227,
-            -371.311
-          ],
-          [
-            -477.531,
-            -388.148
-          ],
-          [
-            -482.133,
-            -434.701
-          ],
-          [
-            -462.403,
-            -437.19
-          ],
-          [
-            -444.774,
-            -420.68
-          ],
-          [
-            -441.326,
-            -372.985
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "osm_id": "way/1383545737",
+      "osm_version": 2,
+      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "holes": []
     },
     {
       "id": "77515",
