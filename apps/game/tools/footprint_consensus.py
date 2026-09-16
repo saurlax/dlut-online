@@ -82,6 +82,32 @@ def record(campus, source, identity, points, frame, path, **props):
             "valid":len(points)>=3 and simple_polygon(local),**props}
 
 
+def relation_rings(relation, ways, nodes):
+    """Join member ways by node identity, preserving outer/inner roles."""
+    result=[]
+    for role in ('outer','inner'):
+        pending=[]
+        for m in relation.findall('member'):
+            if m.get('type')!='way' or (m.get('role') or 'outer')!=role:
+                continue
+            refs=ways.get(m.get('ref'))
+            if not refs or any(n not in nodes for n in refs): return None
+            pending.append(list(refs))
+        while pending:
+            chain=pending.pop(0)
+            while chain[-1]!=chain[0]:
+                matches=[(i,False) for i,p in enumerate(pending) if p[0]==chain[-1]]
+                matches += [(i,True) for i,p in enumerate(pending) if p[-1]==chain[-1]]
+                if len(matches)!=1: return None
+                i,reverse=matches[0]; part=pending.pop(i)
+                chain.extend((part[::-1] if reverse else part)[1:])
+            if len(chain)<4: return None
+            result.append({'role':role,'points':[{'x':nodes[n][0],'y':nodes[n][1]} for n in chain[:-1]]})
+    if any(m.get('type')!='way' or m.get('role','') not in ('','outer','inner') for m in relation.findall('member')):
+        return None
+    return result if any(r['role']=='outer' for r in result) else None
+
+
 def run(output):
     output.mkdir(parents=True,exist_ok=True)
     records=[]; inventory=[]
@@ -97,6 +123,7 @@ def run(output):
         xml=ET.parse(path).getroot()
         nodes={n.get('id'):[float(n.get('lon')),float(n.get('lat'))] for n in xml.findall('node')}
         relations=[]; skipped=[]
+        ways={w.get('id'):[n.get('ref') for n in w.findall('nd')] for w in xml.findall('way')}
         for w in xml.findall('way'):
             tags={t.get('k'):t.get('v') for t in w.findall('tag')}
             if tags.get('building','no')=='no': continue
@@ -109,7 +136,19 @@ def run(output):
         for r in xml.findall('relation'):
             tags={t.get('k'):t.get('v') for t in r.findall('tag')}
             if tags.get('building','no')!='no':
-                relations.append({'id':r.get('id'),'tags':tags,'members':[dict(m.attrib) for m in r.findall('member')]})
+                rings=relation_rings(r,ways,nodes) if tags.get('type')=='multipolygon' else None
+                if rings:
+                    rec=record(campus,'osm','relation/'+r.get('id'),
+                        [[p['x'],p['y']] for p in rings[0]['points']], 'EPSG:4326',path,tags=tags,
+                        version=r.get('version'),scope='downloaded-bbox-not-campus-filtered',
+                        members=[dict(m.attrib) for m in r.findall('member')])
+                    rec['valid']=all(record(campus,'osm','relation/'+r.get('id'),
+                        [[p['x'],p['y']] for p in item['points']], 'EPSG:4326',path)['valid'] for item in rings)
+                    rec['validation']='individual rings only; nesting and overlaps unverified'
+                    rec['bound']={'geoType':'multiRing','rings':rings}
+                    records.append(rec)
+                else:
+                    relations.append({'id':r.get('id'),'tags':tags,'members':[dict(m.attrib) for m in r.findall('member')]})
         inventory.append({'campus':campus,'unconverted_building_relations':relations,'unclosed_or_incomplete_ways':skipped})
     config=json.loads(CONFIG.read_text(encoding='utf-8'))
     cases=[build_case(c,config,ROOT/'.local/footprint-review/cache',False) for c in config['cases']]
@@ -155,13 +194,16 @@ def run(output):
                       f'；约束误差 {fit["sampled_boundary_error_m"]:.2f} 米</p></article>')
     def save(name,data): (output/name).write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
     save('normalized-bounds.json',{'schema_version':1,'records':records,'inventory':inventory})
+    template=Path(__file__).with_name('footprint_catalog.html').read_text(encoding='utf-8')
+    payload=json.dumps({'records':records,'inventory':inventory},ensure_ascii=False).replace('<','\\u003c')
+    (output/'catalog.html').write_text(template.replace('__DATA__',payload),encoding='utf-8')
     save('candidate-bounds.json',{'schema_version':1,'status':'review-only','results':results})
     save('sources.json',{'available':['official polygons','OSM bbox XML','six cached map-plane cases'],
         'not_convertible_yet':{'amap':'page only; no acquired geometry','baidu':'page/POI only; no acquired geometry',
         'campus_pdf':'raster map, no validated ground control or vector extraction',
         'overture':'no local campus extract','east_asia':'catalog only; no local campus extract',
         'CBF':'restricted files'},'limitations':['OSM bbox is not campus boundary',
-        'building relations preserved for review, not flattened or counted as independent outlines',
+        'complete multipolygon relations assembled as role-tagged rings; relation/member duplication retained',
         'No cross-source average: no independent verified ground footprints or control points']})
     rows=['# 建筑轮廓整理与候选拟合','',
           '全部结果仅用于复核，绝对位置精度未知。官网 bound 不参与几何平均；来源未验证不能通过拟合变为测绘数据。','',
@@ -172,14 +214,14 @@ def run(output):
     rows+=['','误差是图面候选与矩形约束的差异，不是相对真实建筑的误差。',
            '厚民楼草稿只覆盖可见主矩形体，附属部分尚未确认。信息楼身份及拆分待核实。',
            f'标准化记录：{len(records)}；无效几何：{sum(not r["valid"] for r in records)}。',
-           'OSM relation、未闭合轮廓及未取得几何的来源见 inventory 与 sources.json。']
+           '完整 OSM relation 已转换为 multiRing；未组环关系、未闭合轮廓及未取得几何的来源见 inventory 与 sources.json。']
     (output/'report.md').write_text('\n'.join(rows),encoding='utf-8')
     (output/'comparison.html').write_text('<!doctype html><meta charset="utf-8"><title>轮廓候选拟合</title>'
         '<style>body{font:16px sans-serif;margin:30px;background:#fafafa}main{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}'
         'article{background:white;border:1px solid #ddd;padding:16px}svg{width:100%;height:320px}h2{font-size:18px}'
         'table{border-collapse:collapse;width:100%;background:white}td,th{padding:9px;border:1px solid #ddd;text-align:left}'
         'label{display:inline-block;margin:12px 20px 12px 0}@media(max-width:900px){main{grid-template-columns:1fr}}</style>'
-        '<h1>2 份几何来源，6 个建筑样本</h1><p>黄框是派生候选，不是第三份独立来源；之前列出的其他来源尚未取得可绘制的建筑轮廓。</p>'
+        '<h1>2 份几何来源，6 个建筑样本</h1><p><a href="catalog.html">查看三校区全部已下载 bound（含 OSM 多环关系）</a></p><p>黄框是派生候选，不是第三份独立来源；之前列出的其他来源尚未取得可绘制的建筑轮廓。</p>'
         '<table><tr><th>来源</th><th>已取得资料</th><th>当前可绘制 bound</th></tr>'
         '<tr><td>官网校园地图</td><td>交互多边形、二维瓦片</td><td>红色实线，不能直接认作基底</td></tr>'
         '<tr><td>OSM</td><td>建筑多边形</td><td>蓝色粗实线，初始位置未验证</td></tr>'
