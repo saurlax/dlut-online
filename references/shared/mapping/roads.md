@@ -31,6 +31,8 @@ godot --headless --path apps/game --script res://tools/server_export/build_world
 仅在主动更新来源时给 Python 工具加 `--fetch`，可用 `--campus lingshui` 限定校区。默认完全离线。完整校园生成器也调用同一道路构建器。道路专项检查为 `res://tests/road_geometry.gd`；客户端/服务端应一起重新导出。
 
 ## 照片支持的局部道路细节
+凌水北部覆盖另见 `references/lingshui/mapping/road-coverage.json`：针对 OSM 大学边界以外但模型已保留的北山建筑，显式选取完整归档中的邻接道路。生成器保留每条中心线、版本及归档摘要，只按世界外边界裁剪这些已选道路，不因大学边界遗漏整段；不会自动纳入整个周边路网。三条桥梁、台阶记录仍保留为不支持的高程要素，不伪造地面连接，也不声称北部网络完整可通行。道路宽度仍为类型估计。
+
 
 2026-09-16 复用植被工作区归档的官方新闻网照片。开发区使用 `eda-lake:2`、`eda-lake:4` 和 `eda-slope:6`，凌水使用 `ls-library:5`、`ls-library:6`；完整下载 URL、对象 ID、读取时间、SHA-256 在各校区 `vegetation/photos/` 对应 JSON 中。本轮新增用途为离线确认道路材质、可见铺装布局和室外台阶，原图不随游戏分发。
 

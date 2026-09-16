@@ -59,6 +59,43 @@
       ]
     },
     {
+      "osm_way_id": 33126274,
+      "osm_version": 6,
+      "part": 0,
+      "name": "",
+      "highway": "residential",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          283.0811,
+          -675.1781
+        ],
+        [
+          292.284,
+          -642.6838
+        ],
+        [
+          302.8995,
+          -605.2357
+        ],
+        [
+          317.1978,
+          -554.8077
+        ],
+        [
+          323.1251,
+          -535.0707
+        ],
+        [
+          326.0541,
+          -525.3191
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
       "osm_way_id": 33126275,
       "osm_version": 2,
       "part": 0,
@@ -520,6 +557,115 @@
           -546.225
         ]
       ]
+    },
+    {
+      "osm_way_id": 33126632,
+      "osm_version": 7,
+      "part": 0,
+      "name": "",
+      "highway": "residential",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          480.9528,
+          -689.6942
+        ],
+        [
+          469.5574,
+          -691.62
+        ],
+        [
+          460.5711,
+          -689.7832
+        ],
+        [
+          423.7248,
+          -669.4006
+        ],
+        [
+          390.7086,
+          -657.8789
+        ],
+        [
+          350.2573,
+          -655.1739
+        ],
+        [
+          283.0811,
+          -675.1781
+        ],
+        [
+          240.2381,
+          -675.512
+        ],
+        [
+          212.4993,
+          -673.6085
+        ],
+        [
+          206.6067,
+          -673.2077
+        ],
+        [
+          178.8679,
+          -666.3615
+        ],
+        [
+          156.1898,
+          -656.3316
+        ],
+        [
+          132.6106,
+          -643.5187
+        ],
+        [
+          125.7561,
+          -638.3868
+        ],
+        [
+          106.9602,
+          -624.3382
+        ],
+        [
+          98.5892,
+          -616.39
+        ],
+        [
+          92.5926,
+          -606.0817
+        ],
+        [
+          86.8299,
+          -582.6266
+        ],
+        [
+          86.4573,
+          -563.1901
+        ],
+        [
+          90.7988,
+          -534.503
+        ],
+        [
+          90.6688,
+          -532.9
+        ],
+        [
+          90.0275,
+          -524.7402
+        ],
+        [
+          95.0103,
+          -494.2942
+        ],
+        [
+          96.6741,
+          -484.1529
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
     },
     {
       "osm_way_id": 33174897,
@@ -1565,6 +1711,67 @@
           -65.0443
         ]
       ]
+    },
+    {
+      "osm_way_id": 277568550,
+      "osm_version": 3,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          738.7561,
+          -605.5474
+        ],
+        [
+          730.3505,
+          -705.8579
+        ],
+        [
+          728.132,
+          -712.5037
+        ],
+        [
+          722.7593,
+          -717.0789
+        ],
+        [
+          647.5327,
+          -679.9982
+        ],
+        [
+          579.4727,
+          -684.1505
+        ],
+        [
+          567.4014,
+          -677.5826
+        ],
+        [
+          566.3442,
+          -666.8736
+        ],
+        [
+          587.4624,
+          -596.0963
+        ],
+        [
+          589.5681,
+          -588.5934
+        ],
+        [
+          590.7553,
+          -582.7825
+        ],
+        [
+          591.9945,
+          -574.8787
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
     },
     {
       "osm_way_id": 544330657,
@@ -2687,6 +2894,27 @@
       ]
     },
     {
+      "osm_way_id": 759760165,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "footway",
+      "width": 2,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          311.9291,
+          -553.2938
+        ],
+        [
+          317.1978,
+          -554.8077
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
       "osm_way_id": 894092909,
       "osm_version": 1,
       "part": 0,
@@ -2939,6 +3167,158 @@
       ]
     },
     {
+      "osm_way_id": 925497408,
+      "osm_version": 2,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          578.0515,
+          -737.2835
+        ],
+        [
+          584.7067,
+          -763.6441
+        ],
+        [
+          590.8507,
+          -767.1952
+        ],
+        [
+          666.8832,
+          -754.8721
+        ],
+        [
+          675.6875,
+          -746.5453
+        ],
+        [
+          662.195,
+          -729.0681
+        ],
+        [
+          653.0874,
+          -724.849
+        ],
+        [
+          578.0515,
+          -737.2835
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 925497409,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "residential",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          285.2995,
+          -566.4184
+        ],
+        [
+          129.1963,
+          -539.5346
+        ],
+        [
+          90.6688,
+          -532.9
+        ],
+        [
+          72.7049,
+          -529.8053
+        ],
+        [
+          26.6382,
+          -520.3653
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 925497412,
+      "osm_version": 2,
+      "part": 0,
+      "name": "",
+      "highway": "residential",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          129.1963,
+          -539.5346
+        ],
+        [
+          127.3245,
+          -548.9968
+        ],
+        [
+          128.2171,
+          -561.9879
+        ],
+        [
+          133.5551,
+          -575.914
+        ],
+        [
+          137.9573,
+          -587.38
+        ],
+        [
+          142.6801,
+          -606.2821
+        ],
+        [
+          158.9195,
+          -617.5032
+        ],
+        [
+          206.754,
+          -639.0547
+        ],
+        [
+          236.8758,
+          -642.8841
+        ],
+        [
+          292.284,
+          -642.6838
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 925497413,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "residential",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          125.7561,
+          -638.3868
+        ],
+        [
+          142.6801,
+          -606.2821
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
       "osm_way_id": 934162263,
       "osm_version": 1,
       "part": 0,
@@ -2972,6 +3352,72 @@
           -109.4721
         ]
       ]
+    },
+    {
+      "osm_way_id": 975430416,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          578.0515,
+          -737.2835
+        ],
+        [
+          564.2991,
+          -742.5267
+        ],
+        [
+          489.5404,
+          -732.775
+        ],
+        [
+          492.8161,
+          -690.8297
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 975430417,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          480.9528,
+          -689.6942
+        ],
+        [
+          492.8161,
+          -690.8297
+        ],
+        [
+          563.2159,
+          -697.5645
+        ],
+        [
+          567.8173,
+          -703.253
+        ],
+        [
+          574.6285,
+          -722.6672
+        ],
+        [
+          578.0515,
+          -737.2835
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
     },
     {
       "osm_way_id": 1102377758,
@@ -3263,19 +3709,305 @@
           -166.9577
         ]
       ]
+    },
+    {
+      "osm_way_id": 1530491266,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          485.4242,
+          -584.174
+        ],
+        [
+          494.9651,
+          -585.443
+        ],
+        [
+          498.856,
+          -585.9551
+        ],
+        [
+          500.2945,
+          -586.1443
+        ],
+        [
+          505.8232,
+          -584.3075
+        ],
+        [
+          510.3207,
+          -581.9587
+        ],
+        [
+          564.5417,
+          -590.3411
+        ],
+        [
+          579.3773,
+          -592.3894
+        ],
+        [
+          584.854,
+          -593.4692
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 1530491267,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          588.1816,
+          -582.4596
+        ],
+        [
+          586.8211,
+          -587.4579
+        ],
+        [
+          584.854,
+          -593.4692
+        ],
+        [
+          583.8575,
+          -596.998
+        ],
+        [
+          570.0098,
+          -641.4481
+        ],
+        [
+          565.105,
+          -657.1776
+        ],
+        [
+          560.1829,
+          -672.9628
+        ],
+        [
+          557.8172,
+          -673.9313
+        ],
+        [
+          493.18,
+          -661.7306
+        ],
+        [
+          490.199,
+          -661.174
+        ],
+        [
+          482.2006,
+          -660.2055
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 1530491268,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          493.18,
+          -661.7306
+        ],
+        [
+          494.5839,
+          -642.9843
+        ],
+        [
+          495.8317,
+          -626.3531
+        ],
+        [
+          498.856,
+          -585.9551
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 1530491269,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          495.8317,
+          -626.3531
+        ],
+        [
+          570.0098,
+          -641.4481
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 1530491270,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          494.5839,
+          -642.9843
+        ],
+        [
+          565.105,
+          -657.1776
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 1530491274,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "residential",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          98.5892,
+          -616.39
+        ],
+        [
+          96.8994,
+          -638.8989
+        ],
+        [
+          107.2722,
+          -672.896
+        ],
+        [
+          114.1354,
+          -678.9963
+        ],
+        [
+          127.2465,
+          -686.1653
+        ],
+        [
+          145.3924,
+          -695.0153
+        ],
+        [
+          172.386,
+          -704.0099
+        ],
+        [
+          208.5304,
+          -713.1604
+        ],
+        [
+          231.1738,
+          -716.3442
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 1530491276,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "residential",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          302.8995,
+          -605.2357
+        ],
+        [
+          133.5551,
+          -575.914
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
+    },
+    {
+      "osm_way_id": 1530494293,
+      "osm_version": 1,
+      "part": 0,
+      "name": "燕南街",
+      "highway": "tertiary",
+      "width": 7,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          486.8368,
+          -557.5907
+        ],
+        [
+          486.1695,
+          -566.4852
+        ],
+        [
+          485.4242,
+          -584.174
+        ],
+        [
+          482.2006,
+          -660.2055
+        ],
+        [
+          480.9528,
+          -689.6942
+        ],
+        [
+          474.6875,
+          -745.8885
+        ],
+        [
+          470.112,
+          -769.5997
+        ],
+        [
+          458.3354,
+          -815.0405
+        ],
+        [
+          446.1515,
+          -839.8203
+        ]
+      ],
+      "archive": "references/lingshui/mapping/osm-world.osm.gz",
+      "coverage": "explicit north-campus extension"
     }
   ],
   "excluded": [
-    {
-      "osm_way_id": 31305886,
-      "tags": {
-        "bridge": "yes",
-        "highway": "footway",
-        "layer": "1",
-        "name": "大工桥"
-      },
-      "reason": "unsupported area, steps, construction or non-ground-level way"
-    },
     {
       "osm_way_id": 176050688,
       "tags": {
@@ -3343,6 +4075,43 @@
         "tunnel": "yes"
       },
       "reason": "unsupported area, steps, construction or non-ground-level way"
+    },
+    {
+      "osm_way_id": 759760164,
+      "osm_version": 1,
+      "tags": {
+        "highway": "steps",
+        "incline": "down"
+      },
+      "reason": "north coverage: unsupported stairs or non-ground-level way",
+      "archive": "references/lingshui/mapping/osm-world.osm.gz"
+    },
+    {
+      "osm_way_id": 31305886,
+      "osm_version": 4,
+      "tags": {
+        "bridge": "yes",
+        "highway": "footway",
+        "layer": "1",
+        "name": "大工桥"
+      },
+      "reason": "north coverage: unsupported stairs or non-ground-level way",
+      "archive": "references/lingshui/mapping/osm-world.osm.gz"
+    },
+    {
+      "osm_way_id": 1530491275,
+      "osm_version": 1,
+      "tags": {
+        "highway": "steps",
+        "incline": "up"
+      },
+      "reason": "north coverage: unsupported stairs or non-ground-level way",
+      "archive": "references/lingshui/mapping/osm-world.osm.gz"
     }
-  ]
+  ],
+  "additional_coverage": {
+    "source": "references/lingshui/mapping/road-coverage.json",
+    "archive": "references/lingshui/mapping/osm-world.osm.gz",
+    "sha256_uncompressed": "30d4be89d3c4ca21f6600c685dad013d65c18a58cc1fcbe41805848557a7ea66"
+  }
 }

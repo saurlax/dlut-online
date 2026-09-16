@@ -138,6 +138,32 @@ def build(campus, fetch=False):
                           'name': tags.get('name', ''), 'highway': tags['highway'], 'width': road_width,
                           'width_basis': basis, 'points': points})
     assert roads, f'No usable OSM roads for {campus}'
+    coverage_path = refs / 'road-coverage.json'
+    coverage = None
+    if coverage_path.exists() and manifest.get('geographic_crs') == 'EPSG:4326':
+        coverage = read(coverage_path)
+        assert coverage['archive'] == osm_world.frame(campus)['archive']
+        world_source, nodes, ways, _ = osm_world.archive(campus)
+        for way_id in coverage['way_ids']:
+            way = ways[way_id]
+            tags = osm_world.tags(way)
+            roads = [r for r in roads if r['osm_way_id'] != int(way_id)]
+            excluded = [r for r in excluded if r['osm_way_id'] != int(way_id)]
+            if (tags.get('highway') not in WIDTHS or tags.get('area')=='yes'
+                    or tags.get('indoor','no')!='no' or tags.get('bridge','no')!='no'
+                    or tags.get('tunnel','no')!='no' or tags.get('layer','0')!='0'):
+                excluded.append({'osm_way_id':int(way_id),'osm_version':int(way.get('version')),
+                                 'tags':tags,'reason':'north coverage: unsupported stairs or non-ground-level way',
+                                 'archive':coverage['archive']})
+                continue
+            points = [osm_world.local(campus,*p) for p in osm_world.way_coordinates(way,nodes)]
+            road_width, basis = width(tags)
+            for part, path in enumerate(clipped_parts(points,[frame])):
+                roads.append({'osm_way_id':int(way_id),'osm_version':int(way.get('version')),
+                              'part':part,'name':tags.get('name',''),'highway':tags['highway'],
+                              'width':road_width,'width_basis':basis,'points':path,
+                              'archive':coverage['archive'],'coverage':'explicit north-campus extension'})
+        roads.sort(key=lambda r:(r['osm_way_id'],r['part']))
     if fetch:
         used = {boundary['id']} | {r['osm_way_id'] for r in roads + excluded}
         source['response']['elements'] = [e for e in elements if e['id'] in used]
@@ -148,6 +174,10 @@ def build(campus, fetch=False):
               'archive': str(archive.relative_to(ROOT)).replace('\\','/'),
               'alignment': str(align_path.relative_to(ROOT)).replace('\\','/'),
               'boundary_osm_way_id': boundary['id'], 'roads': roads, 'excluded': excluded}
+    if coverage:
+        output['additional_coverage']={'source':str(coverage_path.relative_to(ROOT)).replace('\\','/'),
+                                       'archive':coverage['archive'],
+                                       'sha256_uncompressed':world_source['sha256_uncompressed']}
     (data_dir/'osm_roads.json').write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(campus, len(roads), 'road parts,', len(excluded), 'excluded')
 
