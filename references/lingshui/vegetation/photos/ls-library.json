@@ -1,0 +1,26 @@
+[
+  {
+    "file": "references/lingshui/vegetation/photos/ls-library-5.jpg",
+    "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=Wnl-HDM7L8n7nfLg7rRMzVRL7QRU4GLYMRMfL7UaUllYUmC0gihFp2hmCIa0nkyZMky4MSyPL4WRUl-YL4LbU87Yozn7U87aMRvaMzUYnzAFUmARLmUaMzAFLlrknRfVgtXaQ4Oeo4xNp2PjQdAZ6sv0qIbtpYyPLmNYg47PM4-PMkbw62M8c&oid=1819948287&tid=1292&nid=117214&e=.jpg",
+    "source_page": "https://news.dlut.edu.cn/info/1292/117214.htm",
+    "object_id": "ls-library:5",
+    "retrieved": "2026-09-16",
+    "original_sha256": "038fc91dea18fe2c259acc7c1912c0f58f1e0c6fa5c1b28388131cc9ea865dc3",
+    "sha256": "ae7a47b1f062c49ec17f036c55677a5638a3c123155618d87b09614513bbff5e",
+    "processing": "max 1600x1200 JPEG quality 82",
+    "usage": "offline vegetation reference",
+    "license": "Not confirmed; no runtime redistribution"
+  },
+  {
+    "file": "references/lingshui/vegetation/photos/ls-library-6.jpg",
+    "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=WUlUH4nRlPnRQkogRC4nmQRMz-YUNCLaozMkL8UiMmvbUzU0gihFp2hmCIa0okysLkyYn1hfU4WfM7lZUzUaUz-bnmVRLmC8nlLPL4l8MmrFM8nfnznVLmrFL4GinzNsgtXaQ4Oeo4xNp2PjQdAZ6sv0qIbtpYyPLmNYg47PM4-PMkbw62M8c&oid=1819948287&tid=1292&nid=117214&e=.jpg",
+    "source_page": "https://news.dlut.edu.cn/info/1292/117214.htm",
+    "object_id": "ls-library:6",
+    "retrieved": "2026-09-16",
+    "original_sha256": "dfaa8bf018364399d6104db4ec9069d644352076a4a4b0eca7dad2644440dc93",
+    "sha256": "f8668688f3be68562e49d0909d4340e9fbbd57a535b4ac3f81e5a56f45fce899",
+    "processing": "max 1600x1200 JPEG quality 82",
+    "usage": "offline vegetation reference",
+    "license": "Not confirmed; no runtime redistribution"
+  }
+]

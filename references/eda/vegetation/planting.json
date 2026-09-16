@@ -1,0 +1,639 @@
+{
+  "schema_version": 1,
+  "campus": "eda",
+  "retrieved": "2026-09-16",
+  "coordinates": "Campus local metres, X east Z south. Hand-aligned to official feature outlines.",
+  "source_pages": [
+    "https://news.dlut.edu.cn/info/1022/143385.htm",
+    "https://news.dlut.edu.cn/info/1292/147345.htm"
+  ],
+  "precision": "Zones and all positions/heights/counts approximate. Photographs confirm presence, not surveyed placement.",
+  "zones": [
+    {
+      "id": "teaching-south-conifers",
+      "seed": 16094371,
+      "polygon": [
+        [
+          40,
+          -82
+        ],
+        [
+          95,
+          -82
+        ],
+        [
+          95,
+          -27
+        ],
+        [
+          40,
+          -27
+        ]
+      ],
+      "photos": [
+        "photos/eda-slope-6.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "cedar",
+          "spacing": 9,
+          "height": [
+            5.8,
+            8.2
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "grass",
+          "spacing": 0.85,
+          "height": [
+            0.09,
+            0.16
+          ],
+          "clearance": 0.6,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "teaching-south-upright",
+      "seed": 16094285,
+      "polygon": [
+        [
+          102,
+          -86
+        ],
+        [
+          136,
+          -86
+        ],
+        [
+          136,
+          -32
+        ],
+        [
+          102,
+          -32
+        ]
+      ],
+      "photos": [
+        "photos/eda-slope-6.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "cypress",
+          "spacing": 4.4,
+          "height": [
+            4.5,
+            6.3
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "shrub",
+          "spacing": 5.8,
+          "height": [
+            0.65,
+            1.1
+          ],
+          "clearance": 1,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "teaching-south-cherry",
+      "seed": 16094167,
+      "polygon": [
+        [
+          143,
+          -70
+        ],
+        [
+          167,
+          -70
+        ],
+        [
+          167,
+          -26
+        ],
+        [
+          143,
+          -26
+        ]
+      ],
+      "photos": [
+        "photos/eda-slope-6.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "cherry",
+          "spacing": 6.5,
+          "height": [
+            3.2,
+            4.6
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "violet",
+          "spacing": 0.7,
+          "height": [
+            0.25,
+            0.38
+          ],
+          "clearance": 0.7,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": "Cherry and violet supported by 143385; foliage stage, no simultaneous spring blossom simulation."
+    },
+    {
+      "id": "library-west-hedge",
+      "seed": 16093833,
+      "polygon": [
+        [
+          87,
+          120
+        ],
+        [
+          92,
+          120
+        ],
+        [
+          92,
+          156
+        ],
+        [
+          87,
+          156
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77917-1.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "hedge",
+          "spacing": 0.85,
+          "height": [
+            0.7,
+            0.95
+          ],
+          "clearance": 0.7,
+          "jitter": 0
+        }
+      ],
+      "lawn": false,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "information-south-cypress",
+      "seed": 16094646,
+      "polygon": [
+        [
+          28,
+          318
+        ],
+        [
+          115,
+          318
+        ],
+        [
+          115,
+          326
+        ],
+        [
+          28,
+          326
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77914-1.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "cypress",
+          "spacing": 4.8,
+          "height": [
+            3.4,
+            5.2
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "grass",
+          "spacing": 0.85,
+          "height": [
+            0.1,
+            0.17
+          ],
+          "clearance": 0.6,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "residence5-side",
+      "seed": 16093491,
+      "polygon": [
+        [
+          519,
+          -172
+        ],
+        [
+          535,
+          -172
+        ],
+        [
+          535,
+          -138
+        ],
+        [
+          519,
+          -138
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77938-0.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "cedar",
+          "spacing": 8,
+          "height": [
+            5.5,
+            7.2
+          ],
+          "clearance": 2,
+          "jitter": 1
+        },
+        {
+          "kind": "cypress",
+          "spacing": 5,
+          "height": [
+            3.8,
+            5.5
+          ],
+          "clearance": 2,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "south-lake-willows",
+      "seed": 16093877,
+      "polygon": [
+        [
+          -122,
+          73
+        ],
+        [
+          -108,
+          73
+        ],
+        [
+          -108,
+          106
+        ],
+        [
+          -122,
+          106
+        ]
+      ],
+      "photos": [
+        "photos/eda-lake-2.jpg",
+        "photos/eda-lake-4.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "willow",
+          "spacing": 9,
+          "height": [
+            7,
+            9
+          ],
+          "clearance": 2,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": ""
+    },
+    {
+      "id": "library-north-lawn",
+      "seed": 9041,
+      "polygon": [
+        [
+          110,
+          82
+        ],
+        [
+          165,
+          82
+        ],
+        [
+          170,
+          109
+        ],
+        [
+          109,
+          105
+        ]
+      ],
+      "photos": [
+        "../imagery/panoramas/KFQ00-front.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "grass",
+          "spacing": 0.9,
+          "height": [
+            0.09,
+            0.17
+          ],
+          "clearance": 0.6
+        },
+        {
+          "kind": "broadleaf",
+          "spacing": 12,
+          "height": [
+            7,
+            10
+          ],
+          "clearance": 3
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate registration of visible lawn; no tree survey"
+    },
+    {
+      "id": "library-west-border-trees",
+      "seed": 9042,
+      "polygon": [
+        [
+          9,
+          109
+        ],
+        [
+          68,
+          109
+        ],
+        [
+          81,
+          139
+        ],
+        [
+          17,
+          139
+        ]
+      ],
+      "photos": [
+        "../imagery/panoramas/KFQ00-down.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "broadleaf",
+          "spacing": 9,
+          "height": [
+            7,
+            10
+          ],
+          "clearance": 3
+        },
+        {
+          "kind": "shrub",
+          "spacing": 4,
+          "height": [
+            0.7,
+            1.1
+          ],
+          "clearance": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Visible mixed border, botanical identity unknown"
+    },
+    {
+      "id": "jinping-hill-canopy",
+      "seed": 5401,
+      "polygon": [
+        [
+          -183.105,
+          -26.246
+        ],
+        [
+          -184.784,
+          -80.3
+        ],
+        [
+          -186.82,
+          -110.111
+        ],
+        [
+          -178.268,
+          -155.495
+        ],
+        [
+          -167.75,
+          -202.848
+        ],
+        [
+          -153.704,
+          -246.765
+        ],
+        [
+          -133.131,
+          -286.266
+        ],
+        [
+          -103.437,
+          -313.002
+        ],
+        [
+          -68.986,
+          -304.688
+        ],
+        [
+          -37.688,
+          -283.267
+        ],
+        [
+          -21.938,
+          -271.164
+        ],
+        [
+          -27.893,
+          -230.369
+        ],
+        [
+          -36.522,
+          -177.94
+        ],
+        [
+          -36.502,
+          -150.093
+        ],
+        [
+          -77.814,
+          -123.672
+        ],
+        [
+          -94.174,
+          -105.306
+        ],
+        [
+          -109.603,
+          -78.915
+        ],
+        [
+          -116.162,
+          -46.473
+        ],
+        [
+          -128.716,
+          -28.931
+        ],
+        [
+          -138.47,
+          -26.135
+        ],
+        [
+          -153.038,
+          -23.497
+        ]
+      ],
+      "photos": [
+        "photos/eda-lake-2.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "broadleaf",
+          "spacing": 10,
+          "height": [
+            7.5,
+            12
+          ],
+          "clearance": 4
+        }
+      ],
+      "lawn": false,
+      "precision": "Official hill footprint with visible continuous deciduous canopy; generic crown, unknown species; procedural infill is not a tree survey"
+    }
+  ],
+  "deferred_zones": [
+    {
+      "id": "residence3-front",
+      "seed": 16093621,
+      "polygon": [
+        [
+          422,
+          -171
+        ],
+        [
+          446,
+          -171
+        ],
+        [
+          446,
+          -156
+        ],
+        [
+          422,
+          -156
+        ]
+      ],
+      "photos": [
+        "../buildings/photos/77935-0.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "shrub",
+          "spacing": 4.2,
+          "height": [
+            0.75,
+            1.2
+          ],
+          "clearance": 1,
+          "jitter": 1
+        },
+        {
+          "kind": "grass",
+          "spacing": 0.85,
+          "height": [
+            0.1,
+            0.16
+          ],
+          "clearance": 0.6,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": "",
+      "reason": "Current official footprint/road exclusion leaves no safe planting candidate; defer accurate local registration."
+    },
+    {
+      "id": "north-lake-willows",
+      "seed": 16093869,
+      "polygon": [
+        [
+          -24,
+          -64
+        ],
+        [
+          -12,
+          -64
+        ],
+        [
+          -12,
+          -14
+        ],
+        [
+          -24,
+          -14
+        ]
+      ],
+      "photos": [
+        "photos/eda-lake-2.jpg",
+        "photos/eda-lake-4.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "willow",
+          "spacing": 10,
+          "height": [
+            7,
+            10
+          ],
+          "clearance": 2,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "precision": "Approximate photo-to-map placement; not surveyed",
+      "notes": "",
+      "reason": "Current official footprint/road exclusion leaves no safe planting candidate; defer accurate local registration."
+    }
+  ]
+}

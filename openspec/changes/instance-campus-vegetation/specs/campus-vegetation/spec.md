@@ -1,14 +1,14 @@
 ## ADDED Requirements
 
 ### Requirement: Separate vegetation distribution and geometry
-系统 SHALL 将植被分布数据、可复用树网格与校园建筑/地形分离，保留开发区既有 304 棵树的位置和高度。无依据的其他校区 SHALL NOT 复制该示意分布。
+系统 SHALL 将植被分布数据、可复用树网格与校园建筑/地形分离，按后续 campus-vegetation 变更中的各校区照片限定区域生成实例，不再保留无依据的全图示意点位。无依据的其他校区 SHALL NOT 复制示意分布。
 
 #### Scenario: Rebuild existing planting
 - **WHEN** 运行开发区模型生成器
-- **THEN** 从独立 JSON 读取原有实例，建筑与地面模型不含树冠或树干网格，生成独立植被场景
+- **THEN** 从独立的照片依据 JSON 确定性生成实例，建筑与地面模型不含树冠或树干网格，生成独立植被场景
 
 ### Requirement: Shared spatial instances
-植被 SHALL 使用共享树网格和材质，按 64 米空间块与树型生成 MultiMeshInstance3D，批次包围盒覆盖所有变换后的完整树冠，使用原生网格 LOD。
+植被 SHALL 使用共享树网格和材质，按 32 米空间块与形态、姿态生成 MultiMeshInstance3D，批次包围盒覆盖所有变换后的完整树冠，使用离线生成的近远两级原生网格及可见距离。
 
 #### Scenario: Trees cross cell boundaries
 - **WHEN** 树位于负坐标或树冠越过块边界
