@@ -1,23 +1,32 @@
 extends RefCounted
 
-# Small rectangular facing tiles observed on photo-registered exterior patches.
+# ImageGen surface approximation for photo-registered exterior patches only.
 # One repeat covers 0.4 m, with four columns and eight rows of tiles.
+# Dimensions are inherited estimates, not measured ceramic sizes.
+const ALBEDO_PATH := "res://assets/campuses/lingshui/textures/small_ceramic_tiles_albedo.png"
+
 func build(builder, color: String) -> StandardMaterial3D:
 	var key := "Photo tile " + color
 	if builder.materials.has(key):
 		return builder.materials[key]
 	var mat: StandardMaterial3D = builder.material(key,Color(color))
-	var texture_image := Image.create(256,256,false,Image.FORMAT_RGBA8)
-	for y in 256:
-		for x in 256:
-			var column := x / 64
-			var row := y / 32
-			var tone := 0.985 + float((column * 7 + row * 11) % 4) * 0.005
-			if x % 64 < 2 or y % 32 < 2:
-				tone = 0.84
-			texture_image.set_pixel(x,y,Color(tone,tone,tone,1.0))
-	texture_image.generate_mipmaps()
-	mat.albedo_texture = ImageTexture.create_from_image(texture_image)
+	mat.albedo_texture = load(ALBEDO_PATH)
+	mat.uv1_triplanar = false
+	mat.uv1_world_triplanar = false
 	mat.uv1_scale = Vector3.ONE * 2.5
+	mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
 	mat.roughness = 0.72
 	return mat
+
+# Use facade-local metres so rotated walls retain tile proportions, and pieces
+# cut around windows share the same grid even after static mesh merging.
+func map_piece(node: MeshInstance3D, middle: Vector2) -> void:
+	var arrays: Array = node.mesh.surface_get_arrays(0)
+	var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+	var uv := PackedVector2Array()
+	for vertex in vertices:
+		uv.append(Vector2(vertex.x + middle.x, -(vertex.y + middle.y)))
+	arrays[Mesh.ARRAY_TEX_UV] = uv
+	var mesh := ArrayMesh.new()
+	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	node.mesh = mesh

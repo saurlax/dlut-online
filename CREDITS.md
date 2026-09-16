@@ -68,6 +68,12 @@ DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格�
 
 DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与官方校园地图的同名建筑匹配，以估算地形预览的水平平移。所使用的 OSM 数据摘录及其转换记录载于两校区 `terrain/alignment.json`；该等数据库内容按 ODbL 1.0 提供，后续使用者须遵守其署名、共享及数据库分发条件。
 
+### 2.6 建筑表面贴图
+
+凌水校区 `small_ceramic_tiles_albedo.png` 为 2026-09-16 使用 OpenAI 内置 image_gen 生成的面砖颜色贴图。厚邦楼（77390）和校医院（77487）的归档照片仅用于识别材料类别，照片本身未作为运行时贴图打包。生成方式、完整提示词、照片索引及使用范围见 [纹理来源记录](references/lingshui/buildings/texture_sources.json)。生成的细节、砖尺寸与颜色不是实景扫描或测量结果，本项目不将该资产标记为 CC0。
+
+选材时核对了 [Poly Haven CC0 许可](https://polyhaven.com/license)与 [ambientCG CC0 许可](https://docs.ambientcg.com/license/)，以及 Poly Haven 的 [Long White Tiles](https://polyhaven.com/a/long_white_tiles) 和 [Beige Wall 001](https://polyhaven.com/a/beige_wall_001)。这些候选未接入或随包分发；记录它们用于后续选材，不代表校园实际使用相同材料。
+
 ## 三、天气数据与计算方法
 
 ### 3.1 Open-Meteo
