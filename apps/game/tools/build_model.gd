@@ -242,7 +242,7 @@ func build() -> void:
 		for point in feature.get("reference_points",feature.points):
 			points.append(Vector2(point[0],point[1]))
 		var kind: String = feature.kind
-		var height: float = feature.height
+		var height: float = feature.height if feature.height != null else 0.0
 		match kind:
 			"building":
 				if feature.id == "77943":
@@ -369,15 +369,10 @@ func build() -> void:
 				else:
 					sports(group,points,kind)
 			"gate":
-				polygon(group,points,0.16,material("Paving",Color("a9a79e")),"GateFootprint")
-				var bounds := Rect2(points[0],Vector2.ZERO)
-				for p in points:
-					bounds = bounds.expand(p)
-				var center := bounds.get_center()
-				var width := minf(bounds.size.x,32)
-				box(group,Vector3(center.x-width/2,2.5,center.y),Vector3(1.6,5,1.6),material("Gate",Color("d8cfba")))
-				box(group,Vector3(center.x+width/2,2.5,center.y),Vector3(1.6,5,1.6),materials.Gate)
-				box(group,Vector3(center.x,5,center.y),Vector3(width+2,1.2,1.8),materials.Gate)
+				# South-gate photos show a low plaque wall/retractable gate;
+				# the other two photo responses are empty. None supports the
+				# former uniform pillars, overhead beam or flat selection pad.
+				group.set_meta("geometry_status",feature.geometry_status)
 			_:
 				polygon(group,points,0.1,material("Paving" if kind=="plaza" else "Reserve",Color("a9a79e") if kind=="plaza" else Color("adba99")),"Ground")
 				if kind=="plaza" and feature.has("osm_id"):

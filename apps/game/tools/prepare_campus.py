@@ -146,6 +146,10 @@ for feature in features:
   feature['reference_points']=feature['points']
   feature['points']=[moved(p) for p in feature['points']]
   feature['geometry_status']='legacy-silhouette-pending-replacement'
+ if feature['kind']=='gate':
+  # The official selection bound does not establish a paved surface or arch.
+  # Keep identity/reference data while withholding unsupported runtime geometry.
+  feature.update(render_polygons=[],geometry_status='source-reference-only; gate geometry pending photo registration',height=None,height_source='unavailable')
 all_points=world['boundary']+[p for f in features for p in f['points']]
 low=[math.floor(min(p[i] for p in all_points)/10)*10-30 for i in (0,1)]
 high=[math.ceil(max(p[i] for p in all_points)/10)*10+30 for i in (0,1)]

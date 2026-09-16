@@ -59,6 +59,7 @@ def build(campus):
     for f in manifest['features']:
         if f['kind'] not in ['building','water','sports','track','basketball','tennis','gate']:continue
         polygons=f.get('render_polygons',[f['points']]);points=f['points']
+        if not polygons:continue
         level=statistics.median(feature_samples[f["id"]])-datum
         name='Feature_'+f['id']+('_'+str(f['part']) if 'part' in f else '')
         pads[name]=round(level,4)
