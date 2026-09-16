@@ -158,3 +158,5 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 - 大连理工大学[校园风光](https://www.dlut.edu.cn/xxgk/xyfg.htm)及其[凌水湖图集 92404](https://news.dlut.edu.cn/info/1020/92404.htm)、[图书馆阅读空间 117214](https://news.dlut.edu.cn/info/1292/117214.htm)、[景观建设 143385](https://news.dlut.edu.cn/info/1022/143385.htm)、[开发区双湖改造 147345](https://news.dlut.edu.cn/info/1292/147345.htm)、[盘锦春季绿化 3901](https://pjxqzwb.dlut.edu.cn/info/1071/3901.htm)，用于植被形态和可见区域参考。读取日期 2026-09-16。具体对象、原图 URL、压缩方法与哈希见各校区 references/vegetation 档案（实际路径为 references/<campus_id>/vegetation）。照片授权适用第 2.1 条，只作离线参考，不打入客户端。
 - 树皮：[Bark Brown 02](https://polyhaven.com/a/bark_brown_02)，作者 Rob Tuytel，由 Poly Haven 发布，采用 [CC0 1.0](https://polyhaven.com/license)。客户端使用 1K JPEG 漫反射与 OpenGL 法线贴图，三校区共享；只是通用树皮表面，不是对应校园树种扫描。[下载、SHA-256 与许可记录](references/shared/vegetation/textures.json)。
 - 折面叶片、枝干结构、草簇、花瓣、草坪细节与近远级别由本项目原生生成工具制作；不包含新闻照片像素，不将程序化种植数量写成实测数据。植物冠形、尺寸及材质效果属于参考支持的近似表达。
+
+开发区体育场地的图像配准及照片复核记录见 `references/eda/mapping/sports-refinements.json`，包含官网 lm30 瓦片与 KFQ00 后向全景高清11行16—18列的来源、读取时间和校验值。按照片、俯视图、OSM 的证据优先级处理；图像边界保持暂定，不是独立实测。原始照片仅作为离线参考。

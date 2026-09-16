@@ -341,12 +341,20 @@ func build() -> void:
 						for p: Array in surface.points: court.append(Vector2(p[0],p[1]))
 						var surface_id: String = surface.get("id",surface.get("osm_id",""))
 						assert(not surface_id.is_empty(),"Sports surface source identity missing")
-						polygon(group,court,0.3,material("Court surface",Color("638c91")),"Court_"+surface_id.replace("/","_"))
+						var surface_kind: String = surface.get("surface_type","court")
+						var surface_material := material("Running surface",Color("b77765")) if surface_kind=="running" else material("Field grass",Color("739578")) if surface_kind=="grass" else material("Court surface",Color("638c91"))
+						polygon(group,court,0.3,surface_material,"Court_"+surface_id.replace("/","_"),0.0 if surface_kind=="court" else 0.15,surface.get("holes",[]))
 						group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
+						if surface_kind!="court": continue
 						for i in court.size():
 							var a := court[i]
 							var b := court[(i+1)%court.size()]
 							line(group,Vector3(a.x,0.4,a.y),Vector3(b.x,0.4,b.y),0.12,material("Court markings",Color("f6eedc")))
+					for outline: Dictionary in feature.get("sports_lines",[]):
+						for i in outline.points.size():
+							var a: Array = outline.points[i]
+							var b: Array = outline.points[(i+1)%outline.points.size()]
+							line(group,Vector3(a[0],0.4,a[1]),Vector3(b[0],0.4,b[1]),0.12,material("Court markings",Color("f6eedc")))
 				else:
 					sports(group,points,kind)
 			"gate":
