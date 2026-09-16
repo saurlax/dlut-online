@@ -74,6 +74,9 @@ func build(builder: SceneTree, campus: String) -> void:
 
 func fit(node: Node3D) -> void:
 	if node is MeshInstance3D:
+		if node.get_meta("road_surface", false):
+			fit_road(node)
+			return
 		var st := SurfaceTool.new()
 		st.begin(Mesh.PRIMITIVE_TRIANGLES)
 		var faces: PackedVector3Array = node.mesh.get_faces()
@@ -110,3 +113,37 @@ func subdivide(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
 		return
 	for p in [a,b,c]:
 		st.add_vertex(p + Vector3.UP * (elevation(p.x,p.z) + 0.08))
+
+## Clip roads to the exact terrain triangles. Independent recursive subdivision
+## can interpolate different heights along the same seam and bury thin asphalt.
+func fit_road(node: MeshInstance3D) -> void:
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var faces := node.mesh.get_faces()
+	var origin := Vector2(data.origin_xz[0], data.origin_xz[1])
+	var step := float(data.step_m)
+	for i in range(0, faces.size(), 3):
+		var outline := PackedVector2Array()
+		for k in 3:
+			outline.append(Vector2(faces[i + k].x, faces[i + k].z))
+		var bounds := Rect2(outline[0], Vector2.ZERO)
+		for p in outline:
+			bounds = bounds.expand(p)
+		var first := Vector2i((bounds.position - origin) / step)
+		var last := Vector2i((bounds.end - origin) / step)
+		for row in range(maxi(0, first.y), mini(int(data.height) - 2, last.y) + 1):
+			for col in range(maxi(0, first.x), mini(int(data.width) - 2, last.x) + 1):
+				var a := origin + Vector2(col, row) * step
+				var b := a + Vector2(step, 0)
+				var c := a + Vector2(0, step)
+				var d := a + Vector2(step, step)
+				for cell in [PackedVector2Array([a, b, c]), PackedVector2Array([b, d, c])]:
+					for piece in Geometry2D.intersect_polygons(outline, cell):
+						var indices := Geometry2D.triangulate_polygon(piece)
+						for j in range(0, indices.size(), 3):
+							for k in [0, 2, 1]:
+								var p: Vector2 = piece[indices[j + k]]
+								st.add_vertex(Vector3(p.x, elevation(p.x, p.y) + faces[i].y + 0.08, p.y))
+	st.index()
+	st.generate_normals()
+	node.mesh = st.commit()

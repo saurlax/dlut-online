@@ -68,6 +68,8 @@ DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格�
 
 DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与官方校园地图的同名建筑匹配，以估算地形预览的水平平移。所使用的 OSM 数据摘录及其转换记录载于两校区 `terrain/alignment.json`；该等数据库内容按 ODbL 1.0 提供，后续使用者须遵守其署名、共享及数据库分发条件。
 
+三个校区的道路中心线和校园范围使用 2026-09-16 读取的 OSM 数据，原始查询、way/node ID 与版本归档于 `references/<campus_id>/mapping/osm-roads.json`；盘锦建筑配准控制点另存 `references/panjin/mapping/road-alignment.json`。离线裁剪、坐标转换及估计宽度生成的 `apps/game/assets/campuses/<campus_id>/data/osm_roads.json` 同样按 ODbL 1.0 提供，随仓库公开分发。道路模型及游戏地图含 © OpenStreetMap contributors 数据，转换方式及精度限制见 [道路数据依据](references/shared/mapping/roads.md)。
+
 ### 2.6 建筑表面贴图
 
 照片支持的建筑局部立面使用共享材质，逐栋照片 URL、对象 ID、读取日期、覆盖区段与暂缓理由记录于各校区的 texture_surfaces.json。累计覆盖凌水 70 栋、开发区 13 栋、盘锦 2 栋；不代表完整建筑复刻或全校覆盖。原始照片仅离线参考，不打入客户端。
