@@ -42,9 +42,6 @@ func material(key: String, color: Color) -> StandardMaterial3D:
 		mat.uv1_world_triplanar = true
 		mat.uv1_scale = Vector3.ONE * (0.35 if key in ["Academic", "Residence", "Gate"] else 0.8)
 		mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
-		if key == "Water":
-			mat.metallic = 0.35
-			mat.roughness = 0.23
 	materials[key] = mat
 	return mat
 
@@ -273,7 +270,7 @@ func build() -> void:
 				group.set_meta("facade_source","unavailable")
 				group.set_meta("interior_available",false)
 			"water":
-				polygon(group,points,0.2,material("Water",Color("526b6a")),"Lake")
+				polygon(group,points,0.2,preload("res://assets/water/campus_water.tres"),"Lake")
 			"hill":
 				polygon(group,points,0.12,material("Hill footprint",Color("7e9a7c")),"HillBase")
 				var center := Vector2.ZERO

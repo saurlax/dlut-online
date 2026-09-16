@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3]
+
+[ext_resource type="Shader" path="res://assets/water/campus_water.gdshader" id="1"]
+
+[sub_resource type="FastNoiseLite" id="RippleNoise"]
+seed = 417
+noise_type = 3
+frequency = 0.035
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="RippleNormal"]
+width = 256
+height = 256
+seamless = true
+as_normal_map = true
+bump_strength = 2.0
+noise = SubResource("RippleNoise")
+
+[resource]
+resource_name = "Water"
+shader = ExtResource("1")
+shader_parameter/ripple_normal = SubResource("RippleNormal")

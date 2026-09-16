@@ -20,6 +20,7 @@ var initialized := false
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	world.environment = world.environment.duplicate(true)
+	world.environment.ssr_enabled = RenderingServer.get_current_rendering_method() == "forward_plus"
 	_update(0.0)
 
 func _process(delta: float) -> void:

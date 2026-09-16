@@ -47,7 +47,7 @@ func build() -> void:
 				"road":
 					polygon(group,points,0.04,material("Lingshui asphalt",Color("656966")),"Road")
 				"water":
-					polygon(group,points,0.05,material("Water",Color("526b6a")),"Water")
+					polygon(group,points,0.05,preload("res://assets/water/campus_water.tres"),"Water")
 				"sports":
 					if feature.has("sports"):
 						sports_builder.build(self, group, points, feature.sports)
