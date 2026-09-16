@@ -8,7 +8,7 @@ func area(pieces: Array[PackedVector2Array]) -> float:
 	var total := 0.0
 	for piece in pieces:
 		for i in piece.size():
-			total += piece[i].cross(piece[(i+1)%piece.size()]) * 0.5
+			total += (piece[i]-piece[0]).cross(piece[(i+1)%piece.size()]-piece[0]) * 0.5
 	return total
 
 func covered(p: Vector2, pieces: Array[PackedVector2Array]) -> bool:
@@ -50,11 +50,31 @@ func _run() -> void:
 		var filename: String = "development_campus" if campus == "eda" else "lingshui_campus"
 		var model: Node3D = load("res://assets/campuses/%s/models/%s.tscn" % [campus, filename]).instantiate()
 		var count := 0
+		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/%s/data/campus.json" % campus))
 		for child in model.get_children():
 			if not child is MeshInstance3D or not child.get_meta("road_surface", false):
 				continue
 			var clearance := 0.12 if campus == "lingshui" else (0.22 if child.material_override.resource_name in ["Road", "Photo red path"] else (0.18 if child.material_override.resource_name == "Photo path edging" else 0.16))
 			var faces: PackedVector3Array = child.mesh.get_faces()
+			if child.has_meta("ground_surface_id"):
+				var forbidden: Array[PackedVector2Array] = []
+				for feature: Dictionary in manifest.features:
+					if feature.kind == "building":
+						var ring := PackedVector2Array()
+						for p: Array in feature.points: ring.append(Vector2(p[0],p[1]))
+						forbidden.append(ring)
+				for overlay: Dictionary in manifest.ground_overlays:
+					for hole: Array in overlay.holes:
+						var ring := PackedVector2Array()
+						for p: Array in hole: ring.append(Vector2(p[0],p[1]))
+						forbidden.append(ring)
+				for i in range(0,faces.size(),3):
+					var triangle := PackedVector2Array()
+					for k in 3: triangle.append(Vector2(faces[i+k].x,faces[i+k].z))
+					for ring in forbidden:
+						var intersection := Geometry2D.intersect_polygons(triangle,ring)
+						assert(absf(area(intersection)) < 0.0001,"Plaza intersects a building or fills the green island: area=%s triangle=%s ring=%s" % [area(intersection),triangle,ring])
+				print("PLAZA FOOTPRINT PASS: ",faces.size()/3," saved terrain-fitted triangles")
 			for i in range(0, faces.size(), 3):
 				for p in [(faces[i]+faces[i+1]+faces[i+2])/3.0, (faces[i]+faces[i+1])*0.5]:
 					assert(absf(p.y - terrain.elevation(p.x,p.z) - clearance) < 0.002, "Road must follow the same terrain plane")

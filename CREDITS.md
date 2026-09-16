@@ -81,6 +81,8 @@ DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与�
 
 信息楼局部凹口的图面修正登记于 `references/eda/mapping/footprint-refinements.json`，使用官网 `lm30` 瓦片及既有全景、外观照片辅助检查，保留 OSM 外角锚点和原轮廓。`prepare_osm_world.py --refine` 通过 `refine_osm_footprints.py` 重放局部修正；这是带来源记录的近似形状，不是经过测绘验证的正射建筑基底。官网图像只作为离线参考，来源权限仍适用第 2.1 条说明。
 
+综合楼南侧广场使用 [地表描绘记录](references/eda/mapping/ground-surfaces.json) 中的官网 `lm30` 瓦片，分别描绘铺装外缘与中央绿岛。`prepare_map_surfaces.py` 以归档 OSM 环线定位、已注册综合楼边长约束局部比例，保留源 ID、版本与瓦片摘要；该地表是图面支持的近似，非测绘地籍面。原始 OSM 道路线不改写，仅在生成模型时遮掉铺装范围内的重复沥青并保留绿岛。
+
 ### 2.6 建筑表面贴图
 
 

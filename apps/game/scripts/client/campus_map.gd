@@ -129,6 +129,14 @@ func _draw() -> void:
 	var scale_factor := radius/100.0 if round_map else map_scale
 	for polygon in road_polygons:
 		paint(polygon,origin,scale_factor,clip,Color("778177"))
+	for overlay: Dictionary in campus.manifest.get("ground_overlays", []):
+		var outer := PackedVector2Array()
+		for p: Array in overlay.outer: outer.append(Vector2(p[0],p[1]))
+		paint(outer,origin,scale_factor,clip,Color("778177"))
+		for hole: Array in overlay.holes:
+			var inner := PackedVector2Array()
+			for p: Array in hole: inner.append(Vector2(p[0],p[1]))
+			paint(inner,origin,scale_factor,clip,Color("293931"))
 	for feature in campus.manifest.features:
 		if feature.kind in ["reference", "road"]:
 			continue

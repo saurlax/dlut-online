@@ -3,6 +3,7 @@ import json, math, re
 from pathlib import Path
 import osm_world
 from prepare_osm_world import build as osm_data
+from prepare_map_surfaces import build as ground_surfaces
 ROOT=Path(__file__).resolve().parents[1]
 source=json.loads((ROOT.parents[1]/'references/eda/mapping/bounds.json').read_text(encoding='utf-8'))
 origin=(121.816326506145,39.084522240291)
@@ -69,6 +70,7 @@ data.update(origin=world['origin_lon_lat'],coordinate_frame=world['coordinate_fr
             legacy_reference_transform={'scale_x':scale,'offset_xz':offset,'basis':'references/eda/terrain/alignment.json','status':'temporary placement for retained legacy reference geometry; not OSM footprint validation'},
             spawn_xz=moved([12,387]),bounds=low+[high[i]-low[i] for i in (0,1)],
             migration_status='shared-frame-active; unreviewed shapes explicitly retained')
+data['ground_overlays']=ground_surfaces('eda')
 (ROOT/'assets/campuses/eda/data/campus.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 scene_path=ROOT/'scenes/campuses/eda.tscn'
 scene=scene_path.read_text(encoding='utf-8')
