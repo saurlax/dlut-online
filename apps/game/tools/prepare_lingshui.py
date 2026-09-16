@@ -96,7 +96,19 @@ def main():
     delta=osm_world.local('lingshui',*ORIGIN)
     offset=[delta[0]+alignment['offset_xz_m'][0]*scale,delta[1]+alignment['offset_xz_m'][1]]
     def moved(p):return [p[0]*scale+offset[0],p[1]+offset[1]]
+    from prepare_osm_world import build as world_data
+    water_spec=json.loads((REFERENCES/'mapping/water-identities.json').read_text(encoding='utf-8'))['objects']
+    water_records={r['osm_id']:r for r in world_data('lingshui')['areas'] if r['category']=='water'}
     for feature in features:
+        if feature['id'] in water_spec:
+            spec=water_spec[feature['id']];record=water_records[spec['osm_id']]
+            assert feature['kind']=='water' and feature['name']==spec['name']
+            assert record['version']==spec['osm_version'] and len(record['polygons'])==1
+            polygon=record['polygons'][0];ring=polygon['outer']
+            assert len(ring)==spec['expected_vertices'] and not polygon['holes']
+            feature.update(points=ring,render_polygons=[ring],osm_id=record['osm_id'],osm_version=record['version'],
+                           footprint_source='osm',geometry_status='osm-water-area; shoreline and level unverified')
+            continue
         match=matches.get(feature['id'])
         candidate=match['osm_candidates'][0] if match and len(match['osm_candidates'])==1 else None
         registration=feature['facade'].get('osm_registration')
