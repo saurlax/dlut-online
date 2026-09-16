@@ -53,6 +53,7 @@ selected={'77914':'way/1422474847','77921':'way/232559719','77917':'way/14224748
           '77927':'way/1422474849',
           '77938':'way/309375781',
           '77923':'way/1076344144',
+          '2304789':'way/1076344145',
           '77931':'way/309375779','77933':'way/309375778','77935':'way/309375777','77937':'way/309375780','77941':'way/375541046',
           '2304775':'way/232560296','39328846':'way/232560016',
           '2304759':'way/232560269','2304752':'way/1381450450'}
@@ -62,6 +63,12 @@ for feature in features:
   record=records[selected[feature['id']]]
   assert len(record['polygons'])==1 and not record['polygons'][0]['holes']
   feature.update(points=record['polygons'][0]['outer'],osm_id=record['osm_id'],osm_version=record['version'],footprint_source='osm',geometry_status='registered-source-outline')
+  if feature['id']=='2304789':
+   feature['sports_surfaces']=[]
+   for way_id in range(1076344146,1076344152):
+    court=records[f'way/{way_id}']
+    assert court['tags'].get('sport')=='tennis' and len(court['polygons'])==1 and not court['polygons'][0]['holes']
+    feature['sports_surfaces'].append(dict(osm_id=court['osm_id'],osm_version=court['version'],points=court['polygons'][0]['outer']))
   if 'refinement' in record:
    feature['footprint_refinement']=record['refinement']['id']
    feature['geometry_status']=record['refinement']['status']
