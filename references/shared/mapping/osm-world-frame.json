@@ -7,7 +7,7 @@
   "meter_per_degree": 111320,
   "longitude_scale": "111320 * cos(origin_latitude)",
   "old_official_shift_applied": false,
-  "status": "migration-in-progress; all three shared frames active with explicitly retained legacy shapes and coverage gaps",
+  "status": "migration-in-progress; all three shared frames active; legacy selection-bound geometry withheld; independent source and coverage gaps remain",
   "campuses": {
     "lingshui": {
       "origin_lon_lat": [

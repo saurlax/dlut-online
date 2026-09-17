@@ -48,7 +48,7 @@ func run() -> void:
 			for z in range(308,346,5):
 				var p := Vector2(x,z)
 				if not Geometry2D.is_point_in_polygon(p,outer) or Geometry2D.is_point_in_polygon(p,hole): continue
-				var y: float = terrain.elevation(p.x,p.y)+0.16
+				var y: float = terrain.elevation(p.x,p.y)+0.02
 				var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+40,p.y),Vector3(p.x,y-1,p.y)))
 				if hit.is_empty() or absf(hit.position.y-y)>0.03:
 					push_error("Comprehensive plaza obstructed/missing: server=%s at=%s hit=%s" % [server,p,hit])
@@ -80,7 +80,7 @@ func run() -> void:
 					for offset in [-2.5,0.0,2.5]:
 						var p: Vector2 = a.lerp(b,fraction)+side*offset
 						assert(not Geometry2D.is_point_in_polygon(p,island), "Road-width sample enters registered island")
-						var lift := 0.16 if Geometry2D.is_point_in_polygon(p,apron) else 0.22
+						var lift := 0.02
 						var y: float = terrain.elevation(p.x,p.y)+lift
 						var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+40,p.y),Vector3(p.x,y-1,p.y)))
 						if hit.is_empty() or absf(hit.position.y-y)>0.03:
@@ -93,14 +93,14 @@ func run() -> void:
 		var apron_samples := 0
 		for p: Vector2 in [Vector2(-321,244),Vector2(-319,255),Vector2(-311,262),Vector2(-302,233),Vector2(-294,242)]:
 			assert(Geometry2D.is_point_in_polygon(p,apron) and not Geometry2D.is_point_in_polygon(p,island))
-			var y: float = terrain.elevation(p.x,p.y)+0.16
+			var y: float = terrain.elevation(p.x,p.y)+0.02
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+40,p.y),Vector3(p.x,y-1,p.y)))
 			assert(not hit.is_empty() and absf(hit.position.y-y)<0.03,"North apron obstructed/missing")
 			apron_samples += 1
 		print("COMPREHENSIVE NORTH APRON PASS: server=",server," samples=",apron_samples)
 		var court_samples := 0
 		for p: Vector2 in [Vector2(-303,265),Vector2(-305,270),Vector2(-310,276),Vector2(-293,278),Vector2(-281,278)]:
-			var y: float = terrain.elevation(p.x,p.y)+0.16
+			var y: float = terrain.elevation(p.x,p.y)+0.02
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+40,p.y),Vector3(p.x,y-1,p.y)))
 			if hit.is_empty() or absf(hit.position.y-y)>0.03:
 				push_error("North court missing/obstructed: server=%s at=%s hit=%s" % [server,p,hit])
