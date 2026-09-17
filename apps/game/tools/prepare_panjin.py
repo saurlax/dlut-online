@@ -71,16 +71,15 @@ def main():
             feature['points']=[moved(p) for p in feature['points']]
             feature['render_polygons']=[[moved(p) for p in ring] for ring in feature['render_polygons']]
             feature['geometry_status']='legacy-silhouette-pending-replacement'
-    points = [p for f in features for p in f['points']]
+    osm_world.withhold_selection_bounds(features, 'panjin')
+    from prepare_osm_world import build as osm_geometry
+    points = [p for f in features for p in f['points']] + osm_geometry('panjin')['boundary']
     low = [math.floor(min(p[i] for p in points)/10)*10-30 for i in range(2)]
     high = [math.ceil(max(p[i] for p in points)/10)*10+30 for i in range(2)]
     output = CLIENT / 'assets/campuses/panjin/data'
     output.mkdir(parents=True, exist_ok=True)
     data = {'campus_id': 'panjin', 'origin': origin, 'units': 'approximate meters',
             'geographic_crs':'EPSG:4326','coordinate_frame':'references/shared/mapping/osm-world-frame.json',
-            'legacy_reference_transform':{'scale_x':scale,'offset_xz':offset,
-                'basis':'references/panjin/mapping/road-alignment.json',
-                'status':'temporary placement for retained references; not shape validation'},
             'spawn_xz':moved([12,-62]),'elevation_status':'no archived elevation; existing flat ground retained',
             'source': source['source'], 'retrieved': source['retrieved'],
             'bounds': low+[high[i]-low[i] for i in range(2)], 'features': features}
@@ -90,7 +89,7 @@ def main():
     scene=scene_path.read_text(encoding='utf-8')
     scene=re.sub(r'^spawn_position = Vector3\([^\n]+\)',f'spawn_position = Vector3({data["spawn_xz"][0]:.6f}, 0.35, {data["spawn_xz"][1]:.6f})',scene,flags=re.MULTILINE)
     scene_path.write_text(scene,encoding='utf-8')
-    print(f'Panjin: {len(features)} polygon parts, {len(parts)} IDs, {len(excluded)} excluded')
+    print(f'Panjin: {len(features)} source identity parts, {len(parts)} IDs, {len(excluded)} excluded')
 
 
 if __name__ == '__main__':

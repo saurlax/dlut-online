@@ -268,14 +268,13 @@ def main():
     reference_path = REFERENCES/'mapping/nonbuilding-references.json'
     if reference_path.exists():
         retain_nonbuilding_references(features, json.loads(reference_path.read_text(encoding='utf-8'))['references'])
-    all_points = [p for f in features for p in f['points']]
+    osm_world.withhold_selection_bounds(features, 'lingshui')
+    from prepare_osm_world import build as osm_geometry
+    all_points = [p for f in features for p in f['points']] + osm_geometry('lingshui')['boundary']
     low = [math.floor(min(p[i] for p in all_points)/10)*10-30 for i in range(2)]
     high = [math.ceil(max(p[i] for p in all_points)/10)*10+30 for i in range(2)]
     data = {'campus_id': 'lingshui', 'origin': origin, 'units': 'approximate meters',
             'geographic_crs':'EPSG:4326','coordinate_frame':'references/shared/mapping/osm-world-frame.json',
-            'legacy_reference_transform':{'scale_x':scale,'offset_xz':offset,
-                'basis':'references/lingshui/terrain/alignment.json',
-                'status':'temporary placement for retained references; not shape validation'},
             'spawn_xz':moved([96,28]),
             'source': source['source'], 'retrieved': source['retrieved'],
             'bounds': low + [high[i]-low[i] for i in range(2)],
@@ -287,7 +286,7 @@ def main():
     scene=scene_path.read_text(encoding='utf-8')
     scene=re.sub(r'^spawn_position = Vector3\([^\n]+\)',f'spawn_position = Vector3({data["spawn_xz"][0]:.6f}, 0.35, {data["spawn_xz"][1]:.6f})',scene,flags=re.MULTILINE)
     scene_path.write_text(scene,encoding='utf-8')
-    print(f'Lingshui: {len(features)} polygons, {len(parts)} IDs, {len(excluded)} surrounding polygons excluded')
+    print(f'Lingshui: {len(features)} source identity parts, {len(parts)} IDs, {len(excluded)} surrounding polygons excluded')
 
 
 if __name__ == '__main__':

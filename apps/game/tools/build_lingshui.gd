@@ -4,6 +4,9 @@ func build() -> void:
 	scene.name = "LingshuiCampus"
 	root.add_child(scene)
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
+	if not valid_ground_sources():
+		quit(1)
+		return
 	var bounds: Array = manifest.bounds
 	box(scene,Vector3(bounds[0]+bounds[2]/2.0,-1.0,bounds[1]+bounds[3]/2.0),Vector3(bounds[2],2.0,bounds[3]),material("Lingshui ground",Color("7c8069")),"CampusBase")
 	var facade_builder := preload("res://tools/build_lingshui_facades.gd").new()
@@ -15,6 +18,7 @@ func build() -> void:
 		var group := Node3D.new()
 		group.name = "Feature_"+feature.id+"_"+str(int(feature.part))
 		group.set_meta("source_id",feature.id)
+		group.set_meta("geometry_status",feature.get("geometry_status",""))
 		group.set_meta("source_part",int(feature.part))
 		group.set_meta("display_name",feature.name)
 		group.set_meta("height_is_approximate",true)
@@ -28,7 +32,7 @@ func build() -> void:
 			group.set_meta("shared_official_ids",feature.shared_official_ids)
 		scene.add_child(group)
 		group.owner = scene
-		for render_points in feature.get("reference_render_polygons",feature.render_polygons):
+		for render_points in feature.render_polygons:
 			var points := PackedVector2Array()
 			for p in render_points:
 				points.append(Vector2(p[0],p[1]))
@@ -75,14 +79,6 @@ func build() -> void:
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "lingshui"):
 		quit(1)
 		return
-	if manifest.has("legacy_reference_transform"):
-		var registration: Dictionary = manifest.legacy_reference_transform
-		var conversion := Transform3D(Basis.from_scale(Vector3(float(registration.scale_x),1,1)),Vector3(registration.offset_xz[0],0,registration.offset_xz[1]))
-		for feature: Dictionary in manifest.features:
-			if not feature.has("reference_points"): continue
-			var group: Node3D = scene.get_node("Feature_"+feature.id+"_"+str(int(feature.part)))
-			for child in group.get_children():
-				if child is MeshInstance3D: child.transform = conversion * child.transform
 	preload("res://tools/build_terrain.gd").new().build(self, "lingshui")
 	preload("res://tools/build_vegetation.gd").new().build(self,"lingshui")
 	merge_meshes(scene)
@@ -93,5 +89,5 @@ func build() -> void:
 	assert(packed.pack(scene)==OK)
 	DirAccess.make_dir_recursive_absolute("res://assets/campuses/lingshui/models")
 	assert(ResourceSaver.save(packed,"res://assets/campuses/lingshui/models/lingshui_campus.tscn")==OK)
-	print("LINGSHUI MODEL PASS: %d official polygon parts" % generated_count)
+	print("LINGSHUI MODEL PASS: %d source identity nodes" % generated_count)
 	quit()

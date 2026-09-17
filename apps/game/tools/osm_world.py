@@ -15,6 +15,33 @@ ROOT = Path(__file__).resolve().parents[3]
 FRAME_PATH = ROOT / 'references/shared/mapping/osm-world-frame.json'
 
 
+def withhold_selection_bounds(features, campus):
+    """Keep source identities, never publish DLUTMap 3D selection bounds as geometry.
+
+    Raw coordinates and photo profiles remain in references/. Empty runtime
+    nodes make missing evidence explicit without affecting terrain or collision.
+    Call after identity/compound review, before computing runtime coverage.
+    """
+    for feature in features:
+        if feature.get('osm_id'):
+            continue
+        feature.setdefault('source_kind', feature['kind'])
+        feature['withheld_geometry'] = {
+            'reason': 'dlutmap-3d-selection-bound-is-not-ground-geometry',
+            'archive': f'references/{campus}/mapping/bounds.json',
+            'official_id': feature['id'],
+            'part': feature.get('part', 0),
+            'previous_status': feature.get('geometry_status'),
+        }
+        for key in ('reference_points', 'reference_render_polygons', 'holes',
+                    'sports', 'building_parts'):
+            feature.pop(key, None)
+        feature.update(kind='reference', points=[], render_polygons=[], facade={},
+                       height=None, height_source='unavailable', footprint_source=None)
+        if feature.get('geometry_status') == 'legacy-silhouette-pending-replacement':
+            feature['geometry_status'] = 'withheld-pending-valid-ground-source'
+
+
 @lru_cache(maxsize=3)
 def frame(campus):
     return json.loads(FRAME_PATH.read_text(encoding='utf-8'))['campuses'][campus]

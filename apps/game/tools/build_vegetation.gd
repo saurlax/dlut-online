@@ -33,13 +33,13 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 	var lawns := SurfaceTool.new()
 	lawns.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var lawn_vertices := 0
+	var withheld_zones: Array[String] = []
 	for zone: Dictionary in source.zones:
+		if source.get("coordinate_frame", "") != manifest.coordinate_frame or source.get("origin_lon_lat", []) != manifest.origin:
+			withheld_zones.append(str(zone.id))
+			continue
 		rng.seed = int(zone.seed)
 		var points := polygon_points(zone.polygon)
-		if manifest.has("legacy_reference_transform"):
-			var registration: Dictionary = manifest.legacy_reference_transform
-			for i in points.size():
-				points[i] = Vector2(points[i].x*float(registration.scale_x)+float(registration.offset_xz[0]),points[i].y+float(registration.offset_xz[1]))
 		var bounds := polygon_bounds(points)
 		for plant: Dictionary in zone.plants:
 			var spacing := float(plant.spacing)
@@ -81,7 +81,7 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 		mat.shader = load("res://assets/vegetation/lawn.gdshader")
 		lawns.set_material(mat)
 		assert(ResourceSaver.save(lawns.commit(),directory+"models/vegetation_lawn.res",ResourceSaver.FLAG_COMPRESS) == OK)
-	var data := {"schema_version":2,"campus":campus,"source":"references/%s/vegetation/planting.json" % campus,"precision":"Photo-supported areas; approximate positions, dimensions and counts, not surveyed trees","instances":instances}
+	var data := {"schema_version":3,"withheld_zone_ids":withheld_zones,"withheld_reason":"legacy placement requires independent ground registration","campus":campus,"source":"references/%s/vegetation/planting.json" % campus,"precision":"Photo-supported areas; approximate positions, dimensions and counts, not surveyed trees","instances":instances}
 	var file := FileAccess.open(directory+"data/vegetation.json",FileAccess.WRITE)
 	assert(file != null, "Cannot write vegetation data: " + directory)
 	var records: Array[String] = []
@@ -150,7 +150,8 @@ func write_scene(directory: String, instances: Array[Dictionary], has_lawn: bool
 		if not entry.kind in kinds:
 			kinds.append(entry.kind)
 	kinds.sort()
-	ensure_meshes(kinds)
+	if not kinds.is_empty():
+		ensure_meshes(kinds)
 	var buckets: Dictionary = {}
 	for entry in instances:
 		var at := Vector3(entry.position[0],entry.position[1],entry.position[2])

@@ -12,6 +12,23 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_selection_bounds_never_enter_runtime_geometry(self):
+        import json
+        for campus in ('lingshui', 'eda', 'panjin'):
+            directory = Path(__file__).resolve().parents[1]/'assets/campuses'/campus/'data'
+            data = json.loads((directory/'campus.json').read_text(encoding='utf-8'))
+            pads = json.loads((directory/'terrain.json').read_text(encoding='utf-8'))['feature_base_y'] if campus != 'panjin' else {}
+            for feature in data['features']:
+                self.assertNotIn('reference_points', feature)
+                self.assertNotIn('reference_render_polygons', feature)
+                if not feature.get('osm_id'):
+                    self.assertEqual(feature['kind'], 'reference')
+                    self.assertEqual(feature['points'], [])
+                    self.assertEqual(feature['render_polygons'], [])
+                    self.assertIn('withheld_geometry', feature)
+                    name = 'Feature_'+feature['id']+('_'+str(feature['part']) if 'part' in feature else '')
+                    self.assertNotIn(name, pads)
+
     def test_nonbuilding_reference_retains_source_and_rejects_changed_evidence(self):
         import copy
         from prepare_lingshui import retain_nonbuilding_references
@@ -167,7 +184,7 @@ class OSMWorldTests(unittest.TestCase):
                                 generate(campus)
                             write.assert_not_called()
 
-    def test_deferred_identity_preserves_legacy_geometry_during_preparation(self):
+    def test_deferred_identity_withholds_selection_geometry_during_preparation(self):
         import contextlib
         import io
         import json
@@ -187,8 +204,11 @@ class OSMWorldTests(unittest.TestCase):
         generated=json.loads(written[prepare_lingshui.OUTPUT/'campus.json'])
         features={f['id']:f for f in generated['features']}
         self.assertNotIn('osm_id',features['2283256'])
-        self.assertIn('reference_points',features['2283256'])
-        self.assertEqual(features['2283256']['geometry_status'],'legacy-silhouette-pending-replacement')
+        self.assertNotIn('reference_points',features['2283256'])
+        self.assertEqual(features['2283256']['points'],[])
+        self.assertEqual(features['2283256']['render_polygons'],[])
+        self.assertEqual(features['2283256']['kind'],'reference')
+        self.assertEqual(features['2283256']['geometry_status'],'withheld-pending-valid-ground-source')
         self.assertEqual(features['77443']['osm_id'],'way/219032067')
         square = features['17922962']
         expected = next(r for r in build('lingshui')['areas'] if r['osm_id']=='way/547582635')

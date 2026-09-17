@@ -24,18 +24,11 @@ func _run() -> void:
 		assert(body.is_on_floor(),id + " spawn must be grounded")
 		if id == "lingshui":
 			var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
-			# The sports halls still retain photo geometry in the legacy frame.
-			# Convert their recorded samples, including the saved terrain placement.
+			# Photo roof profiles do not establish ground footprints or registration.
 			var model: Node3D = load("res://assets/campuses/lingshui/models/lingshui_campus.tscn").instantiate()
-			var registration: Dictionary = manifest.legacy_reference_transform
-			var offset := Vector2(registration.offset_xz[0],registration.offset_xz[1])
-			var base: float = model.get_node("Feature_77445_0").position.y
+			assert(model.get_node("Feature_77445_0").get_child_count() == 0, "Unregistered halls must remain withheld")
 			var space := world.get_world_3d().direct_space_state
-			for sample in [Vector3(390,25.9866,165),Vector3(410,17.5,239)]:
-				var p := Vector2(sample.x*float(registration.scale_x),sample.z)+offset
-				var top := Vector3(p.x,base+sample.y,p.y)
-				var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(top+Vector3.UP,top-Vector3.UP))
-				assert(not hit.is_empty() and absf(hit.position.y-top.y)<0.08,"Authoritative curved roof height must match migrated photo geometry")
+			var base: float
 			base = model.get_node("Feature_78473_0").position.y
 			var stand_frame: Dictionary
 			for feature: Dictionary in manifest.features:
