@@ -28,7 +28,7 @@ body{height:100vh;display:flex;flex-direction:column}header{flex:none}.workspace
 const data = /* REVIEW_DATA */null;
 const $ = id => document.getElementById(id), canvas=$('map'), ctx=canvas.getContext('2d');
 const clone = value => JSON.parse(JSON.stringify(value));
-const states=data.cases.map(c=>({points:clone(c.draft?.points||c.osm.points),notes:c.draft?.notes||'',history:[],selected:-1}));
+const states=data.cases.map(c=>({points:clone(c.read_only?c.osm.points:(c.draft?.points||c.osm.points)),notes:c.draft?.notes||'',history:[],selected:-1}));
 let index=0, view={x:0,y:0,scale:1}, drag=null, tracing=null, images=[], loaded=0, failed=0;
 const current=()=>data.cases[index], state=()=>states[index];
 const message=text=>$('message').textContent=text;
@@ -38,7 +38,7 @@ for(const [i,c] of data.cases.entries()){
 function save(){state().history.push({points:clone(state().points),notes:state().notes});state().selected=-1;}
 function world(e){const r=canvas.getBoundingClientRect();return [(e.clientX-r.left-view.x)/view.scale,(e.clientY-r.top-view.y)/view.scale];}
 function resize(){const r=canvas.getBoundingClientRect();const dpr=devicePixelRatio||1;canvas.width=Math.round(r.width*dpr);canvas.height=Math.round(r.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw();}
-function fit(){const c=current(),r=canvas.getBoundingClientRect();const ps=[...c.official.points,...c.osm.points,...state().points];const low=[0,1].map(k=>Math.min(...ps.map(p=>p[k]))-70),high=[0,1].map(k=>Math.max(...ps.map(p=>p[k]))+70);view.scale=Math.min(r.width/(high[0]-low[0]),r.height/(high[1]-low[1]));view.x=r.width/2-(low[0]+high[0])/2*view.scale;view.y=r.height/2-(low[1]+high[1])/2*view.scale;draw();}
+function fit(){const c=current(),r=canvas.getBoundingClientRect();const ps=[...c.official.points,...c.osm.points,...(c.related_official||[]).flatMap(r=>r.points),...state().points];const low=[0,1].map(k=>Math.min(...ps.map(p=>p[k]))-70),high=[0,1].map(k=>Math.max(...ps.map(p=>p[k]))+70);view.scale=Math.min(r.width/(high[0]-low[0]),r.height/(high[1]-low[1]));view.x=r.width/2-(low[0]+high[0])/2*view.scale;view.y=r.height/2-(low[1]+high[1])/2*view.scale;draw();}
 function polygon(ps,color,dashed=false,vertices=false,closed=true){
  if(!ps.length)return;ctx.beginPath();ps.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));if(closed)ctx.closePath();ctx.strokeStyle=color;ctx.lineWidth=2/view.scale;ctx.setLineDash(dashed?[7/view.scale,5/view.scale]:[]);ctx.stroke();ctx.setLineDash([]);
  if(vertices)ps.forEach((p,i)=>{ctx.beginPath();ctx.arc(p[0],p[1],(i===state().selected?6:4)/view.scale,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();ctx.strokeStyle='#14202b';ctx.lineWidth=1/view.scale;ctx.stroke();});
@@ -55,23 +55,24 @@ function valid(ps){
 function draw(){
  const r=canvas.getBoundingClientRect();ctx.clearRect(0,0,r.width,r.height);ctx.fillStyle='#334450';ctx.fillRect(0,0,r.width,r.height);ctx.save();ctx.translate(view.x,view.y);ctx.scale(view.scale,view.scale);
  images.forEach(({img,tile})=>{if(img.complete&&img.naturalWidth)ctx.drawImage(img,tile.x,tile.y,256,256);});
- if($('showOfficial').checked)polygon(current().official.points,'#ff4141');
- if($('showOsm').checked)polygon(current().osm.points,'#00c5f2',true);
- if($('showDraft').checked)polygon(tracing||state().points,'#ffc72c',false,true,tracing===null);ctx.restore();
+ if($('showOfficial').checked){polygon(current().official.points,'#ff4141');for(const related of current().related_official||[])polygon(related.points,'#ff9841');}
+ if($('showOsm').checked){polygon(current().osm.points,'#00c5f2',true);for(const hole of current().osm.holes||[])polygon(hole,'#b67cff',true);}
+ if(!current().read_only&&$('showDraft').checked)polygon(tracing||state().points,'#ffc72c',false,true,tracing===null);ctx.restore();
  ctx.font='13px system-ui';ctx.fillStyle='#102433';ctx.fillRect(12,r.height-48,205,35);ctx.fillStyle='#ffffff';ctx.fillText(`北 ↑    约 10 米（图面比例）`,20,r.height-27);ctx.fillRect(20,r.height-20,10/current().meters_per_pixel_approx*view.scale,2);
  const changed=state().points.length!==current().osm.points.length||state().points.some((p,i)=>Math.hypot(p[0]-current().osm.points[i][0],p[1]-current().osm.points[i][1])>.01);
- $('metrics').textContent=`草稿：${state().points.length} 个顶点，${changed?'已调整':'未调整'}\n${valid(state().points)?'几何检查：闭合且无自交':'几何检查失败：退化或自交，请修正'}\n底图 ${loaded}/${images.length}${failed?'，存在加载失败':''}`;
+ $('metrics').textContent=current().read_only?`关系只读：${current().osm.points.length} 个外圈顶点、${current().osm.holes.length} 个内孔\n橙色关联旧框：${(current().related_official||[]).map(r=>r.official_id).join('、')}\n底图 ${loaded}/${images.length}`:`草稿：${state().points.length} 个顶点，${changed?'已调整':'未调整'}\n${valid(state().points)?'几何检查：闭合且无自交':'几何检查失败：退化或自交，请修正'}\n底图 ${loaded}/${images.length}${failed?'，存在加载失败':''}`;
  $('undo').disabled=!state().history.length;$('remove').disabled=tracing!==null||state().selected<0||state().points.length<=3;$('finish').disabled=tracing===null||!valid(tracing);$('cancel').disabled=tracing===null;
 }
 function select(){
  index=Number($('sample').value);tracing=null;drag=null;state().selected=-1;$('mode').value='pan';$('notes').value=state().notes;message('');loaded=0;failed=0;
- const c=current();$('info').textContent=`官方 ID ${c.official_id} / OSM way ${c.osm_way_id} v${c.osm.version}。${c.initial_alignment.status}。`;
- $('sources').replaceChildren();for(const [title,url] of [['官网地图','http://map.dlut.edu.cn/#/home'],['OSM 对象',`https://www.openstreetmap.org/way/${c.osm_way_id}`],['OSM 编辑记录',`https://www.openstreetmap.org/changeset/${c.osm.changeset}`]]){const a=document.createElement('a');a.textContent=title;a.href=url;a.target='_blank';a.rel='noopener';$('sources').append(a,document.createElement('br'));}
+ const c=current();$('export').textContent=c.read_only?'保存复核记录':'保存复核草稿';$('showDraft').disabled=!!c.read_only;$('showDraft').checked=!c.read_only;$('mode').disabled=!!c.read_only;$('reset').disabled=!!c.read_only;$('info').textContent=`官方 ID ${c.official_id} / OSM ${c.osm_id} v${c.osm.version}。${c.initial_alignment.status}。${c.read_only?"多环仅供查看：青色外圈、紫色内孔；不支持单外圈草稿修改。":""}`;
+ $('sources').replaceChildren();for(const [title,url] of [['官网地图','http://map.dlut.edu.cn/#/home'],['OSM 对象',`https://www.openstreetmap.org/${c.osm_id}`],['OSM 编辑记录',`https://www.openstreetmap.org/changeset/${c.osm.changeset}`]]){const a=document.createElement('a');a.textContent=title;a.href=url;a.target='_blank';a.rel='noopener';$('sources').append(a,document.createElement('br'));}
  const selectedIndex=index;images=c.tiles.map(tile=>{const img=new Image();img.onload=()=>{if(index===selectedIndex){loaded++;draw();}};img.onerror=()=>{if(index===selectedIndex){failed++;message('底图加载失败，不能作为复核依据');draw();}};img.src=tile.image;return {img,tile};});fit();
 }
 canvas.addEventListener('wheel',e=>{e.preventDefault();const p=world(e),r=canvas.getBoundingClientRect();view.scale=Math.max(.15,Math.min(10,view.scale*Math.exp(-e.deltaY*.001)));view.x=e.clientX-r.left-p[0]*view.scale;view.y=e.clientY-r.top-p[1]*view.scale;draw();},{passive:false});
 canvas.addEventListener('pointerdown',e=>{
  if(e.button!==0)return;const p=world(e),mode=$('mode').value;if(mode!=='pan'&&!$('showDraft').checked){message('请先显示修正草稿');return;}canvas.setPointerCapture(e.pointerId);
+ if(current().read_only&&mode!=='pan')return;
  if(mode==='trace'){tracing.push(p);draw();return;}
  if(mode==='pan'){drag={mode,x:e.clientX,y:e.clientY,vx:view.x,vy:view.y};return;}
  if(mode==='move'){save();drag={mode,start:p,original:clone(state().points)};return;}
@@ -99,7 +100,7 @@ $('export').onclick=async()=>{
  const invalid=states.findIndex(s=>!valid(s.points));if(invalid>=0){message(`样本 ${data.cases[invalid].name} 存在退化或自交，不能导出`);return;}
  const result={schema_version:1,status:'unverified-map-plane-draft',exported:new Date().toISOString(),reference:'official-lm30-pixel-plane',license:{osm:'© OpenStreetMap contributors, ODbL 1.0',official_tiles:'许可未确认，仅本地参考'},cases:data.cases.map((c,i)=>{
   const {tiles,...metadata}=c,scale=256*2**c.zoom;
-  return {...metadata,tiles:tiles.map(({image,...t})=>t),draft:{status:'unverified',points:states[i].points,notes:states[i].notes,map_numeric_lon_lat:states[i].points.map(p=>{const x=p[0]+c.pixel_origin[0],y=p[1]+c.pixel_origin[1];return [x/scale*360-180,Math.atan(Math.sinh(Math.PI*(1-2*y/scale)))*180/Math.PI];})}};
+  return {...metadata,tiles:tiles.map(({image,...t})=>t),draft:{status:c.read_only?'reference-only':'unverified',points:c.read_only?[]:states[i].points,notes:states[i].notes,map_numeric_lon_lat:(c.read_only?[]:states[i].points).map(p=>{const x=p[0]+c.pixel_origin[0],y=p[1]+c.pixel_origin[1];return [x/scale*360-180,Math.atan(Math.sinh(Math.PI*(1-2*y/scale)))*180/Math.PI];})}};
  })};
  try {const response=await fetch('/draft',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(result)});if(!response.ok)throw new Error(`HTTP ${response.status}`);message('已保存 draft.json 及来源记录；未修改模型或碰撞');const link=document.createElement('a');link.href='draft.json';link.target='_blank';link.textContent=' 查看草稿 JSON';$('message').append(link);}catch(error){message(`保存失败：${error.message}。请使用 footprint_review.py --serve 打开。`);}
 };

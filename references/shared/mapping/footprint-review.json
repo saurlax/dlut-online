@@ -509,6 +509,15 @@
         "能够辨别锅炉房与修缮中心边界关系的地面照片或平面",
         "确认四点OSM是否只覆盖锅炉房主体，办公楼是否为独立体量；不以自动裁切相交面积替代证据"
       ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77420",
+      "osm_relation_id": "2898296",
+      "name": "工程训练中心旧车间，含内院",
+      "related_official_ids": [
+        "77419"
+      ]
     }
   ],
   "unmatched_cases": [

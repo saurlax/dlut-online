@@ -12,6 +12,34 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_relation_review_keeps_inner_ring_and_rejects_single_ring_draft(self):
+        import copy
+        import json
+        from unittest.mock import patch
+        import footprint_review as review
+        config=json.loads(review.CONFIG.read_text(encoding='utf-8'))
+        spec=next(c for c in config['cases'] if c.get('osm_relation_id')=='2898296')
+        # Source relation is real; only tile bytes are replaced to keep this test offline.
+        def tile(url,cache,download,image=False):
+            self.assertTrue(image)
+            return b'\x89PNG\r\n\x1a\n', {'url':url,'sha256':'tile-test'}
+        with patch.object(review,'fetch',side_effect=tile):
+            case=review.build_case(spec,config,Path('.'),False)
+        self.assertTrue(case['read_only'])
+        self.assertEqual(case['osm_id'],'relation/2898296')
+        self.assertEqual(len(case['osm']['points']),8)
+        self.assertEqual([len(h) for h in case['osm']['holes']],[4])
+        expected=next(r for r in build('lingshui')['areas'] if r['osm_id']=='relation/2898296')
+        for got,want in zip(case['osm']['raw_wgs84_holes'][0],expected['polygons'][0]['holes'][0]):
+            self.assertEqual(osm.local('lingshui',*got),want)
+        self.assertEqual(case['related_official'][0]['official_id'],'77419')
+        saved={'status':'unverified-map-plane-draft','reference':'official-lm30-pixel-plane','cases':[copy.deepcopy(case)]}
+        saved['cases'][0]['draft']={'status':'reference-only','points':[],'notes':'keep courtyard'}
+        review.restore_drafts(saved,[case])
+        self.assertEqual(case['draft']['status'],'reference-only')
+        saved['cases'][0]['draft']={'status':'unverified','points':case['osm']['points'],'notes':'outer only'}
+        with self.assertRaisesRegex(ValueError,'read-only'):review.restore_drafts(saved,[case])
+
     def test_generators_reject_legacy_or_mismatched_frame_before_writing(self):
         import json
         from unittest.mock import patch
