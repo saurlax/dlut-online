@@ -18,6 +18,7 @@ Third-Party Notices
 | 大连理工大学 | [新闻网](https://news.dlut.edu.cn/)，包括[学生公寓主体封顶报道](https://news.dlut.edu.cn/info/1022/81930.htm)及[校园建设报道](https://news.dlut.edu.cn/info/1022/82977.htm) | 建筑描述、公布尺寸、建设照片与效果图，用于建筑形态和立面的参考 |
 | 大连理工大学基建处 | [博士生公寓8号楼竣工报道](https://jjc.dlut.edu.cn/info/1018/3095.htm)，2023-09-08发布，2026-09-17读取 | 竣工高度、层数与现场照片的离线核对；原图和摘要见 [来源记录](references/lingshui/buildings/photos/2034766-completion.json)，不进入客户端；未发现明确第三方再分发许可 |
 | 大连理工大学图书馆全景站及其影像提供者 | [校园全景](https://360.toowtech.com/dalian/DUT/)，影像服务域名 `imgs.toowtech.com` | 航拍、建筑内外景及场地布局的视觉参考 |
+| 大连理工大学基建处、文体场馆中心、校园管理与修缮中心及资产与实验室管理处 | [西山公寓封顶报道](https://jjc.dlut.edu.cn/info/1018/3053.htm)、[建设简报](https://jjc.dlut.edu.cn/info/1085/3093.htm)、[西山体育中心](https://tycgzx.dlut.edu.cn/info/1020/3884.htm)、[2025年宿舍及通道修缮](https://xszx.dlut.edu.cn/info/1007/6901.htm)、[招租公告](https://zcglc.dlut.edu.cn/info/1061/3388.htm)，2026-09-17读取 | 双塔/裙房、局部场馆与通道变化的离线核对；[来源记录](references/lingshui/buildings/xishan-30-31/source.json)区分设计效果图与实景，原图不进入客户端；未发现明确第三方再分发许可 |
 | 大连理工大学工程训练中心 | [中心平面图](https://xlzx.dlut.edu.cn/zxgk/zxpmt.htm)，2026-09-17读取 | 航拍、正门、位置图与楼层导览的离线核对；[来源记录](references/lingshui/buildings/training-center/source.json)区分现址楼群与旧77420车间，图片不进入客户端；未发现明确第三方再分发许可 |
 | 高德地图 | 官方校园地图配置引用的[高德影像服务](https://lbs.amap.com/) | 卫星影像及建筑位置的交叉核对 |
 
