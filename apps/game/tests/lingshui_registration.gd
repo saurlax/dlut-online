@@ -10,9 +10,9 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77423","77357","77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
+		if feature.id not in ["77446","77423","77357","77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
-		if feature.id in ["77423","77357","77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
+		if feature.id in ["77446","77423","77357","77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
 			var outline := PackedVector2Array()
 			for p in feature.points: outline.append(Vector2(p[0],p[1]))
 			var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
@@ -30,9 +30,17 @@ func check() -> void:
 		var bochuan_south_vertices := 0
 		var museum_glass_span := Vector2(INF,-INF)
 		var museum_glass_height := Vector2(INF,-INF)
+		var houde_window_span := Vector2(INF,-INF)
 		for mesh: MeshInstance3D in group.get_children():
 			for vertex: Vector3 in mesh.mesh.get_faces():
 				var p := mesh.transform*vertex
+				if feature.id == "77446" and mesh.material_override.resource_name == "Window glass":
+					var a := Vector2(feature.points[2][0],feature.points[2][1])
+					var b := Vector2(feature.points[3][0],feature.points[3][1])
+					var along := (Vector2(p.x,p.z)-a).dot((b-a).normalized())
+					houde_window_span.x = minf(houde_window_span.x,along)
+					houde_window_span.y = maxf(houde_window_span.y,along)
+					assert(Vector2(p.x,p.z).distance_to(Geometry2D.get_closest_point_to_segment(Vector2(p.x,p.z),a,b))<0.152, "Houde windows detached from south wall")
 				if (mesh.material_override.resource_name=="Lingshui roof" and absf(p.y-float(feature.height)-0.18)<0.001) or (feature.id in ["77440","77430","77540","77542","77553","77519","77499","77504"] and mesh.material_override.resource_name=="Gabled hall roof"):
 					roof.append(Vector2(p.x,p.z))
 				if feature.id == "77357" and mesh.material_override.resource_name == "Window glass":
@@ -104,8 +112,10 @@ func check() -> void:
 			for p in roof:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
+		if feature.id == "77446":
+			assert(absf(houde_window_span.y-houde_window_span.x-(53.22875249587124*13.0/14.0+2.05))<0.005, "Houde window row stretched during registration")
 		checked += 1
-	assert(checked==72)
+	assert(checked==73)
 	await physics_frame
 	await physics_frame
 	for feature: Dictionary in data.features:
@@ -296,6 +306,8 @@ func check() -> void:
 	check_main_portico(model, data, main_base_y)
 	var laboratory_base_y: float = model.get_node("Feature_77423_0").position.y
 	check_three_beam_clearance(model, data, laboratory_base_y)
+	var houde_base_y: float = model.get_node("Feature_77446_0").position.y
+	check_houde_clearance(model, data, houde_base_y)
 	model.queue_free()
 	var server: Node3D = load("res://scenes/server/lingshui.scn").instantiate()
 	root.add_child(server)
@@ -306,8 +318,27 @@ func check() -> void:
 		assert(not hit.is_empty() and hit.position.distance_to(p)<0.002,"Exported registered surface missing")
 	check_main_portico(server, data, main_base_y)
 	check_three_beam_clearance(server, data, laboratory_base_y)
-	print("LINGSHUI REGISTRATION PASS: seventy-two roofs, registered walls and sixty-six residence platform floors and eight gabled roofs; ten balcony floors and nine roof/eave samples, bounded main portico and three-beam road clearance in client and exported server")
+	check_houde_clearance(server, data, houde_base_y)
+	print("LINGSHUI REGISTRATION PASS: seventy-three roofs, registered walls and sixty-six residence platform floors and eight gabled roofs; ten balcony floors and nine roof/eave samples, bounded main portico and three-beam road clearance in client and exported server")
 	quit()
+
+func check_houde_clearance(world: Node3D, data: Dictionary, base_y: float) -> void:
+	var outline := PackedVector2Array()
+	for feature: Dictionary in data.features:
+		if feature.id != "77446": continue
+		assert(feature.osm_id == "way/233806513" and feature.osm_version == 1)
+		for p: Array in feature.points: outline.append(Vector2(p[0],p[1]))
+	assert(outline.size() == 4)
+	var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
+	for ribbon in preload("res://scripts/shared/road_geometry.gd").polygons(roads):
+		assert(Geometry2D.intersect_polygons(outline,ribbon).is_empty(), "Houde wall covers the full road width")
+	var space := world.get_world_3d().direct_space_state
+	var roof := Vector3(612,base_y+24.5,470)
+	var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(roof+Vector3.UP*0.05,roof-Vector3.UP*0.05))
+	assert(not hit.is_empty() and roof.distance_to(hit.position)<0.003, "Houde building top collision missing")
+	for x in [595.0,612.0,630.0]:
+		var p := Vector3(float(x),base_y,449)
+		assert(space.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*30,p+Vector3.UP*3)).is_empty(), "Old Houde north silhouette remains in collision world")
 
 func check_three_beam_clearance(world: Node3D, data: Dictionary, base_y: float) -> void:
 	var outline := PackedVector2Array()
