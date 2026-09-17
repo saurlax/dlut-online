@@ -346,6 +346,18 @@ class OSMWorldTests(unittest.TestCase):
         record['version']+=1
         with self.assertRaisesRegex(ValueError,'version changed'):refine('eda',record)
 
+    def test_refinement_rejects_node_moves_without_way_version_change(self):
+        import copy
+        records={r['osm_id']:r for r in build('eda')['areas']}
+        for way in ('way/1422474847','way/1422474849'):
+            record=records[way]
+            for index in range(len(record['polygons'][0]['outer'])):
+                with self.subTest(way=way,vertex=index):
+                    changed=copy.deepcopy(record)
+                    changed['polygons'][0]['outer'][index][0]+=0.5
+                    with self.assertRaisesRegex(ValueError,'geometry changed'):
+                        refine('eda',changed)
+
     def test_identity_import_retains_missing_and_outside_buildings(self):
         data=identities('lingshui')
         records={r['official_id']:r for r in data['buildings']}
