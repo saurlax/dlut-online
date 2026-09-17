@@ -52,3 +52,10 @@
 #### Scenario: 体育馆与游泳馆共用官方对象
 - **WHEN** 官方77445同时包含主馆与游泳馆，OSM分别提供主馆建筑和具名室内泳池区域
 - **THEN** 身份登记保留两份参考，建模前分别核对其几何适用范围，不用主馆单一轮廓覆盖两馆
+
+### Requirement: Reject incompatible generation frames
+道路与地形生成器 SHALL 在写入前验证运行清单的 EPSG:4326 标记、共享坐标基准路径和校区原点；不匹配时 MUST 报错，MUST NOT 隐式回退旧官网质心平移。
+
+#### Scenario: An old manifest is used for regeneration
+- **WHEN** 清单缺少 WGS84 标记，或坐标基准路径、原点与共享登记不一致
+- **THEN** 生成失败且不写入运行道路或地形文件，历史配准记录不被自动应用
