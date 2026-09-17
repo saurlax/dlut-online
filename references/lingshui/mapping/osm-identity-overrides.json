@@ -201,6 +201,42 @@
         }
       ],
       "limits": "照片支持可见四层及转折关系，没有全周墙脚实测。保留原18米未测高度，不增加窗格、入口或室内。OSM版本2及照片/俯视图的年代一致性未确认，绝对精度未知。"
+    },
+    "77446": {
+      "osm_ids": [
+        "way/233806513"
+      ],
+      "basis": "官方厚德楼位于主体育馆东北侧、北侧道路以南，照片0以前场、旗杆和体育馆台阶为位置参照，照片1确认相同南立面。官网lm30在相同位置绘制近东西向长楼，OSM未命名233806513 v1为该四角建筑；未仅按最近质心配对。",
+      "reviewed": "2026-09-17",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77446-0.jpg",
+          "sha256": "d9e907084bf3823df0156d57ce84af1566de0c8d56a5b05b6fd6ba5f94ef5308"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77446-1.jpg",
+          "sha256": "533fb492681984c919e81f41a62144855176645f9b35ac23b1f52add9cf56748"
+        }
+      ],
+      "additional_photo": {
+        "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77446_20170913105150681.jpg",
+        "sha256": "5617134d852a43d7c4291452f5ebccccd8421de5f1d9b4a52a01efaebd695c94",
+        "read_date": "2026-09-17",
+        "limits": "白红立面，未确认朝向，未用于本次立面登记；照片日期未知。"
+      },
+      "map_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200600&z=19",
+          "sha256": "f16fcff160ae5b167a0024917f10308985b297cd4c91b76cf74b1a8ed3471de2",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200600&z=19",
+          "sha256": "50e10ef0b851ea2719592791ae4b847ade184f9a5990a8394d03f7aa89581039",
+          "reviewed": "2026-09-17"
+        }
+      ],
+      "limits": "照片存在树木、车辆与体育馆台阶遮挡，拍摄日期未知。边界为OSM底稿，未证明完整墙脚与屋顶凸出范围；详见facades.json的osm_registration。"
     }
   }
 }
