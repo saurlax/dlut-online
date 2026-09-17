@@ -84,7 +84,9 @@ func _run() -> void:
 		for child in model.get_children():
 			if not child is MeshInstance3D or not child.get_meta("road_surface", false):
 				continue
-			var clearance := 0.12 if campus != "eda" else (0.22 if child.material_override.resource_name in ["Road", "Photo red path"] else (0.18 if child.material_override.resource_name == "Photo path edging" else 0.16))
+			var clearance := 0.014 if child.material_override.resource_name == "Photo path edging" else (0.012 if child.material_override.resource_name == "Road edge" else 0.02)
+			if child.material_override.resource_name == "Photo path edging":
+				assert(not child.get_meta("walk_collision",true),"Decorative edging regained collision during terrain fitting")
 			var faces: PackedVector3Array = child.mesh.get_faces()
 			if campus=="eda" and child.material_override.resource_name in ["Road","Photo red path"] and not child.has_meta("ground_surface_id"):
 				for i in range(0,faces.size(),3):
@@ -95,10 +97,10 @@ func _run() -> void:
 			if child.has_meta("ground_surface_id"):
 				checked_surfaces.append(str(child.get_meta("ground_surface_id")))
 				# Ground lift comes from its source configuration, regardless of material.
-				clearance = 0.16
+				clearance = 0.02
 				for overlay: Dictionary in manifest.ground_overlays:
 					if overlay.id == str(child.get_meta("ground_surface_id")):
-						clearance = float(overlay.get("render_lift_m",0.16))
+						clearance = float(overlay.get("render_lift_m",0.02))
 				var forbidden: Array[PackedVector2Array] = []
 				for feature: Dictionary in manifest.features:
 					if feature.kind == "building":

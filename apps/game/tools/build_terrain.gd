@@ -76,7 +76,7 @@ func fit(node: Node3D) -> void:
 	if node is MeshInstance3D:
 		if node.get_meta("road_surface", false) or node.get_meta("terrain_surface", false):
 			fit_road(node)
-			node.set_meta("walk_collision",true)
+			node.set_meta("walk_collision",node.get_meta("walk_collision",true))
 			return
 		var st := SurfaceTool.new()
 		st.begin(Mesh.PRIMITIVE_TRIANGLES)

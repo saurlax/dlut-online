@@ -11,6 +11,8 @@ func build(builder, campus: String) -> void:
 		var ring := PackedVector2Array()
 		for p: Array in surface.outer: ring.append(Vector2(p[0],p[1]))
 		surface_masks.append(ring)
+	# Terrain fitting adds 0.08 m. Final road lift is 0.02 m, with
+	# lower decorative borders; visual separation must not create a curb.
 	if campus == "eda":
 		var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/road-details.json"))
 		var split: Array = []
@@ -25,15 +27,15 @@ func build(builder, campus: String) -> void:
 						break
 				split.append(segment)
 		roads = split
-		emit(builder, Geometry.polygons(roads, 1.5), 0.08, builder.material("Road edge", Color("a9a69c")),surface_masks)
-		var edging := emit(builder, Geometry.polygons(painted, profile.edge_width), 0.10, builder.material("Photo path edging", Color("d0cec2")),surface_masks)
+		emit(builder, Geometry.polygons(roads, 1.5), -0.068, builder.material("Road edge", Color("a9a69c")),surface_masks)
+		var edging := emit(builder, Geometry.polygons(painted, profile.edge_width), -0.066, builder.material("Photo path edging", Color("d0cec2")),surface_masks)
 		edging.set_meta("walk_collision", false)
 	var rings := Geometry.polygons(roads)
 	var colored := Geometry.polygons(painted)
 	var key: String = "Road" if campus == "eda" else campus.capitalize() + " asphalt"
-	emit(builder, rings, 0.14 if campus == "eda" else 0.04, builder.material(key, Color("555a5b") if campus == "eda" else Color("656966")), colored+surface_masks)
+	emit(builder, rings, -0.06, builder.material(key, Color("555a5b") if campus == "eda" else Color("656966")), colored+surface_masks)
 	if not colored.is_empty():
-		emit(builder, colored, 0.14, preload("res://assets/roads/red_path.tres"),surface_masks)
+		emit(builder, colored, -0.06, preload("res://assets/roads/red_path.tres"),surface_masks)
 	for surface: Dictionary in builder.manifest.get("ground_overlays", []):
 		var outer: Array[PackedVector2Array] = []
 		var cutouts: Array[PackedVector2Array] = []
@@ -56,8 +58,8 @@ func build(builder, campus: String) -> void:
 		if surface.get("surface_type", "paving") == "asphalt":
 			surface_material = builder.material(key, Color("555a5b") if campus == "eda" else Color("656966"))
 		# fit_road adds 0.08 m; keep reviewed thin ground surfaces walkable.
-		var lift: float = float(surface.get("render_lift_m",0.16))
-		assert(lift>0.0 and lift<=0.16)
+		var lift: float = float(surface.get("render_lift_m",0.02))
+		assert(lift>0.0 and lift<=0.02)
 		var paving := emit(builder,outer,lift-0.08,surface_material,cutouts)
 		paving.set_meta("ground_surface_id",surface.id)
 
