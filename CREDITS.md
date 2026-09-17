@@ -177,3 +177,9 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 ## Esri World Imagery 补充参考
 
 2026年9月17日读取[World Imagery](https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer)与对应元数据，仅离线核对凌水西校区、西山8舍和开发区综合楼的地面布局。署名为 Esri、Vantor、Earthstar Geographics 和 GIS User Community。中心点元数据分别标明2025-09-20（凌水）与2025-09-07（开发区），不代表当前现状；分辨率、位置精度、查询范围、瓦片摘要与用途见[来源记录](references/shared/mapping/world-imagery-review.json)。原瓦片不提交、不进入客户端，使用条款见[服务说明](https://goto.arcgisonline.com/maps/World_Imagery)，未获得再分发授权。
+
+## MapTiler 与天地图补充数据核对
+
+2026年9月17日使用用户提供的本地凭据读取 [MapTiler Tiles API](https://docs.maptiler.com/cloud/api/tiles/) 的 Satellite v2、Planet v3/v4 和 Terrain RGB v2 局部样本，仅用于离线对照。返回署名为 MapTiler 与 OpenStreetMap contributors，见 [MapTiler版权信息](https://www.maptiler.com/copyright/)。瓦片地址中的凭据已脱敏；来源摘要、坐标转换、样本范围、与OSM关系及高程限制见[数据核对记录](references/shared/mapping/provider-data-review.json)。原始瓦片、解码结果与临时图像不纳入客户端或发行资源，尚未据此替换运行几何。
+
+[天地图地图服务文档](http://lbs.tianditu.gov.cn/server/MapService.html)与WMTS能力声明用于确认图层及参数。更换为服务器类型凭据后，已取得综合楼及博留餐厅周边28张影像瓦片和开发区14条地名点结果，供离线位置与身份核对；署名国家基础地理信息中心、天地图。影像采集日期及绝对精度未确认，地名点不作为建筑边界；三维地形尚未取到，不将接口列表记作已采集数据。凭据保留于被Git忽略的本地配置，不进入本记录或客户端。
