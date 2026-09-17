@@ -282,7 +282,7 @@
       "osm_id": "way/1422474849",
       "osm_version": 2,
       "expected_vertices": 25,
-      "footprint_refinement": "eda-academic-c-connector-v1",
+      "footprint_refinement": "eda-academic-c-connector-v2",
       "faces": [
         {
           "edge": 1,
@@ -366,8 +366,8 @@
         "source": "77927-0 / 79687 and 77927-1 / 79688",
         "note": "两照显示东侧主楼南端四排窗所在墙面凹入，顶层横跨其上。沿官方边3的85%—98.5%分区，中段3.8—19米退0.8米，均为照片比例估计；底层与顶部保留官方轮廓，未改入口和室内。"
       },
-      "review_date": "2026-09-16",
-      "basis": "lm30 traced main-block south wall and narrow connection, anchored to OSM. Old long edge 3 maps to refined edge 1; old short edge 4 maps to refined edge 2. Keep photo-visible east/south round-body arcs only.",
+      "review_date": "2026-09-17",
+      "basis": "v2 uses north main-block OSM corners for a shape-preserving similarity; southeast corner and rotunda tip remain withheld checks. The 25 point topology and registered photo edge identities remain unchanged; all faces and attached details follow the corrected ring.",
       "limits": "Mapped roof outline remains provisional; profile dimensions remain estimates."
     }
   }
