@@ -1,6 +1,7 @@
 """Build an offline footprint comparison/editor, never a game resource.
 
 Run with --download to explicitly fetch public OSM ways and official 2D tiles.
+Multipolygon relations use the verified campus archive and are read-only.
 Subsequent runs reuse the cache under .local/footprint-review without networking.
 Only the Python standard library is required. Paths do not depend on cwd.
 """
@@ -15,6 +16,7 @@ import math
 from pathlib import Path
 import urllib.request
 import xml.etree.ElementTree as ET
+import osm_world
 
 ROOT = Path(__file__).resolve().parents[3]
 CONFIG = ROOT / "references/shared/mapping/footprint-review.json"
@@ -62,7 +64,11 @@ def fetch(url, cache, download, image=False):
 
 
 def build_case(case, config, cache, download):
-    campus, fid, wid = case["campus"], case["official_id"], case["osm_way_id"]
+    campus, fid = case["campus"], case["official_id"]
+    wid = case.get("osm_way_id")
+    rid = case.get("osm_relation_id")
+    if bool(wid) == bool(rid):
+        raise ValueError("Exactly one OSM way or relation identity is required")
     source_path = ROOT / f"references/{campus}/mapping/bounds.json"
     source = json.loads(source_path.read_text(encoding="utf-8"))
     matches = [f for f in source["result"] if str(f["id"]) == fid]
@@ -71,14 +77,32 @@ def build_case(case, config, cache, download):
     official = [[p["x"], p["y"]] for p in matches[0]["bound"]["points"]]
     if official[-1] == official[0]:
         official.pop()
-    body, osm_meta = fetch(f"https://api.openstreetmap.org/api/0.6/way/{wid}/full", cache, download)
-    xml = ET.fromstring(body)
-    nodes = {n.get("id"): [float(n.get("lon")), float(n.get("lat"))] for n in xml.findall("node")}
-    way = next(w for w in xml.findall("way") if w.get("id") == wid)
-    osm = [nodes[n.get("ref")] for n in way.findall("nd")]
-    if len(osm) < 4 or osm[0] != osm[-1]:
-        raise ValueError(f"OSM way {wid} is not a closed outline")
-    osm.pop()
+    holes = []
+    if rid:
+        archive_meta, raw_nodes, ways, relations = osm_world.archive(campus)
+        way = relations[str(rid)]
+        rings = osm_world.relation_rings(way,ways,raw_nodes)
+        outers = [r['lon_lat'] for r in rings if r['role']=='outer']
+        if len(outers)!=1:
+            raise ValueError("Relation comparison currently requires one outer ring")
+        osm = outers[0]
+        holes = [r['lon_lat'] for r in rings if r['role']=='inner']
+        member_ids = {m.get('ref') for m in way.findall('member')}
+        node_ids = {n.get('ref') for member in member_ids for n in ways[member].findall('nd')}
+        xml = ET.Element('osm')
+        for node_id in sorted(node_ids): xml.append(raw_nodes[node_id])
+        osm_meta = {'url':f'https://www.openstreetmap.org/relation/{rid}',
+                    'archive':osm_world.frame(campus)['archive'],
+                    'sha256':archive_meta['sha256_uncompressed']}
+    else:
+        body, osm_meta = fetch(f"https://api.openstreetmap.org/api/0.6/way/{wid}/full", cache, download)
+        xml = ET.fromstring(body)
+        nodes = {n.get("id"): [float(n.get("lon")), float(n.get("lat"))] for n in xml.findall("node")}
+        way = next(w for w in xml.findall("way") if w.get("id") == wid)
+        osm = [nodes[n.get("ref")] for n in way.findall("nd")]
+        if len(osm) < 4 or osm[0] != osm[-1]:
+            raise ValueError(f"OSM way {wid} is not a closed outline")
+        osm.pop()
     tags = {t.get("k"): t.get("v") for t in way.findall("tag")}
     zoom = config["zoom"]
     # Subtract a nearby origin before computing a centroid to avoid cancellation.
@@ -106,7 +130,15 @@ def build_case(case, config, cache, download):
 
     official_pixels = local([project(*p, zoom) for p in official])
     osm_pixels = local([project(p[0] + shift[0], p[1] + shift[1], zoom) for p in osm])
-    all_points = official_pixels + osm_pixels
+    related = []
+    for related_id in case.get('related_official_ids',[]):
+        found = [f for f in source['result'] if str(f['id'])==related_id]
+        if len(found)!=1: raise ValueError(f'Missing related official outline {related_id}')
+        raw = [[p['x'],p['y']] for p in found[0]['bound']['points']]
+        if raw[-1]==raw[0]:raw.pop()
+        related.append({'official_id':related_id,'points':local([project(*p,zoom) for p in raw]),'raw_lon_lat':raw})
+    hole_pixels = [local([project(p[0]+shift[0],p[1]+shift[1],zoom) for p in ring]) for ring in holes]
+    all_points = official_pixels + osm_pixels + [p for ring in hole_pixels for p in ring] + [p for r in related for p in r["points"]]
     low = [min(p[i] for p in all_points) - 100 for i in (0, 1)]
     high = [max(p[i] for p in all_points) + 100 for i in (0, 1)]
     tiles = []
@@ -118,14 +150,15 @@ def build_case(case, config, cache, download):
             tiles.append({"x": x * 256 - origin[0], "y": y * 256 - origin[1],
                           "tile": [x, y, zoom], "source": meta,
                           "image": f"data:{mime};base64," + base64.b64encode(data).decode()})
-    return {**case, "zoom": zoom, "pixel_origin": origin,
+    return {**case, "read_only": bool(rid), "osm_id": f"relation/{rid}" if rid else f"way/{wid}", "zoom": zoom, "pixel_origin": origin,
             "meters_per_pixel_approx": math.cos(math.radians(center[1])) * 2 * math.pi * 6378137 / (256 * 2**zoom),
             "frame": config["reference"], "bounds": low + high, "tiles": tiles,
+            "related_official":related,
             "official": {"points": official_pixels, "raw_lon_lat": official,
                          "url": source.get("source"), "retrieved": source.get("retrieved"),
                          "archive": str(source_path.relative_to(ROOT)).replace("\\", "/"),
                          "sha256": hashlib.sha256(source_path.read_bytes()).hexdigest()},
-            "osm": {"points": osm_pixels, "raw_wgs84_lon_lat": osm,
+            "osm": {"points": osm_pixels, "holes":hole_pixels, "raw_wgs84_holes":holes, "raw_wgs84_lon_lat": osm,
                     "source": osm_meta, "version": way.get("version"), "tags": tags,
                     "changeset": way.get("changeset"), "timestamp": way.get("timestamp"),
                     "nodes": [{"id": n.get("id"), "version": n.get("version"),
@@ -144,7 +177,7 @@ def restore_drafts(saved, cases):
     for case in cases:
         old = by_id[(case["campus"], case["official_id"])]
         if (old["pixel_origin"] != case["pixel_origin"] or old["zoom"] != case["zoom"]
-                or old["osm_way_id"] != case["osm_way_id"]
+                or old.get("osm_id", "way/"+str(old.get("osm_way_id"))) != case["osm_id"]
                 or old["official"]["sha256"] != case["official"]["sha256"]
                 or old["osm"]["source"]["sha256"] != case["osm"]["source"]["sha256"]
                 or old["initial_alignment"] != case["initial_alignment"]
@@ -153,6 +186,11 @@ def restore_drafts(saved, cases):
             raise ValueError("Draft source or frame changed; review alignment again")
         draft = old["draft"]
         points = draft["points"]
+        if case.get('read_only'):
+            if draft.get('status')!='reference-only' or points!=[] or not isinstance(draft.get('notes'),str):
+                raise ValueError('Relation geometry is read-only; preserve all source rings')
+            drafts.append(draft)
+            continue
         if len(points) < 3 or len(points) > 10000 or not isinstance(draft.get("notes"), str):
             raise ValueError("Invalid draft")
         for point in points:
@@ -239,6 +277,7 @@ def serve(output, cases, port):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--official-id", help="Build only the selected official feature for a focused review")
     parser.add_argument("--download", action="store_true", help="Fetch missing public reference data")
     parser.add_argument("--output", type=Path, default=ROOT / ".local/footprint-review")
     parser.add_argument("--serve", action="store_true", help="Serve locally and allow saving draft.json")
@@ -249,7 +288,9 @@ def main():
     cache.mkdir(parents=True, exist_ok=True)
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     cases = []
-    for case in config["cases"]:
+    selected = [c for c in config["cases"] if args.official_id is None or c["official_id"]==args.official_id]
+    if not selected: raise ValueError("No matching review case")
+    for case in selected:
         cases.append(build_case(case, config, cache, args.download))
         print(f"Prepared {case['campus']}/{case['official_id']}", flush=True)
     draft_path = output / "draft.json"
