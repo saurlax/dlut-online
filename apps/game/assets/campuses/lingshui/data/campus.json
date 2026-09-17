@@ -26337,8 +26337,13 @@
       ],
       "osm_id": "way/544330656",
       "osm_version": 3,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified",
-      "holes": []
+      "geometry_status": "osm-shared-compound; internal partition and absolute accuracy unverified",
+      "holes": [],
+      "shared_official_ids": [
+        "77492",
+        "83981"
+      ],
+      "geometry_assembly": "lingshui-fifth-canteen-bath-compound"
     },
     {
       "id": "77493",
@@ -56940,7 +56945,7 @@
       "part": 0,
       "source_index": 258,
       "name": "西山浴室",
-      "kind": "building",
+      "kind": "reference",
       "points": [
         [
           -224.86069085459656,
@@ -57149,7 +57154,13 @@
           ]
         ]
       ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "shared-compound-reference; legacy silhouette not rendered",
+      "source_kind": "building",
+      "geometry_assembly": "lingshui-fifth-canteen-bath-compound",
+      "shared_geometry": {
+        "id": "77492",
+        "part": 0
+      }
     },
     {
       "id": "625864",
