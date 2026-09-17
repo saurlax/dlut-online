@@ -88,6 +88,8 @@ DLUT Online 的三校区基础平面数据直接使用 OSM WGS84 来源，并按
 
 综合楼南侧广场使用 [地表描绘记录](references/eda/mapping/ground-surfaces.json) 中的官网 `lm30` 瓦片，分别描绘铺装外缘与中央绿岛。`prepare_map_surfaces.py` 以归档 OSM 环线定位、已注册综合楼边长约束局部比例，保留源 ID、版本与瓦片摘要；该地表是图面支持的近似，非测绘地籍面。原始 OSM 道路线不改写，仅在生成模型时遮掉铺装范围内的重复沥青并保留绿岛。
 
+南广场时效核对另参考校方[2026年成交公告](http://cgbmis.dlut.edu.cn/sfw_cms/e?page=cms.detail&cid=100645&aid=51465)、[结果公示及工程清单](http://cgbmis.dlut.edu.cn/sfw_cms/e?page=cms.detail&cid=18816&aid=51586)和[暑期改造报道](https://kfqxqzhb.dlut.edu.cn/info/1081/1912.htm)，2026-09-17读取。来源页、附件哈希、875平方米沥青与170平方米植草砖的采购范围及适用限制见[开发区地图依据](references/eda/mapping/basis.md)。仅离线核对，不把采购结果当作完工证明，不据面积总数反推边界；未发现第三方再分发许可，PDF不进入客户端或发行资源。
+
 ### 2.6 建筑表面贴图
 
 
