@@ -12,6 +12,30 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_deferred_identity_preserves_legacy_geometry_during_preparation(self):
+        import contextlib
+        import io
+        import json
+        from unittest.mock import patch
+        import prepare_lingshui
+        match=next(r for r in identities('lingshui')['buildings'] if r['official_id']=='2283256')
+        self.assertEqual(match['status'],'matched')
+        self.assertTrue(match['geometry_deferred'])
+        self.assertEqual(match['osm_candidates'][0]['tags']['ref'],'东山锅炉房')
+        self.assertEqual(match['osm_candidates'][0]['osm_id'],'way/233806536')
+        written={}
+        def capture(path,text,**kwargs):
+            written[path]=text
+            return len(text)
+        with patch.object(Path,'write_text',autospec=True,side_effect=capture), contextlib.redirect_stdout(io.StringIO()):
+            prepare_lingshui.main()
+        generated=json.loads(written[prepare_lingshui.OUTPUT/'campus.json'])
+        features={f['id']:f for f in generated['features']}
+        self.assertNotIn('osm_id',features['2283256'])
+        self.assertIn('reference_points',features['2283256'])
+        self.assertEqual(features['2283256']['geometry_status'],'legacy-silhouette-pending-replacement')
+        self.assertEqual(features['77443']['osm_id'],'way/219032067')
+
     def test_c_block_refinement_retains_anchors_and_narrow_connector(self):
         import json
         from refine_osm_footprints import projective_map

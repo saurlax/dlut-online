@@ -165,7 +165,7 @@ def main():
             if kind=='sports': feature['surface_type']=record['tags'].get('surface','')
             continue
         match=matches.get(feature['id'])
-        candidate=match['osm_candidates'][0] if match and len(match['osm_candidates'])==1 else None
+        candidate=match['osm_candidates'][0] if match and not match.get('geometry_deferred',False) and len(match['osm_candidates'])==1 else None
         registration=feature['facade'].get('osm_registration')
         if candidate and (not feature['facade'] or registration) and match['official_parts']==1 and len(candidate['polygons'])==1:
             ring=candidate['polygons'][0]['outer']
