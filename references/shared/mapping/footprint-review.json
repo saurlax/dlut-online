@@ -560,6 +560,148 @@
         "能够核对地面定位的竣工总平面、独立控制点或已校正的新建后影像",
         "新塔楼、研教楼连接部分与绕楼道路的实际边界；旧lm30和未更新的OSM不足以确认"
       ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77419",
+      "name": "现代实验楼与工程训练中心联合核对",
+      "status": "shared-complex-partition-unresolved",
+      "reviewed": "2026-09-17",
+      "related_official_ids": [
+        "77420",
+        "2283256"
+      ],
+      "osm_candidate_ids": [
+        "relation/2898296"
+      ],
+      "osm_version": 2,
+      "candidate_limits": "该关系已用于77420，不能再次赋给77419；名称匹配不能证明整个外圈都属于工程训练中心。",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77419-0.jpg",
+          "photo_id": 273995986,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77419_20170913093115268.jpg",
+          "sha256": "9d6c9a942fea219ec1a0ede9ab9a7944dda177a8a966ce86a4365fd674a814c1",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77419-1.jpg",
+          "photo_id": 78306,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77419_20160225104852833.jpg",
+          "sha256": "d4a5e2a4d046ba4d7c2c807900dcdf0ff771b0c788f187682f17c8c73cdcb3cb",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77419-2.jpg",
+          "photo_id": 78305,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77419_20160225104717549.jpg",
+          "sha256": "69d60029a60c106f08c89b648ec6f84fb7f72b279cd9b90751619cf60ddaf723",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77420-0.jpg",
+          "photo_id": 78307,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77420_20160225105005197.jpg",
+          "sha256": "02b1d15f5818039ca2082673374737c6e3526faaeb0af39f1aa12b56d2418b75",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77420-1.jpg",
+          "photo_id": 78308,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77420_20160225105012440.jpg",
+          "sha256": "c2841806d142609792d67c37c8c6589058925b82bc0f99ebc9195b53cd6fdcf5",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77420-2.jpg",
+          "photo_id": 78332,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77420_20160225120611535.jpg",
+          "sha256": "b895c1e8c97f23309be891e0e26d627fd4fcdd59a4de02dca4ff8955c4bfe108",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77420-3.jpg",
+          "photo_id": 273996000,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77420_20170913093803536.jpg",
+          "sha256": "63dd8e006397b9c2b5b1cfd62216e3fe89532de42be0c8790d3321b331107c68",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        }
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200597&z=19",
+          "retrieved": "2026-09-17T05:25:47.552502+00:00",
+          "sha256": "7be8653cd2e388656ed8bb712d298bd78271193d8af899066a6fd3f70fb28c66"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200598&z=19",
+          "retrieved": "2026-09-17T05:25:47.634987+00:00",
+          "sha256": "68bc4b19a3869345ccf903f99f7043a36dd7754c018a2586bce9648c0a75f5c5"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200599&z=19",
+          "retrieved": "2026-09-17T05:25:47.579859+00:00",
+          "sha256": "255c517528037841468e38a3b9926c47038f7fb15191d514003b46aa32b740b4"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200597&z=19",
+          "retrieved": "2026-09-17T05:12:32.875023+00:00",
+          "sha256": "f902f4fcf0a0782877dab014682dc87b4c7afa5cc3cfb42d93f020368992c8f2"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200598&z=19",
+          "retrieved": "2026-09-17T05:25:47.487895+00:00",
+          "sha256": "8a931354dd2d438a3c9959ec8aa1679d5b33cf5540fae96656e7dbd136a3245a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200599&z=19",
+          "retrieved": "2026-09-17T05:25:47.938187+00:00",
+          "sha256": "a3276ef1e50f7b0f9b6c71fd3fca1dbbb8a1aa462d5537b2a9a535a23ab50bce"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200597&z=19",
+          "retrieved": "2026-09-17T05:12:33.667169+00:00",
+          "sha256": "dae40c4ff6935dc4b14858b3ccd1cb95bc2f324ba342e127b6822817ef6b0b7f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200598&z=19",
+          "retrieved": "2026-09-17T05:25:48.143305+00:00",
+          "sha256": "929454a7eecc1c753c53075da0a594eab1f39cefe9376722a5926507699a9d07"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200599&z=19",
+          "retrieved": "2026-09-17T05:25:48.090046+00:00",
+          "sha256": "31c8f43076d24ab36abf3ca69a11b372e0bb10910112cf6092f2c246776731b5"
+        }
+      ],
+      "runtime_diagnostic": {
+        "coordinate_frame": "current shared WGS84 local X east / Z south",
+        "modern_outline_area_m2": 2026.27513457835,
+        "overlap_training_solid_m2": 1177.85263967514,
+        "overlap_training_courtyard_m2": 531.693018019199,
+        "outside_training_outer_m2": 316.729476884007,
+        "method": "Godot Geometry2D intersections of modern render polygons with relation outer and inner separately; solid = outer overlap minus inner overlap",
+        "limits": "当前模型二维相交面积，不是实测面积或精度；未据此切割任一建筑。"
+      },
+      "findings": [
+        "77419三张照片显示两层平顶黄色楼翼、防护窗及卷帘门，照片1右侧连接低矮附属部分及坡屋顶楼翼；只能确认局部连接关系，不能独立恢复完整平面。",
+        "77420照片0有工程训练中心牌匾；照片3为坡屋顶长楼翼及低附属部分。照片1包含邻近烟囱建筑，照片2主要拍摄该橙色建筑，证明同一照片API归档可包含邻楼，不能把所有照片都归为77420立面。",
+        "77420照片1/2提供东山锅炉房的邻近外观线索，撤销“周边完全没有照片”的推断；但锅炉房自身API仍为空，尚缺牌匾或其他独立身份及墙脚控制，不能立即解除2283256的几何暂缓。",
+        "九块lm30可见多段平顶、坡屋顶及开敞院落；单一OSM外圈加一个内孔不足以确认两官方对象的完整分区。俯视图也非测绘真值。",
+        "两当前楼体重叠且旧现代实验楼侵入内院，排除只平移现代实验楼或把同一OSM关系重复赋给两个ID的方案。需要按照片可确认的连接、图面屋顶与墙脚差异成组登记，再同步重建碰撞。"
+      ],
+      "next_required": [
+        "确认77419与77420的公共接合边及各自完整墙脚，登记同一来源复合体的互不重叠分区。",
+        "确定OSM内孔与俯视图多块开敞区域的对应关系，不能以屋顶阴影或屋檐代替墙脚。",
+        "在有证据的分区上重建两个身份、路面、植被及客户端/服务端碰撞，核查道路33174911及院落净空。"
+      ]
     }
   ]
 }
