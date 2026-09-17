@@ -57,7 +57,33 @@ func run() -> void:
 				plaza_samples += 1
 		assert(plaza_samples==66,"Plaza sample coverage changed; review the source footprint")
 		print("COMPREHENSIVE PLAZA PASS: server=",server," samples=",plaza_samples)
+		# The northern loop is split across two source ways; include the short
+		# closing segment and the approach, plus both sides of the road width.
+		var roads: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json"))
+		var loop_samples := 0
+		var loop_ways := 0
+		for road: Dictionary in roads.roads:
+			if int(road.osm_way_id) not in [1076344134,1076344135]: continue
+			loop_ways += 1
+			assert(float(road.width)==6.0)
+			for i in range(road.points.size()-1):
+				var a := Vector2(road.points[i][0],road.points[i][1])
+				var b := Vector2(road.points[i+1][0],road.points[i+1][1])
+				var side := Vector2(-(b-a).y,(b-a).x).normalized()
+				for fraction in [0.1,0.5,0.9]:
+					for offset in [-2.5,0.0,2.5]:
+						var p: Vector2 = a.lerp(b,fraction)+side*offset
+						var y: float = terrain.elevation(p.x,p.y)+0.22
+						var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+40,p.y),Vector3(p.x,y-1,p.y)))
+						if hit.is_empty() or absf(hit.position.y-y)>0.03:
+							push_error("North loop obstructed/missing: server=%s at=%s hit=%s" % [server,p,hit])
+							quit(1)
+							return
+						loop_samples += 1
+		assert(loop_ways==2 and loop_samples==135,"Northern loop source coverage changed")
+		print("COMPREHENSIVE NORTH LOOP PASS: server=",server," samples=",loop_samples)
+
 		world.free()
 		viewport.free()
-	print("PASS: client/server WGS84 comprehensive roof, lower glass projection, closed exterior and south plaza")
+	print("PASS: client/server WGS84 comprehensive roof, lower glass projection, closed exterior, south plaza and north loop")
 	quit()
