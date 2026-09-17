@@ -94,6 +94,27 @@ def share_reviewed_building_geometry(features, assemblies):
                           geometry_status='shared-compound-reference; legacy silhouette not rendered')
 
 
+def retain_nonbuilding_references(features, references):
+    """Retain reviewed POI bounds without fabricating building geometry."""
+    lookup = {(f['id'], f['part']): f for f in features}
+    planned = []
+    seen = set()
+    for spec in references:
+        key = (spec['id'], spec['part'])
+        feature = lookup[key]
+        if (key in seen or feature['kind'] != 'building' or feature.get('facade')
+                or feature.get('osm_id') or feature.get('holes')
+                or feature.get('geometry_status') != 'legacy-silhouette-pending-replacement'
+                or feature.get('reference_points') != spec['expected_reference_points']):
+            raise ValueError('Nonbuilding reference changed; review source before suppressing geometry')
+        seen.add(key)
+        planned.append((feature, spec))
+    for feature, spec in planned:
+        feature.update(kind='reference', source_kind='building', reference_type=spec['reference_type'],
+                       classification_basis=spec['source'],
+                       geometry_status='nonbuilding-poi-reference; original bounds retained without extrusion')
+
+
 def main():
     import osm_world
     from prepare_osm_identities import build as identities
@@ -240,6 +261,9 @@ def main():
     assembly_path = REFERENCES/'mapping/building-assemblies.json'
     if assembly_path.exists():
         share_reviewed_building_geometry(features, json.loads(assembly_path.read_text(encoding='utf-8'))['assemblies'])
+    reference_path = REFERENCES/'mapping/nonbuilding-references.json'
+    if reference_path.exists():
+        retain_nonbuilding_references(features, json.loads(reference_path.read_text(encoding='utf-8'))['references'])
     all_points = [p for f in features for p in f['points']]
     low = [math.floor(min(p[i] for p in all_points)/10)*10-30 for i in range(2)]
     high = [math.ceil(max(p[i] for p in all_points)/10)*10+30 for i in range(2)]
