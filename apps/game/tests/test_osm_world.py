@@ -55,6 +55,20 @@ class OSMWorldTests(unittest.TestCase):
         self.assertEqual(records['83981']['status'],'missing')
         self.assertEqual(len(records),209)
 
+    def test_indoor_pool_is_retained_without_becoming_a_building(self):
+        records={r['osm_id']:r for r in build('lingshui')['areas']}
+        pool=records['way/233806517']
+        self.assertEqual(pool['category'],'swimming-pool')
+        self.assertEqual(pool['version'],3)
+        self.assertEqual(pool['tags']['location'],'indoor')
+        self.assertEqual(pool['tags']['leisure'],'swimming_pool')
+        self.assertNotIn('building',pool['tags'])
+        self.assertEqual(len(pool['polygons'][0]['outer']),4)
+        combined=next(r for r in identities('lingshui')['buildings'] if r['official_id']=='77445')
+        self.assertEqual({r['osm_id']:r['category'] for r in combined['osm_candidates']},
+                         {'way/233806531':'building','way/233806517':'swimming-pool'})
+        self.assertTrue(combined['geometry_review_required'])
+
     def test_shared_official_identity_retains_both_osm_buildings(self):
         data=identities('eda')
         records={r['official_id']:r for r in data['buildings']}

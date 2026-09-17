@@ -58,6 +58,7 @@ def build(campus, manifest=None):
                         'status':state,'identity_basis':override['basis'] if override else
                             ('unambiguous declared name alias' if key!=original_key else 'unambiguous normalized building name') if len(ids)==1 else 'unresolved',
                         'osm_candidates':[{'osm_id':i,'osm_version':records[i]['version'],
+                                           'category':records[i]['category'],'tags':records[i]['tags'],
                                            'name':records[i]['tags'].get('name',''),
                                            'scope':records[i]['scope'],'polygons':records[i]['polygons']} for i in ids],
                         'geometry_review_required':True,

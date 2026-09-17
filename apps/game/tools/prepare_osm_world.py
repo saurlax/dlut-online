@@ -86,6 +86,7 @@ def scope(points, boundary, closed=True):
 
 def category(tags):
     if tags.get('building','no') != 'no': return 'building'
+    if tags.get('leisure') == 'swimming_pool': return 'swimming-pool'
     if tags.get('natural') == 'water' or tags.get('waterway') == 'riverbank': return 'water'
     if tags.get('landuse') in ('forest','grass','meadow') or tags.get('natural') in ('wood','scrub','grassland'): return 'vegetation-area'
     if tags.get('leisure') in ('park','garden'): return 'garden'
