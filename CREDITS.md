@@ -183,3 +183,5 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 2026年9月17日使用用户提供的本地凭据读取 [MapTiler Tiles API](https://docs.maptiler.com/cloud/api/tiles/) 的 Satellite v2、Planet v3/v4 和 Terrain RGB v2 局部样本，仅用于离线对照。返回署名为 MapTiler 与 OpenStreetMap contributors，见 [MapTiler版权信息](https://www.maptiler.com/copyright/)。瓦片地址中的凭据已脱敏；来源摘要、坐标转换、样本范围、与OSM关系及高程限制见[数据核对记录](references/shared/mapping/provider-data-review.json)。原始瓦片、解码结果与临时图像不纳入客户端或发行资源，尚未据此替换运行几何。
 
 [天地图地图服务文档](http://lbs.tianditu.gov.cn/server/MapService.html)与WMTS能力声明用于确认图层及参数。更换为服务器类型凭据后，已取得综合楼及博留餐厅周边28张影像瓦片和开发区14条地名点结果，供离线位置与身份核对；署名国家基础地理信息中心、天地图。影像采集日期及绝对精度未确认，地名点不作为建筑边界；三维地形尚未取到，不将接口列表记作已采集数据。凭据保留于被Git忽略的本地配置，不进入本记录或客户端。
+
+综合楼南广场采用Esri World Imagery中2025-09-07影像的可见地面历史轮廓，并与北侧地面绿岛共同配准到OSM；北院仍保留官网俯视图的暂定描绘。像素控制点、瓦片来源及摘要、屋檐遮挡与2026改造时效限制记录于[开发区地表依据](references/eda/mapping/ground-surfaces.json)和[影像审查](references/shared/mapping/world-imagery-review.json)。运行包仅包含生成几何，不包含原始影像；不将双点配准精度等同测绘精度。

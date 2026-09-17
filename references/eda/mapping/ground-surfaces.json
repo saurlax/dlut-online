@@ -111,174 +111,563 @@
   "surfaces": [
     {
       "id": "eda-comprehensive-south-plaza",
-      "status": "provisional-image-supported-ground-outline",
+      "status": "provisional-imagery-supported-historical-ground-outline",
       "osm_anchor": {
         "way_id": "1076346767",
         "version": 2,
         "loop_start_vertex": 4
       },
       "pixel_anchor": [
-        437,
-        606
+        498,
+        719
       ],
-      "scale_direction": {
-        "way_id": "232559719",
-        "version": 7,
-        "vertices": [
-          2,
-          0
-        ],
-        "pixels": [
-          [
-            343,
-            533
-          ],
-          [
-            695,
-            533
-          ]
-        ]
-      },
       "pixel_outer": [
         [
-          359,
-          540
+          447,
+          662
         ],
         [
-          392,
-          534
+          468,
+          659
         ],
         [
-          480,
-          534
+          526,
+          663
         ],
         [
-          521,
-          540
-        ],
-        [
-          540,
-          563
-        ],
-        [
-          552,
-          589
-        ],
-        [
-          557,
-          620
+          541,
+          675
         ],
         [
           553,
-          650
+          690
         ],
         [
-          538,
-          679
-        ],
-        [
-          516,
+          573,
           701
         ],
         [
-          484,
-          718
+          609,
+          706
         ],
         [
-          447,
-          726
+          609,
+          729
         ],
         [
-          411,
-          721
+          576,
+          734
         ],
         [
-          380,
-          708
+          556,
+          746
         ],
         [
-          356,
-          687
+          546,
+          761
         ],
         [
-          340,
-          657
+          530,
+          779
         ],
         [
-          335,
-          623
+          521,
+          795
         ],
         [
-          338,
-          590
+          481,
+          795
         ],
         [
-          346,
-          564
+          481,
+          784
+        ],
+        [
+          461,
+          779
+        ],
+        [
+          442,
+          760
+        ],
+        [
+          429,
+          739
+        ],
+        [
+          424,
+          716
+        ],
+        [
+          428,
+          693
+        ],
+        [
+          438,
+          674
         ]
       ],
       "pixel_holes": [
         [
           [
-            437,
-            578
+            527.0,
+            719.0
           ],
           [
-            449,
-            581
+            526.4427731316937,
+            724.6576193384677
           ],
           [
-            461,
-            592
+            524.7925064428273,
+            730.0978195385876
           ],
           [
-            465,
-            606
+            522.1126187567738,
+            735.1115367575685
           ],
           [
-            462,
-            620
+            518.5060966544099,
+            739.5060966544099
           ],
           [
-            452,
-            630
+            514.1115367575685,
+            743.1126187567738
           ],
           [
-            438,
-            634
+            509.0978195385876,
+            745.7925064428273
           ],
           [
-            424,
-            630
+            503.6576193384677,
+            747.4427731316937
           ],
           [
-            414,
-            620
+            498.0,
+            748.0
           ],
           [
-            409,
-            606
+            492.3423806615323,
+            747.4427731316937
           ],
           [
-            413,
-            592
+            486.9021804614124,
+            745.7925064428273
           ],
           [
-            425,
-            581
+            481.88846324243156,
+            743.1126187567738
+          ],
+          [
+            477.4939033455901,
+            739.5060966544099
+          ],
+          [
+            473.8873812432262,
+            735.1115367575685
+          ],
+          [
+            471.2074935571727,
+            730.0978195385876
+          ],
+          [
+            469.5572268683063,
+            724.6576193384677
+          ],
+          [
+            469.0,
+            719.0
+          ],
+          [
+            469.5572268683063,
+            713.3423806615323
+          ],
+          [
+            471.2074935571727,
+            707.9021804614124
+          ],
+          [
+            473.8873812432262,
+            702.8884632424315
+          ],
+          [
+            477.4939033455901,
+            698.4939033455901
+          ],
+          [
+            481.88846324243156,
+            694.8873812432262
+          ],
+          [
+            486.9021804614124,
+            692.2074935571727
+          ],
+          [
+            492.3423806615323,
+            690.5572268683063
+          ],
+          [
+            498.0,
+            690.0
+          ],
+          [
+            503.6576193384677,
+            690.5572268683063
+          ],
+          [
+            509.0978195385876,
+            692.2074935571727
+          ],
+          [
+            514.1115367575685,
+            694.8873812432262
+          ],
+          [
+            518.5060966544099,
+            698.4939033455901
+          ],
+          [
+            522.1126187567738,
+            702.8884632424315
+          ],
+          [
+            524.7925064428273,
+            707.9021804614124
+          ],
+          [
+            526.4427731316937,
+            713.3423806615323
           ]
         ]
       ],
-      "method": "Local similarity: map island center to OSM loop bounding-box center, scale and direction from registered main-building south edge. Ground outline traced separately from roof; no global datum shift.",
-      "limits": "Illustrated paving outline and OSM loop are not surveyed. Bounding-box center is an estimated island anchor. Keep original road source; suppress asphalt only within this surface. Building intersections are cut out at mesh generation.",
+      "method": "Trace visible ground paving and planted island in Esri 2025 imagery; one similarity anchored to north and south OSM road-loop centers. No building roof or DLUTMap bound determines scale.",
+      "limits": "Manual visible-ground trace, approximately 3-5 pixels edge interpretation uncertainty; roof-adjacent north segment partly obscured, east/south road mouths truncated at visible paving transition. No ground elevation derived. Two controls determine the transform and provide no independent accuracy estimate. OSM loop center is approximate; raw image geolocation is not survey truth. Predates 2026 renovation; no new asphalt or parking layout inferred.",
       "surface_type": "paving",
       "surface_basis": {
-        "photo": "references/eda/buildings/photos/77921-0.jpg",
-        "image_id": 79694,
-        "photo_index": "references/eda/buildings/comprehensive_profile.json",
+        "source": "Esri World Imagery, eda-comprehensive case",
+        "evidence_date": "2025-09-07",
         "reviewed": "2026-09-17",
-        "observation": "77921-0拍摄北侧院内环岛，不能证明南侧广场材质；原沥青材质判断撤回。南侧俯视图为分格铺装，暂按图面铺装处理，材质待南侧实照核实。",
-        "limits": "不将北侧照片用作南侧材料依据；暂定铺装材质来自俯视图，未恢复砖缝或图案。"
+        "observation": "Visible segmented paving and planted center before 2026 renovation. Preserve provisional paving material only; no new texture or seam geometry derived.",
+        "limits": "Current post-renovation material and extent are unverified."
+      },
+      "superseded_map_trace": {
+        "pixel_anchor": [
+          437,
+          606
+        ],
+        "scale_direction": {
+          "way_id": "232559719",
+          "version": 7,
+          "vertices": [
+            2,
+            0
+          ],
+          "pixels": [
+            [
+              343,
+              533
+            ],
+            [
+              695,
+              533
+            ]
+          ]
+        },
+        "pixel_outer": [
+          [
+            359,
+            540
+          ],
+          [
+            392,
+            534
+          ],
+          [
+            480,
+            534
+          ],
+          [
+            521,
+            540
+          ],
+          [
+            540,
+            563
+          ],
+          [
+            552,
+            589
+          ],
+          [
+            557,
+            620
+          ],
+          [
+            553,
+            650
+          ],
+          [
+            538,
+            679
+          ],
+          [
+            516,
+            701
+          ],
+          [
+            484,
+            718
+          ],
+          [
+            447,
+            726
+          ],
+          [
+            411,
+            721
+          ],
+          [
+            380,
+            708
+          ],
+          [
+            356,
+            687
+          ],
+          [
+            340,
+            657
+          ],
+          [
+            335,
+            623
+          ],
+          [
+            338,
+            590
+          ],
+          [
+            346,
+            564
+          ]
+        ],
+        "pixel_holes": [
+          [
+            [
+              437,
+              578
+            ],
+            [
+              449,
+              581
+            ],
+            [
+              461,
+              592
+            ],
+            [
+              465,
+              606
+            ],
+            [
+              462,
+              620
+            ],
+            [
+              452,
+              630
+            ],
+            [
+              438,
+              634
+            ],
+            [
+              424,
+              630
+            ],
+            [
+              414,
+              620
+            ],
+            [
+              409,
+              606
+            ],
+            [
+              413,
+              592
+            ],
+            [
+              425,
+              581
+            ]
+          ]
+        ],
+        "method": "Local similarity: map island center to OSM loop bounding-box center, scale and direction from registered main-building south edge. Ground outline traced separately from roof; no global datum shift.",
+        "limits": "Illustrated paving outline and OSM loop are not surveyed. Bounding-box center is an estimated island anchor. Keep original road source; suppress asphalt only within this surface. Building intersections are cut out at mesh generation."
+      },
+      "ground_direction": {
+        "osm_anchor": {
+          "way_id": "1076344134",
+          "version": 1,
+          "loop_start_vertex": 2,
+          "closing_way": {
+            "way_id": "1076344135",
+            "version": 1
+          }
+        },
+        "pixel": [
+          527,
+          397
+        ]
+      },
+      "evidence_date": "2025-09-07",
+      "temporal_status": "historical-before-2026-renovation; current-extent-unverified",
+      "image_reference": {
+        "source_record": "references/shared/mapping/world-imagery-review.json",
+        "case": "eda-comprehensive",
+        "zoom": 19,
+        "pixel_origin": [
+          112521772,
+          51254943
+        ],
+        "size": [
+          1100,
+          1100
+        ],
+        "center_lon_lat": [
+          121.8083884,
+          39.0827602
+        ],
+        "sources": [
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439538",
+            "retrieved": "2026-09-17T10:27:52.488000+00:00",
+            "sha256": "f65f322311524b7f64dae60a4df3047a6207ad4b6fb3bee70ddb9857ef742742"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439538",
+            "retrieved": "2026-09-17T10:27:52.285119+00:00",
+            "sha256": "9e95481e8dc44928269968aed3b802f8460e90bcd7ae090831f81d95fd5f385e"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439538",
+            "retrieved": "2026-09-17T10:27:52.492086+00:00",
+            "sha256": "953eb83f0e6901392119ee99946d18447bc6f3792b66693ca885ba31878e9494"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439538",
+            "retrieved": "2026-09-17T10:27:52.309626+00:00",
+            "sha256": "b116375b96e740099e6d860cde26e2bfc0a14bfff449e4529027a3db43ab8885"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439538",
+            "retrieved": "2026-09-17T10:27:52.904777+00:00",
+            "sha256": "f157ee6cf13202a82216c260bfb7ce2a19f1d721dbf1f9cdd3ba6550088f5050"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439539",
+            "retrieved": "2026-09-17T10:27:52.827382+00:00",
+            "sha256": "30518dab7de1bc36d86b124633fade345f3984d6f7a6ca1b185bfddc6b0b0482"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439539",
+            "retrieved": "2026-09-17T10:27:53.481300+00:00",
+            "sha256": "3841da7063cfb5ded1d930dc59b39c7804c414051bf9fb24d3f2910a1ecf9876"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439539",
+            "retrieved": "2026-09-17T10:27:53.064461+00:00",
+            "sha256": "ab59c5efd34428fbeb0fbe85daaf5eba1a74b0c9fe6ed5c0653af8ceeab19ec2"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439539",
+            "retrieved": "2026-09-17T10:27:53.405817+00:00",
+            "sha256": "4945f0540747fc3b21d8ea838e360e7894812072837d65d57f0d8e1dc00407ca"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439539",
+            "retrieved": "2026-09-17T10:27:53.454088+00:00",
+            "sha256": "84a69480600fcbb70ea733d9ecc1a24639008c6d59b869f1fcb5971ca6ed0663"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439540",
+            "retrieved": "2026-09-17T10:27:53.577874+00:00",
+            "sha256": "8662b7f0158c8551cf258b0a9e9b4018ba22344220e1150c3d94e25aed4f768f"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439540",
+            "retrieved": "2026-09-17T10:27:53.839370+00:00",
+            "sha256": "fa0d733bc0bfecb560a781479c8dcaeaafc4a3739f27e5c15157de0ac1492ab4"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439540",
+            "retrieved": "2026-09-17T10:27:54.313012+00:00",
+            "sha256": "588654535387c0d1532480af210958a2efa81edb41b48c34123719fc256bd9f2"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439540",
+            "retrieved": "2026-09-17T10:27:54.349177+00:00",
+            "sha256": "88943f6657041c081554b1872f32de1d560e252989a78720bdea2eb43cd0088d"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439540",
+            "retrieved": "2026-09-17T10:27:54.067930+00:00",
+            "sha256": "16d81de928a2ce258e84e9e25c14e51b129b2216603c3a58f0f1c9042898f5d1"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439541",
+            "retrieved": "2026-09-17T10:27:54.281523+00:00",
+            "sha256": "bb9bd0bbd0fc795b3d0606eb36e17c83aafd767e92346ae4d4c25b1249541b80"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439541",
+            "retrieved": "2026-09-17T10:27:54.610061+00:00",
+            "sha256": "9e9b31a03c960351b3f7f41646457670c053777ef43890ee99e32a86d39b16ce"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439541",
+            "retrieved": "2026-09-17T10:27:54.968740+00:00",
+            "sha256": "a38933a348d6b07ca096acc8c534c43d327100a6412c43b2339f750c41bea4e2"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439541",
+            "retrieved": "2026-09-17T10:27:54.921591+00:00",
+            "sha256": "5a49cadd4c6a5176c51c3342099cce1a75c6af77e1aae56f2f2e6a3636736bc4"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439541",
+            "retrieved": "2026-09-17T10:27:54.899926+00:00",
+            "sha256": "6f66f0524738edf7d96470c10371f79bf6888b7c587cff4a95c3213f880f5b56"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439542",
+            "retrieved": "2026-09-17T10:27:55.040674+00:00",
+            "sha256": "0fe95cfb277790b47c4c457070dea3b287f8f5769fbf0697b834e13dcf8c870f"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439542",
+            "retrieved": "2026-09-17T10:27:55.418556+00:00",
+            "sha256": "cd1283ec086955a07f093fe27d2a7c4e205ae37a7522218cbbcf6336c540a481"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439542",
+            "retrieved": "2026-09-17T10:27:55.456859+00:00",
+            "sha256": "d4b1cce65590e143dd87da526865cfa0e8793f0a99b8aeb06e3b559278ee5a55"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439542",
+            "retrieved": "2026-09-17T10:27:55.774816+00:00",
+            "sha256": "855eb93e506e2a7318ee71af5a16302d3033da2ee448bcb4d94a9d5057b72091"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439542",
+            "retrieved": "2026-09-17T10:27:55.467030+00:00",
+            "sha256": "7f790f3b4b4f41814148f4a7ea7b7bc88f672eb7c59ec01acedefb8aa5d38461"
+          }
+        ],
+        "mosaic_sha256": "703d8acf5f5cce34d5f38f68900cdadb710b4b5758e5d100af81b2daf8da40d1",
+        "island_circle_radius_pixels": 29,
+        "pixel_interpretation_uncertainty": 5
       }
     },
     {
@@ -297,24 +686,6 @@
         471,
         275
       ],
-      "scale_direction": {
-        "way_id": "232559719",
-        "version": 7,
-        "vertices": [
-          2,
-          0
-        ],
-        "pixels": [
-          [
-            343,
-            533
-          ],
-          [
-            695,
-            533
-          ]
-        ]
-      },
       "pixel_outer": [
         [
           442,
@@ -374,7 +745,7 @@
         ]
       ],
       "pixel_holes": [],
-      "method": "Local similarity: north island center to bounding-box center of the two explicitly joined OSM ways; same main-building scale/direction as south plaza. Trace visible courtyard and loop approach separately from roofs.",
+      "method": "Trace remains from official lm30 top view. Scale/direction now use both north and south ground island centers tied to the same OSM loops; no building roof edge controls paving scale.",
       "limits": "Provisional map paving outline; building overlap is clipped at generation. Eastern round-roof zone is excluded from this outline because its ground wall and overhang are unresolved; this exclusion does not define a building footprint. Photo confirms north courtyard asphalt but not calibrated boundaries. No claim of survey accuracy.",
       "surface_type": "asphalt",
       "surface_basis": {
@@ -384,6 +755,35 @@
         "reviewed": "2026-09-17",
         "observation": "77921-0 faces the inner L-shaped courtyard with the north road island, glass projection and asphalt; supports the north courtyard material and connection, not the south plaza material.",
         "limits": "颜色沿用道路近似材质；照片年代及遮挡不能证明现状铺装，未补未经配准的车道线或路缘尺寸。"
+      },
+      "superseded_scale_direction": {
+        "way_id": "232559719",
+        "version": 7,
+        "vertices": [
+          2,
+          0
+        ],
+        "pixels": [
+          [
+            343,
+            533
+          ],
+          [
+            695,
+            533
+          ]
+        ]
+      },
+      "ground_direction": {
+        "osm_anchor": {
+          "way_id": "1076346767",
+          "version": 2,
+          "loop_start_vertex": 4
+        },
+        "pixel": [
+          437,
+          606
+        ]
       }
     }
   ]

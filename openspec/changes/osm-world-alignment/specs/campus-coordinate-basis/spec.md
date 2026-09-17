@@ -84,3 +84,8 @@ DLUTMap bound 已确认为三维选择框，运行数据与生成器 MUST NOT �
 - **WHEN** 官方对象没有已登记的独立地面轮廓
 - **THEN** 运行 points 与 render_polygons 为空，保留来源 ID 与缺口原因，不生成模型、基台、地图轮廓或碰撞
 - **AND** 客户端与保存的服务端世界同时重建；有照片但仍依赖旧框定位的立面不能绕过限制
+
+#### Scenario: Ground paving registration uses observable ground controls
+- **WHEN** 可见影像地面铺装与图绘轮廓不一致
+- **THEN** 按有日期影像的可见地面修正历史参考，并保留原图绘档案、遮挡和改造时效限制
+- **AND** 南北广场使用共同OSM地面环线控制点，不以楼顶边长决定铺装比例；缺失或版本变化的控制点使生成失败，两点拟合不宣称独立测量精度
