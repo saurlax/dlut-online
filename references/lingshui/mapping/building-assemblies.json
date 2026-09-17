@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "campus_id": "lingshui",
+  "assemblies": [
+    {
+      "id": "lingshui-modern-training-compound",
+      "owner_id": "77420",
+      "owner_part": 0,
+      "osm_id": "relation/2898296",
+      "osm_version": 2,
+      "outer_vertices": 8,
+      "hole_vertices": [
+        4
+      ],
+      "members": [
+        {
+          "id": "77419",
+          "part": 0
+        }
+      ],
+      "reviewed": "2026-09-17",
+      "status": "provisional-shared-compound; internal ownership partition unresolved",
+      "basis": [
+        "OSM外圈和内孔表达整组相连建筑，不提供分栋成员；整体几何仅生成一次。",
+        "官网77419照片1显示平顶两层楼翼与77420照片3的低附属、坡屋顶楼翼相接，照片中的A3区05/06及工程训练中心牌匾保留独立身份。",
+        "官网lm30可见南侧平顶楼翼、其北侧坡屋顶及开敞院落；旧现代实验楼斜视框覆盖内孔，不继续作为独立地面体块叠加。"
+      ],
+      "source_record": "references/shared/mapping/footprint-review.json#unmatched_cases/77419",
+      "retained": [
+        "两个官方ID、原始bound及照片索引",
+        "relation/2898296外圈与内孔原坐标",
+        "既有18米未测高度估计，非照片楼层确认"
+      ],
+      "limits": [
+        "仅按OSM底稿共用楼群几何，不声称行政分界、完整屋顶分区或墙脚已经测绘。",
+        "未补其它图面院落、门洞、通路或室内；不能把恢复来源内孔当作完整地面通行证明。",
+        "77419仅撤下错误的额外体块，其对应楼翼由共享OSM外圈表达；后续有充分分区证据再恢复独立楼翼模型。"
+      ]
+    },
+    {
+      "id": "lingshui-fifth-canteen-bath-compound",
+      "owner_id": "77492",
+      "owner_part": 0,
+      "osm_id": "way/544330656",
+      "osm_version": 3,
+      "outer_vertices": 11,
+      "hole_vertices": [],
+      "members": [
+        {
+          "id": "83981",
+          "part": 0
+        }
+      ],
+      "reviewed": "2026-09-17",
+      "status": "provisional-shared-compound; internal bath partition unresolved",
+      "basis": [
+        "官网77492名称为第五食堂/西山浴区；83981详情仅提供男女浴室存包柜统计，没有独立楼层或结构描述。",
+        "官方lm30与两份bound显示浴室位于相连楼群东侧；77492-0/1/2照片连续展示南端柱廊、红白东翼和阶梯状屋面，不支持在整个楼群外再重复挤出偏移旧框。",
+        "OSM way/544330656 v3十一点外圈包含食堂及东侧相连楼翼，采用一次整个楼群底稿；不把远处way/1427905735西山浴池移来替代。"
+      ],
+      "source_record": "references/shared/mapping/footprint-review.json#unmatched_cases/83981",
+      "retained": [
+        "77492与83981官方ID及原始bound",
+        "way/544330656 v3所有原始角点",
+        "既有18米未测高度估计，不代表分区真实高度"
+      ],
+      "limits": [
+        "未建立浴室独立行政边界，不把统计POI当成不存在的设施。",
+        "照片楼层和坡地前庭尚未转为尺寸，不补台阶、室内、入口或未知柱位。",
+        "共用轮廓解决重复体块，不证明OSM墙脚测绘精度。"
+      ]
+    }
+  ]
+}

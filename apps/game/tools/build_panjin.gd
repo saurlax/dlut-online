@@ -4,6 +4,9 @@ func build() -> void:
 	scene.name = "PanjinCampus"
 	root.add_child(scene)
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/panjin/data/campus.json"))
+	if not valid_ground_sources():
+		quit(1)
+		return
 	var bounds: Array = manifest.bounds
 	box(scene,Vector3(bounds[0]+bounds[2]/2.0,-1.0,bounds[1]+bounds[3]/2.0),Vector3(bounds[2],2.0,bounds[3]),material("Panjin ground",Color("7c8069")),"CampusBase")
 	var facade_builder := preload("res://tools/build_panjin_facades.gd").new()
@@ -11,6 +14,7 @@ func build() -> void:
 		var group := Node3D.new()
 		group.name = "Feature_"+feature.id+"_"+str(int(feature.part))
 		group.set_meta("source_id",feature.id)
+		group.set_meta("geometry_status",feature.get("geometry_status",""))
 		group.set_meta("source_part",int(feature.part))
 		group.set_meta("display_name",feature.name)
 		group.set_meta("height_is_approximate",true)
@@ -48,6 +52,8 @@ func build() -> void:
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "panjin"):
 		quit(1)
 		return
+	preload("res://tools/build_terrain.gd").new().build(self,"panjin")
+	preload("res://tools/build_vegetation.gd").new().build(self,"panjin")
 	merge_meshes(scene)
 	for mat in materials.values():
 		if mat.albedo_texture is NoiseTexture2D and mat.albedo_texture.get_image() == null:
@@ -56,5 +62,5 @@ func build() -> void:
 	assert(packed.pack(scene)==OK)
 	DirAccess.make_dir_recursive_absolute("res://assets/campuses/panjin/models")
 	assert(ResourceSaver.save(packed,"res://assets/campuses/panjin/models/panjin_campus.tscn")==OK)
-	print("PANJIN MODEL PASS: %d official polygon parts" % generated_count)
+	print("PANJIN MODEL PASS: %d source identity nodes" % generated_count)
 	quit()

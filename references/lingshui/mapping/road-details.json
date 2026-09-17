@@ -125,5 +125,18 @@
       ]
     }
   ],
-  "precision": "Photo-supported outdoor layout only. Position, dimensions, 4/7 riser counts and elevations are visual approximations fitted to the current provisional terrain, not measured. The full 3000 m2 garden, engraved text and vegetation are not reconstructed. Stair collision uses bounded ramps; no interior or invented entry."
+  "precision": "Photo-supported outdoor layout only. Position, dimensions, 4/7 riser counts and elevations are visual approximations fitted to the current provisional terrain, not measured. The full 3000 m2 garden, engraved text and vegetation are not reconstructed. Stair collision uses bounded ramps; no interior or invented entry.",
+  "osm_registration": {
+    "osm_way_id": 176050687,
+    "osm_version": 4,
+    "part": 0,
+    "segment": 2,
+    "fraction": 0.0879502029886276,
+    "local_endpoint": [
+      0,
+      46
+    ],
+    "reviewed": "2026-09-17",
+    "basis": "照片5/6支持南侧路径与校园道路相接；以既有花园中央步道南端邻接的OSM道路段为定位锚点，沿该段保留原近似位置，端点归至中心线（移动约0.139米）。12.5度方向、局部尺寸、四/七级台阶及铺装高程仍为原估计。旧origin_xz保留为历史参考，不再参与本组生成；这不是地面测量或绝对配准精度。"
+  }
 }

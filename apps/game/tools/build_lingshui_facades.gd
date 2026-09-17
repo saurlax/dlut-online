@@ -13,6 +13,11 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 		var edge := int(edge_value)
 		var p := points[edge]
 		var q := points[(edge+1)%points.size()]
+		var span: Array = profile.get("edge_spans", {}).get(str(edge), [0.0, 1.0])
+		assert(span.size() == 2 and 0.0 <= span[0] and span[0] < span[1] and span[1] <= 1.0)
+		var start := p
+		p = start.lerp(q, float(span[0]))
+		q = start.lerp(q, float(span[1]))
 		var direction := (q-p).normalized()
 		var outward := Vector2(direction.y,-direction.x) * (-1.0 if clockwise else 1.0)
 		var length := p.distance_to(q)
@@ -57,16 +62,20 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 				panel(builder,group,(p+q)*0.5+outward*0.15,level,Vector3(length,0.30,0.35),rotation,stone,"Cornice")
 		if profile.style == "main" and edge == int(profile.primary_edge):
 			var center := (p+q)*0.5
+			var portico_width: float = profile.get("portico_width", length)
+			assert(portico_width > 0.0 and portico_width <= length)
+			var portico_start := center-direction*portico_width*0.5
+			var portico_end := center+direction*portico_width*0.5
 			var timber: Material = builder.material("Lingshui closed timber doors",Color("524a3c"))
 			for fraction in [0.22,0.50,0.78]:
-				var door_pos := p.lerp(q,fraction)+outward*0.25
+				var door_pos := portico_start.lerp(portico_end,fraction)+outward*0.25
 				panel(builder,group,door_pos,1.9,Vector3(2.9,3.8,0.18),rotation,timber,"ClosedDoors")
 				panel(builder,group,door_pos+outward*0.13,2.8,Vector3(2.45,0.9,0.1),rotation,glass,"DoorLights")
 				panel(builder,group,door_pos+outward*0.20,1.8,Vector3(0.08,3.6,0.1),rotation,stone,"DoorMullions")
-			var roof := panel(builder,group,center+outward*1.8,8.1,Vector3(length,0.55,3.6),rotation,stone,"PorticoRoof")
+			var roof := panel(builder,group,center+outward*1.8,8.1,Vector3(portico_width,0.55,3.6),rotation,stone,"PorticoRoof")
 			roof.set_meta("walk_collision",true)
 			for column in range(6):
-				var pos := p.lerp(q,(column+0.2)/5.4)+outward*3.0
+				var pos := portico_start.lerp(portico_end,(column+0.2)/5.4)+outward*3.0
 				var pillar := panel(builder,group,pos,3.95,Vector3(0.7,7.9,0.8),rotation,stone,"PorticoColumn")
 				pillar.set_meta("walk_collision",true)
 

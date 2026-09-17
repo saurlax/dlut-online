@@ -1,0 +1,1218 @@
+{
+  "schema_version": 1,
+  "campus_id": "eda",
+  "tile_sources": [
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200213&z=19",
+      "retrieved": "2026-09-16T11:37:51.490749+00:00",
+      "sha256": "1336604fd850585fda5fa0a501529324c598db27dd951eac545ad23668fe0de5"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200214&z=19",
+      "retrieved": "2026-09-16T11:37:52.058397+00:00",
+      "sha256": "db1c5a0b9a01d729fc760a9ea0c969e7e7d43f18b4310ad32109527e44beb74e"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200215&z=19",
+      "retrieved": "2026-09-16T11:37:52.775409+00:00",
+      "sha256": "b70e9d86bb1f73990c9fc5402733afe5839b87d02b0eaedab3aca35849dbf96d"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:53.338866+00:00",
+      "sha256": "8cfc85a37b070e8f86e72c69090a2754883ef7c41b49952ae6d50bdaa12557dc"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200213&z=19",
+      "retrieved": "2026-09-16T11:34:52.222204+00:00",
+      "sha256": "66fc0237eff6f6b6442c065b03052e9eec7de1f420360ae3837885ff18856341"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200214&z=19",
+      "retrieved": "2026-09-16T11:34:52.240304+00:00",
+      "sha256": "7958e64d6b92eaa61b8dfe7a353c1fde4ad0e98523d1454d5b3848d6fe92be0e"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200215&z=19",
+      "retrieved": "2026-09-16T11:34:52.297427+00:00",
+      "sha256": "07a833bdc7bd78a00398e4a1e7f7a2194d80e0f051644af8a8a231e5cf0dc46a"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:54.044121+00:00",
+      "sha256": "128f2812e3680f26d7d7cee1dbf69c252d47bf1652e40ec06043a4664f5db57b"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200213&z=19",
+      "retrieved": "2026-09-16T11:34:52.232784+00:00",
+      "sha256": "9bc429cf8686f78c195d337e62c0faa9ee8d4b82e0ae3cfa4ceb1be2eadd0a65"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200214&z=19",
+      "retrieved": "2026-09-16T11:34:52.380578+00:00",
+      "sha256": "6a016adb1b107eae140cccba869592fab41379e44d90a704b76bfebb017634ec"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200215&z=19",
+      "retrieved": "2026-09-16T11:34:52.771449+00:00",
+      "sha256": "bcdd666063df1537055b2a558abb2c82ab88705c77c90acff1bb6b52a9e758ef"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:54.808069+00:00",
+      "sha256": "609f9bfd9bff4f6ea0ae51e4436f44f2b8e6643896a445b9c5639fd15ad0ad9b"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200213&z=19",
+      "retrieved": "2026-09-16T11:34:52.905869+00:00",
+      "sha256": "b121671762ba720e0cce267703bba4d3d066f6323eb260d171702c0b1d18ae9e"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200214&z=19",
+      "retrieved": "2026-09-16T11:34:52.943742+00:00",
+      "sha256": "6f8fb4460ec41a28cd49babbd911cbe5ad9b2c0fa2ed9211a2138f51fe031e32"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200215&z=19",
+      "retrieved": "2026-09-16T11:34:53.004563+00:00",
+      "sha256": "b99d1f21f934fd4e06d8684ad76019613341fcb0505f4417637ed150a4dbd9e5"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:55.550861+00:00",
+      "sha256": "f232892ce1a2c233f9db04859d10b0546e6e6009503f3ab05aa44f36720b2fe0"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200213&z=19",
+      "retrieved": "2026-09-16T11:34:52.909891+00:00",
+      "sha256": "0b31559c8e9a78d22f81fbd6579c4be0f6bf8f84d49deb4d1a3be0d6667468df"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200214&z=19",
+      "retrieved": "2026-09-16T11:34:52.953249+00:00",
+      "sha256": "e1c9c4075aca8165f916b97b43825e36f42e6974b08c2e545db4ee5149eec0c6"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200215&z=19",
+      "retrieved": "2026-09-16T11:34:53.490230+00:00",
+      "sha256": "f54e78ce896a292642415fb595f719339df829944695f5690ae65d42f51ba2a1"
+    },
+    {
+      "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200216&z=19",
+      "retrieved": "2026-09-16T11:37:56.177168+00:00",
+      "sha256": "21220d548fe08f65cd17ec7c9f25f6b4e0913604a9c2749b64b0dc3c2b36066b"
+    }
+  ],
+  "pixel_origin": [
+    112523709,
+    51254572
+  ],
+  "zoom": 19,
+  "surfaces": [
+    {
+      "id": "eda-comprehensive-south-plaza",
+      "status": "provisional-imagery-supported-historical-ground-outline",
+      "osm_anchor": {
+        "way_id": "1076346767",
+        "version": 2,
+        "loop_start_vertex": 4
+      },
+      "pixel_anchor": [
+        498,
+        719
+      ],
+      "pixel_outer": [
+        [
+          447,
+          662
+        ],
+        [
+          468,
+          659
+        ],
+        [
+          526,
+          663
+        ],
+        [
+          541,
+          675
+        ],
+        [
+          553,
+          690
+        ],
+        [
+          573,
+          701
+        ],
+        [
+          609,
+          706
+        ],
+        [
+          609,
+          729
+        ],
+        [
+          576,
+          734
+        ],
+        [
+          556,
+          746
+        ],
+        [
+          546,
+          761
+        ],
+        [
+          530,
+          779
+        ],
+        [
+          521,
+          795
+        ],
+        [
+          481,
+          795
+        ],
+        [
+          481,
+          784
+        ],
+        [
+          461,
+          779
+        ],
+        [
+          442,
+          760
+        ],
+        [
+          429,
+          739
+        ],
+        [
+          424,
+          716
+        ],
+        [
+          428,
+          693
+        ],
+        [
+          438,
+          674
+        ]
+      ],
+      "pixel_holes": [
+        [
+          [
+            527.0,
+            719.0
+          ],
+          [
+            526.4427731316937,
+            724.6576193384677
+          ],
+          [
+            524.7925064428273,
+            730.0978195385876
+          ],
+          [
+            522.1126187567738,
+            735.1115367575685
+          ],
+          [
+            518.5060966544099,
+            739.5060966544099
+          ],
+          [
+            514.1115367575685,
+            743.1126187567738
+          ],
+          [
+            509.0978195385876,
+            745.7925064428273
+          ],
+          [
+            503.6576193384677,
+            747.4427731316937
+          ],
+          [
+            498.0,
+            748.0
+          ],
+          [
+            492.3423806615323,
+            747.4427731316937
+          ],
+          [
+            486.9021804614124,
+            745.7925064428273
+          ],
+          [
+            481.88846324243156,
+            743.1126187567738
+          ],
+          [
+            477.4939033455901,
+            739.5060966544099
+          ],
+          [
+            473.8873812432262,
+            735.1115367575685
+          ],
+          [
+            471.2074935571727,
+            730.0978195385876
+          ],
+          [
+            469.5572268683063,
+            724.6576193384677
+          ],
+          [
+            469.0,
+            719.0
+          ],
+          [
+            469.5572268683063,
+            713.3423806615323
+          ],
+          [
+            471.2074935571727,
+            707.9021804614124
+          ],
+          [
+            473.8873812432262,
+            702.8884632424315
+          ],
+          [
+            477.4939033455901,
+            698.4939033455901
+          ],
+          [
+            481.88846324243156,
+            694.8873812432262
+          ],
+          [
+            486.9021804614124,
+            692.2074935571727
+          ],
+          [
+            492.3423806615323,
+            690.5572268683063
+          ],
+          [
+            498.0,
+            690.0
+          ],
+          [
+            503.6576193384677,
+            690.5572268683063
+          ],
+          [
+            509.0978195385876,
+            692.2074935571727
+          ],
+          [
+            514.1115367575685,
+            694.8873812432262
+          ],
+          [
+            518.5060966544099,
+            698.4939033455901
+          ],
+          [
+            522.1126187567738,
+            702.8884632424315
+          ],
+          [
+            524.7925064428273,
+            707.9021804614124
+          ],
+          [
+            526.4427731316937,
+            713.3423806615323
+          ]
+        ]
+      ],
+      "method": "Trace visible ground paving and planted island in Esri 2025 imagery; one similarity anchored to north and south OSM road-loop centers. No building roof or DLUTMap bound determines scale.",
+      "limits": "Manual visible-ground trace, approximately 3-5 pixels edge interpretation uncertainty; roof-adjacent north segment partly obscured, east/south road mouths truncated at visible paving transition. No ground elevation derived. Two controls determine the transform and provide no independent accuracy estimate. OSM loop center is approximate; raw image geolocation is not survey truth. Predates 2026 renovation; no new asphalt or parking layout inferred.",
+      "surface_type": "paving",
+      "surface_basis": {
+        "source": "Esri World Imagery, eda-comprehensive case",
+        "evidence_date": "2025-09-07",
+        "reviewed": "2026-09-17",
+        "observation": "Visible segmented paving and planted center before 2026 renovation. Preserve provisional paving material only; no new texture or seam geometry derived.",
+        "limits": "Current post-renovation material and extent are unverified."
+      },
+      "superseded_map_trace": {
+        "pixel_anchor": [
+          437,
+          606
+        ],
+        "scale_direction": {
+          "way_id": "232559719",
+          "version": 7,
+          "vertices": [
+            2,
+            0
+          ],
+          "pixels": [
+            [
+              343,
+              533
+            ],
+            [
+              695,
+              533
+            ]
+          ]
+        },
+        "pixel_outer": [
+          [
+            359,
+            540
+          ],
+          [
+            392,
+            534
+          ],
+          [
+            480,
+            534
+          ],
+          [
+            521,
+            540
+          ],
+          [
+            540,
+            563
+          ],
+          [
+            552,
+            589
+          ],
+          [
+            557,
+            620
+          ],
+          [
+            553,
+            650
+          ],
+          [
+            538,
+            679
+          ],
+          [
+            516,
+            701
+          ],
+          [
+            484,
+            718
+          ],
+          [
+            447,
+            726
+          ],
+          [
+            411,
+            721
+          ],
+          [
+            380,
+            708
+          ],
+          [
+            356,
+            687
+          ],
+          [
+            340,
+            657
+          ],
+          [
+            335,
+            623
+          ],
+          [
+            338,
+            590
+          ],
+          [
+            346,
+            564
+          ]
+        ],
+        "pixel_holes": [
+          [
+            [
+              437,
+              578
+            ],
+            [
+              449,
+              581
+            ],
+            [
+              461,
+              592
+            ],
+            [
+              465,
+              606
+            ],
+            [
+              462,
+              620
+            ],
+            [
+              452,
+              630
+            ],
+            [
+              438,
+              634
+            ],
+            [
+              424,
+              630
+            ],
+            [
+              414,
+              620
+            ],
+            [
+              409,
+              606
+            ],
+            [
+              413,
+              592
+            ],
+            [
+              425,
+              581
+            ]
+          ]
+        ],
+        "method": "Local similarity: map island center to OSM loop bounding-box center, scale and direction from registered main-building south edge. Ground outline traced separately from roof; no global datum shift.",
+        "limits": "Illustrated paving outline and OSM loop are not surveyed. Bounding-box center is an estimated island anchor. Keep original road source; suppress asphalt only within this surface. Building intersections are cut out at mesh generation."
+      },
+      "ground_direction": {
+        "osm_anchor": {
+          "way_id": "1076344134",
+          "version": 1,
+          "loop_start_vertex": 2,
+          "closing_way": {
+            "way_id": "1076344135",
+            "version": 1
+          }
+        },
+        "pixel": [
+          527,
+          397
+        ]
+      },
+      "evidence_date": "2025-09-07",
+      "temporal_status": "historical-before-2026-renovation; current-extent-unverified",
+      "image_reference": {
+        "source_record": "references/shared/mapping/world-imagery-review.json",
+        "case": "eda-comprehensive",
+        "zoom": 19,
+        "pixel_origin": [
+          112521772,
+          51254943
+        ],
+        "size": [
+          1100,
+          1100
+        ],
+        "center_lon_lat": [
+          121.8083884,
+          39.0827602
+        ],
+        "sources": [
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439538",
+            "retrieved": "2026-09-17T10:27:52.488000+00:00",
+            "sha256": "f65f322311524b7f64dae60a4df3047a6207ad4b6fb3bee70ddb9857ef742742"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439538",
+            "retrieved": "2026-09-17T10:27:52.285119+00:00",
+            "sha256": "9e95481e8dc44928269968aed3b802f8460e90bcd7ae090831f81d95fd5f385e"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439538",
+            "retrieved": "2026-09-17T10:27:52.492086+00:00",
+            "sha256": "953eb83f0e6901392119ee99946d18447bc6f3792b66693ca885ba31878e9494"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439538",
+            "retrieved": "2026-09-17T10:27:52.309626+00:00",
+            "sha256": "b116375b96e740099e6d860cde26e2bfc0a14bfff449e4529027a3db43ab8885"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439538",
+            "retrieved": "2026-09-17T10:27:52.904777+00:00",
+            "sha256": "f157ee6cf13202a82216c260bfb7ce2a19f1d721dbf1f9cdd3ba6550088f5050"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439539",
+            "retrieved": "2026-09-17T10:27:52.827382+00:00",
+            "sha256": "30518dab7de1bc36d86b124633fade345f3984d6f7a6ca1b185bfddc6b0b0482"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439539",
+            "retrieved": "2026-09-17T10:27:53.481300+00:00",
+            "sha256": "3841da7063cfb5ded1d930dc59b39c7804c414051bf9fb24d3f2910a1ecf9876"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439539",
+            "retrieved": "2026-09-17T10:27:53.064461+00:00",
+            "sha256": "ab59c5efd34428fbeb0fbe85daaf5eba1a74b0c9fe6ed5c0653af8ceeab19ec2"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439539",
+            "retrieved": "2026-09-17T10:27:53.405817+00:00",
+            "sha256": "4945f0540747fc3b21d8ea838e360e7894812072837d65d57f0d8e1dc00407ca"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439539",
+            "retrieved": "2026-09-17T10:27:53.454088+00:00",
+            "sha256": "84a69480600fcbb70ea733d9ecc1a24639008c6d59b869f1fcb5971ca6ed0663"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439540",
+            "retrieved": "2026-09-17T10:27:53.577874+00:00",
+            "sha256": "8662b7f0158c8551cf258b0a9e9b4018ba22344220e1150c3d94e25aed4f768f"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439540",
+            "retrieved": "2026-09-17T10:27:53.839370+00:00",
+            "sha256": "fa0d733bc0bfecb560a781479c8dcaeaafc4a3739f27e5c15157de0ac1492ab4"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439540",
+            "retrieved": "2026-09-17T10:27:54.313012+00:00",
+            "sha256": "588654535387c0d1532480af210958a2efa81edb41b48c34123719fc256bd9f2"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439540",
+            "retrieved": "2026-09-17T10:27:54.349177+00:00",
+            "sha256": "88943f6657041c081554b1872f32de1d560e252989a78720bdea2eb43cd0088d"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439540",
+            "retrieved": "2026-09-17T10:27:54.067930+00:00",
+            "sha256": "16d81de928a2ce258e84e9e25c14e51b129b2216603c3a58f0f1c9042898f5d1"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439541",
+            "retrieved": "2026-09-17T10:27:54.281523+00:00",
+            "sha256": "bb9bd0bbd0fc795b3d0606eb36e17c83aafd767e92346ae4d4c25b1249541b80"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439541",
+            "retrieved": "2026-09-17T10:27:54.610061+00:00",
+            "sha256": "9e9b31a03c960351b3f7f41646457670c053777ef43890ee99e32a86d39b16ce"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439541",
+            "retrieved": "2026-09-17T10:27:54.968740+00:00",
+            "sha256": "a38933a348d6b07ca096acc8c534c43d327100a6412c43b2339f750c41bea4e2"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439541",
+            "retrieved": "2026-09-17T10:27:54.921591+00:00",
+            "sha256": "5a49cadd4c6a5176c51c3342099cce1a75c6af77e1aae56f2f2e6a3636736bc4"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439541",
+            "retrieved": "2026-09-17T10:27:54.899926+00:00",
+            "sha256": "6f66f0524738edf7d96470c10371f79bf6888b7c587cff4a95c3213f880f5b56"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200214/439542",
+            "retrieved": "2026-09-17T10:27:55.040674+00:00",
+            "sha256": "0fe95cfb277790b47c4c457070dea3b287f8f5769fbf0697b834e13dcf8c870f"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200215/439542",
+            "retrieved": "2026-09-17T10:27:55.418556+00:00",
+            "sha256": "cd1283ec086955a07f093fe27d2a7c4e205ae37a7522218cbbcf6336c540a481"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200216/439542",
+            "retrieved": "2026-09-17T10:27:55.456859+00:00",
+            "sha256": "d4b1cce65590e143dd87da526865cfa0e8793f0a99b8aeb06e3b559278ee5a55"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200217/439542",
+            "retrieved": "2026-09-17T10:27:55.774816+00:00",
+            "sha256": "855eb93e506e2a7318ee71af5a16302d3033da2ee448bcb4d94a9d5057b72091"
+          },
+          {
+            "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200218/439542",
+            "retrieved": "2026-09-17T10:27:55.467030+00:00",
+            "sha256": "7f790f3b4b4f41814148f4a7ea7b7bc88f672eb7c59ec01acedefb8aa5d38461"
+          }
+        ],
+        "mosaic_sha256": "703d8acf5f5cce34d5f38f68900cdadb710b4b5758e5d100af81b2daf8da40d1",
+        "island_circle_radius_pixels": 29,
+        "pixel_interpretation_uncertainty": 5
+      }
+    },
+    {
+      "id": "eda-comprehensive-north-court",
+      "status": "provisional-mixed-imagery-and-map-ground-outline",
+      "osm_anchor": {
+        "way_id": "1076344134",
+        "version": 1,
+        "loop_start_vertex": 2,
+        "closing_way": {
+          "way_id": "1076344135",
+          "version": 1
+        }
+      },
+      "pixel_anchor": [
+        527,
+        397
+      ],
+      "pixel_outer": [
+        [
+          465,
+          480
+        ],
+        [
+          453,
+          465
+        ],
+        [
+          450,
+          425
+        ],
+        [
+          449,
+          380
+        ],
+        [
+          449,
+          322
+        ],
+        [
+          475,
+          322
+        ],
+        [
+          486,
+          334
+        ],
+        [
+          503,
+          326
+        ],
+        [
+          525,
+          325
+        ],
+        [
+          547,
+          331
+        ],
+        [
+          565,
+          340
+        ],
+        [
+          583,
+          357
+        ],
+        [
+          602,
+          361
+        ],
+        [
+          620,
+          359
+        ],
+        [
+          622,
+          399
+        ],
+        [
+          600,
+          403
+        ],
+        [
+          594,
+          425
+        ],
+        [
+          576,
+          445
+        ],
+        [
+          554,
+          462
+        ],
+        [
+          543.361272433321,
+          461.89944633615437
+        ],
+        [
+          525.5718001752215,
+          515.5666428823035
+        ],
+        [
+          541.0801773891995,
+          512.4570210536774
+        ],
+        [
+          609.1623508584951,
+          517.4334745341728
+        ],
+        [
+          647.0043805377675,
+          513.0720575882656
+        ],
+        [
+          637.5446679371731,
+          533.5966202118916
+        ],
+        [
+          634.9467832401529,
+          558.8936838967819
+        ],
+        [
+          646.8491649882133,
+          578.1786356205462
+        ],
+        [
+          533.1768653413658,
+          579.6041890585909
+        ],
+        [
+          443.26959726148647,
+          538.948138045648
+        ],
+        [
+          437.1965642132644,
+          519.5900810173687
+        ],
+        [
+          452.7658625143383,
+          521.338249771941
+        ],
+        [
+          481.7907638393381,
+          511.2571420829683
+        ]
+      ],
+      "pixel_holes": [
+        [
+          [
+            561.0,
+            397.0
+          ],
+          [
+            560.7091252867095,
+            401.43789053548176
+          ],
+          [
+            559.8414780938283,
+            405.7998475334857
+          ],
+          [
+            558.4119041053838,
+            410.01123670041306
+          ],
+          [
+            556.444863728671,
+            414.0
+          ],
+          [
+            553.974013569902,
+            417.69788858629653
+          ],
+          [
+            551.0416305603426,
+            421.04163056034264
+          ],
+          [
+            547.6978885862965,
+            423.974013569902
+          ],
+          [
+            544.0,
+            426.4448637286709
+          ],
+          [
+            540.0112367004131,
+            428.41190410538377
+          ],
+          [
+            535.7998475334857,
+            429.8414780938283
+          ],
+          [
+            531.4378905354818,
+            430.70912528670954
+          ],
+          [
+            527.0,
+            431.0
+          ],
+          [
+            522.5621094645182,
+            430.70912528670954
+          ],
+          [
+            518.2001524665143,
+            429.8414780938283
+          ],
+          [
+            513.9887632995869,
+            428.41190410538377
+          ],
+          [
+            510.0,
+            426.4448637286709
+          ],
+          [
+            506.30211141370347,
+            423.974013569902
+          ],
+          [
+            502.95836943965736,
+            421.04163056034264
+          ],
+          [
+            500.025986430098,
+            417.69788858629653
+          ],
+          [
+            497.5551362713291,
+            414.0
+          ],
+          [
+            495.58809589461623,
+            410.01123670041306
+          ],
+          [
+            494.1585219061717,
+            405.7998475334857
+          ],
+          [
+            493.29087471329046,
+            401.43789053548176
+          ],
+          [
+            493.0,
+            397.0
+          ],
+          [
+            493.29087471329046,
+            392.56210946451824
+          ],
+          [
+            494.1585219061717,
+            388.2001524665143
+          ],
+          [
+            495.58809589461623,
+            383.98876329958694
+          ],
+          [
+            497.5551362713291,
+            380.0
+          ],
+          [
+            500.025986430098,
+            376.30211141370347
+          ],
+          [
+            502.95836943965736,
+            372.9583694396574
+          ],
+          [
+            506.30211141370347,
+            370.025986430098
+          ],
+          [
+            510.0,
+            367.5551362713291
+          ],
+          [
+            513.9887632995869,
+            365.58809589461623
+          ],
+          [
+            518.2001524665143,
+            364.1585219061717
+          ],
+          [
+            522.5621094645182,
+            363.29087471329046
+          ],
+          [
+            527.0,
+            363.0
+          ],
+          [
+            531.4378905354818,
+            363.29087471329046
+          ],
+          [
+            535.7998475334857,
+            364.1585219061717
+          ],
+          [
+            540.0112367004131,
+            365.58809589461623
+          ],
+          [
+            544.0,
+            367.5551362713291
+          ],
+          [
+            547.6978885862965,
+            370.025986430098
+          ],
+          [
+            551.0416305603426,
+            372.95836943965736
+          ],
+          [
+            553.974013569902,
+            376.30211141370347
+          ],
+          [
+            556.444863728671,
+            380.0
+          ],
+          [
+            558.4119041053838,
+            383.98876329958694
+          ],
+          [
+            559.8414780938283,
+            388.2001524665143
+          ],
+          [
+            560.7091252867095,
+            392.56210946451824
+          ]
+        ]
+      ],
+      "method": "Visible north asphalt apron and planted island traced from Esri imagery, joined to the existing lm30 court trace transferred through the same two OSM ground-loop centers. No roof or DLUTMap bound controls scale.",
+      "limits": "Apron edge interpretation approximately 3-5 pixels; north/east approach clipped at stated join lines, not inferred curb ends. Central island approximated by a 48-point circle from visible curb, not surveyed. Existing shadowed court boundary remains a transferred lm30 estimate and is clipped against OSM buildings; eastern round-roof ground wall remains unknown. No independently measured georegistration accuracy or elevation.",
+      "surface_type": "asphalt",
+      "surface_basis": {
+        "photo": "references/eda/buildings/photos/77921-0.jpg",
+        "image_id": 79694,
+        "photo_index": "references/eda/buildings/comprehensive_profile.json",
+        "reviewed": "2026-09-17",
+        "observation": "77921-0 faces the inner L-shaped courtyard with the north road island, glass projection and asphalt; supports the north courtyard material and connection, not the south plaza material.",
+        "limits": "颜色沿用道路近似材质；照片年代及遮挡不能证明现状铺装，未补未经配准的车道线或路缘尺寸。"
+      },
+      "superseded_scale_direction": {
+        "way_id": "232559719",
+        "version": 7,
+        "vertices": [
+          2,
+          0
+        ],
+        "pixels": [
+          [
+            343,
+            533
+          ],
+          [
+            695,
+            533
+          ]
+        ]
+      },
+      "ground_direction": {
+        "osm_anchor": {
+          "way_id": "1076346767",
+          "version": 2,
+          "loop_start_vertex": 4
+        },
+        "pixel": [
+          498,
+          719
+        ]
+      },
+      "superseded_map_trace": {
+        "pixel_anchor": [
+          471,
+          275
+        ],
+        "pixel_outer": [
+          [
+            442,
+            336
+          ],
+          [
+            487,
+            342
+          ],
+          [
+            468,
+            397
+          ],
+          [
+            484,
+            394
+          ],
+          [
+            554,
+            400
+          ],
+          [
+            593,
+            396
+          ],
+          [
+            583,
+            417
+          ],
+          [
+            580,
+            443
+          ],
+          [
+            592,
+            463
+          ],
+          [
+            475,
+            463
+          ],
+          [
+            383,
+            420
+          ],
+          [
+            377,
+            400
+          ],
+          [
+            393,
+            402
+          ],
+          [
+            423,
+            392
+          ]
+        ],
+        "pixel_holes": [],
+        "method": "Trace remains from official lm30 top view. Scale/direction now use both north and south ground island centers tied to the same OSM loops; no building roof edge controls paving scale.",
+        "limits": "Provisional map paving outline; building overlap is clipped at generation. Eastern round-roof zone is excluded from this outline because its ground wall and overhang are unresolved; this exclusion does not define a building footprint. Photo confirms north courtyard asphalt but not calibrated boundaries. No claim of survey accuracy.",
+        "ground_direction": {
+          "osm_anchor": {
+            "way_id": "1076346767",
+            "version": 2,
+            "loop_start_vertex": 4
+          },
+          "pixel": [
+            437,
+            606
+          ]
+        }
+      },
+      "evidence_date": "2025-09-07",
+      "temporal_status": "historical-before-2026-renovation; current-extent-unverified",
+      "trace_parts": {
+        "visible_imagery_apron_vertices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18
+        ],
+        "transferred_map_court_vertices": [
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ],
+        "join_lines_pixel": [
+          [
+            [
+              449,
+              322
+            ],
+            [
+              475,
+              322
+            ]
+          ],
+          [
+            [
+              620,
+              359
+            ],
+            [
+              622,
+              399
+            ]
+          ]
+        ],
+        "island_center_pixel": [
+          527,
+          397
+        ],
+        "island_radius_pixel": 34
+      },
+      "image_reference": {
+        "same_mosaic_as": "eda-comprehensive-south-plaza",
+        "source_record": "references/eda/mapping/ground-surfaces.json#/surfaces/0/image_reference",
+        "view_size": [
+          1100,
+          1100
+        ],
+        "north_island_pixel": [
+          527,
+          397
+        ],
+        "south_island_pixel": [
+          498,
+          719
+        ]
+      }
+    }
+  ]
+}

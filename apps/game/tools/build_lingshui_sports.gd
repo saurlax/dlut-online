@@ -19,10 +19,18 @@ func build(builder, group: Node3D, outline: PackedVector2Array, profile: Diction
 	surface(builder, group, oval(radius, half), center, angle, outline, 0.09, apron)
 	var pitch_x: float = profile.pitch_width / 2.0
 	var pitch_z: float = profile.pitch_length / 2.0
-	surface(builder, group, rectangle(-pitch_x, -pitch_z, pitch_x, pitch_z), center, angle, outline, 0.10, turf)
+	if profile.has("pitch_outline"):
+		var pitch := PackedVector2Array()
+		for p in profile.pitch_outline: pitch.append(Vector2(p[0],p[1]))
+		builder.polygon(group,pitch,0.10,turf,"FieldSurface")
+	else:
+		surface(builder, group, rectangle(-pitch_x, -pitch_z, pitch_x, pitch_z), center, angle, outline, 0.10, turf)
 	for lane in range(lanes + 1):
 		var path := oval(radius + lane * width, half)
 		stroke(builder, group, path, true, center, angle, outline, chalk)
+	if profile.has("pitch_outline"):
+		center = Vector2.ZERO
+		for p in profile.pitch_outline: center += Vector2(p[0],p[1])/profile.pitch_outline.size()
 	# Football markings are visible in the source overview; sizes are fitted, not surveyed.
 	stroke(builder, group, rectangle(-pitch_x, -pitch_z, pitch_x, pitch_z), true, center, angle, outline, chalk)
 	stroke(builder, group, PackedVector2Array([Vector2(-pitch_x, 0), Vector2(pitch_x, 0)]), false, center, angle, outline, chalk)
@@ -37,7 +45,14 @@ func build(builder, group: Node3D, outline: PackedVector2Array, profile: Diction
 				Vector2(dimensions.x, side * (pitch_z - dimensions.y)), Vector2(dimensions.x, side * pitch_z)
 			]), false, center, angle, outline, chalk)
 	if profile.west_stand:
+		var first := group.get_child_count()
 		west_stand(builder, group)
+		if profile.has("stand_transform"):
+			var t: Dictionary = profile.stand_transform
+			var conversion := Transform3D(Basis(Vector3(t.right[0],0,t.right[1]),Vector3.UP,Vector3(t.forward[0],0,t.forward[1])),Vector3(t.offset[0],0,t.offset[1]))
+			for i in range(first,group.get_child_count()):
+				var mesh: MeshInstance3D = group.get_child(i)
+				mesh.transform = conversion*mesh.transform
 
 func oval(radius: float, half: float) -> PackedVector2Array:
 	var ring := PackedVector2Array()

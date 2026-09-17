@@ -1,0 +1,27 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>已下载轮廓总览</title>
+<style>body{font:16px system-ui;margin:24px;background:#f6f7f9;color:#172330}button,select{font:inherit;padding:7px}header{display:flex;gap:16px;align-items:center}main{display:grid;grid-template-columns:1fr 1fr;gap:16px}section{background:white;padding:16px;border:1px solid #ddd}canvas{width:100%;height:560px;background:#fafafa;touch-action:none;cursor:grab}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:13px system-ui;min-height:80px}a{color:#2465ad}@media(max-width:850px){main{grid-template-columns:1fr}}</style>
+<h1>已下载轮廓总览</h1><p>展示实际转换的全部 bound，不限于六个样本。两侧使用各自原始坐标，尚未配准；不能按屏幕位置直接判断重合。</p>
+<header><label>校区 <select id="campus"><option value="lingshui">凌水</option><option value="eda">开发区</option><option value="panjin">盘锦</option></select></label><button id="reset">适应全部</button><a href="normalized-bounds.json">下载全部 bound</a><a href="comparison.html">六个样本拟合</a></header>
+<p>滚轮缩放，拖动平移，点击边线查看 ID、名称与来源。官网包含道路等非建筑区域；OSM 包含下载框内的校外建筑，关系对象可能与成员 way 重复；检查仅覆盖单环，多环嵌套和重叠尚未验证。</p>
+<main><section><h2>官网原始 bound</h2><p id="official-count"></p><canvas id="official"></canvas><pre id="official-info">点击轮廓查看资料</pre></section><section><h2>OSM 建筑 bound</h2><p id="osm-count"></p><canvas id="osm"></canvas><pre id="osm-info">点击轮廓查看资料</pre></section></main>
+<p id="pending"></p><p>紫色虚线为 OSM relation 的内环，绿色为外环；蓝色为单 way。无效几何以橙色显示供排查，不作为有效候选。</p>
+<script>
+const DATA=__DATA__;
+const views=[];
+function rings(r){return r.bound.rings||[{role:'outer',points:r.bound.points}]}
+function segment(p,a,b){let dx=b[0]-a[0],dy=b[1]-a[1],q=dx*dx+dy*dy,t=q?Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/q)):0;return Math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dy)}
+for(const source of ['official','osm']){
+ const canvas=document.getElementById(source),ctx=canvas.getContext('2d');
+ const v={source,canvas,ctx,items:[],scale:1,x:0,y:0};views.push(v);
+ v.fit=()=>{const pts=v.items.flatMap(r=>r.paths.flatMap(p=>p.pts));if(!pts.length)return;const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),a=Math.min(...xs),b=Math.max(...xs),c=Math.min(...ys),d=Math.max(...ys);v.scale=Math.min((canvas.width-40)/(b-a||1),(canvas.height-40)/(d-c||1));v.x=canvas.width/2-(a+b)/2*v.scale;v.y=canvas.height/2-(c+d)/2*v.scale;v.draw()};
+ v.draw=()=>{ctx.clearRect(0,0,canvas.width,canvas.height);for(const r of v.items)for(const p of r.paths){ctx.strokeStyle=!r.raw.valid?'#c87813':p.role==='inner'?'#8b46b6':r.raw.id.startsWith('relation/')?'#008565':source==='osm'?'#2675cb':'#d94646';ctx.lineWidth=r===v.selected?3:1;ctx.setLineDash(p.role==='inner'?[4,3]:[]);ctx.beginPath();p.pts.forEach(([x,y],i)=>ctx[i?'lineTo':'moveTo'](x*v.scale+v.x,y*v.scale+v.y));ctx.closePath();ctx.stroke()}};
+ const pos=e=>{const b=canvas.getBoundingClientRect();return[(e.clientX-b.left)*canvas.width/b.width,(e.clientY-b.top)*canvas.height/b.height]};
+ canvas.addEventListener('wheel',e=>{e.preventDefault();const [x,y]=pos(e),s=Math.exp(-Math.sign(e.deltaY)*.18);v.x=x-(x-v.x)*s;v.y=y-(y-v.y)*s;v.scale*=s;v.draw()},{passive:false});
+ let drag;
+ canvas.onpointerdown=e=>{drag={start:pos(e),last:pos(e),moved:false};canvas.setPointerCapture(e.pointerId)};
+ canvas.onpointermove=e=>{if(!drag)return;let p=pos(e);if(Math.hypot(p[0]-drag.start[0],p[1]-drag.start[1])>4)drag.moved=true;v.x+=p[0]-drag.last[0];v.y+=p[1]-drag.last[1];drag.last=p;v.draw()};
+ canvas.onpointerup=e=>{if(drag&&!drag.moved){const p=pos(e).map((x,i)=>(x-(i?v.y:v.x))/v.scale);let best=8/v.scale,hit=null;for(const r of v.items)for(const path of r.paths)for(let i=0;i<path.pts.length;i++){const d=segment(p,path.pts[i],path.pts[(i+1)%path.pts.length]);if(d<best){best=d;hit=r}}v.selected=hit;document.getElementById(source+'-info').textContent=hit?JSON.stringify({id:hit.raw.id,name:hit.raw.name||hit.raw.tags?.name,frame:hit.raw.frame,valid:hit.raw.valid,source_url:hit.raw.source_url,rings:hit.paths.length},null,2):'附近没有轮廓边线';v.draw()}drag=null};canvas.onpointercancel=()=>drag=null;
+}
+function load(){const campus=document.getElementById('campus').value;for(const v of views){const rs=DATA.records.filter(r=>r.campus===campus&&r.source===v.source),first=rs.flatMap(r=>rings(r).flatMap(p=>p.points))[0],lon=first?.x||0,lat=first?.y||0;v.items=rs.map(raw=>({raw,paths:rings(raw).map(p=>({role:p.role,pts:p.points.map(q=>[(q.x-lon)*111320*Math.cos(lat*Math.PI/180),-(q.y-lat)*111320])}))}));v.selected=null;v.canvas.width=Math.round(v.canvas.clientWidth);v.canvas.height=560;document.getElementById(v.source+'-count').textContent=`${rs.length} 条记录，${rs.filter(r=>!r.valid).length} 条未通过几何检查`;document.getElementById(v.source+'-info').textContent='点击轮廓查看资料';v.fit()}const inv=DATA.inventory.find(i=>i.campus===campus);document.getElementById('pending').textContent=`本校区尚有 ${inv.unconverted_building_relations.length} 个关系无法从下载文件完整组环，保留成员清单，未补画。© OpenStreetMap contributors, ODbL 1.0。`}
+document.getElementById('campus').onchange=load;document.getElementById('reset').onclick=()=>views.forEach(v=>v.fit());load();
+</script></html>

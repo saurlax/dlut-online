@@ -189,6 +189,24 @@ func build() -> void:
 	var angle := deg_to_rad(float(profile.rotation_degrees))
 	right = Vector2(cos(angle),sin(angle))
 	forward = Vector2(-sin(angle),cos(angle))
+	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
+	if profile.has("osm_registration"):
+		var anchor: Dictionary = profile.osm_registration
+		assert(float(anchor.local_endpoint[0]) == 0.0 and is_equal_approx(float(anchor.local_endpoint[1]),float(profile.end_depth)), "Photo garden endpoint changed; recheck road anchor")
+		var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
+		var matches: Array = roads.filter(func(road): return int(road.osm_way_id) == int(anchor.osm_way_id) and int(road.part) == int(anchor.part))
+		assert(matches.size() == 1, "Photo garden road anchor missing or ambiguous")
+		var road: Dictionary = matches[0]
+		assert(int(road.osm_version) == int(anchor.osm_version), "Photo garden road changed; recheck registration")
+		var index := int(anchor.segment)
+		assert(index >= 0 and index+1 < road.points.size() and float(anchor.fraction) >= 0.0 and float(anchor.fraction) <= 1.0)
+		var a := Vector2(road.points[index][0],road.points[index][1])
+		var b := Vector2(road.points[index+1][0],road.points[index+1][1])
+		origin = a.lerp(b,float(anchor.fraction))-right*float(anchor.local_endpoint[0])-forward*float(anchor.local_endpoint[1])
+	else:
+		push_error("Photo road details require independent OSM registration")
+		quit(1)
+		return
 	scene.name = "PhotoRoadDetails"
 	root.add_child(scene)
 	scene.set_meta("source", "references/lingshui/mapping/road-details.json")

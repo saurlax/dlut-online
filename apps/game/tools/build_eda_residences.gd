@@ -11,12 +11,14 @@ var frame: Material
 var glass: Material
 var accent: Material
 var rail: Material
+var facade_path: RefCounted
 
 func panel(x: float, y: float, width: float, height: float, depth: float, offset: float, mat: Material, solid := false) -> void:
 	var pos := origin + axis*x + outward*offset
 	var node: MeshInstance3D = host.box(group,Vector3(pos.x,y,pos.y),Vector3(width,height,depth),mat,"ResidenceDetail")
 	node.rotation.y = -atan2(axis.y,axis.x)
 	node.set_meta("walk_collision",solid)
+	if facade_path != null: facade_path.deform(node)
 
 func window(x: float, y: float, width: float, height: float) -> void:
 	panel(x,y,width,height,0.08,0.08,glass)
@@ -49,6 +51,10 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	group.set_meta("photo_reference","references/eda/buildings/residence_facades.json")
 	group.set_meta("interior_available",false)
 	var photo_edges: Array = [int(profile.edge)]
+	if profile.has("facade_vertices"):
+		photo_edges.clear()
+		for i in profile.facade_vertices.size()-1:
+			photo_edges.append(mini(int(profile.facade_vertices[i]),int(profile.facade_vertices[i+1])))
 	for side in profile.get("side_windows",[]): photo_edges.append(int(side.edge))
 	if profile.has("stair_tower") and profile.stair_tower.has("edge"):
 		photo_edges.append(int(profile.stair_tower.edge))
@@ -76,15 +82,17 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	if profile.has("end_gallery"):
 		var gallery: Dictionary = profile.end_gallery
 		var recessed := PackedVector2Array()
-		var a := points[int(profile.edge)]
-		var b := points[(int(profile.edge)+1)%points.size()]
+		var recess_edge := int(profile.get("recess_edge",profile.edge))
+		var recess_span: Array = profile.get("recess_span",gallery.span)
+		var a := points[recess_edge]
+		var b := points[(recess_edge+1)%points.size()]
 		var out := Vector2((b-a).y,-(b-a).x).normalized()
 		if Geometry2D.is_point_in_polygon((a+b)/2+out,points): out = -out
 		for i in points.size():
 			recessed.append(points[i])
-			if i==int(profile.edge):
-				var first := a.lerp(b,float(gallery.span[0]))
-				var last := a.lerp(b,float(gallery.span[1]))
+			if i==recess_edge:
+				var first := a.lerp(b,float(recess_span[0]))
+				var last := a.lerp(b,float(recess_span[1]))
 				recessed.append(first)
 				recessed.append(first-out*float(gallery.depth))
 				recessed.append(last-out*float(gallery.depth))
@@ -98,11 +106,23 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	var edge := int(profile.edge)
 	origin = points[edge]
 	var end := points[(edge+1)%points.size()]
+	if profile.get("reverse_edge",false):
+		assert(not profile.has("end_gallery"),"Recessed gallery needs explicit reversed polygon registration")
+		origin = points[(edge+1)%points.size()]
+		end = points[edge]
 	axis = (end-origin).normalized()
 	outward = Vector2(axis.y,-axis.x)
 	if Geometry2D.is_point_in_polygon((origin+end)*0.5+outward,points):
 		outward = -outward
 	var length := origin.distance_to(end)
+	if profile.has("facade_vertices"):
+		facade_path = preload("res://tools/residence_facade_path.gd").new()
+		facade_path.configure(points,profile.facade_vertices)
+		origin = facade_path.origin
+		axis = facade_path.axis
+		outward = facade_path.outward
+		length = facade_path.length
+		group.set_meta("photo_facade_vertices",profile.facade_vertices)
 	if profile.has("end_gallery"):
 		var gallery: Dictionary = profile.end_gallery
 		var first: float = length*float(gallery.span[0])
@@ -159,6 +179,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			var side := Vector3(-axis.y,0,axis.x)
 			inclined.basis = Basis(along,side.cross(along),side)
 			inclined.set_meta("walk_collision",true)
+			if facade_path != null: facade_path.deform(inclined)
 			var flat_start := start-0.25 if at_end else join
 			var flat_end := join if at_end else finish+0.25
 			panel((flat_start+flat_end)/2,eaves_y,flat_end-flat_start,0.22,1.6,0.6,frame,true)
@@ -246,6 +267,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	if profile.has("stair_tower"):
 		var tower: Dictionary = profile.stair_tower
 		if tower.has("edge"):
+			facade_path = null
 			origin = points[int(tower.edge)]
 			var tower_end := points[(int(tower.edge)+1)%points.size()]
 			axis = (tower_end-origin).normalized()
@@ -267,6 +289,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			panel(tower_x+dx,slot_y+0.1,0.18,2.9,0.18,0.32,frame)
 
 	for side in profile.get("side_windows",[]):
+		facade_path = null
 		origin = points[int(side.edge)]
 		var end_point := points[(int(side.edge)+1)%points.size()]
 		axis = (end_point-origin).normalized()

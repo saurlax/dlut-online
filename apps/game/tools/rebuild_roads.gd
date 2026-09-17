@@ -28,6 +28,10 @@ func build() -> void:
 
 func remove_roads(node: Node) -> void:
 	for child in node.get_children():
+		# Official squares and other source features may also be road surfaces.
+		# Their dedicated generators own those meshes, not the road importer.
+		if child.has_meta("source_id"):
+			continue
 		if child is MeshInstance3D and child.material_override != null and (child.get_meta("road_surface", false) or child.material_override.resource_name in ["Road", "Road edge", "Lingshui asphalt", "Panjin asphalt"]):
 			node.remove_child(child)
 			child.free()

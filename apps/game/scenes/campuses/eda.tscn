@@ -11,6 +11,7 @@
 [node name="Campus" type="Node3D"]
 script = ExtResource("1")
 campus_id = "eda"
+spawn_position = Vector3(-21.769462, 0.35, 584.121531)
 
 [node name="CampusModel" parent="." instance=ExtResource("2")]
 

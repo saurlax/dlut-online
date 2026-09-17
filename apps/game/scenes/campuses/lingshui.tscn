@@ -13,7 +13,7 @@
 [node name="Campus" type="Node3D"]
 script = ExtResource("1")
 campus_id = "lingshui"
-spawn_position = Vector3(96, 0.35, 28)
+spawn_position = Vector3(252.035988, 0.35, 378.153675)
 
 [node name="CampusModel" parent="." instance=ExtResource("2")]
 

@@ -2,6 +2,35 @@ extends RefCounted
 
 var host
 var group: Node3D
+var registration: Dictionary = {}
+var osm_points := PackedVector2Array()
+
+func south_z(x: float) -> float:
+	return -15.255+(x+362.382)*(-3.469/101.256)
+
+func mapped(vertex: Vector3) -> Vector3:
+	var west: float = registration.wall_frame.west_x
+	var east: float = registration.wall_frame.east_x
+	var north: float = registration.wall_frame.north_z
+	var u := (vertex.x-west)/(east-west)
+	var v := (vertex.z-north)/(south_z(vertex.x)-north)
+	var top := osm_points[0].lerp(osm_points[3],u)
+	var bottom := osm_points[1].lerp(osm_points[2],u)
+	var point := top.lerp(bottom,v)
+	return Vector3(point.x,vertex.y,point.y)
+
+func register_details(base_node: MeshInstance3D) -> void:
+	for node: MeshInstance3D in group.get_children():
+		if node==base_node: continue
+		var surface := SurfaceTool.new()
+		surface.begin(Mesh.PRIMITIVE_TRIANGLES)
+		surface.set_smooth_group(-1)
+		for vertex: Vector3 in node.mesh.get_faces():
+			surface.add_vertex(mapped(node.transform*vertex))
+		surface.generate_normals()
+		surface.index()
+		node.mesh = surface.commit()
+		node.transform = Transform3D.IDENTITY
 
 func roof_y(x: float) -> float:
 	var t := clampf((x+379.0)/125.0,0.0,1.0)
@@ -24,9 +53,11 @@ func surface(vertices: Array, mat: Material, solid := true) -> void:
 func quad(a: Vector3,b: Vector3,c: Vector3,d: Vector3,mat: Material,solid := true) -> void:
 	surface([a,b,c,a,c,d],mat,solid)
 
-func build(builder, parent: Node3D, points: PackedVector2Array) -> void:
+func build(builder, parent: Node3D, points: PackedVector2Array, osm_registration: Dictionary = {}) -> void:
 	host = builder
 	group = parent
+	registration = osm_registration
+	osm_points = points
 	group.set_meta("photo_reference","references/eda/buildings/gym_profile.json")
 	group.set_meta("interior_available",false)
 	var base: Material = host.material("EDA gym stone",Color("88897e"))
@@ -38,8 +69,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array) -> void:
 	roof.metallic = 0.5
 	glass.metallic = 0.3
 	glass.roughness = 0.3
-	# Keep the complete official outline as the low base. The east projection
-	# is not treated as a full-height hall or an invented interior entrance.
+	# The registered source footprint is the base; roof overhangs are separate.
 	host.polygon(group,points,3.0,base,"GymBase")
 	var base_node: MeshInstance3D = group.get_child(group.get_child_count()-1)
 	var indexed := SurfaceTool.new()
@@ -47,10 +77,17 @@ func build(builder, parent: Node3D, points: PackedVector2Array) -> void:
 	indexed.index()
 	base_node.mesh = indexed.commit()
 	base_node.set_meta("walk_collision",true)
-	var clip := PackedVector2Array([Vector2(-400,-110),Vector2(-262,-110),Vector2(-262,0),Vector2(-400,0)])
-	var parts := Geometry2D.intersect_polygons(points,clip)
-	assert(parts.size()==1)
-	var body: PackedVector2Array = parts[0]
+	var body := PackedVector2Array()
+	if registration.is_empty():
+		var clip := PackedVector2Array([Vector2(-400,-110),Vector2(-262,-110),Vector2(-262,0),Vector2(-400,0)])
+		var parts := Geometry2D.intersect_polygons(points,clip)
+		assert(parts.size()==1)
+		body = parts[0]
+	else:
+		var west: float = registration.wall_frame.west_x
+		var east: float = registration.wall_frame.east_x
+		var north: float = registration.wall_frame.north_z
+		body = PackedVector2Array([Vector2(west,north),Vector2(west,south_z(west)),Vector2(east,south_z(east)),Vector2(east,north)])
 	for i in body.size():
 		var p := body[i]
 		var q := body[(i+1)%body.size()]
@@ -111,3 +148,6 @@ func build(builder, parent: Node3D, points: PackedVector2Array) -> void:
 		var node: MeshInstance3D = host.mesh_node(group,mesh,steel,"GymRoofPost")
 		node.position = Vector3(x,(base_y+top_y)/2,float(posts.z[i]))
 		node.set_meta("walk_collision",true)
+	if not registration.is_empty():
+		register_details(base_node)
+		group.set_meta("osm_facade_registration",registration.osm_id)

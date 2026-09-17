@@ -25,15 +25,27 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 			for polygon: Array in feature.get("render_polygons", [feature.points]):
 				var points := polygon_points(polygon)
 				excluded.append({"points": points, "bounds": polygon_bounds(points).grow(5.0), "id": feature.id})
-	if campus == "eda":
-		roads = JSON.parse_string(FileAccess.get_file_as_string(directory + "data/roads.json")).roads
+	roads = JSON.parse_string(FileAccess.get_file_as_string(directory + "data/osm_roads.json")).roads
+	for surface: Dictionary in manifest.get("ground_overlays", []):
+		var points := polygon_points(surface.outer)
+		excluded.append({"points":points,"bounds":polygon_bounds(points).grow(5.0),"id":surface.id})
 	var instances: Array[Dictionary] = []
 	var lawns := SurfaceTool.new()
 	lawns.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var lawn_vertices := 0
+	var registered: Dictionary = {}
+	for area: Dictionary in manifest.get("vegetation_areas", []):
+		registered[area.id] = area
+	var withheld_zones: Array[String] = []
 	for zone: Dictionary in source.zones:
+		if not registered.has(zone.id):
+			withheld_zones.append(str(zone.id))
+			continue
+		var area: Dictionary = registered[zone.id]
+		var registration: Dictionary = zone.get("osm_registration", {})
+		assert(area.osm_id == registration.get("osm_id") and area.osm_version == registration.get("osm_version") and area.geometry_sha256 == registration.get("expected_geometry_sha256"), "Regenerate registered planting geometry before building")
 		rng.seed = int(zone.seed)
-		var points := polygon_points(zone.polygon)
+		var points := polygon_points(area.points)
 		var bounds := polygon_bounds(points)
 		for plant: Dictionary in zone.plants:
 			var spacing := float(plant.spacing)
@@ -75,7 +87,7 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 		mat.shader = load("res://assets/vegetation/lawn.gdshader")
 		lawns.set_material(mat)
 		assert(ResourceSaver.save(lawns.commit(),directory+"models/vegetation_lawn.res",ResourceSaver.FLAG_COMPRESS) == OK)
-	var data := {"schema_version":2,"campus":campus,"source":"references/%s/vegetation/planting.json" % campus,"precision":"Photo-supported areas; approximate positions, dimensions and counts, not surveyed trees","instances":instances}
+	var data := {"schema_version":4,"registered_zone_ids":registered.keys(),"withheld_zone_ids":withheld_zones,"withheld_reason":"legacy placement requires independent ground registration","campus":campus,"source":"references/%s/vegetation/planting.json" % campus,"precision":"Photo-supported areas; approximate positions, dimensions and counts, not surveyed trees","instances":instances}
 	var file := FileAccess.open(directory+"data/vegetation.json",FileAccess.WRITE)
 	assert(file != null, "Cannot write vegetation data: " + directory)
 	var records: Array[String] = []
@@ -144,7 +156,8 @@ func write_scene(directory: String, instances: Array[Dictionary], has_lawn: bool
 		if not entry.kind in kinds:
 			kinds.append(entry.kind)
 	kinds.sort()
-	ensure_meshes(kinds)
+	if not kinds.is_empty():
+		ensure_meshes(kinds)
 	var buckets: Dictionary = {}
 	for entry in instances:
 		var at := Vector3(entry.position[0],entry.position[1],entry.position[2])

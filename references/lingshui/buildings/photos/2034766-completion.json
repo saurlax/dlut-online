@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "official_id": "2034766",
+  "name": "博士生公寓8号楼",
+  "status": "reviewed-evidence; runtime-registration-pending",
+  "publisher": "大连理工大学基建处",
+  "source_url": "https://jjc.dlut.edu.cn/info/1018/3095.htm",
+  "source_title": "夏日炎炎 携手共筑 ——博士生公寓8号楼全面竣工",
+  "published": "2023-09-08",
+  "retrieved": "2026-09-17T05:04:41.084654+00:00",
+  "article_sha256": "9c63c8578bee52b1c8f7fc2deb9d587680eccbaf38828fb07f4c796790f0b817",
+  "reported_facts": {
+    "location": "主校区研教楼北侧",
+    "accepted": "2023-08-29",
+    "in_service": "2023-09-01",
+    "height_m": 80,
+    "floors": 23,
+    "gross_floor_area_m2": 26000,
+    "above_ground_floor_area_m2": 24870,
+    "below_ground_floor_area_m2": 1130
+  },
+  "fact_limits": "学校竣工报道给出的建筑整体指标，非地理坐标、墙脚边界或各体量高度；不能用建筑面积除以层数直接恢复平面。",
+  "photos": [
+    {
+      "path": "references/lingshui/buildings/photos/2034766-completion-0.jpg",
+      "url": "https://jjc.dlut.edu.cn/virtual_attach_file.vsb?afc=-L4nWRnlV7LzCbUHm7aL7Ubo7M2n7CgaLNM2Mzf2LR-aL4l0gihFp2hmCIa0nkyPn1hfMShVMRlbL4CsLR-PLNLPnmviLRNiUmCPnz7DnRQFnNr2nlUYL4fFUlnVMzNJqjfjo4OeoDX/CYhXptQ0g47aLz90L4GbMSbw62L8c&oid=1120954706&tid=1018&nid=3095&e=.jpg",
+      "sha256": "0f79811c73cee9a42803af2916f12e03c9e7b62fc0bd253fd33adba8ab245ab5",
+      "retrieved": "2026-09-17T05:04:41.084654+00:00",
+      "view": "高层及部分地面道路，拼接室内照片",
+      "limits": "拍摄时间未独立标注；2023-09-08报道配图。存在透视、遮挡及拼图，不作为正射图或室内平面。"
+    },
+    {
+      "path": "references/lingshui/buildings/photos/2034766-completion-1.jpg",
+      "url": "https://jjc.dlut.edu.cn/virtual_attach_file.vsb?afc=-LlQWfLzLZMm6RnHmTkLzl4nRQ2nRMg7Uz7snlWVU4rkM870gihFp2hmCIa0oSyPMSybLkh7LlVRUNUsLmlsLz7YUmUYMmlsoRUPUmV7M4TFUlCDUmA2M7WFollinmLJqjfjo4OeoDX/CYhXptQ0g47aLz90L4GbMSbw62L8c&oid=1120954706&tid=1018&nid=3095&e=.jpg",
+      "sha256": "f456f684cd3d7d6fec15c3d6e800ed98b0463c0a14ec175400becf45191bedbf",
+      "retrieved": "2026-09-17T05:04:41.960040+00:00",
+      "view": "竣工阶段夜间施工及楼旁道路",
+      "limits": "拍摄时间未独立标注；2023-09-08报道配图。存在透视、遮挡及拼图，不作为正射图或室内平面。"
+    }
+  ],
+  "license": {
+    "name": "未发现明确第三方复制或再分发许可",
+    "terms_url": null,
+    "authorization_status": "仅离线核对，不打入客户端，不作为产品展示图片"
+  },
+  "runtime_limits": "现有18米旧斜视轮廓尚未迁移。应先核对地面范围和楼旁道路，再应用竣工高度；不直接把旧七点透视外包框拉高到80米。"
+}

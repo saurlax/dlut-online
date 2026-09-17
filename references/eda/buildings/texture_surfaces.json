@@ -44,7 +44,45 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77931"
+      "profile": "residence_facades.json#77931",
+      "osm_regions": [
+        {
+          "edge": 2,
+          "span": [
+            0.0,
+            0.8186262164633017
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 1,
+          "span": [
+            0.6137299401833753,
+            1.0
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 0,
+          "span": [
+            0.26174067272345686,
+            0.3382593272765431
+          ],
+          "bottom": 3.9,
+          "top": 21.45
+        },
+        {
+          "edge": 0,
+          "span": [
+            0.6617406727234568,
+            0.7382593272765431
+          ],
+          "bottom": 3.9,
+          "top": 21.45
+        }
+      ]
     },
     "77933": {
       "status": "applied",
@@ -79,7 +117,36 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77933"
+      "profile": "residence_facades.json#77933",
+      "osm_regions": [
+        {
+          "edge": 2,
+          "span": [
+            0.0,
+            0.29317458815216313
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 1,
+          "span": [
+            0.17457854850950394,
+            1.0
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 3,
+          "span": [
+            0.40164803987221637,
+            0.5983519601277836
+          ],
+          "bottom": 3.9,
+          "top": 18.299999999999997
+        }
+      ]
     },
     "77935": {
       "status": "applied",
@@ -105,7 +172,27 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77935"
+      "profile": "residence_facades.json#77935",
+      "osm_regions": [
+        {
+          "edge": 1,
+          "span": [
+            0.6150840892772048,
+            1.0
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        },
+        {
+          "edge": 2,
+          "span": [
+            0.0,
+            0.8187441456315249
+          ],
+          "bottom": 3.7,
+          "top": 18.474999999999998
+        }
+      ]
     },
     "77937": {
       "status": "applied",
@@ -131,7 +218,18 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77937"
+      "profile": "residence_facades.json#77937",
+      "osm_regions": [
+        {
+          "edge": 4,
+          "span": [
+            0.18,
+            0.82
+          ],
+          "bottom": 3.7,
+          "top": 15.325
+        }
+      ]
     },
     "77938": {
       "status": "applied",
@@ -157,7 +255,18 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77938"
+      "profile": "residence_facades.json#77938",
+      "osm_regions": [
+        {
+          "edge": 1,
+          "span": [
+            0.18000000000000005,
+            0.8200000000000001
+          ],
+          "bottom": 3.7,
+          "top": 15.325
+        }
+      ]
     },
     "77941": {
       "status": "applied",
@@ -183,7 +292,18 @@
         }
       ],
       "observation": "六栋均有独立照片支持浅色小矩形面砖；只覆盖已登记窗段，未知外墙仍用原简易材质。",
-      "profile": "residence_facades.json#77941"
+      "profile": "residence_facades.json#77941",
+      "osm_regions": [
+        {
+          "edge": 1,
+          "span": [
+            0.10174012951733814,
+            0.9156611656560432
+          ],
+          "bottom": 3.7,
+          "top": 21.625
+        }
+      ]
     },
     "77925": {
       "status": "applied",
@@ -209,7 +329,18 @@
         }
       ],
       "observation": "照片可见灰色细粒墙面，只覆盖已配准窗段，塔体与其他折面不外推。",
-      "profile": "academic_facades.json#77925"
+      "profile": "academic_facades.json#77925",
+      "osm_regions": [
+        {
+          "edge": 3,
+          "span": [
+            0.03,
+            0.97
+          ],
+          "bottom": 4.975,
+          "top": 19.425
+        }
+      ]
     },
     "77928": {
       "status": "applied",
@@ -235,7 +366,27 @@
         }
       ],
       "observation": "照片可见灰色细粒墙面，只覆盖已配准窗段，塔体与其他折面不外推。",
-      "profile": "academic_facades.json#77928"
+      "profile": "academic_facades.json#77928",
+      "osm_regions": [
+        {
+          "edge": 0,
+          "span": [
+            0.44,
+            1
+          ],
+          "bottom": 0.9000000000000001,
+          "top": 7.8
+        },
+        {
+          "edge": 1,
+          "span": [
+            0,
+            0.68
+          ],
+          "bottom": 0.9000000000000001,
+          "top": 7.8
+        }
+      ]
     },
     "77927": {
       "status": "applied",
@@ -270,7 +421,27 @@
         }
       ],
       "observation": "照片可见灰色细粒墙面，只覆盖已配准窗段，塔体与其他折面不外推。",
-      "profile": "academic_facades.json#77927"
+      "profile": "academic_facades.json#77927",
+      "osm_regions": [
+        {
+          "edge": 1,
+          "span": [
+            0.15,
+            0.95
+          ],
+          "bottom": 4.55,
+          "top": 22.25
+        },
+        {
+          "edge": 2,
+          "span": [
+            0.12,
+            0.88
+          ],
+          "bottom": 4.75,
+          "top": 18.25
+        }
+      ]
     },
     "77921": {
       "status": "applied",
@@ -322,7 +493,64 @@
           "top": 19.3
         }
       ],
-      "observation": "照片可见灰色颗粒饰面，首层及入口保持原状态。"
+      "observation": "照片可见灰色颗粒饰面，首层及入口保持原状态。",
+      "osm_regions": [
+        {
+          "edge": 0,
+          "span": [
+            0.082,
+            1
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 1,
+          "span": [
+            0,
+            0.775
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 7,
+          "span": [
+            0.35,
+            0.65
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 5,
+          "span": [
+            0.325,
+            1
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 6,
+          "span": [
+            0,
+            0.926
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        },
+        {
+          "edge": 4,
+          "span": [
+            0.28,
+            0.94
+          ],
+          "bottom": 5.1,
+          "top": 19.3
+        }
+      ],
+      "osm_registration": "way/232559719; split registered spans over original OSM edges 0/1 and 5/6"
     },
     "77914": {
       "status": "applied",
@@ -374,7 +602,55 @@
           "top": 20.25
         }
       ],
-      "observation": "照片可见灰褐细粒墙面，沿用既有上部窗面配准；底层及架空区不生成贴面。"
+      "observation": "照片可见灰褐细粒墙面，沿用既有上部窗面配准；底层及架空区不生成贴面。",
+      "osm_regions": [
+        {
+          "edge": 11,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 0,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 5,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 6,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        },
+        {
+          "edge": 10,
+          "span": [
+            0,
+            1
+          ],
+          "bottom": 5.35,
+          "top": 20.25
+        }
+      ],
+      "osm_registration": "eda-information-notch-v1; corresponding exterior wing faces only"
     },
     "77917": {
       "status": "applied",
@@ -399,7 +675,27 @@
           "top": 17.1
         }
       ],
-      "observation": "只处理官方照片已配准的连接翼西面上三排窗段，弧形玻璃不贴墙面纹理。"
+      "observation": "只处理官方照片已配准的连接翼西面上三排窗段，弧形玻璃不贴墙面纹理。",
+      "osm_regions": [
+        {
+          "edge": 37,
+          "span": [
+            0.23,
+            1
+          ],
+          "bottom": 5,
+          "top": 17.1
+        },
+        {
+          "edge": 38,
+          "span": [
+            0,
+            0.445
+          ],
+          "bottom": 5,
+          "top": 17.1
+        }
+      ]
     },
     "77943": {
       "status": "applied",
@@ -413,7 +709,8 @@
       "shell_materials": [],
       "regions": [],
       "observation": "只替换两块已配准方形面砖墙片的旧程序纹理，保持原来的方砖比例。",
-      "coverage": "existing_square_tiles"
+      "coverage": "existing_square_tiles",
+      "osm_regions": []
     },
     "77923": {
       "status": "deferred",
@@ -427,7 +724,8 @@
     "2304982": {
       "status": "deferred",
       "profile": "seventh-residence/profile.json",
-      "reason": "竣工照片已归档但外墙尚未配准，施工照与设计效果图不能证明最终面材，不新增纹理。"
+      "reason": "竣工照片已归档但外墙尚未配准，施工照与设计效果图不能证明最终面材，不新增纹理。",
+      "osm_regions": []
     },
     "77912": {
       "status": "deferred",
@@ -436,7 +734,7 @@
         "photo_id": 80738,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77912_20160303150816293.jpg"
       },
-      "reason": "现有场景仅保留官方校门地面轮廓，无照片配准的立体墙面，不为贴图另建门体。"
+      "reason": "照片显示低矮铭牌墙与伸缩门，旧通用门架和选区铺装已移除；准确墙线与尺寸尚未配准，不为贴图另建门体。"
     }
   }
 }

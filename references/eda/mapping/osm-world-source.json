@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "campus": "eda",
+  "url": "https://api.openstreetmap.org/api/0.6/map?bbox=121.80,39.07,121.83,39.10",
+  "retrieved": "2026-09-16",
+  "sha256_uncompressed": "5fe60eccd44b591e9e2e92087d77c67f15a0769ba694cc02b0f1bbfc253373a7",
+  "archive": "osm-world.osm.gz",
+  "license": "ODbL 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "crs": "EPSG:4326",
+  "scope": "Original downloaded bbox, includes neighboring features; filter and match before runtime generation",
+  "campus_boundary_way": "215560705",
+  "boundary_version": "13",
+  "note": "Raw OSM node/way/relation versions and timestamps preserved; no geometry rounding or correction"
+}
