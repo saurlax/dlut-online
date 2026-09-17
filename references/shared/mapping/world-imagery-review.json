@@ -644,12 +644,11 @@
       "saved_ground_review": {
         "date": "2026-09-17",
         "geometry_changed": true,
-        "method": "South paving visible-ground trace from the dated imagery; north trace retained from lm30. Both transformations use the same two OSM road-loop ground centers, with source-specific pixel coordinates, instead of building roof scale. Saved model triangles inspected after building cutouts.",
+        "method": "South paving and northern roundabout apron/island traced from dated visible ground; shadowed inner court retained from lm30 via the same two OSM ground-loop controls. North courtyard and apron emitted as one surface with an island hole; no overlapping coplanar meshes or roof-based scale.",
         "source_spec": "references/eda/mapping/ground-surfaces.json",
         "inputs_sha256": {
-          "references\\eda\\mapping\\ground-surfaces.json": "3c06eddfac19e913de94c472ece2fd5071be205810e47f6a811bd549a1935c5b",
-          "apps\\game\\assets\\campuses\\eda\\models\\development_campus.tscn": "8313f0e6a96ce6d4173711c5a150b89b9291e0b7f84cb64d15867f48335b9f91",
-          "apps/game/assets/campuses/eda/models/development_campus.tscn": "293f38f02e5c9fabfbcafe10953e10633f647470dfd23325498aa314165ecbe1"
+          "references/eda/mapping/ground-surfaces.json": "91c8f44ff78926d92dd665f368c45c7073ba392450d4fa63e0eab3c428039343",
+          "apps/game/assets/campuses/eda/models/development_campus.tscn": "fa6d06fa5c72bf0837f0c7dbea2edd8faf8148a2d52d910847e62d2b0788424c"
         },
         "surfaces": [
           {
@@ -659,8 +658,8 @@
           },
           {
             "id": "eda-comprehensive-north-court",
-            "saved_projected_area_m2": 486.112840136513,
-            "saved_triangles": 153
+            "saved_projected_area_m2": 1363.63726711669,
+            "saved_triangles": 1350
           }
         ],
         "ground_controls": [
@@ -691,14 +690,20 @@
         "raw_source_disagreement_note": "About 8-11 image pixels between OSM loop centers and visible island centers before local registration; source discrepancy, not survey error. Two fitted controls give no independent validation residual.",
         "observations": [
           "南广场图绘轮廓明显大于影像中可见历史铺装，按可见地面外缘重描；绿岛保留，不将屋顶边界描成墙脚。",
-          "北院保留图面描绘，仅用地面控制点重定比例方向；楼体遮挡下的院落及小圆体墙脚仍未确定。",
+          "北院将影像可见环岛外侧沥青与原俯视图院内轮廓合并，扣除中央绿岛及建筑占地；不再仅用估计固定路宽代替可见外侧铺装。阴影下的院落和东侧小圆体墙脚仍未确定。",
           "当前有18处楼路水平相交候选：凌水16、开发区1、盘锦1；去除旧框不代表剩余OSM无误。"
         ],
         "limits": [
           "2025-09-07影像早于2026改造，修正是有日期的历史参考，不证明当前施工边界或材料。",
           "南广场北缘部分受屋檐遮挡；东西道路衔接处为可见铺装范围截断，不推断被遮挡的地面。",
-          "约3-5像素人工判读误差、OSM中心估计和影像绝对定位误差未经过测量控制；不将拟合结果标为实测精度。"
-        ]
+          "约3-5像素人工判读误差、OSM中心估计和影像绝对定位误差未经过测量控制；不将拟合结果标为实测精度。",
+          "北/东引道在明确像素接线处与现有OSM路面相接；未据此推断整条引道宽度、停车位或2026改造后的范围。"
+        ],
+        "superseded_north_court": {
+          "saved_projected_area_m2": 486.112840136513,
+          "saved_triangles": 153,
+          "method": "lm30 court only, before adding visible north apron; source outline retained in ground-surfaces superseded_map_trace"
+        }
       }
     }
   ],

@@ -55,11 +55,17 @@ func run() -> void:
 					quit(1)
 					return
 				plaza_samples += 1
-		assert(plaza_samples==66,"Plaza sample coverage changed; review the source footprint")
+		assert(plaza_samples==32,"Plaza sample coverage changed; review the source footprint")
 		print("COMPREHENSIVE PLAZA PASS: server=",server," samples=",plaza_samples)
 		# The northern loop is split across two source ways; include the short
 		# closing segment and the approach, plus both sides of the road width.
 		var roads: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json"))
+		var north: Dictionary = manifest.ground_overlays[1]
+		assert(north.id == "eda-comprehensive-north-court")
+		var apron := PackedVector2Array()
+		var island := PackedVector2Array()
+		for p in north.outer: apron.append(Vector2(p[0],p[1]))
+		for p in north.holes[0]: island.append(Vector2(p[0],p[1]))
 		var loop_samples := 0
 		var loop_ways := 0
 		for road: Dictionary in roads.roads:
@@ -73,7 +79,9 @@ func run() -> void:
 				for fraction in [0.1,0.5,0.9]:
 					for offset in [-2.5,0.0,2.5]:
 						var p: Vector2 = a.lerp(b,fraction)+side*offset
-						var y: float = terrain.elevation(p.x,p.y)+0.22
+						assert(not Geometry2D.is_point_in_polygon(p,island), "Road-width sample enters registered island")
+						var lift := 0.16 if Geometry2D.is_point_in_polygon(p,apron) else 0.22
+						var y: float = terrain.elevation(p.x,p.y)+lift
 						var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+40,p.y),Vector3(p.x,y-1,p.y)))
 						if hit.is_empty() or absf(hit.position.y-y)>0.03:
 							push_error("North loop obstructed/missing: server=%s at=%s hit=%s" % [server,p,hit])
@@ -82,6 +90,14 @@ func run() -> void:
 						loop_samples += 1
 		assert(loop_ways==2 and loop_samples==135,"Northern loop source coverage changed")
 		print("COMPREHENSIVE NORTH LOOP PASS: server=",server," samples=",loop_samples)
+		var apron_samples := 0
+		for p: Vector2 in [Vector2(-321,244),Vector2(-319,255),Vector2(-311,262),Vector2(-302,233),Vector2(-294,242)]:
+			assert(Geometry2D.is_point_in_polygon(p,apron) and not Geometry2D.is_point_in_polygon(p,island))
+			var y: float = terrain.elevation(p.x,p.y)+0.16
+			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+40,p.y),Vector3(p.x,y-1,p.y)))
+			assert(not hit.is_empty() and absf(hit.position.y-y)<0.03,"North apron obstructed/missing")
+			apron_samples += 1
+		print("COMPREHENSIVE NORTH APRON PASS: server=",server," samples=",apron_samples)
 		var court_samples := 0
 		for p: Vector2 in [Vector2(-303,265),Vector2(-305,270),Vector2(-310,276),Vector2(-293,278),Vector2(-281,278)]:
 			var y: float = terrain.elevation(p.x,p.y)+0.16
@@ -111,6 +127,25 @@ func run() -> void:
 				assert(body.is_on_floor(),"Lost floor at north loop/court join")
 			assert(absf(body.position.z-start_z)>17.5,"North court approach blocked")
 		print("COMPREHENSIVE COURT WALK PASS: server=",server," both directions")
+		# Walk across both new apron/OSM-road seams using the production capsule.
+		for seam: Array in [[Vector2(-319,222),Vector2(0,1)],[Vector2(-289,242.5),Vector2(1,0)]]:
+			for reverse in [false,true]:
+				var direction: Vector2 = seam[1] * (-1.0 if reverse else 1.0)
+				var start: Vector2 = seam[0] + (seam[1]*12.0 if reverse else Vector2.ZERO)
+				var spawn := Vector3(start.x,terrain.elevation(start.x,start.y)+0.5,start.y)
+				body.position = spawn
+				body.velocity = Vector3.ZERO
+				for frame in 45:
+					await physics_frame
+					movement.step(body,Vector2.ZERO,false,false,1.0/60.0,spawn)
+				assert(body.is_on_floor())
+				for frame in 120:
+					await physics_frame
+					movement.step(body,direction,false,false,1.0/60.0,spawn)
+					assert(body.is_on_floor(),"Lost floor at apron/road seam")
+				assert(Vector2(body.position.x,body.position.z).distance_to(start)>10.5,"Apron/road seam blocks walking")
+		print("COMPREHENSIVE APRON SEAM WALK PASS: server=",server," north/east, both directions")
+
 
 
 

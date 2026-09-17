@@ -184,7 +184,7 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 
 [天地图地图服务文档](http://lbs.tianditu.gov.cn/server/MapService.html)与WMTS能力声明用于确认图层及参数。更换为服务器类型凭据后，已取得综合楼及博留餐厅周边28张影像瓦片和开发区14条地名点结果，供离线位置与身份核对；署名国家基础地理信息中心、天地图。影像采集日期及绝对精度未确认，地名点不作为建筑边界；三维地形尚未取到，不将接口列表记作已采集数据。凭据保留于被Git忽略的本地配置，不进入本记录或客户端。
 
-综合楼南广场采用Esri World Imagery中2025-09-07影像的可见地面历史轮廓，并与北侧地面绿岛共同配准到OSM；北院仍保留官网俯视图的暂定描绘。像素控制点、瓦片来源及摘要、屋檐遮挡与2026改造时效限制记录于[开发区地表依据](references/eda/mapping/ground-surfaces.json)和[影像审查](references/shared/mapping/world-imagery-review.json)。运行包仅包含生成几何，不包含原始影像；不将双点配准精度等同测绘精度。
+综合楼南广场采用Esri World Imagery中2025-09-07影像的可见地面历史轮廓，并与北侧地面绿岛共同配准到OSM；北环岛外侧沥青与中央绿岛同样按该影像可见地面补齐，阴影下的院内范围仍保留官网俯视图暂定描绘。像素控制点、瓦片来源及摘要、屋檐遮挡与2026改造时效限制记录于[开发区地表依据](references/eda/mapping/ground-surfaces.json)和[影像审查](references/shared/mapping/world-imagery-review.json)。运行包仅包含生成几何，不包含原始影像；不将双点配准精度等同测绘精度。
 
 学生文化中心外部空间另参考设计单位天津大学建筑设计规划研究总院的[项目页](https://www.aatu.com.cn/project/post/301/)，2026-09-17读取并离线归档4张外观原图，来源和SHA-256见[照片记录](references/lingshui/buildings/photos/83718-design.json)。版权归来源权利人，未发现再分发许可，原图不进入客户端；未从照片推断净高、完整平面或内部通行结构。
 

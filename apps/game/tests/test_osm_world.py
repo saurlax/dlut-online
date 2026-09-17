@@ -142,8 +142,10 @@ class OSMWorldTests(unittest.TestCase):
         result=surfaces.build('eda')
         north=next(r for r in result if r['id']=='eda-comprehensive-north-court')
         self.assertEqual(north['osm_anchor_ways'],['1076344134','1076344135'])
-        self.assertEqual(len(north['outer']),14)
-        self.assertTrue(all(-330<p[0]<-270 and 259<p[1]<290 for p in north['outer']))
+        self.assertEqual(len(north['outer']),32)
+        self.assertEqual(len(north['holes']),1)
+        self.assertEqual(len(north['holes'][0]),48)
+        self.assertTrue(all(-330<p[0]<-270 and 225<p[1]<290 for p in north['outer']))
         self.assertIsNone(north['absolute_accuracy_m'])
         for closing,message in [({'way_id':'1076344135','version':999},'version changed'),
                                 ({'way_id':'1076344136','version':1},'must join'),
