@@ -165,6 +165,42 @@
       ],
       "basis": "官方77445共用对象包含刘长春体育馆及南侧游泳馆。照片77445-0/2/5与lm30九块俯视瓦片确认分体关系；OSM way/233806531 v4为主馆，233806517 v3为南侧具名室内泳池区域。后者未标building，leisure=swimming_pool按标签语义仅证明泳池区域，不能直接认定为建筑墙脚；当前范围约106.55×43.19米，仍需独立核对。两份参考保留各自标签及轮廓，不合并为单一外框，不用主馆一个框覆盖两馆。",
       "source_review": "references/shared/mapping/footprint-review.json#77445"
+    },
+    "77423": {
+      "osm_ids": [
+        "way/233806548"
+      ],
+      "basis": "官方77423三束材料实验楼4号楼对应OSM三束材料实验室；不是将三栋三束楼合并。官方4号在3号楼南侧、1号楼东侧，lm30两块瓦片显示西段近东西向、东段转向东北的折角体量；照片0显示四层转折外墙，照片1显示端部与侧邻低层体量。六点OSM建筑轮廓与此身份及折角关系相符。只将该六点作为坐标底稿，不把屋檐、附属低棚或照片透视轮廓并入墙脚；背面与附属低层范围仍待核对。",
+      "reviewed": "2026-09-17",
+      "osm_version": 2,
+      "expected_vertices": 6,
+      "photo_date": null,
+      "photo_date_limits": "API takeTime为空；上传文件名日期不当作拍摄日期。",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77423-0.jpg",
+          "sha256": "a9308fa469c23e4a6a5cb6e51ca045c34d29e030f8db316abfc79e9ad4ff869f",
+          "source_object_id": 78312
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77423-1.jpg",
+          "sha256": "5afb523f5d49978c347ba3dec46f99335b9bccc789b5c12c42bf8d944ed40994",
+          "source_object_id": 273996015
+        }
+      ],
+      "map_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439141&y=200595&z=19",
+          "retrieved": "2026-09-17T04:41:22.907827+00:00",
+          "sha256": "98ced83eb796b8a8af384eb423667e2b0a44966422e6c4d2113b921f08ba33cd"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439142&y=200595&z=19",
+          "retrieved": "2026-09-17T04:41:23.468851+00:00",
+          "sha256": "2f7737b89723b9c57d96cb6c9da08ad6411d9265fe380151a4886e4d1b116c17"
+        }
+      ],
+      "limits": "照片支持可见四层及转折关系，没有全周墙脚实测。保留原18米未测高度，不增加窗格、入口或室内。OSM版本2及照片/俯视图的年代一致性未确认，绝对精度未知。"
     }
   }
 }
