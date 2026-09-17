@@ -185,13 +185,13 @@
       ]
     },
     {
-      "id": "eda-academic-c-connector-v1",
+      "id": "eda-academic-c-connector-v2",
       "official_id": "77927",
       "osm_id": "way/1422474849",
       "osm_version": 2,
       "original_vertex_count": 13,
       "status": "provisional-image-supported-refinement",
-      "review_date": "2026-09-16",
+      "review_date": "2026-09-17",
       "pixel_origin": [
         112525604,
         51253517
@@ -293,20 +293,6 @@
             207
           ],
           "osm_vertex": 12
-        },
-        {
-          "pixel": [
-            606,
-            588
-          ],
-          "osm_vertex": 11
-        },
-        {
-          "pixel": [
-            541,
-            742
-          ],
-          "osm_vertex": 5
         }
       ],
       "pixel_outline": [
@@ -417,9 +403,26 @@
       ],
       "photo_cross_check": "77927-0 / 79687 confirms rectangular main block, short southern wall and attached round body; lm30 shows narrow connecting segment.",
       "limits": [
-        "Four OSM anchors retained at main-block northern corners, southeast corner and round-body southern tip.",
-        "Illustrated roof edges transferred as provisional massing; not surveyed ground corners.",
-        "No new interior or stair/door geometry. Connector height retains the previous estimate."
+        "North main-block corners set uniform scale and rotation. Photos support the rectangular main block and narrow connector; no projective shear across the rotunda.",
+        "Southeast main corner and southern rotunda tip are withheld checks, with about 2.01 m and 3.57 m disagreements retained, not forced to fit. These are source residuals, not measured accuracy.",
+        "Illustrated roof edges remain provisional massing, not surveyed ground walls; retain raw OSM and image trace. No new interior, door, stair or passage. Height and facade dimensions remain existing photo estimates."
+      ],
+      "method": "similarity",
+      "check_anchors": [
+        {
+          "pixel": [
+            606,
+            588
+          ],
+          "osm_vertex": 11
+        },
+        {
+          "pixel": [
+            541,
+            742
+          ],
+          "osm_vertex": 5
+        }
       ]
     }
   ]
