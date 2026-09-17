@@ -191,3 +191,5 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 锦屏山植被改用OSM林地way/232560269 v2，结合学校双湖航拍和Esri影像核对范围。完整来源、版本、瓦片摘要及林木近似分布限制见[独立配准记录](references/eda/vegetation/jinping-registration.json)。沿用OSM和Esri既有来源与许可说明，原始影像不进入客户端，不将程序化树木视作逐树调查。
 
 博留公寓6号楼另核对25张Esri、12张天地图和12张MapTiler影像瓦片及学校相册13张照片，登记屋顶与墙脚错位疑点。仅将一张楼群航拍作为离线上下文归档，见[照片用途记录](references/lingshui/buildings/photos/77572-context.json)和[轮廓审查](references/shared/mapping/footprint-review.json)；相册包含邻楼，不能全部用于6号楼。原始影像和照片不进入客户端，未据此采用未经控制点验证的平移。
+
+图书馆北侧草坪采用OSM way/1076344098 v4，并以[学校KFQ00全景](https://360.toowtech.com/dalian/DUT/)和30块Esri影像核对，见[配准记录](references/eda/vegetation/library-lawn-registration.json)。全景原图公开URL内容摘要与离线档案一致；仍按既有学校全景、OSM与Esri来源和许可边界，仅离线使用原图。草叶数量与高度为视觉参数，不恢复照片不支持的内部均匀乔木。

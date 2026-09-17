@@ -343,7 +343,23 @@
     {
       "id": "library-north-lawn",
       "seed": 9041,
-      "polygon": [
+      "photos": [
+        "../imagery/panoramas/KFQ00-front.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "grass",
+          "spacing": 0.9,
+          "height": [
+            0.09,
+            0.17
+          ],
+          "clearance": 0.6
+        }
+      ],
+      "lawn": true,
+      "precision": "OSM grass area in shared WGS84 frame; panorama confirms open lawn, not a tree grid. Building-side edge is provisional; grass density/height are illustrative, not surveyed.",
+      "superseded_legacy_polygon": [
         [
           110,
           82
@@ -361,19 +377,7 @@
           105
         ]
       ],
-      "photos": [
-        "../imagery/panoramas/KFQ00-front.jpg"
-      ],
-      "plants": [
-        {
-          "kind": "grass",
-          "spacing": 0.9,
-          "height": [
-            0.09,
-            0.17
-          ],
-          "clearance": 0.6
-        },
+      "withheld_plant_profiles": [
         {
           "kind": "broadleaf",
           "spacing": 12,
@@ -384,8 +388,16 @@
           "clearance": 3
         }
       ],
-      "lawn": true,
-      "precision": "Approximate registration of visible lawn; no tree survey"
+      "osm_registration": {
+        "osm_id": "way/1076344098",
+        "osm_version": 4,
+        "expected_geometry_sha256": "0ca5996f81a34861dbd31069578c7fe7b81878dc526bd076a02a33fe30842a33",
+        "expected_tags": {
+          "landuse": "grass"
+        },
+        "review": "references/eda/vegetation/library-lawn-registration.json"
+      },
+      "notes": "Restore low grass and lawn only. Retain broadleaf profile as withheld: open lawn photograph does not support uniform interior trees; boundary trees need separate registration."
     },
     {
       "id": "library-west-border-trees",

@@ -73,6 +73,7 @@ func verify() -> void:
 		if unregistered:
 			check(scene.get_child_count() == 0, "Unregistered lawn or plant remains")
 		check(scene.find_children("*","CollisionObject3D",true,false).is_empty(), "Decorative foliage must not collide")
+		verify_lawn(scene,registered,zones,manifest,terrain)
 		var pairs: Dictionary = {}
 		for batch in scene.get_children():
 			if not batch is MultiMeshInstance3D:
@@ -134,3 +135,47 @@ func points(values: Array) -> PackedVector2Array:
 
 func position_key(at: Vector3) -> String:
 	return "%d,%d,%d" % [roundi(at.x*1000),roundi(at.y*1000),roundi(at.z*1000)]
+
+func verify_lawn(scene: Node3D, registered: Dictionary, zones: Dictionary, manifest: Dictionary, terrain: RefCounted) -> void:
+	var areas: Array[PackedVector2Array] = []
+	for id: String in registered:
+		if zones[id].get("lawn",false): areas.append(points(registered[id].points))
+	var lawn := scene.get_node_or_null("Lawn") as MeshInstance3D
+	if areas.is_empty():
+		check(lawn==null,"Unexpected lawn without a registered source")
+		return
+	check(lawn!=null,"Registered lawn missing from saved scene")
+	if lawn==null: return
+	var forbidden: Array[PackedVector2Array] = []
+	for feature: Dictionary in manifest.features:
+		if feature.kind in ["building","water","plaza","sports","track","basketball","tennis"]:
+			for polygon: Array in feature.get("render_polygons",[feature.points]):
+				forbidden.append(points(polygon))
+	var faces: PackedVector3Array = lawn.mesh.get_faces()
+	check(not faces.is_empty(),"Registered lawn has no saved geometry")
+	for i in range(0,faces.size(),3):
+		var triangle := PackedVector2Array()
+		for k in 3: triangle.append(Vector2(faces[i+k].x,faces[i+k].z))
+		var inside_area := false
+		for area in areas:
+			var outside := 0.0
+			for ring in Geometry2D.clip_polygons(triangle,area): outside += polygon_area(ring)
+			if outside<0.0001: inside_area = true
+		if not inside_area:
+			check(false,"Saved lawn triangle extends outside registered grass area")
+			return
+		for ring in forbidden:
+			for overlap in Geometry2D.intersect_polygons(triangle,ring):
+				if polygon_area(overlap)>0.0001:
+					check(false,"Saved lawn covers a building or non-grass feature")
+					return
+		for p: Vector3 in [faces[i],faces[i+1],faces[i+2],(faces[i]+faces[i+1]+faces[i+2])/3.0]:
+			if absf(p.y-terrain.elevation(p.x,p.z)-0.018)>0.002:
+				check(false,"Saved lawn floats above shared terrain triangles")
+				return
+	print("LAWN CHECK: ",faces.size()/3," saved triangles inside registered area, terrain fit and exclusions checked")
+
+func polygon_area(ring: PackedVector2Array) -> float:
+	var area := 0.0
+	for i in ring.size(): area += (ring[i]-ring[0]).cross(ring[(i+1)%ring.size()]-ring[0])*0.5
+	return absf(area)
