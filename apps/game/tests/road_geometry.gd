@@ -57,6 +57,13 @@ func _run() -> void:
 			assert(absf(area(Geometry2D.intersect_polygons(polygon,haiying)))<0.01,"Full road width cuts through Haiying northwest wall")
 	assert(checked_haiying)
 	print("HAIYING ROAD CLEARANCE PASS: full-width bend outside building")
+	# An explicitly reviewed wall endpoint caps the road on the building boundary.
+	var endpoint_road := {"width":2,"points":[[0,5],[2,0]],"terminal_building_outline":[[-10,-10],[10,-10],[10,0],[-10,0]]}
+	var capped := preload("res://scripts/shared/road_geometry.gd").polygons([endpoint_road])
+	for piece in capped:
+		assert(area(Geometry2D.intersect_polygons(piece,rectangle(-10,-10,20,10)))<0.0001)
+	assert(covered(Vector2(1.9,0.25),capped),"Wall cap must retain the approach")
+	assert(endpoint_road.points==[[0,5],[2,0]],"Wall cap must not move the centerline")
 	# Real saved meshes follow the exact terrain plane within 2 mm, including
 	# edge midpoints and triangle interiors, not only their sampled vertices.
 	for campus in ["eda", "lingshui"]:
@@ -64,6 +71,13 @@ func _run() -> void:
 		terrain.load_campus(campus)
 		var filename: String = "development_campus" if campus == "eda" else "lingshui_campus"
 		var model: Node3D = load("res://assets/campuses/%s/models/%s.tscn" % [campus, filename]).instantiate()
+		var comprehensive_overlap := 0.0
+		var comprehensive := PackedVector2Array()
+		if campus=="eda":
+			var source_data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
+			for feature in source_data.features:
+				if feature.id=="77921":
+					for p in feature.points: comprehensive.append(Vector2(p[0],p[1]))
 		var count := 0
 		var checked_surfaces: Array[String] = []
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/%s/data/campus.json" % campus))
@@ -72,6 +86,12 @@ func _run() -> void:
 				continue
 			var clearance := 0.12 if campus == "lingshui" else (0.22 if child.material_override.resource_name in ["Road", "Photo red path"] else (0.18 if child.material_override.resource_name == "Photo path edging" else 0.16))
 			var faces: PackedVector3Array = child.mesh.get_faces()
+			if campus=="eda" and child.material_override.resource_name in ["Road","Photo red path"] and not child.has_meta("ground_surface_id"):
+				for i in range(0,faces.size(),3):
+					var triangle := PackedVector2Array()
+					for k in 3: triangle.append(Vector2(faces[i+k].x,faces[i+k].z))
+					comprehensive_overlap += absf(area(Geometry2D.intersect_polygons(triangle,comprehensive)))
+
 			if child.has_meta("ground_surface_id"):
 				checked_surfaces.append(str(child.get_meta("ground_surface_id")))
 				# Ground overlays keep their 0.08 m lift plus the terrain fit offset, regardless of material.
@@ -102,6 +122,7 @@ func _run() -> void:
 			assert(checked_surfaces.count(str(overlay.id))==1,"Missing or duplicated saved ground surface metadata: "+str(overlay.id))
 		assert(count > 0)
 		print("ROAD TERRAIN PASS: ", campus, " triangles=", count)
+		assert(comprehensive_overlap<0.001,"Saved road cap still enters comprehensive building")
 		model.free()
 	# Ray-test actual saved collision meshes along every imported segment.
 	for campus in ["eda", "lingshui", "panjin"]:

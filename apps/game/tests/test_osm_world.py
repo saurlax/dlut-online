@@ -12,6 +12,24 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_road_termination_requires_shared_node_and_versions(self):
+        import copy
+        import json
+        from unittest.mock import patch
+        import prepare_osm_roads as roads
+        path = osm.ROOT/'references/eda/mapping/road-terminations.json'
+        original_read = Path.read_text
+        config = json.loads(original_read(path, encoding='utf-8'))
+        for field, value in [('road_version', 999), ('building_version', 999), ('shared_node', '0')]:
+            invalid = copy.deepcopy(config)
+            invalid['terminations'][0][field] = value
+            def read(candidate, *args, **kwargs):
+                return json.dumps(invalid) if candidate == path else original_read(candidate, *args, **kwargs)
+            with patch.object(Path, 'read_text', read), patch.object(Path, 'write_text') as write:
+                with self.assertRaisesRegex(ValueError, 'shared building node'):
+                    roads.build('eda')
+                write.assert_not_called()
+
     def test_map_surface_requires_connected_versioned_closing_way(self):
         import copy
         import json
