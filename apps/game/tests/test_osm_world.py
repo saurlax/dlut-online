@@ -59,6 +59,8 @@ class OSMWorldTests(unittest.TestCase):
         self.assertEqual(records['77425']['status'],'missing')
         self.assertEqual(records['77446']['osm_candidates'][0]['osm_id'],'way/233806513')
         self.assertEqual(records['77446']['osm_candidates'][0]['osm_version'],1)
+        self.assertEqual(records['77443']['osm_candidates'][0]['osm_id'],'way/219032067')
+        self.assertEqual(records['77444']['osm_candidates'][0]['osm_id'],'way/219032047')
         self.assertEqual(len(records),209)
 
     def test_indoor_pool_is_retained_without_becoming_a_building(self):
