@@ -2461,7 +2461,7 @@
     {
       "id": "eda-comprehensive-south-plaza",
       "kind": "plaza",
-      "surface_type": "asphalt",
+      "surface_type": "paving",
       "outer": [
         [
           -330.4628560087533,
@@ -2593,10 +2593,83 @@
         ]
       ],
       "source": "references/eda/mapping/ground-surfaces.json",
-      "source_sha256": "4c3db73376b898ecc259533e78d2e50c6fa05e413fa88bd9547a4f7f51580340",
+      "source_sha256": "b449b95a878c3abbcaad8fb2e1a53814781bd8dfa296d5a0a850e725b87c5424",
       "status": "provisional-image-supported-ground-outline",
       "osm_anchor_way": "1076346767",
       "absolute_accuracy_m": null
+    },
+    {
+      "id": "eda-comprehensive-north-court",
+      "kind": "plaza",
+      "surface_type": "asphalt",
+      "outer": [
+        [
+          -310.9926977051749,
+          260.64846197064736
+        ],
+        [
+          -300.38442689083973,
+          261.86591227918757
+        ],
+        [
+          -304.6160237012893,
+          274.88175494116234
+        ],
+        [
+          -300.86627254508545,
+          274.1074412868604
+        ],
+        [
+          -284.37885461167804,
+          275.21736659538
+        ],
+        [
+          -275.2245891059285,
+          274.1089640562962
+        ],
+        [
+          -277.48592695354006,
+          279.09045763632525
+        ],
+        [
+          -278.07959860780727,
+          285.2176736401629
+        ],
+        [
+          -275.17158799063606,
+          289.8693793354109
+        ],
+        [
+          -302.6859965078945,
+          290.37259633550747
+        ],
+        [
+          -324.5062009061162,
+          280.6561552907791
+        ],
+        [
+          -326.0032162147101,
+          275.9786435955262
+        ],
+        [
+          -322.2319600585022,
+          276.38015936503876
+        ],
+        [
+          -315.21999351562357,
+          273.89947051738505
+        ]
+      ],
+      "holes": [],
+      "source": "references/eda/mapping/ground-surfaces.json",
+      "source_sha256": "b449b95a878c3abbcaad8fb2e1a53814781bd8dfa296d5a0a850e725b87c5424",
+      "status": "provisional-image-supported-ground-outline",
+      "osm_anchor_way": "1076344134",
+      "absolute_accuracy_m": null,
+      "osm_anchor_ways": [
+        "1076344134",
+        "1076344135"
+      ]
     }
   ]
 }
