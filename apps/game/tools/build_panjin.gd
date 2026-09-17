@@ -52,6 +52,7 @@ func build() -> void:
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "panjin"):
 		quit(1)
 		return
+	preload("res://tools/build_terrain.gd").new().build(self,"panjin")
 	preload("res://tools/build_vegetation.gd").new().build(self,"panjin")
 	merge_meshes(scene)
 	for mat in materials.values():

@@ -46,7 +46,7 @@ class OSMWorldTests(unittest.TestCase):
         for campus in ('lingshui', 'eda', 'panjin'):
             directory = Path(__file__).resolve().parents[1]/'assets/campuses'/campus/'data'
             data = json.loads((directory/'campus.json').read_text(encoding='utf-8'))
-            pads = json.loads((directory/'terrain.json').read_text(encoding='utf-8'))['feature_base_y'] if campus != 'panjin' else {}
+            pads = json.loads((directory/'terrain.json').read_text(encoding='utf-8'))['feature_base_y']
             for feature in data['features']:
                 self.assertNotIn('reference_points', feature)
                 self.assertNotIn('reference_render_polygons', feature)
@@ -237,7 +237,7 @@ class OSMWorldTests(unittest.TestCase):
                     if candidate==path:return json.dumps(invalid)
                     return original_read(candidate,*args,**kwargs)
                 generators=[prepare_osm_roads.build]
-                if campus!='panjin':generators.append(prepare_terrain_preview.build)
+                generators.append(prepare_terrain_preview.build)
                 for generate in generators:
                     with self.subTest(campus=campus,field=field,generator=generate.__module__):
                         with patch.object(Path,'read_text',autospec=True,side_effect=read), patch.object(Path,'write_text',autospec=True) as write:
@@ -423,7 +423,7 @@ class OSMWorldTests(unittest.TestCase):
         self.assertEqual(scope([[1,5],[9,5]],boundary,False),'boundary-crossing')
 
     def test_elevation_uses_identical_geographic_points(self):
-        for campus in ('lingshui','eda'):
+        for campus in ('lingshui','eda','panjin'):
             terrain=Elevation(campus)
             _,nodes,ways,_=osm.archive(campus)
             for lon,lat in osm.way_coordinates(ways[osm.frame(campus)['boundary_way']],nodes):

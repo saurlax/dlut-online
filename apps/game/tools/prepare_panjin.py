@@ -80,7 +80,7 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     data = {'campus_id': 'panjin', 'origin': origin, 'units': 'approximate meters',
             'geographic_crs':'EPSG:4326','coordinate_frame':'references/shared/mapping/osm-world-frame.json',
-            'spawn_xz':moved([12,-62]),'elevation_status':'no archived elevation; existing flat ground retained',
+            'spawn_xz':moved([12,-62]),'elevation_status':'provisional filtered Copernicus DSM in shared WGS84 frame; not surveyed ground',
             'source': source['source'], 'retrieved': source['retrieved'],
             'bounds': low+[high[i]-low[i] for i in range(2)], 'features': features}
     (output/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n',encoding='utf-8')

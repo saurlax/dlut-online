@@ -51,7 +51,7 @@ Third-Party Notices
 
 **适用许可：** [Copernicus WorldDEM-30 Licence](https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf)（文内同名许可）。该许可授予全球范围、无期限、免费的非独占复制、分发、向公众传播、改编、修改及与其他数据组合使用的权利，使用者及后续分发者须遵守其署名、责任声明及其他条款。
 
-DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格格式转换，作为凌水主校区和开发区校区的地形基础资料，并经过过滤、插值、坐标平移及局部地坪调整生成客户端和游戏服使用的地形。原始数据的著作权归 DLR e.V. 及 Airbus Defence and Space GmbH 等相应权利人所有。
+DLUT Online 对 N38E121、N39E121、N40E122 瓦片进行像素窗口裁剪及高度网格格式转换，作为三校区的地形基础资料（盘锦瓦片于2026-09-17取得），并经过过滤、插值、共同WGS84局部坐标转换及局部地坪调整生成客户端和游戏服使用的地形。原始数据的著作权归 DLR e.V. 及 Airbus Defence and Space GmbH 等相应权利人所有。
 
 原始数据版权声明：
 
@@ -80,7 +80,7 @@ DLUT Online 的三校区基础平面数据直接使用 OSM WGS84 来源，并按
 
 三校区统一平面基准迁移使用 2026-09-16 已下载 OSM 原始数据，压缩归档及校验摘要见 `references/<campus_id>/mapping/osm-world.osm.gz` 与 `osm-world-source.json`。这些原始数据库摘录保留节点、道路、建筑、地表和关系对象的 ID、版本及时间戳，按 ODbL 1.0 提供。统一 WGS84 局部原点见 `references/shared/mapping/osm-world-frame.json`；归档范围包含校外要素，不能将归档数量视为校园建筑总数。地形高程继续单独标注 Copernicus 来源，不声称由 OSM 提供连续高程。
 
-离线迁移工具 `apps/game/tools/prepare_osm_world.py` 按上述归档提取地表面及道路、水道等线要素，保留多环孔洞、边界相交状态和身份冲突；`prepare_osm_terrain.py` 在同一地理坐标下采样已归档的凌水及开发区 DSM，不叠加旧官网平移。离线分析候选输出位于 `.local/osm-world/`，其存在不证明运行场景已完成迁移。当前运行道路清单与凌水、开发区 `terrain.json` 由对应生成器按同一基准产生，仍有待核对的旧建筑轮廓及局部冲突，不能声称全要素已对齐。盘锦尚无归档高程网格，不能把缺口解释为 OSM 提供的平坦地形。
+离线迁移工具 `apps/game/tools/prepare_osm_world.py` 按上述归档提取地表面及道路、水道等线要素，保留多环孔洞、边界相交状态和身份冲突；`prepare_osm_terrain.py` 在同一地理坐标下采样已归档的三校区 DSM，不叠加旧官网平移。离线分析候选输出位于 `.local/osm-world/`，其存在不证明运行场景已完成迁移。当前运行道路清单与三校区 `terrain.json` 由对应生成器按同一基准产生，仍有待核对的旧建筑轮廓及局部冲突，不能声称全要素已对齐。盘锦已补入有来源的粗分辨率DSM，仍不能称为OSM高程或实测裸地。
 
 `apps/game/tools/prepare_osm_identities.py` 为既有建筑生成 OSM 身份清单，名称别名和显式消歧依据维护于 `references/<campus_id>/mapping/osm-identity-overrides.json`。匹配搜索完整归档，避免大学边界遗漏北山宿舍；完整归档中无关校外建筑不会因此自动加入模型。候选保留未匹配 ID、原始多边形、OSM 版本及输入摘要；名称或位置对应不证明轮廓精度，立面锚点及局部形状仍须复核。
 
