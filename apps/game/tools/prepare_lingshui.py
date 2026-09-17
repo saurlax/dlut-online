@@ -156,7 +156,7 @@ def main():
     def moved(p):return [p[0]*scale+offset[0],p[1]+offset[1]]
     from prepare_osm_world import build as world_data
     surface_specs={}
-    for kind, filename in [('water','water-identities.json'),('sports','sports-identities.json')]:
+    for kind, filename in [('water','water-identities.json'),('sports','sports-identities.json'),('plaza','plaza-identities.json')]:
         for fid, spec in json.loads((REFERENCES/'mapping'/filename).read_text(encoding='utf-8'))['objects'].items():
             assert fid not in surface_specs
             surface_specs[fid]=(kind,spec)
@@ -213,7 +213,8 @@ def main():
             continue
         if feature['id'] in surface_specs:
             kind,spec=surface_specs[feature['id']];record=surface_records[spec['osm_id']]
-            assert feature['kind']==kind and record['category']==kind and feature['name']==spec['name']
+            category = 'square' if kind == 'plaza' else kind
+            assert feature['kind']==kind and record['category']==category and feature['name']==spec['name']
             assert not feature.get('sports'), 'Detailed sports layouts require their own registration'
             assert record['version']==spec['osm_version'] and len(record['polygons'])==1
             polygon=record['polygons'][0];ring=polygon['outer']
@@ -221,6 +222,9 @@ def main():
             feature.update(points=ring,render_polygons=[ring],osm_id=record['osm_id'],osm_version=record['version'],
                            footprint_source='osm',geometry_status='osm-water-area; shoreline and level unverified' if kind=='water' else 'osm-sports-area; boundary and level unverified')
             if kind=='sports': feature['surface_type']=record['tags'].get('surface','')
+            if kind=='plaza':
+                feature['geometry_status']='partial-osm-square; adjoining fountain and steps unresolved'
+                feature['unmodeled_osm_ids']=spec['unmodeled_osm_ids']
             continue
         match=matches.get(feature['id'])
         candidate=match['osm_candidates'][0] if match and not match.get('geometry_deferred',False) and len(match['osm_candidates'])==1 else None

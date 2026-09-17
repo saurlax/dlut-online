@@ -190,6 +190,13 @@ class OSMWorldTests(unittest.TestCase):
         self.assertIn('reference_points',features['2283256'])
         self.assertEqual(features['2283256']['geometry_status'],'legacy-silhouette-pending-replacement')
         self.assertEqual(features['77443']['osm_id'],'way/219032067')
+        square = features['17922962']
+        expected = next(r for r in build('lingshui')['areas'] if r['osm_id']=='way/547582635')
+        self.assertEqual(square['points'],expected['polygons'][0]['outer'])
+        self.assertEqual(square['osm_version'],1)
+        self.assertNotIn('reference_points',square)
+        self.assertEqual(square['unmodeled_osm_ids'],['way/547582634'])
+        self.assertIn('partial-osm-square',square['geometry_status'])
 
     def test_c_block_refinement_retains_anchors_and_narrow_connector(self):
         import json
