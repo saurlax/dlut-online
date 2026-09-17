@@ -18,6 +18,12 @@ func build() -> void:
 		group.set_meta("source_part",int(feature.part))
 		group.set_meta("display_name",feature.name)
 		group.set_meta("height_is_approximate",true)
+		if feature.has("geometry_assembly"):
+			group.set_meta("geometry_assembly",feature.geometry_assembly)
+		if feature.has("shared_geometry"):
+			group.set_meta("shared_geometry",feature.shared_geometry)
+		if feature.has("shared_official_ids"):
+			group.set_meta("shared_official_ids",feature.shared_official_ids)
 		scene.add_child(group)
 		group.owner = scene
 		for render_points in feature.get("reference_render_polygons",feature.render_polygons):

@@ -44,7 +44,8 @@ def build(campus, manifest=None):
             names[normalized(campus,name)].append(r['osm_id'])
     existing=defaultdict(list)
     for f in manifest['features']:
-        if f['kind']=='building':existing[f['id']].append(f)
+        if f['kind']=='building' or f.get('source_kind')=='building' and f.get('shared_geometry'):
+            existing[f['id']].append(f)
     matches=[]
     for fid,parts in existing.items():
         name=parts[0]['name']; original_key=normalized(campus,name)
@@ -65,6 +66,9 @@ def build(campus, manifest=None):
                         'geometry_deferred':bool(override and override.get('defer_geometry',False)),
                         'facade_registration_required':any(f.get('facade') for f in parts)
                             or campus=='eda' and fid not in ('96575',)})
+        if parts[0].get('shared_geometry'):
+            matches[-1]['shared_geometry'] = parts[0]['shared_geometry']
+            matches[-1]['geometry_assembly'] = parts[0]['geometry_assembly']
     assigned=defaultdict(list)
     for match in matches:
         if match['status']=='matched':

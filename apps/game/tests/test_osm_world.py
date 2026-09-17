@@ -12,6 +12,40 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_shared_compound_preserves_ids_and_rejects_new_member_geometry(self):
+        import copy
+        from prepare_lingshui import share_reviewed_building_geometry
+        owner = {'id':'owner','part':0,'kind':'building','osm_id':'relation/1',
+                 'osm_version':2,'points':[[0,0],[10,0],[10,10],[0,10]],
+                 'holes':[[[2,2],[8,2],[8,8],[2,8]]]}
+        member = {'id':'member','part':0,'kind':'building','facade':{},
+                  'points':[[1,1],[9,1],[9,9]],'reference_points':[[0,0],[1,0],[1,1]],
+                  'geometry_status':'legacy-silhouette-pending-replacement'}
+        spec = {'id':'assembly','owner_id':'owner','owner_part':0,'osm_id':'relation/1',
+                'osm_version':2,'outer_vertices':4,'hole_vertices':[4],
+                'members':[{'id':'member','part':0}]}
+        features = copy.deepcopy([owner,member])
+        share_reviewed_building_geometry(features,[spec])
+        self.assertEqual(features[0]['points'],owner['points'])
+        self.assertEqual(features[0]['holes'],owner['holes'])
+        self.assertEqual(features[0]['shared_official_ids'],['owner','member'])
+        self.assertEqual(features[1]['reference_points'],member['reference_points'])
+        self.assertEqual(features[1]['kind'],'reference')
+        self.assertEqual(features[1]['shared_geometry'],{'id':'owner','part':0})
+        for change in [{'facade':{'style':'photo_panels'}}, {'osm_id':'way/2'},
+                       {'geometry_status':'photo-refined'}, {'holes':[[[0,0]]]}]:
+            features = copy.deepcopy([owner,dict(member,**change)])
+            before = copy.deepcopy(features)
+            with self.assertRaisesRegex(ValueError,'member changed'):
+                share_reviewed_building_geometry(features,[spec])
+            self.assertEqual(features,before)
+        for change in [{'osm_version':3}, {'hole_vertices':[]},
+                       {'members':[{'id':'owner','part':0}]}]:
+            features = copy.deepcopy([owner,member])
+            with self.assertRaises(ValueError):
+                share_reviewed_building_geometry(features,[dict(spec,**change)])
+            self.assertEqual(features,[owner,member])
+
     def test_road_termination_requires_shared_node_and_versions(self):
         import copy
         import json
@@ -190,6 +224,8 @@ class OSMWorldTests(unittest.TestCase):
         self.assertEqual(records['77443']['osm_candidates'][0]['osm_id'],'way/219032067')
         self.assertEqual(records['77444']['osm_candidates'][0]['osm_id'],'way/219032047')
         self.assertEqual(len(records),209)
+        self.assertEqual(records['77419']['shared_geometry'],{'id':'77420','part':0})
+        self.assertEqual(records['77419']['status'],'missing') # Independent partition is unresolved.
 
     def test_indoor_pool_is_retained_without_becoming_a_building(self):
         records={r['osm_id']:r for r in build('lingshui')['areas']}
