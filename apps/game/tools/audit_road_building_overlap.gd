@@ -20,6 +20,19 @@ func area(pieces: Array[PackedVector2Array]) -> float:
 		for i in p.size(): result += (p[i]-p[0]).cross(p[(i+1)%p.size()]-p[0])*0.5
 	return absf(result)
 
+func intersection(feature: Dictionary, ribbons: Array[PackedVector2Array], masks: Array[PackedVector2Array], union: RefCounted) -> Array[PackedVector2Array]:
+	var pieces: Array[PackedVector2Array] = []
+	var holes: Array[PackedVector2Array] = []
+	for raw in feature.get("holes",[]): holes.append(ring(raw))
+	for raw in feature.get("render_polygons",[feature.points]):
+		var shell := ring(raw)
+		var box := bounds(shell)
+		for ribbon in ribbons:
+			if box.intersects(bounds(ribbon)):
+				pieces.append_array(Geometry2D.intersect_polygons(shell,ribbon))
+	if pieces.is_empty(): return pieces
+	return union.tessellate(pieces,holes+masks)
+
 func _initialize() -> void:
 	var report: Dictionary = {"scope":"Horizontal paved road width including shared-node junctions and subtracting ground-overlay masks as in build_roads; excludes decorative edging and overlay surfaces; does not prove vertical obstruction or measured accuracy", "campuses":{}, "conflicts":[]}
 	var union := RoadUnion.new()
@@ -28,29 +41,29 @@ func _initialize() -> void:
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path+"campus.json"))
 		var roads: Array = JSON.parse_string(FileAccess.get_file_as_string(path+"osm_roads.json")).roads
 		var ribbons := RoadGeometry.polygons(roads)
-		var boxes: Array[Rect2] = []
-		for ribbon in ribbons: boxes.append(bounds(ribbon))
+		var individual_ribbons: Array = []
+		for road in roads: individual_ribbons.append(RoadGeometry.polygons([road]))
 		var surface_masks: Array[PackedVector2Array] = []
 		for surface in manifest.get("ground_overlays",[]): surface_masks.append(ring(surface.outer))
 		var count := 0
 		for feature in manifest.features:
 			if feature.kind != "building": continue
-			var pieces: Array[PackedVector2Array] = []
-			var holes: Array[PackedVector2Array] = []
-			for raw in feature.get("holes",[]): holes.append(ring(raw))
-			for raw in feature.get("render_polygons",[feature.points]):
-				var shell := ring(raw)
-				var box := bounds(shell)
-				for i in ribbons.size():
-					if not box.intersects(boxes[i]): continue
-					pieces.append_array(Geometry2D.intersect_polygons(shell,ribbons[i]))
-			if pieces.is_empty(): continue
-			var clipped := union.tessellate(pieces,holes+surface_masks)
+			var clipped := intersection(feature,ribbons,surface_masks,union)
 			var overlap := area(clipped)
 			if overlap<=0.1: continue
 			var extent := bounds(clipped[0])
 			for piece in clipped: extent = extent.merge(bounds(piece))
 			var record: Dictionary = {"campus":campus,"id":feature.id,"part":feature.get("part",0),"name":feature.name,"source":feature.get("osm_id","legacy"),"overlap_m2":overlap,"bounds_xz":[extent.position.x,extent.position.y,extent.end.x,extent.end.y]}
+			record["road_candidates"] = []
+			record["road_candidates_scope"] = "Individual ribbons with the same building shells, holes and overlay masks; excludes inter-way junctions. Areas may overlap and must not be summed or subtracted from the full union to infer junction area."
+			for i in roads.size():
+				var individual := intersection(feature,individual_ribbons[i],surface_masks,union)
+				var individual_area := area(individual)
+				if individual_area <= 0.001: continue
+				var road: Dictionary = roads[i]
+				var road_extent := bounds(individual[0])
+				for piece in individual: road_extent = road_extent.merge(bounds(piece))
+				record.road_candidates.append({"osm_way_id":road.osm_way_id,"osm_version":road.osm_version,"part":road.part,"width_m":road.width,"width_basis":road.width_basis,"overlap_m2":individual_area,"bounds_xz":[road_extent.position.x,road_extent.position.y,road_extent.end.x,road_extent.end.y]})
 			report.conflicts.append(record)
 			count += 1
 		report.campuses[campus] = {"conflicting_parts":count,"campus_sha256":FileAccess.get_sha256(path+"campus.json"),"roads_sha256":FileAccess.get_sha256(path+"osm_roads.json")}
