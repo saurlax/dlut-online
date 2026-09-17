@@ -1002,6 +1002,95 @@
         "核对2025年通道变化与OSM版本，登记统一WGS84控制点及局部地形/台阶高差。",
         "有充分证据后成组重建楼体、周边道路、地形、植被、台阶及两端碰撞并检查通行。"
       ]
+    },
+    {
+      "campus": "eda",
+      "official_id": "77931",
+      "name": "一舍东南角与旁侧道路弯段",
+      "status": "road-width-and-corner-registration-pending",
+      "reviewed": "2026-09-17",
+      "osm_id": "way/309375779",
+      "osm_version": 4,
+      "road": {
+        "osm_way_id": 1381473262,
+        "osm_version": 3,
+        "tags": {
+          "highway": "residential"
+        },
+        "width_m": 6,
+        "width_basis": "estimated:highway-class",
+        "conflicting_segment_nodes": [
+          12789621076,
+          12789621082
+        ],
+        "shared_building_endpoint": false
+      },
+      "runtime_diagnostic": {
+        "overlap_m2": 1.84986248612404,
+        "saved_road_overlap_m2": 1.84986329078674,
+        "building_corner_xz": [
+          535.7006194065882,
+          -41.50009600010577
+        ],
+        "nearest_centerline_xz": [
+          537.1386602891321,
+          -40.55095614608105
+        ],
+        "centerline_distance_m": 1.7230287410155505,
+        "limits": "现有平面模型诊断量，非实测；两倍距离3.446米仅解释为何6米道路侵入，不是推荐路宽。"
+      },
+      "photos": [
+        {
+          "path": "references/eda/buildings/photos/77931-0.jpg",
+          "photo_id": 79703,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77931_20160302113542791.jpg",
+          "sha256": "e771b3f407a52633c2e9432bc7a201284df93527cdf191d5bc2ba1337ad74dca",
+          "take_time": null,
+          "limits": "楼号1、南立面与西侧端墙可见；东南转角受树木、车辆及画幅遮挡，未提供争议弯段完整墙脚和路缘控制。"
+        }
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439560&y=200208&z=19",
+          "sha256": "8d89fdd96e0089aca501e335e912bd455d4378c9e91f1df2be0c80b7f169c046",
+          "retrieved": "2026-09-17T08:11:06.836496+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439560&y=200209&z=19",
+          "sha256": "cb92d6953d07119153c4b7dea9e8fe295505b34e320a0e7e1722cea6a3fa0df8",
+          "retrieved": "2026-09-17T08:11:07.113230+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439561&y=200208&z=19",
+          "sha256": "d02bc522b6c82038517b98f879f613e7cb68d49005bf96bdbe5eb01be7693b6d",
+          "retrieved": "2026-09-17T08:11:06.925637+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439561&y=200209&z=19",
+          "sha256": "65c25691add1df30338a19644024ffc15e6078a462152340491a379dcf3dba80",
+          "retrieved": "2026-09-17T08:11:07.112504+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439562&y=200208&z=19",
+          "sha256": "7ba482e715fdda34dd8c93a0631797c5d21cbd1223aeb3d954a9453991ffffcb",
+          "retrieved": "2026-09-17T08:12:32.629607+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439562&y=200209&z=19",
+          "sha256": "a8fe3794c3997f050fc50eafb27b47dda075c50f717faaf8924f840bc4de8399",
+          "retrieved": "2026-09-17T08:12:33.347223+00:00"
+        }
+      ],
+      "findings": [
+        "OSM道路绕楼角通行，未与楼体共用终点，不适用综合楼1076346768的终止帽处理。",
+        "官网lm30可见一舍长条屋面、南侧道路、东侧绿地和道路转弯；定位用旧bound寻找图幅，不等于其坐标已经配准。",
+        "照片与图面没有提供6米实测宽度；不得仅按3.446米几何阈值缩路来清除交叠，也不把道路直接裁掉一块。",
+        "还需把转弯中心线和两侧路缘在局部统一控制下比较；屋檐、绿地边界和透视轮廓不直接作为墙脚。"
+      ],
+      "next_required": [
+        "在一舍及相邻稳定地面控制上登记俯视图中的道路弯段，交叉核对照片或正射影像。",
+        "分别确认中心线位置与道路宽度，保留原OSM节点记录；有证据后成组重建路面、地形、植被与两端碰撞。"
+      ]
     }
   ]
 }
