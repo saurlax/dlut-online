@@ -1,17 +1,28 @@
 extends SceneTree
 
 const Collision = preload("res://scripts/shared/campus_collision.gd")
-const CASES := [["77931",9,0.69],["77933",7,0.28],["77935",4,-1.0],["77937",7,0.4],["77938",5,0.58],["77941",7,-1.0]]
+const CASES := [["77931",0.69],["77933",0.28],["77935",-1.0],["77937",0.4],["77938",0.58],["77941",-1.0]]
+var facade_path
+var base := 0.0
+
+func mapped(p: Vector3) -> Vector3:
+	return (facade_path.mapped(p) if facade_path != null else p)+Vector3.UP*base
 
 func _initialize() -> void: run.call_deferred()
 
 func hit(space: PhysicsDirectSpaceState3D, from: Vector3, to: Vector3, expected: Vector3, label: String) -> void:
-	var result := space.intersect_ray(PhysicsRayQueryParameters3D.create(from,to))
+	var result := space.intersect_ray(PhysicsRayQueryParameters3D.create(mapped(from),mapped(to)))
 	assert(not result.is_empty(),label+" missing collision")
-	assert(result.position.distance_to(expected)<0.06,label+" wrong surface: "+str(result.position))
+	assert(result.position.distance_to(mapped(expected))<0.06,label+" wrong surface: "+str(result.position))
 
 func run() -> void:
+	create_timer(60).timeout.connect(func(): quit(2))
 	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
+	var profiles: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/buildings/residence_facades.json"))
+	var bases: Dictionary = {}
+	var reference: Node3D = load("res://assets/campuses/eda/models/development_campus.tscn").instantiate()
+	for c in CASES: bases[c[0]] = reference.get_node("Feature_"+c[0]).position.y
+	reference.free()
 	for server in [false,true]:
 		var viewport := SubViewport.new()
 		viewport.own_world_3d = true
@@ -25,8 +36,10 @@ func run() -> void:
 			world.add_child(model)
 			for c in CASES:
 				var group := model.get_node("Feature_"+c[0])
-				assert(group.get_child_count()<=(9 if c[0]=="77937" else 8 if c[0]=="77938" else 7),"Keep material batching per residence")
-				assert(group.get_meta("photo_edges")==([c[1],0] if c[0] in ["77931","77941"] else [c[1],6] if c[0]=="77933" else [c[1]]))
+				# Ceramic cladding has its own material; solid and decorative frames batch separately.
+				assert(group.get_child_count()<=(9 if c[0] in ["77937","77938"] else 7 if c[0]=="77935" else 8),"Keep material batching per residence")
+				var expected_edges: Dictionary = {"77931":[2,1,0],"77933":[2,1,3],"77935":[1,2],"77937":[4],"77938":[1],"77941":[1,2,3]}
+				assert(group.get_meta("photo_edges")==expected_edges[c[0]],"Photo facade moved off registered OSM walls")
 			Collision.build(world,model,manifest,"eda")
 		await physics_frame
 		await physics_frame
@@ -37,11 +50,26 @@ func run() -> void:
 				if f.id == c[0]: feature = f
 			var points := PackedVector2Array()
 			for p in feature.points: points.append(Vector2(p[0],p[1]))
-			var a := points[c[1]]
-			var b := points[(c[1]+1)%points.size()]
+			var registration: Dictionary = profiles[c[0]].osm_registration
+			assert(feature.osm_id==registration.osm_id and int(feature.osm_version)==int(registration.osm_version))
+			base = bases[c[0]]
+			facade_path = null
+			var a := points[int(registration.edge)]
+			var b := points[(int(registration.edge)+1)%points.size()]
+			if registration.get("reverse_edge",false):
+				var old_a := a
+				a = b
+				b = old_a
 			var axis := (b-a).normalized()
 			var out := Vector2(axis.y,-axis.x)
 			if Geometry2D.is_point_in_polygon((a+b)*0.5+out,points): out = -out
+			if registration.has("facade_vertices"):
+				facade_path = preload("res://tools/residence_facade_path.gd").new()
+				facade_path.configure(points,registration.facade_vertices)
+				a = facade_path.origin
+				axis = facade_path.axis
+				out = facade_path.outward
+				b = a+axis*facade_path.length
 			var normal := Vector3(out.x,0,out.y)
 			var p := a.lerp(b,0.07)
 			var wall := Vector3(p.x,5,p.y)
@@ -53,7 +81,7 @@ func run() -> void:
 			p = a.lerp(b,0.43)+out*0.7
 			var gallery := Vector3(p.x,16.19 if lower else 19.34,p.y)
 			if c[0]=="77941":
-				assert(space.intersect_ray(PhysicsRayQueryParameters3D.create(gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8)).is_empty(),"Do not copy an unverified gallery to residence six")
+				assert(space.intersect_ray(PhysicsRayQueryParameters3D.create(mapped(gallery+Vector3.UP*0.8),mapped(gallery-Vector3.UP*0.8))).is_empty(),"Do not copy an unverified gallery to residence six")
 			else:
 				hit(space,gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8,gallery,c[0]+" gallery slab")
 			if c[0] in ["77931","77933"]:
@@ -86,11 +114,12 @@ func run() -> void:
 				hit(space,recessed_wall+normal*1.5,recessed_wall-normal*1.5,recessed_wall-normal*0.8,"Third residence recessed gallery wall")
 				var slab := Vector3(p.x,6.84,p.y)-normal*0.4
 				hit(space,slab+Vector3.UP*0.5,slab-Vector3.UP*0.5,slab,"Third residence recessed gallery slab")
-			if c[2]>0:
-				p = a.lerp(b,c[2])+axis*a.distance_to(b)*0.025+out*0.7
+			if c[1]>0:
+				p = a.lerp(b,c[1])+axis*a.distance_to(b)*0.025+out*0.7
 				for y in ([6.8,9.95,13.1] if lower else [9.95,13.1,16.25]):
 					var slab := Vector3(p.x,y,p.y)
 					hit(space,slab+Vector3.UP*0.7,slab-Vector3.UP*0.7,slab,c[0]+" balcony slab")
+		print("RESIDENCES PHYSICS PASS: server=",server," six registered facade chains, roofs, galleries, eaves, enclosures and balcony slabs")
 		world.free()
 		viewport.free()
 	print("PASS: six batched photo facades; client/server closed shells, roofs, galleries and balcony slabs")
