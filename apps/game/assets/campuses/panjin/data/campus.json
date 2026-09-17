@@ -11,7 +11,7 @@
     11.650774115908568,
     160.64551398994448
   ],
-  "elevation_status": "no archived elevation; existing flat ground retained",
+  "elevation_status": "provisional filtered Copernicus DSM in shared WGS84 frame; not surveyed ground",
   "source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
   "retrieved": "2026-09-14",
   "bounds": [
