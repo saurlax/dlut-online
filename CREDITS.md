@@ -180,7 +180,7 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 
 ## MapTiler 与天地图补充数据核对
 
-2026年9月17日使用用户提供的本地凭据读取 [MapTiler Tiles API](https://docs.maptiler.com/cloud/api/tiles/) 的 Satellite v2、Planet v3/v4 和 Terrain RGB v2 局部样本，仅用于离线对照。返回署名为 MapTiler 与 OpenStreetMap contributors，见 [MapTiler版权信息](https://www.maptiler.com/copyright/)。瓦片地址中的凭据已脱敏；来源摘要、坐标转换、样本范围、与OSM关系及高程限制见[数据核对记录](references/shared/mapping/provider-data-review.json)。原始瓦片、解码结果与临时图像不纳入客户端或发行资源，尚未据此替换运行几何。
+2026年9月17日使用用户提供的本地凭据读取 [MapTiler Tiles API](https://docs.maptiler.com/cloud/api/tiles/) 的 Satellite v2、Planet v3/v4 和 Terrain RGB v2 局部样本，仅用于离线对照。返回署名为 MapTiler 与 OpenStreetMap contributors，见 [MapTiler版权信息](https://www.maptiler.com/copyright/)。瓦片地址中的凭据已脱敏；来源摘要、坐标转换、样本范围、与OSM关系及高程限制见[数据核对记录](references/shared/mapping/provider-data-review.json)。原始瓦片、解码结果与临时图像不纳入客户端或发行资源，不用于自动提取或平均建筑轮廓；已核对地面范围的应用另见下文。
 
 [天地图地图服务文档](http://lbs.tianditu.gov.cn/server/MapService.html)与WMTS能力声明用于确认图层及参数。更换为服务器类型凭据后，已取得综合楼及博留餐厅周边28张影像瓦片和开发区14条地名点结果，供离线位置与身份核对；署名国家基础地理信息中心、天地图。影像采集日期及绝对精度未确认，地名点不作为建筑边界；三维地形尚未取到，不将接口列表记作已采集数据。凭据保留于被Git忽略的本地配置，不进入本记录或客户端。
 
@@ -193,3 +193,5 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 博留公寓6号楼另核对25张Esri、12张天地图和12张MapTiler影像瓦片及学校相册13张照片，登记屋顶与墙脚错位疑点。仅将一张楼群航拍作为离线上下文归档，见[照片用途记录](references/lingshui/buildings/photos/77572-context.json)和[轮廓审查](references/shared/mapping/footprint-review.json)；相册包含邻楼，不能全部用于6号楼。原始影像和照片不进入客户端，未据此采用未经控制点验证的平移。
 
 图书馆北侧草坪采用OSM way/1076344098 v4，并以[学校KFQ00全景](https://360.toowtech.com/dalian/DUT/)和30块Esri影像核对，见[配准记录](references/eda/vegetation/library-lawn-registration.json)。全景原图公开URL内容摘要与离线档案一致；仍按既有学校全景、OSM与Esri来源和许可边界，仅离线使用原图。草叶数量与高度为视觉参数，不恢复照片不支持的内部均匀乔木。
+
+盘锦北侧停车区域另核对20张天地图和20张MapTiler影像瓦片。运行地面仅恢复独立OSM停车区域1263777289，影像用于确认其地面用途与大致范围；未据此描绘内部树带或新增车辆。原始瓦片仍仅离线留存；采集日期未知，两家影像可能共享底层来源，不视为独立测量。脱敏地址、摘要、已采用范围及其余停车场缺口见[盘锦地面记录](references/panjin/mapping/ground-surfaces.json)。

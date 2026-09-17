@@ -94,8 +94,11 @@ func _run() -> void:
 
 			if child.has_meta("ground_surface_id"):
 				checked_surfaces.append(str(child.get_meta("ground_surface_id")))
-				# Ground overlays keep their 0.08 m lift plus the terrain fit offset, regardless of material.
+				# Ground lift comes from its source configuration, regardless of material.
 				clearance = 0.16
+				for overlay: Dictionary in manifest.ground_overlays:
+					if overlay.id == str(child.get_meta("ground_surface_id")):
+						clearance = float(overlay.get("render_lift_m",0.16))
 				var forbidden: Array[PackedVector2Array] = []
 				for feature: Dictionary in manifest.features:
 					if feature.kind == "building":

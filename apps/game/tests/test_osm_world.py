@@ -12,6 +12,24 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_panjin_parking_requires_reviewed_osm_geometry(self):
+        import copy
+        import json
+        from prepare_panjin import parking_surfaces
+        world = build('panjin')
+        areas = {a['osm_id']:a for a in world['areas']}
+        surfaces = parking_surfaces(world)
+        self.assertEqual([s['osm_id'] for s in surfaces], ['way/1263777289'])
+        self.assertEqual(surfaces[0]['outer'], areas['way/1263777289']['polygons'][0]['outer'])
+        manifest = json.loads((osm.ROOT/'apps/game/assets/campuses/panjin/data/campus.json').read_text(encoding='utf-8'))
+        self.assertEqual(manifest['ground_overlays'], surfaces)
+        for mutation in ('version','geometry'):
+            changed = copy.deepcopy(world)
+            area = next(a for a in changed['areas'] if a['osm_id']=='way/1263777289')
+            if mutation=='version': area['version'] += 1
+            else: area['polygons'][0]['outer'][0][0] += 0.1
+            with self.assertRaises(AssertionError): parking_surfaces(changed)
+
     def test_registered_planting_ignores_legacy_polygon_and_pins_source(self):
         import copy
         import json

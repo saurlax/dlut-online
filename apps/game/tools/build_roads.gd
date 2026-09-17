@@ -55,7 +55,10 @@ func build(builder, campus: String) -> void:
 		var surface_material: Material = builder.material("Map plaza paving",Color("c1b7a1"))
 		if surface.get("surface_type", "paving") == "asphalt":
 			surface_material = builder.material(key, Color("555a5b") if campus == "eda" else Color("656966"))
-		var paving := emit(builder,outer,0.08,surface_material,cutouts)
+		# fit_road adds 0.08 m; keep reviewed thin ground surfaces walkable.
+		var lift: float = float(surface.get("render_lift_m",0.16))
+		assert(lift>0.0 and lift<=0.16)
+		var paving := emit(builder,outer,lift-0.08,surface_material,cutouts)
 		paving.set_meta("ground_surface_id",surface.id)
 
 func edge_y(edge: PackedVector2Array, x: float) -> float:
