@@ -11,7 +11,7 @@ func build(builder, campus: String) -> bool:
 	var count := 0
 	var valid := true
 	for feature in builder.manifest.features:
-		if not entries.has(feature.id):
+		if feature.kind != "building" or not entries.has(feature.id):
 			continue
 		var entry: Dictionary = entries[feature.id]
 		if entry.get("status", "") != "applied":
@@ -19,7 +19,7 @@ func build(builder, campus: String) -> bool:
 		var group_name: String = "Feature_" + feature.id + ("_" + str(int(feature.part)) if feature.has("part") else "")
 		var group: Node3D = builder.scene.get_node(group_name)
 		var points := PackedVector2Array()
-		for p in feature.get("reference_points",feature.points):
+		for p in feature.points:
 			points.append(Vector2(p[0], p[1]))
 		var profile: Dictionary = feature.get("facade", {})
 		var regions: Array = entry.get("regions", []).duplicate(true)

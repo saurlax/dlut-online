@@ -150,13 +150,13 @@ for feature in features:
   # The official selection bound does not establish a paved surface or arch.
   # Keep identity/reference data while withholding unsupported runtime geometry.
   feature.update(render_polygons=[],geometry_status='source-reference-only; gate geometry pending photo registration',height=None,height_source='unavailable')
+osm_world.withhold_selection_bounds(features, 'eda')
 all_points=world['boundary']+[p for f in features for p in f['points']]
 low=[math.floor(min(p[i] for p in all_points)/10)*10-30 for i in (0,1)]
 high=[math.ceil(max(p[i] for p in all_points)/10)*10+30 for i in (0,1)]
 data.update(origin=world['origin_lon_lat'],coordinate_frame=world['coordinate_frame'],geographic_crs='EPSG:4326',
-            legacy_reference_transform={'scale_x':scale,'offset_xz':offset,'basis':'references/eda/terrain/alignment.json','status':'temporary placement for retained legacy reference geometry; not OSM footprint validation'},
             spawn_xz=moved([12,387]),bounds=low+[high[i]-low[i] for i in (0,1)],
-            migration_status='shared-frame-active; unreviewed shapes explicitly retained')
+            migration_status='shared-frame-active; selection-bound geometry withheld')
 data['ground_overlays']=ground_surfaces('eda')
 (ROOT/'assets/campuses/eda/data/campus.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 scene_path=ROOT/'scenes/campuses/eda.tscn'
@@ -164,4 +164,4 @@ scene=scene_path.read_text(encoding='utf-8')
 scene=re.sub(r'^spawn_position = Vector3\([^\n]+\)\n','',scene,flags=re.MULTILINE)
 scene=scene.replace('campus_id = "eda"\n',f'campus_id = "eda"\nspawn_position = Vector3({data["spawn_xz"][0]:.6f}, 0.35, {data["spawn_xz"][1]:.6f})\n',1)
 scene_path.write_text(scene,encoding='utf-8')
-print(f'Prepared {len(features)} features in shared OSM frame; {len(selected)} OSM source outlines, remaining shapes marked pending')
+print(f'Prepared {len(features)} features in shared OSM frame; {len(selected)} OSM source outlines, remaining identities withheld without geometry')

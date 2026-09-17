@@ -52,11 +52,8 @@ func _run() -> void:
 		var a := Vector2(road.points[index][0],road.points[index][1])
 		var b := Vector2(road.points[index+1][0],road.points[index+1][1])
 		origin = a.lerp(b,float(anchor.fraction))-right*float(anchor.local_endpoint[0])-forward*float(anchor.local_endpoint[1])
-	elif manifest.has("legacy_reference_transform"):
-		var registration: Dictionary = manifest.legacy_reference_transform
-		origin = Vector2(origin.x*float(registration.scale_x)+float(registration.offset_xz[0]),origin.y+float(registration.offset_xz[1]))
-		right.x *= float(registration.scale_x)
-		forward.x *= float(registration.scale_x)
+	else:
+		assert(false, "Independent OSM registration is required")
 	if profile.has("osm_registration"):
 		var endpoint := origin+forward*float(profile.end_depth)
 		var stone: MeshInstance3D = details.get_node("StoneWalks")

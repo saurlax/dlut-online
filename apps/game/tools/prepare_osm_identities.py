@@ -44,7 +44,7 @@ def build(campus, manifest=None):
             names[normalized(campus,name)].append(r['osm_id'])
     existing=defaultdict(list)
     for f in manifest['features']:
-        if f['kind']=='building' or f.get('source_kind')=='building' and f.get('shared_geometry'):
+        if f['kind']=='building' or (f.get('source_kind')=='building' and (f.get('shared_geometry') or f.get('withheld_geometry',{}).get('previous_status')=='legacy-silhouette-pending-replacement')):
             existing[f['id']].append(f)
     matches=[]
     for fid,parts in existing.items():

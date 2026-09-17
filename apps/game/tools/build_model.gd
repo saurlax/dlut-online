@@ -227,6 +227,9 @@ func build() -> void:
 	scene.name = "DevelopmentCampus"
 	root.add_child(scene)
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
+	if not valid_ground_sources():
+		quit(1)
+		return
 	var reference_path := ProjectSettings.globalize_path("res://").path_join("../../references/eda/buildings/residence_facades.json").simplify_path()
 	residence_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path))
 	academic_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("academic_facades.json")))
@@ -238,12 +241,15 @@ func build() -> void:
 		var group := Node3D.new()
 		group.name = "Feature_" + feature.id
 		group.set_meta("source_id",feature.id)
+		group.set_meta("geometry_status",feature.get("geometry_status",""))
 		group.set_meta("display_name",feature.name)
 		group.set_meta("height_is_approximate",true)
 		scene.add_child(group)
 		group.owner = scene
+		if feature.kind == "reference":
+			continue
 		var points := PackedVector2Array()
-		for point in feature.get("reference_points",feature.points):
+		for point in feature.points:
 			points.append(Vector2(point[0],point[1]))
 		var kind: String = feature.kind
 		var height: float = feature.height if feature.height != null else 0.0
@@ -327,7 +333,7 @@ func build() -> void:
 				var color := Color("967c6c") if "宿舍" in feature.name else Color("b9b6ab")
 				polygon(group,points,height,material("Residence" if "宿舍" in feature.name else "Academic",color),"Building")
 				polygon(group,points,height+0.45,material("Roof",Color("92938b")),"Roof",height)
-				# An unreferenced building keeps only its official outline shell.
+				# An unreferenced building keeps only its registered footprint shell.
 				group.set_meta("facade_source","unavailable")
 				group.set_meta("interior_available",false)
 			"water":
@@ -388,15 +394,6 @@ func build() -> void:
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "eda"):
 		quit(1)
 		return
-	if manifest.has("legacy_reference_transform"):
-		var registration: Dictionary = manifest.legacy_reference_transform
-		var conversion := Transform3D(Basis.from_scale(Vector3(float(registration.scale_x),1,1)),Vector3(registration.offset_xz[0],0,registration.offset_xz[1]))
-		for feature in manifest.features:
-			if not feature.has("reference_points"): continue
-			var group: Node3D = scene.get_node("Feature_"+feature.id)
-			for child in group.get_children():
-				if child is MeshInstance3D: child.transform = conversion * child.transform
-			group.set_meta("geometry_status",feature.geometry_status)
 	preload("res://tools/build_terrain.gd").new().build(self, "eda")
 	merge_meshes(scene)
 	for mat in materials.values():
@@ -409,5 +406,15 @@ func build() -> void:
 	var state := GLTFState.new()
 	assert(document.append_from_scene(scene,state)==OK)
 	assert(document.write_to_filesystem(state,"res://assets/campuses/eda/models/development_campus.glb")==OK)
-	print("MODEL PASS: %d official polygons, generated TSCN and GLB" % generated_count)
+	print("MODEL PASS: %d source identity nodes, generated TSCN and GLB" % generated_count)
 	quit()
+
+func valid_ground_sources() -> bool:
+	for feature: Dictionary in manifest.features:
+		if feature.has("reference_points") or feature.has("reference_render_polygons") or ((not feature.get("points",[]).is_empty() or not feature.get("render_polygons",[]).is_empty()) and not feature.has("osm_id")):
+			push_error("Unregistered selection geometry rejected: " + str(feature.id))
+			return false
+		if feature.has("withheld_geometry") and (feature.kind != "reference" or not feature.points.is_empty() or not feature.get("render_polygons",[]).is_empty()):
+			push_error("Withheld source must remain empty: " + str(feature.id))
+			return false
+	return true
