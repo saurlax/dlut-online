@@ -181,6 +181,29 @@ def build(campus, fetch=False):
                               'width':road_width,'width_basis':basis,'points':path,
                               'archive':coverage['archive'],'coverage':'explicit north-campus extension'})
         roads.sort(key=lambda r:(r['osm_way_id'],r['part']))
+    terminations_path = refs / 'road-terminations.json'
+    if terminations_path.exists():
+        _, _, building_ways, _ = osm_world.archive(campus)
+        for termination in read(terminations_path)['terminations']:
+            road = next(r for r in roads if r['osm_way_id'] == termination['road_way_id'])
+            feature = next(f for f in manifest['features'] if f['id'] == termination['building_id'])
+            original = next(e for e in elements if e['id'] == termination['road_way_id'])
+            building = building_ways[termination['building_way_id']]
+            if (road['osm_version'] != termination['road_version']
+                    or original['version'] != termination['road_version']
+                    or feature.get('osm_version') != termination['building_version']
+                    or int(building.get('version')) != termination['building_version']
+                    or feature.get('osm_id') != 'way/' + termination['building_way_id']
+                    or termination['end'] != 'last'
+                    or str(original['nodes'][-1]) != termination['shared_node']
+                    or termination['shared_node'] not in [nd.get('ref') for nd in building.findall('nd')]
+                    or min(math.dist(road['points'][-1],p) for p in feature['points']) > 0.001):
+                raise ValueError('Reviewed road termination no longer matches its shared building node')
+            # A multi-way junction needs its own reviewed treatment, not an endpoint cap.
+            if sum(math.dist(p,road['points'][-1]) < 0.001 for r in roads for p in r['points']) != 1:
+                raise ValueError('Reviewed road termination became a road junction')
+            road['terminal_building_outline'] = feature['points']
+            road['terminal_basis'] = terminations_path.relative_to(ROOT).as_posix()
     if fetch:
         used = {boundary['id']} | {r['osm_way_id'] for r in roads + excluded}
         source['response']['elements'] = [e for e in elements if e['id'] in used]

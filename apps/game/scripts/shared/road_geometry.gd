@@ -14,7 +14,13 @@ static func polygons(roads: Array, margin := 0.0) -> Array[PackedVector2Array]:
 			var ring := PackedVector2Array([a + normal, b + normal, b - normal, a - normal])
 			if Geometry2D.is_polygon_clockwise(ring):
 				ring.reverse()
-			result.append(ring)
+			if road.has("terminal_building_outline"):
+				var building := PackedVector2Array()
+				for p in road.terminal_building_outline: building.append(Vector2(p[0],p[1]))
+				# Only explicitly reviewed, single-road endpoints receive this boundary cap.
+				result.append_array(Geometry2D.clip_polygons(ring,building))
+			else:
+				result.append(ring)
 			for point in [a, b]:
 				# Four decimal places match the importer and preserve OSM shared
 				# nodes. No proximity snapping across unrelated roads.
