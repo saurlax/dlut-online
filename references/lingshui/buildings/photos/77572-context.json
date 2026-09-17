@@ -1,0 +1,111 @@
+{
+  "album_source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77572",
+  "retrieved": "2026-09-17",
+  "archived_context": {
+    "index": 5,
+    "id": 875206,
+    "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412755.png",
+    "file": "references/lingshui/buildings/photos/77572-context.png",
+    "retrieved": "2026-09-17T11:56:24.826591+00:00",
+    "sha256": "2b9d731cf1efe943bbe6175000a86be7b8293a4f9c0f00ac546cc4457d1f1c48",
+    "purpose": "Whole-complex aerial context only; foreground wings are not all building 77572."
+  },
+  "reviewed_album_images": [
+    {
+      "index": 0,
+      "id": 78328,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20160225110300913.jpg",
+      "retrieved": "2026-09-17T11:56:23.337132+00:00",
+      "sha256": "6860940bc55252793878fe4c8ba5fe5cb01ede295fb151c7f66ef23f7249de7f"
+    },
+    {
+      "index": 1,
+      "id": 875201,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412649.png",
+      "retrieved": "2026-09-17T11:56:23.511292+00:00",
+      "sha256": "c41e61605f718faf4c85d29af6a9e83d07c1eb4874b65935fbd3e2c0ded2f6a1"
+    },
+    {
+      "index": 2,
+      "id": 875202,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412661.png",
+      "retrieved": "2026-09-17T11:56:23.738048+00:00",
+      "sha256": "e0564d9fef5bfc9d64eaab2660947a18070148f818dde33fb8af8c40193883e9"
+    },
+    {
+      "index": 3,
+      "id": 875203,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412646.jpg",
+      "retrieved": "2026-09-17T11:56:24.005068+00:00",
+      "sha256": "fcae620e9b90e54df8cea6e4c2c285dafc21fe20b495a84ff72f03a4e3d44cb8"
+    },
+    {
+      "index": 4,
+      "id": 875205,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412644.jpg",
+      "retrieved": "2026-09-17T11:56:24.182742+00:00",
+      "sha256": "38a12ea5bd9ba11866e7df221ec036f269cac24d5e1c415af178820e61d67aa6"
+    },
+    {
+      "index": 5,
+      "id": 875206,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412755.png",
+      "retrieved": "2026-09-17T11:56:24.826591+00:00",
+      "sha256": "2b9d731cf1efe943bbe6175000a86be7b8293a4f9c0f00ac546cc4457d1f1c48"
+    },
+    {
+      "index": 6,
+      "id": 875207,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412971.jpg",
+      "retrieved": "2026-09-17T11:56:24.567013+00:00",
+      "sha256": "e0a911d963d11589a27b2c8f6ff5e121ad1ebaf25442124a8b009b6d90e97f8d"
+    },
+    {
+      "index": 7,
+      "id": 875208,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412972.jpg",
+      "retrieved": "2026-09-17T11:56:24.740245+00:00",
+      "sha256": "44c599cfb7b0611cef0aa4729bfd2e693df1b8de00e1fd8b3fa27a08c3fe6393"
+    },
+    {
+      "index": 8,
+      "id": 875209,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412983.jpg",
+      "retrieved": "2026-09-17T11:56:25.285449+00:00",
+      "sha256": "0346e4e51181cfdb649eafebce502a2791b9a47a607feb99cca9ae196c733761"
+    },
+    {
+      "index": 9,
+      "id": 875210,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082424313.png",
+      "retrieved": "2026-09-17T11:56:26.144776+00:00",
+      "sha256": "5336aecf8c2ea14880a5739f8e0f2aeba3c52f3447cef1916e72d92053f4a27e"
+    },
+    {
+      "index": 10,
+      "id": 875212,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082432197.png",
+      "retrieved": "2026-09-17T11:56:26.555470+00:00",
+      "sha256": "f29feba6422a39ed4510b95e5a5a23c23c4280453e727bcbc080382d39fd1db4"
+    },
+    {
+      "index": 11,
+      "id": 875213,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082446212.png",
+      "retrieved": "2026-09-17T11:56:26.203596+00:00",
+      "sha256": "6d8d91ab9ec81e441439b62e13d240a2bd29d7513bb4e42bf3fce40fee899d95"
+    },
+    {
+      "index": 12,
+      "id": 875204,
+      "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77572_20200108082412655.jpg",
+      "retrieved": "2026-09-17T11:56:26.847276+00:00",
+      "sha256": "c56d9a8afe1a89d082374a5a2f1380c0d9c10dc218ca36f3503e62dabe824de2"
+    }
+  ],
+  "limits": [
+    "Album contains visibly different buildings and wings; ownerId is not per-image identity proof.",
+    "Image upload filename dates and null takeTime do not establish capture dates.",
+    "Do not transfer neighbouring L-shaped wings, entrances or floor counts onto the 77572 rectangle."
+  ]
+}
