@@ -11,6 +11,22 @@ import math
 import osm_world as osm
 
 
+def similarity_map(source, target):
+    if len(source) != 2 or len(target) != 2:
+        raise ValueError('Exactly two declared similarity anchors required')
+    start, finish = [complex(*p) for p in source]
+    a, b = [complex(*p) for p in target]
+    if abs(finish-start) < 1e-9 or abs(b-a) < 1e-9:
+        raise ValueError('Degenerate similarity anchors')
+    scale_rotation = (b-a)/(finish-start)
+    def transform(point):
+        result = a + scale_rotation*(complex(*point)-start)
+        if not math.isfinite(result.real) or not math.isfinite(result.imag):
+            raise ValueError('Nonfinite similarity refinement')
+        return [result.real, result.imag]
+    return transform
+
+
 def projective_map(source, target):
     if len(source)!=4 or len(target)!=4:
         raise ValueError('Exactly four declared anchors required')
@@ -53,7 +69,13 @@ def refine(campus, record):
     if len(original)!=spec['original_vertex_count']:raise ValueError('OSM ring changed')
     source=[a['pixel'] for a in spec['anchors']]
     target=[original[a['osm_vertex']] for a in spec['anchors']]
-    convert=projective_map(source,target)
+    method=spec.get('method','projective')
+    if method=='similarity':
+        convert=similarity_map(source,target)
+    elif method=='projective':
+        convert=projective_map(source,target)
+    else:
+        raise ValueError('Unknown footprint refinement method')
     points=[convert(p) for p in spec['pixel_outline']]
     from prepare_osm_world import valid_ring, area
     if not valid_ring(points):raise ValueError('Invalid refined footprint')
@@ -68,6 +90,10 @@ def refine(campus, record):
     result['refinement']={'id':spec['id'],'status':spec['status'],
         'source':str(path.relative_to(osm.ROOT)).replace('\\','/'),
         'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
-        'method':'four exterior OSM anchors; map-traced local notches',
+        'method':'two OSM anchors; shape-preserving map similarity' if method=='similarity' else 'four exterior OSM anchors; map-traced local notches',
         'absolute_accuracy_m':None,'limits':spec['limits']}
+    if spec.get('check_anchors'):
+        result['refinement']['check_anchor_residuals_m']=[
+            {'osm_vertex':a['osm_vertex'],'distance_m':math.dist(convert(a['pixel']),original[a['osm_vertex']])}
+            for a in spec['check_anchors']]
     return result
