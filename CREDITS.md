@@ -171,3 +171,5 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 ## 凌水校园正射影像参考
 
 辽宁省生态环境厅公开的[三维X射线CT系统应用项目环境影响报告表](https://sthj.ln.gov.cn/sthj/zfxxgk/fdzdgknr/xzxkxxgk/czzj/hbzxzjxm/2024092515455333124/2024092515450714943.pdf)（2024年5月报批稿），PDF第22页、印刷页18的附图1-3包含校园管理与修缮中心署名的校园正射影像，图示拍摄日期2023年5月。2026年9月17日读取，仅用于离线布局核对，尚未用于几何生成；附件未提供可核实坐标系及精度报告。来源、摘要、覆盖与使用边界见 [影像记录](references/lingshui/imagery/orthophoto-2023.json)。未发现明确的第三方复制或再分发许可，原PDF及图片不纳入客户端或发行资源。
+
+海山楼分区核对参考校园管理与修缮中心[创新园大厦（海山楼）幕墙维修改造项目竣工](https://xszx.dlut.edu.cn/info/1007/2661.htm)，2024-04-28发布、2026-09-17读取。仅采用官方A/B区高度说明作为分体核对证据，未据此推断墙脚或架空净高；对应照片、OSM版本和俯视图限制见[建筑依据](references/lingshui/buildings/basis.md)及共享footprint-review.json的77414记录。未发现明确第三方再分发许可，网页图片未打入客户端。

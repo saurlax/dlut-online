@@ -1629,6 +1629,217 @@
           "finding": "way版本及完整响应中全部节点的经纬度与现有归档一致。"
         }
       ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77414",
+      "name": "海山楼",
+      "status": "osm-identity-matched; ground-partitions-and-underpass-unresolved",
+      "reviewed": "2026-09-17",
+      "osm_way_id": "1381605755",
+      "osm_version": 2,
+      "road_way_id": "894092913",
+      "road_version": 1,
+      "road_highway": "living_street",
+      "road_width_m": 5.0,
+      "road_width_basis": "类别默认估计，无width标签",
+      "building_layer": "1",
+      "current_source_checks": [
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/way/1381605755/full",
+          "retrieved": "2026-09-17",
+          "version": 2,
+          "sha256": "1e731799b82b616d7153781e2e7276a0b6719a387e35d8597e6ed66fb28e2feb",
+          "node_coordinates_and_refs_match_archive": true
+        },
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/way/894092913/full",
+          "retrieved": "2026-09-17",
+          "version": 1,
+          "sha256": "2bbff12d7180d97e33d3320189a1afbffcb62fdc10d15863f632883e41f6cdaf",
+          "node_coordinates_and_refs_match_archive": true
+        }
+      ],
+      "additional_photos": [
+        {
+          "index": 1,
+          "image_id": 827341,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77414_2019092416315353.jpg",
+          "retrieved": "2026-09-17",
+          "sha256": "5798751c77169c2724cd41221d579338535c06e2983dd6ec60a1baaa88dbf984"
+        },
+        {
+          "index": 2,
+          "image_id": 827342,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77414_2019092416315370.jpg",
+          "retrieved": "2026-09-17",
+          "sha256": "2dd0665be08fa65a1bca3ec9c4462978f37d096c509e92dab941b1ee0d383469"
+        },
+        {
+          "index": 3,
+          "image_id": 827343,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77414_20190924163153300.jpg",
+          "retrieved": "2026-09-17",
+          "sha256": "d75f49c315d6526fbbd1eac39b6f42277862cd393962ee351d014d04ba9954c9"
+        },
+        {
+          "index": 5,
+          "image_id": 875294,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77414_20200108090929947.png",
+          "retrieved": "2026-09-17",
+          "sha256": "b1f6bc20f30a701c820fe4dae2df01280d047fb7b933a68bbd36670b3686e153"
+        }
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:20.003616+00:00",
+          "sha256": "e2a25e3eff0e58a922019dfc41c39ad34659a2a6ba0d8183250b3cf567a96d33"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200583&z=19",
+          "retrieved": "2026-09-16T16:56:48.623319+00:00",
+          "sha256": "2aeedd0914c3a0b795a0a9fa6487cadf0a47630e1cc71d397fa0296fefe4a14b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200584&z=19",
+          "retrieved": "2026-09-16T16:56:48.658971+00:00",
+          "sha256": "69bfbd13c8c4388298bf91e0fd45aa144ab5e725320de7777ddb3fbdba96b715"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200585&z=19",
+          "retrieved": "2026-09-16T16:56:48.889206+00:00",
+          "sha256": "8fac688a9929cdac07e4ddc544042261b6e9bf145c8bc9ed67910342ed5c4e7d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200586&z=19",
+          "retrieved": "2026-09-16T16:56:49.157087+00:00",
+          "sha256": "058c092564ab70d90a73573b60c7ebb5a115d835a98c06c48412a75e0999b490"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:20.620596+00:00",
+          "sha256": "6ae13a7bfd64f76202e86494ff8e7070f0c1c7bdfc1e3cdf72eeb1c61f6f3f8d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200583&z=19",
+          "retrieved": "2026-09-16T16:56:49.160992+00:00",
+          "sha256": "1892542bcbe319a034d9b2243367ead5f715195cbdcf10ad49bede4100e66182"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200584&z=19",
+          "retrieved": "2026-09-16T16:56:49.426617+00:00",
+          "sha256": "6e6662fae3a87cd2962da0532d644ef57babdabf8b15e2a7bb574b95c9efaed1"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200585&z=19",
+          "retrieved": "2026-09-16T16:56:49.677822+00:00",
+          "sha256": "14c8756bd19f81f3bf939c98c2996d27663d850dbbcd2a897a2b81662b4bf0e2"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200586&z=19",
+          "retrieved": "2026-09-16T16:56:49.670069+00:00",
+          "sha256": "e7e844ea560406b87bc07012d2edf2417d4fcaf350811d2359d33b0a5d44738a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:21.274763+00:00",
+          "sha256": "c4af07a1514def4c55be0d7a28744914b07f661e62d4baa103d2837bd45e49b8"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200583&z=19",
+          "retrieved": "2026-09-16T16:56:49.933138+00:00",
+          "sha256": "f97a64d11ebc41c0cd7a4317618942f2d1bfd1349cc7ada0138771968a0c1a8f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200584&z=19",
+          "retrieved": "2026-09-16T16:56:50.182973+00:00",
+          "sha256": "ed2139096d08a6a3a9cde93323b1d5d439c376e50b33e232a12627ecf8b17301"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200585&z=19",
+          "retrieved": "2026-09-16T16:56:50.219247+00:00",
+          "sha256": "2c2dc24fe7462c2e047b3a0fb58ec11e0f95e43c66e70ec8ecaf34059387ea77"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200586&z=19",
+          "retrieved": "2026-09-16T16:56:50.201091+00:00",
+          "sha256": "b135541b1830dc425b38ac84192c980fe4964ad09aac9f5ca9cf3dcce668e7fe"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:21.819696+00:00",
+          "sha256": "3d3a2c4279de33ef43b1eb41bd0b40b6806abbb3dcffd51d09f3786134b4f203"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200583&z=19",
+          "retrieved": "2026-09-16T17:54:01.295122+00:00",
+          "sha256": "afe9d788fcaa0674d12956efb747a1e43749d144509f7599af5685661128d6aa"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200584&z=19",
+          "retrieved": "2026-09-16T17:54:01.221112+00:00",
+          "sha256": "e6fc29ced52fdf92406ee624392f68474554e049d5b6fd559ef5e708a3f660da"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200585&z=19",
+          "retrieved": "2026-09-16T17:54:01.310528+00:00",
+          "sha256": "a963a4f18cce9cd3318473141c410139d08702c1eb4f027c2e6ad753b4b7635b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200586&z=19",
+          "retrieved": "2026-09-16T17:54:01.266026+00:00",
+          "sha256": "f8a7ca758c361bf461830613c4bec6477d6327cc489c90157add357e438cf0c1"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:22.377612+00:00",
+          "sha256": "303e5cefea1c09e1b82c2044cedbeafebcdf4c4e5e428d9ae4fd3e2cf7ece266"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200583&z=19",
+          "retrieved": "2026-09-16T17:54:01.770503+00:00",
+          "sha256": "050d0b3a1b43322dcaf5cf871b60e12e0424bc5fa9d8989d6968f80a9c05659b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200584&z=19",
+          "retrieved": "2026-09-16T17:54:01.816999+00:00",
+          "sha256": "5bf621359a4525aee7f8fb73cbf350d530acc5ed6feda03fb10342bf97e86528"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200585&z=19",
+          "retrieved": "2026-09-16T17:54:01.810770+00:00",
+          "sha256": "7fd9b182632792766cb4ae55b00798998337f6851ea35886c67334283b462c8c"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200586&z=19",
+          "retrieved": "2026-09-16T17:54:01.937410+00:00",
+          "sha256": "7056d70badd10f1abc66fecdac9b2471c718e005ad39e2e0b457adaa67c25c5d"
+        }
+      ],
+      "height_source": {
+        "url": "https://xszx.dlut.edu.cn/info/1007/2661.htm",
+        "title": "创新园大厦（海山楼）幕墙维修改造项目竣工",
+        "published": "2024-04-28",
+        "retrieved": "2026-09-17",
+        "height_m": {
+          "A": 55.6,
+          "B": 85.6
+        },
+        "limits": "官方建筑高度，尚未逐区配准落地轮廓；不用于统一抬高全外圈。"
+      },
+      "findings": [
+        "当前18米实心外包体与高低主楼、前部低层附楼和连接通道的照片证据冲突，不能仅平移解决。",
+        "77414-1/2/3可见低层两翼间的通道及跨越连接，77414-5可见低层前部玻璃、柱与廊架。不能将1/2/3视为独立测绘视角，也不能从透视像素直接推断通道净宽净高。",
+        "77414-4/6显示较低主楼的架空柱，不能把所有地面开放区都归为同一道路或在全楼下方统一挖空。",
+        "lm30显示西侧梳状附楼、连接部分与多处间隙，图中仍含屋面、侧面和阴影；不是可直接落地的测绘平面。",
+        "归档与当前在线OSM的楼体和道路节点一致，刷新源版本不能消除现有交叠。building layer=1只标相对层级，不提供min_height或真实通道尺寸。",
+        "保存道路完整宽度与楼体平面交叠约200.03平方米，交叠范围X305.47至345.57、Z-458.36至-453.25；未据此自动裁楼或删路。"
+      ],
+      "next_required_evidence": [
+        "地面控制点或总平面，用于定位前部附楼间隙与894092913道路是否对应",
+        "分区墙脚、连接体底部标高、柱位及可通行边界；A/B楼高不能补足这些缺失资料"
+      ]
     }
   ]
 }
