@@ -67,6 +67,11 @@ def refine(campus, record):
         raise ValueError('Refinement requires one declared exterior ring')
     original=record['polygons'][0]['outer']
     if len(original)!=spec['original_vertex_count']:raise ValueError('OSM ring changed')
+    # Node edits need not increment the containing way's version. Pin the
+    # reviewed geometry (including its local frame), not just way metadata.
+    digest=hashlib.sha256(json.dumps(record['polygons'],sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    if digest!=spec.get('original_polygons_sha256'):
+        raise ValueError('OSM geometry changed or unpinned; recheck refinement anchors')
     source=[a['pixel'] for a in spec['anchors']]
     target=[original[a['osm_vertex']] for a in spec['anchors']]
     method=spec.get('method','projective')

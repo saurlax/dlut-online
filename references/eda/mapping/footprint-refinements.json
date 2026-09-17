@@ -182,7 +182,8 @@
         "四角投影转移是局部形状注册，不是底图正射校正，不证明米制尺寸或绝对定位准确。",
         "官网图面包含屋面、台阶和立面表达；所描凹口为体量近似，墙脚和连接体精确边界尚未经测绘。",
         "未根据地图新增门洞、台阶或室内，外部台阶也不并入建筑基底。"
-      ]
+      ],
+      "original_polygons_sha256": "8c0be9f570e8dc2f663f7642a4619cf7fcebdc4cda0a24fa845df64576cbaa63"
     },
     {
       "id": "eda-academic-c-connector-v2",
@@ -423,7 +424,8 @@
           ],
           "osm_vertex": 5
         }
-      ]
+      ],
+      "original_polygons_sha256": "d34c783ec9be01a987cf99442257e5ce21ae61bdee55dc2d4507deb9c8c6010d"
     }
   ]
 }
