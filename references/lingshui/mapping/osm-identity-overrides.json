@@ -237,6 +237,118 @@
         }
       ],
       "limits": "照片存在树木、车辆与体育馆台阶遮挡，拍摄日期未知。边界为OSM底稿，未证明完整墙脚与屋顶凸出范围；详见facades.json的osm_registration。"
+    },
+    "77443": {
+      "osm_ids": [
+        "way/219032067"
+      ],
+      "reviewed": "2026-09-17",
+      "basis": "照片3同时显示科技园大厦与国际会议中心名称及相连裙房，照片7/8分别显示低层西翼及高层东翼。lm30南侧长体量在中央与北侧有退让，对应OSM未命名13点建筑219032067 v1；北侧公寓为独立官方77444，不纳入本框。",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77443-3.jpg",
+          "sha256": "83b8a163b52f0db4566dd6bf5f4935d4b333c949d97d0efffaa0c53b365bfbc4"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77443-7.jpg",
+          "sha256": "421b2c8e8b26808436475f0946cdc909b13b314459b4dfe0431bb031706fa314"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77443-8.jpg",
+          "sha256": "2099e983b27dd0736c2581285e100ed7395e1c00d0fe8d4e3b9f6c0fb5040f32"
+        }
+      ],
+      "map_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200603&z=19",
+          "retrieved": "2026-09-17T04:56:43.190912+00:00",
+          "sha256": "e4c9a9a6a9fb0d9496552e0664168fbf060c94a3208401532d0f666583757d0d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200604&z=19",
+          "retrieved": "2026-09-17T04:56:43.713022+00:00",
+          "sha256": "b7f16a3e707dac40cc9507a39ebd13a400c8a1ce2aaa6cf81572e8855b47ef5f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200603&z=19",
+          "retrieved": "2026-09-17T04:56:44.252295+00:00",
+          "sha256": "27ac645b9de79f025f697c622be9b1103ea1ce2b7dd39e5c83c8d1a058cc9ee9"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200604&z=19",
+          "retrieved": "2026-09-17T04:56:44.789298+00:00",
+          "sha256": "e6450c16a36764d8e15ce47f2142096886d73c9d459e8cd94b65d7c5fcb73440"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200603&z=19",
+          "retrieved": "2026-09-17T04:56:45.302759+00:00",
+          "sha256": "2f10ee018bb376b2ea7f44fc3e467863cdd93cf2c60ca9c5f4ecba1fd1cbc2ff"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200604&z=19",
+          "retrieved": "2026-09-17T04:56:45.868423+00:00",
+          "sha256": "43b469e931311dedb96cf01d0d9f67b7e67d68a36e24b2d1f9e6a57ed6ae823c"
+        }
+      ],
+      "limits": "身份与平面底稿登记，不是完整测绘；照片的拍摄日期未知，树木、车辆、屋檐及前部建筑遮挡墙脚。保留原18米未测高度，尚未将照片中的高低体量细分到确定平面区域；不新增未核实窗面、门廊、外梯或室内，不把地图屋顶外挑当作墙脚。"
+    },
+    "77444": {
+      "osm_ids": [
+        "way/219032047"
+      ],
+      "reviewed": "2026-09-17",
+      "basis": "官方学术交流公寓在科技园大厦北侧、游泳馆南侧。照片2/3显示西段较低住宅翼与东段较高住宅翼的转折关系，1/4补充低层附属与端部遮挡。lm30北侧独立折角体量对应OSM未命名10点建筑219032047 v1，与南侧科技园组分离。",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77444-1.jpg",
+          "sha256": "cb3636a4556058d9b60e6430a00875ff151c2ef5fa73274527bd2a565b2e5ae5"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77444-2.jpg",
+          "sha256": "60316c6406629f4672e5fd50a454097dea1a7eb082b6b5324460f7f1c37c8ac8"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77444-3.jpg",
+          "sha256": "902fd5e3dd63815f0c20577f2fef80ec602af2a07713180d60183b0a86b9111a"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77444-4.jpg",
+          "sha256": "49874a5ec7625fbd411411bfa04b4db2b17697627e081c3e6e388ae3b0eda7b7"
+        }
+      ],
+      "map_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200603&z=19",
+          "retrieved": "2026-09-17T04:56:43.190912+00:00",
+          "sha256": "e4c9a9a6a9fb0d9496552e0664168fbf060c94a3208401532d0f666583757d0d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200604&z=19",
+          "retrieved": "2026-09-17T04:56:43.713022+00:00",
+          "sha256": "b7f16a3e707dac40cc9507a39ebd13a400c8a1ce2aaa6cf81572e8855b47ef5f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200603&z=19",
+          "retrieved": "2026-09-17T04:56:44.252295+00:00",
+          "sha256": "27ac645b9de79f025f697c622be9b1103ea1ce2b7dd39e5c83c8d1a058cc9ee9"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200604&z=19",
+          "retrieved": "2026-09-17T04:56:44.789298+00:00",
+          "sha256": "e6450c16a36764d8e15ce47f2142096886d73c9d459e8cd94b65d7c5fcb73440"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200603&z=19",
+          "retrieved": "2026-09-17T04:56:45.302759+00:00",
+          "sha256": "2f10ee018bb376b2ea7f44fc3e467863cdd93cf2c60ca9c5f4ecba1fd1cbc2ff"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200604&z=19",
+          "retrieved": "2026-09-17T04:56:45.868423+00:00",
+          "sha256": "43b469e931311dedb96cf01d0d9f67b7e67d68a36e24b2d1f9e6a57ed6ae823c"
+        }
+      ],
+      "limits": "身份与平面底稿登记，不是完整测绘；照片的拍摄日期未知，树木、车辆、屋檐及前部建筑遮挡墙脚。保留原18米未测高度，尚未将照片中的高低体量细分到确定平面区域；不新增未核实窗面、门廊、外梯或室内，不把地图屋顶外挑当作墙脚。"
     }
   }
 }
