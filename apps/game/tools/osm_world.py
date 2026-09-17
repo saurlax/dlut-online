@@ -121,3 +121,31 @@ def relation_rings(relation, ways, nodes):
     if not any(r['role'] == 'outer' for r in result):
         raise ValueError('Missing outer ring')
     return result
+
+
+def registered_planting_areas(campus):
+    """Publish only independently reviewed OSM planting areas, never legacy rings."""
+    from prepare_osm_world import build
+    path = ROOT / f'references/{campus}/vegetation/planting.json'
+    config = json.loads(path.read_text(encoding='utf-8'))
+    registered = [z for z in config['zones'] if z.get('osm_registration')]
+    if not registered:
+        return []
+    areas = {r['osm_id']: r for r in build(campus)['areas']}
+    result = []
+    for zone in registered:
+        spec = zone['osm_registration']
+        record = areas.get(spec['osm_id'])
+        if record is None or record['version'] != spec['osm_version']:
+            raise ValueError('Planting source missing or version changed: ' + zone['id'])
+        digest = hashlib.sha256(json.dumps(record['polygons'], sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        if digest != spec['expected_geometry_sha256']:
+            raise ValueError('Planting source geometry changed: ' + zone['id'])
+        if record['category'] != 'vegetation-area' or any(record['tags'].get(k) != v for k, v in spec['expected_tags'].items()):
+            raise ValueError('Planting source semantics changed: ' + zone['id'])
+        if len(record['polygons']) != 1 or record['polygons'][0]['holes']:
+            raise ValueError('Planting area needs explicit multipart/hole support: ' + zone['id'])
+        result.append({'id':zone['id'], 'osm_id':record['osm_id'], 'osm_version':record['version'],
+                       'geometry_sha256':digest, 'points':record['polygons'][0]['outer'],
+                       'review':spec['review']})
+    return result
