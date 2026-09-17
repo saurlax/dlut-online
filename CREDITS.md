@@ -18,6 +18,7 @@ Third-Party Notices
 | 大连理工大学 | [新闻网](https://news.dlut.edu.cn/)，包括[学生公寓主体封顶报道](https://news.dlut.edu.cn/info/1022/81930.htm)及[校园建设报道](https://news.dlut.edu.cn/info/1022/82977.htm) | 建筑描述、公布尺寸、建设照片与效果图，用于建筑形态和立面的参考 |
 | 大连理工大学基建处 | [博士生公寓8号楼竣工报道](https://jjc.dlut.edu.cn/info/1018/3095.htm)，2023-09-08发布，2026-09-17读取 | 竣工高度、层数与现场照片的离线核对；原图和摘要见 [来源记录](references/lingshui/buildings/photos/2034766-completion.json)，不进入客户端；未发现明确第三方再分发许可 |
 | 大连理工大学图书馆全景站及其影像提供者 | [校园全景](https://360.toowtech.com/dalian/DUT/)，影像服务域名 `imgs.toowtech.com` | 航拍、建筑内外景及场地布局的视觉参考 |
+| 大连理工大学工程训练中心 | [中心平面图](https://xlzx.dlut.edu.cn/zxgk/zxpmt.htm)，2026-09-17读取 | 航拍、正门、位置图与楼层导览的离线核对；[来源记录](references/lingshui/buildings/training-center/source.json)区分现址楼群与旧77420车间，图片不进入客户端；未发现明确第三方再分发许可 |
 | 高德地图 | 官方校园地图配置引用的[高德影像服务](https://lbs.amap.com/) | 卫星影像及建筑位置的交叉核对 |
 
 上述资料及影像的权利归原作者及其他合法权利人所有。资料发布者、服务提供者的列示不构成对其享有全部相关权利的认定。高德服务另受其[服务条款](https://lbs.amap.com/pages/terms/)约束。
