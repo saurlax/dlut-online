@@ -705,6 +705,555 @@
           "method": "lm30 court only, before adding visible north apron; source outline retained in ground-surfaces superseded_map_trace"
         }
       }
+    },
+    {
+      "id": "eda-dorm1-road",
+      "campus": "eda",
+      "official_id": "77931",
+      "name": "一舍东南角与北侧道路影像复核",
+      "reviewed": "2026-09-17",
+      "status": "review-only; current ground controls unavailable",
+      "views": [
+        {
+          "zoom": 19,
+          "pixel_origin": [
+            112525317,
+            51253383
+          ],
+          "size": [
+            1100,
+            1100
+          ],
+          "center_lon_lat": [
+            121.81789599565506,
+            39.08600964893999
+          ],
+          "sources": [
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200208/439552",
+              "retrieved": "2026-09-17T13:04:39.928126+00:00",
+              "sha256": "fa355b3ece160e63846d8257dd9cd3e48da980f87486863b38cc22b7477c1cdb"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200209/439552",
+              "retrieved": "2026-09-17T13:04:40.020437+00:00",
+              "sha256": "33d778c12a035ca163741d08f83ff782b6c0eb4fbde99896859e7276aec100ee"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200210/439552",
+              "retrieved": "2026-09-17T13:04:40.515154+00:00",
+              "sha256": "b1ebf91cfe227a4538f408bb04e986cadacb4869bb3b218511a84aa909cb46e3"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200211/439552",
+              "retrieved": "2026-09-17T13:04:40.161659+00:00",
+              "sha256": "7b4a4f7da8996ad81e0d9bf98b1d9b58127f2dc8f65d0d5ee5615a55d8e26afa"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200212/439552",
+              "retrieved": "2026-09-17T13:04:40.464128+00:00",
+              "sha256": "d02b824446d9fc0f12562322de0d944395ee3ba0c6ad433f9b73a882aff61796"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200208/439553",
+              "retrieved": "2026-09-17T13:04:40.817113+00:00",
+              "sha256": "6be339415f2cfee1cafc697ff93d7b8754ea40c90e80b8ddf606c44a69b1d04c"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200209/439553",
+              "retrieved": "2026-09-17T13:04:41.260433+00:00",
+              "sha256": "2a6628d69b0cd476d88264ae5d6a03b2affe18113ea24a2137a28bb1a6e37bf8"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200210/439553",
+              "retrieved": "2026-09-17T13:04:42.034136+00:00",
+              "sha256": "3eeeae9146e474902ebc720c9d996c253c7e39fed1a0fbaba874e22134c88b58"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200211/439553",
+              "retrieved": "2026-09-17T13:04:41.513859+00:00",
+              "sha256": "edcf9492eb2530ae0fd852759ec32be8c4d80038af94ff16583ebaf890a5c5b8"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200212/439553",
+              "retrieved": "2026-09-17T13:04:41.362331+00:00",
+              "sha256": "13cd50a715174a9386a5735136608fce22aff7df6bc87a3e276fc9a438d81bff"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200208/439554",
+              "retrieved": "2026-09-17T13:04:43.134124+00:00",
+              "sha256": "84a62cb596c172aa625cb26b3c8a99202e299ec63eefcf1150d5011dd198f449"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200209/439554",
+              "retrieved": "2026-09-17T13:04:43.456132+00:00",
+              "sha256": "e111e184e33b10c886417fdc7323b7d3dc6056a5a1ff7b385eb9349883139505"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200210/439554",
+              "retrieved": "2026-09-17T13:04:41.937991+00:00",
+              "sha256": "5f77082888b47f24fe9d127886a2788a482dd5da2c7e0777c9312722f6ed9698"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200211/439554",
+              "retrieved": "2026-09-17T13:04:42.744004+00:00",
+              "sha256": "5bb9ce18f86939849e254e4fc6b30e9bf43c93533b8113afa811bf5decd6e6a7"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200212/439554",
+              "retrieved": "2026-09-17T13:04:43.618677+00:00",
+              "sha256": "67a8daf00ab85d4c6c2597950787a78195fb215f89c4040c9e45db8929dc9ac8"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200208/439555",
+              "retrieved": "2026-09-17T13:04:43.618413+00:00",
+              "sha256": "0f005060ed46c8baea27feb2054f55b689163484cf0cb268e4a42dada62d6e83"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200209/439555",
+              "retrieved": "2026-09-17T13:04:43.699316+00:00",
+              "sha256": "49e61d97c8eb74b7278c5aa947d6d7b9bbf6fcb01257cf88d7715d7bf64019d9"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200210/439555",
+              "retrieved": "2026-09-17T13:04:44.611878+00:00",
+              "sha256": "7d46919f50ca10b31f889d71d2ee8a2930f287c553b1f4ef070320979fa1ad15"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200211/439555",
+              "retrieved": "2026-09-17T13:04:45.284234+00:00",
+              "sha256": "894853ccc1e7f8a150ba3de7b46fd2b4738102259a19046cb35150faa7d6f609"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200212/439555",
+              "retrieved": "2026-09-17T13:04:44.321754+00:00",
+              "sha256": "e7afa1ec9527b5284a439443fc61fe07c07c45a755fdc90873f0794454824163"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200208/439556",
+              "retrieved": "2026-09-17T13:04:44.272838+00:00",
+              "sha256": "0e14de2892f3778267bbdda14b033f25829b458af8cbc2de63290f2ec3229af4"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200209/439556",
+              "retrieved": "2026-09-17T13:04:44.856322+00:00",
+              "sha256": "6dab81cf6768c726ec993d9dde926db667bdf1a98cbf0fad27cda900ff27b0a3"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200210/439556",
+              "retrieved": "2026-09-17T13:04:44.991083+00:00",
+              "sha256": "dad935866f6cc43d0175dfadd328451bcdd55891e6454ae7da633a870f3b8015"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200211/439556",
+              "retrieved": "2026-09-17T13:04:45.129764+00:00",
+              "sha256": "ec539f5dcd8882026adcc7258e259ef00b069bf878aaa3fd8cfc6c5f8d0a5fac"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200212/439556",
+              "retrieved": "2026-09-17T13:04:45.595758+00:00",
+              "sha256": "35e26f9356e29bf75940e29cb3e374eb612d199575e747b7cb07cee8f9a35665"
+            }
+          ],
+          "provider": "esri"
+        },
+        {
+          "campus": "eda",
+          "provider": "tianditu",
+          "zoom": 18,
+          "pixel_origin": [
+            56262658,
+            25626691
+          ],
+          "size": [
+            550,
+            550
+          ],
+          "native_tile_sizes": [
+            [
+              256,
+              256
+            ],
+            [
+              256,
+              256
+            ],
+            [
+              256,
+              256
+            ],
+            [
+              256,
+              256
+            ],
+            [
+              256,
+              256
+            ],
+            [
+              256,
+              256
+            ],
+            [
+              256,
+              256
+            ],
+            [
+              256,
+              256
+            ],
+            [
+              256,
+              256
+            ]
+          ],
+          "sources": [
+            {
+              "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100104&TILECOL=219776&tk=REDACTED",
+              "retrieved": "2026-09-17T13:06:10.618707+00:00",
+              "status": 200,
+              "content_type": "image/jpg",
+              "sha256": "d34643f21d90e9f9584ab706268f7c4088cb5532019ef4df0470301bb6301f3d"
+            },
+            {
+              "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100105&TILECOL=219776&tk=REDACTED",
+              "retrieved": "2026-09-17T13:06:10.618900+00:00",
+              "status": 200,
+              "content_type": "image/jpg",
+              "sha256": "815d4639cc46924bf199c2a8e05832208ffe55925ed4fb40dddb54e3638834a9"
+            },
+            {
+              "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100106&TILECOL=219776&tk=REDACTED",
+              "retrieved": "2026-09-17T13:06:10.676487+00:00",
+              "status": 200,
+              "content_type": "image/jpg",
+              "sha256": "91f16c4db87a97ccc4e31d67e925a2831b35920ed9150d89ba56c926c6d1d155"
+            },
+            {
+              "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100104&TILECOL=219777&tk=REDACTED",
+              "retrieved": "2026-09-17T13:06:10.824352+00:00",
+              "status": 200,
+              "content_type": "image/jpg",
+              "sha256": "243f5de272e525b2e9a017b9ee0dfd9bba9f72f7f0d8ab9a67f6e199804988fd"
+            },
+            {
+              "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100105&TILECOL=219777&tk=REDACTED",
+              "retrieved": "2026-09-17T13:06:10.835874+00:00",
+              "status": 200,
+              "content_type": "image/jpg",
+              "sha256": "60985d11804fe4e4c0cc43c3ab56aa394e0a15f1bc8f3df5cb3541fa4dfdf3c0"
+            },
+            {
+              "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100106&TILECOL=219777&tk=REDACTED",
+              "retrieved": "2026-09-17T13:06:10.857201+00:00",
+              "status": 200,
+              "content_type": "image/jpg",
+              "sha256": "14d0543c5dd27bd72dcbfcf9869200cd11ca638a41f1f229fd206dddf05fc961"
+            },
+            {
+              "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100104&TILECOL=219778&tk=REDACTED",
+              "retrieved": "2026-09-17T13:06:11.003549+00:00",
+              "status": 200,
+              "content_type": "image/jpg",
+              "sha256": "b1aa481c7c6e065eb971b33204b3d421b03c0fcb50f5101eb252484388e6b85d"
+            },
+            {
+              "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100105&TILECOL=219778&tk=REDACTED",
+              "retrieved": "2026-09-17T13:06:11.058996+00:00",
+              "status": 200,
+              "content_type": "image/jpg",
+              "sha256": "33eba73aea29b43cbc517b6ff0d77fe1ff0f4e178eb3918d2e5e1b9ae410667f"
+            },
+            {
+              "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100106&TILECOL=219778&tk=REDACTED",
+              "retrieved": "2026-09-17T13:06:11.030330+00:00",
+              "status": 200,
+              "content_type": "image/jpg",
+              "sha256": "1aa02527cd2f66d0b553672bfe5c17a84027f5ca1022f2516b9434214a15bcc3"
+            }
+          ]
+        },
+        {
+          "campus": "eda",
+          "provider": "maptiler",
+          "zoom": 18,
+          "pixel_origin": [
+            56262658,
+            25626691
+          ],
+          "size": [
+            550,
+            550
+          ],
+          "native_tile_sizes": [
+            [
+              512,
+              512
+            ],
+            [
+              512,
+              512
+            ],
+            [
+              512,
+              512
+            ],
+            [
+              512,
+              512
+            ],
+            [
+              512,
+              512
+            ],
+            [
+              512,
+              512
+            ],
+            [
+              512,
+              512
+            ],
+            [
+              512,
+              512
+            ],
+            [
+              512,
+              512
+            ]
+          ],
+          "sources": [
+            {
+              "url": "https://api.maptiler.com/tiles/satellite-v2/18/219776/100104.jpg?key=REDACTED",
+              "retrieved": "2026-09-17T13:06:12.745140+00:00",
+              "status": 200,
+              "content_type": "image/jpeg",
+              "sha256": "3a7e0dc183d79739ffbf84573a75e2fec2d1c87d7cd22499621f8c2f8f501f3c"
+            },
+            {
+              "url": "https://api.maptiler.com/tiles/satellite-v2/18/219776/100105.jpg?key=REDACTED",
+              "retrieved": "2026-09-17T13:06:12.409220+00:00",
+              "status": 200,
+              "content_type": "image/jpeg",
+              "sha256": "0607c52e2447b5ffced5f7f953a506785c1155b2e95bae6481256b387fbe6964"
+            },
+            {
+              "url": "https://api.maptiler.com/tiles/satellite-v2/18/219776/100106.jpg?key=REDACTED",
+              "retrieved": "2026-09-17T13:06:12.318363+00:00",
+              "status": 200,
+              "content_type": "image/jpeg",
+              "sha256": "5cf827bcc869f3a9b94acc5fe8dab28c31921d8e40f139b0e5dee7b86d3a1650"
+            },
+            {
+              "url": "https://api.maptiler.com/tiles/satellite-v2/18/219777/100104.jpg?key=REDACTED",
+              "retrieved": "2026-09-17T13:06:13.443997+00:00",
+              "status": 200,
+              "content_type": "image/jpeg",
+              "sha256": "e080c2fa6866c4b2ef59de0c015d4cd4f46948f2861b64f91086bf0c96aa132c"
+            },
+            {
+              "url": "https://api.maptiler.com/tiles/satellite-v2/18/219777/100105.jpg?key=REDACTED",
+              "retrieved": "2026-09-17T13:06:13.722816+00:00",
+              "status": 200,
+              "content_type": "image/jpeg",
+              "sha256": "f91480cb33a7d0c6cb9d8930207b59ec1f3ad06b433d1d7967c04290df501932"
+            },
+            {
+              "url": "https://api.maptiler.com/tiles/satellite-v2/18/219777/100106.jpg?key=REDACTED",
+              "retrieved": "2026-09-17T13:06:13.983095+00:00",
+              "status": 200,
+              "content_type": "image/jpeg",
+              "sha256": "c45f04e15f8e1cb6867362e0129ae7aaad713b5d468e8a2ae22af867e7ea1b08"
+            },
+            {
+              "url": "https://api.maptiler.com/tiles/satellite-v2/18/219778/100104.jpg?key=REDACTED",
+              "retrieved": "2026-09-17T13:06:14.629647+00:00",
+              "status": 200,
+              "content_type": "image/jpeg",
+              "sha256": "855cc026890318779f40a35e0e2ee6f78eaef1abb7681a37574641e55efbde19"
+            },
+            {
+              "url": "https://api.maptiler.com/tiles/satellite-v2/18/219778/100105.jpg?key=REDACTED",
+              "retrieved": "2026-09-17T13:06:14.602001+00:00",
+              "status": 200,
+              "content_type": "image/jpeg",
+              "sha256": "5d246340fb1cbac98fb0edfdbbe78659d9161d7a36db911d992a49954d34efc7"
+            },
+            {
+              "url": "https://api.maptiler.com/tiles/satellite-v2/18/219778/100106.jpg?key=REDACTED",
+              "retrieved": "2026-09-17T13:06:15.300733+00:00",
+              "status": 200,
+              "content_type": "image/jpeg",
+              "sha256": "d09f4371d397e7459153af8497e5e9af4bacc3b6cdbd59115189de6535926eac"
+            }
+          ]
+        }
+      ],
+      "ground_point_metadata": {
+        "corner": {
+          "point_xz": [
+            535.7006194,
+            -41.500096
+          ],
+          "point_lon_lat": [
+            121.81807769999993,
+            39.0856638
+          ],
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/9/query?f=pjson&geometry=121.81807769999993%2C39.0856638&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+          "retrieved": "2026-09-17T13:07:49.796276+00:00",
+          "sha256": "ccf921e5df6bbf7debc7cb79f17c90beee2bcb9e44ef3dd693e59d9a8116a3a2",
+          "attributes": [
+            {
+              "OBJECTID": 5195463,
+              "SRC_DATE": 20190918,
+              "SRC_RES": 0.5,
+              "SRC_ACC": 8.47,
+              "SAMP_RES": 0.5,
+              "SRC_DESC": "WV02",
+              "MinMapLevel": 19,
+              "MaxMapLevel": 19,
+              "NICE_NAME": "Vivid",
+              "DrawOrder": 80,
+              "SRC_DATE2": 1568764800000,
+              "NICE_DESC": "Vantor",
+              "Shape_Length": 31933.225933705147,
+              "Shape_Area": 8153405,
+              "BlockName": null,
+              "ReleaseName": null
+            }
+          ]
+        },
+        "bend": {
+          "point_xz": [
+            539.5285,
+            -44.1718
+          ],
+          "point_lon_lat": [
+            121.81812200032458,
+            39.085687800215595
+          ],
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/9/query?f=pjson&geometry=121.81812200032458%2C39.085687800215595&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+          "retrieved": "2026-09-17T13:07:49.897183+00:00",
+          "sha256": "ccf921e5df6bbf7debc7cb79f17c90beee2bcb9e44ef3dd693e59d9a8116a3a2",
+          "attributes": [
+            {
+              "OBJECTID": 5195463,
+              "SRC_DATE": 20190918,
+              "SRC_RES": 0.5,
+              "SRC_ACC": 8.47,
+              "SAMP_RES": 0.5,
+              "SRC_DESC": "WV02",
+              "MinMapLevel": 19,
+              "MaxMapLevel": 19,
+              "NICE_NAME": "Vivid",
+              "DrawOrder": 80,
+              "SRC_DATE2": 1568764800000,
+              "NICE_DESC": "Vantor",
+              "Shape_Length": 31933.225933705147,
+              "Shape_Area": 8153405,
+              "BlockName": null,
+              "ReleaseName": null
+            }
+          ]
+        },
+        "north_east": {
+          "point_xz": [
+            544.0389,
+            -66.1129
+          ],
+          "point_lon_lat": [
+            121.81817419949304,
+            39.08588489956881
+          ],
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/9/query?f=pjson&geometry=121.81817419949304%2C39.08588489956881&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+          "retrieved": "2026-09-17T13:07:49.885328+00:00",
+          "sha256": "ccf921e5df6bbf7debc7cb79f17c90beee2bcb9e44ef3dd693e59d9a8116a3a2",
+          "attributes": [
+            {
+              "OBJECTID": 5195463,
+              "SRC_DATE": 20190918,
+              "SRC_RES": 0.5,
+              "SRC_ACC": 8.47,
+              "SAMP_RES": 0.5,
+              "SRC_DESC": "WV02",
+              "MinMapLevel": 19,
+              "MaxMapLevel": 19,
+              "NICE_NAME": "Vivid",
+              "DrawOrder": 80,
+              "SRC_DATE2": 1568764800000,
+              "NICE_DESC": "Vantor",
+              "Shape_Length": 31933.225933705147,
+              "Shape_Area": 8153405,
+              "BlockName": null,
+              "ReleaseName": null
+            }
+          ]
+        },
+        "north_west": {
+          "point_xz": [
+            390.5965,
+            -67.1371
+          ],
+          "point_lon_lat": [
+            121.8163984000767,
+            39.08589410007186
+          ],
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/9/query?f=pjson&geometry=121.8163984000767%2C39.08589410007186&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+          "retrieved": "2026-09-17T13:07:49.960448+00:00",
+          "sha256": "ac46718c80f770507c2e1bb963ffe1931fdd39ceda1795473f0604d5668d3fb6",
+          "attributes": [
+            {
+              "OBJECTID": 5195463,
+              "SRC_DATE": 20190918,
+              "SRC_RES": 0.5,
+              "SRC_ACC": 8.47,
+              "SAMP_RES": 0.5,
+              "SRC_DESC": "WV02",
+              "MinMapLevel": 19,
+              "MaxMapLevel": 19,
+              "NICE_NAME": "Vivid",
+              "DrawOrder": 80,
+              "SRC_DATE2": 1568764800000,
+              "NICE_DESC": "Vantor",
+              "Shape_Length": 31933.225933705147,
+              "Shape_Area": 8153405,
+              "BlockName": null,
+              "ReleaseName": null
+            },
+            {
+              "OBJECTID": 5196606,
+              "SRC_DATE": 20250907,
+              "SRC_RES": 0.34,
+              "SRC_ACC": 8.47,
+              "SAMP_RES": 0.3,
+              "SRC_DESC": "LG03",
+              "MinMapLevel": 19,
+              "MaxMapLevel": 19,
+              "NICE_NAME": "Vivid Advanced",
+              "DrawOrder": 80,
+              "SRC_DATE2": 1757203200000,
+              "NICE_DESC": "Vantor",
+              "Shape_Length": 97928.75423546042,
+              "Shape_Area": 302465888,
+              "BlockName": "DYNAMIC_ESRI_Dalian_25Q4",
+              "ReleaseName": "Raster Basemaps 2026.R01"
+            }
+          ]
+        }
+      },
+      "findings": [
+        "争议楼角、弯段与道路东北节点的z19元数据均为2019-09-18，SRC_RES=0.5米、SRC_ACC=8.47米是提供方字段，不是本站独立测量结果。",
+        "道路西北节点覆盖同时返回2019-09-18和2025-09-07记录；附近综合楼的2025日期不能外推到整校区或整幅拼图，未把重叠元数据当作实际选片证明。",
+        "OSM 1381473262 v3编辑时间为2025-08-15T12:55:07Z；这不是道路施工日期，尚无证据确认2019年以来争议弯段是否改造。",
+        "三种底图均显示可见道路与现有中心线存在局部差异，同时楼顶投影位置不同，树冠与阴影遮挡墙脚。仅看1.85平方米交叠无法区分楼体、路宽和中心线各自误差。",
+        "天地图北侧仍可见旧运动场，Esri/MapTiler可见停车布局；两者采集日期未知且可能共享底层来源，不据此组成独立控制点。"
+      ],
+      "decision": "不据此缩窄6米估计路宽，不以屋顶平移建筑，不将2019道路描线直接作为当前路面；保留源道路及1.85平方米几何交叠待核对。",
+      "next_required": [
+        "取得一舍东南角至北侧弯段可定位的近期地面照片、校正影像或竣工平面，分别核对墙脚、内外路缘和时效。",
+        "修正时联动共享节点12789621076上的1381473259、北/西侧连接与各依赖层，不只移动单段使交叠数值归零。"
+      ]
     }
   ],
   "findings": [

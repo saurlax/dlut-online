@@ -1244,7 +1244,16 @@
       "next_required": [
         "在一舍及相邻稳定地面控制上登记俯视图中的道路弯段，交叉核对照片或正射影像。",
         "分别确认中心线位置与道路宽度，保留原OSM节点记录；有证据后成组重建路面、地形、植被与两端碰撞。"
-      ]
+      ],
+      "imagery_followup": {
+        "source": "references/shared/mapping/world-imagery-review.json#eda-dorm1-road",
+        "status": "recent-ground-control-and-width-pending",
+        "source_dates": [
+          "2019-09-18"
+        ],
+        "osm_edit_timestamp": "2025-08-15T12:55:07Z",
+        "decision": "不据此缩窄6米估计路宽，不以屋顶平移建筑，不将2019道路描线直接作为当前路面；保留源道路及1.85平方米几何交叠待核对。"
+      }
     },
     {
       "campus": "panjin",
