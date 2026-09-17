@@ -43,7 +43,7 @@ func verify() -> void:
 		var near_seen: Dictionary = {}
 		var far_seen: Dictionary = {}
 		var terrain: RefCounted
-		if campus != "panjin":
+		if FileAccess.file_exists("res://assets/campuses/%s/data/terrain.json" % campus):
 			terrain = preload("res://tools/build_terrain.gd").new()
 			terrain.load_campus(campus)
 		for plant: Dictionary in data.instances:

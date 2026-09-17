@@ -103,3 +103,12 @@ DLUTMap bound 已确认为三维选择框，运行数据与生成器 MUST NOT �
 - **WHEN** 锦屏山林地已通过OSM与影像核对，其余区域仍为旧框坐标
 - **THEN** 仅从已登记OSM林地生成树木，记录其余区域为withheld，旧点列改变不影响已登记区域
 - **AND** 保存实例位于来源范围内，根部贴合共同地形，避让道路/建筑/水面，近远模型位置一致；生成数量不得标为实测数量
+
+### Requirement: Sourced elevation uses the common geographic frame
+
+三校区连续高程 SHALL 记录独立DSM来源、垂直基准、原始样本与处理步骤，MUST NOT 称为OSM高程或实测裸地。整数窗口裁剪 SHALL 保持原样本与采样中心，运行地形 SHALL 静态挂入校园场景。
+
+#### Scenario: Panjin elevation replaces the flat approximation
+- **WHEN** 盘锦取得经哈希验证的WGS84、EGM2008 DSM裁剪
+- **THEN** 建筑、道路和地形在同一校区原点重建，客户端与保存的服务端碰撞保持一致
+- **AND** 校园边界覆盖负高程地面，出生点经过落地检查；细化网格与滤波不得宣称增加测量精度

@@ -66,10 +66,10 @@ func _run() -> void:
 	assert(endpoint_road.points==[[0,5],[2,0]],"Wall cap must not move the centerline")
 	# Real saved meshes follow the exact terrain plane within 2 mm, including
 	# edge midpoints and triangle interiors, not only their sampled vertices.
-	for campus in ["eda", "lingshui"]:
+	for campus in ["eda", "lingshui", "panjin"]:
 		var terrain := preload("res://tools/build_terrain.gd").new()
 		terrain.load_campus(campus)
-		var filename: String = "development_campus" if campus == "eda" else "lingshui_campus"
+		var filename: String = "development_campus" if campus == "eda" else campus+"_campus"
 		var model: Node3D = load("res://assets/campuses/%s/models/%s.tscn" % [campus, filename]).instantiate()
 		var comprehensive_overlap := 0.0
 		var comprehensive := PackedVector2Array()
@@ -84,7 +84,7 @@ func _run() -> void:
 		for child in model.get_children():
 			if not child is MeshInstance3D or not child.get_meta("road_surface", false):
 				continue
-			var clearance := 0.12 if campus == "lingshui" else (0.22 if child.material_override.resource_name in ["Road", "Photo red path"] else (0.18 if child.material_override.resource_name == "Photo path edging" else 0.16))
+			var clearance := 0.12 if campus != "eda" else (0.22 if child.material_override.resource_name in ["Road", "Photo red path"] else (0.18 if child.material_override.resource_name == "Photo path edging" else 0.16))
 			var faces: PackedVector3Array = child.mesh.get_faces()
 			if campus=="eda" and child.material_override.resource_name in ["Road","Photo red path"] and not child.has_meta("ground_surface_id"):
 				for i in range(0,faces.size(),3):

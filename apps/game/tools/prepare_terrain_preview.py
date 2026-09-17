@@ -1,4 +1,6 @@
 """Build a provisional 10 m terrain grid from sourced DSM in the shared WGS84 frame."""
+import argparse
+import hashlib
 import json
 import math
 import statistics
@@ -76,9 +78,16 @@ def build(campus):
                     rows[r][c]=(sample(x,z)-datum)*(1-weight)+level*weight
     output={'schema_version':1,'campus_id':campus,'origin_xz':[x0,z0],'step_m':STEP,'width':nx,'height':nz,'absolute_y_offset_egm2008_m':datum,'feature_base_y':pads,'rows':[[round(v,4) for v in row] for row in rows],'basis':manifest['coordinate_frame'],'classification':'provisional filtered DSM with estimated feature pads; 10m is mesh spacing, not survey accuracy'}
     output.update(horizontal_crs='EPSG:4326',old_official_shift_applied=False)
+    output.update(vertical_datum='EGM2008', height_unit='m',
+                  source=(refs/'heightfield.json').relative_to(ROOT).as_posix(),
+                  source_sha256=hashlib.sha256((refs/'heightfield.json').read_bytes()).hexdigest())
     (directory/'terrain.json').write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n',encoding='utf-8')
     print(campus,nx,nz,'vertical origin',datum)
 
 
 if __name__=='__main__':
-    for campus in ['lingshui','eda']:build(campus)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--campus', choices=['lingshui','eda','panjin','all'], default='all')
+    args = parser.parse_args()
+    for campus in ['lingshui','eda','panjin'] if args.campus == 'all' else [args.campus]:
+        build(campus)

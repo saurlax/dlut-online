@@ -32,18 +32,22 @@ func _run() -> void:
 		for child in group.get_children():
 			if child is MeshInstance3D and not child.get_meta("walk_collision",false) and child.name != "Roof":
 				assert(child.find_children("*","StaticBody3D",true,false).is_empty(),"Decoration must not collide")
-	assert(ids.size()==60 and buildings==49)
+	assert(ids.size()==60 and buildings==47)
 	for excluded in ["80152","80155","80158","80161","80164"]:
 		assert(not ids.has(excluded))
 	# A walking capsule approaching the library's west wall must be stopped.
+	var terrain := preload("res://tools/build_terrain.gd").new()
+	terrain.load_campus("panjin")
+	assert(campus.has_node("Terrain") and not campus.model.has_node("CampusBase"))
+	var library_base: float = campus.model.get_node("Feature_77963_0").position.y
 	var player: CharacterBody3D = campus.player
 	player.set_physics_process(false)
-	player.position = Vector3(227,0.05,-406)
+	player.position = Vector3(225,terrain.elevation(225,-180)+0.35,-180)
 	for frame in 90:
 		await physics_frame
 		player.velocity = Vector3(13,-2,0)
 		player.move_and_slide()
-	assert(player.position.x>231 and player.position.x<233,"Library shell blocks walking, fins are decorative")
+	assert(player.position.x>233.5 and player.position.x<235,"Library shell blocks walking, fins are decorative")
 	assert(player.is_on_floor())
 	# The exported server must give the same wall hit and arrival as the client.
 	var viewport := SubViewport.new()
@@ -54,18 +58,23 @@ func _run() -> void:
 	for frame in 3:
 		await physics_frame
 	assert(server.get_meta("spawn")==campus.spawn_position)
-	var ray := PhysicsRayQueryParameters3D.create(Vector3(227,1,-406),Vector3(240,1,-406))
+	var b: Array = campus.manifest.bounds
+	var boundary_ray := PhysicsRayQueryParameters3D.create(Vector3(b[0]+4,-3,0),Vector3(b[0]-4,-3,0))
+	var low_client := campus.get_world_3d().direct_space_state.intersect_ray(boundary_ray)
+	var low_server := server.get_world_3d().direct_space_state.intersect_ray(boundary_ray)
+	assert(not low_client.is_empty() and not low_server.is_empty(),"Boundary must extend below negative terrain heights")
+	assert(low_client.position.distance_to(low_server.position)<0.001)
+	var ray := PhysicsRayQueryParameters3D.create(Vector3(225,library_base+1,-180),Vector3(245,library_base+1,-180))
 	ray.exclude = [player.get_rid()]
 	var client_hit := campus.get_world_3d().direct_space_state.intersect_ray(ray)
 	var server_hit := server.get_world_3d().direct_space_state.intersect_ray(ray)
 	assert(not client_hit.is_empty() and not server_hit.is_empty())
 	assert(client_hit.position.distance_to(server_hit.position)<0.001)
-	var b: Array = campus.manifest.bounds
-	player.position = Vector3(b[0]+4,0.05,0)
+	player.position = Vector3(b[0]+4,terrain.elevation(b[0]+4,0)+0.35,0)
 	for frame in 45:
 		await physics_frame
 		player.velocity = Vector3(-13,-2,0)
 		player.move_and_slide()
 	assert(player.position.x>b[0]+1 and player.position.x<b[0]+2)
-	print("PASS: Panjin 64 parts / 60 IDs / 49 buildings; grounded arrival; library and boundary capsule collision; server parity; no invented corridor or decorative collisions")
+	print("PASS: Panjin 64 parts / 60 IDs / 47 buildings; grounded arrival; library and boundary capsule collision; server parity; no invented corridor or decorative collisions")
 	quit()

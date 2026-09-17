@@ -46,13 +46,24 @@ static func build(root: Node3D, model: Node3D, manifest: Dictionary, campus_id: 
 			[Vector3(0,20,-89),Vector3(180,40,2)],
 			[Vector3(0,20,89),Vector3(180,40,2)],
 		]
+	# Terrain may lie below the local vertical origin. Keep boundary walls below
+	# its lowest point instead of leaving an escape gap under a wall starting at 0.
+	var boundary_bottom := 0.0
+	var boundary_top := 160.0
+	var terrain := root.get_node_or_null("Terrain/Ground") as MeshInstance3D
+	if terrain != null:
+		var terrain_bounds: AABB = terrain.get_parent().transform * terrain.transform * terrain.get_aabb()
+		boundary_bottom = minf(boundary_bottom,terrain_bounds.position.y-10.0)
+		boundary_top = maxf(boundary_top,terrain_bounds.end.y+10.0)
 	for entry in boundaries:
 		var body := StaticBody3D.new()
 		body.name = "CampusBoundary"
 		body.position = entry[0]
+		body.position.y = (boundary_bottom+boundary_top)*0.5
 		var shape := CollisionShape3D.new()
 		var box := BoxShape3D.new()
 		box.size = entry[1]
+		box.size.y = boundary_top-boundary_bottom
 		shape.shape = box
 		body.add_child(shape)
 		root.add_child(body)

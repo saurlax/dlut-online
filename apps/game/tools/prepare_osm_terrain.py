@@ -1,8 +1,8 @@
 """Stage sourced elevation in the OSM world frame, without legacy translations.
 
 Landcover polygons remain separate from this continuous elevation grid. Building
-pads can only be added after footprint identity and geometry review. Panjin has
-no archived elevation grid: report the gap instead of inventing OSM heights.
+pads can only be added after footprint identity and geometry review. Missing
+elevation archives are reported rather than replaced with invented OSM heights.
 """
 import argparse
 import hashlib
