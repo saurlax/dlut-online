@@ -62,6 +62,7 @@ def build(campus, manifest=None):
                                            'name':records[i]['tags'].get('name',''),
                                            'scope':records[i]['scope'],'polygons':records[i]['polygons']} for i in ids],
                         'geometry_review_required':True,
+                        'geometry_deferred':bool(override and override.get('defer_geometry',False)),
                         'facade_registration_required':any(f.get('facade') for f in parts)
                             or campus=='eda' and fid not in ('96575',)})
     assigned=defaultdict(list)

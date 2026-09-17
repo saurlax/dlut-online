@@ -489,6 +489,26 @@
         },
         "decision": "排除把南侧OSM泳池区域直接作为游泳馆屋顶或地面墙脚。俯视图的两馆相对比例与OSM两区域不一致，单一平移无法消除；仍需确定主馆OSM边界对应屋顶、外墙还是基座，再独立配准泳馆。"
       }
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "2283256",
+      "osm_way_id": "233806536",
+      "name": "东山锅炉房",
+      "status": "identity-confirmed; geometry-deferred",
+      "reviewed": "2026-09-17",
+      "source": "references/lingshui/mapping/osm-identity-overrides.json#objects/2283256",
+      "conflicting_official_id": "2283260",
+      "findings": [
+        "OSM v2的ref明确写东山锅炉房，name为空导致名称检索遗漏；这一明确标识用于登记身份。",
+        "四点OSM底稿试生成后，原11.13米道路中心线交叠消除，但与修缮中心办公楼的旧轮廓相交约210.54平方米。",
+        "两处地图照片接口均为空，修缮中心没有独立OSM候选。仅凭图面不能区分其实际墙脚、附属关系和透视误差。",
+        "试生成结果已撤回；defer_geometry保留身份但阻止自动几何迁移，现行运行模型及13处全局道路中心线交叠数保持不变。"
+      ],
+      "next_required_evidence": [
+        "能够辨别锅炉房与修缮中心边界关系的地面照片或平面",
+        "确认四点OSM是否只覆盖锅炉房主体，办公楼是否为独立体量；不以自动裁切相交面积替代证据"
+      ]
     }
   ],
   "unmatched_cases": [
