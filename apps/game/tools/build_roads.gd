@@ -49,7 +49,9 @@ func build(builder, campus: String) -> void:
 			var building := PackedVector2Array()
 			for p: Array in feature.points: building.append(Vector2(p[0],p[1]))
 			if Geometry2D.is_polygon_clockwise(building): building.reverse()
-			cutouts.append(building)
+			# A 1 mm construction clearance keeps float32 terrain subdivision
+			# from placing tiny paving slivers across the wall boundary.
+			cutouts.append_array(Geometry2D.offset_polygon(building,0.001,Geometry2D.JOIN_MITER))
 		var surface_material: Material = builder.material("Map plaza paving",Color("c1b7a1"))
 		if surface.get("surface_type", "paving") == "asphalt":
 			surface_material = builder.material(key, Color("555a5b") if campus == "eda" else Color("656966"))

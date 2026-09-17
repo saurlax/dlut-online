@@ -118,7 +118,7 @@ class OSMWorldTests(unittest.TestCase):
         north=next(r for r in result if r['id']=='eda-comprehensive-north-court')
         self.assertEqual(north['osm_anchor_ways'],['1076344134','1076344135'])
         self.assertEqual(len(north['outer']),14)
-        self.assertTrue(all(-330<p[0]<-270 and 260<p[1]<291 for p in north['outer']))
+        self.assertTrue(all(-330<p[0]<-270 and 259<p[1]<290 for p in north['outer']))
         self.assertIsNone(north['absolute_accuracy_m'])
         for closing,message in [({'way_id':'1076344135','version':999},'version changed'),
                                 ({'way_id':'1076344136','version':1},'must join'),
@@ -132,6 +132,36 @@ class OSMWorldTests(unittest.TestCase):
                 return original_read(candidate,*args,**kwargs)
             with patch.object(Path,'read_text',read):
                 with self.assertRaisesRegex(ValueError,message):surfaces.build('eda')
+
+    def test_ground_paving_uses_two_ground_controls_and_preserves_date(self):
+        import copy
+        import json
+        import math
+        from unittest.mock import patch
+        import prepare_map_surfaces as surfaces
+        path = osm.ROOT/'references/eda/mapping/ground-surfaces.json'
+        original_read = Path.read_text
+        config = json.loads(original_read(path, encoding='utf-8'))
+        south = surfaces.build('eda')[0]
+        self.assertEqual(south['ground_control_ways'], ['1076344134','1076344135','1076346767'])
+        self.assertEqual(south['evidence_date'], '2025-09-07')
+        self.assertIn('historical-before-2026-renovation', south['temporal_status'])
+        self.assertIsNone(south['absolute_accuracy_m'])
+        _, nodes, ways, _ = osm.archive('eda')
+        center, _ = surfaces.loop_center('eda', config['surfaces'][0]['osm_anchor'], nodes, ways)
+        hole_center = [sum(p[i] for p in south['holes'][0])/len(south['holes'][0]) for i in (0,1)]
+        self.assertLess(math.dist(center, hole_center), 0.001)
+        def area(ring):
+            return abs(sum(a[0]*b[1]-a[1]*b[0] for a,b in zip(ring,ring[1:]+ring[:1])))/2
+        net = area(south['outer'])-sum(area(ring) for ring in south['holes'])
+        self.assertTrue(650 < net < 800, 'Historical image trace must not regress to enlarged illustrated paving')
+        invalid = copy.deepcopy(config)
+        invalid['surfaces'][0]['ground_direction']['pixel'] = invalid['surfaces'][0]['pixel_anchor']
+        def read(candidate, *args, **kwargs):
+            return json.dumps(invalid) if candidate == path else original_read(candidate, *args, **kwargs)
+        with patch.object(Path, 'read_text', read):
+            with self.assertRaisesRegex(ValueError, 'Ground controls must be distinct'):
+                surfaces.build('eda')
 
     def test_relation_review_keeps_inner_ring_and_rejects_single_ring_draft(self):
         import copy
