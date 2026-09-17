@@ -490,5 +490,56 @@
         "decision": "排除把南侧OSM泳池区域直接作为游泳馆屋顶或地面墙脚。俯视图的两馆相对比例与OSM两区域不一致，单一平移无法消除；仍需确定主馆OSM边界对应屋顶、外墙还是基座，再独立配准泳馆。"
       }
     }
+  ],
+  "unmatched_cases": [
+    {
+      "campus": "lingshui",
+      "official_id": "2034766",
+      "name": "博士生公寓8号楼",
+      "status": "post-construction-footprint-missing; old-map-excluded",
+      "reviewed": "2026-09-17",
+      "completion_source": "references/lingshui/buildings/photos/2034766-completion.json",
+      "osm_candidate_ids": [],
+      "osm_limits": "完整归档未发现对应位置建筑；不得选用北山8舍、博留1/2舍或研教楼替代。",
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200582&z=19",
+          "retrieved": "2026-09-17T05:05:28.835419+00:00",
+          "sha256": "678c786280c807a3c3a716838a1ac61b7152886c28c4f1e7b30713815e89a28d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200583&z=19",
+          "retrieved": "2026-09-17T05:05:29.451930+00:00",
+          "sha256": "b91ba96d7901ef4773670c03eb96258272970ac1f5c6a5db9c647acce5e7b565"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200582&z=19",
+          "retrieved": "2026-09-17T05:05:30.259987+00:00",
+          "sha256": "fb667a74a96647ce076695eb2165484477ee242a5dd6e6babf7c90a9d74016a8"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200583&z=19",
+          "retrieved": "2026-09-17T05:05:30.859602+00:00",
+          "sha256": "322c22f226dbff15ddb543b5573ec4e91ad8580cdd65745c93491f73274f7eb1"
+        }
+      ],
+      "findings": [
+        "官网lm30仍显示软件路南侧空地、停车位及研教楼周边旧布局，没有呈现竣工照片中的新塔楼与绕楼道路。该片图面不能用于恢复博士8号楼现状墙脚。",
+        "基建处2023年竣工报道明确80米、23层，现有模型18米和七点透视外包轮廓不符合该已建建筑。",
+        "竣工照片显示窄长高层主体、底部道路与部分连接空间，但透视、遮挡与缺少同一地面控制点妨碍直接恢复完整平面。",
+        "原约69.43米的道路交叠不能通过移动附近OSM建筑或把旧外包框缩成任意矩形解决；当前仍保留待修正状态。"
+      ],
+      "planning_source": {
+        "url": "https://www.dlhitech.gov.cn/news/view_66855.html",
+        "title": "大连理工大学博士生公寓8号楼项目",
+        "published": "2021-07-01",
+        "access_status": "搜索索引有规划许可公示文字；实际访问跳转404，未取得图纸或附件",
+        "read_date": "2026-09-17"
+      },
+      "next_required_evidence": [
+        "能够核对地面定位的竣工总平面、独立控制点或已校正的新建后影像",
+        "新塔楼、研教楼连接部分与绕楼道路的实际边界；旧lm30和未更新的OSM不足以确认"
+      ]
+    }
   ]
 }
