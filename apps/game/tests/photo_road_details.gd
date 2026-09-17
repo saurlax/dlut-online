@@ -39,6 +39,35 @@ func _run() -> void:
 	var right := Vector2(cos(angle),sin(angle))
 	var forward := Vector2(-sin(angle),cos(angle))
 	var origin := Vector2(profile.origin_xz[0],profile.origin_xz[1])
+	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
+	if profile.has("osm_registration"):
+		var anchor: Dictionary = profile.osm_registration
+		var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
+		var matches: Array = roads.filter(func(road): return int(road.osm_way_id) == int(anchor.osm_way_id) and int(road.part) == int(anchor.part))
+		assert(matches.size() == 1, "Photo garden road anchor missing or ambiguous")
+		var road: Dictionary = matches[0]
+		assert(int(road.osm_version) == int(anchor.osm_version), "Photo garden road changed; recheck registration")
+		var index := int(anchor.segment)
+		assert(index >= 0 and index+1 < road.points.size() and float(anchor.fraction) >= 0.0 and float(anchor.fraction) <= 1.0)
+		var a := Vector2(road.points[index][0],road.points[index][1])
+		var b := Vector2(road.points[index+1][0],road.points[index+1][1])
+		origin = a.lerp(b,float(anchor.fraction))-right*float(anchor.local_endpoint[0])-forward*float(anchor.local_endpoint[1])
+	else:
+		assert(false, "Independent OSM registration is required")
+	if profile.has("osm_registration"):
+		var endpoint := origin+forward*float(profile.end_depth)
+		var stone: MeshInstance3D = details.get_node("StoneWalks")
+		var nearest := INF
+		var faces: PackedVector3Array = stone.mesh.get_faces()
+		for i in range(0,faces.size(),3):
+			for edge in 3:
+				var pa := stone.transform*faces[i+edge]
+				var pb := stone.transform*faces[i+(edge+1)%3]
+				var a := Vector2(pa.x,pa.z)
+				var b := Vector2(pb.x,pb.z)
+				if absf((a-origin).dot(forward)-float(profile.end_depth))<0.002 and absf((b-origin).dot(forward)-float(profile.end_depth))<0.002:
+					nearest = minf(nearest,Geometry2D.get_closest_point_to_segment(endpoint,a,b).distance_to(endpoint))
+		assert(nearest<0.002, "Saved garden paving does not reach its OSM road anchor")
 	for stair in profile.stairs:
 		for direction in [-1.0,1.0]:
 			var body := CharacterBody3D.new()

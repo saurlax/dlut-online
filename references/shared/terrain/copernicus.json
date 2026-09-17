@@ -41,6 +41,21 @@
         39.096
       ],
       "coverage_purpose": "校园及周边缓冲区矩形，非校界；涵盖整体地势和后续配准余量。"
+    },
+    "panjin": {
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N40_00_E122_00_DEM/Copernicus_DSM_COG_10_N40_00_E122_00_DEM.tif",
+      "retrieved": "2026-09-17T12:26:14.478756+00:00",
+      "bytes": 44975924,
+      "sha256": "4d88e1d523ddb05ecdd9a0dccc6ca5257ac97ee2c66a841bd8fabaf8ef5a6b29",
+      "file": "copernicus-N40E122.tif",
+      "tile_id": "N40E122",
+      "bbox_wgs84": [
+        122.109,
+        40.677,
+        122.129,
+        40.696
+      ],
+      "coverage_purpose": "盘锦校园及周边缓冲区矩形，覆盖共同WGS84运行范围及滤波边界，不等同校界。"
     }
   }
 }

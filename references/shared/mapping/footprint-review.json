@@ -1,0 +1,3339 @@
+{
+  "schema_version": 1,
+  "status": "comparison-only",
+  "reference": "官网二维 lm30 瓦片的图面坐标；不是已验证的测绘坐标系",
+  "tile_url": "http://map.dlut.edu.cn/map?lyrs=lm30&x={x}&y={y}&z={z}",
+  "zoom": 19,
+  "cases": [
+    {
+      "campus": "lingshui",
+      "official_id": "77387",
+      "osm_way_id": "300180515",
+      "name": "厚民楼"
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77412",
+      "osm_way_id": "1381605758",
+      "name": "西灰楼"
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77413",
+      "osm_way_id": "1381605759",
+      "name": "东灰楼"
+    },
+    {
+      "campus": "eda",
+      "official_id": "77914",
+      "osm_way_id": "1422474847",
+      "name": "信息楼（OSM 身份及拆分待核实）"
+    },
+    {
+      "campus": "eda",
+      "official_id": "77935",
+      "osm_way_id": "309375777",
+      "name": "第三学生公寓"
+    },
+    {
+      "campus": "panjin",
+      "official_id": "77955",
+      "osm_way_id": "1318388516",
+      "name": "D03 化学实验楼"
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77386",
+      "osm_way_id": "547580516",
+      "osm_version": 2,
+      "name": "主楼",
+      "reviewed": "2026-09-17",
+      "status": "central-facade-registration-applied; wall-setbacks-unresolved",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77386-0.jpg",
+          "sha256": "19deb973bbf03d1df7efd0e22dafd455519a1f52014dfddc2190fd8b19326908"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77386-1.jpg",
+          "sha256": "75ebe0798e560704b2c923d0f8bf77a07b6156224e18d2381f3ee6e8bbacdc58"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77386-4.jpg",
+          "sha256": "7ca53a41728ffa8eda2c84585e3930b40d0e2e2e5b6db1528cc410e6987a8c17"
+        }
+      ],
+      "photo_capture_date": "未知；接口takeTime为空，URL日期未作为拍摄日期",
+      "tiles": [
+        {
+          "z": 19,
+          "x": 439131,
+          "y": 200596,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200596&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "dac3cfed5ce6d7d0a6af3b8fdd433ed29a440a96b62dcf0fa76c716fd3a0d5e4"
+        },
+        {
+          "z": 19,
+          "x": 439131,
+          "y": 200597,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200597&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "d966fe907bb09a292a97c07dddc692c389adac76edb52bdb19bb2f3ed2a8985c"
+        },
+        {
+          "z": 19,
+          "x": 439132,
+          "y": 200596,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200596&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "060ac42261ae178f8ee5da95c8dc7818e70e6fe9f3233af6ee3fd0a6b5502404"
+        },
+        {
+          "z": 19,
+          "x": 439132,
+          "y": 200597,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200597&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "43d07f1b8b584944dfceaac93f05c204bef6cb24699e4d80036945c0f4cefdb0"
+        },
+        {
+          "z": 19,
+          "x": 439133,
+          "y": 200596,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200596&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "614030a17592e49c0286be6e1e0d9e3f61997c082b70e82d9fa632a14556f45c"
+        },
+        {
+          "z": 19,
+          "x": 439133,
+          "y": 200597,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200597&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "c1130a64f9050b4614de34fd556afab9d972368d3a95352a6872bc1914ccbef5"
+        }
+      ],
+      "observations": [
+        "照片0/1确认中央六层立面、局部门廊及三扇主门；照片4近景受树木遮挡，不能恢复完整墙脚。",
+        "lm30可见中央体量、两侧连接段及局部屋顶凸出；屋顶绘图不能直接视作地面墙脚。",
+        "OSM南边13连接顶点13/14，长约116.048米；旧门廊沿旧边27仅约21.583米，直接只替换边号会把门廊拉长约5.38倍。"
+      ],
+      "registration": {
+        "status": "局部横向覆盖登记已应用；无独立地面控制点配准",
+        "preview_coordinate_hypothesis": "WGS84转GCJ02后在官网lm30像素空间定位，仅用于寻找资料；不作为已验证全局变换",
+        "osm_source_south_edge_length_m": 116.04784607374164,
+        "legacy_portico_width_m": 21.58301933366829,
+        "remaining_overlap_m2": 0,
+        "overlap_with_official_id": "77395",
+        "overlap_basis": "当前保存的OSM平面轮廓与两侧楼交集检查均为空；不是实测误差，连接外观及高程仍受各自来源限制。",
+        "local_coverage_projection": {
+          "pixel_origin": [
+            112417536,
+            51352832
+          ],
+          "zoom": 19,
+          "anchors": [
+            {
+              "pixel": [
+                35,
+                127
+              ],
+              "osm_vertex": 12
+            },
+            {
+              "pixel": [
+                35,
+                154
+              ],
+              "osm_vertex": 13
+            },
+            {
+              "pixel": [
+                512,
+                127
+              ],
+              "osm_vertex": 15
+            },
+            {
+              "pixel": [
+                512,
+                154
+              ],
+              "osm_vertex": 14
+            }
+          ],
+          "anchor_limits": "两端连接段图面屋顶四角只用于横向覆盖范围，不作为已测墙脚坐标或独立精度依据。",
+          "central_front_pixel_range": [
+            [
+              179,
+              154
+            ],
+            [
+              366,
+              154
+            ]
+          ],
+          "source_edge": 13,
+          "source_edge_span": [
+            0.29466768524405584,
+            0.6865458932330444
+          ],
+          "portico_width_m": 21.58301933366829,
+          "portico_width_basis": "沿用旧照片比例估计，独立于宿主边及立面登记跨度；未实测。",
+          "excluded_geometry": "中央屋檐南沿约y=184，只记录可见投影，不将相对连接段约30像素的突出直接作为墙脚深度。",
+          "coverage_limits": "仅中央南立面；旧边号登记曾扩展的两翼/后部窗与檐线不作为已核对照片细节保留。"
+        },
+        "previous_overlap_m2": 22.9673781394959
+      },
+      "next_required_evidence": [
+        "中央墙脚相对侧翼连接段的进退尺寸及照片拍摄年代；不以屋檐边缘代替墙脚。",
+        "侧翼连接段未核对立面、门廊真实宽深/高度与独立地面控制点；现有尺寸仍为估计。"
+      ],
+      "license": {
+        "publisher": "大连理工大学官方校园地图",
+        "name": "未发现明确的第三方复制或再分发许可",
+        "terms_url": null,
+        "authorization_status": "仅离线核对；原始瓦片在忽略目录缓存，不进入发行资源"
+      }
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77445",
+      "osm_way_id": "233806531",
+      "related_osm_way_ids": [
+        "233806517"
+      ],
+      "name": "刘长春体育馆/游泳馆",
+      "reviewed": "2026-09-17",
+      "status": "roof-proportion-conflict-confirmed; ground-registration-pending",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77445-0.jpg",
+          "sha256": "cc92e6a41358fa8a1829bcf1f437d9f7df8ac5183e28d823ab58f756636e30ee"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77445-2.jpg",
+          "sha256": "508c0f476d0a495a04f55c5f4c43240bb2ea3593e21b41283e3ffebac1708c4f"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77445-5.jpg",
+          "sha256": "4e26f1d10c9a5dfb7a6507cffd0b32da90da104c628bb138a8db2f98be9c26a8"
+        }
+      ],
+      "photo_capture_date": "未核实",
+      "tiles": [
+        {
+          "z": 19,
+          "x": 439136,
+          "y": 200600,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200600&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "5ae3148b5ea76807781923ad27a0a5a460e46d610a71ba244df3da0df6096e39"
+        },
+        {
+          "z": 19,
+          "x": 439136,
+          "y": 200601,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200601&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "5ff9ed91ab25a489ab70b4619c4f6dd2f65182748f6bbeb4c0b95cd4082444d5"
+        },
+        {
+          "z": 19,
+          "x": 439136,
+          "y": 200602,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200602&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "e3b8329719492f6e4bfad82c8c0fa5bde747aa955439701bbb289ac5cdde72aa"
+        },
+        {
+          "z": 19,
+          "x": 439137,
+          "y": 200600,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200600&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "f16fcff160ae5b167a0024917f10308985b297cd4c91b76cf74b1a8ed3471de2"
+        },
+        {
+          "z": 19,
+          "x": 439137,
+          "y": 200601,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200601&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "f5ad366400a617a30bef09544ce00fbea884e1070ff322da61aad4b30b606fe9"
+        },
+        {
+          "z": 19,
+          "x": 439137,
+          "y": 200602,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200602&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "8ba519d213c41e37e3f3d391c74ea85107feeca1660712fae7729c193c58d65f"
+        },
+        {
+          "z": 19,
+          "x": 439138,
+          "y": 200600,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200600&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "50e10ef0b851ea2719592791ae4b847ade184f9a5990a8394d03f7aa89581039"
+        },
+        {
+          "z": 19,
+          "x": 439138,
+          "y": 200601,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200601&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "daa226fb4c1321558b700f0ece53a61c242ba3ae4636f2d3bdd81e4d2b65c61a"
+        },
+        {
+          "z": 19,
+          "x": 439138,
+          "y": 200602,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200602&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "33ad1bddbb2a94aba90fc0bac3429383e9231779d74726320e380cc7b328522d"
+        }
+      ],
+      "osm_components": [
+        {
+          "osm_id": "way/233806531",
+          "version": 4,
+          "category": "building",
+          "role": "北侧主馆",
+          "vertices": 6
+        },
+        {
+          "osm_id": "way/233806517",
+          "version": 3,
+          "category": "swimming-pool",
+          "role": "南侧具名室内泳池区域；并非已核实墙脚",
+          "vertices": 4,
+          "tags": {
+            "leisure": "swimming_pool",
+            "location": "indoor",
+            "name": "刘长春体育馆（游泳馆）",
+            "lit": "yes",
+            "wheelchair": "limited"
+          }
+        }
+      ],
+      "tag_reference": {
+        "url": "https://wiki.openstreetmap.org/wiki/Tag:leisure%3Dswimming_pool",
+        "read_date": "2026-09-17",
+        "interpretation": "标签定义仅覆盖泳池水面，不能自动升级成建筑范围；现有多边形与泳馆的关系需要照片/俯视图进一步核对。"
+      },
+      "findings": [
+        "旧名称别名将合并官方对象仅匹配到主馆，遗漏了另一个没有building标签的具名区域。",
+        "照片0/5显示主馆双叶曲面屋顶、较大基座；照片2显示较低游泳馆拱顶与玻璃外墙。lm30也区分北侧主馆和南侧长条体量。",
+        "两馆屋顶、外挑屋檐、基座及墙脚不是同一轮廓；不得把两馆一起拟合到主馆六点框。",
+        "两份OSM区域及屋顶描记均未用于重建体育馆模型；原模型仍待分别核对墙脚、基座和曲面配准。照片拍摄日期未知，主馆斜视照片存在遮挡，不据此补全不可见墙脚。",
+        "图面独立描记两馆屋顶：主馆角点跨度290×274像素，泳馆470×174像素。主馆四角暂对齐OSM后，泳馆屋顶估计范围显著大于OSM泳池区域且中心不重合；这是不同语义边界/图面比例冲突，不可只靠整体坐标系平移解决。"
+      ],
+      "license": {
+        "publisher": "大连理工大学官方校园地图；OpenStreetMap contributors",
+        "osm": "ODbL 1.0",
+        "official_map": "未发现明确第三方复制或再分发许可；原图仅离线核对，不进入发行资源"
+      },
+      "roof_comparison": {
+        "status": "diagnostic-only; no-runtime-registration",
+        "pixel_frame": {
+          "zoom": 19,
+          "tile_origin": [
+            439136,
+            200600
+          ],
+          "axes": "x right, y down",
+          "tile_size": 256
+        },
+        "digitizing": "人工读取已归档lm30瓦片的屋顶可见外沿；点位取整到像素，边缘采样暂按±3像素评估敏感性，不代表地图自身精度。",
+        "main_roof_pixel_outline": [
+          [
+            210,
+            232
+          ],
+          [
+            500,
+            232
+          ],
+          [
+            507,
+            276
+          ],
+          [
+            511,
+            369
+          ],
+          [
+            505,
+            461
+          ],
+          [
+            500,
+            506
+          ],
+          [
+            210,
+            506
+          ],
+          [
+            198,
+            461
+          ],
+          [
+            194,
+            369
+          ],
+          [
+            199,
+            276
+          ]
+        ],
+        "pool_roof_pixel_outline": [
+          [
+            128,
+            570
+          ],
+          [
+            598,
+            570
+          ],
+          [
+            598,
+            744
+          ],
+          [
+            128,
+            744
+          ]
+        ],
+        "ground_wall_pixel_outline": null,
+        "podium_ground_pixel_outline": null,
+        "hypothetical_registration": {
+          "osm_id": "way/233806531",
+          "osm_version": 4,
+          "anchors": [
+            {
+              "pixel": [
+                210,
+                232
+              ],
+              "osm_vertex": 0
+            },
+            {
+              "pixel": [
+                500,
+                232
+              ],
+              "osm_vertex": 1
+            },
+            {
+              "pixel": [
+                500,
+                506
+              ],
+              "osm_vertex": 3
+            },
+            {
+              "pixel": [
+                210,
+                506
+              ],
+              "osm_vertex": 4
+            }
+          ],
+          "method": "four-corner projective comparison only",
+          "limits": "暂把主馆四个图面屋顶角与OSM四个角对应，仅用于检验两馆相对比例和间隔是否一致；角点并未证明是同一物理边界。不得将零锚点残差当作精度，不输出生产墙脚或自动应用该变换。"
+        },
+        "metrics": {
+          "main_anchor_span_pixels": [
+            290,
+            274
+          ],
+          "pool_roof_span_pixels": [
+            470,
+            174
+          ],
+          "map_pool_to_main_span_ratio": [
+            1.6206896551724137,
+            0.635036496350365
+          ],
+          "map_span_ratio_bounds_with_each_edge_plus_minus_3px": [
+            [
+              1.5675675675675675,
+              1.676056338028169
+            ],
+            [
+              0.6,
+              0.6716417910447762
+            ]
+          ],
+          "osm_pool_to_main_span_ratio": [
+            1.2753260417685444,
+            0.566396933925669
+          ],
+          "hypothetical_pool_roof_span_m": [
+            135.408809882896,
+            48.435786218185015
+          ],
+          "osm_pool_span_m": [
+            106.55294956570481,
+            43.19216000010499
+          ],
+          "hypothetical_roof_to_pool_center_delta_xz_m": [
+            -4.5938834812918685,
+            11.235437093198698
+          ],
+          "hypothetical_roof_to_pool_area_ratio": 1.4249227845620733
+        },
+        "decision": "排除把南侧OSM泳池区域直接作为游泳馆屋顶或地面墙脚。俯视图的两馆相对比例与OSM两区域不一致，单一平移无法消除；仍需确定主馆OSM边界对应屋顶、外墙还是基座，再独立配准泳馆。"
+      }
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "2283256",
+      "osm_way_id": "233806536",
+      "name": "东山锅炉房",
+      "status": "identity-confirmed; geometry-deferred",
+      "reviewed": "2026-09-17",
+      "source": "references/lingshui/mapping/osm-identity-overrides.json#objects/2283256",
+      "conflicting_official_id": "2283260",
+      "findings": [
+        "OSM v2的ref明确写东山锅炉房，name为空导致名称检索遗漏；这一明确标识用于登记身份。",
+        "四点OSM底稿试生成后，原11.13米道路中心线交叠消除，但与修缮中心办公楼的旧轮廓相交约210.54平方米。",
+        "两处地图照片接口均为空，修缮中心没有独立OSM候选。仅凭图面不能区分其实际墙脚、附属关系和透视误差。",
+        "试生成结果已撤回；defer_geometry保留身份但阻止自动几何迁移，现行运行模型及13处全局道路中心线交叠数保持不变。"
+      ],
+      "next_required_evidence": [
+        "能够辨别锅炉房与修缮中心边界关系的地面照片或平面",
+        "确认四点OSM是否只覆盖锅炉房主体，办公楼是否为独立体量；不以自动裁切相交面积替代证据"
+      ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77420",
+      "osm_relation_id": "2898296",
+      "name": "工程训练中心旧车间，含内院",
+      "related_official_ids": [
+        "77419"
+      ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77452",
+      "osm_way_id": "277568993",
+      "name": "博留公寓食堂",
+      "status": "identity-confirmed; floor-and-wall-foot-registration-pending",
+      "construction_report": {
+        "publisher": "大连理工大学新闻网",
+        "title": "我校博留公寓及食堂工程Ⅱ标段主体封顶",
+        "url": "https://news.dlut.edu.cn/xjnry/yxfc_content.jsp?urltype=news.NewsContentUrl&wbnewsid=14732&wbtreeid=1011",
+        "published": "2010-05-07",
+        "read_date": "2026-09-17",
+        "reported_basement_levels": 1,
+        "reported_above_ground_levels": 3,
+        "reported_gross_area_m2": 5452,
+        "limits": "网页读取结果提供正文；直接下载页面返回无权访问，施工照片未取得。总建筑面积不是基底面积，不能除以层数构造轮廓。预计竣工日期不作为已竣工证明。"
+      },
+      "source_registration": "references/lingshui/mapping/osm-identity-overrides.json#objects/77452",
+      "findings": [
+        "照片1题名确认身份，入口玻璃体量退入高位梁架和外柱以内，不把梁架顶面当作整块墙体。",
+        "照片0/3的较低侧可见额外下层，与官方地下1层/地上3层描述相容，具体地形交接与露出高度仍需配准。",
+        "照片2/4/5补齐局部内部可见证据，但缺少拍摄日期、朝向、楼层及完整平面，不据此铺满室内。",
+        "lm30不同屋顶高度及疑似开敞区域不等于地面缺口，尚不支持矩形整框等高挤出或照屋顶裁掉基底。"
+      ]
+    },
+    {
+      "campus": "eda",
+      "official_id": "77927",
+      "osm_way_id": "1422474849",
+      "name": "教学楼C区：主楼与圆体联合配准冲突",
+      "status": "shape-preserving-refinement-active; ground-wall-verification-pending",
+      "reviewed": "2026-09-17",
+      "osm_version": 2,
+      "photos": [
+        {
+          "path": "references/eda/buildings/photos/77927-0.jpg",
+          "photo_id": 79687,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77927_20160302105813117.jpg",
+          "sha256": "f77c8c247794a5cd993a3e3ff2eef944164eeda5a986a2b0bb2011a3f9a99699",
+          "take_time": null,
+          "reviewed": "2026-09-17",
+          "limits": "透视、绿化遮挡和屋檐不能提供完整墙脚或通道净高。"
+        },
+        {
+          "path": "references/eda/buildings/photos/77927-1.jpg",
+          "photo_id": 79688,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77927_20160302105836164.jpg",
+          "sha256": "eeff43bd7d2b4ada26b0d1e7a7ab391cb09d90270b869d4227d1935b2aa981a4",
+          "take_time": null,
+          "reviewed": "2026-09-17",
+          "limits": "透视、绿化遮挡和屋檐不能提供完整墙脚或通道净高。"
+        }
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200209&z=19",
+          "retrieved": "2026-09-16T13:12:37.139309+00:00",
+          "sha256": "89127722a946d2c071220dd5a5f9ef3f99953709d80c057a91961f63e33ef44a",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200210&z=19",
+          "retrieved": "2026-09-16T13:12:37.633450+00:00",
+          "sha256": "427bb2140a29437c50aca3a3aec91820d9617d6249e6e9d49574e3001fe68983",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200211&z=19",
+          "retrieved": "2026-09-16T13:12:38.123050+00:00",
+          "sha256": "518b48c3f5280503f549f3917d4a4b6f8c154aab9c8a5c58843cbba0333a7556",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439553&y=200212&z=19",
+          "retrieved": "2026-09-16T13:12:38.747549+00:00",
+          "sha256": "d25fd130076ae39e115f18f193daeeb0af97962bd7bb298fb1dcefcce623e01c",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200209&z=19",
+          "retrieved": "2026-09-16T13:12:39.247622+00:00",
+          "sha256": "19e3ae3b0ebe952a8cde74e9ef774e6f45fd1b6fcb994bd1a7b738ee17346d49",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200210&z=19",
+          "retrieved": "2026-09-16T13:12:39.840788+00:00",
+          "sha256": "04759fcc63914de03ebd4c3affe9435d736f813945e3772bea867c44a16e940f",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200211&z=19",
+          "retrieved": "2026-09-16T13:12:40.358921+00:00",
+          "sha256": "664793721e42f6c515f1749fe767157df3603485a4a39c110a209527947f758e",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200212&z=19",
+          "retrieved": "2026-09-16T13:12:40.951577+00:00",
+          "sha256": "79a4e2af42f58c64f647a7f797937c3df3bab1b6fb13a88bd4bafc47e40d66e8",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200209&z=19",
+          "retrieved": "2026-09-16T13:12:41.522231+00:00",
+          "sha256": "7a629ba57ebec3a29060cfcdfeb6d12795568614b28bc69e6f6ba7e5037672c4",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200210&z=19",
+          "retrieved": "2026-09-16T13:12:42.085401+00:00",
+          "sha256": "872ecdd18a9889d164d737c0f7c56cb0df7bc7ee54ab6adeaa65d7c8c927bc25",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200211&z=19",
+          "retrieved": "2026-09-16T13:12:42.690327+00:00",
+          "sha256": "30d24c0dd62a2d7ef522c07306cabb19968077edd6885d5dea34359974375ce4",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200212&z=19",
+          "retrieved": "2026-09-16T13:12:43.368389+00:00",
+          "sha256": "cc7ad6bc83c0e7cbd5dcf56d2c00c86b970feed3ed8e40f9a90ef539dd6f3147",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200209&z=19",
+          "retrieved": "2026-09-16T13:12:43.950982+00:00",
+          "sha256": "61a2d34d32c581fd49da93046d60e7ea8614b33c68e15184ed1e575f90cb06a3",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200210&z=19",
+          "retrieved": "2026-09-16T13:12:44.412976+00:00",
+          "sha256": "6a2c85ff2a02d4ae3f167c389f9c1ad0cb5fe8e241b46da40d01c53f2ff71dd3",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200211&z=19",
+          "retrieved": "2026-09-16T13:12:44.939617+00:00",
+          "sha256": "d6e3348d9e6f3afff2e6cddc72d69ec06839f63988becde8c960d367913fc098",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200212&z=19",
+          "retrieved": "2026-09-16T13:12:45.537410+00:00",
+          "sha256": "c0186ffd99fbe6c0077a45853beebe2a0d123f469e179bb9818dce788f523286",
+          "reviewed": "2026-09-17"
+        }
+      ],
+      "findings": [
+        "照片0/1确认矩形主楼、较窄连接段和独立圆体，俯视图主楼南北边近乎平行；当前四点projective_map把主楼南边变成约18.28度斜边并放大南端宽度。",
+        "现有锚点跨越主楼两北角、东南角和圆体南端，不同体量的对应误差通过单一投影传播；满足四个锚点和面积比例门限不足以证明形状正确。",
+        "把OSM道路经同一投影逆映至图面可见道路偏离绘制路面，并在圆体附近交叠；该投影本身已存在形状冲突，逆映只作诊断，不作为道路修正量。",
+        "不据此删除道路、缩小圆体或生成楼底通道。照片底层部分被遮挡，未证明交点处可通行。",
+        "v2仅由主楼北侧两个OSM角点定比例和旋转，保留图面形状并消除v1的投影斜变；第三、四锚点转为检查点，分别约2.01米和3.57米差异保留，未平移道路。"
+      ],
+      "next_required": [
+        "补充独立墙脚控制，核对图面屋顶与地面墙脚的差异及两个检查点残差；现有尺寸仍为近似。",
+        "完整底层通行、入口和室内没有据此增加，须有进一步照片或平面依据。"
+      ],
+      "previous_projective_diagnostic": {
+        "refinement_id": "eda-academic-c-connector-v1",
+        "main_north_width_m": 38.26994301110431,
+        "main_south_width_m": 45.82074212450255,
+        "main_end_edge_angle_difference_degrees": 18.28133417650977,
+        "main_corner_indices": [
+          0,
+          1,
+          2,
+          24
+        ],
+        "road_osm_id": "way/1076344083",
+        "road_osm_version": 3,
+        "previous_centerline_overlap_m": 4.95531558990479,
+        "limits": "数值为当前模型内部几何诊断，不是实测尺寸或位置精度。既有道路筛查记录交叠长度，当前未对整个道路作新的图面拟合。"
+      },
+      "runtime_diagnostic": {
+        "refinement_id": "eda-academic-c-connector-v2",
+        "method": "two north-corner similarity anchors; southeast and rotunda tip withheld",
+        "main_north_width_m": 38.26994301110434,
+        "main_south_width_m": 38.03075586728495,
+        "main_end_edge_angle_difference_degrees": 0,
+        "check_anchor_residuals_m": [
+          {
+            "osm_vertex": 11,
+            "distance_m": 2.0138509236267574
+          },
+          {
+            "osm_vertex": 5,
+            "distance_m": 3.572600299205794
+          }
+        ],
+        "building_and_full_road_overlap_m2": 0,
+        "client_and_server_road_samples_each": 81,
+        "limits": "来源差异及生成模型内部检查，不是实测精度；图面屋顶边缘与地面墙脚仍待独立核对。"
+      }
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77377",
+      "name": "建筑艺术馆东侧道路及北侧边界",
+      "osm_id": "way/1381605725",
+      "osm_version": 1,
+      "reviewed": "2026-09-17",
+      "status": "east-road-centerline-and-wall-base-registration-unresolved",
+      "runtime_diagnostic": {
+        "combined_overlap_m2": 47.9014770946305,
+        "roads": [
+          {
+            "overlap": 0.363394886255264,
+            "points": [
+              [
+                30.2258,
+                -3.8405
+              ],
+              [
+                105.4784,
+                -5.822
+              ],
+              [
+                182.7414,
+                -7.8481
+              ]
+            ],
+            "version": 1.0,
+            "way": 544369551.0,
+            "width": 5.0,
+            "width_basis": "estimated:highway-class",
+            "source_way_timestamp": "2017-12-03T18:04:40Z",
+            "tags": {
+              "highway": "living_street"
+            },
+            "shared_building_nodes": []
+          },
+          {
+            "overlap": 47.5380821228027,
+            "points": [
+              [
+                105.4784,
+                -5.822
+              ],
+              [
+                108.1474,
+                77.3006
+              ]
+            ],
+            "version": 1.0,
+            "way": 544369554.0,
+            "width": 5.0,
+            "width_basis": "estimated:highway-class",
+            "source_way_timestamp": "2017-12-03T18:04:40Z",
+            "tags": {
+              "highway": "living_street"
+            },
+            "shared_building_nodes": []
+          }
+        ],
+        "limits": "水平铺装宽度交叠，未证明实测墙脚或具体三维阻挡；版本时间不代表道路施工时间或全部节点坐标日期。"
+      },
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77377-2.jpg",
+          "sha256": "43a711c63a2e5de48159d3644638c55d886441901fdec5bd39bbb202d9a227a0",
+          "photo_id": 840620,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20191018152836956.jpg",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-12.jpg",
+          "sha256": "1835ecd72f9bcd0a9e1ce6b58128a22ab8bf06708cf47b4caa537537b5d4dd43",
+          "photo_id": 840618,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20191018152836896.jpg",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-16.jpg",
+          "sha256": "c700fc952e995d600445396dac631c8808be1a0ea0b481a5cb2159fc3011376b",
+          "photo_id": 840614,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20191018152836729.jpg",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-17.png",
+          "sha256": "0b4f943526dbeeb3693e500b9f0459f733beb772fe29318760fe009052f28b16",
+          "photo_id": 875272,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20200108085954141.png",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-19.png",
+          "sha256": "b52ebf897d62b06bccc57ba57a58e1bd9df06ce2c1a4e954cf898e6fd7c595a6",
+          "photo_id": 875274,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20200108090009233.png",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-20.png",
+          "sha256": "7989e7e350b72a22aad4e263755ac3d27269792f7de396a3b888fa2c6fe64250",
+          "photo_id": 875275,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20200108090017422.png",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        }
+      ],
+      "imagery": {
+        "campus": "lingshui",
+        "provider": "tianditu",
+        "zoom": 18,
+        "pixel_origin": [
+          56207322,
+          25675789
+        ],
+        "size": [
+          550,
+          550
+        ],
+        "native_tile_sizes": [
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ],
+        "sources": [
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219559&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:56.808677+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "d5fc28cd06e05ed01142e1c4328a7a66444d18e31c5089d1fdc529dd9df6efbe"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100297&TILECOL=219559&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:56.809174+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "ea1b01f8d4aae5d42f62da4fa11abeb9ff0e878489e8df5f870515f161ec4354"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100298&TILECOL=219559&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:56.816706+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "a9fa4d7e8d4e83d3a6d4671acffb20137f363bd5e46f4550c8e3cd3173825b9a"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219560&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:56.993355+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "26c612afbf31fa50cc46855f273a62b1a8c40e0909c76e4ff8cd0b9038970783"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100297&TILECOL=219560&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.059292+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "afe8aae319cddf3e64e893e28fd7d3817447f7fcbce66df4a2d14849343ae35c"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100298&TILECOL=219560&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.059211+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "2234137ba80984bfd7cb0690380c23d6630fc536dc72d4f56c390e81437b5204"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219561&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.181581+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "907a837681f4c5db510751c3cd20339ebcdf647f31efedf660ded9521cc2226c"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100297&TILECOL=219561&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.253628+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "22081e241aebdbf2b7bf0cf89acc2ca6bb3f46bee509479f36823d4e969d2b5a"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100298&TILECOL=219561&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.247466+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "338c523b009ae6f0a0f646e9d418c5ef06a8ffe9d1fb4643863c1c20a8f7964e"
+          }
+        ]
+      },
+      "imagery_limits": "天地图影像采集日期及局部绝对误差未知，屋顶投影不能直接当墙脚；Esri两次下载和MapTiler本次拼图均因TLS/URL请求失败，未把部分瓦片记为有效完整比对来源。",
+      "findings": [
+        "主要交叠来自东侧544369554，约47.54平方米；北侧544369551约0.36平方米。两路均为living_street，5米宽由道路类别估计，不是实测。",
+        "道路与建筑没有共用源节点，东侧道路继续向南连接，不属于可按楼边终点截帽的短支路。",
+        "12、19、20号照片确认入口、临街一层、台阶、树木和停车；未显示可把整个争议楼侧挖空的贯通架空通道。照片中车辆和树冠遮挡部分墙脚，不能从透视道路外包络推导5米或更窄路宽。",
+        "天地图图幅可见东侧道路和楼群布局，当前中心线贴近OSM楼边，但没有独立地面控制区分中心线误差、屋顶位移与实际墙脚。",
+        "官方详情写明前楼5层、后楼3层；当前统一18米仍是既有估计，不能视为已核实分区高度，也不能只改楼高解决平面交叠。"
+      ],
+      "next_required": [
+        "沿东侧道路分别核对两侧路缘、墙脚与北/南共享路口，取得地面控制后联动544369551/544369554及相接道路，不通过缩路掩盖交叠。",
+        "核对前后楼及弧形玻璃段在独立平面上的范围后，再登记分区高度和照片立面；不照搬旧三维bound或任意划线分楼。"
+      ],
+      "building_description_source": "references/lingshui/buildings/building_details.json#77377"
+    }
+  ],
+  "unmatched_cases": [
+    {
+      "campus": "lingshui",
+      "official_id": "2034766",
+      "name": "博士生公寓8号楼",
+      "status": "post-construction-footprint-missing; old-map-excluded",
+      "reviewed": "2026-09-17",
+      "completion_source": "references/lingshui/buildings/photos/2034766-completion.json",
+      "osm_candidate_ids": [],
+      "osm_limits": "完整归档未发现对应位置建筑；不得选用北山8舍、博留1/2舍或研教楼替代。",
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200582&z=19",
+          "retrieved": "2026-09-17T05:05:28.835419+00:00",
+          "sha256": "678c786280c807a3c3a716838a1ac61b7152886c28c4f1e7b30713815e89a28d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200583&z=19",
+          "retrieved": "2026-09-17T05:05:29.451930+00:00",
+          "sha256": "b91ba96d7901ef4773670c03eb96258272970ac1f5c6a5db9c647acce5e7b565"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200582&z=19",
+          "retrieved": "2026-09-17T05:05:30.259987+00:00",
+          "sha256": "fb667a74a96647ce076695eb2165484477ee242a5dd6e6babf7c90a9d74016a8"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200583&z=19",
+          "retrieved": "2026-09-17T05:05:30.859602+00:00",
+          "sha256": "322c22f226dbff15ddb543b5573ec4e91ad8580cdd65745c93491f73274f7eb1"
+        }
+      ],
+      "findings": [
+        "官网lm30仍显示软件路南侧空地、停车位及研教楼周边旧布局，没有呈现竣工照片中的新塔楼与绕楼道路。该片图面不能用于恢复博士8号楼现状墙脚。",
+        "基建处2023年竣工报道明确80米、23层，现有模型18米和七点透视外包轮廓不符合该已建建筑。",
+        "竣工照片显示窄长高层主体、底部道路与部分连接空间，但透视、遮挡与缺少同一地面控制点妨碍直接恢复完整平面。",
+        "原约69.43米的道路交叠不能通过移动附近OSM建筑或把旧外包框缩成任意矩形解决；当前仍保留待修正状态。"
+      ],
+      "planning_source": {
+        "url": "https://www.dlhitech.gov.cn/news/view_66855.html",
+        "title": "大连理工大学博士生公寓8号楼项目",
+        "published": "2021-07-01",
+        "access_status": "搜索索引有规划许可公示文字；实际访问跳转404，未取得图纸或附件",
+        "read_date": "2026-09-17"
+      },
+      "next_required_evidence": [
+        "能够核对地面定位的竣工总平面、独立控制点或已校正的新建后影像",
+        "新塔楼、研教楼连接部分与绕楼道路的实际边界；旧lm30和未更新的OSM不足以确认"
+      ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77419",
+      "name": "现代实验楼与工程训练中心联合核对",
+      "status": "shared-compound-rendered; internal partition unresolved",
+      "reviewed": "2026-09-17",
+      "related_official_ids": [
+        "77420",
+        "2283256"
+      ],
+      "osm_candidate_ids": [
+        "relation/2898296"
+      ],
+      "osm_version": 2,
+      "candidate_limits": "relation/2898296仅由77420生成一次，77419保留为该楼群的来源身份引用；不重复赋予独立外圈，不声称内部行政分界或分栋墙脚已确定。",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77419-0.jpg",
+          "photo_id": 273995986,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77419_20170913093115268.jpg",
+          "sha256": "9d6c9a942fea219ec1a0ede9ab9a7944dda177a8a966ce86a4365fd674a814c1",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77419-1.jpg",
+          "photo_id": 78306,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77419_20160225104852833.jpg",
+          "sha256": "d4a5e2a4d046ba4d7c2c807900dcdf0ff771b0c788f187682f17c8c73cdcb3cb",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77419-2.jpg",
+          "photo_id": 78305,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77419_20160225104717549.jpg",
+          "sha256": "69d60029a60c106f08c89b648ec6f84fb7f72b279cd9b90751619cf60ddaf723",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77420-0.jpg",
+          "photo_id": 78307,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77420_20160225105005197.jpg",
+          "sha256": "02b1d15f5818039ca2082673374737c6e3526faaeb0af39f1aa12b56d2418b75",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77420-1.jpg",
+          "photo_id": 78308,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77420_20160225105012440.jpg",
+          "sha256": "c2841806d142609792d67c37c8c6589058925b82bc0f99ebc9195b53cd6fdcf5",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77420-2.jpg",
+          "photo_id": 78332,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77420_20160225120611535.jpg",
+          "sha256": "b895c1e8c97f23309be891e0e26d627fd4fcdd59a4de02dca4ff8955c4bfe108",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77420-3.jpg",
+          "photo_id": 273996000,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77420_20170913093803536.jpg",
+          "sha256": "63dd8e006397b9c2b5b1cfd62216e3fe89532de42be0c8790d3321b331107c68",
+          "take_time": null,
+          "limits": "拍摄日期未提供，文件名日期不作拍摄时间；透视及遮挡不能直接提供墙脚坐标。"
+        }
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200597&z=19",
+          "retrieved": "2026-09-17T05:25:47.552502+00:00",
+          "sha256": "7be8653cd2e388656ed8bb712d298bd78271193d8af899066a6fd3f70fb28c66"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200598&z=19",
+          "retrieved": "2026-09-17T05:25:47.634987+00:00",
+          "sha256": "68bc4b19a3869345ccf903f99f7043a36dd7754c018a2586bce9648c0a75f5c5"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200599&z=19",
+          "retrieved": "2026-09-17T05:25:47.579859+00:00",
+          "sha256": "255c517528037841468e38a3b9926c47038f7fb15191d514003b46aa32b740b4"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200597&z=19",
+          "retrieved": "2026-09-17T05:12:32.875023+00:00",
+          "sha256": "f902f4fcf0a0782877dab014682dc87b4c7afa5cc3cfb42d93f020368992c8f2"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200598&z=19",
+          "retrieved": "2026-09-17T05:25:47.487895+00:00",
+          "sha256": "8a931354dd2d438a3c9959ec8aa1679d5b33cf5540fae96656e7dbd136a3245a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200599&z=19",
+          "retrieved": "2026-09-17T05:25:47.938187+00:00",
+          "sha256": "a3276ef1e50f7b0f9b6c71fd3fca1dbbb8a1aa462d5537b2a9a535a23ab50bce"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200597&z=19",
+          "retrieved": "2026-09-17T05:12:33.667169+00:00",
+          "sha256": "dae40c4ff6935dc4b14858b3ccd1cb95bc2f324ba342e127b6822817ef6b0b7f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200598&z=19",
+          "retrieved": "2026-09-17T05:25:48.143305+00:00",
+          "sha256": "929454a7eecc1c753c53075da0a594eab1f39cefe9376722a5926507699a9d07"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200599&z=19",
+          "retrieved": "2026-09-17T05:25:48.090046+00:00",
+          "sha256": "31c8f43076d24ab36abf3ca69a11b372e0bb10910112cf6092f2c246776731b5"
+        }
+      ],
+      "findings": [
+        "77419三张照片显示两层平顶黄色楼翼、防护窗及卷帘门，照片1右侧连接低矮附属部分及坡屋顶楼翼；只能确认局部连接关系，不能独立恢复完整平面。",
+        "77420照片0有工程训练中心牌匾；照片3为坡屋顶长楼翼及低附属部分。照片1包含邻近烟囱建筑，照片2主要拍摄该橙色建筑，证明同一照片API归档可包含邻楼，不能把所有照片都归为77420立面。",
+        "77420照片1/2提供东山锅炉房的邻近外观线索，撤销“周边完全没有照片”的推断；但锅炉房自身API仍为空，尚缺牌匾或其他独立身份及墙脚控制，不能立即解除2283256的几何暂缓。",
+        "原两套体块的重复覆盖和内院占用，现通过共享一次OSM楼群几何消除；不移动整个现代实验楼、不复制OSM关系、不人为分割公共接合边。",
+        "旧两套体块曾重叠且现代实验楼旧框侵入内院；现按共享楼群生成一次来源几何，完整内部楼翼分区仍待照片和墙脚证据。",
+        "机构官网新取得的航拍、正门及楼层导览对应1503000所在的北侧白色楼群，不用于77419/77420旧车间分区；OSM关系只有一个外圈和一个内孔成员，没有独立楼翼分区。"
+      ],
+      "next_required": [
+        "进一步登记77419/77420分栋墙脚、平顶与坡屋顶楼翼高度及相连部分；共享几何不等于已确认完整分区。",
+        "核对俯视图其它开敞区域、实际入口和路缘；不得把OSM唯一内孔当完整院落或道路测绘。",
+        "证据足够后将共享楼群替换为互不重叠、保留各官方ID的独立楼翼，并同步地形、植被和碰撞。"
+      ],
+      "additional_source": "references/lingshui/buildings/training-center/source.json",
+      "legacy_runtime_diagnostic": {
+        "coordinate_frame": "current shared WGS84 local X east / Z south",
+        "modern_outline_area_m2": 2026.27513457835,
+        "overlap_training_solid_m2": 1177.85263967514,
+        "overlap_training_courtyard_m2": 531.693018019199,
+        "outside_training_outer_m2": 316.729476884007,
+        "method": "Godot Geometry2D intersections of modern render polygons with relation outer and inner separately; solid = outer overlap minus inner overlap",
+        "limits": "当前模型二维相交面积，不是实测面积或精度；未据此切割任一建筑。",
+        "status": "superseded by shared-compound representation; historical failure diagnosis"
+      },
+      "compound_review": {
+        "source": "references/lingshui/mapping/building-assemblies.json",
+        "reviewed": "2026-09-17",
+        "topview_pixel_origin": [
+          112418965,
+          51352574
+        ],
+        "topview_size": [
+          1000,
+          1000
+        ],
+        "topview_tiles": [
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200595&z=19",
+            "retrieved": "2026-09-17T08:37:17.861780+00:00",
+            "sha256": "79a61c258104660f8afeba862ab3df00eddea26edcdd869a705c8cef1d2ef49b"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200596&z=19",
+            "retrieved": "2026-09-17T08:37:18.431999+00:00",
+            "sha256": "a0c4e9254f52a0b51ef3057acd79aea47f4c43b395631eb858da62e66b0ed773"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200597&z=19",
+            "retrieved": "2026-09-17T08:37:18.996374+00:00",
+            "sha256": "4471936f33095c314554f1ba78d9f521dc45a369c04aadc0a9ee2dc915a9b1c4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200598&z=19",
+            "retrieved": "2026-09-17T08:37:19.595467+00:00",
+            "sha256": "62852d9c33d47d1cd3f1a828781bf5551e24295456a2005000adfe5662c9153c"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200599&z=19",
+            "retrieved": "2026-09-17T08:37:20.090838+00:00",
+            "sha256": "973161ff75a344e6da0461b151518b3003b157b9409f092edf99cd39f1da7946"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200595&z=19",
+            "retrieved": "2026-09-17T08:37:20.667257+00:00",
+            "sha256": "3d619c0ac9a341f2aa0e988f557eecab9bb660862a89e183dd3dad6f2a953669"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200596&z=19",
+            "retrieved": "2026-09-17T08:37:21.199247+00:00",
+            "sha256": "7ed592b5fdf349bf50899e69038ca8e49c87af2d672cb0f81016e5348fb94289"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200597&z=19",
+            "retrieved": "2026-09-17T05:25:47.552502+00:00",
+            "sha256": "7be8653cd2e388656ed8bb712d298bd78271193d8af899066a6fd3f70fb28c66"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200598&z=19",
+            "retrieved": "2026-09-17T05:25:47.634987+00:00",
+            "sha256": "68bc4b19a3869345ccf903f99f7043a36dd7754c018a2586bce9648c0a75f5c5"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200599&z=19",
+            "retrieved": "2026-09-17T05:25:47.579859+00:00",
+            "sha256": "255c517528037841468e38a3b9926c47038f7fb15191d514003b46aa32b740b4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200595&z=19",
+            "retrieved": "2026-09-17T08:37:21.801099+00:00",
+            "sha256": "20fa588df564d58722584583b1d0d1d6fb862e6296d7d55df006a6d4dcc90a0e"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200596&z=19",
+            "retrieved": "2026-09-17T05:11:49.826606+00:00",
+            "sha256": "31d6367ed2f379ba15729f61c86f023eac106138dbfbe8cafff80842ddb6941d"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200597&z=19",
+            "retrieved": "2026-09-17T05:12:32.875023+00:00",
+            "sha256": "f902f4fcf0a0782877dab014682dc87b4c7afa5cc3cfb42d93f020368992c8f2"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200598&z=19",
+            "retrieved": "2026-09-17T05:25:47.487895+00:00",
+            "sha256": "8a931354dd2d438a3c9959ec8aa1679d5b33cf5540fae96656e7dbd136a3245a"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200599&z=19",
+            "retrieved": "2026-09-17T05:25:47.938187+00:00",
+            "sha256": "a3276ef1e50f7b0f9b6c71fd3fca1dbbb8a1aa462d5537b2a9a535a23ab50bce"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200595&z=19",
+            "retrieved": "2026-09-17T08:37:22.359219+00:00",
+            "sha256": "2db24ede38c78a899bab3bf34527f39a5f6a438d2f071caacc6a53673251810f"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200596&z=19",
+            "retrieved": "2026-09-17T05:11:50.347029+00:00",
+            "sha256": "2465ba952f7e2eb42f2e23a6f97524223b8525af0740fcf665add8340d0a41d4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200597&z=19",
+            "retrieved": "2026-09-17T05:12:33.667169+00:00",
+            "sha256": "dae40c4ff6935dc4b14858b3ccd1cb95bc2f324ba342e127b6822817ef6b0b7f"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200598&z=19",
+            "retrieved": "2026-09-17T05:25:48.143305+00:00",
+            "sha256": "929454a7eecc1c753c53075da0a594eab1f39cefe9376722a5926507699a9d07"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439139&y=200599&z=19",
+            "retrieved": "2026-09-17T05:25:48.090046+00:00",
+            "sha256": "31c8f43076d24ab36abf3ca69a11b372e0bb10910112cf6092f2c246776731b5"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439140&y=200595&z=19",
+            "retrieved": "2026-09-17T08:37:23.058322+00:00",
+            "sha256": "3b4bc795286246b6054ae8f939230104c31cb671eaaa4219716a7239d81ef179"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439140&y=200596&z=19",
+            "retrieved": "2026-09-17T08:37:23.613537+00:00",
+            "sha256": "225f97b4c73258bc65dabc74dfff9f435f29da6987ff67da8152653adaaed109"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439140&y=200597&z=19",
+            "retrieved": "2026-09-17T08:37:24.220608+00:00",
+            "sha256": "e548c2fed7a50f0f3792c092b7c84810a296e75a2500c798fe32e191ac15bf14"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439140&y=200598&z=19",
+            "retrieved": "2026-09-17T08:37:24.812594+00:00",
+            "sha256": "99dcf5d77ff9889c8320a291493152382691420d730cddeffa97f3062c62657f"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439140&y=200599&z=19",
+            "retrieved": "2026-09-17T08:37:25.360725+00:00",
+            "sha256": "e1083e999068f48f192046fb7649a137f9c7068ca2466931f09e027a735c1734"
+          }
+        ],
+        "interpretation": "OSM外圈覆盖相连楼群，照片确认平顶与坡屋顶楼翼相接，官网ID是独立来源身份而非可直接叠加的地面体块。暂时共享整体底稿，不绘制未知内部分界。",
+        "runtime": "77420保留原OSM外圈、内孔及原有未测高度；77419保留名称、旧坐标档案和空的可替换场景节点，kind=reference并指向77420。移除旧重复体块及其地形基台，未新增照片立面或室内。",
+        "verification": {
+          "before_obstructed_samples_per_world": 112,
+          "after_obstructed_samples_per_world": 0,
+          "total_courtyard_samples_per_world": 426,
+          "interior_walk_m": 18,
+          "walk_directions": 2,
+          "worlds": [
+            "client",
+            "saved-server"
+          ]
+        },
+        "limits": "426点覆盖两个OSM内院的稀疏上方净空；18米行走仅验证恢复内院内部地面，未验证外部入口。现有18米估计与照片两层楼翼差异仍未解决。"
+      }
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77374",
+      "name": "大学生服务楼与民勇购物中心范围核对",
+      "status": "candidate-extent-unresolved",
+      "reviewed": "2026-09-17",
+      "osm_candidate_ids": [
+        "way/601992796"
+      ],
+      "osm_version": 2,
+      "candidate_limits": "名称与临近位置只能提供候选，不足以证明四边形覆盖官网对象整栋或其特定附属部分；未建立身份覆盖映射。",
+      "osm_tags": {
+        "building": "yes",
+        "building:levels": "2",
+        "height": "0",
+        "name": "民勇购物中心"
+      },
+      "osm_area_m2": 446.91972889260296,
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77374-0.jpg",
+          "photo_id": 78257,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77374_20160224170340975.jpg",
+          "sha256": "dbd00c4a6e134efe5b5668e4ef28deaa13a822e3b75689f64ac2d96a5cada8d6",
+          "take_time": null,
+          "limits": "拍摄时间未提供；透视、商铺招牌、树木与车辆遮挡墙脚，不能直接量取地面轮廓。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77374-1.jpg",
+          "photo_id": 78258,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77374_20160224170351476.jpg",
+          "sha256": "1c033cd600a94d236996d2c06c66fff0918313f74e612960549db331b6eb80cf",
+          "take_time": null,
+          "limits": "拍摄时间未提供；透视、商铺招牌、树木与车辆遮挡墙脚，不能直接量取地面轮廓。"
+        }
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439127&y=200596&z=19",
+          "retrieved": "2026-09-17T06:10:03.332377+00:00",
+          "sha256": "088632bc60770ea671b1511ca91c5b350a0bf3bfa90422c0fd85a4b60dcff899"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439127&y=200597&z=19",
+          "retrieved": "2026-09-17T06:10:03.275762+00:00",
+          "sha256": "c8f46d6adbf51be3ae7f132f0193ec74639b7eab4c355b6ce6f2327d53ae898f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439128&y=200596&z=19",
+          "retrieved": "2026-09-17T06:10:03.367375+00:00",
+          "sha256": "ef37067b76fb0852c88b12746c48f1a50fa9a66a548f8e4194879fcb9845c06b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439128&y=200597&z=19",
+          "retrieved": "2026-09-17T06:10:03.318523+00:00",
+          "sha256": "beedea1124a3b6fa8ec720794a2d8e548e39e26ea8a3f063a48d6b74d46b8f3c"
+        }
+      ],
+      "findings": [
+        "照片0可读“大学生服务楼”，显示多层主楼、不同高度屋面与底层商业；照片1显示另一视角的凹角及沿街低层商铺，不支持将整个对象处理为两层零高度建筑。",
+        "候选OSM四边形约22×20米，尚不能确认其涵盖范围；不将height=0用于现有建筑，也不按最近质心直接匹配。",
+        "四块lm30瓦片按历史coordinate-check页面的旧bound图面位置取得并目视检查，含多块屋面、道路与绿地，尚无独立控制点确认与照片的对应；不能把该历史投影直接用于墙脚修正。",
+        "现有14点旧斜视轮廓及18米估计体量仍待替换。该记录不新增身份override、不修改模型高度或碰撞。"
+      ],
+      "next_required": [
+        "独立确认民勇购物中心与大学生服务楼的完整建筑范围、附接商铺和分段高度。",
+        "建立照片可见转角与俯视图、WGS84控制点的对应，补齐被遮挡墙脚后统一重建楼体及碰撞。"
+      ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "2034735",
+      "name": "西山学生宿舍30、31舍",
+      "status": "tower-podium-and-access-registration-pending",
+      "reviewed": "2026-09-17",
+      "additional_source": "references/lingshui/buildings/xishan-30-31/source.json",
+      "findings": [
+        "2023年封顶报道将项目定位在17、18、19舍南侧，描述为两层裙房与两栋各22层塔楼；局部裙房层高9米不等于裙房总高度。",
+        "2023年7-8月基建简报列为23层、1栋双塔、高83.7米；与封顶报道的22层措辞差异保留，未擅自解释楼层计数或把83.7米套到全部裙房。总建筑面积46000平方米不能当占地面积。",
+        "2024年体育中心资料确认其位于30、31舍B1、B2层；实景图证实室内挑空与跑道，但不能重建完整体育中心平面。B1/B2命名未提供统一高程。",
+        "2025年修缮报道明确拆除围墙、迁移两处临建，打通体测中心南侧20舍至30舍通道；两张照片显示带栏杆的台阶、铺装通道以及相邻高层与低层建筑，不支持把这一通道视作连续楼体。尚未确定其对应哪一条OSM线。",
+        "2024年招租公告有B101/B102/B103/B104/B106房号和租赁面积，无平面附件；房间面积不能逆推出裙房外界。公告链接已记录，租赁平台详情未取得有效内容。",
+        "旧官方照片API为零条仅代表该接口无图，不能再表述为没有任何实景资料。当前运行12点旧斜视轮廓、18米估计单体仍未迁移。"
+      ],
+      "next_required": [
+        "从可配准俯视图或有效平面资料分别确定塔楼、裙房与通道地面边界；不得将设计效果图当实景。",
+        "核对2025年通道变化与OSM版本，登记统一WGS84控制点及局部地形/台阶高差。",
+        "有充分证据后成组重建楼体、周边道路、地形、植被、台阶及两端碰撞并检查通行。"
+      ]
+    },
+    {
+      "campus": "eda",
+      "official_id": "77931",
+      "name": "一舍东南角与旁侧道路弯段",
+      "status": "road-width-and-corner-registration-pending",
+      "reviewed": "2026-09-17",
+      "osm_id": "way/309375779",
+      "osm_version": 4,
+      "road": {
+        "osm_way_id": 1381473262,
+        "osm_version": 3,
+        "tags": {
+          "highway": "residential"
+        },
+        "width_m": 6,
+        "width_basis": "estimated:highway-class",
+        "conflicting_segment_nodes": [
+          12789621076,
+          12789621082
+        ],
+        "shared_building_endpoint": false
+      },
+      "runtime_diagnostic": {
+        "overlap_m2": 1.84986248612404,
+        "saved_road_overlap_m2": 1.84986329078674,
+        "building_corner_xz": [
+          535.7006194065882,
+          -41.50009600010577
+        ],
+        "nearest_centerline_xz": [
+          537.1386602891321,
+          -40.55095614608105
+        ],
+        "centerline_distance_m": 1.7230287410155505,
+        "limits": "现有平面模型诊断量，非实测；两倍距离3.446米仅解释为何6米道路侵入，不是推荐路宽。"
+      },
+      "photos": [
+        {
+          "path": "references/eda/buildings/photos/77931-0.jpg",
+          "photo_id": 79703,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77931_20160302113542791.jpg",
+          "sha256": "e771b3f407a52633c2e9432bc7a201284df93527cdf191d5bc2ba1337ad74dca",
+          "take_time": null,
+          "limits": "楼号1、南立面与西侧端墙可见；东南转角受树木、车辆及画幅遮挡，未提供争议弯段完整墙脚和路缘控制。"
+        }
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439560&y=200208&z=19",
+          "sha256": "8d89fdd96e0089aca501e335e912bd455d4378c9e91f1df2be0c80b7f169c046",
+          "retrieved": "2026-09-17T08:11:06.836496+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439560&y=200209&z=19",
+          "sha256": "cb92d6953d07119153c4b7dea9e8fe295505b34e320a0e7e1722cea6a3fa0df8",
+          "retrieved": "2026-09-17T08:11:07.113230+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439561&y=200208&z=19",
+          "sha256": "d02bc522b6c82038517b98f879f613e7cb68d49005bf96bdbe5eb01be7693b6d",
+          "retrieved": "2026-09-17T08:11:06.925637+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439561&y=200209&z=19",
+          "sha256": "65c25691add1df30338a19644024ffc15e6078a462152340491a379dcf3dba80",
+          "retrieved": "2026-09-17T08:11:07.112504+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439562&y=200208&z=19",
+          "sha256": "7ba482e715fdda34dd8c93a0631797c5d21cbd1223aeb3d954a9453991ffffcb",
+          "retrieved": "2026-09-17T08:12:32.629607+00:00"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439562&y=200209&z=19",
+          "sha256": "a8fe3794c3997f050fc50eafb27b47dda075c50f717faaf8924f840bc4de8399",
+          "retrieved": "2026-09-17T08:12:33.347223+00:00"
+        }
+      ],
+      "findings": [
+        "OSM道路绕楼角通行，未与楼体共用终点，不适用综合楼1076346768的终止帽处理。",
+        "官网lm30可见一舍长条屋面、南侧道路、东侧绿地和道路转弯；定位用旧bound寻找图幅，不等于其坐标已经配准。",
+        "照片与图面没有提供6米实测宽度；不得仅按3.446米几何阈值缩路来清除交叠，也不把道路直接裁掉一块。",
+        "还需把转弯中心线和两侧路缘在局部统一控制下比较；屋檐、绿地边界和透视轮廓不直接作为墙脚。"
+      ],
+      "next_required": [
+        "在一舍及相邻稳定地面控制上登记俯视图中的道路弯段，交叉核对照片或正射影像。",
+        "分别确认中心线位置与道路宽度，保留原OSM节点记录；有证据后成组重建路面、地形、植被与两端碰撞。"
+      ],
+      "imagery_followup": {
+        "source": "references/shared/mapping/world-imagery-review.json#eda-dorm1-road",
+        "status": "recent-ground-control-and-width-pending",
+        "source_dates": [
+          "2019-09-18"
+        ],
+        "osm_edit_timestamp": "2025-08-15T12:55:07Z",
+        "decision": "不据此缩窄6米估计路宽，不以屋顶平移建筑，不将2019道路描线直接作为当前路面；保留源道路及1.85平方米几何交叠待核对。"
+      }
+    },
+    {
+      "campus": "panjin",
+      "official_id": "77977",
+      "name": "C01-校史馆东侧道路",
+      "status": "road-continuation-and-wall-registration-pending",
+      "reviewed": "2026-09-17",
+      "osm_id": "way/1318388507",
+      "osm_version": 1,
+      "road": {
+        "osm_way_id": 1189609235,
+        "osm_version": 2,
+        "source_timestamp": "2023-07-14T10:29:55Z",
+        "tags": {
+          "highway": "service"
+        },
+        "width_m": 5,
+        "width_basis": "estimated:highway-class",
+        "shared_building_endpoint": 11046219664,
+        "building_source_timestamp": "2024-09-26T12:54:24Z",
+        "endpoint_other_highways": []
+      },
+      "runtime_diagnostic": {
+        "overlap_m2": 16.1899903393351,
+        "bounds_xz": [
+          -110.480903625488,
+          362.404724121094,
+          -107.820526123047,
+          373.311614990234
+        ],
+        "input_sha256": {
+          "campus_sha256": "c1d208aeca264147abe45b7856467c5968d88b65387250e58746a3f90a5cfa07",
+          "conflicting_parts": 1,
+          "roads_sha256": "d25dc5f04288195857329af6c914bbe266d089bb1bd8163b8bae73d12f6ffae7"
+        },
+        "limits": "完整道路铺装水平交叠诊断，不是实测误差或已确认墙脚。"
+      },
+      "photos": [
+        {
+          "photo_id": 80090,
+          "original_filename": "77977_2016030217000167.jpg",
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77977_2016030217000167.jpg",
+          "sha256": "212ca433f3b8c122c03dbc752cc869501067e0d3d431ec1a89cab55be1bad20d",
+          "take_time": null,
+          "retrieved": "2026-09-17",
+          "use": "已查看，仅离线核对；未用于生成立面、尺寸或客户端资源。",
+          "limits": "画幅有多栋红砖楼、玻璃连廊、底层柱列、门卫及道路；不能把整张照片中的体量都归为C01。拍摄日期、各立面身份及争议墙脚未确认。"
+        },
+        {
+          "official_id": "77978",
+          "photo_id": 80091,
+          "original_filename": "77978_20160302170059759.jpg",
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77978_20160302170059759.jpg",
+          "sha256": "fa88942f7fc8138e5a7fc9b1c1cc64a0207bcd6daf6795f9df703bf700195fb4",
+          "take_time": null,
+          "retrieved": "2026-09-17",
+          "use": "已查看，仅离线身份与连廊关系核对，未用于生成。",
+          "limits": "可读C01/C02楼号及其连廊，确认多个独立砖楼；C01争议道路转角未完整显示。"
+        },
+        {
+          "official_id": "77979",
+          "photo_id": 80092,
+          "original_filename": "77979_20160302170132176.jpg",
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77979_20160302170132176.jpg",
+          "sha256": "9ae8227918929ec1169c731555bc5ad4baae0dca2ffe558d597b9f7be681374c",
+          "take_time": null,
+          "retrieved": "2026-09-17",
+          "use": "已查看，仅离线身份与连廊关系核对，未用于生成。",
+          "limits": "可读C02/C03楼号，连廊下有柱列和开敞空间；无完整地面墙脚测量。"
+        },
+        {
+          "official_id": "77980",
+          "photo_id": 80093,
+          "original_filename": "77980_20160302170204715.jpg",
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77980_20160302170204715.jpg",
+          "sha256": "593e35f36c65a53540c7ec26230c7e148f08f267b4cd7e62d92c7834093aefe2",
+          "take_time": null,
+          "retrieved": "2026-09-17",
+          "use": "已查看，仅离线身份与连廊关系核对，未用于生成。",
+          "limits": "可读C03及大学生艺术中心标识，确认相邻体量、连廊和外部楼梯；不能向C01套用楼梯或平面。"
+        }
+      ],
+      "topview": {
+        "layer": "lm30",
+        "zoom": 19,
+        "pixel_origin": [
+          112639090,
+          50476546
+        ],
+        "size": [
+          900,
+          900
+        ],
+        "sources": [
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439996&y=197174&z=19",
+            "retrieved": "2026-09-17T08:23:10.030728+00:00",
+            "sha256": "bdc105744779e5acae70c7f4107931caf86a418fcc2f8abdd7b217ed0b916273"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439996&y=197175&z=19",
+            "retrieved": "2026-09-17T08:23:10.457217+00:00",
+            "sha256": "4e7664b11418869eb7289cf84e48fe7998c8fe6d8af23498181587d59599f640"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439996&y=197176&z=19",
+            "retrieved": "2026-09-17T08:23:10.927306+00:00",
+            "sha256": "02a89b623cb509006f31293ed2dbb64b23cdf65794de6c0c66e8f3e1adb2d3cc"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439996&y=197177&z=19",
+            "retrieved": "2026-09-17T08:23:11.464932+00:00",
+            "sha256": "3057e00942e7ebd37e794583cebda1d9ac2341629ba9429ab497a76421356c38"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439997&y=197174&z=19",
+            "retrieved": "2026-09-17T08:23:12.026630+00:00",
+            "sha256": "2e8a4ebb0761754b30376deee6fa4f58e1c3cea8431bf7c65edc363f9f467012"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439997&y=197175&z=19",
+            "retrieved": "2026-09-17T08:23:12.616948+00:00",
+            "sha256": "3dc7f0b906c0bba9585ddab44cd73b5d26fb17cb9de8ef34724a582faaff8874"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439997&y=197176&z=19",
+            "retrieved": "2026-09-17T08:23:13.081518+00:00",
+            "sha256": "38fe46bbcc41e6e7c51546bd65f8c19c5ad4bf0eb00408be741d120773b8dc03"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439997&y=197177&z=19",
+            "retrieved": "2026-09-17T08:23:13.549290+00:00",
+            "sha256": "443680999775594dc8d812c112b056010b782c58d11e0aaaa3e7feef5863e97b"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439998&y=197174&z=19",
+            "retrieved": "2026-09-17T08:23:14.110669+00:00",
+            "sha256": "43bbf921889ebd376e31ea5da6a34e1953e7accf528616629dad5c58d52bb044"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439998&y=197175&z=19",
+            "retrieved": "2026-09-17T08:23:14.648666+00:00",
+            "sha256": "0287a6343a930ba0ec29be746ef8e943c81bdeb1beed372b206c5bc7131da591"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439998&y=197176&z=19",
+            "retrieved": "2026-09-17T08:23:15.102491+00:00",
+            "sha256": "767e460b35a310e28bf43053d4d9f4d6c94772f03354bf94b1367ffbf664a8a7"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439998&y=197177&z=19",
+            "retrieved": "2026-09-17T08:23:15.637546+00:00",
+            "sha256": "58a82e2c9e9001834ad1e1cb5c37ec1d6b264693eee068110aba34eb1fc3a275"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439999&y=197174&z=19",
+            "retrieved": "2026-09-17T08:23:16.204577+00:00",
+            "sha256": "543bddce1fb8b58abbdd2cbb302c5fae53671ab4b50c12f4b1523133ae8bf796"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439999&y=197175&z=19",
+            "retrieved": "2026-09-17T08:23:16.766960+00:00",
+            "sha256": "ddd2967e7f676dc141ed7c3f154cfdf55d72ffc39695379d5fbf940f2389af39"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439999&y=197176&z=19",
+            "retrieved": "2026-09-17T08:23:17.373671+00:00",
+            "sha256": "3529b834530bdb8a571a25048eb87ff299e8dbfb598b53974a7a1957fc5e0354"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439999&y=197177&z=19",
+            "retrieved": "2026-09-17T08:23:17.790694+00:00",
+            "sha256": "a41e5b920751ede1bba6328393f383d5257b602cfae87ac4136df7884bc214a6"
+          }
+        ],
+        "registration": "仅用旧bound定位图幅，未作WGS84地面控制点配准；像素位置不可直接写入运行数据。",
+        "comparison_fit": {
+          "status": "comparison-only-not-ground-registration",
+          "method": "八个C02/C03屋面总包络角点的等比例旋转平移最小二乘；未使用争议C01共享节点。",
+          "controls": [
+            {
+              "osm_id": "way/1318388505",
+              "osm_version": 1,
+              "vertices": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "pixels": [
+                [
+                  426,
+                  64
+                ],
+                [
+                  679,
+                  108
+                ],
+                [
+                  691,
+                  54
+                ],
+                [
+                  436,
+                  10
+                ]
+              ]
+            },
+            {
+              "osm_id": "way/1318388506",
+              "osm_version": 1,
+              "vertices": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "pixels": [
+                [
+                  400,
+                  223
+                ],
+                [
+                  389,
+                  277
+                ],
+                [
+                  640,
+                  319
+                ],
+                [
+                  650,
+                  266
+                ]
+              ]
+            }
+          ],
+          "pixel_to_xz": {
+            "equations": [
+              "X = a*u - b*v + tx",
+              "Z = b*u + a*v + tz"
+            ],
+            "a_b_tx_tz": [
+              0.23152695277719834,
+              0.002945466780431616,
+              -250.2565018292329,
+              252.8894645110006
+            ]
+          },
+          "control_residuals_m": [
+            1.5360828463124523,
+            1.3101828358494758,
+            0.30935589201544483,
+            0.7734413974333684,
+            1.772940128255638,
+            1.0247458875289333,
+            0.8143747928973325,
+            1.496209834748971
+          ],
+          "c01_source_projected_pixels": [
+            [
+              363.1285427231892,
+              415.9265229128181
+            ],
+            [
+              621.1238141408598,
+              465.4370414969484
+            ],
+            [
+              609.4310513096048,
+              526.4560825856829
+            ],
+            [
+              351.43516831100203,
+              476.8974909862718
+            ]
+          ],
+          "road_source_projected_pixels": [
+            [
+              1781.4981633372604,
+              762.5268924930436
+            ],
+            [
+              1040.29570071609,
+              631.7047294314648
+            ],
+            [
+              1006.6161779797508,
+              620.9303722599147
+            ],
+            [
+              972.0466305846464,
+              588.9156264273712
+            ],
+            [
+              966.6602346311194,
+              583.9356682150113
+            ],
+            [
+              940.8888704977587,
+              575.7532286311008
+            ],
+            [
+              874.6504463288558,
+              564.9122751615906
+            ],
+            [
+              724.9278935869232,
+              540.3245149633385
+            ],
+            [
+              646.8881480305096,
+              527.5181419406548
+            ],
+            [
+              625.6756495761575,
+              516.5851803119392
+            ],
+            [
+              620.9400370098656,
+              505.44260110114055
+            ],
+            [
+              620.7229257815969,
+              488.3766808779948
+            ],
+            [
+              621.1238141408598,
+              465.4370414969484
+            ]
+          ],
+          "limits": "参照是屋面包络，不是地面控制点；0.31至1.77米是内部拟合残差，不能声称实际精度。用于定位来源差异，不修改建筑或道路。"
+        }
+      },
+      "identity_sources": [
+        {
+          "url": "https://news.dlut.edu.cn/info/1011/106214.htm",
+          "publisher": "大连理工大学新闻网",
+          "published": "2024-10-24",
+          "retrieved": "2026-09-17",
+          "finding": "2024年10月21日启用的校史文化展厅位于大学生活动中心一楼大厅，不足以证明旧C01对象应迁至那里。"
+        },
+        {
+          "url": "https://pjxqzwb.dlut.edu.cn/fwzn/xqfw/xqwyfw.htm",
+          "publisher": "盘锦校区总务部",
+          "published": null,
+          "retrieved": "2026-09-17",
+          "finding": "物业范围将C/D区列为学院办公楼、实验室、艺术中心，将图书馆、校史馆和大学生活动中心列在E区；与旧名称存在用途/时序待核对。"
+        }
+      ],
+      "findings": [
+        "共享节点仅出现在归档道路1189609235与建筑1318388507中，未见其他highway使用该节点。道路版本早于建筑版本；这些事实不证明道路应在墙边终止。",
+        "交叠包围框沿Z方向约10.91米，不是综合楼的短小末端帽问题；不能对整条多段道路套用墙边裁切。",
+        "俯视图在C01图幅下方长条楼体东侧画出绕角后向北延伸的道路，与OSM在东北角终止的拓扑不同；图面同时有侧边小体量、院落和连廊，不能直接把屋面总外框当墙脚。",
+        "5米为service默认估计宽度，无width标签；暂不能确定交叠应归因于路宽、中心线、楼边或其组合。",
+        "官网照片接口非空，但照片涉及多个楼体，不能据此将现有18米矩形改成整组复杂建筑。当前保留官方ID及名称原文，不按新展厅报道搬楼。",
+        "补充照片80091/80092的可读C01/C02/C03楼号确认相邻砖楼与连廊关系；不能将80090整张画面当单栋C01。",
+        "C02/C03独立屋面参照下，C01的OSM东端墙线和南侧道路均偏离俯视绘图；现有证据不支持只移动道路或只缩路宽。屋面与地面边界尚未建立足够对应，拟合结果不进入运行模型。"
+      ],
+      "next_required": [
+        "用C01/C02/C03周边共同地面控制配准俯视道路，确认北向延伸、连廊下通行与首层墙脚。",
+        "分别确定楼体边界、道路中心线及路缘宽度，有证据后同步重建道路、楼体、地形、植被和两端碰撞。"
+      ],
+      "license": {
+        "name": "未确认开放许可",
+        "terms_url": null,
+        "authorization": "公开可访问不等于再分发授权；只作离线来源核对，适用CREDITS.md第2.1条。"
+      },
+      "current_osm_check": [
+        {
+          "url": "https://api.openstreetmap.org/api/0.6/way/1318388507/full",
+          "retrieved": "2026-09-17",
+          "version": 1,
+          "sha256": "5c4a20126a41fee56c103175bf7b3c763c157a4345d75460cff6d3440f96ba93",
+          "finding": "way版本及完整响应中全部节点的经纬度与现有归档一致。"
+        },
+        {
+          "url": "https://api.openstreetmap.org/api/0.6/way/1189609235/full",
+          "retrieved": "2026-09-17",
+          "version": 2,
+          "sha256": "7c32ba5342b3b8bf3d4cb413e7fa105e5a7e1776b2ba08f4678495a4e2a1ca95",
+          "finding": "way版本及完整响应中全部节点的经纬度与现有归档一致。"
+        }
+      ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77414",
+      "name": "海山楼",
+      "status": "osm-identity-matched; ground-partitions-and-underpass-unresolved",
+      "reviewed": "2026-09-17",
+      "osm_way_id": "1381605755",
+      "osm_version": 2,
+      "road_way_id": "894092913",
+      "road_version": 1,
+      "road_highway": "living_street",
+      "road_width_m": 5.0,
+      "road_width_basis": "类别默认估计，无width标签",
+      "building_layer": "1",
+      "current_source_checks": [
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/way/1381605755/full",
+          "retrieved": "2026-09-17",
+          "version": 2,
+          "sha256": "1e731799b82b616d7153781e2e7276a0b6719a387e35d8597e6ed66fb28e2feb",
+          "node_coordinates_and_refs_match_archive": true
+        },
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/way/894092913/full",
+          "retrieved": "2026-09-17",
+          "version": 1,
+          "sha256": "2bbff12d7180d97e33d3320189a1afbffcb62fdc10d15863f632883e41f6cdaf",
+          "node_coordinates_and_refs_match_archive": true
+        }
+      ],
+      "additional_photos": [
+        {
+          "index": 1,
+          "image_id": 827341,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77414_2019092416315353.jpg",
+          "retrieved": "2026-09-17",
+          "sha256": "5798751c77169c2724cd41221d579338535c06e2983dd6ec60a1baaa88dbf984"
+        },
+        {
+          "index": 2,
+          "image_id": 827342,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77414_2019092416315370.jpg",
+          "retrieved": "2026-09-17",
+          "sha256": "2dd0665be08fa65a1bca3ec9c4462978f37d096c509e92dab941b1ee0d383469"
+        },
+        {
+          "index": 3,
+          "image_id": 827343,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77414_20190924163153300.jpg",
+          "retrieved": "2026-09-17",
+          "sha256": "d75f49c315d6526fbbd1eac39b6f42277862cd393962ee351d014d04ba9954c9"
+        },
+        {
+          "index": 5,
+          "image_id": 875294,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77414_20200108090929947.png",
+          "retrieved": "2026-09-17",
+          "sha256": "b1f6bc20f30a701c820fe4dae2df01280d047fb7b933a68bbd36670b3686e153"
+        }
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:20.003616+00:00",
+          "sha256": "e2a25e3eff0e58a922019dfc41c39ad34659a2a6ba0d8183250b3cf567a96d33"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200583&z=19",
+          "retrieved": "2026-09-16T16:56:48.623319+00:00",
+          "sha256": "2aeedd0914c3a0b795a0a9fa6487cadf0a47630e1cc71d397fa0296fefe4a14b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200584&z=19",
+          "retrieved": "2026-09-16T16:56:48.658971+00:00",
+          "sha256": "69bfbd13c8c4388298bf91e0fd45aa144ab5e725320de7777ddb3fbdba96b715"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200585&z=19",
+          "retrieved": "2026-09-16T16:56:48.889206+00:00",
+          "sha256": "8fac688a9929cdac07e4ddc544042261b6e9bf145c8bc9ed67910342ed5c4e7d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200586&z=19",
+          "retrieved": "2026-09-16T16:56:49.157087+00:00",
+          "sha256": "058c092564ab70d90a73573b60c7ebb5a115d835a98c06c48412a75e0999b490"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:20.620596+00:00",
+          "sha256": "6ae13a7bfd64f76202e86494ff8e7070f0c1c7bdfc1e3cdf72eeb1c61f6f3f8d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200583&z=19",
+          "retrieved": "2026-09-16T16:56:49.160992+00:00",
+          "sha256": "1892542bcbe319a034d9b2243367ead5f715195cbdcf10ad49bede4100e66182"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200584&z=19",
+          "retrieved": "2026-09-16T16:56:49.426617+00:00",
+          "sha256": "6e6662fae3a87cd2962da0532d644ef57babdabf8b15e2a7bb574b95c9efaed1"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200585&z=19",
+          "retrieved": "2026-09-16T16:56:49.677822+00:00",
+          "sha256": "14c8756bd19f81f3bf939c98c2996d27663d850dbbcd2a897a2b81662b4bf0e2"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200586&z=19",
+          "retrieved": "2026-09-16T16:56:49.670069+00:00",
+          "sha256": "e7e844ea560406b87bc07012d2edf2417d4fcaf350811d2359d33b0a5d44738a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:21.274763+00:00",
+          "sha256": "c4af07a1514def4c55be0d7a28744914b07f661e62d4baa103d2837bd45e49b8"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200583&z=19",
+          "retrieved": "2026-09-16T16:56:49.933138+00:00",
+          "sha256": "f97a64d11ebc41c0cd7a4317618942f2d1bfd1349cc7ada0138771968a0c1a8f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200584&z=19",
+          "retrieved": "2026-09-16T16:56:50.182973+00:00",
+          "sha256": "ed2139096d08a6a3a9cde93323b1d5d439c376e50b33e232a12627ecf8b17301"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200585&z=19",
+          "retrieved": "2026-09-16T16:56:50.219247+00:00",
+          "sha256": "2c2dc24fe7462c2e047b3a0fb58ec11e0f95e43c66e70ec8ecaf34059387ea77"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200586&z=19",
+          "retrieved": "2026-09-16T16:56:50.201091+00:00",
+          "sha256": "b135541b1830dc425b38ac84192c980fe4964ad09aac9f5ca9cf3dcce668e7fe"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:21.819696+00:00",
+          "sha256": "3d3a2c4279de33ef43b1eb41bd0b40b6806abbb3dcffd51d09f3786134b4f203"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200583&z=19",
+          "retrieved": "2026-09-16T17:54:01.295122+00:00",
+          "sha256": "afe9d788fcaa0674d12956efb747a1e43749d144509f7599af5685661128d6aa"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200584&z=19",
+          "retrieved": "2026-09-16T17:54:01.221112+00:00",
+          "sha256": "e6fc29ced52fdf92406ee624392f68474554e049d5b6fd559ef5e708a3f660da"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200585&z=19",
+          "retrieved": "2026-09-16T17:54:01.310528+00:00",
+          "sha256": "a963a4f18cce9cd3318473141c410139d08702c1eb4f027c2e6ad753b4b7635b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200586&z=19",
+          "retrieved": "2026-09-16T17:54:01.266026+00:00",
+          "sha256": "f8a7ca758c361bf461830613c4bec6477d6327cc489c90157add357e438cf0c1"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200582&z=19",
+          "retrieved": "2026-09-17T09:14:22.377612+00:00",
+          "sha256": "303e5cefea1c09e1b82c2044cedbeafebcdf4c4e5e428d9ae4fd3e2cf7ece266"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200583&z=19",
+          "retrieved": "2026-09-16T17:54:01.770503+00:00",
+          "sha256": "050d0b3a1b43322dcaf5cf871b60e12e0424bc5fa9d8989d6968f80a9c05659b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200584&z=19",
+          "retrieved": "2026-09-16T17:54:01.816999+00:00",
+          "sha256": "5bf621359a4525aee7f8fb73cbf350d530acc5ed6feda03fb10342bf97e86528"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200585&z=19",
+          "retrieved": "2026-09-16T17:54:01.810770+00:00",
+          "sha256": "7fd9b182632792766cb4ae55b00798998337f6851ea35886c67334283b462c8c"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200586&z=19",
+          "retrieved": "2026-09-16T17:54:01.937410+00:00",
+          "sha256": "7056d70badd10f1abc66fecdac9b2471c718e005ad39e2e0b457adaa67c25c5d"
+        }
+      ],
+      "height_source": {
+        "url": "https://xszx.dlut.edu.cn/info/1007/2661.htm",
+        "title": "创新园大厦（海山楼）幕墙维修改造项目竣工",
+        "published": "2024-04-28",
+        "retrieved": "2026-09-17",
+        "height_m": {
+          "A": 55.6,
+          "B": 85.6
+        },
+        "limits": "官方建筑高度，尚未逐区配准落地轮廓；不用于统一抬高全外圈。"
+      },
+      "findings": [
+        "当前18米实心外包体与高低主楼、前部低层附楼和连接通道的照片证据冲突，不能仅平移解决。",
+        "77414-1/2/3可见低层两翼间的通道及跨越连接，77414-5可见低层前部玻璃、柱与廊架。不能将1/2/3视为独立测绘视角，也不能从透视像素直接推断通道净宽净高。",
+        "77414-4/6显示较低主楼的架空柱，不能把所有地面开放区都归为同一道路或在全楼下方统一挖空。",
+        "lm30显示西侧梳状附楼、连接部分与多处间隙，图中仍含屋面、侧面和阴影；不是可直接落地的测绘平面。",
+        "归档与当前在线OSM的楼体和道路节点一致，刷新源版本不能消除现有交叠。building layer=1只标相对层级，不提供min_height或真实通道尺寸。",
+        "保存道路完整宽度与楼体平面交叠约200.03平方米，交叠范围X305.47至345.57、Z-458.36至-453.25；未据此自动裁楼或删路。"
+      ],
+      "next_required_evidence": [
+        "地面控制点或总平面，用于定位前部附楼间隙与894092913道路是否对应",
+        "分区墙脚、连接体底部标高、柱位及可通行边界；A/B楼高不能补足这些缺失资料"
+      ],
+      "imagery_ground_review": {
+        "reviewed": "2026-09-17",
+        "view": {
+          "zoom": 19,
+          "pixel_origin": [
+            112415927,
+            51349493
+          ],
+          "size": [
+            1000,
+            1000
+          ],
+          "center_lon_lat": [
+            121.52435615833333,
+            38.88573534166667
+          ],
+          "sources": [
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200583/439124",
+              "retrieved": "2026-09-17T11:31:45.083295+00:00",
+              "sha256": "cf3b21bb3a44f1fa42263ff43a2f7730dae05aaf23a1db582cae874d7795d72c"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200584/439124",
+              "retrieved": "2026-09-17T11:31:45.789956+00:00",
+              "sha256": "2fea63b4b91469b0ea2d2f176c657eb4ebea261fe9ba0adb559ff24f1d48d7f7"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200585/439124",
+              "retrieved": "2026-09-17T11:31:45.046104+00:00",
+              "sha256": "72dfaae8a9986dd9e0b5a3663f1be225a1bd8e8dafc33255675dcaa06333e88f"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200586/439124",
+              "retrieved": "2026-09-17T11:31:45.108884+00:00",
+              "sha256": "5a37a84546b114e9c51ee59a30aaacdac548c2a1930580a7fbf6727177bbb7b1"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200587/439124",
+              "retrieved": "2026-09-17T11:31:45.563721+00:00",
+              "sha256": "bf136e2087f44139c824a118ba78208889b33a07606dc082be4bdd55fd200c3e"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200583/439125",
+              "retrieved": "2026-09-17T11:31:45.681576+00:00",
+              "sha256": "7df1d5fb7cf0fda834d1941e663e37058c0e194402a3a9c81dddd124f6649f8c"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200584/439125",
+              "retrieved": "2026-09-17T11:31:45.729487+00:00",
+              "sha256": "ec554276eec2c3c1eef58d2cb63fe4f33725cba997766c0c88c8eeee686e0c71"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200585/439125",
+              "retrieved": "2026-09-17T11:31:46.268224+00:00",
+              "sha256": "64f194098624c6d9030b90a8c5d1586da6a5130521c910af045f29c8ca7738b1"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200586/439125",
+              "retrieved": "2026-09-17T11:31:46.309777+00:00",
+              "sha256": "a349991ba9de2eddf46f66409312eb2ae7907be978b5a91a52161637360b11dd"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200587/439125",
+              "retrieved": "2026-09-17T11:31:46.557547+00:00",
+              "sha256": "e1b5bd9ce3caf8f252b2eb3e08740227aa732b3c3347b42f062700c61bfeafdf"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200583/439126",
+              "retrieved": "2026-09-17T11:31:46.295819+00:00",
+              "sha256": "463a2dbe5840eedb884ad88c1cd719d5994d66d9d557e7ae3565c059f6c1a8a0"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200584/439126",
+              "retrieved": "2026-09-17T11:31:46.718473+00:00",
+              "sha256": "15a7f864591450d9f8ab69769396f0bc8898d774f4f4ff8d09f4c4f029c122bf"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200585/439126",
+              "retrieved": "2026-09-17T11:31:46.842325+00:00",
+              "sha256": "bfa30e279cbab38b59e89dbb150a5634c237e2c5481df7eabab1b696e5697564"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200586/439126",
+              "retrieved": "2026-09-17T11:31:47.010899+00:00",
+              "sha256": "44464f69ea04a5d1d3cdde0475def905d9fee1cb38004380d8bb2accf68c2fea"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200587/439126",
+              "retrieved": "2026-09-17T11:31:47.040376+00:00",
+              "sha256": "b8a9b5208dd502a90e931f373268c871758d569981a8febc5001f1be5c979e7d"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200583/439127",
+              "retrieved": "2026-09-17T11:31:47.172292+00:00",
+              "sha256": "3a9b2fdfce4a1ab40dae36f6bbcb415ee26d7f84939d2de94389435066f9fd4f"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200584/439127",
+              "retrieved": "2026-09-17T11:31:47.770893+00:00",
+              "sha256": "7b88ff7f3ceb7b3cc3120f2d1276e787ecb2d21195c96625825858fbb4e800b9"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200585/439127",
+              "retrieved": "2026-09-17T11:31:48.318405+00:00",
+              "sha256": "f0dc667858956fe67a2943a13123f934d52f05e64ca49bf5c8ce19925ce0fe6e"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200586/439127",
+              "retrieved": "2026-09-17T11:31:48.528993+00:00",
+              "sha256": "a2cc13d391bf5932bc3aa53fece7bef528a10a5fcc6d3bfd1cb73c50007d8192"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200587/439127",
+              "retrieved": "2026-09-17T11:31:47.627623+00:00",
+              "sha256": "0b06001ee3ef3ec5d4444c8813b3a33244a1961dd7e46b9ce13f27f823bbcd6b"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200583/439128",
+              "retrieved": "2026-09-17T11:31:48.403276+00:00",
+              "sha256": "f9c283064b5f21a9f450d4f9a2c81f8a013a7d1ee5c06a4d7bf7b6a3670dd793"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200584/439128",
+              "retrieved": "2026-09-17T11:31:48.776514+00:00",
+              "sha256": "63c9222535e5768261c75804dfeb7e32ff2bab64f28a29c5a7e0dd24b9e11ae7"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200585/439128",
+              "retrieved": "2026-09-17T11:31:48.952816+00:00",
+              "sha256": "21118e7911439e7174c5f0ed3ac90d264df1ce017db000fe900aac594892edbd"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200586/439128",
+              "retrieved": "2026-09-17T11:31:49.130344+00:00",
+              "sha256": "ea3aadaae37e01b9ebe771afad91fdc8cb219aa03f3357407d30bc49ea1a5224"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200587/439128",
+              "retrieved": "2026-09-17T11:31:49.148387+00:00",
+              "sha256": "c96e63ff5ceae5326e2fba0706bd4933da1b49b8a4d89da9f0a18b851e0ad671"
+            }
+          ]
+        },
+        "image_date": null,
+        "date_limit": "Tiles have acquisition metadata not yet queried for these exact sites; fetch date is not photo date.",
+        "road_current_check": {
+          "url": "https://api.openstreetmap.org/api/0.6/way/894092913",
+          "http_status": 200,
+          "version": 1,
+          "way_edit_timestamp": "2021-01-11T02:55:33Z",
+          "node_ids": [
+            "374101193",
+            "8310006767"
+          ],
+          "tags": {
+            "highway": "living_street"
+          },
+          "sha256": "60b8c2c0ad4d575200e4adf198ae077cf732f2cf50221c8c6465e934f054f946",
+          "limits": "This response checks way tags/references only, not current node coordinates; edit timestamp does not date shared-node geometry."
+        },
+        "conclusion": "Source layer and roof-level overlap cannot establish a ground passage or clearance; no rigid shift or subtraction based solely on the road intersection.",
+        "runtime_geometry_changed": false
+      }
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "83981",
+      "name": "西山浴室",
+      "status": "shared-compound-reference; independent partition unresolved",
+      "reviewed": "2026-09-17",
+      "shared_geometry": {
+        "official_id": "77492",
+        "osm_id": "way/544330656",
+        "osm_version": 3
+      },
+      "source_detail": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=83981",
+      "detail_sha256": "0f2d5eb4a7a47978aae6173bcccb05b906a8384efa2e38e22cdfe376f8131007",
+      "photo_index": "references/lingshui/buildings/photos/77492.json",
+      "reviewed_image_ids": [
+        78630,
+        78631,
+        78632
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439122&y=200590&z=19",
+          "retrieved": "2026-09-17T09:35:57.232683+00:00",
+          "sha256": "8db4f6e65d8b527e4e07576a20d2a1fb8c79247843fb1e9711f23380c3c2fb02"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439122&y=200591&z=19",
+          "retrieved": "2026-09-17T09:35:57.764193+00:00",
+          "sha256": "d2387a6d06e7c8ff5c55b593c62a765a2d959b5653c497ea59b4423a5c06ee77"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439122&y=200592&z=19",
+          "retrieved": "2026-09-17T09:35:58.315406+00:00",
+          "sha256": "3136582c1e4495ea66b75f2b8e7c4c13fbbbd811b5d7dababd017d849df320e7"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439122&y=200593&z=19",
+          "retrieved": "2026-09-17T09:35:58.886424+00:00",
+          "sha256": "c3aa245fb58c8220732b7e9c467028bd90adcdc05ed1b88c34b11c75b5bff825"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439123&y=200590&z=19",
+          "retrieved": "2026-09-17T09:35:59.452843+00:00",
+          "sha256": "5f0f82df883f94e160ee002e40f3dea1ce206791084c1d330d9478db4bff3da5"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439123&y=200591&z=19",
+          "retrieved": "2026-09-17T09:35:59.997264+00:00",
+          "sha256": "920dad6e52862b3c33bc69c2839c08b6556f2850768f9b3abeafab292299901a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439123&y=200592&z=19",
+          "retrieved": "2026-09-17T09:36:00.560590+00:00",
+          "sha256": "c8fcd313ba9779d8ad94a36325b86de1fddc87ba4a2bd8322e811fdc4fdf9ccd"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439123&y=200593&z=19",
+          "retrieved": "2026-09-17T09:36:01.091010+00:00",
+          "sha256": "ae88797f83b6cadfd7aae08e504e75cb32685bebe66628f5ed294c1a182f8bb5"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439124&y=200590&z=19",
+          "retrieved": "2026-09-17T09:36:01.658035+00:00",
+          "sha256": "8950e1872e889a15df39e29f988fcd152ca525244708688011b92b2e22aaa4d0"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439124&y=200591&z=19",
+          "retrieved": "2026-09-17T09:36:02.235686+00:00",
+          "sha256": "c38ea5690903de5d94289c15f3a258775ed7b3d85074fd9f9e15c1986f8a531f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439124&y=200592&z=19",
+          "retrieved": "2026-09-17T09:36:02.966217+00:00",
+          "sha256": "b16baf522bd68b029545469692bee7411069389c4220371de3027aa63a753127"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439124&y=200593&z=19",
+          "retrieved": "2026-09-16T17:05:43.357923+00:00",
+          "sha256": "d61da00373f69a4aa93917d331dfd388e16a1316a5198b80559bbb877496d13a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439125&y=200590&z=19",
+          "retrieved": "2026-09-17T09:36:03.608081+00:00",
+          "sha256": "8282e4772402687ddc493552bd06f4a8238f2de694ba0aa1e4db0b2b90573246"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439125&y=200591&z=19",
+          "retrieved": "2026-09-17T09:36:04.057860+00:00",
+          "sha256": "3092cdb3d556a5b2d3b7319a1cc5601338d439d246144d60d04c9de36f393340"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439125&y=200592&z=19",
+          "retrieved": "2026-09-17T09:36:04.550266+00:00",
+          "sha256": "29f3de709a841999a7d44b870127e00d1e41a6e2a8c8f80ef4e432bcbd583308"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439125&y=200593&z=19",
+          "retrieved": "2026-09-16T17:05:43.953142+00:00",
+          "sha256": "7a323d9fbbe9abe012d76abdef9357298e521b71c4da883f4b7289371a9e53a4"
+        }
+      ],
+      "findings": [
+        "77492官网名称已包含第五食堂/西山浴区，两ID指向相连楼群的不同用途表达。",
+        "红白东翼在77492照片0/1/2中连续可见，lm30亦在食堂东侧显示相连折线楼翼；不按照片屋檐外缘补画墙脚。",
+        "83981旧框延伸到OSM整体楼群南侧道路，当前重复平面交叠76.76平方米；保留设施身份，共用一次OSM底稿，撤去额外体块。",
+        "浴室相册空不能单独证明无建筑，不能套用81821车辆统计点的非建筑分类。"
+      ],
+      "next_required_evidence": [
+        "食堂与浴室分区的墙脚和实际楼高",
+        "南端坡道、柱廊、台阶和入口的可定位尺寸"
+      ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77503",
+      "name": "西山8舍",
+      "status": "OSM edit-history conflict; ground registration unresolved",
+      "reviewed": "2026-09-17",
+      "building_osm_id": "way/543818286",
+      "building_osm_version": 2,
+      "road_osm_id": "way/544369556",
+      "road_osm_version": 1,
+      "sources": [
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/way/543818286/full",
+          "retrieved": "2026-09-17",
+          "sha256": "edfa16832471b36defbcc37d5623677e57f0d275a906d8accfb25e31a78d5bd5"
+        },
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/way/544369556/full",
+          "retrieved": "2026-09-17",
+          "sha256": "173b91c28ea117f5c185bb58b28679da452db5ff3959081b09183ee8ec4e66d6"
+        },
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/way/543818286/history",
+          "retrieved": "2026-09-17",
+          "sha256": "2063bbef619b952e95c9af4cd5b96f2c192b428adf55cf705ce5b765b7e891de"
+        },
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/changeset/165929409",
+          "retrieved": "2026-09-17",
+          "sha256": "9708b1b9bf3189357af32d494981b2efb2d8078c24dde903a074d74377f9aa02"
+        }
+      ],
+      "node_history": [
+        {
+          "id": "5257026764",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026764/1",
+          "sha256": "e18727cfd3419a5fcfbe0d3b5bd642a62e990dd833b5baf50d804ea7aa3cbcf7",
+          "old_xz": [
+            -88.89233544538033,
+            229.3971240001389
+          ],
+          "current_xz": [
+            -83.55428917609323,
+            227.60487199975984
+          ],
+          "delta_xz": [
+            5.338046269287091,
+            -1.792252000379051
+          ]
+        },
+        {
+          "id": "5257026765",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026765/1",
+          "sha256": "100ba7ea65e79d85745a520ba23f11ec1a69febfd3a65bed3a565e8eca41265c",
+          "old_xz": [
+            -96.64810072373483,
+            172.534868000061
+          ],
+          "current_xz": [
+            -91.31005445444772,
+            170.74261599968196
+          ],
+          "delta_xz": [
+            5.338046269287105,
+            -1.792252000379051
+          ]
+        },
+        {
+          "id": "5257026766",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026766/1",
+          "sha256": "df54ece3c44edc13fd96e40cb69a50e98bcd5bb10c0d09f61fb1566ef368aff7",
+          "old_xz": [
+            -101.55286401644683,
+            173.20278799995663
+          ],
+          "current_xz": [
+            -96.21481774715973,
+            171.41053599957758
+          ],
+          "delta_xz": [
+            5.338046269287105,
+            -1.792252000379051
+          ]
+        },
+        {
+          "id": "5257026767",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026767/1",
+          "sha256": "9d8df0bfe2f8912f3de9aedd9f155f8628265fa491ea7d88325489dbb93bee97",
+          "old_xz": [
+            -106.8909102869654,
+            134.07380799987578
+          ],
+          "current_xz": [
+            -101.55286401644683,
+            132.28155599949673
+          ],
+          "delta_xz": [
+            5.338046270518561,
+            -1.792252000379051
+          ]
+        },
+        {
+          "id": "5257026768",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026768/1",
+          "sha256": "c26f55c59366dbed2445a52058102698d43a395e29d994abee84269078a05a65",
+          "old_xz": [
+            -92.85254185011917,
+            132.1591039996477
+          ],
+          "current_xz": [
+            -87.51449558083206,
+            130.36685200005962
+          ],
+          "delta_xz": [
+            5.338046269287105,
+            -1.7922519995880748
+          ]
+        },
+        {
+          "id": "5257026769",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026769/1",
+          "sha256": "857583a98e93d534dd197920f874e59eb253b2873fcaaae23908ba8326ded2e6",
+          "old_xz": [
+            -91.04141900899579,
+            145.4395799998133
+          ],
+          "current_xz": [
+            -85.70337273847723,
+            143.64732799943425
+          ],
+          "delta_xz": [
+            5.338046270518561,
+            -1.792252000379051
+          ]
+        },
+        {
+          "id": "5257026770",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026770/1",
+          "sha256": "46ecdca0a4fc98df0b504969e22ec15d047ccab0a6554ee5491618cf51bfd84e",
+          "old_xz": [
+            -85.66004444094285,
+            144.70486799992813
+          ],
+          "current_xz": [
+            -80.32199817165575,
+            142.91261599954908
+          ],
+          "delta_xz": [
+            5.338046269287105,
+            -1.792252000379051
+          ]
+        },
+        {
+          "id": "5257026771",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026771/1",
+          "sha256": "2684ea3e5f7c694e5321ac6c57a65bd178f83820002c52cfe71877e2ef016e19",
+          "old_xz": [
+            -82.24577458735364,
+            169.74073599983853
+          ],
+          "current_xz": [
+            -76.90772831683508,
+            167.94848399945948
+          ],
+          "delta_xz": [
+            5.338046270518561,
+            -1.792252000379051
+          ]
+        },
+        {
+          "id": "5257026772",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026772/1",
+          "sha256": "2293a1594a77801713c1720ecb376f983d3cf0da85f5dee993fd84df11010e3c",
+          "old_xz": [
+            -85.91134856713475,
+            170.24167600015573
+          ],
+          "current_xz": [
+            -80.57330229784765,
+            168.44942399977668
+          ],
+          "delta_xz": [
+            5.338046269287105,
+            -1.792252000379051
+          ]
+        },
+        {
+          "id": "5257026773",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5257026773/1",
+          "sha256": "8893c8d965838d3dd3abf239103263611c21db8697f544d706b70ac725681caa",
+          "old_xz": [
+            -78.04292971543721,
+            227.91656799944747
+          ],
+          "current_xz": [
+            -72.7048834461501,
+            226.1243159998594
+          ],
+          "delta_xz": [
+            5.338046269287105,
+            -1.7922519995880748
+          ]
+        },
+        {
+          "id": "5262329577",
+          "url": "https://www.openstreetmap.org/api/0.6/node/5262329577/1",
+          "sha256": "c22f21092fad638d330f24651a5e097efb483f57a7a1b29847612a4795fcd7c8",
+          "old_xz": [
+            -95.21826690140644,
+            126.63763199998328
+          ],
+          "current_xz": [
+            -103.01736047729528,
+            115.67261199998313
+          ],
+          "delta_xz": [
+            -7.799093575888847,
+            -10.965020000000152
+          ]
+        }
+      ],
+      "findings": [
+        "在线建筑、道路的节点引用及当前坐标与归档相同；重新下载当前版本不能消除交叠。",
+        "2025-05-07 changeset 165929409将建筑十个节点一致东移5.338046米、北移1.792252米；节点引用未变，同时修改名称、building并添加layer=1。仅比较way节点ID会漏掉几何变化。",
+        "同次编辑将道路北端5262329577西移7.799094米、北移10.965020米；其余三个道路节点仍为2017-12-03版本。道路way仍为v1不能证明其几何自2017年未变。",
+        "按相同5米类别估计路宽单独比较该道路，旧楼/旧路5.111824平方米，旧楼/当前路8.932287平方米，当前楼/旧路113.112513平方米，当前楼/当前路119.889224平方米。全网并集约119.889623平方米的微小差异来自计算输入精度与组合，不能称实测精度。",
+        "旧组合仍交叠，不能按最小交叠选择历史版本、反向平移建筑或沿用layer=1开通楼底。",
+        "lm30周边路口叠图仍使用未经独立地面控制校验的旧平移，不能将图面屋顶偏差转为墙脚修正。",
+        "changeset自报imagery_used=Bing Maps Aerial、source=survey;local knowledge，但没有影像拍摄日期、地面控制点或精度报告；这些标签不能证明此次平移经过测绘验证。"
+      ],
+      "next_required_evidence": [
+        "同一区域的独立地面控制点，用于核对楼北端墙脚、道路转折与南北楼段",
+        "该编辑所用Bing影像的可核实日期、地面参照，或可定位实景；changeset自报来源不足以验证位移"
+      ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "83718",
+      "name": "学生文化中心",
+      "status": "matched-osm-envelope; ground-massing-and-access-unresolved",
+      "osm_way_id": "1381605740",
+      "osm_version": 2,
+      "building_layer": "1",
+      "findings": [
+        "OSM矩形整体覆盖道路33174904；影像显示屋盖连续覆盖，但不能据屋面判定下方地面。",
+        "设计单位明确三侧高差、西侧飞廊及室外台阶；4张外观原图补充了无活动装饰的台阶和外部空间。",
+        "原始OSM未提供该对象的建筑分体/架空净高；layer=1不能直接用于生成米制净高。",
+        "不把2009年way编辑日期当作道路已废弃的证明，也不将当前18米统一体块视为照片核验结果。"
+      ],
+      "next_required_evidence": [
+        "可按道路和校园地理基准配准的首层/室外平台平面",
+        "飞廊底标高、柱脚、台阶高差和东西通路；当前照片不提供完整路径尺寸"
+      ],
+      "imagery_ground_review": {
+        "reviewed": "2026-09-17",
+        "view": {
+          "zoom": 19,
+          "pixel_origin": [
+            112416316,
+            51351262
+          ],
+          "size": [
+            1000,
+            1000
+          ],
+          "center_lon_lat": [
+            121.5253982,
+            38.882042225
+          ],
+          "sources": [
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439126",
+              "retrieved": "2026-09-17T11:31:38.798951+00:00",
+              "sha256": "5ebd9f13cbf178c9b86e6e7c2b68b676544397e57116f51349223cc881fe1067"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439126",
+              "retrieved": "2026-09-17T11:31:40.306028+00:00",
+              "sha256": "294804c406104f9ccc780b19a284d9973fe9b43a4cf8d013e3d09ab8f318fe4c"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439126",
+              "retrieved": "2026-09-17T11:31:39.679134+00:00",
+              "sha256": "c308d19b4bcf3e7eaef0a25f2cf7a5438b7b126e1e31440b5f50af19a44003dd"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439126",
+              "retrieved": "2026-09-17T11:31:38.455451+00:00",
+              "sha256": "461ae551ae617d1a689cc654af15551fb7b7835ed594cd3452baa6031473933b"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200594/439126",
+              "retrieved": "2026-09-17T11:31:39.057252+00:00",
+              "sha256": "35fae29e5682b881794ab5ce5ef53c3f524d4e2acc5e75edaa87c6a2292ba8b2"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439127",
+              "retrieved": "2026-09-17T11:31:39.510384+00:00",
+              "sha256": "17cf6a3c5e0f8d6e535098bda808a254ff5d9dcc829f32ec9cee71999a8fe2f6"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439127",
+              "retrieved": "2026-09-17T11:31:40.145705+00:00",
+              "sha256": "2f1c5bdcea0dafdfc61679d67627c4609f8fe008358750f23ac2bf286000b40c"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439127",
+              "retrieved": "2026-09-17T11:31:40.308320+00:00",
+              "sha256": "ab7688bd3c5205c7cfdd0f5b6116fde056b87c107291a31701eca8f42872dc43"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439127",
+              "retrieved": "2026-09-17T11:31:40.469831+00:00",
+              "sha256": "1d89691ddaaf4793d33e46e800eacf2a1468e14caff40e0653ace6a7e05bb4c7"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200594/439127",
+              "retrieved": "2026-09-17T11:31:40.753451+00:00",
+              "sha256": "d6da7c8fd46fb610cae51ac5f7957799bea3e8772dcf05ceecf9f8570d1da597"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439128",
+              "retrieved": "2026-09-17T11:31:41.277448+00:00",
+              "sha256": "a68517d43eb8e06e21ee24f1cdba12b609e67186c71563c7dda07486e877b28f"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439128",
+              "retrieved": "2026-09-17T11:31:41.095837+00:00",
+              "sha256": "08709dfa5cd46597a10ddf947eb32886221e914f6ec948ff06b61ca0344a4d67"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439128",
+              "retrieved": "2026-09-17T11:31:41.318405+00:00",
+              "sha256": "7b7f2ed6bebefd4bcfa9684de3fbe6897e8b00446000578c4f7d32d79e4d8f04"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439128",
+              "retrieved": "2026-09-17T11:31:41.547320+00:00",
+              "sha256": "f33d7ae305d9eb353d37f6c229bf6262eac1d75938eebe8a0c94ab7d2be276d1"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200594/439128",
+              "retrieved": "2026-09-17T11:31:41.929843+00:00",
+              "sha256": "08bfacba4fdc71242386dbb7a9320514763ccbd4a45f5432b7e568058878efcc"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439129",
+              "retrieved": "2026-09-17T11:31:42.209612+00:00",
+              "sha256": "bd874ebae9b480aefbb271030f571c4b5e9028eb483b3aca2ee7b884ffac023c"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439129",
+              "retrieved": "2026-09-17T11:31:42.259577+00:00",
+              "sha256": "52b52ab2b546b24b45995c68e436f94180b49ef2a254198d16df2314ca622889"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439129",
+              "retrieved": "2026-09-17T11:31:42.698039+00:00",
+              "sha256": "38064bb5ff9db3c752f1579f768bc09ac11d4dc5b229baa944046ab56bf3aa9b"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439129",
+              "retrieved": "2026-09-17T11:31:42.933359+00:00",
+              "sha256": "b955041f73779630f4e890192bbf514217501b8483f8a4ae1568aa8116c87281"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200594/439129",
+              "retrieved": "2026-09-17T11:31:43.350639+00:00",
+              "sha256": "443ff0bda133c1e39143e8feb3fa63572ed65fa9633c9722d15e203e39f849a8"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439130",
+              "retrieved": "2026-09-17T11:31:42.733028+00:00",
+              "sha256": "2ddb4425f08af7807272f693c71a7af70b4cb646af7f54ef7a4605f12b1d8c3e"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439130",
+              "retrieved": "2026-09-17T11:31:43.583873+00:00",
+              "sha256": "123dbc97ed44d79833f6749a56dd99e6a41e21a7aed551ec135a776275c51d81"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439130",
+              "retrieved": "2026-09-17T11:31:43.986559+00:00",
+              "sha256": "d84b137fbfe03525d2d9d16f99bef292fb7e2502dcdf0448dbc90c87a3748942"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439130",
+              "retrieved": "2026-09-17T11:31:43.737928+00:00",
+              "sha256": "593966d891afdbaa13aca134f3069224ee2f00e9b3b349bb948dafdf5cdb0c91"
+            },
+            {
+              "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200594/439130",
+              "retrieved": "2026-09-17T11:31:44.036765+00:00",
+              "sha256": "a4576ebad6f2309a28fdfb705ec723108948b0d8e1c71ec8febef41500cb1e58"
+            }
+          ]
+        },
+        "image_date": null,
+        "date_limit": "Tiles have acquisition metadata not yet queried for these exact sites; fetch date is not photo date.",
+        "road_current_check": {
+          "url": "https://api.openstreetmap.org/api/0.6/way/33174904",
+          "http_status": 200,
+          "version": 1,
+          "way_edit_timestamp": "2009-04-14T13:55:57Z",
+          "node_ids": [
+            "374106588",
+            "374101356"
+          ],
+          "tags": {
+            "highway": "living_street"
+          },
+          "sha256": "c6db8dbd46da52e3d5e9133b34dcf5ccf4d03515be10fddd365b8cfed9b30c0f",
+          "limits": "This response checks way tags/references only, not current node coordinates; edit timestamp does not date shared-node geometry."
+        },
+        "conclusion": "Source layer and roof-level overlap cannot establish a ground passage or clearance; no rigid shift or subtraction based solely on the road intersection.",
+        "runtime_geometry_changed": false
+      },
+      "design_source": "references/lingshui/buildings/photos/83718-design.json"
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77572",
+      "name": "博留公寓06",
+      "status": "osm-outline-suspected-roof-displacement; ground-registration-unresolved",
+      "reviewed": "2026-09-17",
+      "building_osm_id": "way/1381605754",
+      "building_osm_version": 1,
+      "road_osm_id": "way/544369577",
+      "road_osm_version": 5,
+      "current_osm_comparison": [
+        {
+          "osm_id": "way/1381605754",
+          "version": 1,
+          "node_coordinates_match_archive": true,
+          "tags": {
+            "building": "university",
+            "layer": "1",
+            "name": "博留6舍"
+          }
+        },
+        {
+          "osm_id": "way/544369577",
+          "version": 5,
+          "node_coordinates_match_archive": true,
+          "tags": {
+            "highway": "living_street"
+          }
+        }
+      ],
+      "osm_sources": [
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/way/1381605754/full",
+          "retrieved": "2026-09-17T11:59:06.754454+00:00",
+          "sha256": "f0eb88ad58185e70cc0945dbba89ddab3d55f65ca85856f381466dc2efc85a43"
+        },
+        {
+          "url": "https://www.openstreetmap.org/api/0.6/way/544369577/full",
+          "retrieved": "2026-09-17T11:59:06.102309+00:00",
+          "sha256": "fa03722d949ff256e3670da674323da359786e6895824bfd5d0402758df55d77"
+        }
+      ],
+      "horizontal_conflict": {
+        "bounds_xz": [
+          905.704406738281,
+          -168.469848632813,
+          917.396850585938,
+          -153.667419433594
+        ],
+        "campus": "lingshui",
+        "id": "77572",
+        "name": "B3区06-博留公寓06",
+        "overlap_m2": 68.5409222841263,
+        "part": 0.0,
+        "source": "way/1381605754"
+      },
+      "imagery_views": [
+        {
+          "provider": "boliu6",
+          "view": {
+            "zoom": 19,
+            "pixel_origin": [
+              112418271,
+              51350812
+            ],
+            "size": [
+              1000,
+              1000
+            ],
+            "center_lon_lat": [
+              121.53064106111789,
+              38.88298121343873
+            ],
+            "sources": [
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200589/439133",
+                "retrieved": "2026-09-17T10:40:51.579276+00:00",
+                "sha256": "4b70dcabb075c43abb0ba053bebeb6007d26979038e71976d79059c1d0fcca81"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439133",
+                "retrieved": "2026-09-17T10:40:52.926696+00:00",
+                "sha256": "379fb78096d57bb33e078c44fba852efbeb0940129c19b7cb8651701027fdb4a"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439133",
+                "retrieved": "2026-09-17T10:40:52.430903+00:00",
+                "sha256": "0c285bee455ae9d3cc1705632acd1b7380166c303324df11eab00790561bcf13"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439133",
+                "retrieved": "2026-09-17T10:40:53.228869+00:00",
+                "sha256": "528cadceea6bcc7b3b25bb3960f64f381594aed624447139f90156fcb64d2f6b"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439133",
+                "retrieved": "2026-09-17T11:55:20.714386+00:00",
+                "sha256": "9eab6f97fe193e9ec06e842df5c9f7143776553bbf59606a3bfbd29348c466c0"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200589/439134",
+                "retrieved": "2026-09-17T10:40:52.862096+00:00",
+                "sha256": "44bdcdca9e780190a537ec16f75fc6b4e9d668fc45c0721e369999ed7237b781"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439134",
+                "retrieved": "2026-09-17T10:40:53.191584+00:00",
+                "sha256": "0b2be721bb2606e787ca85905701c92b0e3c2e81386ead18d84a81e1e09d1b71"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439134",
+                "retrieved": "2026-09-17T10:40:53.353657+00:00",
+                "sha256": "74bb452e44465ce23e19487b41b6f30d23fb27268ee68c3a2778b95cb27481f7"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439134",
+                "retrieved": "2026-09-17T10:40:53.575745+00:00",
+                "sha256": "51f862ef4aeeada55d412f3033e9048cd6dc3b097a732c917962bbf83957859f"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439134",
+                "retrieved": "2026-09-17T11:55:20.615836+00:00",
+                "sha256": "e438756151282a29df60ba6718f99f55046b44161457245307095370005f7b7d"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200589/439135",
+                "retrieved": "2026-09-17T10:40:53.808742+00:00",
+                "sha256": "645eb94d7741276c9c8130b4e512cd351e3501c54e453a38e71baf45046d1561"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439135",
+                "retrieved": "2026-09-17T10:40:54.494583+00:00",
+                "sha256": "3bd99cf67aa2bc773d109f09053a7dc044c7b760240587ab01562a2a3bd63719"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439135",
+                "retrieved": "2026-09-17T10:40:54.677291+00:00",
+                "sha256": "ad155d1c6f7b2902c31e58e46c326e4511afa1befb8dbc298b58b280cecc745c"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439135",
+                "retrieved": "2026-09-17T10:40:54.215102+00:00",
+                "sha256": "7f3e34e95dc24ff55a3d47fd6f77c99e36231f34077e5de5e84c4d787cb57e9c"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439135",
+                "retrieved": "2026-09-17T11:55:20.733271+00:00",
+                "sha256": "2f10fca2720a308f319e0a4754b124599c3720cca7923fa91dda8e4726f9bc41"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200589/439136",
+                "retrieved": "2026-09-17T10:40:54.836148+00:00",
+                "sha256": "6e17fe4f444cbb503dc4d6425db3c8e8c6ea34bd533f77f41bd78db28c3b6602"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439136",
+                "retrieved": "2026-09-17T10:40:55.009893+00:00",
+                "sha256": "02876d248ecc805672ca21cf1a4512d4365c5817d2cf1f7eab422d83670eee71"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439136",
+                "retrieved": "2026-09-17T10:40:55.557392+00:00",
+                "sha256": "5a0ca6a93934bb05c1ba149464765925c27dea7e3a1867afbfe5b321aaa58f8a"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439136",
+                "retrieved": "2026-09-17T10:40:55.278474+00:00",
+                "sha256": "94bad15ea756c610ba5124b616a3d392697f0b9f179a4c67aaf8203d43222f97"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439136",
+                "retrieved": "2026-09-17T11:55:20.646759+00:00",
+                "sha256": "a88a91c201bb5e19e2b2f67a963cefe8f4de27c68b974c2be897977b01ce79c9"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200589/439137",
+                "retrieved": "2026-09-17T11:55:21.271710+00:00",
+                "sha256": "7ab768e2d76976febee95a77ea176f45730e799b1fa161c5cf99a2da20616269"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200590/439137",
+                "retrieved": "2026-09-17T11:55:21.494880+00:00",
+                "sha256": "c5e7745355b0ad6bb33a4b718e408eb8af9f3632bdb9377dac0584f3449313a4"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200591/439137",
+                "retrieved": "2026-09-17T11:55:21.206556+00:00",
+                "sha256": "9fa7a55b8742a85cef762a1a17a7195bc0e768a5c21dae08ba1def46e987b8b5"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200592/439137",
+                "retrieved": "2026-09-17T11:55:21.359377+00:00",
+                "sha256": "889ba9b8a0989d40f55dedb74cee9fccfd8f5a6bc2ccd5905ecf36d8bf750a80"
+              },
+              {
+                "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/19/200593/439137",
+                "retrieved": "2026-09-17T11:55:21.838435+00:00",
+                "sha256": "d22faad0d8f21fbac9c3ef7a68965be22e7179b9c1c3a54f66401fc6d87e5bf3"
+              }
+            ]
+          }
+        },
+        {
+          "provider": "boliu6-tianditu",
+          "view": {
+            "campus": "lingshui",
+            "provider": "tianditu",
+            "zoom": 18,
+            "pixel_origin": [
+              56209060,
+              25675331
+            ],
+            "size": [
+              650,
+              650
+            ],
+            "native_tile_sizes": [
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ],
+              [
+                256,
+                256
+              ]
+            ],
+            "sources": [
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100294&TILECOL=219566&tk=REDACTED",
+                "retrieved": "2026-09-17T10:58:05.130146+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "344f8f7716575691f6eb26073d0dd30019a05877c4792ed19ce59b2c7ba5d37a"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100295&TILECOL=219566&tk=REDACTED",
+                "retrieved": "2026-09-17T10:58:05.214257+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "6061c28bce4a6026ea239c555c681cac190bd0d309988a5364c1af3442085906"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219566&tk=REDACTED",
+                "retrieved": "2026-09-17T10:58:05.190070+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "eebd05161fc55438824d1491c66f3df756344b25abae39cea3bd97e3068c1f3a"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100294&TILECOL=219567&tk=REDACTED",
+                "retrieved": "2026-09-17T10:58:05.560819+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "f824bea8c73d84815afbe6e935145cc84389234f4e096d3c5b45f96471b46ac0"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100295&TILECOL=219567&tk=REDACTED",
+                "retrieved": "2026-09-17T10:58:05.400187+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "7eab1aa4aa605952cec72aa8f1ac508c2170f782de23a4c51f8858675d4e305f"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219567&tk=REDACTED",
+                "retrieved": "2026-09-17T10:58:05.493595+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "d84ae0b1b796637405fe16e332cf57f268b088a12fc9b67b8d1e23d08a3b2be0"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100294&TILECOL=219568&tk=REDACTED",
+                "retrieved": "2026-09-17T10:58:05.677828+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "c5f77e6bdd44b61a29efcff4c66b87bfa4bd656902a24182fdbc99a987badbe4"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100295&TILECOL=219568&tk=REDACTED",
+                "retrieved": "2026-09-17T10:58:05.753484+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "b82e4fdab0fe70fd5b13c8b37b809be8b28264cf1be19e58bbd97eca51de74cd"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219568&tk=REDACTED",
+                "retrieved": "2026-09-17T10:58:05.743910+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "56694b175f2b584832e8c70cc8e7f25df051b3b1a2c7b60d9609e6e40b5c649d"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100294&TILECOL=219569&tk=REDACTED",
+                "retrieved": "2026-09-17T11:56:20.125777+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "f8b4fc83e1e1000052cb5029ee4308dde4bff015462eccad833da26c674da7ae"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100295&TILECOL=219569&tk=REDACTED",
+                "retrieved": "2026-09-17T11:56:20.166902+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "132ab224b14a5e7e741feef9734369a75aed41668d53eb0400dfc351bb21f6f3"
+              },
+              {
+                "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219569&tk=REDACTED",
+                "retrieved": "2026-09-17T11:56:20.125369+00:00",
+                "status": 200,
+                "content_type": "image/jpg",
+                "sha256": "ff9bd597f00b39dea0dd15ea25d7357183c09927b35123648a691fad6ade888e"
+              }
+            ]
+          }
+        },
+        {
+          "provider": "boliu6-maptiler",
+          "view": {
+            "campus": "lingshui",
+            "provider": "maptiler",
+            "zoom": 18,
+            "pixel_origin": [
+              56209060,
+              25675331
+            ],
+            "size": [
+              650,
+              650
+            ],
+            "native_tile_sizes": [
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ],
+              [
+                512,
+                512
+              ]
+            ],
+            "sources": [
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219566/100294.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T10:43:53.804279+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "82b6c82cac8fcd4220bc488729c9dbbcbd2827c7f4f18532bf9f2784ef187f55"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219566/100295.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T10:43:54.045110+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "bac72f63d01db745d9dd59406b465644d1e0a3c0535614de404182170e6d0fc4"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219566/100296.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T10:43:54.310878+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "7320a36375756ba334d861fd3e37a3be5cf7ce904c1204a04f2d555e1933fd5a"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219567/100294.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T10:43:54.970169+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "e3110fefffd50def41bccdca6b600faff8633214c05c9bc1c51887f743a01251"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219567/100295.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T10:43:55.318740+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "1c9b6a6993227c48301ceb9782971b05c6fc6524cb3235cf9884dd3bfa4cd315"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219567/100296.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T10:43:56.310093+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "54eb97a32005b8bdde43ad68717ea25edcd6c8fe44cbb6e29d32a2976e368171"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219568/100294.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T10:43:56.160125+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "ead7b6c42388c59cb3966e191029117a02ffada17c5bb935d438acff184379b9"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219568/100295.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T10:43:56.739805+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "48d7bf58d57460836e528649fc70222cfbb437640ed5cd49dca512b3161a9b3f"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219568/100296.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T10:43:57.550599+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "26dcf47a20565fa85c5e2c1a936da83ab999a144c0911379aed17d66848c1e0a"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219569/100294.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T11:56:21.801518+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "98e37d9f5c6d03786ab6679998b640d79f24afe7bc90657141d73a1eaddbda33"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219569/100295.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T11:56:21.505230+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "a7b59364d001ce58f57f88e30c50683688bfd69687152645bfb4fc400c718535"
+              },
+              {
+                "url": "https://api.maptiler.com/tiles/satellite-v2/18/219569/100296.jpg?key=REDACTED",
+                "retrieved": "2026-09-17T11:56:21.441963+00:00",
+                "status": 200,
+                "content_type": "image/jpeg",
+                "sha256": "7bce6d98981586524d32a62d8aa95a0e5b4277b3cb11db38e056fb30c6d3e8c5"
+              }
+            ]
+          }
+        }
+      ],
+      "esri_citation": {
+        "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/9/query?f=pjson&geometry=121.53064106111789%2C38.88298121343873&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=%2A&returnGeometry=false",
+        "retrieved": "2026-09-17",
+        "sha256": "8b319bcad20b631431ac1f2592070bb9b6eabe26930b6240871ff5051f9a8949",
+        "attributes": [
+          {
+            "OBJECTID": 5196592,
+            "SRC_DATE": 20250911,
+            "SRC_RES": 0.46,
+            "SRC_ACC": 8.47,
+            "SAMP_RES": 0.3,
+            "SRC_DESC": "GE01",
+            "MinMapLevel": 19,
+            "MaxMapLevel": 19,
+            "NICE_NAME": "Vivid Advanced",
+            "DrawOrder": 80,
+            "SRC_DATE2": 1757548800000,
+            "NICE_DESC": "Vantor",
+            "Shape_Length": 114172.79321109164,
+            "Shape_Area": 443639153.5,
+            "BlockName": "DYNAMIC_ESRI_Dalian_25Q4",
+            "ReleaseName": "Raster Basemaps 2026.R01"
+          }
+        ],
+        "limits": "Point query citation only. SRC_ACC=8.47 is provider source metadata, not locally measured registration error or a guarantee for this building."
+      },
+      "photo_review": "references/lingshui/buildings/photos/77572-context.json",
+      "findings": [
+        "原始WGS84叠图中，OSM矩形在Esri影像上接近屋顶范围；建筑西侧/南侧立面明显可见，墙脚相对屋顶偏向西南。不能将屋顶贴合视为正确地面定位。",
+        "天地图和MapTiler同范围影像亦显示侧立面及南端地面与屋顶分离；三供应商不等于三个独立测绘来源，未确认其底层影像是否独立。",
+        "OSM道路544369577穿过矩形东北部，当前全路宽水平相交约68.54平方米；这是生成几何检查，不是地面面积实测。",
+        "在线楼和路的节点引用、版本及经纬度均与归档一致，重新获取当前OSM不能解决该冲突。",
+        "官网13张相册图包含明显不同的楼翼与建筑；原有77572-0可供外墙参考，其余图不得仅按相册ownerId套用到本栋。",
+        "Esri查询点来源日期2025-09-11，原始分辨率字段0.46米，SRC_ACC字段8.47；后者不表示本站点已验证误差。天地图/MapTiler图像日期未确认。"
+      ],
+      "next_required_evidence": [
+        "楼北端与南端可识别墙脚控制点，并以周边地面路口/标线验证影像局部配准；现有南端可见部分不足以确定完整墙脚。",
+        "逐张确认楼号、观察方向及楼翼对应关系；不能用相邻L形楼图片补本栋体量。"
+      ],
+      "geometry_decision": "No translation, roof-outline tracing, road displacement or under-building passage applied. Keep this source conflict unresolved; do not average providers or choose a shift solely to remove intersection."
+    }
+  ]
+}

@@ -1,0 +1,359 @@
+{
+  "zone_id": "jinping-hill-canopy",
+  "reviewed": "2026-09-17",
+  "osm_id": "way/232560269",
+  "osm_version": 2,
+  "evidence": {
+    "photo": "references/eda/vegetation/photos/eda-lake-2.jpg",
+    "photo_sha256": "df297e77f042d9185422133623308e73c7a4a668c2024c2b5a4143819be01157",
+    "photo_index": "references/eda/vegetation/photos/eda-lake.json",
+    "imagery": {
+      "zoom": 18,
+      "pixel_origin": [
+        56260739,
+        25625764
+      ],
+      "size": [
+        1800,
+        1800
+      ],
+      "center_lon_lat": [
+        121.8109521545146,
+        39.087267284584975
+      ],
+      "sources": [
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100100/219768",
+          "retrieved": "2026-09-17T11:40:43.531203+00:00",
+          "sha256": "83f7e3f1d683a4aeb3d46db428aed9017605bf2653bcf6c5fc774d976187ccd1"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100101/219768",
+          "retrieved": "2026-09-17T11:40:43.621590+00:00",
+          "sha256": "313ffd12e4834231729504ea0faa3ffda3388e88ad5d1b4b737ab6675d67cf50"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100102/219768",
+          "retrieved": "2026-09-17T11:40:43.867359+00:00",
+          "sha256": "3d740b09d581ccc999880ced3eb6792555f84de95b920b0eeb9237e2d58a206d"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100103/219768",
+          "retrieved": "2026-09-17T11:40:43.965127+00:00",
+          "sha256": "bcb0387ba59e4dd73e957459743b39a9da4af91fa5b3b9a526ee8e42ff2c7aa3"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100104/219768",
+          "retrieved": "2026-09-17T11:40:44.566554+00:00",
+          "sha256": "a14f4fc4f36b98bbdaaf1fda1c80b5a1c79c034543026a6bc47e826700d5e4f4"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100105/219768",
+          "retrieved": "2026-09-17T11:40:44.201709+00:00",
+          "sha256": "b5e9235270289f2f754fd5f5f9030906861d242bd3b29576a621278d30d6b618"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100106/219768",
+          "retrieved": "2026-09-17T11:40:44.826423+00:00",
+          "sha256": "792865a2210cd01ed6f0801a0be0944b306b47e87b6b9d61fc37ab5208c2b4be"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100107/219768",
+          "retrieved": "2026-09-17T11:40:44.772105+00:00",
+          "sha256": "652dcefaff9d8347ba103c93232d0058752bfdf23900ded9b89d22902a3ed09d"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100100/219769",
+          "retrieved": "2026-09-17T11:40:45.345625+00:00",
+          "sha256": "cac733aafeb2df5bc8c2bec84d51ae4eec2afe1f75c624d192645b76028e5321"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100101/219769",
+          "retrieved": "2026-09-17T11:40:45.144511+00:00",
+          "sha256": "c403791488ab1ff65c6fb6abd87ea8f7555afdb4afc4cfe79bc63a5d74052fbb"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100102/219769",
+          "retrieved": "2026-09-17T11:40:45.377689+00:00",
+          "sha256": "548483f75124d3bae335c8fa2b48548f876f2897ad7266ddb2dec7e538c8934e"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100103/219769",
+          "retrieved": "2026-09-17T11:40:45.488854+00:00",
+          "sha256": "c7f1a15cfdce34e2c6e75f65865ebfdbb8a56110d57040977e379ca0edb04296"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100104/219769",
+          "retrieved": "2026-09-17T11:40:45.814498+00:00",
+          "sha256": "7aeeaff60c895b6bea5487b44ae0be731b11a4dd8983dfbee7f033bf8aac9a13"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100105/219769",
+          "retrieved": "2026-09-17T11:40:46.077325+00:00",
+          "sha256": "d87095b9e1a3588fc1f690a6bf41defd79d56000299bbfbc09fcea145bba71ab"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100106/219769",
+          "retrieved": "2026-09-17T11:40:46.146018+00:00",
+          "sha256": "39ec67a620c3234ffd589db00b78fe87ca9b2b400596c23fee6dd481cdae0dbf"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100107/219769",
+          "retrieved": "2026-09-17T11:40:46.094801+00:00",
+          "sha256": "91773888e24bf9030aa588b4560724b0e0cd2c3e9488a32883c7636eab9c5f04"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100100/219770",
+          "retrieved": "2026-09-17T11:40:46.739605+00:00",
+          "sha256": "492a93d2f47bd0bddfe594d29e2bf564020b94c21f146466dd6899c7a8a192e0"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100101/219770",
+          "retrieved": "2026-09-17T11:40:46.492145+00:00",
+          "sha256": "4a5e2634367f6438b457a50be6b0a47d8d7d385d70b31bcbc07c82eeedea3f8e"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100102/219770",
+          "retrieved": "2026-09-17T11:40:47.018304+00:00",
+          "sha256": "620b1463241e2fcbbc048fc0887ce57fd2617407fb103325ae62917142a96b42"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100103/219770",
+          "retrieved": "2026-09-17T11:40:47.334794+00:00",
+          "sha256": "be1d0fe3b0d0a57a5aa41e121867f1185d0bbf086d9d84ae67cf270aca315cd0"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100104/219770",
+          "retrieved": "2026-09-17T11:40:47.157200+00:00",
+          "sha256": "e9ecb2516b3d5f0897d0c100618f3adef5367f01219c0a27c722663939fa7753"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100105/219770",
+          "retrieved": "2026-09-17T11:40:47.232823+00:00",
+          "sha256": "f5d58834f253135fd21820bc9d41d3c79390e2df997f8dbb968cc7e7874e2507"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100106/219770",
+          "retrieved": "2026-09-17T11:40:47.581552+00:00",
+          "sha256": "7811cbdc0250a6701959ba6a13e1d1e296a0c4e5dfca4bf18663f32e52ca1586"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100107/219770",
+          "retrieved": "2026-09-17T11:40:47.867906+00:00",
+          "sha256": "9ae294d0bdc428dce615eb3bcc74fa49c65f61c402773b0d353cdff081ef2794"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100100/219771",
+          "retrieved": "2026-09-17T11:40:48.267676+00:00",
+          "sha256": "ace52abbb32055bb06b179c5e0d7b1249dd692ff8611e3b88479363b2fd418b8"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100101/219771",
+          "retrieved": "2026-09-17T11:40:48.017819+00:00",
+          "sha256": "e2c64e3fddb44bca4aa0aa65558a45c17f45b985220c7ac934efdfa9d5663300"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100102/219771",
+          "retrieved": "2026-09-17T11:40:48.544343+00:00",
+          "sha256": "86012a92d60796efa62e2852b3e32a2b522fa2d9f053cd1516a61b353ff1638f"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100103/219771",
+          "retrieved": "2026-09-17T11:40:48.635376+00:00",
+          "sha256": "94b2d7d800c2bdca99bb002731cfe39e39656059e8b4c51d1143fbfaf716a142"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100104/219771",
+          "retrieved": "2026-09-17T11:40:48.859388+00:00",
+          "sha256": "d2f7dd868bda3dfc98c5b6c449fd41122c5623efed3b1b5ed2731c57170fba66"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100105/219771",
+          "retrieved": "2026-09-17T11:40:48.832502+00:00",
+          "sha256": "5dc0b0b6cac518f6e199c41deca29e9425c84c156f85e65c15ac4cfbd3687a43"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100106/219771",
+          "retrieved": "2026-09-17T11:40:49.645918+00:00",
+          "sha256": "bb95bea7b2e299c7a9044a0b23efe078968559a08c1c170668a45ab042bdbbe0"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100107/219771",
+          "retrieved": "2026-09-17T11:40:49.144598+00:00",
+          "sha256": "bd68faa935bc3a2938585ad186bc7fbaa0cf4c38e7390118907b1d3cb6c31629"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100100/219772",
+          "retrieved": "2026-09-17T11:40:49.619842+00:00",
+          "sha256": "cc47d58ae0d4ac4421a309cfa799149188fd8e4ce186ee2ba04d86c16f058c9c"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100101/219772",
+          "retrieved": "2026-09-17T11:40:49.540633+00:00",
+          "sha256": "3cc06956e86e33d2f89a152e53dd3be1ce9b4fb5048236819ec0ace270a1377a"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100102/219772",
+          "retrieved": "2026-09-17T11:40:50.420520+00:00",
+          "sha256": "a72c95ecd931cffb22127728b672b32f7f69c23d2159da98d97e1cf1fdbacbd2"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100103/219772",
+          "retrieved": "2026-09-17T11:40:50.241090+00:00",
+          "sha256": "c630213e933c2db3c26ca2434aba2c7d4f8aa85971462843b4c35bc0755296fe"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100104/219772",
+          "retrieved": "2026-09-17T11:40:50.062393+00:00",
+          "sha256": "57dd386310c325d0e2fad259bba007a91c71f61cacd16993280208f21ffd3a44"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100105/219772",
+          "retrieved": "2026-09-17T11:40:50.591404+00:00",
+          "sha256": "022665b4b411928e3a4d797b22c41773d0ce0f1c4cd7212fc419c0292e825116"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100106/219772",
+          "retrieved": "2026-09-17T11:40:50.903700+00:00",
+          "sha256": "77779d6a8a8ed656c557c90802a695060e3da73076ffc370c8d9cc96b46621c3"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100107/219772",
+          "retrieved": "2026-09-17T11:40:51.223689+00:00",
+          "sha256": "d11bc3f5e526f759bac4a5138c85a9c89f5bafcb0c2f7a3c624cf2fcc9540d57"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100100/219773",
+          "retrieved": "2026-09-17T11:40:50.969303+00:00",
+          "sha256": "b7d522434555a10352d63646fb3711274d7a641103d9f615c468d417c137dc11"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100101/219773",
+          "retrieved": "2026-09-17T11:40:51.806085+00:00",
+          "sha256": "392db95d841c6b84b517fdfa19cc22e7ba64cfc3aa1bc338e2e2bf34ffa7a4b9"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100102/219773",
+          "retrieved": "2026-09-17T11:40:51.480420+00:00",
+          "sha256": "641b35c1870d2eb6d4d08a1d551b3a119d29fa6a024e754a62958d6421b789b9"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100103/219773",
+          "retrieved": "2026-09-17T11:40:51.637239+00:00",
+          "sha256": "6bfcadac720e9cb77956ee506c64786511fb7db249c28c7a70450354f592309c"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100104/219773",
+          "retrieved": "2026-09-17T11:40:52.429990+00:00",
+          "sha256": "e16d58e0ead11aaf0d762cd76cc367cfcab9f941f1ff0bbfba51db6954c34d5e"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100105/219773",
+          "retrieved": "2026-09-17T11:40:52.258887+00:00",
+          "sha256": "d951012a99e45ef7630b32c67f879e0380757eb55be7c0a2cfca9c9423091c84"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100106/219773",
+          "retrieved": "2026-09-17T11:40:52.480192+00:00",
+          "sha256": "f35f03bf1cb9abb0c1431e0420c95fcb6ef018ae1e009416a56a4bfe1b9e59ff"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100107/219773",
+          "retrieved": "2026-09-17T11:40:52.635618+00:00",
+          "sha256": "9a1822bde1cda17b406e0ff072dfc488f21b319cc624c55f261e37a6512b8a3d"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100100/219774",
+          "retrieved": "2026-09-17T11:40:53.091004+00:00",
+          "sha256": "75a5e6cfb8de20fb630cba9006cfa2610ca33c6de0ec63a0ca2f7a5de385a2fe"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100101/219774",
+          "retrieved": "2026-09-17T11:40:53.244973+00:00",
+          "sha256": "527d360fe8a38c8d9d40e6fe21260697e611e72991494a2bac544c4e34ab2117"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100102/219774",
+          "retrieved": "2026-09-17T11:40:53.171580+00:00",
+          "sha256": "484ceea277337bde51a1b0b29108e6814006d26ab838a7bb5776aec19b9b6fcb"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100103/219774",
+          "retrieved": "2026-09-17T11:40:53.244848+00:00",
+          "sha256": "2c2e51c35c88ccf48d468d7af771b477ebed71c7b9d7236848805eecc17e41d9"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100104/219774",
+          "retrieved": "2026-09-17T11:40:53.965992+00:00",
+          "sha256": "cd2e78078fc747d6ee050b8c57ed9dac16d4eb5b2e50db0651067efb658b3de8"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100105/219774",
+          "retrieved": "2026-09-17T11:40:53.747121+00:00",
+          "sha256": "f2897176cd313258fa6cada613424d0f2d5e9712e43669df6071d495561c06c9"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100106/219774",
+          "retrieved": "2026-09-17T11:40:53.746982+00:00",
+          "sha256": "a3e89ba570ab8cb1bf6e545e63711038ad6395dee436adfaab0db0f9d1b68a25"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100107/219774",
+          "retrieved": "2026-09-17T11:40:54.227621+00:00",
+          "sha256": "8c0eb3403a47a295a9facccd42b98420c9df82b9872fa118a28ea41464595704"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100100/219775",
+          "retrieved": "2026-09-17T11:40:55.184304+00:00",
+          "sha256": "ba9ce202ba562d9fee6bbd397c4e082b2d3274b542c47b555722b5e0fb1ade68"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100101/219775",
+          "retrieved": "2026-09-17T11:40:55.006361+00:00",
+          "sha256": "3cd9b1fa2c60c1b32da8999c1ca8486b10d57badf1d4d92ffb23341691d198cb"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100102/219775",
+          "retrieved": "2026-09-17T11:40:55.442760+00:00",
+          "sha256": "e0db538288fec4cd87b997da0c622700afe8fcc8b53a6d3a7273f465be8318c3"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100103/219775",
+          "retrieved": "2026-09-17T11:40:55.331268+00:00",
+          "sha256": "3d92e1a49992e5d713ed75f2578863df631d0e2625e29de456e7155d6b4a5dd5"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100104/219775",
+          "retrieved": "2026-09-17T11:40:56.252310+00:00",
+          "sha256": "55033b8095d67ee7fb9da92f6f90228b9aae33bec5e0d856ce741d7672c6696d"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100105/219775",
+          "retrieved": "2026-09-17T11:40:56.608186+00:00",
+          "sha256": "4c6fc2cfe1b8125affa62a1c643f3dd5f3143b2fd6a65db22fb06452fcd2bed0"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100106/219775",
+          "retrieved": "2026-09-17T11:40:56.509902+00:00",
+          "sha256": "3a97eb9b892f89287ac5e991dd38c90a6b6f8b5d6376bfce97b556b1fb04ebcc"
+        },
+        {
+          "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/18/100107/219775",
+          "retrieved": "2026-09-17T11:40:56.998836+00:00",
+          "sha256": "95f89441ac3ce37c32cccd83fa3f7d6e244bc463aad60979e67f681d7db11b75"
+        }
+      ]
+    }
+  },
+  "method": "Use the archived natural=wood polygon directly in the common WGS84 local frame; no legacy bound, image-derived shift or old polygon used. Full extent inspected against Esri canopy; official oblique aerial photo independently supports southern hill woodland.",
+  "observations": [
+    "OSM林地区域跟随锦屏山连续林冠，避开北段西侧广场、东侧设施、南侧湖面和西側道路；完整29点范围比原旧框的南段更长。",
+    "北段及中段连续树冠由本次影像核对，不将南段实照的可见范围直接扩展为整山证据。"
+  ],
+  "limits": [
+    "影像拼接没有校正树冠视差，边界未实测；本次未查询该视图全域拍摄日期。",
+    "使用通用阔叶冠形；单株位置、数量、10米间距、7.5至12米高度为程序化近似，不是林木普查。",
+    "道路/水面/建筑排除规则只控制种植位置，不能证明现有道路或地形精度。",
+    "使用已有WGS84 DSM地形落根，不恢复旧官网轮廓基台；植被没有碰撞。"
+  ]
+}

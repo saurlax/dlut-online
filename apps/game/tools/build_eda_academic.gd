@@ -7,9 +7,9 @@ var axis: Vector2
 var out: Vector2
 var length: float
 
-func frame_for(points: PackedVector2Array, edge: int) -> void:
+func frame_for(points: PackedVector2Array, edge: int, end_vertex := -1) -> void:
 	origin = points[edge]
-	var end := points[(edge+1)%points.size()]
+	var end := points[(edge+1)%points.size() if end_vertex < 0 else end_vertex]
 	axis = (end-origin).normalized()
 	length = origin.distance_to(end)
 	out = Vector2(axis.y,-axis.x)

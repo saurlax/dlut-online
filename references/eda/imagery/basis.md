@@ -51,3 +51,14 @@
 ## 官方轮廓的二维与三维坐标处理
 
 已核对官方网页发布脚本，源码URL、哈希和相关函数摘录见 `../../shared/mapping/map-coordinate-handling.json`。`/bd/v1/bound`返回的轮廓在二维及卫星模式下直接使用，仅在三维示意图模式下经`geoToGeo3D`转换；不能再对接口轮廓调用`geo3DToGeo`。配置里的`map3DParams`不是用于修正当前Godot轮廓的参数。客户端代码没有声明二维坐标的地理基准或保证轮廓测绘精度，七舍和实验室仍需独立地物控制点配准；目前影像与轮廓的差异不能直接解释为楼高或朝向错误。此项只排除重复坐标变换，不改变模型。
+
+## 综合楼小圆体补充视角核对（2026-09-17）
+
+复核上述后向10/11行08/09列，并查看同一DUT_KFQ00场景l5层级10/11行10/11列。主体屋顶、树冠与视线遮挡仍未提供小圆体地面墙脚闭环，场景缺少经纬度与朝向，不能把屋顶或附近车棚当作圆体边界；不新增圆体模型。下列原图只作离线核对，未纳入仓库或客户端，保留公开来源与内容摘要以便重取。
+
+| 瓦片 | 原始URL | SHA-256 |
+| --- | --- | --- |
+| `back-10-10.jpg` | https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/10/l5_b_10_10.jpg | `25792fc0ef4fccea2a0bae41db5b3cf2e75ba6386be097cfdabd46835f984b01` |
+| `back-11-10.jpg` | https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/11/l5_b_11_10.jpg | `ba1bca6c03a76659d4567ca10faa5a694ddda85a82161cec547c155e11f9f51f` |
+| `back-10-11.jpg` | https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/10/l5_b_10_11.jpg | `1ca917da97efed156bbf81eaa8c473db1eb2de9423b1d996feaeccd73f9215e2` |
+| `back-11-11.jpg` | https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/11/l5_b_11_11.jpg | `de5b582ae5f76c091d02914b26919f76eccb6bc7678e7e7577be7cec2f3151c2` |

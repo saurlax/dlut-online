@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "official_id": "2034735",
+  "name": "西山学生宿舍30、31舍",
+  "status": "geometry-unresolved; reference-only",
+  "read_date": "2026-09-17",
+  "sources": [
+    {
+      "id": "topping",
+      "title": "学校西山生活区学生公寓项目主体封顶",
+      "url": "https://jjc.dlut.edu.cn/info/1018/3053.htm",
+      "published_date": "2023-06-29",
+      "read_date": "2026-09-17",
+      "page_sha256": "77b7ecf740d683910edaecf04e853727b38e777825ef7bab2c804291f773cb5b"
+    },
+    {
+      "id": "progress",
+      "title": "大连理工大学建设项目进度情况简报（2023年7-8月）",
+      "url": "https://jjc.dlut.edu.cn/info/1085/3093.htm",
+      "published_date": "2023-09-06",
+      "read_date": "2026-09-17",
+      "page_sha256": "e931d2a0ca7ca5241b50f484cfa665ed4ad29703981c16925c291357e1e03685"
+    },
+    {
+      "id": "sports",
+      "title": "西山体育中心简介",
+      "url": "https://tycgzx.dlut.edu.cn/info/1020/3884.htm",
+      "published_date": "2024-04-15",
+      "read_date": "2026-09-17",
+      "page_sha256": "65e1a18812b4caa99fc3bb5d0d3b8185962aab08456c1595786fabd3f44d8713"
+    },
+    {
+      "id": "access",
+      "title": "炼精品　强保障　新生宿舍交付使用",
+      "url": "https://xszx.dlut.edu.cn/info/1007/6901.htm",
+      "published_date": "2025-09-04",
+      "read_date": "2026-09-17",
+      "page_sha256": "738e601b2a6c653e12cb459f72779dc727ffa179e8fed48bdc15387ca7278006"
+    },
+    {
+      "id": "lease",
+      "title": "〖公房招租公告〗大连理工大学西山30、31舍",
+      "url": "https://zcglc.dlut.edu.cn/info/1061/3388.htm",
+      "published_date": "2024-04-19",
+      "read_date": "2026-09-17",
+      "page_sha256": "a9db9d5ae662c7b72e131e48dcf1cdb08131cd9588ce521a9934dab0f39ab70c"
+    }
+  ],
+  "images": [
+    {
+      "path": "references/lingshui/buildings/xishan-30-31/design-render.jpg",
+      "url": "https://jjc.dlut.edu.cn/virtual_attach_file.vsb?afc=LnRvMsMRl4nmVRnoRGPnRLPL7Uanz9u4UNCiMNVVMRCZU8-0gihFp2hmCIa0USyPLkhVMkyYnmLsMRN4nmMkoR-bnlCaUm7bnNWfM7-DozQFUmLaM7r2M4TFU8nkUmNJqjfjo4OeoDX/CYhXptQ0g47aLz90L4GiLYbw62U8c&oid=1120954706&tid=1018&nid=3053&e=.jpg",
+      "source_id": "topping",
+      "sha256": "aa163750a9ceac7b0aa6b5ed30cc5230da19da5dfffc81087460da7ae0641176",
+      "capture_date": null,
+      "limits": "设计效果图，非实景照片；仅用于双塔与裙房关系核对，不能描作墙脚。"
+    },
+    {
+      "path": "references/lingshui/buildings/xishan-30-31/sports-entrance.jpg",
+      "url": "https://tycgzx.dlut.edu.cn/virtual_attach_file.vsb?afc=OLzGx8LzWVLRlanJR-snllYUm6RUmM0kUlVfMzLZM4LDUlC0gihFp2hmCIa0LkybnSyYMSh2nmWRo7C8MRfVnRUYMNWkMzr7MzrfnR-8UlVFL4C8Lzr2MlMFn7VVnSb/v2veo4Oe6dTmQsXZgDTJQty0LzGYLky4oR98gtA8pUacc&oid=1498289128&tid=1020&nid=3884&e=.jpg",
+      "source_id": "sports",
+      "sha256": "05006279ac178869d9fffafe94204ceea7e583a4d82b12f8e461b26c590f893b",
+      "capture_date": null,
+      "limits": "入口牌匾确认体育中心身份；局部近景，无完整平面。"
+    },
+    {
+      "path": "references/lingshui/buildings/xishan-30-31/sports-court.jpg",
+      "url": "https://tycgzx.dlut.edu.cn/virtual_attach_file.vsb?afc=OU8rxknRU4Um-aLJ8UDoRNbL4UsMmA0fn7r7M7-PM8r7ozC0gihFp2hmCIa0oky8nShkn1yPMl-DLNnRMzLPM4vPLmfknzGPnz-snmMknNQFM4AVMzNaMmVFLz9YUzCJqjfjo4OeosnbCD6E_khXptQ0g47aLmG0L49ZMkbw62a8c&oid=1498289128&tid=1020&nid=3884&e=.jpg",
+      "source_id": "sports",
+      "sha256": "ed2289b8ccc8186c8da1b8988f58faaeb323e81192103970298959d0d597d7cc",
+      "capture_date": null,
+      "limits": "室内篮球场上方可见跑道/挑空，证明局部竖向关系；无完整室内平面与尺寸。"
+    },
+    {
+      "path": "references/lingshui/buildings/xishan-30-31/sports-track.jpg",
+      "url": "https://tycgzx.dlut.edu.cn/virtual_attach_file.vsb?afc=OMNQx7nmCiMRlsnJN7aMmfkL8lZn770ZU87iMNU4LR-bUmN0gihFp2hmCIa0MYyPnSybokyDLzvaUzr2nNQ2LllaUN-4LmviMmfkU4CYUNWFL8U8n7UPnmAFLzCYnNCJqjfjo4OeosnbCD6E_khXptQ0g47aLmG0L49ZMkbw62a8c&oid=1498289128&tid=1020&nid=3884&e=.jpg",
+      "source_id": "sports",
+      "sha256": "4583bbb61a010c5fecfa7f77ce2174c087a60a634325e0a69ab4a0fba69eac80",
+      "capture_date": null,
+      "limits": "室内环形跑道与下层场地挑空；透视视角，不能直接生成米制边框。"
+    },
+    {
+      "path": "references/lingshui/buildings/xishan-30-31/access-route-0.jpg",
+      "url": "https://xszx.dlut.edu.cn/virtual_attach_file.vsb?afc=wL8-XbUzCaLl7PM/mNYnmviU8lYolrKVUm9ZnlLsoz6kL8l0gihFp2hmCIa0L1h7n1y4MkyiolrVM77PUl-bolLbLR-inmNPMl74UNWkU8VFU87PM4LPnNMFoRMfL7-Jqjfjo4OeosAb_dME_khXptQ0g47aLRv0MmNaLSbw62O8c&oid=1983475514&tid=1007&nid=6901&e=.jpg",
+      "source_id": "access",
+      "sha256": "2c8fd5cdd7b3e892db3bd340b53ddd346794c22779340fe7cc094ca4d6e4f21f",
+      "capture_date": null,
+      "limits": "文章发表于2025-09-04，未提供独立拍摄日期。通道近景显示台阶/栏杆/铺装与邻楼，透视及树木遮挡，尚无WGS84控制点，不据此量取通道宽度或整栋墙脚。"
+    },
+    {
+      "path": "references/lingshui/buildings/xishan-30-31/access-route-1.jpg",
+      "url": "https://xszx.dlut.edu.cn/virtual_attach_file.vsb?afc=wMRLX4L8MRL8-sL/77aUzlDnzARM4NKYLzMfUm7sMlUbnN-0gihFp2hmCIa0USysU1yDUSyZUz6fM7n2nNW2MzLDoRLiU4Gbn774n7lYU4MFUlUbUNLanmAFM4UbLzGJqjfjo4OeosAb_dME_khXptQ0g47aLRv0MmNaLSbw62O8c&oid=1983475514&tid=1007&nid=6901&e=.jpg",
+      "source_id": "access",
+      "sha256": "ae01e5d770b0122dfa03da6dc8a57564c763f8f81a5a963045353fcf8867367f",
+      "capture_date": null,
+      "limits": "文章发表于2025-09-04，未提供独立拍摄日期。通道近景显示台阶/栏杆/铺装与邻楼，透视及树木遮挡，尚无WGS84控制点，不据此量取通道宽度或整栋墙脚。"
+    }
+  ],
+  "findings": [
+    "2023年封顶报道将项目定位在17、18、19舍南侧，描述为两层裙房与两栋各22层塔楼；局部裙房层高9米不等于裙房总高度。",
+    "2023年7-8月基建简报列为23层、1栋双塔、高83.7米；与封顶报道的22层措辞差异保留，未擅自解释楼层计数或把83.7米套到全部裙房。总建筑面积46000平方米不能当占地面积。",
+    "2024年体育中心资料确认其位于30、31舍B1、B2层；实景图证实室内挑空与跑道，但不能重建完整体育中心平面。B1/B2命名未提供统一高程。",
+    "2025年修缮报道明确拆除围墙、迁移两处临建，打通体测中心南侧20舍至30舍通道；两张照片显示带栏杆的台阶、铺装通道以及相邻高层与低层建筑，不支持把这一通道视作连续楼体。尚未确定其对应哪一条OSM线。",
+    "2024年招租公告有B101/B102/B103/B104/B106房号和租赁面积，无平面附件；房间面积不能逆推出裙房外界。公告链接已记录，租赁平台详情未取得有效内容。",
+    "旧官方照片API为零条仅代表该接口无图，不能再表述为没有任何实景资料。当前运行12点旧斜视轮廓、18米估计单体仍未迁移。"
+  ],
+  "georeferencing": {
+    "horizontal_crs": "未提供",
+    "vertical_datum": "未提供",
+    "control_points": [],
+    "accuracy": "未提供实测精度；未进行照片透视轮廓到墙脚的转换"
+  },
+  "next_required": [
+    "从可配准俯视图或有效平面资料分别确定塔楼、裙房与通道地面边界；不得将设计效果图当实景。",
+    "核对2025年通道变化与OSM版本，登记统一WGS84控制点及局部地形/台阶高差。",
+    "有充分证据后成组重建楼体、周边道路、地形、植被、台阶及两端碰撞并检查通行。"
+  ],
+  "license": {
+    "name": "未发现明确的第三方复制或再分发许可",
+    "terms_url": null,
+    "authorization_status": "公开资料，仅离线参考；不进入客户端或发行资源"
+  }
+}

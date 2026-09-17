@@ -2,7 +2,7 @@
   "schema_version": 1,
   "campus": "eda",
   "retrieved": "2026-09-16",
-  "coordinates": "Campus local metres, X east Z south. Hand-aligned to official feature outlines.",
+  "coordinates": "Unregistered zones retain archived legacy polygons and remain withheld. Registered zones take geometry exclusively from versioned OSM areas through the shared WGS84 frame.",
   "source_pages": [
     "https://news.dlut.edu.cn/info/1022/143385.htm",
     "https://news.dlut.edu.cn/info/1292/147345.htm"
@@ -343,7 +343,23 @@
     {
       "id": "library-north-lawn",
       "seed": 9041,
-      "polygon": [
+      "photos": [
+        "../imagery/panoramas/KFQ00-front.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "grass",
+          "spacing": 0.9,
+          "height": [
+            0.09,
+            0.17
+          ],
+          "clearance": 0.6
+        }
+      ],
+      "lawn": true,
+      "precision": "OSM grass area in shared WGS84 frame; panorama confirms open lawn, not a tree grid. Building-side edge is provisional; grass density/height are illustrative, not surveyed.",
+      "superseded_legacy_polygon": [
         [
           110,
           82
@@ -361,19 +377,7 @@
           105
         ]
       ],
-      "photos": [
-        "../imagery/panoramas/KFQ00-front.jpg"
-      ],
-      "plants": [
-        {
-          "kind": "grass",
-          "spacing": 0.9,
-          "height": [
-            0.09,
-            0.17
-          ],
-          "clearance": 0.6
-        },
+      "withheld_plant_profiles": [
         {
           "kind": "broadleaf",
           "spacing": 12,
@@ -384,8 +388,16 @@
           "clearance": 3
         }
       ],
-      "lawn": true,
-      "precision": "Approximate registration of visible lawn; no tree survey"
+      "osm_registration": {
+        "osm_id": "way/1076344098",
+        "osm_version": 4,
+        "expected_geometry_sha256": "0ca5996f81a34861dbd31069578c7fe7b81878dc526bd076a02a33fe30842a33",
+        "expected_tags": {
+          "landuse": "grass"
+        },
+        "review": "references/eda/vegetation/library-lawn-registration.json"
+      },
+      "notes": "Restore low grass and lawn only. Retain broadleaf profile as withheld: open lawn photograph does not support uniform interior trees; boundary trees need separate registration."
     },
     {
       "id": "library-west-border-trees",
@@ -437,7 +449,23 @@
     {
       "id": "jinping-hill-canopy",
       "seed": 5401,
-      "polygon": [
+      "photos": [
+        "photos/eda-lake-2.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "broadleaf",
+          "spacing": 10,
+          "height": [
+            7.5,
+            12
+          ],
+          "clearance": 4
+        }
+      ],
+      "lawn": false,
+      "precision": "Independent OSM woodland boundary checked against official aerial photography and Esri imagery; generic crown, estimated heights and procedural density, not surveyed individual trees.",
+      "superseded_legacy_polygon": [
         [
           -183.105,
           -26.246
@@ -523,22 +551,16 @@
           -23.497
         ]
       ],
-      "photos": [
-        "photos/eda-lake-2.jpg"
-      ],
-      "plants": [
-        {
-          "kind": "broadleaf",
-          "spacing": 10,
-          "height": [
-            7.5,
-            12
-          ],
-          "clearance": 4
-        }
-      ],
-      "lawn": false,
-      "precision": "Official hill footprint with visible continuous deciduous canopy; generic crown, unknown species; procedural infill is not a tree survey"
+      "osm_registration": {
+        "osm_id": "way/232560269",
+        "osm_version": 2,
+        "expected_geometry_sha256": "f1276151ae66b037f77d73c98666c874ea2b7f27da00debe9858de32716ce3d6",
+        "expected_tags": {
+          "natural": "wood",
+          "name": "锦屏山"
+        },
+        "review": "references/eda/vegetation/jinping-registration.json"
+      }
     }
   ],
   "deferred_zones": [

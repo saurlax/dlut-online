@@ -1,8 +1,11 @@
-"""Build a provisional 10 m terrain grid from sourced DSM and recorded alignment."""
+"""Build a provisional 10 m terrain grid from sourced DSM in the shared WGS84 frame."""
+import argparse
+import hashlib
 import json
 import math
 import statistics
 from pathlib import Path
+import osm_world
 
 ROOT = Path(__file__).resolve().parents[3]
 STEP = 10.0
@@ -27,17 +30,20 @@ def edge_distance(x, z, polygon):
 
 def build(campus):
     directory = ROOT / f'apps/game/assets/campuses/{campus}/data'
-    manifest = json.loads((directory/'campus.json').read_text())
+    manifest = json.loads((directory/'campus.json').read_text(encoding='utf-8'))
+    if (manifest.get('geographic_crs') != 'EPSG:4326'
+            or manifest.get('coordinate_frame') != osm_world.FRAME_PATH.relative_to(ROOT).as_posix()
+            or manifest.get('origin') != osm_world.frame(campus)['origin_lon_lat']):
+        raise ValueError(f'{campus}: shared WGS84 frame required; legacy terrain shifts are unsupported')
     refs = ROOT / f'references/{campus}/terrain'
-    grid = json.loads((refs/'heightfield.json').read_text())
-    alignment = json.loads((refs/'alignment.json').read_text())
+    grid = json.loads((refs/'heightfield.json').read_text(encoding='utf-8'))
     raw = grid['rows_north_to_south']; h = len(raw); w = len(raw[0])
     # Lower-envelope then mean, each 3x3 source cells: an estimate, never a measured DTM.
     lower = [[min(raw[rr][cc] for rr in range(max(0,r-1),min(h,r+2)) for cc in range(max(0,c-1),min(w,c+2))) for c in range(w)] for r in range(h)]
     smooth = [[statistics.mean(lower[rr][cc] for rr in range(max(0,r-1),min(h,r+2)) for cc in range(max(0,c-1),min(w,c+2))) for c in range(w)] for r in range(h)]
-    lon0,lat0=manifest['origin']; meter_lon=111320*math.cos(math.radians(lat0)); ox,oz=alignment['offset_xz_m']
+    lon0,lat0=manifest['origin']; meter_lon=111320*math.cos(math.radians(lat0))
     def sample(x,z):
-        lon=lon0+(x+ox)/meter_lon; lat=lat0-(z+oz)/111320
+        lon=lon0+x/meter_lon; lat=lat0-z/111320
         col=(lon-grid['sample_origin_lon_lat'][0])/grid['sample_step_lon_lat'][0]
         row=(lat-grid['sample_origin_lon_lat'][1])/grid['sample_step_lon_lat'][1]
         assert 0<=col<w-1 and 0<=row<h-1,(campus,x,z,col,row)
@@ -45,7 +51,7 @@ def build(campus):
         return (smooth[r][c]*(1-u)+smooth[r][c+1]*u)*(1-v)+(smooth[r+1][c]*(1-u)+smooth[r+1][c+1]*u)*v
     bounds=manifest.get('bounds',[-640,-410,1280,930]);x0,z0,bw,bh=bounds
     nx=math.ceil(bw/STEP)+1;nz=math.ceil(bh/STEP)+1
-    spawn=[96,28] if campus=='lingshui' else [12,387]
+    spawn=manifest.get('spawn_xz',[96,28] if campus=='lingshui' else [12,387])
     datum=sample(*spawn)
     rows=[[sample(x0+c*STEP,z0+r*STEP)-datum for c in range(nx)] for r in range(nz)]
     pads={}
@@ -56,6 +62,7 @@ def build(campus):
     for f in manifest['features']:
         if f['kind'] not in ['building','water','sports','track','basketball','tennis','gate']:continue
         polygons=f.get('render_polygons',[f['points']]);points=f['points']
+        if not polygons:continue
         level=statistics.median(feature_samples[f["id"]])-datum
         name='Feature_'+f['id']+('_'+str(f['part']) if 'part' in f else '')
         pads[name]=round(level,4)
@@ -69,10 +76,18 @@ def build(campus):
                     priorities[r][c] = signed_distance
                     weight=1 if signed_distance<7.5 else max(0,1-(signed_distance-7.5)/12.5)
                     rows[r][c]=(sample(x,z)-datum)*(1-weight)+level*weight
-    output={'schema_version':1,'campus_id':campus,'origin_xz':[x0,z0],'step_m':STEP,'width':nx,'height':nz,'absolute_y_offset_egm2008_m':datum,'feature_base_y':pads,'rows':[[round(v,4) for v in row] for row in rows],'basis':f'references/{campus}/terrain/alignment.json','classification':'provisional filtered DSM with estimated feature pads; 10m is mesh spacing, not survey accuracy'}
-    (directory/'terrain.json').write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n')
+    output={'schema_version':1,'campus_id':campus,'origin_xz':[x0,z0],'step_m':STEP,'width':nx,'height':nz,'absolute_y_offset_egm2008_m':datum,'feature_base_y':pads,'rows':[[round(v,4) for v in row] for row in rows],'basis':manifest['coordinate_frame'],'classification':'provisional filtered DSM with estimated feature pads; 10m is mesh spacing, not survey accuracy'}
+    output.update(horizontal_crs='EPSG:4326',old_official_shift_applied=False)
+    output.update(vertical_datum='EGM2008', height_unit='m',
+                  source=(refs/'heightfield.json').relative_to(ROOT).as_posix(),
+                  source_sha256=hashlib.sha256((refs/'heightfield.json').read_bytes()).hexdigest())
+    (directory/'terrain.json').write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n',encoding='utf-8')
     print(campus,nx,nz,'vertical origin',datum)
 
 
 if __name__=='__main__':
-    for campus in ['lingshui','eda']:build(campus)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--campus', choices=['lingshui','eda','panjin','all'], default='all')
+    args = parser.parse_args()
+    for campus in ['lingshui','eda','panjin'] if args.campus == 'all' else [args.campus]:
+        build(campus)

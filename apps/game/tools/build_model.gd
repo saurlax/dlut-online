@@ -65,24 +65,42 @@ func triangle(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
 	st.add_vertex(b)
 	st.add_vertex(c)
 
-func polygon(parent: Node3D, points: PackedVector2Array, height: float, mat: Material, title: String, base := 0.0) -> void:
+func polygon(parent: Node3D, points: PackedVector2Array, height: float, mat: Material, title: String, base := 0.0, holes: Array = []) -> void:
 	var indices := Geometry2D.triangulate_polygon(points)
 	assert(not indices.is_empty(), "Invalid source polygon: " + title)
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	st.set_smooth_group(-1)
-	for index in indices:
-		st.add_vertex(Vector3(points[index].x, height, points[index].y))
+	var rings: Array[PackedVector2Array] = [points]
+	var cutouts: Array[PackedVector2Array] = []
+	for hole: Array in holes:
+		var inner := PackedVector2Array()
+		for p: Array in hole: inner.append(Vector2(p[0],p[1]))
+		if Geometry2D.is_polygon_clockwise(inner): inner.reverse()
+		cutouts.append(inner)
+		var wall_ring := inner.duplicate()
+		wall_ring.reverse()
+		rings.append(wall_ring)
+	if holes.is_empty():
+		for index in indices:
+			st.add_vertex(Vector3(points[index].x, height, points[index].y))
+	else:
+		var outer := points.duplicate()
+		if Geometry2D.is_polygon_clockwise(outer): outer.reverse()
+		for quad in preload("res://tools/build_roads.gd").new().tessellate([outer],cutouts):
+			for index in [0,2,1,0,3,2]:
+				st.add_vertex(Vector3(quad[index].x,height,quad[index].y))
 	if height - base > 0.2:
-		for i in points.size():
-			var p := points[i]
-			var q := points[(i+1)%points.size()]
-			var a := Vector3(p.x, base, p.y)
-			var b := Vector3(q.x, base, q.y)
-			var c := Vector3(q.x, height, q.y)
-			var d := Vector3(p.x, height, p.y)
-			triangle(st, a, b, c)
-			triangle(st, a, c, d)
+		for ring in rings:
+			for i in ring.size():
+				var p := ring[i]
+				var q := ring[(i+1)%ring.size()]
+				var a := Vector3(p.x, base, p.y)
+				var b := Vector3(q.x, base, q.y)
+				var c := Vector3(q.x, height, q.y)
+				var d := Vector3(p.x, height, p.y)
+				triangle(st, a, b, c)
+				triangle(st, a, c, d)
 	st.generate_normals()
 	mesh_node(parent, st.commit(), mat, title)
 
@@ -178,6 +196,10 @@ func merge_meshes(parent: Node3D) -> void:
 	var buckets: Dictionary = {}
 	for child in parent.get_children():
 		if child is MeshInstance3D:
+			# Roads and traced overlays carry distinct terrain offsets and source
+			# metadata even when they share asphalt. Preserve those mesh boundaries.
+			if child.get_meta("road_surface",false):
+				continue
 			var key: String = child.material_override.resource_name + ("_Solid" if child.get_meta("walk_collision",false) else "")
 			if not buckets.has(key):
 				buckets[key] = []
@@ -205,61 +227,113 @@ func build() -> void:
 	scene.name = "DevelopmentCampus"
 	root.add_child(scene)
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
+	if not valid_ground_sources():
+		quit(1)
+		return
 	var reference_path := ProjectSettings.globalize_path("res://").path_join("../../references/eda/buildings/residence_facades.json").simplify_path()
 	residence_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path))
 	academic_profiles = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("academic_facades.json")))
 	seventh_profile = JSON.parse_string(FileAccess.get_file_as_string(reference_path.get_base_dir().path_join("seventh-residence/profile.json")))
-	box(scene,Vector3(0,-6,55),Vector3(1280,12,930),material("Campus base",Color("74795b")),"CampusBase")
+	var map_bounds: Array = manifest.get("bounds",[-640,-410,1280,930])
+	box(scene,Vector3(map_bounds[0]+map_bounds[2]/2.0,-6,map_bounds[1]+map_bounds[3]/2.0),Vector3(map_bounds[2],12,map_bounds[3]),material("Campus base",Color("74795b")),"CampusBase")
 	preload("res://tools/build_roads.gd").new().build(self, "eda")
 	for feature in manifest.features:
 		var group := Node3D.new()
 		group.name = "Feature_" + feature.id
 		group.set_meta("source_id",feature.id)
+		group.set_meta("geometry_status",feature.get("geometry_status",""))
 		group.set_meta("display_name",feature.name)
 		group.set_meta("height_is_approximate",true)
 		scene.add_child(group)
 		group.owner = scene
+		if feature.kind == "reference":
+			continue
 		var points := PackedVector2Array()
 		for point in feature.points:
 			points.append(Vector2(point[0],point[1]))
 		var kind: String = feature.kind
-		var height: float = feature.height
+		var height: float = feature.height if feature.height != null else 0.0
 		match kind:
 			"building":
 				if feature.id == "77943":
-					preload("res://tools/build_eda_dining.gd").new().build(self,group,points)
+					var registration: Dictionary = {}
+					if feature.has("osm_id"):
+						var profile_path := reference_path.get_base_dir().path_join("dining_profile.json")
+						registration = JSON.parse_string(FileAccess.get_file_as_string(profile_path))["77943"].osm_registration
+						assert(feature.osm_id==registration.osm_id and int(feature.osm_version)==int(registration.osm_version),"Dining OSM source changed")
+						assert(points.size()==int(registration.expected_vertices),"Dining OSM ring changed")
+					preload("res://tools/build_eda_dining.gd").new().build(self,group,points,registration)
 					generated_count += 1
 					continue
 				if feature.id == "77921":
 					var profile_path := reference_path.get_base_dir().path_join("comprehensive_profile.json")
 					var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profile_path))["77921"]
+					if feature.has("osm_id"):
+						var registration: Dictionary = profile.osm_registration
+						assert(feature.osm_id == registration.osm_id,"Unregistered comprehensive footprint")
+						assert(int(feature.get("osm_version",-1)) == int(registration.osm_version),"Comprehensive OSM version changed; review facade anchors")
+						profile.merge(registration,true)
 					preload("res://tools/build_eda_comprehensive.gd").new().build(self,group,points,profile)
 					generated_count += 1
 					continue
 				if feature.id == "77923":
-					preload("res://tools/build_eda_gym.gd").new().build(self,group,points)
+					var registration: Dictionary = {}
+					if feature.has("osm_id"):
+						var profile_path := reference_path.get_base_dir().path_join("gym_profile.json")
+						registration = JSON.parse_string(FileAccess.get_file_as_string(profile_path))["77923"].osm_registration
+						assert(feature.osm_id==registration.osm_id and int(feature.osm_version)==int(registration.osm_version),"Gym OSM source changed")
+						assert(points.size()==int(registration.expected_vertices),"Gym OSM ring changed")
+					preload("res://tools/build_eda_gym.gd").new().build(self,group,points,registration)
 					generated_count += 1
 					continue
 				if academic_profiles.has(feature.id):
-					preload("res://tools/build_eda_academic.gd").new().build(self,group,points,academic_profiles[feature.id])
+					var profile: Dictionary = academic_profiles[feature.id].duplicate(true)
+					if feature.has("osm_id"):
+						assert(profile.has("osm_registration"),"Academic OSM facade registration missing")
+						var registration: Dictionary = profile.osm_registration
+						assert(feature.osm_id==registration.osm_id and int(feature.osm_version)==int(registration.osm_version),"Academic OSM version changed")
+						assert(points.size()==int(registration.expected_vertices),"Academic OSM ring changed")
+						assert(feature.get("footprint_refinement","")==registration.get("footprint_refinement",""),"Academic footprint refinement changed")
+						profile.merge(registration,true)
+					preload("res://tools/build_eda_academic.gd").new().build(self,group,points,profile)
 					generated_count += 1
 					continue
 				if feature.id == "2304982":
-					preload("res://tools/build_eda_seventh.gd").new().build(self,group,points,seventh_profile)
+					var profile: Dictionary = seventh_profile.duplicate(true)
+					if feature.has("building_parts"):
+						profile.merge(profile.osm_registration,true)
+						profile.tower_points = feature.building_parts[0].points
+						assert(feature.building_parts[0].osm_id=="way/375541049" and feature.building_parts[1].osm_id=="way/1381473266")
+					preload("res://tools/build_eda_seventh.gd").new().build(self,group,points,profile)
 					generated_count += 1
 					continue
 				if residence_profiles.has(feature.id):
-					preload("res://tools/build_eda_residences.gd").new().build(self,group,points,residence_profiles[feature.id])
+					var profile: Dictionary = residence_profiles[feature.id].duplicate(true)
+					if feature.has("osm_id"):
+						assert(profile.has("osm_registration"),"Residence OSM facade registration missing")
+						var registration: Dictionary = profile.osm_registration
+						assert(feature.osm_id==registration.osm_id and int(feature.osm_version)==int(registration.osm_version),"Residence OSM source changed")
+						assert(points.size()==int(registration.expected_vertices),"Residence OSM ring changed")
+						profile.merge(registration,true)
+					preload("res://tools/build_eda_residences.gd").new().build(self,group,points,profile)
 					generated_count += 1
 					continue
 				if feature.id in ["77914","77917"]:
-					preload("res://tools/build_photo_facades.gd").new().build(self,group,points,feature.id=="77917")
+					var registration: Dictionary = {}
+					if feature.has("osm_id"):
+						var profiles_path := reference_path.get_base_dir().path_join("library_information_profiles.json")
+						var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profiles_path))[feature.id]
+						assert(profile.has("osm_registration"),"OSM photo facade registration missing")
+						registration = profile.osm_registration
+						assert(feature.osm_id == registration.osm_id and int(feature.get("osm_version",-1)) == int(registration.osm_version),"OSM photo facade source changed")
+						assert(feature.get("footprint_refinement","") == registration.footprint_refinement,"Photo facade refinement mismatch")
+					preload("res://tools/build_photo_facades.gd").new().build(self,group,points,feature.id=="77917",registration)
 					generated_count += 1
 					continue
 				var color := Color("967c6c") if "宿舍" in feature.name else Color("b9b6ab")
 				polygon(group,points,height,material("Residence" if "宿舍" in feature.name else "Academic",color),"Building")
 				polygon(group,points,height+0.45,material("Roof",Color("92938b")),"Roof",height)
-				# An unreferenced building keeps only its official outline shell.
+				# An unreferenced building keeps only its registered footprint shell.
 				group.set_meta("facade_source","unavailable")
 				group.set_meta("interior_available",false)
 			"water":
@@ -280,19 +354,41 @@ func build() -> void:
 				mesh_node(group,st.commit(),material("Hill",Color("73795d")),"SchematicTerrain")
 			"track", "basketball", "tennis":
 				polygon(group,points,0.15,material("Sports base",Color("bdbaa0")),"SportsBase")
-				sports(group,points,kind)
+				if feature.has("sports_surfaces"):
+					group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
+					group.set_meta("sports_source_count",feature.sports_surfaces.size())
+					for surface: Dictionary in feature.sports_surfaces:
+						var court := PackedVector2Array()
+						for p: Array in surface.points: court.append(Vector2(p[0],p[1]))
+						var surface_id: String = surface.get("id",surface.get("osm_id",""))
+						assert(not surface_id.is_empty(),"Sports surface source identity missing")
+						var surface_kind: String = surface.get("surface_type","court")
+						var surface_material := material("Running surface",Color("b77765")) if surface_kind=="running" else material("Field grass",Color("739578")) if surface_kind=="grass" else material("Court surface",Color("638c91"))
+						polygon(group,court,0.3,surface_material,"Court_"+surface_id.replace("/","_"),0.0 if surface_kind=="court" else 0.15,surface.get("holes",[]))
+						group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
+						if surface_kind!="court": continue
+						for i in court.size():
+							var a := court[i]
+							var b := court[(i+1)%court.size()]
+							line(group,Vector3(a.x,0.4,a.y),Vector3(b.x,0.4,b.y),0.12,material("Court markings",Color("f6eedc")))
+					for outline: Dictionary in feature.get("sports_lines",[]):
+						for i in outline.points.size():
+							var a: Array = outline.points[i]
+							var b: Array = outline.points[(i+1)%outline.points.size()]
+							line(group,Vector3(a[0],0.4,a[1]),Vector3(b[0],0.4,b[1]),0.12,material("Court markings",Color("f6eedc")))
+				else:
+					sports(group,points,kind)
 			"gate":
-				polygon(group,points,0.16,material("Paving",Color("a9a79e")),"GateFootprint")
-				var bounds := Rect2(points[0],Vector2.ZERO)
-				for p in points:
-					bounds = bounds.expand(p)
-				var center := bounds.get_center()
-				var width := minf(bounds.size.x,32)
-				box(group,Vector3(center.x-width/2,2.5,center.y),Vector3(1.6,5,1.6),material("Gate",Color("d8cfba")))
-				box(group,Vector3(center.x+width/2,2.5,center.y),Vector3(1.6,5,1.6),materials.Gate)
-				box(group,Vector3(center.x,5,center.y),Vector3(width+2,1.2,1.8),materials.Gate)
+				# South-gate photos show a low plaque wall/retractable gate;
+				# the other two photo responses are empty. None supports the
+				# former uniform pillars, overhead beam or flat selection pad.
+				group.set_meta("geometry_status",feature.geometry_status)
 			_:
 				polygon(group,points,0.1,material("Paving" if kind=="plaza" else "Reserve",Color("a9a79e") if kind=="plaza" else Color("adba99")),"Ground")
+				if kind=="plaza" and feature.has("osm_id"):
+					var surface: MeshInstance3D = group.get_child(group.get_child_count()-1)
+					surface.set_meta("road_surface",true)
+					surface.set_meta("walk_collision",true)
 		generated_count += 1
 	preload("res://tools/build_vegetation.gd").new().build(self)
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "eda"):
@@ -310,5 +406,15 @@ func build() -> void:
 	var state := GLTFState.new()
 	assert(document.append_from_scene(scene,state)==OK)
 	assert(document.write_to_filesystem(state,"res://assets/campuses/eda/models/development_campus.glb")==OK)
-	print("MODEL PASS: %d official polygons, generated TSCN and GLB" % generated_count)
+	print("MODEL PASS: %d source identity nodes, generated TSCN and GLB" % generated_count)
 	quit()
+
+func valid_ground_sources() -> bool:
+	for feature: Dictionary in manifest.features:
+		if feature.has("reference_points") or feature.has("reference_render_polygons") or ((not feature.get("points",[]).is_empty() or not feature.get("render_polygons",[]).is_empty()) and not feature.has("osm_id")):
+			push_error("Unregistered selection geometry rejected: " + str(feature.id))
+			return false
+		if feature.has("withheld_geometry") and (feature.kind != "reference" or not feature.points.is_empty() or not feature.get("render_polygons",[]).is_empty()):
+			push_error("Withheld source must remain empty: " + str(feature.id))
+			return false
+	return true

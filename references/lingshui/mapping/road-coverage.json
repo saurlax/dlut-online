@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "scope": "Existing north-campus buildings retained outside OSM university way/443031231",
+  "basis": "Archived north-building identity polygons and the adjoining OSM road network. Explicit selection avoids admitting unrelated surrounding streets from the full bounding box.",
+  "review_date": "2026-09-16",
+  "archive": "references/lingshui/mapping/osm-world.osm.gz",
+  "way_ids": ["33126274", "33126632", "277568550", "925497408", "925497409", "925497412", "925497413", "975430416", "975430417", "1530491266", "1530491267", "1530491268", "1530491269", "1530491270", "1530491274", "1530491276", "1530494293", "759760165", "759760164", "31305886", "1530491275"],
+  "limits": "Widths remain highway-class estimates. Preserve exact archived centerlines; do not join gaps by proximity. Bridge and stair ways are recorded but excluded until supported vertical geometry exists. The two portions of Software Park Road are not synthesized as campus access routes. This extension does not claim complete north-campus walkability."
+}

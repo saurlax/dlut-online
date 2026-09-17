@@ -11,6 +11,7 @@ from pathlib import Path
 import re
 import urllib.parse
 import urllib.request
+import osm_world
 
 ROOT = Path(__file__).resolve().parents[3]
 BOUNDARIES = {'lingshui': 443031231, 'eda': 215560705, 'panjin': 463862869}
@@ -87,13 +88,15 @@ def build(campus, fetch=False):
     data_dir = ROOT / f'apps/game/assets/campuses/{campus}/data'
     refs = ROOT / f'references/{campus}/mapping'
     manifest = read(data_dir / 'campus.json')
+    align_path = osm_world.FRAME_PATH
+    if (manifest.get('geographic_crs') != 'EPSG:4326'
+            or manifest.get('coordinate_frame') != align_path.relative_to(ROOT).as_posix()
+            or manifest.get('origin') != osm_world.frame(campus)['origin_lon_lat']):
+        raise ValueError(f'{campus}: shared WGS84 frame required; legacy road shifts are unsupported')
     lon, lat = manifest['origin']
-    align_path = ROOT / (f'references/{campus}/terrain/alignment.json' if campus != 'panjin' else 'references/panjin/mapping/road-alignment.json')
-    alignment = read(align_path)
-    ox, oz = alignment['offset_xz_m']
     factor = 111320*math.cos(math.radians(lat))
     def local(p):
-        return [(p['lon']-lon)*factor-ox, -(p['lat']-lat)*111320-oz]
+        return [(p['lon']-lon)*factor, -(p['lat']-lat)*111320]
     archive = refs / 'osm-roads.json'
     if fetch:
         bbox = ','.join(map(str, (lat-.025, lon-.03, lat+.025, lon+.03)))
@@ -108,6 +111,16 @@ def build(campus, fetch=False):
     else:
         source = read(archive)
     elements = source['response']['elements']
+    adjustment_path = refs / 'road-adjustments.json'
+    adjustments = read(adjustment_path)['nodes'] if adjustment_path.exists() else []
+    for adjustment in adjustments:
+        assert manifest.get('geographic_crs') == 'EPSG:4326'
+        users = [e for e in elements if adjustment['node_id'] in e.get('nodes', [])]
+        assert sorted((e['id'], e['version']) for e in users) == sorted(tuple(v) for v in adjustment['ways']), 'Road adjustment source changed; review shared-node users'
+        assert len(adjustment['point_xz']) == 2 and all(isinstance(v, (int, float)) and math.isfinite(v) for v in adjustment['point_xz'])
+        for element in users:
+            index = element['nodes'].index(adjustment['node_id'])
+            assert math.dist(local(element['geometry'][index]), adjustment['expected_source_xz']) < 0.002, 'Road adjustment source coordinate changed'
     boundary = next(e for e in elements if e['id'] == BOUNDARIES[campus])
     campus_ring = [local(p) for p in boundary['geometry'][:-1]]
     x, z, w, h = manifest.get('bounds', [-640, -410, 1280, 930])
@@ -118,7 +131,14 @@ def build(campus, fetch=False):
         tags = element.get('tags', {})
         if 'highway' not in tags:
             continue
-        paths = clipped_parts([local(p) for p in element['geometry']], [campus_ring, frame])
+        source_points = [local(p) for p in element['geometry']]
+        adjusted_points = [p[:] for p in source_points]
+        applied = []
+        for adjustment in adjustments:
+            if adjustment['node_id'] in element.get('nodes', []):
+                adjusted_points[element['nodes'].index(adjustment['node_id'])] = adjustment['point_xz']
+                applied.append(adjustment['node_id'])
+        paths = clipped_parts(adjusted_points, [campus_ring, frame])
         if not paths:
             continue
         if (tags['highway'] not in WIDTHS or tags.get('area') == 'yes'
@@ -131,7 +151,59 @@ def build(campus, fetch=False):
             roads.append({'osm_way_id': element['id'], 'osm_version': element['version'], 'part': part,
                           'name': tags.get('name', ''), 'highway': tags['highway'], 'width': road_width,
                           'width_basis': basis, 'points': points})
+            if applied:
+                roads[-1].update(source_points=source_points, adjusted_nodes=applied,
+                                 geometry_basis=str(adjustment_path.relative_to(ROOT)).replace('\\', '/'))
     assert roads, f'No usable OSM roads for {campus}'
+    coverage_path = refs / 'road-coverage.json'
+    coverage = None
+    if coverage_path.exists() and manifest.get('geographic_crs') == 'EPSG:4326':
+        coverage = read(coverage_path)
+        assert coverage['archive'] == osm_world.frame(campus)['archive']
+        world_source, nodes, ways, _ = osm_world.archive(campus)
+        for way_id in coverage['way_ids']:
+            way = ways[way_id]
+            tags = osm_world.tags(way)
+            roads = [r for r in roads if r['osm_way_id'] != int(way_id)]
+            excluded = [r for r in excluded if r['osm_way_id'] != int(way_id)]
+            if (tags.get('highway') not in WIDTHS or tags.get('area')=='yes'
+                    or tags.get('indoor','no')!='no' or tags.get('bridge','no')!='no'
+                    or tags.get('tunnel','no')!='no' or tags.get('layer','0')!='0'):
+                excluded.append({'osm_way_id':int(way_id),'osm_version':int(way.get('version')),
+                                 'tags':tags,'reason':'north coverage: unsupported stairs or non-ground-level way',
+                                 'archive':coverage['archive']})
+                continue
+            points = [osm_world.local(campus,*p) for p in osm_world.way_coordinates(way,nodes)]
+            road_width, basis = width(tags)
+            for part, path in enumerate(clipped_parts(points,[frame])):
+                roads.append({'osm_way_id':int(way_id),'osm_version':int(way.get('version')),
+                              'part':part,'name':tags.get('name',''),'highway':tags['highway'],
+                              'width':road_width,'width_basis':basis,'points':path,
+                              'archive':coverage['archive'],'coverage':'explicit north-campus extension'})
+        roads.sort(key=lambda r:(r['osm_way_id'],r['part']))
+    terminations_path = refs / 'road-terminations.json'
+    if terminations_path.exists():
+        _, _, building_ways, _ = osm_world.archive(campus)
+        for termination in read(terminations_path)['terminations']:
+            road = next(r for r in roads if r['osm_way_id'] == termination['road_way_id'])
+            feature = next(f for f in manifest['features'] if f['id'] == termination['building_id'])
+            original = next(e for e in elements if e['id'] == termination['road_way_id'])
+            building = building_ways[termination['building_way_id']]
+            if (road['osm_version'] != termination['road_version']
+                    or original['version'] != termination['road_version']
+                    or feature.get('osm_version') != termination['building_version']
+                    or int(building.get('version')) != termination['building_version']
+                    or feature.get('osm_id') != 'way/' + termination['building_way_id']
+                    or termination['end'] != 'last'
+                    or str(original['nodes'][-1]) != termination['shared_node']
+                    or termination['shared_node'] not in [nd.get('ref') for nd in building.findall('nd')]
+                    or min(math.dist(road['points'][-1],p) for p in feature['points']) > 0.001):
+                raise ValueError('Reviewed road termination no longer matches its shared building node')
+            # A multi-way junction needs its own reviewed treatment, not an endpoint cap.
+            if sum(math.dist(p,road['points'][-1]) < 0.001 for r in roads for p in r['points']) != 1:
+                raise ValueError('Reviewed road termination became a road junction')
+            road['terminal_building_outline'] = feature['points']
+            road['terminal_basis'] = terminations_path.relative_to(ROOT).as_posix()
     if fetch:
         used = {boundary['id']} | {r['osm_way_id'] for r in roads + excluded}
         source['response']['elements'] = [e for e in elements if e['id'] in used]
@@ -142,6 +214,10 @@ def build(campus, fetch=False):
               'archive': str(archive.relative_to(ROOT)).replace('\\','/'),
               'alignment': str(align_path.relative_to(ROOT)).replace('\\','/'),
               'boundary_osm_way_id': boundary['id'], 'roads': roads, 'excluded': excluded}
+    if coverage:
+        output['additional_coverage']={'source':str(coverage_path.relative_to(ROOT)).replace('\\','/'),
+                                       'archive':coverage['archive'],
+                                       'sha256_uncompressed':world_source['sha256_uncompressed']}
     (data_dir/'osm_roads.json').write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(campus, len(roads), 'road parts,', len(excluded), 'excluded')
 

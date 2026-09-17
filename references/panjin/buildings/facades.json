@@ -1,5 +1,15 @@
 {
   "77963": {
+    "osm_registration": {
+      "osm_id": "way/1318388477",
+      "osm_version": 1,
+      "expected_vertices": 23,
+      "edges": [9,10,11,12,13,14,15,16,17,18,19],
+      "review_date": "2026-09-16",
+      "photos": ["photos/77963-0.jpg","photos/77963-1.jpg"],
+      "basis": "Retain photo-covered south and west arc only. OSM edges 9-17 follow the southern curved face, edges 18-19 the west face. Northern and eastern arc not decorated. Old 48-point silhouette indexes are not transferred by number.",
+      "limits": "OSM 23-point ring retained without smoothing or invented curve points. Existing estimated height, fins and window distribution retained; entrance ramp and interior not inferred."
+    },
     "height": 22.0,
     "floors": 4,
     "style": "library",
@@ -31,6 +41,17 @@
     "precision": "层高、竖片间距和窄窗分布近似，不复制照片像素；未制作坡道、门洞、水景及未见北东侧立面。"
   },
   "77986": {
+    "osm_registration": {
+      "osm_id": "way/1318388510",
+      "osm_version": 1,
+      "expected_vertices": 11,
+      "edges": [6,10],
+      "blank_spans": {"6": [0,0.725]},
+      "review_date": "2026-09-16",
+      "photos": ["photos/77986-0.jpg","photos/77986-1.jpg"],
+      "basis": "Old south envelope edge 10 is split by the OSM recessed footprint. New edges 6 and 10 face south; other courtyard edges receive no copied facade. New edge 6 runs west-to-east, opposite to old edge 10. Keep the lower central portion undecorated, with the observed outer wing restricted to its last 27.5 percent (approximate transfer of old east-wing coverage).",
+      "limits": "Preserve OSM courtyard/recess without filling its footprint. Photo does not give surveyed opening or overhead-volume dimensions; no inferred interior, entrance passage, or overhead connector. Height and facade proportions remain estimates."
+    },
     "height": 27.0,
     "floors": 6,
     "style": "teaching",
@@ -46,6 +67,18 @@
     "precision": "中央开敞空间不挖洞、不补室内，也不把侧翼窗格铺满整面；高度和窗距为比例估算。"
   },
   "77955": {
+    "osm_registration": {
+      "osm_id": "way/1318388516",
+      "osm_version": 1,
+      "expected_vertices": 6,
+      "edges": [5, 4],
+      "duct_edges": [4],
+      "review_date": "2026-09-16",
+      "photo": "photos/77955-0.jpg",
+      "photo_id": 80114,
+      "basis": "Photo shows D03 south long facade with exposed ducts and west short facade, D04 behind. Old west edge 1 maps to OSM edge 5; old south edge 5 maps to OSM edge 4. OSM vertices 0,1,2,3 lie along the north facade and are retained as source connection points.",
+      "limits": "Preserve existing estimated height and visible facade styles. Window and pipe spacing remain approximations; photo does not establish surveyed ground corners or interior geometry."
+    },
     "height": 19.0,
     "floors": 4,
     "style": "laboratory",

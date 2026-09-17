@@ -1,0 +1,68 @@
+"""Replay locally traced ground surfaces anchored to archived OSM geometry."""
+import hashlib
+import json
+import math
+
+import osm_world as osm
+
+
+def build(campus):
+    path = osm.ROOT / f'references/{campus}/mapping/ground-surfaces.json'
+    if not path.exists():
+        return []
+    spec = json.loads(path.read_text(encoding='utf-8'))
+    _, nodes, ways, _ = osm.archive(campus)
+    result = []
+    for item in spec['surfaces']:
+        anchor = item['osm_anchor']
+        center, anchor_ways = loop_center(campus, anchor, nodes, ways)
+        direction = item['ground_direction']
+        other, other_ways = loop_center(campus, direction['osm_anchor'], nodes, ways)
+        pa, pb = item['pixel_anchor'], direction['pixel']
+        dx, dy = pb[0]-pa[0], pb[1]-pa[1]
+        denom = dx*dx+dy*dy
+        if denom < 1 or math.dist(center, other) < 1:
+            raise ValueError('Ground controls must be distinct')
+        real = ((other[0]-center[0])*dx+(other[1]-center[1])*dy)/denom
+        imag = ((other[1]-center[1])*dx-(other[0]-center[0])*dy)/denom
+        def convert(p):
+            x, y = p[0]-pa[0], p[1]-pa[1]
+            return [center[0]+real*x-imag*y, center[1]+imag*x+real*y]
+        outer = [convert(p) for p in item['pixel_outer']]
+        holes = [[convert(p) for p in ring] for ring in item['pixel_holes']]
+        from prepare_osm_world import valid_ring
+        if not all(valid_ring(ring) for ring in [outer]+holes):
+            raise ValueError('Invalid map surface ring')
+        result.append({'id':item['id'], 'kind':'plaza', 'surface_type':item.get('surface_type','paving'), 'outer':outer, 'holes':holes,
+                       'source':str(path.relative_to(osm.ROOT)).replace('\\','/'),
+                       'source_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
+                       'status':item['status'], 'osm_anchor_way':anchor['way_id'],
+                       'absolute_accuracy_m':None, 'registration':'two-ground-island-centers',
+                       'ground_control_ways':sorted(set(anchor_ways+other_ways)),
+                       'evidence_date':item.get('evidence_date'),
+                       'temporal_status':item.get('temporal_status','source-date-unknown')})
+        if len(anchor_ways) > 1:
+            result[-1]['osm_anchor_ways'] = anchor_ways
+    return result
+
+
+def loop_center(campus, anchor, nodes, ways):
+    way = ways[anchor['way_id']]
+    if int(way.get('version')) != anchor['version']:
+        raise ValueError('Ground surface anchor version changed')
+    line = [osm.local(campus, *p) for p in osm.way_coordinates(way, nodes)]
+    loop = line[anchor['loop_start_vertex']:]
+    anchor_ways = [anchor['way_id']]
+    if 'closing_way' in anchor:
+        closing = anchor['closing_way']
+        closing_way = ways[closing['way_id']]
+        if int(closing_way.get('version')) != closing['version']:
+            raise ValueError('Ground surface closing anchor version changed')
+        tail = [osm.local(campus, *p) for p in osm.way_coordinates(closing_way, nodes)]
+        if len(tail) < 2 or math.dist(loop[-1], tail[0]) > 0.001:
+            raise ValueError('Ground surface closing way must join the declared loop end')
+        loop += tail[1:]
+        anchor_ways.append(closing['way_id'])
+    if len(loop) < 4 or math.dist(loop[0], loop[-1]) > 0.001:
+        raise ValueError('Declared plaza anchor must be a closed OSM loop')
+    return [(min(p[i] for p in loop)+max(p[i] for p in loop))/2 for i in (0, 1)], anchor_ways

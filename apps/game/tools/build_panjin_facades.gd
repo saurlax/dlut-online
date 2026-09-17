@@ -43,8 +43,9 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 			for bay in bays:
 				var fraction := (bay+0.5)/bays
 				# A01 central opening lacks a complete plan. Leave its shell undecorated.
-				if profile.style == "teaching" and floor_index<4 and fraction>0.17 and fraction<0.73:
-					continue
+				if profile.style == "teaching" and floor_index<4:
+					var blank: Array = profile.get("blank_spans",{}).get(str(edge),[0.17,0.73] if not profile.has("blank_spans") else [])
+					if blank.size()==2 and fraction>float(blank[0]) and fraction<float(blank[1]): continue
 				var pos := p.lerp(q,fraction)+outward*0.08
 				var window_height := height/floors*0.70
 				var y := 0.7+floor_index*height/floors+window_height/2.0
@@ -56,7 +57,7 @@ func build(builder, group: Node3D, points: PackedVector2Array, profile: Dictiona
 		if profile.style == "teaching":
 			for row in range(1,roundi(height/0.45)):
 				panel(builder,group,middle+outward*0.025,row*0.45,Vector3(length,0.017,0.035),rotation,metal,"TerracottaJoints")
-		elif profile.style == "laboratory" and edge == 5:
+		elif profile.style == "laboratory" and edge in PackedInt32Array(profile.get("duct_edges",[5])):
 			var count := maxi(1,roundi(length/9.0))
 			for pipe in count:
 				var pos := p.lerp(q,(pipe+0.4)/count)+outward*0.5

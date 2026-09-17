@@ -11,7 +11,7 @@ func build(builder, campus: String) -> bool:
 	var count := 0
 	var valid := true
 	for feature in builder.manifest.features:
-		if not entries.has(feature.id):
+		if feature.kind != "building" or not entries.has(feature.id):
 			continue
 		var entry: Dictionary = entries[feature.id]
 		if entry.get("status", "") != "applied":
@@ -23,11 +23,16 @@ func build(builder, campus: String) -> bool:
 			points.append(Vector2(p[0], p[1]))
 		var profile: Dictionary = feature.get("facade", {})
 		var regions: Array = entry.get("regions", []).duplicate(true)
+		if feature.has("osm_id"):
+			if not entry.has("osm_regions"):
+				push_error("OSM photo surface registration missing: "+feature.id)
+				return false
+			regions = entry.osm_regions.duplicate(true)
 		if entry.get("coverage", "") == "panel_rows":
 			regions = panel_regions(profile, points)
 		elif entry.get("coverage", "") == "registered_edges":
 			for edge in profile.edges:
-				regions.append({"edge": edge, "span": [0.0, 1.0], "bottom": 1.0, "top": float(profile.height) - 0.5})
+				regions.append({"edge": edge, "span": profile.get("edge_spans", {}).get(str(edge), [0.0, 1.0]), "bottom": 1.0, "top": float(profile.height) - 0.5})
 		var source_nodes := group.get_children()
 		for region in regions:
 			var edge := int(region.edge)

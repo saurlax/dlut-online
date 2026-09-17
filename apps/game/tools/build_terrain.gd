@@ -74,8 +74,9 @@ func build(builder: SceneTree, campus: String) -> void:
 
 func fit(node: Node3D) -> void:
 	if node is MeshInstance3D:
-		if node.get_meta("road_surface", false):
+		if node.get_meta("road_surface", false) or node.get_meta("terrain_surface", false):
 			fit_road(node)
+			node.set_meta("walk_collision",node.get_meta("walk_collision",true))
 			return
 		var st := SurfaceTool.new()
 		st.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -114,12 +115,13 @@ func subdivide(st: SurfaceTool, a: Vector3, b: Vector3, c: Vector3) -> void:
 	for p in [a,b,c]:
 		st.add_vertex(p + Vector3.UP * (elevation(p.x,p.z) + 0.08))
 
-## Clip roads to the exact terrain triangles. Independent recursive subdivision
+## Clip roads and ground paving to the exact terrain triangles. Independent subdivision
 ## can interpolate different heights along the same seam and bury thin asphalt.
 func fit_road(node: MeshInstance3D) -> void:
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var faces := node.mesh.get_faces()
+	for i in faces.size(): faces[i] = node.transform*faces[i]
 	var origin := Vector2(data.origin_xz[0], data.origin_xz[1])
 	var step := float(data.step_m)
 	for i in range(0, faces.size(), 3):
@@ -147,3 +149,4 @@ func fit_road(node: MeshInstance3D) -> void:
 	st.index()
 	st.generate_normals()
 	node.mesh = st.commit()
+	node.transform = Transform3D.IDENTITY

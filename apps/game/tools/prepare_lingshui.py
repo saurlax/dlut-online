@@ -1,6 +1,7 @@
 """Prepare Lingshui from archived official polygons; never fetch during export."""
 import json
 import math
+import re
 from pathlib import Path
 
 CLIENT = Path(__file__).resolve().parents[1]
@@ -56,10 +57,70 @@ def split_crossings(points):
     return [points]
 
 
+def share_reviewed_building_geometry(features, assemblies):
+    """Keep reviewed compound IDs without extruding overlapping legacy outlines.
+
+    This records shared geometry, not an invented boundary between departments.
+    Refuse to suppress a newly matched outline or any photo facade on re-import.
+    """
+    lookup = {(f['id'], f['part']): f for f in features}
+    planned, used = [], set()
+    for spec in assemblies:
+        owner_key = (spec['owner_id'], spec['owner_part'])
+        owner = lookup[owner_key]
+        if (owner['kind'] != 'building' or owner.get('osm_id') != spec['osm_id']
+                or owner.get('osm_version') != spec['osm_version']
+                or len(owner['points']) != spec['outer_vertices']
+                or [len(h) for h in owner.get('holes', [])] != spec['hole_vertices']):
+            raise ValueError('Shared building source changed; review compound geometry')
+        keys = [owner_key] + [(m['id'], m['part']) for m in spec['members']]
+        if len(set(keys)) != len(keys) or used.intersection(keys):
+            raise ValueError('Shared building membership must be unique')
+        for key in keys[1:]:
+            member = lookup[key]
+            if (member['kind'] != 'building' or member.get('facade')
+                    or member.get('osm_id') or member.get('holes')
+                    or member.get('geometry_status') != 'legacy-silhouette-pending-replacement'):
+                raise ValueError('Shared building member changed; preserve new geometry or facade')
+        used.update(keys)
+        planned.append((spec, owner, [lookup[k] for k in keys[1:]]))
+    for spec, owner, members in planned:
+        owner['shared_official_ids'] = [owner['id']] + [f['id'] for f in members]
+        owner['geometry_assembly'] = spec['id']
+        owner['geometry_status'] = 'osm-shared-compound; internal partition and absolute accuracy unverified'
+        for member in members:
+            member.update(kind='reference', source_kind='building', geometry_assembly=spec['id'],
+                          shared_geometry={'id': owner['id'], 'part': owner['part']},
+                          geometry_status='shared-compound-reference; legacy silhouette not rendered')
+
+
+def retain_nonbuilding_references(features, references):
+    """Retain reviewed POI bounds without fabricating building geometry."""
+    lookup = {(f['id'], f['part']): f for f in features}
+    planned = []
+    seen = set()
+    for spec in references:
+        key = (spec['id'], spec['part'])
+        feature = lookup[key]
+        if (key in seen or feature['kind'] != 'building' or feature.get('facade')
+                or feature.get('osm_id') or feature.get('holes')
+                or feature.get('geometry_status') != 'legacy-silhouette-pending-replacement'
+                or feature.get('reference_points') != spec['expected_reference_points']):
+            raise ValueError('Nonbuilding reference changed; review source before suppressing geometry')
+        seen.add(key)
+        planned.append((feature, spec))
+    for feature, spec in planned:
+        feature.update(kind='reference', source_kind='building', reference_type=spec['reference_type'],
+                       classification_basis=spec['source'],
+                       geometry_status='nonbuilding-poi-reference; original bounds retained without extrusion')
+
+
 def main():
-    source = json.loads((REFERENCES / 'mapping/bounds.json').read_text())
-    profiles = json.loads((REFERENCES / 'buildings/facades.json').read_text())
-    sports = json.loads((REFERENCES / 'facilities/sports.json').read_text())
+    import osm_world
+    from prepare_osm_identities import build as identities
+    source = json.loads((REFERENCES / 'mapping/bounds.json').read_text(encoding='utf-8'))
+    profiles = json.loads((REFERENCES / 'buildings/facades.json').read_text(encoding='utf-8'))
+    sports = json.loads((REFERENCES / 'facilities/sports.json').read_text(encoding='utf-8'))
     features, excluded = [], []
     parts = {}
     for source_index, item in enumerate(source['result']):
@@ -85,17 +146,147 @@ def main():
                          'render_polygons': split_crossings(points)})
         if feature_id in sports:
             features[-1]['sports'] = sports[feature_id]
-    all_points = [p for f in features for p in f['points']]
+    mapping=identities('lingshui',{'features':features})
+    matches={m['official_id']:m for m in mapping['buildings'] if m['status']=='matched'}
+    origin=osm_world.frame('lingshui')['origin_lon_lat']
+    alignment=json.loads((REFERENCES/'terrain/alignment.json').read_text(encoding='utf-8'))
+    scale=math.cos(math.radians(origin[1]))/math.cos(math.radians(ORIGIN[1]))
+    delta=osm_world.local('lingshui',*ORIGIN)
+    offset=[delta[0]+alignment['offset_xz_m'][0]*scale,delta[1]+alignment['offset_xz_m'][1]]
+    def moved(p):return [p[0]*scale+offset[0],p[1]+offset[1]]
+    from prepare_osm_world import build as world_data
+    surface_specs={}
+    for kind, filename in [('water','water-identities.json'),('sports','sports-identities.json'),('plaza','plaza-identities.json')]:
+        for fid, spec in json.loads((REFERENCES/'mapping'/filename).read_text(encoding='utf-8'))['objects'].items():
+            assert fid not in surface_specs
+            surface_specs[fid]=(kind,spec)
+    surface_records={r['osm_id']:r for r in world_data('lingshui')['areas']}
+    for feature in features:
+        if feature.get('sports',{}).get('osm_registration'):
+            profile=feature['sports'];spec=profile['osm_registration']
+            record=surface_records[spec['osm_id']]
+            if spec.get('layout_mode')=='retain-photo-proportions':
+                assert record['version']==spec['osm_version'] and len(record['polygons'])==1
+                ring=record['polygons'][0]['outer']
+                assert len(ring)==spec['expected_vertices'] and not record['polygons'][0]['holes']
+                a,b=[ring[i] for i in spec['axis_vertices']]
+                profile['rotation_degrees']=math.degrees(math.atan2(b[1]-a[1],b[0]-a[0]))
+                corners=spec['center_vertices']
+                profile['center']=[sum(ring[j][i] for j in corners)/len(corners) for i in (0,1)]
+                feature.update(points=ring,render_polygons=[ring],osm_id=record['osm_id'],osm_version=record['version'],
+                               footprint_source='osm',geometry_status='photo-layout-registered-to-osm; dimensions approximate')
+                continue
+            track=surface_records[spec['track_osm_id']]
+            assert record['version']==spec['osm_version'] and track['version']==spec['track_osm_version']
+            assert len(record['polygons'])==len(track['polygons'])==1
+            ring=record['polygons'][0]['outer'];track_ring=track['polygons'][0]['outer']
+            assert len(ring)==spec['expected_vertices'] and len(track_ring)==spec['expected_track_vertices']
+            assert len(track['polygons'][0]['holes'])==1
+            pitch=track['polygons'][0]['holes'][0]
+            assert len(pitch)==spec['expected_pitch_vertices']
+            along=[pitch[1][i]-pitch[0][i] for i in (0,1)];length=math.hypot(*along)
+            forward=[v/length for v in along];right=[forward[1],-forward[0]]
+            project=lambda p:[sum(p[i]*axis[i] for i in (0,1)) for axis in (right,forward)]
+            projected=[project(p) for p in track_ring]
+            low=[min(p[i] for p in projected) for i in (0,1)];high=[max(p[i] for p in projected) for i in (0,1)]
+            middle=[(low[i]+high[i])/2 for i in (0,1)]
+            center=[right[i]*middle[0]+forward[i]*middle[1] for i in (0,1)]
+            outer_radius=(high[0]-low[0])/2
+            profile.update(center=center,rotation_degrees=math.degrees(math.atan2(right[1],right[0])),
+                           straight_half=(high[1]-low[1])/2-outer_radius,
+                           inner_radius=outer_radius-profile['lanes']*profile['lane_width'],
+                           pitch_outline=pitch,pitch_width=math.dist(pitch[1],pitch[2]),pitch_length=length)
+            a,b=[ring[i] for i in spec['stand_back_vertices']]
+            line=[b[i]-a[i] for i in (0,1)];span=math.hypot(*line)
+            inset=spec.get('stand_end_inset_m',0)
+            assert 0<=inset<span/2
+            a=[a[i]+line[i]/span*inset for i in (0,1)]
+            line=[v*(span-2*inset)/span for v in line];span=math.hypot(*line)
+            stand_forward=[v/spec['stand_reference_length'] for v in line]
+            stand_right=[line[1]/span,-line[0]/span]
+            ox,oz=spec['stand_reference_origin']
+            profile['stand_transform']={'right':stand_right,'forward':stand_forward,
+                'offset':[a[i]-stand_right[i]*ox-stand_forward[i]*oz for i in (0,1)]}
+            assert profile['straight_half']>0 and profile['inner_radius']>0
+            feature.update(points=ring,render_polygons=[ring],osm_id=record['osm_id'],osm_version=record['version'],
+                           footprint_source='osm',geometry_status='photo-layout-registered-to-osm; dimensions approximate')
+            continue
+        if feature['id'] in surface_specs:
+            kind,spec=surface_specs[feature['id']];record=surface_records[spec['osm_id']]
+            category = 'square' if kind == 'plaza' else kind
+            assert feature['kind']==kind and record['category']==category and feature['name']==spec['name']
+            assert not feature.get('sports'), 'Detailed sports layouts require their own registration'
+            assert record['version']==spec['osm_version'] and len(record['polygons'])==1
+            polygon=record['polygons'][0];ring=polygon['outer']
+            assert len(ring)==spec['expected_vertices'] and not polygon['holes']
+            feature.update(points=ring,render_polygons=[ring],osm_id=record['osm_id'],osm_version=record['version'],
+                           footprint_source='osm',geometry_status='osm-water-area; shoreline and level unverified' if kind=='water' else 'osm-sports-area; boundary and level unverified')
+            if kind=='sports': feature['surface_type']=record['tags'].get('surface','')
+            if kind=='plaza':
+                feature['geometry_status']='partial-osm-square; adjoining fountain and steps unresolved'
+                feature['unmodeled_osm_ids']=spec['unmodeled_osm_ids']
+            continue
+        match=matches.get(feature['id'])
+        candidate=match['osm_candidates'][0] if match and not match.get('geometry_deferred',False) and len(match['osm_candidates'])==1 else None
+        registration=feature['facade'].get('osm_registration')
+        if candidate and (not feature['facade'] or registration) and match['official_parts']==1 and len(candidate['polygons'])==1:
+            ring=candidate['polygons'][0]['outer']
+            if registration:
+                assert candidate['osm_id']==registration['osm_id'] and candidate['osm_version']==registration['osm_version']
+                assert len(ring)==registration['expected_vertices']
+                feature['facade']={**feature['facade'],**registration['profile']}
+                if 'ground_ring_uv' in registration:
+                    # Photo-supported refinements within a registered four-corner source.
+                    # U runs from source corner 0 to 3; V from the north to south edge.
+                    assert len(ring)==4 and 'ground_ring_indices' not in registration
+                    uv=registration['ground_ring_uv']
+                    assert len(uv)>=3 and len({tuple(p) for p in uv})==len(uv)
+                    assert all(len(p)==2 and all(isinstance(v,(int,float)) and math.isfinite(v) and 0<=v<=1 for v in p) for p in uv)
+                    feature['osm_source_points']=ring
+                    ring=[[(1-v)*((1-u)*ring[0][axis]+u*ring[3][axis])+v*((1-u)*ring[1][axis]+u*ring[2][axis]) for axis in range(2)] for u,v in uv]
+                if 'ground_ring_indices' in registration:
+                    indices=registration['ground_ring_indices']
+                    assert len(indices)>=3 and len(set(indices))==len(indices)
+                    assert all(isinstance(i,int) and 0<=i<len(ring) for i in indices)
+                    feature['osm_source_points']=ring
+                    ring=[ring[i] for i in indices]
+            feature.update(points=ring,render_polygons=[ring],osm_id=candidate['osm_id'],
+                           osm_version=candidate['osm_version'],footprint_source='osm',
+                           geometry_status='osm-source-outline; absolute accuracy unverified')
+            feature['holes']=candidate['polygons'][0]['holes']
+            if 'osm_source_points' in feature:
+                feature['geometry_status']='photo-refined-osm-ground-ring; absolute accuracy unverified'
+        else:
+            feature['reference_points']=feature['points']
+            feature['reference_render_polygons']=feature['render_polygons']
+            feature['points']=[moved(p) for p in feature['points']]
+            feature['render_polygons']=[[moved(p) for p in ring] for ring in feature['render_polygons']]
+            feature['geometry_status']='legacy-silhouette-pending-replacement'
+    assembly_path = REFERENCES/'mapping/building-assemblies.json'
+    if assembly_path.exists():
+        share_reviewed_building_geometry(features, json.loads(assembly_path.read_text(encoding='utf-8'))['assemblies'])
+    reference_path = REFERENCES/'mapping/nonbuilding-references.json'
+    if reference_path.exists():
+        retain_nonbuilding_references(features, json.loads(reference_path.read_text(encoding='utf-8'))['references'])
+    osm_world.withhold_selection_bounds(features, 'lingshui')
+    from prepare_osm_world import build as osm_geometry
+    all_points = [p for f in features for p in f['points']] + osm_geometry('lingshui')['boundary']
     low = [math.floor(min(p[i] for p in all_points)/10)*10-30 for i in range(2)]
     high = [math.ceil(max(p[i] for p in all_points)/10)*10+30 for i in range(2)]
-    data = {'campus_id': 'lingshui', 'origin': ORIGIN, 'units': 'approximate meters',
+    data = {'campus_id': 'lingshui', 'origin': origin, 'units': 'approximate meters',
+            'geographic_crs':'EPSG:4326','coordinate_frame':'references/shared/mapping/osm-world-frame.json',
+            'spawn_xz':moved([96,28]),
             'source': source['source'], 'retrieved': source['retrieved'],
             'bounds': low + [high[i]-low[i] for i in range(2)],
             'features': features}
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    (OUTPUT/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n')
-    (REFERENCES/'mapping/excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n')
-    print(f'Lingshui: {len(features)} polygons, {len(parts)} IDs, {len(excluded)} surrounding polygons excluded')
+    (OUTPUT/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n',encoding='utf-8')
+    (REFERENCES/'mapping/excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n',encoding='utf-8')
+    scene_path=CLIENT/'scenes/campuses/lingshui.tscn'
+    scene=scene_path.read_text(encoding='utf-8')
+    scene=re.sub(r'^spawn_position = Vector3\([^\n]+\)',f'spawn_position = Vector3({data["spawn_xz"][0]:.6f}, 0.35, {data["spawn_xz"][1]:.6f})',scene,flags=re.MULTILINE)
+    scene_path.write_text(scene,encoding='utf-8')
+    print(f'Lingshui: {len(features)} source identity parts, {len(parts)} IDs, {len(excluded)} surrounding polygons excluded')
 
 
 if __name__ == '__main__':

@@ -4,6 +4,9 @@ func build() -> void:
 	scene.name = "LingshuiCampus"
 	root.add_child(scene)
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
+	if not valid_ground_sources():
+		quit(1)
+		return
 	var bounds: Array = manifest.bounds
 	box(scene,Vector3(bounds[0]+bounds[2]/2.0,-1.0,bounds[1]+bounds[3]/2.0),Vector3(bounds[2],2.0,bounds[3]),material("Lingshui ground",Color("7c8069")),"CampusBase")
 	var facade_builder := preload("res://tools/build_lingshui_facades.gd").new()
@@ -15,9 +18,18 @@ func build() -> void:
 		var group := Node3D.new()
 		group.name = "Feature_"+feature.id+"_"+str(int(feature.part))
 		group.set_meta("source_id",feature.id)
+		group.set_meta("geometry_status",feature.get("geometry_status",""))
 		group.set_meta("source_part",int(feature.part))
 		group.set_meta("display_name",feature.name)
 		group.set_meta("height_is_approximate",true)
+		if feature.has("reference_type"):
+			group.set_meta("reference_type",feature.reference_type)
+		if feature.has("geometry_assembly"):
+			group.set_meta("geometry_assembly",feature.geometry_assembly)
+		if feature.has("shared_geometry"):
+			group.set_meta("shared_geometry",feature.shared_geometry)
+		if feature.has("shared_official_ids"):
+			group.set_meta("shared_official_ids",feature.shared_official_ids)
 		scene.add_child(group)
 		group.owner = scene
 		for render_points in feature.render_polygons:
@@ -37,9 +49,9 @@ func build() -> void:
 						halls_builder.build(self, group, points, profile)
 						continue
 					var color: String = profile.get("color","b0aca0")
-					polygon(group,points,feature.height,material("Lingshui "+color,Color(color)),"Building")
+					polygon(group,points,feature.height,material("Lingshui "+color,Color(color)),"Building",0.0,feature.get("holes",[]))
 					group.get_child(group.get_child_count()-1).set_meta("walk_collision",true)
-					polygon(group,points,feature.height+0.18,material("Lingshui roof",Color("85867d")),"Roof",feature.height)
+					polygon(group,points,feature.height+0.18,material("Lingshui roof",Color("85867d")),"Roof",feature.height,feature.get("holes",[]))
 					if profile.get("style", "") == "photo_panels":
 						panel_builder.build(self, group, points, profile)
 					elif not profile.is_empty():
@@ -52,9 +64,11 @@ func build() -> void:
 					if feature.has("sports"):
 						sports_builder.build(self, group, points, feature.sports)
 					else:
-						polygon(group,points,0.06,material("Lingshui sports",Color("92776a")),"Sports")
+						var turf: bool = feature.get("surface_type", "") == "artificial_turf"
+						polygon(group,points,0.06,material("Lingshui artificial turf" if turf else "Lingshui sports",Color("65824d") if turf else Color("92776a")),"Sports")
 				"plaza", "gate":
 					polygon(group,points,0.06,material("Lingshui paving",Color("aaa799")),"Paving")
+					group.get_child(group.get_child_count()-1).set_meta("terrain_surface",true)
 				"reserve":
 					polygon(group,points,0.03,material("Lingshui reserve",Color("899079")),"PlannedFootprint")
 				"reference":
@@ -66,6 +80,7 @@ func build() -> void:
 		quit(1)
 		return
 	preload("res://tools/build_terrain.gd").new().build(self, "lingshui")
+	preload("res://tools/build_vegetation.gd").new().build(self,"lingshui")
 	merge_meshes(scene)
 	for mat in materials.values():
 		if mat.albedo_texture is NoiseTexture2D and mat.albedo_texture.get_image() == null:
@@ -74,5 +89,5 @@ func build() -> void:
 	assert(packed.pack(scene)==OK)
 	DirAccess.make_dir_recursive_absolute("res://assets/campuses/lingshui/models")
 	assert(ResourceSaver.save(packed,"res://assets/campuses/lingshui/models/lingshui_campus.tscn")==OK)
-	print("LINGSHUI MODEL PASS: %d official polygon parts" % generated_count)
+	print("LINGSHUI MODEL PASS: %d source identity nodes" % generated_count)
 	quit()

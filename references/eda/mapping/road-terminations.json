@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "reviewed": "2026-09-17",
+  "terminations": [
+    {
+      "road_way_id": 1076346768,
+      "road_version": 1,
+      "building_id": "77921",
+      "building_way_id": "232559719",
+      "building_version": 7,
+      "shared_node": "9870370091",
+      "end": "last",
+      "basis": "归档步道终点与综合楼边界共用节点9870370091，路径在此到达墙边；只将铺装矩形帽伸入该建筑的部分收至已登记边界，不修改中心线、2米估计宽度、楼体或门洞。",
+      "limits": "OSM共享节点证明拓扑接合，不证明入口尺寸、开放室内或实测墙脚。"
+    }
+  ]
+}

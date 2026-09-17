@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "campus_id": "panjin",
+  "dataset": "Copernicus DEM GLO-30 Public, AWS COG, 2021 release",
+  "source": {
+    "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N40_00_E122_00_DEM/Copernicus_DSM_COG_10_N40_00_E122_00_DEM.tif",
+    "retrieved": "2026-09-17T12:26:14.478756+00:00",
+    "bytes": 44975924,
+    "sha256": "4d88e1d523ddb05ecdd9a0dccc6ca5257ac97ee2c66a841bd8fabaf8ef5a6b29",
+    "file": "copernicus-N40E122.tif",
+    "tile_id": "N40E122",
+    "bbox_wgs84": [
+      122.109,
+      40.677,
+      122.129,
+      40.696
+    ],
+    "coverage_purpose": "盘锦校园及周边缓冲区矩形，覆盖共同WGS84运行范围及滤波边界，不等同校界。"
+  },
+  "retrieved": "2026-09-17T12:26:14.478756+00:00",
+  "acquisition": "TanDEM-X 2011–2015；局部补洞可能使用更早数据，未核实逐像元采集日期。",
+  "license": {
+    "name": "Copernicus WorldDEM-30 Licence",
+    "url": "https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf"
+  },
+  "attribution": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved",
+  "liability_notice": "The organisations in charge of the Copernicus programme by law or by delegation do not incur any liability for any use of the Copernicus WorldDEM-30",
+  "horizontal_crs": "EPSG:4326",
+  "vertical_datum": "EGM2008",
+  "unit": "m",
+  "surface_type": "DSM",
+  "nominal_resolution": "1 arcsecond (GLO-30)",
+  "campus_accuracy": "未通过校内实测控制点核验；采样间距不等于测量精度。",
+  "processing": "原始像素窗口裁剪及 JSON 无损转换；无重采样、平滑、去建筑、去树冠或垂直基准转换。",
+  "source_pixel_window": [
+    392,
+    1094,
+    73,
+    70
+  ],
+  "pixel_edge_geotransform": [
+    122.10875,
+    0.0002777777777777778,
+    0.0,
+    40.69625,
+    0.0,
+    -0.0002777777777777778
+  ],
+  "statistics": {
+    "samples": 5110,
+    "missing_samples": 0,
+    "minimum_m": 0.33660247921943665,
+    "maximum_m": 33.6143913269043
+  },
+  "model_alignment": "源网格为WGS84，须由共享校区原点转换；禁止叠加旧官网经验平移。",
+  "use": "离线原始DSM资料；运行过滤、地坪估计及精度边界见references/shared/terrain/basis.md。",
+  "outputs": {
+    "surface-dem.tif": {
+      "sha256": "0d24e0bf91c589e3f6e8594cd0c1201c087daa80496bafbe9a99771d5962e23c"
+    },
+    "heightfield.json": {
+      "sha256": "08711545cf9d75e97dc44add95ef83d7c561653f54e829c69897b142e30f8293"
+    }
+  },
+  "generator": "apps/game/tools/prepare_terrain.py",
+  "processing_software": "Rasterio 1.5.1, GDAL 3.12.4"
+}

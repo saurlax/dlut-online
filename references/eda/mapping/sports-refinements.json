@@ -1,0 +1,921 @@
+{
+  "schema_version": 1,
+  "refinements": [
+    {
+      "id": "eda-north-basketball-courts-v1",
+      "official_id": "39327816",
+      "osm_id": "way/375541050",
+      "osm_version": 3,
+      "reviewed": "2026-09-16",
+      "anchors": [
+        {
+          "pixel": [
+            399,
+            124
+          ],
+          "osm_vertex": 0
+        },
+        {
+          "pixel": [
+            400,
+            483
+          ],
+          "osm_vertex": 1
+        },
+        {
+          "pixel": [
+            563,
+            483
+          ],
+          "osm_vertex": 2
+        },
+        {
+          "pixel": [
+            561,
+            124
+          ],
+          "osm_vertex": 3
+        }
+      ],
+      "surfaces": [
+        {
+          "id": "39327816-court-1",
+          "pixels": [
+            [
+              406,
+              129
+            ],
+            [
+              464,
+              129
+            ],
+            [
+              467,
+              234
+            ],
+            [
+              407,
+              234
+            ]
+          ]
+        },
+        {
+          "id": "39327816-court-2",
+          "pixels": [
+            [
+              493,
+              129
+            ],
+            [
+              549,
+              130
+            ],
+            [
+              550,
+              234
+            ],
+            [
+              494,
+              234
+            ]
+          ]
+        },
+        {
+          "id": "39327816-court-3",
+          "pixels": [
+            [
+              405,
+              250
+            ],
+            [
+              465,
+              250
+            ],
+            [
+              467,
+              354
+            ],
+            [
+              406,
+              354
+            ]
+          ]
+        },
+        {
+          "id": "39327816-court-4",
+          "pixels": [
+            [
+              495,
+              251
+            ],
+            [
+              552,
+              251
+            ],
+            [
+              552,
+              355
+            ],
+            [
+              495,
+              355
+            ]
+          ]
+        },
+        {
+          "id": "39327816-court-5",
+          "pixels": [
+            [
+              406,
+              373
+            ],
+            [
+              466,
+              374
+            ],
+            [
+              468,
+              475
+            ],
+            [
+              405,
+              475
+            ]
+          ]
+        },
+        {
+          "id": "39327816-court-6",
+          "pixels": [
+            [
+              496,
+              374
+            ],
+            [
+              553,
+              374
+            ],
+            [
+              553,
+              477
+            ],
+            [
+              496,
+              477
+            ]
+          ]
+        }
+      ],
+      "top_view": {
+        "pixel_origin": [
+          112526002,
+          51253415
+        ],
+        "zoom": 19,
+        "size": [
+          900,
+          900
+        ],
+        "sources": [
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:34.643204+00:00",
+            "sha256": "a36ba4ab6a43dee61ea8e1b3983510d8c688a8a62106b81e95b34efae072a5c4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200209&z=19",
+            "retrieved": "2026-09-16T13:12:39.247622+00:00",
+            "sha256": "19e3ae3b0ebe952a8cde74e9ef774e6f45fd1b6fcb994bd1a7b738ee17346d49"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200210&z=19",
+            "retrieved": "2026-09-16T13:12:39.840788+00:00",
+            "sha256": "04759fcc63914de03ebd4c3affe9435d736f813945e3772bea867c44a16e940f"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200211&z=19",
+            "retrieved": "2026-09-16T13:12:40.358921+00:00",
+            "sha256": "664793721e42f6c515f1749fe767157df3603485a4a39c110a209527947f758e"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200212&z=19",
+            "retrieved": "2026-09-16T13:12:40.951577+00:00",
+            "sha256": "79a4e2af42f58c64f647a7f797937c3df3bab1b6fb13a88bd4bafc47e40d66e8"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:35.059565+00:00",
+            "sha256": "87eb768675a78fc1baf625fc30f85a5f1759db3256161671a92cdcb93ff20f55"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200209&z=19",
+            "retrieved": "2026-09-16T13:12:41.522231+00:00",
+            "sha256": "7a629ba57ebec3a29060cfcdfeb6d12795568614b28bc69e6f6ba7e5037672c4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200210&z=19",
+            "retrieved": "2026-09-16T13:12:42.085401+00:00",
+            "sha256": "872ecdd18a9889d164d737c0f7c56cb0df7bc7ee54ab6adeaa65d7c8c927bc25"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200211&z=19",
+            "retrieved": "2026-09-16T13:12:42.690327+00:00",
+            "sha256": "30d24c0dd62a2d7ef522c07306cabb19968077edd6885d5dea34359974375ce4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200212&z=19",
+            "retrieved": "2026-09-16T13:12:43.368389+00:00",
+            "sha256": "cc7ad6bc83c0e7cbd5dcf56d2c00c86b970feed3ed8e40f9a90ef539dd6f3147"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:35.470950+00:00",
+            "sha256": "7d256fc57848208ccd1721642fa2883c9a4fc61a33a78a480080856796a2d63f"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200209&z=19",
+            "retrieved": "2026-09-16T13:12:43.950982+00:00",
+            "sha256": "61a2d34d32c581fd49da93046d60e7ea8614b33c68e15184ed1e575f90cb06a3"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200210&z=19",
+            "retrieved": "2026-09-16T13:12:44.412976+00:00",
+            "sha256": "6a2c85ff2a02d4ae3f167c389f9c1ad0cb5fe8e241b46da40d01c53f2ff71dd3"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200211&z=19",
+            "retrieved": "2026-09-16T13:12:44.939617+00:00",
+            "sha256": "d6e3348d9e6f3afff2e6cddc72d69ec06839f63988becde8c960d367913fc098"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200212&z=19",
+            "retrieved": "2026-09-16T13:12:45.537410+00:00",
+            "sha256": "c0186ffd99fbe6c0077a45853beebe2a0d123f469e179bb9818dce788f523286"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:35.860206+00:00",
+            "sha256": "c7a7a7712206b7696eaddc15302a08103b97e0022cae33ea6925ead39ad79d8b"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200209&z=19",
+            "retrieved": "2026-09-16T13:51:36.476750+00:00",
+            "sha256": "42cf2efecbf2b2e17cc5705f370f9bc2663963a590bc1cac057de3586e811304"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200210&z=19",
+            "retrieved": "2026-09-16T13:51:37.052489+00:00",
+            "sha256": "48fa092a94c79aadc6e91fac42b0d7405ae9a608693a4efcfbf6781d31a33263"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200211&z=19",
+            "retrieved": "2026-09-16T13:51:37.572388+00:00",
+            "sha256": "48938fb072b1c3972694c20f1cd6906c50d3cba73fbd1f7cbaf42a216eb5ac44"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200212&z=19",
+            "retrieved": "2026-09-16T13:51:38.052163+00:00",
+            "sha256": "cbb86aff6196cab321c4363f06f22d83188845a8774372146b4f2a8319d8be9c"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200208&z=19",
+            "retrieved": "2026-09-16T09:30:00.955254+00:00",
+            "sha256": "b151b3a1ad04a6abd9efeb6871db08bcf026af6ef98e6935662854e71452c0d9"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200209&z=19",
+            "retrieved": "2026-09-16T09:30:01.529653+00:00",
+            "sha256": "7b743b0d54612425b55bdddf66491887ff4a54c3d61f69d45661b9f4b19f5798"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200210&z=19",
+            "retrieved": "2026-09-16T09:30:02.105709+00:00",
+            "sha256": "0253572c3924bfa14baafe6078408d4b4ded36773bf9c237b31bba7d3eff3c4e"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200211&z=19",
+            "retrieved": "2026-09-16T13:51:38.633251+00:00",
+            "sha256": "015f5d7390c47c223165e6d11c79f6fc2a7694c282895c2180ff86b9ef003efc"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200212&z=19",
+            "retrieved": "2026-09-16T13:51:39.178574+00:00",
+            "sha256": "d11fc9752625762ea6a6568c142034619d660328fda119f23b369944d600907c"
+          }
+        ]
+      },
+      "classification": "provisional local image registration within OSM parent footprint",
+      "limits": "北侧六块内部场地边界来自官网 lm30 绘图，不是独立 OSM 要素或实测线位；仅在已登记外围内作局部配准。完整官方对象还包含南侧排球区与横向篮球场，分别保留对应 OSM 来源。内部罚球线、三分线、篮架尚无独立配准。"
+    },
+    {
+      "id": "eda-volleyball-courts-v1",
+      "official_id": "39327816",
+      "osm_id": "way/1381450455",
+      "osm_version": 1,
+      "reviewed": "2026-09-16",
+      "anchors": [
+        {
+          "pixel": [
+            400,
+            483
+          ],
+          "osm_vertex": 0
+        },
+        {
+          "pixel": [
+            401,
+            619
+          ],
+          "osm_vertex": 1
+        },
+        {
+          "pixel": [
+            556,
+            619
+          ],
+          "osm_vertex": 2
+        },
+        {
+          "pixel": [
+            563,
+            483
+          ],
+          "osm_vertex": 3
+        }
+      ],
+      "surfaces": [
+        {
+          "id": "39327816-volleyball-1",
+          "pixels": [
+            [
+              416,
+              508
+            ],
+            [
+              455,
+              508
+            ],
+            [
+              454,
+              594
+            ],
+            [
+              415,
+              594
+            ]
+          ]
+        },
+        {
+          "id": "39327816-volleyball-2",
+          "pixels": [
+            [
+              504,
+              509
+            ],
+            [
+              541,
+              509
+            ],
+            [
+              540,
+              595
+            ],
+            [
+              503,
+              595
+            ]
+          ]
+        }
+      ],
+      "top_view": {
+        "pixel_origin": [
+          112526002,
+          51253415
+        ],
+        "zoom": 19,
+        "size": [
+          900,
+          900
+        ],
+        "sources": [
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:34.643204+00:00",
+            "sha256": "a36ba4ab6a43dee61ea8e1b3983510d8c688a8a62106b81e95b34efae072a5c4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200209&z=19",
+            "retrieved": "2026-09-16T13:12:39.247622+00:00",
+            "sha256": "19e3ae3b0ebe952a8cde74e9ef774e6f45fd1b6fcb994bd1a7b738ee17346d49"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200210&z=19",
+            "retrieved": "2026-09-16T13:12:39.840788+00:00",
+            "sha256": "04759fcc63914de03ebd4c3affe9435d736f813945e3772bea867c44a16e940f"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200211&z=19",
+            "retrieved": "2026-09-16T13:12:40.358921+00:00",
+            "sha256": "664793721e42f6c515f1749fe767157df3603485a4a39c110a209527947f758e"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439554&y=200212&z=19",
+            "retrieved": "2026-09-16T13:12:40.951577+00:00",
+            "sha256": "79a4e2af42f58c64f647a7f797937c3df3bab1b6fb13a88bd4bafc47e40d66e8"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:35.059565+00:00",
+            "sha256": "87eb768675a78fc1baf625fc30f85a5f1759db3256161671a92cdcb93ff20f55"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200209&z=19",
+            "retrieved": "2026-09-16T13:12:41.522231+00:00",
+            "sha256": "7a629ba57ebec3a29060cfcdfeb6d12795568614b28bc69e6f6ba7e5037672c4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200210&z=19",
+            "retrieved": "2026-09-16T13:12:42.085401+00:00",
+            "sha256": "872ecdd18a9889d164d737c0f7c56cb0df7bc7ee54ab6adeaa65d7c8c927bc25"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200211&z=19",
+            "retrieved": "2026-09-16T13:12:42.690327+00:00",
+            "sha256": "30d24c0dd62a2d7ef522c07306cabb19968077edd6885d5dea34359974375ce4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439555&y=200212&z=19",
+            "retrieved": "2026-09-16T13:12:43.368389+00:00",
+            "sha256": "cc7ad6bc83c0e7cbd5dcf56d2c00c86b970feed3ed8e40f9a90ef539dd6f3147"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:35.470950+00:00",
+            "sha256": "7d256fc57848208ccd1721642fa2883c9a4fc61a33a78a480080856796a2d63f"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200209&z=19",
+            "retrieved": "2026-09-16T13:12:43.950982+00:00",
+            "sha256": "61a2d34d32c581fd49da93046d60e7ea8614b33c68e15184ed1e575f90cb06a3"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200210&z=19",
+            "retrieved": "2026-09-16T13:12:44.412976+00:00",
+            "sha256": "6a2c85ff2a02d4ae3f167c389f9c1ad0cb5fe8e241b46da40d01c53f2ff71dd3"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200211&z=19",
+            "retrieved": "2026-09-16T13:12:44.939617+00:00",
+            "sha256": "d6e3348d9e6f3afff2e6cddc72d69ec06839f63988becde8c960d367913fc098"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439556&y=200212&z=19",
+            "retrieved": "2026-09-16T13:12:45.537410+00:00",
+            "sha256": "c0186ffd99fbe6c0077a45853beebe2a0d123f469e179bb9818dce788f523286"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:35.860206+00:00",
+            "sha256": "c7a7a7712206b7696eaddc15302a08103b97e0022cae33ea6925ead39ad79d8b"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200209&z=19",
+            "retrieved": "2026-09-16T13:51:36.476750+00:00",
+            "sha256": "42cf2efecbf2b2e17cc5705f370f9bc2663963a590bc1cac057de3586e811304"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200210&z=19",
+            "retrieved": "2026-09-16T13:51:37.052489+00:00",
+            "sha256": "48fa092a94c79aadc6e91fac42b0d7405ae9a608693a4efcfbf6781d31a33263"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200211&z=19",
+            "retrieved": "2026-09-16T13:51:37.572388+00:00",
+            "sha256": "48938fb072b1c3972694c20f1cd6906c50d3cba73fbd1f7cbaf42a216eb5ac44"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439557&y=200212&z=19",
+            "retrieved": "2026-09-16T13:51:38.052163+00:00",
+            "sha256": "cbb86aff6196cab321c4363f06f22d83188845a8774372146b4f2a8319d8be9c"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200208&z=19",
+            "retrieved": "2026-09-16T09:30:00.955254+00:00",
+            "sha256": "b151b3a1ad04a6abd9efeb6871db08bcf026af6ef98e6935662854e71452c0d9"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200209&z=19",
+            "retrieved": "2026-09-16T09:30:01.529653+00:00",
+            "sha256": "7b743b0d54612425b55bdddf66491887ff4a54c3d61f69d45661b9f4b19f5798"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200210&z=19",
+            "retrieved": "2026-09-16T09:30:02.105709+00:00",
+            "sha256": "0253572c3924bfa14baafe6078408d4b4ded36773bf9c237b31bba7d3eff3c4e"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200211&z=19",
+            "retrieved": "2026-09-16T13:51:38.633251+00:00",
+            "sha256": "015f5d7390c47c223165e6d11c79f6fc2a7694c282895c2180ff86b9ef003efc"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439558&y=200212&z=19",
+            "retrieved": "2026-09-16T13:51:39.178574+00:00",
+            "sha256": "d11fc9752625762ea6a6568c142034619d660328fda119f23b369944d600907c"
+          }
+        ]
+      },
+      "classification": "provisional local image registration within OSM parent footprint",
+      "limits": "两块排球场内部边线按官方俯视图映射到 OSM 排球区域，属于局部图像估计，非独立实测或 OSM 内框。"
+    },
+    {
+      "id": "eda-track-surfaces-v1",
+      "official_id": "39327169",
+      "osm_id": "way/1076344143",
+      "osm_version": 1,
+      "containment_osm_id": "way/1076344139",
+      "reviewed": "2026-09-16",
+      "anchors": [
+        {
+          "pixel": [
+            459,
+            314
+          ],
+          "osm_vertex": 0
+        },
+        {
+          "pixel": [
+            454,
+            733
+          ],
+          "osm_vertex": 1
+        },
+        {
+          "pixel": [
+            729,
+            737
+          ],
+          "osm_vertex": 2
+        },
+        {
+          "pixel": [
+            734,
+            316
+          ],
+          "osm_vertex": 3
+        }
+      ],
+      "surfaces": [
+        {
+          "id": "39327169-running-surface",
+          "pixels": [
+            [
+              396,
+              322
+            ],
+            [
+              408,
+              273
+            ],
+            [
+              434,
+              224
+            ],
+            [
+              472,
+              185
+            ],
+            [
+              520,
+              155
+            ],
+            [
+              560,
+              142
+            ],
+            [
+              599,
+              137
+            ],
+            [
+              638,
+              142
+            ],
+            [
+              688,
+              161
+            ],
+            [
+              732,
+              192
+            ],
+            [
+              766,
+              232
+            ],
+            [
+              788,
+              279
+            ],
+            [
+              801,
+              321
+            ],
+            [
+              797,
+              737
+            ],
+            [
+              788,
+              786
+            ],
+            [
+              770,
+              827
+            ],
+            [
+              740,
+              864
+            ],
+            [
+              699,
+              894
+            ],
+            [
+              652,
+              911
+            ],
+            [
+              604,
+              917
+            ],
+            [
+              558,
+              913
+            ],
+            [
+              512,
+              896
+            ],
+            [
+              469,
+              869
+            ],
+            [
+              434,
+              834
+            ],
+            [
+              408,
+              791
+            ],
+            [
+              392,
+              751
+            ],
+            [
+              386,
+              713
+            ]
+          ],
+          "holes_pixels": [
+            [
+              [
+                435,
+                313
+              ],
+              [
+                431,
+                734
+              ],
+              [
+                749,
+                738
+              ],
+              [
+                757,
+                317
+              ]
+            ]
+          ],
+          "surface_type": "running"
+        },
+        {
+          "id": "39327169-grass-surface",
+          "pixels": [
+            [
+              435,
+              313
+            ],
+            [
+              431,
+              734
+            ],
+            [
+              749,
+              738
+            ],
+            [
+              757,
+              317
+            ]
+          ],
+          "surface_type": "grass"
+        }
+      ],
+      "top_view": {
+        "pixel_origin": [
+          112523522,
+          51253150
+        ],
+        "zoom": 19,
+        "size": [
+          1200,
+          1200
+        ],
+        "sources": [
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200207&z=19",
+            "retrieved": "2026-09-16T14:05:17.991459+00:00",
+            "sha256": "46db7b934cef1ee24ac2503859314362cb6b8b53b7e8b3b103daf4c0fff2c247"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:39.897408+00:00",
+            "sha256": "fa6982594619b3cbd4b0f861c84866202c94f7119cbba06f0b1052932d1f645b"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200209&z=19",
+            "retrieved": "2026-09-16T13:51:40.516684+00:00",
+            "sha256": "0546bb91e55106aa814cc97bbbad2a41c4ad2a129273365a0f7689b7b6c567b1"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200210&z=19",
+            "retrieved": "2026-09-16T13:35:55.098931+00:00",
+            "sha256": "2949926a77144c6f15d55354c4d867846d8537c755961defcedc70a4c58966da"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200211&z=19",
+            "retrieved": "2026-09-16T13:35:55.559573+00:00",
+            "sha256": "eebdd710b300bc41966bd22e31d507bc9e93bb7d174b279e997278567fb74293"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439545&y=200212&z=19",
+            "retrieved": "2026-09-16T13:35:56.038052+00:00",
+            "sha256": "6163e5fcbf935b0fd1de1a41f7725daf2e56cd9b53c764bcd7de1eaee7eab4a7"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200207&z=19",
+            "retrieved": "2026-09-16T14:05:18.158099+00:00",
+            "sha256": "f0199f7b2a287869e21865c3bae8c7764799d7a3361f07bb2014fc2cf649aaea"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:41.098494+00:00",
+            "sha256": "8736b9a7a4e87e9f87ba658769de28417a68721d1477d08b7bdb2f472fe3fbce"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200209&z=19",
+            "retrieved": "2026-09-16T13:51:41.610069+00:00",
+            "sha256": "8b53eec8f57662be8479d8e5b62df133c370d73764eff9cd93c9e5dad3977732"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200210&z=19",
+            "retrieved": "2026-09-16T13:35:56.592658+00:00",
+            "sha256": "6cfbadcb818906e7a560a55b62005ec7a1a95e1f913325ee1dbc7ee80e0448cc"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200211&z=19",
+            "retrieved": "2026-09-16T13:35:57.189711+00:00",
+            "sha256": "a4002a86ffa3a5db48f17c83bf3338eb175a7c6035628cc1c01919fe5fee8064"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439546&y=200212&z=19",
+            "retrieved": "2026-09-16T13:35:57.635384+00:00",
+            "sha256": "0a79c2a1daeadd4c0a0565dba2cb2546a73b59800f0ce80039cd75b3cacbff79"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200207&z=19",
+            "retrieved": "2026-09-16T14:05:18.343295+00:00",
+            "sha256": "1bc57b8b230ee947700478787afb4db1ed8f137c6fbeaaaa469a1e8ad5d4a5bf"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:42.044748+00:00",
+            "sha256": "f28551305577356878dba9c5eaa428f5156b8aa8ba673aaef696e068ba52ff06"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200209&z=19",
+            "retrieved": "2026-09-16T13:51:42.449799+00:00",
+            "sha256": "786a16186a72fce186f144ee8de645f81bc44086a0b34570e1c4968527f62d50"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200210&z=19",
+            "retrieved": "2026-09-16T13:35:58.015760+00:00",
+            "sha256": "e02fd492df734b674b3f442fa495a89cd98546bdcfcaa346122b7ba8ce166ad9"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200211&z=19",
+            "retrieved": "2026-09-16T13:35:58.517096+00:00",
+            "sha256": "4bdaa491a85efff5a7938edbd41cadd1d74050af0db04b866bd27c40c299b351"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439547&y=200212&z=19",
+            "retrieved": "2026-09-16T13:35:59.081824+00:00",
+            "sha256": "0c66eacaf679b0176e52719b71418c208265f0b176fffa290eac02975f0ede55"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200207&z=19",
+            "retrieved": "2026-09-16T14:05:18.530543+00:00",
+            "sha256": "dafea4195220a6818d9fb8bd2f6d797ea63b08b8791c91901e35915e56de8f51"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:43.062144+00:00",
+            "sha256": "b3caf15fe2213c68448a8715221f2dfc1c4e63bd2ccfe078c8823f597fd0dae4"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200209&z=19",
+            "retrieved": "2026-09-16T13:51:43.574901+00:00",
+            "sha256": "01e865759914ec497d4e089633b3e4db154c69bf8bf52c1831566902d8bc9698"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200210&z=19",
+            "retrieved": "2026-09-16T13:35:59.687226+00:00",
+            "sha256": "8f901f84b6135ecaffa75ed78e1392cab9430c3a1f98df3d7d1adcc8c534cb12"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200211&z=19",
+            "retrieved": "2026-09-16T13:36:00.305015+00:00",
+            "sha256": "6148f08a031eb7df424dbeac2453a118fe66ea67deaa1eaa413befd22085c5b3"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439548&y=200212&z=19",
+            "retrieved": "2026-09-16T13:36:00.931773+00:00",
+            "sha256": "1b8058f4f04c6c8eeafd9798ece83103e5cd35c67bd7510b38c76a2e524cb7a3"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200207&z=19",
+            "retrieved": "2026-09-16T14:05:18.774497+00:00",
+            "sha256": "dbdb87f5c0ae37809c7bba1440ba6fad24da36c620bf11e90af3245ace197fed"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200208&z=19",
+            "retrieved": "2026-09-16T13:51:44.142498+00:00",
+            "sha256": "4a465fa7a494b48170deb86c51e4ce06e3243d6ec5352c110a683dc9b2f68a75"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200209&z=19",
+            "retrieved": "2026-09-16T13:51:44.780703+00:00",
+            "sha256": "792f53b5cd604d5ecdc683cd003590bccba7ef72991b1c18dfb555431df14579"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200210&z=19",
+            "retrieved": "2026-09-16T13:51:45.403047+00:00",
+            "sha256": "e2d500154c845fa31e06ee84fef7d156b44e1dcef0547d95f786791fb5d5a280"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200211&z=19",
+            "retrieved": "2026-09-16T13:51:45.994058+00:00",
+            "sha256": "b39312c3001b54dced33fe55eb667a8ce2fc6606bfebff52370adf73bd7430b0"
+          },
+          {
+            "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439549&y=200212&z=19",
+            "retrieved": "2026-09-16T14:05:19.402742+00:00",
+            "sha256": "1990f1d560f719a8d49a6a54ed239791869aa7bc5bc2ffad9423ed3e0c1e2342"
+          }
+        ]
+      },
+      "photos": [
+        {
+          "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/11/l5_b_11_16.jpg",
+          "retrieved": "2026-09-16T14:04:41.716482+00:00",
+          "sha256": "41c04bd8c5e072fe59353da10bb7202666396b844e2622144b403d50e19ea2d6",
+          "file": "../imagery/panoramas/KFQ00-back-11-16.jpg",
+          "use": "确认运动场红色跑道面、草地及足球线；斜拍照片不直接提供平面测量"
+        },
+        {
+          "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/11/l5_b_11_17.jpg",
+          "retrieved": "2026-09-16T14:04:41.592046+00:00",
+          "sha256": "9ba2426868f84d6d47b8e7b5fdae88ac19820572d98f3de0f13af818204f3212",
+          "file": "../imagery/panoramas/KFQ00-back-11-17.jpg",
+          "use": "确认运动场红色跑道面、草地及足球线；斜拍照片不直接提供平面测量"
+        },
+        {
+          "url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l5/11/l5_b_11_18.jpg",
+          "retrieved": "2026-09-16T14:04:41.686656+00:00",
+          "sha256": "6d7f474217648ec934ff7045db0b9ed8f15880f5256bce370c132f14c96e211d",
+          "file": "../imagery/panoramas/KFQ00-back-11-18.jpg",
+          "use": "确认运动场红色跑道面、草地及足球线；斜拍照片不直接提供平面测量"
+        }
+      ],
+      "classification": "photo-supported layout; provisional top-view boundaries registered to OSM football corners",
+      "limits": "照片优先确认红色跑道面与中央草地/足球线，边界只能通过俯视图暂定配准，不声称实测。OSM 1076344140为缺宽度的闭合跑道线，1076344141/4142为开放延伸线，均不直接充当跑道面。未生成推定跑道道数、看台、台阶或围栏。"
+    }
+  ],
+  "evidence_priority": [
+    "photos",
+    "official-top-view",
+    "osm"
+  ],
+  "review_status": "provisional; no calibrated photo confirmation of internal court boundaries; supersede with stronger photo evidence"
+}
