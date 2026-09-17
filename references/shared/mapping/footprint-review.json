@@ -518,6 +518,31 @@
       "related_official_ids": [
         "77419"
       ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77452",
+      "osm_way_id": "277568993",
+      "name": "博留公寓食堂",
+      "status": "identity-confirmed; floor-and-wall-foot-registration-pending",
+      "construction_report": {
+        "publisher": "大连理工大学新闻网",
+        "title": "我校博留公寓及食堂工程Ⅱ标段主体封顶",
+        "url": "https://news.dlut.edu.cn/xjnry/yxfc_content.jsp?urltype=news.NewsContentUrl&wbnewsid=14732&wbtreeid=1011",
+        "published": "2010-05-07",
+        "read_date": "2026-09-17",
+        "reported_basement_levels": 1,
+        "reported_above_ground_levels": 3,
+        "reported_gross_area_m2": 5452,
+        "limits": "网页读取结果提供正文；直接下载页面返回无权访问，施工照片未取得。总建筑面积不是基底面积，不能除以层数构造轮廓。预计竣工日期不作为已竣工证明。"
+      },
+      "source_registration": "references/lingshui/mapping/osm-identity-overrides.json#objects/77452",
+      "findings": [
+        "照片1题名确认身份，入口玻璃体量退入高位梁架和外柱以内，不把梁架顶面当作整块墙体。",
+        "照片0/3的较低侧可见额外下层，与官方地下1层/地上3层描述相容，具体地形交接与露出高度仍需配准。",
+        "照片2/4/5补齐局部内部可见证据，但缺少拍摄日期、朝向、楼层及完整平面，不据此铺满室内。",
+        "lm30不同屋顶高度及疑似开敞区域不等于地面缺口，尚不支持矩形整框等高挤出或照屋顶裁掉基底。"
+      ]
     }
   ],
   "unmatched_cases": [

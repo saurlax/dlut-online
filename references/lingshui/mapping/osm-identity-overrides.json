@@ -411,6 +411,107 @@
         }
       ],
       "limits": "六点OSM为平面底稿，照片日期未知，车辆及树木遮挡墙脚；南侧两层窗按既有估计跨度保留，8.2米高度仍为照片比例估计，不新增屋顶体量、门廊或室内。"
+    },
+    "77452": {
+      "osm_ids": [
+        "way/277568993"
+      ],
+      "reviewed": "2026-09-17",
+      "basis": "官方77452照片1正面“博留公寓食堂”题名、照片0/3红砖与浅色面板体量及博留住宅邻接共同确认OSM博留餐厅，building=yes、amenity=restaurant；不使用一般名称“食堂”自动匹配所有餐饮对象。",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77452-0.jpg",
+          "photo_id": 78511,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77452_20160226145035863.jpg",
+          "sha256": "00af3e0155b64c33d2cee7da54ac16e3c41bf2f76ebb127da9b7e767eb3dd822",
+          "take_time": null,
+          "use": "外观/身份核对",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77452-1.png",
+          "photo_id": 78512,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77452_20160226145558579.png",
+          "sha256": "229a416363e8f99065ece1a35c41bb52ff8420ff249978800ce931a8e6181820",
+          "take_time": null,
+          "use": "外观/身份核对",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77452-2.png",
+          "photo_id": 851400,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77452_20191108144056534.png",
+          "sha256": "42cade9894ba0f78853f34f22c987ae6eec1418e47976e5ed63afe5cbe5514ab",
+          "take_time": null,
+          "use": "局部内部可见结构，仅参考，未定位楼层与方向",
+          "reviewed": "2026-09-17",
+          "retrieved": "2026-09-17"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77452-3.png",
+          "photo_id": 851402,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77452_20191108144056512.png",
+          "sha256": "8b2835f21fc0121772d4cf872956520af298e72b64e4781f5ebebe6eec1cccc6",
+          "take_time": null,
+          "use": "外观/身份核对",
+          "reviewed": "2026-09-17"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77452-4.png",
+          "photo_id": 851403,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77452_20191108144056530.png",
+          "sha256": "91ad65cbdfd632524e34e76bb1eb83838845dca7b778d6c033987863106cace2",
+          "take_time": null,
+          "use": "局部内部可见结构，仅参考，未定位楼层与方向",
+          "reviewed": "2026-09-17",
+          "retrieved": "2026-09-17"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77452-5.png",
+          "photo_id": 851401,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77452_20191108144056514.png",
+          "sha256": "a16e2643ae50f57cf0932348dc8dd18f64f4abbe7ea737aba1c027b4491903d5",
+          "take_time": null,
+          "use": "局部内部可见结构，仅参考，未定位楼层与方向",
+          "reviewed": "2026-09-17",
+          "retrieved": "2026-09-17"
+        }
+      ],
+      "map_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439140&y=200587&z=19",
+          "retrieved": "2026-09-17T05:48:24.134785+00:00",
+          "sha256": "cd5f143c3366a47264db5b2f7a7589ccce2fd327de2677f8edf36a2ec3c57909"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439140&y=200588&z=19",
+          "retrieved": "2026-09-17T05:48:24.177325+00:00",
+          "sha256": "9ae439c612061c89f82a1ba7e5973829e914a90eb0c245883f2e8f8ba37fa804"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439141&y=200587&z=19",
+          "retrieved": "2026-09-17T05:48:24.098944+00:00",
+          "sha256": "9c9747682aa2550b7af6445a529640d0b05c4eabc7242f40fd9c8675b951ed78"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439141&y=200588&z=19",
+          "retrieved": "2026-09-17T05:48:24.174707+00:00",
+          "sha256": "b4b66331c1db479e6bf8d5f2fc68a3f4326cda0b2f01e6d626adf31b81274ba3"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439142&y=200587&z=19",
+          "retrieved": "2026-09-17T05:48:24.475870+00:00",
+          "sha256": "6c77a20fa7ae608eacad6487f863ae0859f2462fc6453706b35572b6efdb06d9"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439142&y=200588&z=19",
+          "retrieved": "2026-09-17T05:48:24.587013+00:00",
+          "sha256": "66f275cd5997c7b45db4fe263b680f92533aacb03a7e2b12eac4020d911b458c"
+        }
+      ],
+      "defer_geometry": true,
+      "deferral_basis": "四点OSM为55.65×40.50米矩形外包底稿。照片1/3明确显示高位梁架/外柱、退入的玻璃入口和侧面露出的低层；俯视图有不同标高屋顶及开敞区域，尚未与地面墙脚配准。不能整框等高挤出，也不能把俯视屋顶凹口直接裁成贯通地面内院。",
+      "limits": "旧六点斜视轮廓和18米估计体量仍需替换，本项只确认来源身份并暂缓几何；官方报道给出地下1层/地上3层，未给出实测高度。新增内部照片没有完整平面、尺度及楼层定位，不生成房间、家具或楼梯。"
     }
   }
 }
