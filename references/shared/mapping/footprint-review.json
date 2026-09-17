@@ -206,7 +206,7 @@
       ],
       "name": "刘长春体育馆/游泳馆",
       "reviewed": "2026-09-17",
-      "status": "separate-source-areas-retained; shell-registration-pending",
+      "status": "roof-proportion-conflict-confirmed; ground-registration-pending",
       "photos": [
         {
           "path": "references/lingshui/buildings/photos/77445-0.jpg",
@@ -328,12 +328,166 @@
         "旧名称别名将合并官方对象仅匹配到主馆，遗漏了另一个没有building标签的具名区域。",
         "照片0/5显示主馆双叶曲面屋顶、较大基座；照片2显示较低游泳馆拱顶与玻璃外墙。lm30也区分北侧主馆和南侧长条体量。",
         "两馆屋顶、外挑屋檐、基座及墙脚不是同一轮廓；不得把两馆一起拟合到主馆六点框。",
-        "本次修正数据提取与参考身份，尚未将两份区域用于重建体育馆模型；保留原模型及既有精度限制。"
+        "两份OSM区域及屋顶描记均未用于重建体育馆模型；原模型仍待分别核对墙脚、基座和曲面配准。照片拍摄日期未知，主馆斜视照片存在遮挡，不据此补全不可见墙脚。",
+        "图面独立描记两馆屋顶：主馆角点跨度290×274像素，泳馆470×174像素。主馆四角暂对齐OSM后，泳馆屋顶估计范围显著大于OSM泳池区域且中心不重合；这是不同语义边界/图面比例冲突，不可只靠整体坐标系平移解决。"
       ],
       "license": {
         "publisher": "大连理工大学官方校园地图；OpenStreetMap contributors",
         "osm": "ODbL 1.0",
         "official_map": "未发现明确第三方复制或再分发许可；原图仅离线核对，不进入发行资源"
+      },
+      "roof_comparison": {
+        "status": "diagnostic-only; no-runtime-registration",
+        "pixel_frame": {
+          "zoom": 19,
+          "tile_origin": [
+            439136,
+            200600
+          ],
+          "axes": "x right, y down",
+          "tile_size": 256
+        },
+        "digitizing": "人工读取已归档lm30瓦片的屋顶可见外沿；点位取整到像素，边缘采样暂按±3像素评估敏感性，不代表地图自身精度。",
+        "main_roof_pixel_outline": [
+          [
+            210,
+            232
+          ],
+          [
+            500,
+            232
+          ],
+          [
+            507,
+            276
+          ],
+          [
+            511,
+            369
+          ],
+          [
+            505,
+            461
+          ],
+          [
+            500,
+            506
+          ],
+          [
+            210,
+            506
+          ],
+          [
+            198,
+            461
+          ],
+          [
+            194,
+            369
+          ],
+          [
+            199,
+            276
+          ]
+        ],
+        "pool_roof_pixel_outline": [
+          [
+            128,
+            570
+          ],
+          [
+            598,
+            570
+          ],
+          [
+            598,
+            744
+          ],
+          [
+            128,
+            744
+          ]
+        ],
+        "ground_wall_pixel_outline": null,
+        "podium_ground_pixel_outline": null,
+        "hypothetical_registration": {
+          "osm_id": "way/233806531",
+          "osm_version": 4,
+          "anchors": [
+            {
+              "pixel": [
+                210,
+                232
+              ],
+              "osm_vertex": 0
+            },
+            {
+              "pixel": [
+                500,
+                232
+              ],
+              "osm_vertex": 1
+            },
+            {
+              "pixel": [
+                500,
+                506
+              ],
+              "osm_vertex": 3
+            },
+            {
+              "pixel": [
+                210,
+                506
+              ],
+              "osm_vertex": 4
+            }
+          ],
+          "method": "four-corner projective comparison only",
+          "limits": "暂把主馆四个图面屋顶角与OSM四个角对应，仅用于检验两馆相对比例和间隔是否一致；角点并未证明是同一物理边界。不得将零锚点残差当作精度，不输出生产墙脚或自动应用该变换。"
+        },
+        "metrics": {
+          "main_anchor_span_pixels": [
+            290,
+            274
+          ],
+          "pool_roof_span_pixels": [
+            470,
+            174
+          ],
+          "map_pool_to_main_span_ratio": [
+            1.6206896551724137,
+            0.635036496350365
+          ],
+          "map_span_ratio_bounds_with_each_edge_plus_minus_3px": [
+            [
+              1.5675675675675675,
+              1.676056338028169
+            ],
+            [
+              0.6,
+              0.6716417910447762
+            ]
+          ],
+          "osm_pool_to_main_span_ratio": [
+            1.2753260417685444,
+            0.566396933925669
+          ],
+          "hypothetical_pool_roof_span_m": [
+            135.408809882896,
+            48.435786218185015
+          ],
+          "osm_pool_span_m": [
+            106.55294956570481,
+            43.19216000010499
+          ],
+          "hypothetical_roof_to_pool_center_delta_xz_m": [
+            -4.5938834812918685,
+            11.235437093198698
+          ],
+          "hypothetical_roof_to_pool_area_ratio": 1.4249227845620733
+        },
+        "decision": "排除把南侧OSM泳池区域直接作为游泳馆屋顶或地面墙脚。俯视图的两馆相对比例与OSM两区域不一致，单一平移无法消除；仍需确定主馆OSM边界对应屋顶、外墙还是基座，再独立配准泳馆。"
       }
     }
   ]
