@@ -5,11 +5,140 @@
   "tile_url": "http://map.dlut.edu.cn/map?lyrs=lm30&x={x}&y={y}&z={z}",
   "zoom": 19,
   "cases": [
-    {"campus": "lingshui", "official_id": "77387", "osm_way_id": "300180515", "name": "厚民楼"},
-    {"campus": "lingshui", "official_id": "77412", "osm_way_id": "1381605758", "name": "西灰楼"},
-    {"campus": "lingshui", "official_id": "77413", "osm_way_id": "1381605759", "name": "东灰楼"},
-    {"campus": "eda", "official_id": "77914", "osm_way_id": "1422474847", "name": "信息楼（OSM 身份及拆分待核实）"},
-    {"campus": "eda", "official_id": "77935", "osm_way_id": "309375777", "name": "第三学生公寓"},
-    {"campus": "panjin", "official_id": "77955", "osm_way_id": "1318388516", "name": "D03 化学实验楼"}
+    {
+      "campus": "lingshui",
+      "official_id": "77387",
+      "osm_way_id": "300180515",
+      "name": "厚民楼"
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77412",
+      "osm_way_id": "1381605758",
+      "name": "西灰楼"
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77413",
+      "osm_way_id": "1381605759",
+      "name": "东灰楼"
+    },
+    {
+      "campus": "eda",
+      "official_id": "77914",
+      "osm_way_id": "1422474847",
+      "name": "信息楼（OSM 身份及拆分待核实）"
+    },
+    {
+      "campus": "eda",
+      "official_id": "77935",
+      "osm_way_id": "309375777",
+      "name": "第三学生公寓"
+    },
+    {
+      "campus": "panjin",
+      "official_id": "77955",
+      "osm_way_id": "1318388516",
+      "name": "D03 化学实验楼"
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77386",
+      "osm_way_id": "547580516",
+      "osm_version": 2,
+      "name": "主楼",
+      "reviewed": "2026-09-17",
+      "status": "conflict-unresolved; not-applied-to-runtime",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77386-0.jpg",
+          "sha256": "19deb973bbf03d1df7efd0e22dafd455519a1f52014dfddc2190fd8b19326908"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77386-1.jpg",
+          "sha256": "75ebe0798e560704b2c923d0f8bf77a07b6156224e18d2381f3ee6e8bbacdc58"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77386-4.jpg",
+          "sha256": "7ca53a41728ffa8eda2c84585e3930b40d0e2e2e5b6db1528cc410e6987a8c17"
+        }
+      ],
+      "photo_capture_date": "未知；接口takeTime为空，URL日期未作为拍摄日期",
+      "tiles": [
+        {
+          "z": 19,
+          "x": 439131,
+          "y": 200596,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200596&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "dac3cfed5ce6d7d0a6af3b8fdd433ed29a440a96b62dcf0fa76c716fd3a0d5e4"
+        },
+        {
+          "z": 19,
+          "x": 439131,
+          "y": 200597,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439131&y=200597&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "d966fe907bb09a292a97c07dddc692c389adac76edb52bdb19bb2f3ed2a8985c"
+        },
+        {
+          "z": 19,
+          "x": 439132,
+          "y": 200596,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200596&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "060ac42261ae178f8ee5da95c8dc7818e70e6fe9f3233af6ee3fd0a6b5502404"
+        },
+        {
+          "z": 19,
+          "x": 439132,
+          "y": 200597,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439132&y=200597&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "43d07f1b8b584944dfceaac93f05c204bef6cb24699e4d80036945c0f4cefdb0"
+        },
+        {
+          "z": 19,
+          "x": 439133,
+          "y": 200596,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200596&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "614030a17592e49c0286be6e1e0d9e3f61997c082b70e82d9fa632a14556f45c"
+        },
+        {
+          "z": 19,
+          "x": 439133,
+          "y": 200597,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200597&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "c1130a64f9050b4614de34fd556afab9d972368d3a95352a6872bc1914ccbef5"
+        }
+      ],
+      "observations": [
+        "照片0/1确认中央六层立面、局部门廊及三扇主门；照片4近景受树木遮挡，不能恢复完整墙脚。",
+        "lm30可见中央体量、两侧连接段及局部屋顶凸出；屋顶绘图不能直接视作地面墙脚。",
+        "OSM南边13连接顶点13/14，长约116.048米；旧门廊沿旧边27仅约21.583米，直接只替换边号会把门廊拉长约5.38倍。"
+      ],
+      "registration": {
+        "status": "未建立独立地面控制点配准",
+        "preview_coordinate_hypothesis": "WGS84转GCJ02后在官网lm30像素空间定位，仅用于寻找资料；不作为已验证全局变换",
+        "osm_source_south_edge_length_m": 116.04784607374164,
+        "legacy_portico_width_m": 21.58301933366829,
+        "remaining_overlap_m2": 22.9673781394959,
+        "overlap_with_official_id": "77395",
+        "overlap_basis": "当前保存的平面多边形交集面积，不是实测误差"
+      },
+      "next_required_evidence": [
+        "明确中央立面、侧翼连接段及门廊的独立配准范围；门廊不能继承整条OSM南边长度。",
+        "按照片与俯视图区分墙脚、屋檐和阴影；不能凭旧斜视bound保留南侧所有锯齿。",
+        "迁移后检查西侧楼和东侧楼连接、屋面、门廊顶及柱碰撞，保留未测量尺寸状态。"
+      ],
+      "license": {
+        "publisher": "大连理工大学官方校园地图",
+        "name": "未发现明确的第三方复制或再分发许可",
+        "terms_url": null,
+        "authorization_status": "仅离线核对；原始瓦片在忽略目录缓存，不进入发行资源"
+      }
+    }
   ]
 }
