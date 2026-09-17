@@ -4209,5 +4209,43 @@
         "previous_status": "legacy-silhouette-pending-replacement"
       }
     }
+  ],
+  "ground_overlays": [
+    {
+      "id": "parking-1263777289",
+      "outer": [
+        [
+          -63.140808218018975,
+          -440.5934280003538
+        ],
+        [
+          -55.30729618205525,
+          -439.0572120005939
+        ],
+        [
+          -52.84244110187697,
+          -451.6920320003331
+        ],
+        [
+          -39.49677027459093,
+          -449.0760120006101
+        ],
+        [
+          -48.69777040216069,
+          -402.03218000057973
+        ],
+        [
+          -69.86007069617095,
+          -406.16215200059344
+        ]
+      ],
+      "holes": [],
+      "surface_type": "paving",
+      "render_lift_m": 0.02,
+      "osm_id": "way/1263777289",
+      "osm_version": 1,
+      "source": "references/panjin/mapping/ground-surfaces.json",
+      "geometry_status": "reviewed OSM parking area; boundary and level approximate"
+    }
   ]
 }
