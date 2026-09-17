@@ -1,4 +1,4 @@
-"""Build a provisional 10 m terrain grid from sourced DSM and recorded alignment."""
+"""Build a provisional 10 m terrain grid from sourced DSM in the shared WGS84 frame."""
 import json
 import math
 import statistics
@@ -29,18 +29,19 @@ def edge_distance(x, z, polygon):
 def build(campus):
     directory = ROOT / f'apps/game/assets/campuses/{campus}/data'
     manifest = json.loads((directory/'campus.json').read_text(encoding='utf-8'))
+    if (manifest.get('geographic_crs') != 'EPSG:4326'
+            or manifest.get('coordinate_frame') != osm_world.FRAME_PATH.relative_to(ROOT).as_posix()
+            or manifest.get('origin') != osm_world.frame(campus)['origin_lon_lat']):
+        raise ValueError(f'{campus}: shared WGS84 frame required; legacy terrain shifts are unsupported')
     refs = ROOT / f'references/{campus}/terrain'
     grid = json.loads((refs/'heightfield.json').read_text(encoding='utf-8'))
-    canonical = manifest.get('geographic_crs') == 'EPSG:4326'
-    alignment = {'offset_xz_m':[0,0]} if canonical else json.loads((refs/'alignment.json').read_text(encoding='utf-8'))
-    if canonical: assert manifest['origin'] == osm_world.frame(campus)['origin_lon_lat']
     raw = grid['rows_north_to_south']; h = len(raw); w = len(raw[0])
     # Lower-envelope then mean, each 3x3 source cells: an estimate, never a measured DTM.
     lower = [[min(raw[rr][cc] for rr in range(max(0,r-1),min(h,r+2)) for cc in range(max(0,c-1),min(w,c+2))) for c in range(w)] for r in range(h)]
     smooth = [[statistics.mean(lower[rr][cc] for rr in range(max(0,r-1),min(h,r+2)) for cc in range(max(0,c-1),min(w,c+2))) for c in range(w)] for r in range(h)]
-    lon0,lat0=manifest['origin']; meter_lon=111320*math.cos(math.radians(lat0)); ox,oz=alignment['offset_xz_m']
+    lon0,lat0=manifest['origin']; meter_lon=111320*math.cos(math.radians(lat0))
     def sample(x,z):
-        lon=lon0+(x+ox)/meter_lon; lat=lat0-(z+oz)/111320
+        lon=lon0+x/meter_lon; lat=lat0-z/111320
         col=(lon-grid['sample_origin_lon_lat'][0])/grid['sample_step_lon_lat'][0]
         row=(lat-grid['sample_origin_lon_lat'][1])/grid['sample_step_lon_lat'][1]
         assert 0<=col<w-1 and 0<=row<h-1,(campus,x,z,col,row)
@@ -73,10 +74,9 @@ def build(campus):
                     priorities[r][c] = signed_distance
                     weight=1 if signed_distance<7.5 else max(0,1-(signed_distance-7.5)/12.5)
                     rows[r][c]=(sample(x,z)-datum)*(1-weight)+level*weight
-    output={'schema_version':1,'campus_id':campus,'origin_xz':[x0,z0],'step_m':STEP,'width':nx,'height':nz,'absolute_y_offset_egm2008_m':datum,'feature_base_y':pads,'rows':[[round(v,4) for v in row] for row in rows],'basis':f'references/{campus}/terrain/alignment.json','classification':'provisional filtered DSM with estimated feature pads; 10m is mesh spacing, not survey accuracy'}
-    if canonical:
-        output.update(basis=manifest['coordinate_frame'],horizontal_crs='EPSG:4326',old_official_shift_applied=False)
-    (directory/'terrain.json').write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n')
+    output={'schema_version':1,'campus_id':campus,'origin_xz':[x0,z0],'step_m':STEP,'width':nx,'height':nz,'absolute_y_offset_egm2008_m':datum,'feature_base_y':pads,'rows':[[round(v,4) for v in row] for row in rows],'basis':manifest['coordinate_frame'],'classification':'provisional filtered DSM with estimated feature pads; 10m is mesh spacing, not survey accuracy'}
+    output.update(horizontal_crs='EPSG:4326',old_official_shift_applied=False)
+    (directory/'terrain.json').write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n',encoding='utf-8')
     print(campus,nx,nz,'vertical origin',datum)
 
 

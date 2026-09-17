@@ -70,14 +70,14 @@ DLUT Online 对 N38E121、N39E121 瓦片进行像素窗口裁剪及高度网格�
 
 **适用许可：** [Open Data Commons Open Database License 1.0（ODbL）](https://opendatacommons.org/licenses/odbl/1-0/)。版权及署名要求见 [OpenStreetMap Copyright](https://www.openstreetmap.org/copyright)。
 
-DLUT Online 提取凌水主校区及开发区校区的部分建筑轮廓，与官方校园地图的同名建筑匹配，以估算地形预览的水平平移。所使用的 OSM 数据摘录及其转换记录载于两校区 `terrain/alignment.json`；该等数据库内容按 ODbL 1.0 提供，后续使用者须遵守其署名、共享及数据库分发条件。
+DLUT Online 的三校区基础平面数据直接使用 OSM WGS84 来源，并按照片、官网俯视图、OSM 的证据顺序核对局部形状。早期以同名建筑估计地形水平平移的 `references/<campus_id>/terrain/alignment.json` 仅保留作历史记录；当前道路及地形生成器禁止回退至该平移。该等 OSM 摘录与衍生数据库按 ODbL 1.0 提供，后续使用者须遵守其署名、共享及数据库分发条件。
 
 三校区建筑轮廓的离线复核另使用 [样本登记](references/shared/mapping/footprint-review.json) 中的 OSM way，并与官网 `lm30` 俯视瓦片、原始 `bound` 对比。[复核工具及边界](references/shared/mapping/map-coordinate-handling.json)保存源 URL、读取时间、摘要、way/node 版本、初始定位与未验证草稿。下载资料和底图仅置于 `.local/`，不随游戏分发；官网底图仍适用第 2.1 条授权说明。OSM 摘录及其衍生数据库保留 ODbL 署名和许可信息。官网 bound 存在斜视外轮廓，既有质心平移不能再作为已验证的建筑基底配准。
-三个校区的道路中心线和校园范围使用 2026-09-16 读取的 OSM 数据，原始查询、way/node ID 与版本归档于 `references/<campus_id>/mapping/osm-roads.json`；盘锦建筑配准控制点另存 `references/panjin/mapping/road-alignment.json`。离线裁剪、坐标转换及估计宽度生成的 `apps/game/assets/campuses/<campus_id>/data/osm_roads.json` 同样按 ODbL 1.0 提供，随仓库公开分发。道路模型及游戏地图含 © OpenStreetMap contributors 数据，转换方式及精度限制见 [道路数据依据](references/shared/mapping/roads.md)。
+三个校区的道路中心线和校园范围使用 2026-09-16 读取的 OSM 数据，原始查询、way/node ID 与版本归档于 `references/<campus_id>/mapping/osm-roads.json`；盘锦旧配准控制点作为历史记录保留于 `references/panjin/mapping/road-alignment.json`，不用于当前坐标转换。离线裁剪、坐标转换及估计宽度生成的 `apps/game/assets/campuses/<campus_id>/data/osm_roads.json` 同样按 ODbL 1.0 提供，随仓库公开分发。道路模型及游戏地图含 © OpenStreetMap contributors 数据，转换方式及精度限制见 [道路数据依据](references/shared/mapping/roads.md)。
 
 三校区统一平面基准迁移使用 2026-09-16 已下载 OSM 原始数据，压缩归档及校验摘要见 `references/<campus_id>/mapping/osm-world.osm.gz` 与 `osm-world-source.json`。这些原始数据库摘录保留节点、道路、建筑、地表和关系对象的 ID、版本及时间戳，按 ODbL 1.0 提供。统一 WGS84 局部原点见 `references/shared/mapping/osm-world-frame.json`；归档范围包含校外要素，不能将归档数量视为校园建筑总数。地形高程继续单独标注 Copernicus 来源，不声称由 OSM 提供连续高程。
 
-离线迁移工具 `apps/game/tools/prepare_osm_world.py` 按上述归档提取地表面及道路、水道等线要素，保留多环孔洞、边界相交状态和身份冲突；`prepare_osm_terrain.py` 在同一地理坐标下采样已归档的凌水及开发区 DSM，不叠加旧官网平移。候选输出位于 `.local/osm-world/`，不表示运行场景已迁移；盘锦尚无归档高程网格，不能把缺口解释为 OSM 提供的平坦地形。
+离线迁移工具 `apps/game/tools/prepare_osm_world.py` 按上述归档提取地表面及道路、水道等线要素，保留多环孔洞、边界相交状态和身份冲突；`prepare_osm_terrain.py` 在同一地理坐标下采样已归档的凌水及开发区 DSM，不叠加旧官网平移。离线分析候选输出位于 `.local/osm-world/`，其存在不证明运行场景已完成迁移。当前运行道路清单与凌水、开发区 `terrain.json` 由对应生成器按同一基准产生，仍有待核对的旧建筑轮廓及局部冲突，不能声称全要素已对齐。盘锦尚无归档高程网格，不能把缺口解释为 OSM 提供的平坦地形。
 
 `apps/game/tools/prepare_osm_identities.py` 为既有建筑生成 OSM 身份清单，名称别名和显式消歧依据维护于 `references/<campus_id>/mapping/osm-identity-overrides.json`。匹配搜索完整归档，避免大学边界遗漏北山宿舍；完整归档中无关校外建筑不会因此自动加入模型。候选保留未匹配 ID、原始多边形、OSM 版本及输入摘要；名称或位置对应不证明轮廓精度，立面锚点及局部形状仍须复核。
 

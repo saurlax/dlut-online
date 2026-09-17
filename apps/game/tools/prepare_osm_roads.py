@@ -88,18 +88,15 @@ def build(campus, fetch=False):
     data_dir = ROOT / f'apps/game/assets/campuses/{campus}/data'
     refs = ROOT / f'references/{campus}/mapping'
     manifest = read(data_dir / 'campus.json')
+    align_path = osm_world.FRAME_PATH
+    if (manifest.get('geographic_crs') != 'EPSG:4326'
+            or manifest.get('coordinate_frame') != align_path.relative_to(ROOT).as_posix()
+            or manifest.get('origin') != osm_world.frame(campus)['origin_lon_lat']):
+        raise ValueError(f'{campus}: shared WGS84 frame required; legacy road shifts are unsupported')
     lon, lat = manifest['origin']
-    align_path = ROOT / (f'references/{campus}/terrain/alignment.json' if campus != 'panjin' else 'references/panjin/mapping/road-alignment.json')
-    if manifest.get('geographic_crs') == 'EPSG:4326':
-        assert manifest['origin'] == osm_world.frame(campus)['origin_lon_lat']
-        align_path = osm_world.FRAME_PATH
-        ox, oz = 0, 0
-    else:
-        alignment = read(align_path)
-        ox, oz = alignment['offset_xz_m']
     factor = 111320*math.cos(math.radians(lat))
     def local(p):
-        return [(p['lon']-lon)*factor-ox, -(p['lat']-lat)*111320-oz]
+        return [(p['lon']-lon)*factor, -(p['lat']-lat)*111320]
     archive = refs / 'osm-roads.json'
     if fetch:
         bbox = ','.join(map(str, (lat-.025, lon-.03, lat+.025, lon+.03)))

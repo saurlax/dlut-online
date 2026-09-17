@@ -12,6 +12,29 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_generators_reject_legacy_or_mismatched_frame_before_writing(self):
+        import json
+        from unittest.mock import patch
+        import prepare_osm_roads
+        import prepare_terrain_preview
+        original_read=Path.read_text
+        for campus in ('lingshui','eda','panjin'):
+            path=osm.ROOT/f'apps/game/assets/campuses/{campus}/data/campus.json'
+            manifest=json.loads(original_read(path,encoding='utf-8'))
+            for field,value in [('geographic_crs',None),('coordinate_frame','legacy-alignment'),('origin',[0,0])]:
+                invalid=dict(manifest);invalid[field]=value
+                def read(candidate,*args,**kwargs):
+                    if candidate==path:return json.dumps(invalid)
+                    return original_read(candidate,*args,**kwargs)
+                generators=[prepare_osm_roads.build]
+                if campus!='panjin':generators.append(prepare_terrain_preview.build)
+                for generate in generators:
+                    with self.subTest(campus=campus,field=field,generator=generate.__module__):
+                        with patch.object(Path,'read_text',autospec=True,side_effect=read), patch.object(Path,'write_text',autospec=True) as write:
+                            with self.assertRaisesRegex(ValueError,'shared WGS84 frame required'):
+                                generate(campus)
+                            write.assert_not_called()
+
     def test_deferred_identity_preserves_legacy_geometry_during_preparation(self):
         import contextlib
         import io
