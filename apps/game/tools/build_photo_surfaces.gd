@@ -32,7 +32,7 @@ func build(builder, campus: String) -> bool:
 			regions = panel_regions(profile, points)
 		elif entry.get("coverage", "") == "registered_edges":
 			for edge in profile.edges:
-				regions.append({"edge": edge, "span": [0.0, 1.0], "bottom": 1.0, "top": float(profile.height) - 0.5})
+				regions.append({"edge": edge, "span": profile.get("edge_spans", {}).get(str(edge), [0.0, 1.0]), "bottom": 1.0, "top": float(profile.height) - 0.5})
 		var source_nodes := group.get_children()
 		for region in regions:
 			var edge := int(region.edge)

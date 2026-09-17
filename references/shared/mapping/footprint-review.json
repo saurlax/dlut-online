@@ -48,7 +48,7 @@
       "osm_version": 2,
       "name": "主楼",
       "reviewed": "2026-09-17",
-      "status": "conflict-unresolved; not-applied-to-runtime",
+      "status": "central-facade-registration-applied; wall-setbacks-unresolved",
       "photos": [
         {
           "path": "references/lingshui/buildings/photos/77386-0.jpg",
@@ -120,18 +120,75 @@
         "OSM南边13连接顶点13/14，长约116.048米；旧门廊沿旧边27仅约21.583米，直接只替换边号会把门廊拉长约5.38倍。"
       ],
       "registration": {
-        "status": "未建立独立地面控制点配准",
+        "status": "局部横向覆盖登记已应用；无独立地面控制点配准",
         "preview_coordinate_hypothesis": "WGS84转GCJ02后在官网lm30像素空间定位，仅用于寻找资料；不作为已验证全局变换",
         "osm_source_south_edge_length_m": 116.04784607374164,
         "legacy_portico_width_m": 21.58301933366829,
-        "remaining_overlap_m2": 22.9673781394959,
+        "remaining_overlap_m2": 0,
         "overlap_with_official_id": "77395",
-        "overlap_basis": "当前保存的平面多边形交集面积，不是实测误差"
+        "overlap_basis": "当前保存的OSM平面轮廓与两侧楼交集检查均为空；不是实测误差，连接外观及高程仍受各自来源限制。",
+        "local_coverage_projection": {
+          "pixel_origin": [
+            112417536,
+            51352832
+          ],
+          "zoom": 19,
+          "anchors": [
+            {
+              "pixel": [
+                35,
+                127
+              ],
+              "osm_vertex": 12
+            },
+            {
+              "pixel": [
+                35,
+                154
+              ],
+              "osm_vertex": 13
+            },
+            {
+              "pixel": [
+                512,
+                127
+              ],
+              "osm_vertex": 15
+            },
+            {
+              "pixel": [
+                512,
+                154
+              ],
+              "osm_vertex": 14
+            }
+          ],
+          "anchor_limits": "两端连接段图面屋顶四角只用于横向覆盖范围，不作为已测墙脚坐标或独立精度依据。",
+          "central_front_pixel_range": [
+            [
+              179,
+              154
+            ],
+            [
+              366,
+              154
+            ]
+          ],
+          "source_edge": 13,
+          "source_edge_span": [
+            0.29466768524405584,
+            0.6865458932330444
+          ],
+          "portico_width_m": 21.58301933366829,
+          "portico_width_basis": "沿用旧照片比例估计，独立于宿主边及立面登记跨度；未实测。",
+          "excluded_geometry": "中央屋檐南沿约y=184，只记录可见投影，不将相对连接段约30像素的突出直接作为墙脚深度。",
+          "coverage_limits": "仅中央南立面；旧边号登记曾扩展的两翼/后部窗与檐线不作为已核对照片细节保留。"
+        },
+        "previous_overlap_m2": 22.9673781394959
       },
       "next_required_evidence": [
-        "明确中央立面、侧翼连接段及门廊的独立配准范围；门廊不能继承整条OSM南边长度。",
-        "按照片与俯视图区分墙脚、屋檐和阴影；不能凭旧斜视bound保留南侧所有锯齿。",
-        "迁移后检查西侧楼和东侧楼连接、屋面、门廊顶及柱碰撞，保留未测量尺寸状态。"
+        "中央墙脚相对侧翼连接段的进退尺寸及照片拍摄年代；不以屋檐边缘代替墙脚。",
+        "侧翼连接段未核对立面、门廊真实宽深/高度与独立地面控制点；现有尺寸仍为估计。"
       ],
       "license": {
         "publisher": "大连理工大学官方校园地图",
