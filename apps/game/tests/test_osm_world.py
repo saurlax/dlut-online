@@ -197,6 +197,11 @@ class OSMWorldTests(unittest.TestCase):
         self.assertNotIn('reference_points',square)
         self.assertEqual(square['unmodeled_osm_ids'],['way/547582634'])
         self.assertIn('partial-osm-square',square['geometry_status'])
+        utility = features['77516']
+        self.assertEqual(utility['osm_id'],'way/1383545738')
+        self.assertNotIn('reference_points',utility)
+        self.assertEqual(utility['height'],4.0)
+        self.assertEqual(utility['facade']['panels'],[])
 
     def test_c_block_refinement_retains_anchors_and_narrow_connector(self):
         import json
@@ -260,6 +265,15 @@ class OSMWorldTests(unittest.TestCase):
         self.assertNotIn('81821',records) # Reviewed traffic-count POI, retained in the campus manifest.
         self.assertEqual(records['77419']['shared_geometry'],{'id':'77420','part':0})
         self.assertEqual(records['77419']['status'],'missing') # Independent partition is unresolved.
+
+    def test_substation_areas_require_explicit_building_identity(self):
+        records={r['osm_id']:r for r in build('lingshui')['areas']}
+        for osm_id in ['way/1383545738','way/1381605747']:
+            self.assertEqual(records[osm_id]['category'],'utility-area')
+            self.assertNotIn('building',records[osm_id]['tags'])
+        mapped={r['official_id']:r for r in identities('lingshui')['buildings']}
+        self.assertEqual(mapped['77516']['osm_candidates'][0]['osm_id'],'way/1383545738')
+        self.assertEqual(mapped['77417']['status'],'missing')
 
     def test_indoor_pool_is_retained_without_becoming_a_building(self):
         records={r['osm_id']:r for r in build('lingshui')['areas']}
