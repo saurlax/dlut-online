@@ -484,7 +484,8 @@
         "Photo smooth trim ": "plaster",
         "Lingshui stone trim": "plaster",
         "Photo facade frames ": "window_frame"
-      }
+      },
+      "osm_regions": []
     },
     "77398": {
       "finish": "plaster",
@@ -698,7 +699,8 @@
         "Photo smooth trim ": "plaster",
         "Lingshui stone trim": "plaster",
         "Photo facade frames ": "window_frame"
-      }
+      },
+      "osm_regions": []
     },
     "34785233": {
       "finish": "plaster",
@@ -1181,7 +1183,8 @@
         "Photo smooth trim ": "plaster",
         "Lingshui stone trim": "plaster",
         "Photo facade frames ": "window_frame"
-      }
+      },
+      "osm_regions": []
     },
     "77481": {
       "finish": "plaster",

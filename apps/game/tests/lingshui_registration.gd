@@ -10,9 +10,9 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
+		if feature.id not in ["77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
-		if feature.id in ["77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
+		if feature.id in ["77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
 			var outline := PackedVector2Array()
 			for p in feature.points: outline.append(Vector2(p[0],p[1]))
 			var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
@@ -29,7 +29,7 @@ func check() -> void:
 		for mesh: MeshInstance3D in group.get_children():
 			for vertex: Vector3 in mesh.mesh.get_faces():
 				var p := mesh.transform*vertex
-				if (mesh.material_override.resource_name=="Lingshui roof" and absf(p.y-float(feature.height)-0.18)<0.001) or (feature.id in ["77430","77540","77542","77553","77519","77499","77504"] and mesh.material_override.resource_name=="Gabled hall roof"):
+				if (mesh.material_override.resource_name=="Lingshui roof" and absf(p.y-float(feature.height)-0.18)<0.001) or (feature.id in ["77440","77430","77540","77542","77553","77519","77499","77504"] and mesh.material_override.resource_name=="Gabled hall roof"):
 					roof.append(Vector2(p.x,p.z))
 				if feature.id in ["77555","77556","77557","77558","77559"] and mesh.material_override.resource_name=="Window glass":
 					var edge := 1 if feature.id=="77555" else 2
@@ -51,7 +51,7 @@ func check() -> void:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
 		checked += 1
-	assert(checked==57)
+	assert(checked==60)
 	await physics_frame
 	await physics_frame
 	for feature: Dictionary in data.features:
@@ -188,13 +188,43 @@ func check() -> void:
 		var p := Vector3(sample[0],qinyuan.position.y+3,sample[1])
 		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p-Vector3.BACK,p+Vector3.BACK))
 		assert(not hit.is_empty() and absf(hit.position.z-p.z)<.05,"Qinyuan recessed glazing wall misplaced")
+	var public_surfaces: Array[Vector3] = []
+	for feature: Dictionary in data.features:
+		if feature.id not in ["77440","625864"]: continue
+		var group: Node3D = model.get_node("Feature_"+feature.id+"_0")
+		if feature.id=="77440":
+			var angle: float = feature.facade.roof_rotation
+			var center := Vector2.ZERO
+			var low := INF
+			var high := -INF
+			for pair: Array in feature.points:
+				var p := Vector2(pair[0],pair[1]).rotated(-angle)
+				center += p/4
+				low = minf(low,p.y)
+				high = maxf(high,p.y)
+			for fraction in [-0.25,0.0,0.25]:
+				var p := Vector2(center.x,(low+high)/2+fraction*(high-low)).rotated(angle)
+				public_surfaces.append(Vector3(p.x,group.position.y+(10.6 if fraction==0 else 9.9),p.y))
+		else:
+			for edge in [0,1]:
+				var a := Vector2(feature.points[edge][0],feature.points[edge][1])
+				var b := Vector2(feature.points[edge+1][0],feature.points[edge+1][1])
+				var direction := (b-a).normalized()
+				var outward := Vector2(direction.y,-direction.x)
+				if (edge==0 and outward.x>0) or (edge==1 and outward.y<0): outward = -outward
+				var p := (a+b)/2+outward*0.7
+				for top in [4.275,8.375,12.775]: public_surfaces.append(Vector3(p.x,group.position.y+top,p.y))
+	assert(public_surfaces.size()==9)
+	for p: Vector3 in public_surfaces:
+		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.05,p-Vector3.UP*0.05))
+		assert(not hit.is_empty() and hit.position.distance_to(p)<0.003,"Registered laboratory roof or office eave misplaced")
 	model.queue_free()
 	var server: Node3D = load("res://scenes/server/lingshui.scn").instantiate()
 	root.add_child(server)
 	await physics_frame
 	await physics_frame
-	for p: Vector3 in balcony_samples:
+	for p: Vector3 in balcony_samples+public_surfaces:
 		var hit := server.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.05,p-Vector3.UP*0.05))
-		assert(not hit.is_empty() and hit.position.distance_to(p)<0.002,"Exported balcony floor missing")
-	print("LINGSHUI REGISTRATION PASS: fifty-seven roofs, registered walls and sixty-six residence platform floors and seven gabled roofs; ten balcony floors in client and exported server")
+		assert(not hit.is_empty() and hit.position.distance_to(p)<0.002,"Exported registered surface missing")
+	print("LINGSHUI REGISTRATION PASS: sixty roofs, registered walls and sixty-six residence platform floors and eight gabled roofs; ten balcony floors and nine roof/eave samples in client and exported server")
 	quit()
