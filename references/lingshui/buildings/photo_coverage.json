@@ -1470,9 +1470,9 @@
       "unavailable_photo_indices": [],
       "index": "photos/77442.json",
       "identity_review": {
-        "reviewed": "2026-09-11",
-        "status": "name_photo_mismatch",
-        "note": "地图名称为平房，但0号照片显示三层平顶白色楼体。不能按名称建成单层；仍需按邻楼、场地及朝向对应官方轮廓。",
+        "reviewed": "2026-09-17",
+        "status": "footprint-registered; name does not describe photo storeys",
+        "note": "照片78321显示三层白色长条楼；lm30与博留7舍南侧、桥隧实验室东侧的独立矩形位置对应OSM way/1384290195 v1，已替换旧七点斜视轮廓。原名平房保留但不作层数依据；10米为暂估体量，完整窗表、朝向细部、挡墙及入口仍未尺寸配准。",
         "review_images": [
           {
             "photo_index": 0,

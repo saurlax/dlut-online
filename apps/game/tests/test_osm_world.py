@@ -202,6 +202,12 @@ class OSMWorldTests(unittest.TestCase):
         self.assertNotIn('reference_points',utility)
         self.assertEqual(utility['height'],4.0)
         self.assertEqual(utility['facade']['panels'],[])
+        unnamed = features['77442']
+        self.assertEqual(unnamed['osm_id'],'way/1384290195')
+        self.assertEqual(len(unnamed['points']),4)
+        self.assertNotIn('reference_points',unnamed)
+        self.assertEqual(unnamed['facade']['floors'],3)
+        self.assertEqual(unnamed['height'],10.0)
 
     def test_c_block_refinement_retains_anchors_and_narrow_connector(self):
         import json
