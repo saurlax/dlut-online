@@ -10,9 +10,9 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
+		if feature.id not in ["77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
-		if feature.id in ["77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
+		if feature.id in ["77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
 			var outline := PackedVector2Array()
 			for p in feature.points: outline.append(Vector2(p[0],p[1]))
 			var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
@@ -26,6 +26,7 @@ func check() -> void:
 		var group: Node3D = model.get_node("Feature_"+feature.id+"_0")
 		var roof := PackedVector2Array()
 		var lower_windows := 0
+		var bochuan_south_vertices := 0
 		var museum_glass_span := Vector2(INF,-INF)
 		var museum_glass_height := Vector2(INF,-INF)
 		for mesh: MeshInstance3D in group.get_children():
@@ -33,6 +34,23 @@ func check() -> void:
 				var p := mesh.transform*vertex
 				if (mesh.material_override.resource_name=="Lingshui roof" and absf(p.y-float(feature.height)-0.18)<0.001) or (feature.id in ["77440","77430","77540","77542","77553","77519","77499","77504"] and mesh.material_override.resource_name=="Gabled hall roof"):
 					roof.append(Vector2(p.x,p.z))
+				if feature.id == "77447" and mesh.material_override.resource_name == "Window glass":
+					var a := Vector2(feature.points[3][0],feature.points[3][1])
+					var b := Vector2(feature.points[4][0],feature.points[4][1])
+					var axis := (b-a).normalized()
+					var offset := Vector2(p.x,p.z)-a
+					if absf(offset.cross(axis))<0.152:
+						var along := offset.dot(axis)
+						assert(along>a.distance_to(b)-16.471765 and along<a.distance_to(b), "Bochuan east-wing windows spread across south front")
+						assert(p.y>1.199 and p.y<23.401, "Bochuan five window rows stretched vertically")
+						bochuan_south_vertices += 1
+					else:
+						a = Vector2(feature.points[7][0],feature.points[7][1])
+						b = Vector2(feature.points[0][0],feature.points[0][1])
+						axis = (b-a).normalized()
+						offset = Vector2(p.x,p.z)-a
+						var t := offset.dot(axis)/a.distance_to(b)
+						assert(absf(offset.cross(axis))<0.152 and ((t>0.035 and t<0.31) or (t>0.69 and t<0.965)), "Bochuan north windows occupy unreviewed center or other wall")
 				if feature.id == "77426" and mesh.material_override.resource_name == "Window glass":
 					var a := Vector2(feature.points[14][0],feature.points[14][1])
 					var b := Vector2(feature.points[15][0],feature.points[15][1])
@@ -64,6 +82,7 @@ func check() -> void:
 					lower_windows += 1
 			if mesh.get_meta("walk_collision",false): preload("res://scripts/shared/campus_collision.gd")._collider(mesh)
 		if feature.id in ["77386","77412","77413","77555","77556","77557","77558","77559"]: assert(lower_windows>0)
+		if feature.id == "77447": assert(bochuan_south_vertices>0)
 		if feature.id == "77426":
 			assert(absf(museum_glass_span.y-museum_glass_span.x-4.9)<0.002, "Museum entrance glazing stretched with source edge")
 			assert(absf(museum_glass_height.x-4.1)<0.002 and absf(museum_glass_height.y-12.2)<0.002, "Museum entrance glazing height changed")
@@ -73,7 +92,7 @@ func check() -> void:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
 		checked += 1
-	assert(checked==69)
+	assert(checked==70)
 	await physics_frame
 	await physics_frame
 	for feature: Dictionary in data.features:
@@ -241,7 +260,7 @@ func check() -> void:
 		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.05,p-Vector3.UP*0.05))
 		assert(not hit.is_empty() and hit.position.distance_to(p)<0.003,"Registered laboratory roof or office eave misplaced")
 	# Source setbacks must remain empty; bounding boxes would fill these points.
-	for sample in [["77426",450,220],["77394",260,95],["35995473",394,142],["35995473",370,122],["77395",160,325],["77385",160,190],["77385",225,190]]:
+	for sample in [["77447",212,505],["77447",285,505],["77426",450,220],["77394",260,95],["35995473",394,142],["35995473",370,122],["77395",160,325],["77385",160,190],["77385",225,190]]:
 		var group: Node3D = model.get_node("Feature_"+str(sample[0])+"_0")
 		var p := Vector3(sample[1],group.position.y,sample[2])
 		var hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*30,p+Vector3.UP))
@@ -271,7 +290,7 @@ func check() -> void:
 		var hit := server.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.05,p-Vector3.UP*0.05))
 		assert(not hit.is_empty() and hit.position.distance_to(p)<0.002,"Exported registered surface missing")
 	check_main_portico(server, data, main_base_y)
-	print("LINGSHUI REGISTRATION PASS: sixty-nine roofs, registered walls and sixty-six residence platform floors and eight gabled roofs; ten balcony floors and nine roof/eave samples and bounded main portico in client and exported server")
+	print("LINGSHUI REGISTRATION PASS: seventy roofs, registered walls and sixty-six residence platform floors and eight gabled roofs; ten balcony floors and nine roof/eave samples and bounded main portico in client and exported server")
 	quit()
 
 # Independent structural samples keep the portico local when its host edge grows.
