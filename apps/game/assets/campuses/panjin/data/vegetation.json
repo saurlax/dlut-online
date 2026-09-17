@@ -1,3 +1,3 @@
-{"campus":"panjin","precision":"Photo-supported areas; approximate positions, dimensions and counts, not surveyed trees","schema_version":3,"source":"references/panjin/vegetation/planting.json","withheld_reason":"legacy placement requires independent ground registration","withheld_zone_ids":["library-west-lawn","library-south-lawn","library-flower-border","chemistry-south-lawn","teaching-south-east-row"],"instances":[
+{"campus":"panjin","precision":"Photo-supported areas; approximate positions, dimensions and counts, not surveyed trees","registered_zone_ids":[],"schema_version":4,"source":"references/panjin/vegetation/planting.json","withheld_reason":"legacy placement requires independent ground registration","withheld_zone_ids":["library-west-lawn","library-south-lawn","library-flower-border","chemistry-south-lawn","teaching-south-east-row"],"instances":[
 
 ]}
