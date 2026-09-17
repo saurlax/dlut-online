@@ -738,6 +738,75 @@
         "在有证据的分区上重建两个身份、路面、植被及客户端/服务端碰撞，核查道路33174911及院落净空。"
       ],
       "additional_source": "references/lingshui/buildings/training-center/source.json"
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77374",
+      "name": "大学生服务楼与民勇购物中心范围核对",
+      "status": "candidate-extent-unresolved",
+      "reviewed": "2026-09-17",
+      "osm_candidate_ids": [
+        "way/601992796"
+      ],
+      "osm_version": 2,
+      "candidate_limits": "名称与临近位置只能提供候选，不足以证明四边形覆盖官网对象整栋或其特定附属部分；未建立身份覆盖映射。",
+      "osm_tags": {
+        "building": "yes",
+        "building:levels": "2",
+        "height": "0",
+        "name": "民勇购物中心"
+      },
+      "osm_area_m2": 446.91972889260296,
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77374-0.jpg",
+          "photo_id": 78257,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77374_20160224170340975.jpg",
+          "sha256": "dbd00c4a6e134efe5b5668e4ef28deaa13a822e3b75689f64ac2d96a5cada8d6",
+          "take_time": null,
+          "limits": "拍摄时间未提供；透视、商铺招牌、树木与车辆遮挡墙脚，不能直接量取地面轮廓。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77374-1.jpg",
+          "photo_id": 78258,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77374_20160224170351476.jpg",
+          "sha256": "1c033cd600a94d236996d2c06c66fff0918313f74e612960549db331b6eb80cf",
+          "take_time": null,
+          "limits": "拍摄时间未提供；透视、商铺招牌、树木与车辆遮挡墙脚，不能直接量取地面轮廓。"
+        }
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439127&y=200596&z=19",
+          "retrieved": "2026-09-17T06:10:03.332377+00:00",
+          "sha256": "088632bc60770ea671b1511ca91c5b350a0bf3bfa90422c0fd85a4b60dcff899"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439127&y=200597&z=19",
+          "retrieved": "2026-09-17T06:10:03.275762+00:00",
+          "sha256": "c8f46d6adbf51be3ae7f132f0193ec74639b7eab4c355b6ce6f2327d53ae898f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439128&y=200596&z=19",
+          "retrieved": "2026-09-17T06:10:03.367375+00:00",
+          "sha256": "ef37067b76fb0852c88b12746c48f1a50fa9a66a548f8e4194879fcb9845c06b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439128&y=200597&z=19",
+          "retrieved": "2026-09-17T06:10:03.318523+00:00",
+          "sha256": "beedea1124a3b6fa8ec720794a2d8e548e39e26ea8a3f063a48d6b74d46b8f3c"
+        }
+      ],
+      "findings": [
+        "照片0可读“大学生服务楼”，显示多层主楼、不同高度屋面与底层商业；照片1显示另一视角的凹角及沿街低层商铺，不支持将整个对象处理为两层零高度建筑。",
+        "候选OSM四边形约22×20米，尚不能确认其涵盖范围；不将height=0用于现有建筑，也不按最近质心直接匹配。",
+        "四块lm30瓦片按历史coordinate-check页面的旧bound图面位置取得并目视检查，含多块屋面、道路与绿地，尚无独立控制点确认与照片的对应；不能把该历史投影直接用于墙脚修正。",
+        "现有14点旧斜视轮廓及18米估计体量仍待替换。该记录不新增身份override、不修改模型高度或碰撞。"
+      ],
+      "next_required": [
+        "独立确认民勇购物中心与大学生服务楼的完整建筑范围、附接商铺和分段高度。",
+        "建立照片可见转角与俯视图、WGS84控制点的对应，补齐被遮挡墙脚后统一重建楼体及碰撞。"
+      ]
     }
   ]
 }
