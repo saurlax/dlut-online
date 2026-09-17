@@ -65,6 +65,7 @@ func _run() -> void:
 		var filename: String = "development_campus" if campus == "eda" else "lingshui_campus"
 		var model: Node3D = load("res://assets/campuses/%s/models/%s.tscn" % [campus, filename]).instantiate()
 		var count := 0
+		var checked_surfaces: Array[String] = []
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/%s/data/campus.json" % campus))
 		for child in model.get_children():
 			if not child is MeshInstance3D or not child.get_meta("road_surface", false):
@@ -72,6 +73,7 @@ func _run() -> void:
 			var clearance := 0.12 if campus == "lingshui" else (0.22 if child.material_override.resource_name in ["Road", "Photo red path"] else (0.18 if child.material_override.resource_name == "Photo path edging" else 0.16))
 			var faces: PackedVector3Array = child.mesh.get_faces()
 			if child.has_meta("ground_surface_id"):
+				checked_surfaces.append(str(child.get_meta("ground_surface_id")))
 				# Ground overlays keep their 0.08 m lift plus the terrain fit offset, regardless of material.
 				clearance = 0.16
 				var forbidden: Array[PackedVector2Array] = []
@@ -96,6 +98,8 @@ func _run() -> void:
 				for p in [(faces[i]+faces[i+1]+faces[i+2])/3.0, (faces[i]+faces[i+1])*0.5]:
 					assert(absf(p.y - terrain.elevation(p.x,p.z) - clearance) < 0.002, "Road must follow the same terrain plane")
 				count += 1
+		for overlay: Dictionary in manifest.get("ground_overlays",[]):
+			assert(checked_surfaces.count(str(overlay.id))==1,"Missing or duplicated saved ground surface metadata: "+str(overlay.id))
 		assert(count > 0)
 		print("ROAD TERRAIN PASS: ", campus, " triangles=", count)
 		model.free()

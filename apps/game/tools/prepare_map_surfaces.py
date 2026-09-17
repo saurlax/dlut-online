@@ -20,6 +20,17 @@ def build(campus):
             raise ValueError('Ground surface anchor version changed')
         line = [osm.local(campus, *p) for p in osm.way_coordinates(way, nodes)]
         loop = line[anchor['loop_start_vertex']:]
+        anchor_ways = [anchor['way_id']]
+        if 'closing_way' in anchor:
+            closing = anchor['closing_way']
+            closing_way = ways[closing['way_id']]
+            if int(closing_way.get('version')) != closing['version']:
+                raise ValueError('Ground surface closing anchor version changed')
+            tail = [osm.local(campus, *p) for p in osm.way_coordinates(closing_way, nodes)]
+            if len(tail) < 2 or math.dist(loop[-1], tail[0]) > 0.001:
+                raise ValueError('Ground surface closing way must join the declared loop end')
+            loop += tail[1:]
+            anchor_ways.append(closing['way_id'])
         if math.dist(loop[0], loop[-1]) > 0.001:
             raise ValueError('Declared plaza anchor must be a closed OSM loop')
         center = [(min(p[i] for p in loop)+max(p[i] for p in loop))/2 for i in (0, 1)]
@@ -47,4 +58,6 @@ def build(campus):
                        'source_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
                        'status':item['status'], 'osm_anchor_way':anchor['way_id'],
                        'absolute_accuracy_m':None})
+        if len(anchor_ways) > 1:
+            result[-1]['osm_anchor_ways'] = anchor_ways
     return result

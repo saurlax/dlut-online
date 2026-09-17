@@ -12,6 +12,33 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_map_surface_requires_connected_versioned_closing_way(self):
+        import copy
+        import json
+        from unittest.mock import patch
+        import prepare_map_surfaces as surfaces
+        path=osm.ROOT/'references/eda/mapping/ground-surfaces.json'
+        original_read=Path.read_text
+        config=json.loads(original_read(path,encoding='utf-8'))
+        result=surfaces.build('eda')
+        north=next(r for r in result if r['id']=='eda-comprehensive-north-court')
+        self.assertEqual(north['osm_anchor_ways'],['1076344134','1076344135'])
+        self.assertEqual(len(north['outer']),14)
+        self.assertTrue(all(-330<p[0]<-270 and 260<p[1]<291 for p in north['outer']))
+        self.assertIsNone(north['absolute_accuracy_m'])
+        for closing,message in [({'way_id':'1076344135','version':999},'version changed'),
+                                ({'way_id':'1076344136','version':1},'must join'),
+                                (None,'closed OSM loop')]:
+            invalid=copy.deepcopy(config)
+            anchor=invalid['surfaces'][1]['osm_anchor']
+            if closing is None: anchor.pop('closing_way')
+            else: anchor['closing_way']=closing
+            def read(candidate,*args,**kwargs):
+                if candidate==path:return json.dumps(invalid)
+                return original_read(candidate,*args,**kwargs)
+            with patch.object(Path,'read_text',read):
+                with self.assertRaisesRegex(ValueError,message):surfaces.build('eda')
+
     def test_relation_review_keeps_inner_ring_and_rejects_single_ring_draft(self):
         import copy
         import json

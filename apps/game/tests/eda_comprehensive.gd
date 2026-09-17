@@ -82,6 +82,37 @@ func run() -> void:
 						loop_samples += 1
 		assert(loop_ways==2 and loop_samples==135,"Northern loop source coverage changed")
 		print("COMPREHENSIVE NORTH LOOP PASS: server=",server," samples=",loop_samples)
+		var court_samples := 0
+		for p: Vector2 in [Vector2(-303,265),Vector2(-305,270),Vector2(-310,276),Vector2(-293,278),Vector2(-281,278)]:
+			var y: float = terrain.elevation(p.x,p.y)+0.16
+			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+40,p.y),Vector3(p.x,y-1,p.y)))
+			if hit.is_empty() or absf(hit.position.y-y)>0.03:
+				push_error("North court missing/obstructed: server=%s at=%s hit=%s" % [server,p,hit])
+				quit(1)
+				return
+			court_samples += 1
+		print("COMPREHENSIVE NORTH COURT PASS: server=",server," samples=",court_samples)
+		var movement = preload("res://scripts/shared/movement.gd")
+		var body := CharacterBody3D.new()
+		movement.setup(body)
+		world.add_child(body)
+		for reverse in [false,true]:
+			var start_z := 278.0 if reverse else 259.0
+			var spawn := Vector3(-305,terrain.elevation(-305,start_z)+0.5,start_z)
+			body.position = spawn
+			body.velocity = Vector3.ZERO
+			for frame in 45:
+				await physics_frame
+				movement.step(body,Vector2.ZERO,false,false,1.0/60.0,spawn)
+			assert(body.is_on_floor())
+			for frame in 180:
+				await physics_frame
+				movement.step(body,Vector2(0,-1 if reverse else 1),false,false,1.0/60.0,spawn)
+				assert(body.is_on_floor(),"Lost floor at north loop/court join")
+			assert(absf(body.position.z-start_z)>17.5,"North court approach blocked")
+		print("COMPREHENSIVE COURT WALK PASS: server=",server," both directions")
+
+
 
 		world.free()
 		viewport.free()
