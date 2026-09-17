@@ -196,6 +196,10 @@ func merge_meshes(parent: Node3D) -> void:
 	var buckets: Dictionary = {}
 	for child in parent.get_children():
 		if child is MeshInstance3D:
+			# Roads and traced overlays carry distinct terrain offsets and source
+			# metadata even when they share asphalt. Preserve those mesh boundaries.
+			if child.get_meta("road_surface",false):
+				continue
 			var key: String = child.material_override.resource_name + ("_Solid" if child.get_meta("walk_collision",false) else "")
 			if not buckets.has(key):
 				buckets[key] = []
