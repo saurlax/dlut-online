@@ -717,6 +717,248 @@
         "client_and_server_road_samples_each": 81,
         "limits": "来源差异及生成模型内部检查，不是实测精度；图面屋顶边缘与地面墙脚仍待独立核对。"
       }
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77377",
+      "name": "建筑艺术馆东侧道路及北侧边界",
+      "osm_id": "way/1381605725",
+      "osm_version": 1,
+      "reviewed": "2026-09-17",
+      "status": "east-road-centerline-and-wall-base-registration-unresolved",
+      "runtime_diagnostic": {
+        "combined_overlap_m2": 47.9014770946305,
+        "roads": [
+          {
+            "overlap": 0.363394886255264,
+            "points": [
+              [
+                30.2258,
+                -3.8405
+              ],
+              [
+                105.4784,
+                -5.822
+              ],
+              [
+                182.7414,
+                -7.8481
+              ]
+            ],
+            "version": 1.0,
+            "way": 544369551.0,
+            "width": 5.0,
+            "width_basis": "estimated:highway-class",
+            "source_way_timestamp": "2017-12-03T18:04:40Z",
+            "tags": {
+              "highway": "living_street"
+            },
+            "shared_building_nodes": []
+          },
+          {
+            "overlap": 47.5380821228027,
+            "points": [
+              [
+                105.4784,
+                -5.822
+              ],
+              [
+                108.1474,
+                77.3006
+              ]
+            ],
+            "version": 1.0,
+            "way": 544369554.0,
+            "width": 5.0,
+            "width_basis": "estimated:highway-class",
+            "source_way_timestamp": "2017-12-03T18:04:40Z",
+            "tags": {
+              "highway": "living_street"
+            },
+            "shared_building_nodes": []
+          }
+        ],
+        "limits": "水平铺装宽度交叠，未证明实测墙脚或具体三维阻挡；版本时间不代表道路施工时间或全部节点坐标日期。"
+      },
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77377-2.jpg",
+          "sha256": "43a711c63a2e5de48159d3644638c55d886441901fdec5bd39bbb202d9a227a0",
+          "photo_id": 840620,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20191018152836956.jpg",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-12.jpg",
+          "sha256": "1835ecd72f9bcd0a9e1ce6b58128a22ab8bf06708cf47b4caa537537b5d4dd43",
+          "photo_id": 840618,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20191018152836896.jpg",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-16.jpg",
+          "sha256": "c700fc952e995d600445396dac631c8808be1a0ea0b481a5cb2159fc3011376b",
+          "photo_id": 840614,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20191018152836729.jpg",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-17.png",
+          "sha256": "0b4f943526dbeeb3693e500b9f0459f733beb772fe29318760fe009052f28b16",
+          "photo_id": 875272,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20200108085954141.png",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-19.png",
+          "sha256": "b52ebf897d62b06bccc57ba57a58e1bd9df06ce2c1a4e954cf898e6fd7c595a6",
+          "photo_id": 875274,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20200108090009233.png",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77377-20.png",
+          "sha256": "7989e7e350b72a22aad4e263755ac3d27269792f7de396a3b888fa2c6fe64250",
+          "photo_id": 875275,
+          "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77377_20200108090017422.png",
+          "take_time": null,
+          "use": "既有归档原图，本次核对临街立面、入口台阶及树木/车辆遮挡；不作为正射墙脚。"
+        }
+      ],
+      "imagery": {
+        "campus": "lingshui",
+        "provider": "tianditu",
+        "zoom": 18,
+        "pixel_origin": [
+          56207322,
+          25675789
+        ],
+        "size": [
+          550,
+          550
+        ],
+        "native_tile_sizes": [
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ]
+        ],
+        "sources": [
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219559&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:56.808677+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "d5fc28cd06e05ed01142e1c4328a7a66444d18e31c5089d1fdc529dd9df6efbe"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100297&TILECOL=219559&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:56.809174+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "ea1b01f8d4aae5d42f62da4fa11abeb9ff0e878489e8df5f870515f161ec4354"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100298&TILECOL=219559&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:56.816706+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "a9fa4d7e8d4e83d3a6d4671acffb20137f363bd5e46f4550c8e3cd3173825b9a"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219560&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:56.993355+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "26c612afbf31fa50cc46855f273a62b1a8c40e0909c76e4ff8cd0b9038970783"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100297&TILECOL=219560&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.059292+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "afe8aae319cddf3e64e893e28fd7d3817447f7fcbce66df4a2d14849343ae35c"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100298&TILECOL=219560&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.059211+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "2234137ba80984bfd7cb0690380c23d6630fc536dc72d4f56c390e81437b5204"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100296&TILECOL=219561&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.181581+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "907a837681f4c5db510751c3cd20339ebcdf647f31efedf660ded9521cc2226c"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100297&TILECOL=219561&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.253628+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "22081e241aebdbf2b7bf0cf89acc2ca6bb3f46bee509479f36823d4e969d2b5a"
+          },
+          {
+            "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=100298&TILECOL=219561&tk=REDACTED",
+            "retrieved": "2026-09-17T13:26:57.247466+00:00",
+            "status": 200,
+            "content_type": "image/jpg",
+            "sha256": "338c523b009ae6f0a0f646e9d418c5ef06a8ffe9d1fb4643863c1c20a8f7964e"
+          }
+        ]
+      },
+      "imagery_limits": "天地图影像采集日期及局部绝对误差未知，屋顶投影不能直接当墙脚；Esri两次下载和MapTiler本次拼图均因TLS/URL请求失败，未把部分瓦片记为有效完整比对来源。",
+      "findings": [
+        "主要交叠来自东侧544369554，约47.54平方米；北侧544369551约0.36平方米。两路均为living_street，5米宽由道路类别估计，不是实测。",
+        "道路与建筑没有共用源节点，东侧道路继续向南连接，不属于可按楼边终点截帽的短支路。",
+        "12、19、20号照片确认入口、临街一层、台阶、树木和停车；未显示可把整个争议楼侧挖空的贯通架空通道。照片中车辆和树冠遮挡部分墙脚，不能从透视道路外包络推导5米或更窄路宽。",
+        "天地图图幅可见东侧道路和楼群布局，当前中心线贴近OSM楼边，但没有独立地面控制区分中心线误差、屋顶位移与实际墙脚。",
+        "官方详情写明前楼5层、后楼3层；当前统一18米仍是既有估计，不能视为已核实分区高度，也不能只改楼高解决平面交叠。"
+      ],
+      "next_required": [
+        "沿东侧道路分别核对两侧路缘、墙脚与北/南共享路口，取得地面控制后联动544369551/544369554及相接道路，不通过缩路掩盖交叠。",
+        "核对前后楼及弧形玻璃段在独立平面上的范围后，再登记分区高度和照片立面；不照搬旧三维bound或任意划线分楼。"
+      ],
+      "building_description_source": "references/lingshui/buildings/building_details.json#77377"
     }
   ],
   "unmatched_cases": [
