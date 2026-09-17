@@ -56,6 +56,7 @@ func build() -> void:
 						polygon(group,points,0.06,material("Lingshui artificial turf" if turf else "Lingshui sports",Color("65824d") if turf else Color("92776a")),"Sports")
 				"plaza", "gate":
 					polygon(group,points,0.06,material("Lingshui paving",Color("aaa799")),"Paving")
+					group.get_child(group.get_child_count()-1).set_meta("terrain_surface",true)
 				"reserve":
 					polygon(group,points,0.03,material("Lingshui reserve",Color("899079")),"PlannedFootprint")
 				"reference":
