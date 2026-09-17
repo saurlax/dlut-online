@@ -12,6 +12,31 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_nonbuilding_reference_retains_source_and_rejects_changed_evidence(self):
+        import copy
+        from prepare_lingshui import retain_nonbuilding_references
+        feature = {'id':'poi','part':0,'kind':'building','facade':{},
+                   'points':[[10,10],[20,10],[20,20]],
+                   'reference_points':[[0,0],[10,0],[10,10]],
+                   'geometry_status':'legacy-silhouette-pending-replacement'}
+        spec = {'id':'poi','part':0,'reference_type':'traffic-counter',
+                'source':'public-source','expected_reference_points':feature['reference_points']}
+        actual = copy.deepcopy(feature)
+        retain_nonbuilding_references([actual],[spec])
+        self.assertEqual(actual['kind'],'reference')
+        self.assertEqual(actual['points'],feature['points'])
+        self.assertEqual(actual['reference_points'],feature['reference_points'])
+        for change in [{'osm_id':'way/1'},{'facade':{'windows':1}},
+                       {'reference_points':[[0,0],[11,0],[10,10]]},
+                       {'geometry_status':'osm-source-outline'}]:
+            actual = {**copy.deepcopy(feature),**change}
+            before = copy.deepcopy(actual)
+            with self.assertRaises(ValueError):
+                retain_nonbuilding_references([actual],[spec])
+            self.assertEqual(actual,before)
+        with self.assertRaises(ValueError):
+            retain_nonbuilding_references([copy.deepcopy(feature)],[spec,spec])
+
     def test_shared_compound_preserves_ids_and_rejects_new_member_geometry(self):
         import copy
         from prepare_lingshui import share_reviewed_building_geometry
@@ -223,7 +248,8 @@ class OSMWorldTests(unittest.TestCase):
         self.assertEqual(records['77446']['osm_candidates'][0]['osm_version'],1)
         self.assertEqual(records['77443']['osm_candidates'][0]['osm_id'],'way/219032067')
         self.assertEqual(records['77444']['osm_candidates'][0]['osm_id'],'way/219032047')
-        self.assertEqual(len(records),209)
+        self.assertEqual(len(records),208)
+        self.assertNotIn('81821',records) # Reviewed traffic-count POI, retained in the campus manifest.
         self.assertEqual(records['77419']['shared_geometry'],{'id':'77420','part':0})
         self.assertEqual(records['77419']['status'],'missing') # Independent partition is unresolved.
 

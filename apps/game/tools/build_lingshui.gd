@@ -18,6 +18,8 @@ func build() -> void:
 		group.set_meta("source_part",int(feature.part))
 		group.set_meta("display_name",feature.name)
 		group.set_meta("height_is_approximate",true)
+		if feature.has("reference_type"):
+			group.set_meta("reference_type",feature.reference_type)
 		if feature.has("geometry_assembly"):
 			group.set_meta("geometry_assembly",feature.geometry_assembly)
 		if feature.has("shared_geometry"):
