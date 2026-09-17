@@ -10,9 +10,9 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77357","77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
+		if feature.id not in ["77423","77357","77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
-		if feature.id in ["77357","77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
+		if feature.id in ["77423","77357","77447","77426","77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
 			var outline := PackedVector2Array()
 			for p in feature.points: outline.append(Vector2(p[0],p[1]))
 			var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
@@ -105,7 +105,7 @@ func check() -> void:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
 		checked += 1
-	assert(checked==71)
+	assert(checked==72)
 	await physics_frame
 	await physics_frame
 	for feature: Dictionary in data.features:
@@ -294,6 +294,8 @@ func check() -> void:
 	var main_group: Node3D = model.get_node("Feature_77386_0")
 	var main_base_y := main_group.position.y
 	check_main_portico(model, data, main_base_y)
+	var laboratory_base_y: float = model.get_node("Feature_77423_0").position.y
+	check_three_beam_clearance(model, data, laboratory_base_y)
 	model.queue_free()
 	var server: Node3D = load("res://scenes/server/lingshui.scn").instantiate()
 	root.add_child(server)
@@ -303,8 +305,32 @@ func check() -> void:
 		var hit := server.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.05,p-Vector3.UP*0.05))
 		assert(not hit.is_empty() and hit.position.distance_to(p)<0.002,"Exported registered surface missing")
 	check_main_portico(server, data, main_base_y)
-	print("LINGSHUI REGISTRATION PASS: seventy-one roofs, registered walls and sixty-six residence platform floors and eight gabled roofs; ten balcony floors and nine roof/eave samples and bounded main portico in client and exported server")
+	check_three_beam_clearance(server, data, laboratory_base_y)
+	print("LINGSHUI REGISTRATION PASS: seventy-two roofs, registered walls and sixty-six residence platform floors and eight gabled roofs; ten balcony floors and nine roof/eave samples, bounded main portico and three-beam road clearance in client and exported server")
 	quit()
+
+func check_three_beam_clearance(world: Node3D, data: Dictionary, base_y: float) -> void:
+	var outline := PackedVector2Array()
+	for feature: Dictionary in data.features:
+		if feature.id != "77423": continue
+		assert(feature.osm_id == "way/233806548" and feature.osm_version == 2)
+		for p: Array in feature.points: outline.append(Vector2(p[0], p[1]))
+	assert(outline.size() == 6)
+	var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
+	for ribbon in preload("res://scripts/shared/road_geometry.gd").polygons(roads):
+		assert(Geometry2D.intersect_polygons(outline, ribbon).is_empty(), "Three-beam wall overlaps the full road width")
+	var space := world.get_world_3d().direct_space_state
+	var roof := Vector3(822, base_y+18.0, 200)
+	var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(roof+Vector3.UP*0.05, roof-Vector3.UP*0.05))
+	assert(not hit.is_empty() and roof.distance_to(hit.position)<0.003, "Three-beam roof collision missing")
+	# This north-side road segment crossed the old perspective silhouette.
+	for side in [-2.0, 0.0, 2.0]:
+		var a := Vector2(832.8565, 171.1656)
+		var b := Vector2(800.0, 183.003)
+		var normal: Vector2 = (b-a).normalized().orthogonal()*float(side)
+		var start := Vector3(a.x+normal.x, base_y+3, a.y+normal.y)
+		var end := Vector3(b.x+normal.x, base_y+3, b.y+normal.y)
+		assert(space.intersect_ray(PhysicsRayQueryParameters3D.create(start, end)).is_empty(), "Old three-beam collision still obstructs north road")
 
 # Independent structural samples keep the portico local when its host edge grows.
 func check_main_portico(world: Node3D, data: Dictionary, base_y: float) -> void:
