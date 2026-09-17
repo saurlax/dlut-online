@@ -56626,7 +56626,7 @@
       "part": 0,
       "source_index": 254,
       "name": "西山公寓",
-      "kind": "building",
+      "kind": "reference",
       "points": [
         [
           51.193440413334244,
@@ -56707,7 +56707,10 @@
           ]
         ]
       ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "nonbuilding-poi-reference; original bounds retained without extrusion",
+      "source_kind": "building",
+      "reference_type": "traffic-counter",
+      "classification_basis": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=81821"
     },
     {
       "id": "83718",
