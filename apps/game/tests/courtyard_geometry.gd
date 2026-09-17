@@ -9,6 +9,13 @@ func check() -> void:
 	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
 	var model: Node3D = load("res://assets/campuses/lingshui/models/lingshui_campus.tscn").instantiate()
 	root.add_child(model)
+	# The modern-laboratory ID remains addressable, while the compound is built once.
+	var member: Node3D = model.get_node("Feature_77419_0")
+	var compound: Node3D = model.get_node("Feature_77420_0")
+	assert(member.get_child_count()==0,"Legacy modern-laboratory volume must not duplicate the compound")
+	var shared_geometry: Dictionary = member.get_meta("shared_geometry")
+	assert(shared_geometry.id=="77420" and int(shared_geometry.part)==0)
+	assert(compound.get_meta("shared_official_ids")==["77420","77419"])
 	var probes: Array[Vector3] = []
 	var world_probes: Array[Dictionary] = []
 	var isolated := "--isolated" in OS.get_cmdline_user_args()
@@ -55,6 +62,11 @@ func check() -> void:
 	await physics_frame
 	if not isolated:
 		var client_failures := check_world(model,world_probes,"client")
+		if client_failures==0:
+			model.add_child(load("res://assets/campuses/lingshui/models/terrain.tscn").instantiate())
+			await physics_frame
+			await physics_frame
+			await check_walk(model,"client")
 		model.queue_free()
 		await process_frame
 		var server: Node3D = load("res://scenes/server/lingshui.scn").instantiate()
@@ -62,6 +74,7 @@ func check() -> void:
 		await physics_frame
 		await physics_frame
 		var server_failures := check_world(server,world_probes,"server")
+		if server_failures==0: await check_walk(server,"server")
 		if client_failures+server_failures>0:
 			print("COURTYARD WORLD FAIL: client=",client_failures," server=",server_failures," obstructed samples; isolated cap checks do not establish world clearance")
 			quit(1)
@@ -89,3 +102,30 @@ func check_world(world: Node3D, samples: Array[Dictionary], label: String) -> in
 		reported[sample.id] = true
 		print("COURTYARD OBSTRUCTION ",label," owner=",sample.id," probe=",point," hit=",hit.position," collider=",hit.collider.get_path())
 	return failures
+
+func check_walk(world: Node3D, label: String) -> void:
+	# Exercise the restored inner area, without claiming a new route through its walls.
+	var movement = preload("res://scripts/shared/movement.gd")
+	var body := CharacterBody3D.new()
+	movement.setup(body)
+	world.add_child(body)
+	for direction in [-1.0,1.0]:
+		var x := 638.0 if direction<0 else 610.0
+		var query := PhysicsRayQueryParameters3D.create(Vector3(x,25,385),Vector3(x,-25,385))
+		query.exclude = [body.get_rid()]
+		var ground := world.get_world_3d().direct_space_state.intersect_ray(query)
+		assert(not ground.is_empty() and ground.position.y<2,"Restored inner area needs ground, not a roof")
+		var spawn: Vector3 = ground.position+Vector3.UP*0.5
+		body.position = spawn
+		body.velocity = Vector3.ZERO
+		for frame in 45:
+			await physics_frame
+			movement.step(body,Vector2.ZERO,false,false,1.0/60.0,spawn)
+		assert(body.is_on_floor(),"Courtyard spawn did not settle on ground")
+		for frame in 180:
+			await physics_frame
+			movement.step(body,Vector2(direction,0),false,false,1.0/60.0,spawn)
+			assert(body.is_on_floor(),"Lost floor inside restored courtyard")
+		assert((body.position.x-x)*direction>17.5,"Legacy volume still blocks courtyard walking")
+	body.free()
+	print("COURTYARD WALK PASS: ",label," both directions, 18m interior paths; entrances not verified")

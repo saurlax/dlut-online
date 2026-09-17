@@ -57,6 +57,43 @@ def split_crossings(points):
     return [points]
 
 
+def share_reviewed_building_geometry(features, assemblies):
+    """Keep reviewed compound IDs without extruding overlapping legacy outlines.
+
+    This records shared geometry, not an invented boundary between departments.
+    Refuse to suppress a newly matched outline or any photo facade on re-import.
+    """
+    lookup = {(f['id'], f['part']): f for f in features}
+    planned, used = [], set()
+    for spec in assemblies:
+        owner_key = (spec['owner_id'], spec['owner_part'])
+        owner = lookup[owner_key]
+        if (owner['kind'] != 'building' or owner.get('osm_id') != spec['osm_id']
+                or owner.get('osm_version') != spec['osm_version']
+                or len(owner['points']) != spec['outer_vertices']
+                or [len(h) for h in owner.get('holes', [])] != spec['hole_vertices']):
+            raise ValueError('Shared building source changed; review compound geometry')
+        keys = [owner_key] + [(m['id'], m['part']) for m in spec['members']]
+        if len(set(keys)) != len(keys) or used.intersection(keys):
+            raise ValueError('Shared building membership must be unique')
+        for key in keys[1:]:
+            member = lookup[key]
+            if (member['kind'] != 'building' or member.get('facade')
+                    or member.get('osm_id') or member.get('holes')
+                    or member.get('geometry_status') != 'legacy-silhouette-pending-replacement'):
+                raise ValueError('Shared building member changed; preserve new geometry or facade')
+        used.update(keys)
+        planned.append((spec, owner, [lookup[k] for k in keys[1:]]))
+    for spec, owner, members in planned:
+        owner['shared_official_ids'] = [owner['id']] + [f['id'] for f in members]
+        owner['geometry_assembly'] = spec['id']
+        owner['geometry_status'] = 'osm-shared-compound; internal partition and absolute accuracy unverified'
+        for member in members:
+            member.update(kind='reference', source_kind='building', geometry_assembly=spec['id'],
+                          shared_geometry={'id': owner['id'], 'part': owner['part']},
+                          geometry_status='shared-compound-reference; legacy silhouette not rendered')
+
+
 def main():
     import osm_world
     from prepare_osm_identities import build as identities
@@ -200,6 +237,9 @@ def main():
             feature['points']=[moved(p) for p in feature['points']]
             feature['render_polygons']=[[moved(p) for p in ring] for ring in feature['render_polygons']]
             feature['geometry_status']='legacy-silhouette-pending-replacement'
+    assembly_path = REFERENCES/'mapping/building-assemblies.json'
+    if assembly_path.exists():
+        share_reviewed_building_geometry(features, json.loads(assembly_path.read_text(encoding='utf-8'))['assemblies'])
     all_points = [p for f in features for p in f['points']]
     low = [math.floor(min(p[i] for p in all_points)/10)*10-30 for i in range(2)]
     high = [math.ceil(max(p[i] for p in all_points)/10)*10+30 for i in range(2)]
