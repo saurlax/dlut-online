@@ -12,7 +12,7 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
-    def test_registered_woodland_ignores_legacy_polygon_and_pins_source(self):
+    def test_registered_planting_ignores_legacy_polygon_and_pins_source(self):
         import copy
         import json
         from unittest.mock import patch
@@ -20,9 +20,13 @@ class OSMWorldTests(unittest.TestCase):
         original_read = Path.read_text
         config = json.loads(original_read(path, encoding='utf-8'))
         actual = osm.registered_planting_areas('eda')
-        self.assertEqual([a['id'] for a in actual], ['jinping-hill-canopy'])
+        self.assertEqual([a['id'] for a in actual], ['library-north-lawn','jinping-hill-canopy'])
         source = next(a for a in build('eda')['areas'] if a['osm_id']=='way/232560269')
-        self.assertEqual(actual[0]['points'], source['polygons'][0]['outer'])
+        self.assertEqual(actual[1]['points'], source['polygons'][0]['outer'])
+        lawn = next(a for a in build('eda')['areas'] if a['osm_id']=='way/1076344098')
+        self.assertEqual(actual[0]['points'], lawn['polygons'][0]['outer'])
+        profile = next(z for z in config['zones'] if z['id']=='library-north-lawn')
+        self.assertEqual([p['kind'] for p in profile['plants']], ['grass'])
         for mutation, expected in [('legacy', None), ('version', 'version changed'), ('digest', 'geometry changed')]:
             invalid = copy.deepcopy(config)
             zone = next(z for z in invalid['zones'] if z['id']=='jinping-hill-canopy')
