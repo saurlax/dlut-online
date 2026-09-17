@@ -17,6 +17,7 @@ func check() -> void:
 	var samples: Array[Vector3] = []
 	var count := 0
 	var triangles := 0
+	var fountain_samples := 0
 	for f: Dictionary in data.features:
 		if f.kind not in ["plaza","gate"]: continue
 		var group: Node3D = model.get_node("Feature_"+f.id+"_"+str(int(f.part)))
@@ -38,11 +39,13 @@ func check() -> void:
 				# Interior and all edges catch triangles cutting across a terrain fold.
 				for p: Vector3 in [a,b,c,(a+b+c)/3,(a+b)/2,(b+c)/2,(c+a)/2]:
 					assert(absf(p.y-terrain.elevation(p.x,p.z)-0.14)<0.002,"Paving buried or floating: "+f.id+" "+str(p))
-				if f.id=="78550": samples.append((a+b+c)/3)
+				if f.id in ["78550","17922962"]:
+					samples.append((a+b+c)/3)
+					if f.id=="17922962": fountain_samples += 1
 				triangles += 1
 		assert(absf(actual-expected)<0.2,"Paving footprint changed: "+f.id)
 		count += 1
-	assert(count==22 and not samples.is_empty())
+	assert(count==22 and fountain_samples>0)
 	# Check the exported collision, rather than constructing a test-only collider.
 	model.queue_free()
 	var world: Node3D = load("res://scenes/server/lingshui.scn").instantiate()
@@ -52,6 +55,6 @@ func check() -> void:
 	for p: Vector3 in samples:
 		var ray := PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.025,p-Vector3.UP*0.025)
 		var hit := world.get_world_3d().direct_space_state.intersect_ray(ray)
-		assert(not hit.is_empty() and absf(hit.position.y-p.y)<0.002,"Parking paving collision missing")
-	print("PAVING GEOMETRY PASS: ",count," terrain-fitted parts, ",triangles," triangles, ",samples.size()," parking collision samples")
+		assert(not hit.is_empty() and absf(hit.position.y-p.y)<0.002,"Paving collision missing")
+	print("PAVING GEOMETRY PASS: ",count," terrain-fitted parts, ",triangles," triangles, ",samples.size()," parking/square collision samples; fountain north=",fountain_samples)
 	quit()
