@@ -116,14 +116,22 @@ class OSMWorldTests(unittest.TestCase):
 
     def test_c_block_refinement_retains_anchors_and_narrow_connector(self):
         import json
-        from refine_osm_footprints import projective_map
+        from refine_osm_footprints import similarity_map
         record=next(r for r in build('eda')['areas'] if r['osm_id']=='way/1422474849')
         result=refine('eda',record)
         spec=next(r for r in json.loads((osm.ROOT/'references/eda/mapping/footprint-refinements.json').read_text(encoding='utf-8'))['refinements'] if r['official_id']=='77927')
         old=record['polygons'][0]['outer'];new=result['polygons'][0]['outer']
-        for a,b in zip([old[i] for i in (0,12,11,5)],[new[i] for i in (0,1,2,12)]):
+        for a,b in zip([old[i] for i in (0,12)],[new[i] for i in (0,1)]):
             for x,y in zip(a,b):self.assertAlmostEqual(x,y,places=7)
-        convert=projective_map([a['pixel'] for a in spec['anchors']],[old[a['osm_vertex']] for a in spec['anchors']])
+        convert=similarity_map([a['pixel'] for a in spec['anchors']],[old[a['osm_vertex']] for a in spec['anchors']])
+        import math
+        north=[new[1][i]-new[0][i] for i in (0,1)]
+        south=[new[2][i]-new[24][i] for i in (0,1)]
+        self.assertLess(abs(north[0]*south[1]-north[1]*south[0]),1e-6)
+        self.assertAlmostEqual(math.hypot(*south)/math.hypot(*north),159/160,places=8)
+        self.assertEqual([r['osm_vertex'] for r in result['refinement']['check_anchor_residuals_m']],[11,5])
+        self.assertIsNone(result['refinement']['absolute_accuracy_m'])
+        with self.assertRaisesRegex(ValueError,'Degenerate'):similarity_map([[0,0],[0,0]],[[1,1],[2,2]])
         self.assertTrue(inside(convert([530,600]),new))
         self.assertFalse(inside(convert([490,600]),new))
         self.assertNotIn('original_polygons',record)
