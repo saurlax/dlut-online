@@ -195,3 +195,5 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 图书馆北侧草坪采用OSM way/1076344098 v4，并以[学校KFQ00全景](https://360.toowtech.com/dalian/DUT/)和30块Esri影像核对，见[配准记录](references/eda/vegetation/library-lawn-registration.json)。全景原图公开URL内容摘要与离线档案一致；仍按既有学校全景、OSM与Esri来源和许可边界，仅离线使用原图。草叶数量与高度为视觉参数，不恢复照片不支持的内部均匀乔木。
 
 盘锦北侧停车区域另核对20张天地图和20张MapTiler影像瓦片。运行地面仅恢复独立OSM停车区域1263777289，影像用于确认其地面用途与大致范围；未据此描绘内部树带或新增车辆。原始瓦片仍仅离线留存；采集日期未知，两家影像可能共享底层来源，不视为独立测量。脱敏地址、摘要、已采用范围及其余停车场缺口见[盘锦地面记录](references/panjin/mapping/ground-surfaces.json)。
+
+开发区一舍弯段另核对25张Esri、9张天地图和9张MapTiler瓦片。争议转角的Esri z19元数据为2019-09-18，道路西北节点有不同日期覆盖重叠，不能使用综合楼的2025日期代表全校区；其余两家影像日期未确认。本次仅用于识别时效与地面控制缺口，不修改运行道路。来源摘要与逐点查询见[一舍影像审查](references/shared/mapping/world-imagery-review.json)，原图不进入运行包。
