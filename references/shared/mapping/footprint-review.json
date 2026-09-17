@@ -1840,6 +1840,118 @@
         "地面控制点或总平面，用于定位前部附楼间隙与894092913道路是否对应",
         "分区墙脚、连接体底部标高、柱位及可通行边界；A/B楼高不能补足这些缺失资料"
       ]
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "83981",
+      "name": "西山浴室",
+      "status": "shared-compound-reference; independent partition unresolved",
+      "reviewed": "2026-09-17",
+      "shared_geometry": {
+        "official_id": "77492",
+        "osm_id": "way/544330656",
+        "osm_version": 3
+      },
+      "source_detail": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=83981",
+      "detail_sha256": "0f2d5eb4a7a47978aae6173bcccb05b906a8384efa2e38e22cdfe376f8131007",
+      "photo_index": "references/lingshui/buildings/photos/77492.json",
+      "reviewed_image_ids": [
+        78630,
+        78631,
+        78632
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439122&y=200590&z=19",
+          "retrieved": "2026-09-17T09:35:57.232683+00:00",
+          "sha256": "8db4f6e65d8b527e4e07576a20d2a1fb8c79247843fb1e9711f23380c3c2fb02"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439122&y=200591&z=19",
+          "retrieved": "2026-09-17T09:35:57.764193+00:00",
+          "sha256": "d2387a6d06e7c8ff5c55b593c62a765a2d959b5653c497ea59b4423a5c06ee77"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439122&y=200592&z=19",
+          "retrieved": "2026-09-17T09:35:58.315406+00:00",
+          "sha256": "3136582c1e4495ea66b75f2b8e7c4c13fbbbd811b5d7dababd017d849df320e7"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439122&y=200593&z=19",
+          "retrieved": "2026-09-17T09:35:58.886424+00:00",
+          "sha256": "c3aa245fb58c8220732b7e9c467028bd90adcdc05ed1b88c34b11c75b5bff825"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439123&y=200590&z=19",
+          "retrieved": "2026-09-17T09:35:59.452843+00:00",
+          "sha256": "5f0f82df883f94e160ee002e40f3dea1ce206791084c1d330d9478db4bff3da5"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439123&y=200591&z=19",
+          "retrieved": "2026-09-17T09:35:59.997264+00:00",
+          "sha256": "920dad6e52862b3c33bc69c2839c08b6556f2850768f9b3abeafab292299901a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439123&y=200592&z=19",
+          "retrieved": "2026-09-17T09:36:00.560590+00:00",
+          "sha256": "c8fcd313ba9779d8ad94a36325b86de1fddc87ba4a2bd8322e811fdc4fdf9ccd"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439123&y=200593&z=19",
+          "retrieved": "2026-09-17T09:36:01.091010+00:00",
+          "sha256": "ae88797f83b6cadfd7aae08e504e75cb32685bebe66628f5ed294c1a182f8bb5"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439124&y=200590&z=19",
+          "retrieved": "2026-09-17T09:36:01.658035+00:00",
+          "sha256": "8950e1872e889a15df39e29f988fcd152ca525244708688011b92b2e22aaa4d0"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439124&y=200591&z=19",
+          "retrieved": "2026-09-17T09:36:02.235686+00:00",
+          "sha256": "c38ea5690903de5d94289c15f3a258775ed7b3d85074fd9f9e15c1986f8a531f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439124&y=200592&z=19",
+          "retrieved": "2026-09-17T09:36:02.966217+00:00",
+          "sha256": "b16baf522bd68b029545469692bee7411069389c4220371de3027aa63a753127"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439124&y=200593&z=19",
+          "retrieved": "2026-09-16T17:05:43.357923+00:00",
+          "sha256": "d61da00373f69a4aa93917d331dfd388e16a1316a5198b80559bbb877496d13a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439125&y=200590&z=19",
+          "retrieved": "2026-09-17T09:36:03.608081+00:00",
+          "sha256": "8282e4772402687ddc493552bd06f4a8238f2de694ba0aa1e4db0b2b90573246"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439125&y=200591&z=19",
+          "retrieved": "2026-09-17T09:36:04.057860+00:00",
+          "sha256": "3092cdb3d556a5b2d3b7319a1cc5601338d439d246144d60d04c9de36f393340"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439125&y=200592&z=19",
+          "retrieved": "2026-09-17T09:36:04.550266+00:00",
+          "sha256": "29f3de709a841999a7d44b870127e00d1e41a6e2a8c8f80ef4e432bcbd583308"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439125&y=200593&z=19",
+          "retrieved": "2026-09-16T17:05:43.953142+00:00",
+          "sha256": "7a323d9fbbe9abe012d76abdef9357298e521b71c4da883f4b7289371a9e53a4"
+        }
+      ],
+      "findings": [
+        "77492官网名称已包含第五食堂/西山浴区，两ID指向相连楼群的不同用途表达。",
+        "红白东翼在77492照片0/1/2中连续可见，lm30亦在食堂东侧显示相连折线楼翼；不按照片屋檐外缘补画墙脚。",
+        "83981旧框延伸到OSM整体楼群南侧道路，当前重复平面交叠76.76平方米；保留设施身份，共用一次OSM底稿，撤去额外体块。",
+        "浴室相册空不能单独证明无建筑，不能套用81821车辆统计点的非建筑分类。"
+      ],
+      "next_required_evidence": [
+        "食堂与浴室分区的墙脚和实际楼高",
+        "南端坡道、柱廊、台阶和入口的可定位尺寸"
+      ]
     }
   ]
 }

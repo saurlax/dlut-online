@@ -240,6 +240,7 @@ class OSMWorldTests(unittest.TestCase):
         self.assertEqual(records['2554118']['status'],'missing')
         self.assertEqual(records['29813247']['osm_candidates'][0]['osm_id'],'way/1384296479')
         self.assertEqual(records['83981']['status'],'missing')
+        self.assertEqual(records['83981']['shared_geometry'],{'id':'77492','part':0})
         self.assertEqual(records['77423']['osm_candidates'][0]['osm_id'],'way/233806548')
         self.assertEqual(records['77423']['osm_candidates'][0]['osm_version'],2)
         self.assertEqual(records['77424']['status'],'missing')
