@@ -2,7 +2,7 @@
   "schema_version": 1,
   "campus": "eda",
   "retrieved": "2026-09-16",
-  "coordinates": "Campus local metres, X east Z south. Hand-aligned to official feature outlines.",
+  "coordinates": "Unregistered zones retain archived legacy polygons and remain withheld. Registered zones take geometry exclusively from versioned OSM areas through the shared WGS84 frame.",
   "source_pages": [
     "https://news.dlut.edu.cn/info/1022/143385.htm",
     "https://news.dlut.edu.cn/info/1292/147345.htm"
@@ -437,7 +437,23 @@
     {
       "id": "jinping-hill-canopy",
       "seed": 5401,
-      "polygon": [
+      "photos": [
+        "photos/eda-lake-2.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "broadleaf",
+          "spacing": 10,
+          "height": [
+            7.5,
+            12
+          ],
+          "clearance": 4
+        }
+      ],
+      "lawn": false,
+      "precision": "Independent OSM woodland boundary checked against official aerial photography and Esri imagery; generic crown, estimated heights and procedural density, not surveyed individual trees.",
+      "superseded_legacy_polygon": [
         [
           -183.105,
           -26.246
@@ -523,22 +539,16 @@
           -23.497
         ]
       ],
-      "photos": [
-        "photos/eda-lake-2.jpg"
-      ],
-      "plants": [
-        {
-          "kind": "broadleaf",
-          "spacing": 10,
-          "height": [
-            7.5,
-            12
-          ],
-          "clearance": 4
-        }
-      ],
-      "lawn": false,
-      "precision": "Official hill footprint with visible continuous deciduous canopy; generic crown, unknown species; procedural infill is not a tree survey"
+      "osm_registration": {
+        "osm_id": "way/232560269",
+        "osm_version": 2,
+        "expected_geometry_sha256": "f1276151ae66b037f77d73c98666c874ea2b7f27da00debe9858de32716ce3d6",
+        "expected_tags": {
+          "natural": "wood",
+          "name": "锦屏山"
+        },
+        "review": "references/eda/vegetation/jinping-registration.json"
+      }
     }
   ],
   "deferred_zones": [

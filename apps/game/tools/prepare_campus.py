@@ -158,6 +158,7 @@ data.update(origin=world['origin_lon_lat'],coordinate_frame=world['coordinate_fr
             spawn_xz=moved([12,387]),bounds=low+[high[i]-low[i] for i in (0,1)],
             migration_status='shared-frame-active; selection-bound geometry withheld')
 data['ground_overlays']=ground_surfaces('eda')
+data['vegetation_areas']=osm_world.registered_planting_areas('eda')
 (ROOT/'assets/campuses/eda/data/campus.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 scene_path=ROOT/'scenes/campuses/eda.tscn'
 scene=scene_path.read_text(encoding='utf-8')

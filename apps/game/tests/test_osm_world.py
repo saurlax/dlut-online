@@ -12,6 +12,31 @@ from refine_osm_footprints import refine
 
 
 class OSMWorldTests(unittest.TestCase):
+    def test_registered_woodland_ignores_legacy_polygon_and_pins_source(self):
+        import copy
+        import json
+        from unittest.mock import patch
+        path = osm.ROOT/'references/eda/vegetation/planting.json'
+        original_read = Path.read_text
+        config = json.loads(original_read(path, encoding='utf-8'))
+        actual = osm.registered_planting_areas('eda')
+        self.assertEqual([a['id'] for a in actual], ['jinping-hill-canopy'])
+        source = next(a for a in build('eda')['areas'] if a['osm_id']=='way/232560269')
+        self.assertEqual(actual[0]['points'], source['polygons'][0]['outer'])
+        for mutation, expected in [('legacy', None), ('version', 'version changed'), ('digest', 'geometry changed')]:
+            invalid = copy.deepcopy(config)
+            zone = next(z for z in invalid['zones'] if z['id']=='jinping-hill-canopy')
+            if mutation == 'legacy': zone['superseded_legacy_polygon'] = [[1e9,1e9]]
+            if mutation == 'version': zone['osm_registration']['osm_version'] += 1
+            if mutation == 'digest': zone['osm_registration']['expected_geometry_sha256'] = 'invalid'
+            def read(candidate, *args, **kwargs):
+                return json.dumps(invalid) if candidate == path else original_read(candidate, *args, **kwargs)
+            with patch.object(Path, 'read_text', read):
+                if expected:
+                    with self.assertRaisesRegex(ValueError, expected): osm.registered_planting_areas('eda')
+                else:
+                    self.assertEqual(osm.registered_planting_areas('eda'), actual)
+
     def test_selection_bounds_never_enter_runtime_geometry(self):
         import json
         for campus in ('lingshui', 'eda', 'panjin'):

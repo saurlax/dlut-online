@@ -25,12 +25,20 @@ func verify() -> void:
 			check(not zone.photos.is_empty(), "Missing source for "+zone.id)
 			for photo: String in zone.photos:
 				check(FileAccess.file_exists("res://../../references/%s/vegetation/%s" % [campus,photo]), "Missing reference "+photo)
-		var unregistered: bool = source.get("coordinate_frame", "") != manifest.coordinate_frame or source.get("origin_lon_lat", []) != manifest.origin
+		var registered: Dictionary = {}
+		for area: Dictionary in manifest.get("vegetation_areas", []):
+			registered[area.id] = area
+			check(zones.has(area.id), "Registered zone missing profile")
+			zones[area.id].polygon = area.points
+		var unregistered: bool = registered.is_empty()
+		check(data.withheld_zone_ids.size() == zones.size()-registered.size(), "Wrong withheld zone count")
+		for id: String in zones:
+			check((id in data.withheld_zone_ids) == not registered.has(id), "Incorrect withholding: " + id)
 		if unregistered:
 			check(data.instances.is_empty(), "Unregistered planting must be withheld")
-			check(data.withheld_zone_ids.size() == zones.size(), "Every withheld zone must be recorded")
-			for id: String in zones:
-				check(id in data.withheld_zone_ids, "Missing withheld zone " + id)
+		else:
+			check(not data.instances.is_empty(), "Registered woodland was not generated")
+		var roads: Array = JSON.parse_string(FileAccess.get_file_as_string(entry.roads)).roads
 		var expected: Dictionary = {}
 		var near_seen: Dictionary = {}
 		var far_seen: Dictionary = {}
@@ -43,8 +51,17 @@ func verify() -> void:
 			var key := position_key(at)
 			check(not expected.has(key), "Duplicate plant position "+key)
 			expected[key] = plant
+			check(registered.has(plant.zone), "Unregistered zone generated a plant")
 			var zone: Dictionary = zones[plant.zone]
 			check(Geometry2D.is_point_in_polygon(Vector2(at.x,at.z),points(zone.polygon)), "Plant outside registered zone "+key)
+			var clearance := 0.0
+			for profile: Dictionary in zone.plants:
+				if profile.kind == plant.kind: clearance = float(profile.get("clearance", 2.0))
+			for road: Dictionary in roads:
+				var line := points(road.points)
+				for segment in range(line.size()-1):
+					var nearest := Geometry2D.get_closest_point_to_segment(Vector2(at.x,at.z),line[segment],line[segment+1])
+					check(Vector2(at.x,at.z).distance_to(nearest) >= float(road.width)*0.5+clearance-0.002, "Serialized plant intrudes into road clearance " + key)
 			var y: float = terrain.elevation(at.x,at.z) if terrain != null else 0.0
 			check(absf(y-at.y)<0.002, "Floating root "+key)
 			for feature: Dictionary in manifest.features:

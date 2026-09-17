@@ -33,13 +33,19 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 	var lawns := SurfaceTool.new()
 	lawns.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var lawn_vertices := 0
+	var registered: Dictionary = {}
+	for area: Dictionary in manifest.get("vegetation_areas", []):
+		registered[area.id] = area
 	var withheld_zones: Array[String] = []
 	for zone: Dictionary in source.zones:
-		if source.get("coordinate_frame", "") != manifest.coordinate_frame or source.get("origin_lon_lat", []) != manifest.origin:
+		if not registered.has(zone.id):
 			withheld_zones.append(str(zone.id))
 			continue
+		var area: Dictionary = registered[zone.id]
+		var registration: Dictionary = zone.get("osm_registration", {})
+		assert(area.osm_id == registration.get("osm_id") and area.osm_version == registration.get("osm_version") and area.geometry_sha256 == registration.get("expected_geometry_sha256"), "Regenerate registered planting geometry before building")
 		rng.seed = int(zone.seed)
-		var points := polygon_points(zone.polygon)
+		var points := polygon_points(area.points)
 		var bounds := polygon_bounds(points)
 		for plant: Dictionary in zone.plants:
 			var spacing := float(plant.spacing)
@@ -81,7 +87,7 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 		mat.shader = load("res://assets/vegetation/lawn.gdshader")
 		lawns.set_material(mat)
 		assert(ResourceSaver.save(lawns.commit(),directory+"models/vegetation_lawn.res",ResourceSaver.FLAG_COMPRESS) == OK)
-	var data := {"schema_version":3,"withheld_zone_ids":withheld_zones,"withheld_reason":"legacy placement requires independent ground registration","campus":campus,"source":"references/%s/vegetation/planting.json" % campus,"precision":"Photo-supported areas; approximate positions, dimensions and counts, not surveyed trees","instances":instances}
+	var data := {"schema_version":4,"registered_zone_ids":registered.keys(),"withheld_zone_ids":withheld_zones,"withheld_reason":"legacy placement requires independent ground registration","campus":campus,"source":"references/%s/vegetation/planting.json" % campus,"precision":"Photo-supported areas; approximate positions, dimensions and counts, not surveyed trees","instances":instances}
 	var file := FileAccess.open(directory+"data/vegetation.json",FileAccess.WRITE)
 	assert(file != null, "Cannot write vegetation data: " + directory)
 	var records: Array[String] = []

@@ -89,3 +89,12 @@ DLUTMap bound 已确认为三维选择框，运行数据与生成器 MUST NOT �
 - **WHEN** 可见影像地面铺装与图绘轮廓不一致
 - **THEN** 按有日期影像的可见地面修正历史参考，并保留原图绘档案、遮挡和改造时效限制
 - **AND** 南北广场使用共同OSM地面环线控制点，不以楼顶边长决定铺装比例；缺失或版本变化的控制点使生成失败，两点拟合不宣称独立测量精度
+
+### Requirement: Independently registered planting areas
+
+植被区域 SHALL 逐项使用已核对的独立地面来源，MUST NOT 根据整个配置文件的坐标声明批量启用旧区域。OSM区域的对象版本、几何摘要和地表语义 SHALL 在生成前校验。
+
+#### Scenario: Restore reviewed woodland without restoring old selection zones
+- **WHEN** 锦屏山林地已通过OSM与影像核对，其余区域仍为旧框坐标
+- **THEN** 仅从已登记OSM林地生成树木，记录其余区域为withheld，旧点列改变不影响已登记区域
+- **AND** 保存实例位于来源范围内，根部贴合共同地形，避让道路/建筑/水面，近远模型位置一致；生成数量不得标为实测数量
