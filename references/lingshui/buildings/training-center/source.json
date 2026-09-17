@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "title": "工程训练中心官方航拍、位置与楼层导览",
+  "publisher": "大连理工大学工程训练中心",
+  "source_url": "https://xlzx.dlut.edu.cn/zxgk/zxpmt.htm",
+  "read_date": "2026-09-17",
+  "page_sha256": "2b0a3b668830ce7ba84b5fd877c80b9c3e4a713fef33956952c07faf98157e01",
+  "published_date": null,
+  "images": [
+    {
+      "url": "https://xlzx.dlut.edu.cn/virtual_attach_file.vsb?afc=SM4fzkUmCYL7QfolRviLR98nRUZUlLrbnR9bMNnfUmGZnml0gihFp2hmCIa0M1hfU1y8okyDLm78MzCioz9aLl-ZUNliLzV2L7QRnRMRM8WFnmNbU4WRM4rFLl-4ozLJqjfjo4OeoD6m_2PE_khXptQ0g47aMRU0L4vYM1bw62I8c&oid=1120229738&tid=1044&nid=3726&e=.jpg",
+      "path": "references/lingshui/buildings/training-center/aerial.jpg",
+      "sha256": "45520a37ac7878c19403e166bf65a7c0c976e9443dd1f671656bbca3a1738832",
+      "capture_date": null
+    },
+    {
+      "url": "https://xlzx.dlut.edu.cn/virtual_attach_file.vsb?afc=SL8CzPolM7M7CiMl8-YM4C8Lzr2MNlr4U8Lin7-bUmlDLzv0gihFp2hmCIa0MSybMSyDLkh7nRVRLR-aU4V7MlCaMzC4nR9bLll8MNM2MlQFLR9sMRU4nmAFLNW2MmvsgtXaQ4Oeo4xjCsAO_j90qIbtpYyPLRU8g4LsLmCJqdInx&oid=1120229738&tid=1044&nid=3726&e=.jpg",
+      "path": "references/lingshui/buildings/training-center/entrance.jpg",
+      "sha256": "16f1eceb5d31455f9d7c3bbe8c409df014b9139b99bd719b656b6826cc5742bd",
+      "capture_date": null
+    },
+    {
+      "url": "https://xlzx.dlut.edu.cn/virtual_attach_file.vsb?afc=SMmCzPUmLsLR7ZMlRNinz-iMm-PnlUrDM4AVMzVVnNLZM4l0gihFp2hmCIa0LYyZLYyiLkysnlCPn7lbnlVknmLYUznkLl7Ynlr2Ul-8olVFMRM2Lzn7olrFLz7YM4LJqjfjo4OeoD6m_2PE_khXptQ0g47aMRU0L4vYM1bw62I8c&oid=1120229738&tid=1044&nid=3726&e=.jpg",
+      "path": "references/lingshui/buildings/training-center/location.jpg",
+      "sha256": "32289a82386d55f400d4f853f418e36510fce0fd27ec3fc3b54e33b675c63c69",
+      "capture_date": null
+    },
+    {
+      "url": "https://xlzx.dlut.edu.cn/virtual_attach_file.vsb?afc=SM4CzDoRVRM8-4LlmQVLzCiL874L4Qrfn7VkoRCaUzQVn7C0gihFp2hmCIa0U1hkU1yZLSh2LmUYU4rkMmV7M8liLz-ZozvbozGDM49YoR6FnNCDM7LPUzAFLzGPoRTfgtXaQ4Oeo4xjCsAO_j90qIbtpYyPLRU8g4LsLmCJqdInx&oid=1120229738&tid=1044&nid=3726&e=.jpg",
+      "path": "references/lingshui/buildings/training-center/floor-guide.jpg",
+      "sha256": "179a6c416a60ab7169850677657d97db2162c18e4e3b1f0086daf31e17973a76",
+      "capture_date": null
+    }
+  ],
+  "scope": "官网现址白色楼群；与77420旧黄色车间分别管理",
+  "current_site_candidate": {
+    "official_id": "1503000",
+    "osm_id": "way/1381605741",
+    "osm_version": 1,
+    "basis": "位置图位于学生文化中心东侧、东山住宅南侧、弘远北路西侧，与学生创新实践中心所在楼群对应；航拍可见西侧较高楼与东侧宽楼相连。",
+    "status": "site-level-correspondence; component-and-ground-registration-pending",
+    "limits": "机构所在地不等于整个建筑所有权或范围，不把1503000整体改名为工程训练中心。"
+  },
+  "old_site": {
+    "official_id": "77420",
+    "osm_id": "relation/2898296",
+    "osm_version": 2,
+    "relation_timestamp": "2025-04-27T07:59:30Z",
+    "members": [
+      {
+        "osm_id": "way/219032887",
+        "role": "outer",
+        "version": 2,
+        "timestamp": "2014-02-03T17:54:22Z",
+        "node_ids": [
+          "2282344532",
+          "2282344537",
+          "2282344538",
+          "2282344543",
+          "2282344544",
+          "2282344517",
+          "2282344516",
+          "2282344531",
+          "2282344532"
+        ],
+        "tags": {}
+      },
+      {
+        "osm_id": "way/219032932",
+        "role": "inner",
+        "version": 1,
+        "timestamp": "2013-04-26T18:36:01Z",
+        "node_ids": [
+          "2282344521",
+          "2282344527",
+          "2282344528",
+          "2282344522",
+          "2282344521"
+        ],
+        "tags": {}
+      }
+    ],
+    "limits": "关系2025更新时间不证明墙脚于2025年测绘；成员way和节点分别保留自己的版本，未发现楼翼分区成员。现代实验楼77419仍需联合核对。"
+  },
+  "findings": [
+    "航拍为斜视照片，显示多个楼翼、上层退台、中央连接空间与独立地面道路；不将屋顶投影直接作为基底。",
+    "正门照片明确工程训练中心标识，可见台阶、坡道和玻璃入口；不能据此标定整栋楼的方向和尺度。",
+    "楼层导览明确B1、1F、2F、3F及共享大厅与其上空的关系，可用于后续拓扑核对；图为示意导览，没有尺寸、北向或坐标，不能直接按图素比例生成米制房间或墙脚。",
+    "官网位置图将现址指向学生创新实践中心区域，不是现有77420旧黄色车间；旧照片与现址照片不得混用，迁移日期尚未确认。",
+    "1503000官网地图照片接口为空，但本次取得了机构网站外观和平面资料，不再将该楼群列为完全没有照片。"
+  ],
+  "coordinate_system": "未提供",
+  "georeferencing": "仅完成场址对应，尚未地面控制点配准",
+  "use": "离线几何与对象身份核对，后续模型修正参考",
+  "license": {
+    "name": "未发现明确第三方复制或再分发许可",
+    "terms_url": null,
+    "authorization_status": "仅离线参考，不进入客户端发行资源"
+  }
+}
