@@ -10,9 +10,9 @@ func check() -> void:
 	root.add_child(model)
 	var checked := 0
 	for feature: Dictionary in data.features:
-		if feature.id not in ["77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
+		if feature.id not in ["77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77412","77413","77416","77427","77429","77431","77439","77441","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]: continue
 		assert(feature.has("osm_id") and not feature.has("reference_points"))
-		if feature.id in ["77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
+		if feature.id in ["77386","77355","77385","77395","77396","77394","17937827","35995473","77440","78148","625864","77458","77495","77500","77502","77555","77556","77557","77558","77559","29813247","77481","77462","77430","77383","77358","77539","77540","77542","77553","77519","77564","77565","77566","77567","77562","77563","77496","77483","77380","77505","77506","77382","77378","77379","77487","34785233","77509","77356","77387","77461","77499","77504","77507","77508","77510","77511","77512","77513","77514"]:
 			var outline := PackedVector2Array()
 			for p in feature.points: outline.append(Vector2(p[0],p[1]))
 			var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
@@ -31,6 +31,12 @@ func check() -> void:
 				var p := mesh.transform*vertex
 				if (mesh.material_override.resource_name=="Lingshui roof" and absf(p.y-float(feature.height)-0.18)<0.001) or (feature.id in ["77440","77430","77540","77542","77553","77519","77499","77504"] and mesh.material_override.resource_name=="Gabled hall roof"):
 					roof.append(Vector2(p.x,p.z))
+				if feature.id == "77386" and mesh.material_override.resource_name == "Window glass":
+					var a := Vector2(feature.points[13][0], feature.points[13][1])
+					var b := Vector2(feature.points[14][0], feature.points[14][1])
+					var along := (Vector2(p.x,p.z)-a).dot((b-a).normalized())/a.distance_to(b)
+					assert(along>0.294667685 and along<0.686545894, "Main windows extended beyond reviewed central facade")
+					lower_windows += 1
 				if feature.id in ["77555","77556","77557","77558","77559"] and mesh.material_override.resource_name=="Window glass":
 					var edge := 1 if feature.id=="77555" else 2
 					var a := Vector2(feature.points[edge][0],feature.points[edge][1])
@@ -44,14 +50,14 @@ func check() -> void:
 					assert(p.z>-228,"Visible ground-floor windows moved away from the south end")
 					lower_windows += 1
 			if mesh.get_meta("walk_collision",false): preload("res://scripts/shared/campus_collision.gd")._collider(mesh)
-		if feature.id in ["77412","77413","77555","77556","77557","77558","77559"]: assert(lower_windows>0)
+		if feature.id in ["77386","77412","77413","77555","77556","77557","77558","77559"]: assert(lower_windows>0)
 		for coordinate: Array in feature.points:
 			var found := false
 			for p in roof:
 				if p.distance_to(Vector2(coordinate[0],coordinate[1]))<0.001: found = true
 			assert(found,"Saved roof corner differs from the registered source")
 		checked += 1
-	assert(checked==67)
+	assert(checked==68)
 	await physics_frame
 	await physics_frame
 	for feature: Dictionary in data.features:
@@ -237,6 +243,9 @@ func check() -> void:
 	var hex_center := Vector3(340,hex_group.position.y,362)
 	var hex_hit := model.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(hex_center+Vector3.UP*35,hex_center+Vector3.UP*8))
 	assert(not hex_hit.is_empty() and absf(hex_hit.position.y-hex_center.y-10.1)<0.003,"Neighbour roof still covers the hexagonal building")
+	var main_group: Node3D = model.get_node("Feature_77386_0")
+	var main_base_y := main_group.position.y
+	check_main_portico(model, data, main_base_y)
 	model.queue_free()
 	var server: Node3D = load("res://scenes/server/lingshui.scn").instantiate()
 	root.add_child(server)
@@ -245,5 +254,43 @@ func check() -> void:
 	for p: Vector3 in balcony_samples+public_surfaces:
 		var hit := server.get_world_3d().direct_space_state.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.05,p-Vector3.UP*0.05))
 		assert(not hit.is_empty() and hit.position.distance_to(p)<0.002,"Exported registered surface missing")
-	print("LINGSHUI REGISTRATION PASS: sixty-seven roofs, registered walls and sixty-six residence platform floors and eight gabled roofs; ten balcony floors and nine roof/eave samples in client and exported server")
+	check_main_portico(server, data, main_base_y)
+	print("LINGSHUI REGISTRATION PASS: sixty-eight roofs, registered walls and sixty-six residence platform floors and eight gabled roofs; ten balcony floors and nine roof/eave samples and bounded main portico in client and exported server")
 	quit()
+
+# Independent structural samples keep the portico local when its host edge grows.
+func check_main_portico(world: Node3D, data: Dictionary, base_y: float) -> void:
+	var features: Dictionary = {}
+	for feature: Dictionary in data.features:
+		if feature.id in ["77386", "77395", "77396"]: features[feature.id] = feature
+	var main: Dictionary = features["77386"]
+	var ring := PackedVector2Array()
+	for p in main.points: ring.append(Vector2(p[0], p[1]))
+	assert(ring.size() == 20 and main.osm_id == "way/547580516")
+	for id in ["77395", "77396"]:
+		var neighbor := PackedVector2Array()
+		for p in features[id].points: neighbor.append(Vector2(p[0], p[1]))
+		assert(Geometry2D.intersect_polygons(ring, neighbor).is_empty(), "Main building overlaps its registered wing")
+	var a := ring[13]
+	var b := ring[14]
+	var direction := (b-a).normalized()
+	var outward := Vector2(-direction.y, direction.x)
+	assert(not Geometry2D.is_point_in_polygon((a+b)*0.5+outward*0.1, ring))
+	var center := a.lerp(b, (0.29466768524405584+0.6865458932330444)*0.5)
+	var width := 21.58301933366829
+	var space := world.get_world_3d().direct_space_state
+	for along in [-width*0.5+0.2, 0.0, width*0.5-0.2]:
+		var xz: Vector2 = center+direction*along+outward*1.8
+		var p := Vector3(xz.x, base_y+8.375, xz.y)
+		var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.05,p-Vector3.UP*0.05))
+		assert(not hit.is_empty() and p.distance_to(hit.position)<0.003, "Main portico roof missing or displaced")
+	for along in [-width*0.5-1.0, width*0.5+1.0, -40.0, 40.0]:
+		var xz: Vector2 = center+direction*along+outward*1.8
+		var p := Vector3(xz.x, base_y+8.375, xz.y)
+		assert(space.intersect_ray(PhysicsRayQueryParameters3D.create(p+Vector3.UP*0.05,p-Vector3.UP*0.05)).is_empty(), "Portico stretched across the whole building edge")
+	for column in 6:
+		var xz: Vector2 = center+direction*((column+0.2)/5.4-0.5)*width+outward*3.4
+		var p := Vector3(xz.x,base_y+3.95,xz.y)
+		var normal := Vector3(outward.x,0,outward.y)
+		var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(p+normal*0.1,p-normal*0.1))
+		assert(not hit.is_empty() and p.distance_to(hit.position)<0.003, "Registered portico column collision missing")
