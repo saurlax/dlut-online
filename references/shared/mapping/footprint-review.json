@@ -196,6 +196,145 @@
         "terms_url": null,
         "authorization_status": "仅离线核对；原始瓦片在忽略目录缓存，不进入发行资源"
       }
+    },
+    {
+      "campus": "lingshui",
+      "official_id": "77445",
+      "osm_way_id": "233806531",
+      "related_osm_way_ids": [
+        "233806517"
+      ],
+      "name": "刘长春体育馆/游泳馆",
+      "reviewed": "2026-09-17",
+      "status": "separate-source-areas-retained; shell-registration-pending",
+      "photos": [
+        {
+          "path": "references/lingshui/buildings/photos/77445-0.jpg",
+          "sha256": "cc92e6a41358fa8a1829bcf1f437d9f7df8ac5183e28d823ab58f756636e30ee"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77445-2.jpg",
+          "sha256": "508c0f476d0a495a04f55c5f4c43240bb2ea3593e21b41283e3ffebac1708c4f"
+        },
+        {
+          "path": "references/lingshui/buildings/photos/77445-5.jpg",
+          "sha256": "4e26f1d10c9a5dfb7a6507cffd0b32da90da104c628bb138a8db2f98be9c26a8"
+        }
+      ],
+      "photo_capture_date": "未核实",
+      "tiles": [
+        {
+          "z": 19,
+          "x": 439136,
+          "y": 200600,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200600&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "5ae3148b5ea76807781923ad27a0a5a460e46d610a71ba244df3da0df6096e39"
+        },
+        {
+          "z": 19,
+          "x": 439136,
+          "y": 200601,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200601&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "5ff9ed91ab25a489ab70b4619c4f6dd2f65182748f6bbeb4c0b95cd4082444d5"
+        },
+        {
+          "z": 19,
+          "x": 439136,
+          "y": 200602,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200602&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "e3b8329719492f6e4bfad82c8c0fa5bde747aa955439701bbb289ac5cdde72aa"
+        },
+        {
+          "z": 19,
+          "x": 439137,
+          "y": 200600,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200600&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "f16fcff160ae5b167a0024917f10308985b297cd4c91b76cf74b1a8ed3471de2"
+        },
+        {
+          "z": 19,
+          "x": 439137,
+          "y": 200601,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200601&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "f5ad366400a617a30bef09544ce00fbea884e1070ff322da61aad4b30b606fe9"
+        },
+        {
+          "z": 19,
+          "x": 439137,
+          "y": 200602,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200602&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "8ba519d213c41e37e3f3d391c74ea85107feeca1660712fae7729c193c58d65f"
+        },
+        {
+          "z": 19,
+          "x": 439138,
+          "y": 200600,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200600&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "50e10ef0b851ea2719592791ae4b847ade184f9a5990a8394d03f7aa89581039"
+        },
+        {
+          "z": 19,
+          "x": 439138,
+          "y": 200601,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200601&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "daa226fb4c1321558b700f0ece53a61c242ba3ae4636f2d3bdd81e4d2b65c61a"
+        },
+        {
+          "z": 19,
+          "x": 439138,
+          "y": 200602,
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439138&y=200602&z=19",
+          "retrieved": "2026-09-17",
+          "sha256": "33ad1bddbb2a94aba90fc0bac3429383e9231779d74726320e380cc7b328522d"
+        }
+      ],
+      "osm_components": [
+        {
+          "osm_id": "way/233806531",
+          "version": 4,
+          "category": "building",
+          "role": "北侧主馆",
+          "vertices": 6
+        },
+        {
+          "osm_id": "way/233806517",
+          "version": 3,
+          "category": "swimming-pool",
+          "role": "南侧具名室内泳池区域；并非已核实墙脚",
+          "vertices": 4,
+          "tags": {
+            "leisure": "swimming_pool",
+            "location": "indoor",
+            "name": "刘长春体育馆（游泳馆）",
+            "lit": "yes",
+            "wheelchair": "limited"
+          }
+        }
+      ],
+      "tag_reference": {
+        "url": "https://wiki.openstreetmap.org/wiki/Tag:leisure%3Dswimming_pool",
+        "read_date": "2026-09-17",
+        "interpretation": "标签定义仅覆盖泳池水面，不能自动升级成建筑范围；现有多边形与泳馆的关系需要照片/俯视图进一步核对。"
+      },
+      "findings": [
+        "旧名称别名将合并官方对象仅匹配到主馆，遗漏了另一个没有building标签的具名区域。",
+        "照片0/5显示主馆双叶曲面屋顶、较大基座；照片2显示较低游泳馆拱顶与玻璃外墙。lm30也区分北侧主馆和南侧长条体量。",
+        "两馆屋顶、外挑屋檐、基座及墙脚不是同一轮廓；不得把两馆一起拟合到主馆六点框。",
+        "本次修正数据提取与参考身份，尚未将两份区域用于重建体育馆模型；保留原模型及既有精度限制。"
+      ],
+      "license": {
+        "publisher": "大连理工大学官方校园地图；OpenStreetMap contributors",
+        "osm": "ODbL 1.0",
+        "official_map": "未发现明确第三方复制或再分发许可；原图仅离线核对，不进入发行资源"
+      }
     }
   ]
 }
