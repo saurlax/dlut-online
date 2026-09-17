@@ -12,56 +12,22 @@
     {
       "id": "77912",
       "name": "开发区校区南门",
-      "kind": "gate",
+      "kind": "reference",
       "height": null,
       "height_source": "unavailable",
-      "footprint_source": "official-map",
-      "points": [
-        [
-          -44.997208925505916,
-          609.8295305725062
-        ],
-        [
-          -13.088556672611425,
-          600.7825305725062
-        ],
-        [
-          -5.819635890816631,
-          611.4215305725061
-        ],
-        [
-          -39.01427412876933,
-          623.7455305725061
-        ],
-        [
-          -44.406215366276214,
-          617.1995305725061
-        ]
-      ],
-      "reference_points": [
-        [
-          -11.228,
-          412.708
-        ],
-        [
-          20.681,
-          403.661
-        ],
-        [
-          27.95,
-          414.3
-        ],
-        [
-          -5.245,
-          426.624
-        ],
-        [
-          -10.637,
-          420.078
-        ]
-      ],
+      "footprint_source": null,
+      "points": [],
       "geometry_status": "source-reference-only; gate geometry pending photo registration",
-      "render_polygons": []
+      "render_polygons": [],
+      "source_kind": "gate",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/eda/mapping/bounds.json",
+        "official_id": "77912",
+        "part": 0,
+        "previous_status": "source-reference-only; gate geometry pending photo registration"
+      },
+      "facade": {}
     },
     {
       "id": "77914",
@@ -919,48 +885,22 @@
     {
       "id": "81823",
       "name": "生活区正门（机动车可通行）",
-      "kind": "gate",
+      "kind": "reference",
       "height": null,
       "height_source": "unavailable",
-      "footprint_source": "official-map",
-      "points": [
-        [
-          305.60797010658797,
-          230.38053057250613
-        ],
-        [
-          311.67290400968136,
-          211.37153057250612
-        ],
-        [
-          323.2527778098167,
-          215.20753057250613
-        ],
-        [
-          319.11582289520874,
-          235.77053057250612
-        ]
-      ],
-      "reference_points": [
-        [
-          339.381,
-          33.259
-        ],
-        [
-          345.446,
-          14.25
-        ],
-        [
-          357.026,
-          18.086
-        ],
-        [
-          352.889,
-          38.649
-        ]
-      ],
+      "footprint_source": null,
+      "points": [],
       "geometry_status": "source-reference-only; gate geometry pending photo registration",
-      "render_polygons": []
+      "render_polygons": [],
+      "source_kind": "gate",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/eda/mapping/bounds.json",
+        "official_id": "81823",
+        "part": 0,
+        "previous_status": "source-reference-only; gate geometry pending photo registration"
+      },
+      "facade": {}
     },
     {
       "id": "96575",
@@ -1589,56 +1529,22 @@
     {
       "id": "2304919",
       "name": "生活区东门（只可行人通行）",
-      "kind": "gate",
+      "kind": "reference",
       "height": null,
       "height_source": "unavailable",
-      "footprint_source": "official-map",
-      "points": [
-        [
-          356.15141927360355,
-          -33.93746942749388
-        ],
-        [
-          358.9753884974017,
-          -40.24746942749388
-        ],
-        [
-          365.729314891712,
-          -37.55246942749389
-        ],
-        [
-          364.51732810019524,
-          -28.377469427493878
-        ],
-        [
-          356.112419698629,
-          -30.41546942749389
-        ]
-      ],
-      "reference_points": [
-        [
-          389.925,
-          -231.059
-        ],
-        [
-          392.749,
-          -237.369
-        ],
-        [
-          399.503,
-          -234.674
-        ],
-        [
-          398.291,
-          -225.499
-        ],
-        [
-          389.886,
-          -227.537
-        ]
-      ],
+      "footprint_source": null,
+      "points": [],
       "geometry_status": "source-reference-only; gate geometry pending photo registration",
-      "render_polygons": []
+      "render_polygons": [],
+      "source_kind": "gate",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/eda/mapping/bounds.json",
+        "official_id": "2304919",
+        "part": 0,
+        "previous_status": "source-reference-only; gate geometry pending photo registration"
+      },
+      "facade": {}
     },
     {
       "id": "2304982",
@@ -2437,15 +2343,6 @@
   ],
   "coordinate_frame": "references/shared/mapping/osm-world-frame.json",
   "geographic_crs": "EPSG:4326",
-  "legacy_reference_transform": {
-    "scale_x": 0.9999891019115137,
-    "offset_xz": [
-      -33.76933128924344,
-      197.12153057250612
-    ],
-    "basis": "references/eda/terrain/alignment.json",
-    "status": "temporary placement for retained legacy reference geometry; not OSM footprint validation"
-  },
   "spawn_xz": [
     -21.769462066305273,
     584.1215305725061
@@ -2456,7 +2353,7 @@
     1200,
     1320
   ],
-  "migration_status": "shared-frame-active; unreviewed shapes explicitly retained",
+  "migration_status": "shared-frame-active; selection-bound geometry withheld",
   "ground_overlays": [
     {
       "id": "eda-comprehensive-south-plaza",

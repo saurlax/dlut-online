@@ -7,15 +7,6 @@
   "units": "approximate meters",
   "geographic_crs": "EPSG:4326",
   "coordinate_frame": "references/shared/mapping/osm-world-frame.json",
-  "legacy_reference_transform": {
-    "scale_x": 0.9999989554841159,
-    "offset_xz": [
-      -0.34921334990082187,
-      222.64551398994448
-    ],
-    "basis": "references/panjin/mapping/road-alignment.json",
-    "status": "temporary placement for retained references; not shape validation"
-  },
   "spawn_xz": [
     11.650774115908568,
     160.64551398994448
@@ -24,10 +15,10 @@
   "source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
   "retrieved": "2026-09-14",
   "bounds": [
-    -460,
-    -530,
-    850,
-    1140
+    -450,
+    -560,
+    900,
+    1120
   ],
   "features": [
     {
@@ -2988,105 +2979,23 @@
       "id": "77994",
       "part": 0,
       "name": "B20-商业街",
-      "kind": "building",
+      "kind": "reference",
       "source_index": 241,
-      "points": [
-        [
-          -37.417174631786025,
-          -166.6314860100555
-        ],
-        [
-          -15.993197009494331,
-          -326.87948601005553
-        ],
-        [
-          -27.131185375676413,
-          -331.2834860100555
-        ],
-        [
-          -50.050161436416865,
-          -170.92148601005553
-        ],
-        [
-          -43.0031687971203,
-          -164.35848601005554
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -37.417174631786025,
-            -166.6314860100555
-          ],
-          [
-            -15.993197009494331,
-            -326.87948601005553
-          ],
-          [
-            -27.131185375676413,
-            -331.2834860100555
-          ],
-          [
-            -50.050161436416865,
-            -170.92148601005553
-          ],
-          [
-            -43.0031687971203,
-            -164.35848601005554
-          ]
-        ]
-      ],
-      "height": 18.0,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -37.068,
-          -389.277
-        ],
-        [
-          -15.644,
-          -549.525
-        ],
-        [
-          -26.782,
-          -553.929
-        ],
-        [
-          -49.701,
-          -393.567
-        ],
-        [
-          -42.654,
-          -387.004
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -37.068,
-            -389.277
-          ],
-          [
-            -15.644,
-            -549.525
-          ],
-          [
-            -26.782,
-            -553.929
-          ],
-          [
-            -49.701,
-            -393.567
-          ],
-          [
-            -42.654,
-            -387.004
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "building",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "77994",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "77995",
@@ -3616,105 +3525,23 @@
       "id": "78002",
       "part": 0,
       "name": "B12-餐饮街",
-      "kind": "building",
+      "kind": "reference",
       "source_index": 249,
-      "points": [
-        [
-          -77.18413309452286,
-          82.42751398994449
-        ],
-        [
-          -86.37612349333286,
-          81.01251398994447
-        ],
-        [
-          -60.06915097141222,
-          -71.37048601005554
-        ],
-        [
-          -45.54916613778286,
-          -68.5164860100555
-        ],
-        [
-          -71.53713899290406,
-          83.53751398994447
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -77.18413309452286,
-            82.42751398994449
-          ],
-          [
-            -86.37612349333286,
-            81.01251398994447
-          ],
-          [
-            -60.06915097141222,
-            -71.37048601005554
-          ],
-          [
-            -45.54916613778286,
-            -68.5164860100555
-          ],
-          [
-            -71.53713899290406,
-            83.53751398994447
-          ]
-        ]
-      ],
-      "height": 18.0,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -76.835,
-          -140.218
-        ],
-        [
-          -86.027,
-          -141.633
-        ],
-        [
-          -59.72,
-          -294.016
-        ],
-        [
-          -45.2,
-          -291.162
-        ],
-        [
-          -71.188,
-          -139.108
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -76.835,
-            -140.218
-          ],
-          [
-            -86.027,
-            -141.633
-          ],
-          [
-            -59.72,
-            -294.016
-          ],
-          [
-            -45.2,
-            -291.162
-          ],
-          [
-            -71.188,
-            -139.108
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "building",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "78002",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "78003",
@@ -4056,1449 +3883,287 @@
       "id": "78011",
       "part": 0,
       "name": "盘锦校区南门",
-      "kind": "gate",
+      "kind": "reference",
       "source_index": 254,
-      "points": [
-        [
-          -89.03312071805415,
-          413.5555139899445
-        ],
-        [
-          -87.25212257833695,
-          407.2425139899445
-        ],
-        [
-          -19.553193291017784,
-          422.1155139899445
-        ],
-        [
-          -15.317197715587069,
-          426.6715139899445
-        ],
-        [
-          -16.154196841327273,
-          431.0145139899445
-        ],
-        [
-          -85.45512445533198,
-          416.8065139899445
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -89.03312071805415,
-            413.5555139899445
-          ],
-          [
-            -87.25212257833695,
-            407.2425139899445
-          ],
-          [
-            -19.553193291017784,
-            422.1155139899445
-          ],
-          [
-            -15.317197715587069,
-            426.6715139899445
-          ],
-          [
-            -16.154196841327273,
-            431.0145139899445
-          ],
-          [
-            -85.45512445533198,
-            416.8065139899445
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -88.684,
-          190.91
-        ],
-        [
-          -86.903,
-          184.597
-        ],
-        [
-          -19.204,
-          199.47
-        ],
-        [
-          -14.968,
-          204.026
-        ],
-        [
-          -15.805,
-          208.369
-        ],
-        [
-          -85.106,
-          194.161
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -88.684,
-            190.91
-          ],
-          [
-            -86.903,
-            184.597
-          ],
-          [
-            -19.204,
-            199.47
-          ],
-          [
-            -14.968,
-            204.026
-          ],
-          [
-            -15.805,
-            208.369
-          ],
-          [
-            -85.106,
-            194.161
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "gate",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "78011",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80699",
       "part": 0,
       "name": "停车场",
-      "kind": "plaza",
+      "kind": "reference",
       "source_index": 308,
-      "points": [
-        [
-          195.81258175577432,
-          356.02451398994447
-        ],
-        [
-          205.18957196134886,
-          301.6295139899445
-        ],
-        [
-          277.1914967541162,
-          317.4315139899445
-        ],
-        [
-          287.1014864029638,
-          319.22151398994447
-        ],
-        [
-          281.02249275257583,
-          371.7285139899445
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            195.81258175577432,
-            356.02451398994447
-          ],
-          [
-            205.18957196134886,
-            301.6295139899445
-          ],
-          [
-            277.1914967541162,
-            317.4315139899445
-          ],
-          [
-            287.1014864029638,
-            319.22151398994447
-          ],
-          [
-            281.02249275257583,
-            371.7285139899445
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          196.162,
-          133.379
-        ],
-        [
-          205.539,
-          78.984
-        ],
-        [
-          277.541,
-          94.786
-        ],
-        [
-          287.451,
-          96.576
-        ],
-        [
-          281.372,
-          149.083
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            196.162,
-            133.379
-          ],
-          [
-            205.539,
-            78.984
-          ],
-          [
-            277.541,
-            94.786
-          ],
-          [
-            287.451,
-            96.576
-          ],
-          [
-            281.372,
-            149.083
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "plaza",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80699",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80701",
       "part": 0,
       "name": "停车场",
-      "kind": "plaza",
+      "kind": "reference",
       "source_index": 309,
-      "points": [
-        [
-          -133.774073985369,
-          -413.92248601005554
-        ],
-        [
-          -129.76307817492219,
-          -443.8994860100555
-        ],
-        [
-          -122.10008617904742,
-          -442.39348601005554
-        ],
-        [
-          -119.2490891569622,
-          -453.78648601005557
-        ],
-        [
-          -72.36713812595588,
-          -445.12348601005556
-        ],
-        [
-          -79.9891301646558,
-          -403.5574860100555
-        ],
-        [
-          -77.86913237902948,
-          -402.73848601005557
-        ],
-        [
-          -116.90809160217388,
-          -410.0194860100555
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -133.774073985369,
-            -413.92248601005554
-          ],
-          [
-            -129.76307817492219,
-            -443.8994860100555
-          ],
-          [
-            -122.10008617904742,
-            -442.39348601005554
-          ],
-          [
-            -119.2490891569622,
-            -453.78648601005557
-          ],
-          [
-            -72.36713812595588,
-            -445.12348601005556
-          ],
-          [
-            -79.9891301646558,
-            -403.5574860100555
-          ],
-          [
-            -77.86913237902948,
-            -402.73848601005557
-          ],
-          [
-            -116.90809160217388,
-            -410.0194860100555
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -133.425,
-          -636.568
-        ],
-        [
-          -129.414,
-          -666.545
-        ],
-        [
-          -121.751,
-          -665.039
-        ],
-        [
-          -118.9,
-          -676.432
-        ],
-        [
-          -72.018,
-          -667.769
-        ],
-        [
-          -79.64,
-          -626.203
-        ],
-        [
-          -77.52,
-          -625.384
-        ],
-        [
-          -116.559,
-          -632.665
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -133.425,
-            -636.568
-          ],
-          [
-            -129.414,
-            -666.545
-          ],
-          [
-            -121.751,
-            -665.039
-          ],
-          [
-            -118.9,
-            -676.432
-          ],
-          [
-            -72.018,
-            -667.769
-          ],
-          [
-            -79.64,
-            -626.203
-          ],
-          [
-            -77.52,
-            -625.384
-          ],
-          [
-            -116.559,
-            -632.665
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "plaza",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80701",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80703",
       "part": 0,
       "name": "停车场",
-      "kind": "plaza",
+      "kind": "reference",
       "source_index": 310,
-      "points": [
-        [
-          178.14660020819193,
-          -353.4384860100555
-        ],
-        [
-          193.96658368395063,
-          -421.4634860100556
-        ],
-        [
-          242.9305325402749,
-          -412.0354860100556
-        ],
-        [
-          231.68454428690052,
-          -345.26748601005556
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            178.14660020819193,
-            -353.4384860100555
-          ],
-          [
-            193.96658368395063,
-            -421.4634860100556
-          ],
-          [
-            242.9305325402749,
-            -412.0354860100556
-          ],
-          [
-            231.68454428690052,
-            -345.26748601005556
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          178.496,
-          -576.084
-        ],
-        [
-          194.316,
-          -644.109
-        ],
-        [
-          243.28,
-          -634.681
-        ],
-        [
-          232.034,
-          -567.913
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            178.496,
-            -576.084
-          ],
-          [
-            194.316,
-            -644.109
-          ],
-          [
-            243.28,
-            -634.681
-          ],
-          [
-            232.034,
-            -567.913
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "plaza",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80703",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80705",
       "part": 0,
       "name": "衍中街",
-      "kind": "road",
+      "kind": "reference",
       "source_index": 311,
-      "points": [
-        [
-          -427.3457673447519,
-          331.8555139899445
-        ],
-        [
-          -419.4307756120951,
-          315.1705139899445
-        ],
-        [
-          -348.27984993044475,
-          349.00151398994444
-        ],
-        [
-          -295.22490534723494,
-          371.57851398994444
-        ],
-        [
-          -228.01197555228111,
-          393.41151398994447
-        ],
-        [
-          -95.47111399346089,
-          438.1275139899445
-        ],
-        [
-          -103.019106109455,
-          459.7485139899445
-        ],
-        [
-          -213.8639903300918,
-          420.4905139899445
-        ],
-        [
-          -304.83389531048186,
-          390.46251398994445
-        ],
-        [
-          -365.02283244211526,
-          363.34751398994445
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -427.3457673447519,
-            331.8555139899445
-          ],
-          [
-            -419.4307756120951,
-            315.1705139899445
-          ],
-          [
-            -348.27984993044475,
-            349.00151398994444
-          ],
-          [
-            -295.22490534723494,
-            371.57851398994444
-          ],
-          [
-            -228.01197555228111,
-            393.41151398994447
-          ],
-          [
-            -95.47111399346089,
-            438.1275139899445
-          ],
-          [
-            -103.019106109455,
-            459.7485139899445
-          ],
-          [
-            -213.8639903300918,
-            420.4905139899445
-          ],
-          [
-            -304.83389531048186,
-            390.46251398994445
-          ],
-          [
-            -365.02283244211526,
-            363.34751398994445
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -426.997,
-          109.21
-        ],
-        [
-          -419.082,
-          92.525
-        ],
-        [
-          -347.931,
-          126.356
-        ],
-        [
-          -294.876,
-          148.933
-        ],
-        [
-          -227.663,
-          170.766
-        ],
-        [
-          -95.122,
-          215.482
-        ],
-        [
-          -102.67,
-          237.103
-        ],
-        [
-          -213.515,
-          197.845
-        ],
-        [
-          -304.485,
-          167.817
-        ],
-        [
-          -364.674,
-          140.702
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -426.997,
-            109.21
-          ],
-          [
-            -419.082,
-            92.525
-          ],
-          [
-            -347.931,
-            126.356
-          ],
-          [
-            -294.876,
-            148.933
-          ],
-          [
-            -227.663,
-            170.766
-          ],
-          [
-            -95.122,
-            215.482
-          ],
-          [
-            -102.67,
-            237.103
-          ],
-          [
-            -213.515,
-            197.845
-          ],
-          [
-            -304.485,
-            167.817
-          ],
-          [
-            -364.674,
-            140.702
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "road",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80705",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80705",
       "part": 1,
       "name": "衍中街",
-      "kind": "road",
+      "kind": "reference",
       "source_index": 312,
-      "points": [
-        [
-          -47.451164151113645,
-          479.2205139899445
-        ],
-        [
-          -41.672170187370945,
-          457.81051398994447
-        ],
-        [
-          250.74452437842777,
-          557.6535139899445
-        ],
-        [
-          245.6575296918801,
-          577.8185139899444
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -47.451164151113645,
-            479.2205139899445
-          ],
-          [
-            -41.672170187370945,
-            457.81051398994447
-          ],
-          [
-            250.74452437842777,
-            557.6535139899445
-          ],
-          [
-            245.6575296918801,
-            577.8185139899444
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -47.102,
-          256.575
-        ],
-        [
-          -41.323,
-          235.165
-        ],
-        [
-          251.094,
-          335.008
-        ],
-        [
-          246.007,
-          355.173
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -47.102,
-            256.575
-          ],
-          [
-            -41.323,
-            235.165
-          ],
-          [
-            251.094,
-            335.008
-          ],
-          [
-            246.007,
-            355.173
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "road",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80705",
+        "part": 1,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80709",
       "part": 0,
       "name": "德榜路",
-      "kind": "road",
+      "kind": "reference",
       "source_index": 313,
-      "points": [
-        [
-          -234.94496831065248,
-          -175.76548601005553
-        ],
-        [
-          -241.49396147011797,
-          -184.94948601005555
-        ],
-        [
-          -40.011171922311824,
-          -149.01248601005554
-        ],
-        [
-          -39.68117226700207,
-          -140.91448601005553
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -234.94496831065248,
-            -175.76548601005553
-          ],
-          [
-            -241.49396147011797,
-            -184.94948601005555
-          ],
-          [
-            -40.011171922311824,
-            -149.01248601005554
-          ],
-          [
-            -39.68117226700207,
-            -140.91448601005553
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -234.596,
-          -398.411
-        ],
-        [
-          -241.145,
-          -407.595
-        ],
-        [
-          -39.662,
-          -371.658
-        ],
-        [
-          -39.332,
-          -363.56
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -234.596,
-            -398.411
-          ],
-          [
-            -241.145,
-            -407.595
-          ],
-          [
-            -39.662,
-            -371.658
-          ],
-          [
-            -39.332,
-            -363.56
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "road",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80709",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80709",
       "part": 1,
       "name": "德榜路",
-      "kind": "road",
+      "kind": "reference",
       "source_index": 314,
-      "points": [
-        [
-          -5.184208299666522,
-          -136.30548601005555
-        ],
-        [
-          -4.242209283600484,
-          -142.72648601005554
-        ],
-        [
-          352.0404185731468,
-          -79.42148601005553
-        ],
-        [
-          352.85941771768825,
-          -73.10648601005553
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -5.184208299666522,
-            -136.30548601005555
-          ],
-          [
-            -4.242209283600484,
-            -142.72648601005554
-          ],
-          [
-            352.0404185731468,
-            -79.42148601005553
-          ],
-          [
-            352.85941771768825,
-            -73.10648601005553
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -4.835,
-          -358.951
-        ],
-        [
-          -3.893,
-          -365.372
-        ],
-        [
-          352.39,
-          -302.067
-        ],
-        [
-          353.209,
-          -295.752
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -4.835,
-            -358.951
-          ],
-          [
-            -3.893,
-            -365.372
-          ],
-          [
-            352.39,
-            -302.067
-          ],
-          [
-            353.209,
-            -295.752
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "road",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80709",
+        "part": 1,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80709",
       "part": 2,
       "name": "德榜路",
-      "kind": "road",
+      "kind": "reference",
       "source_index": 315,
-      "points": [
-        [
-          331.9504395574709,
-          79.20451398994447
-        ],
-        [
-          324.72344710618717,
-          77.23151398994449
-        ],
-        [
-          351.43841920194535,
-          -69.62848601005552
-        ],
-        [
-          359.10841119050855,
-          -67.14348601005551
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            331.9504395574709,
-            79.20451398994447
-          ],
-          [
-            324.72344710618717,
-            77.23151398994449
-          ],
-          [
-            351.43841920194535,
-            -69.62848601005552
-          ],
-          [
-            359.10841119050855,
-            -67.14348601005551
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          332.3,
-          -143.441
-        ],
-        [
-          325.073,
-          -145.414
-        ],
-        [
-          351.788,
-          -292.274
-        ],
-        [
-          359.458,
-          -289.789
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            332.3,
-            -143.441
-          ],
-          [
-            325.073,
-            -145.414
-          ],
-          [
-            351.788,
-            -292.274
-          ],
-          [
-            359.458,
-            -289.789
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "road",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80709",
+        "part": 2,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80713",
       "part": 0,
       "name": "书阳路",
-      "kind": "road",
+      "kind": "reference",
       "source_index": 316,
-      "points": [
-        [
-          189.16858869553786,
-          354.4795139899445
-        ],
-        [
-          182.7635953856621,
-          350.6715139899445
-        ],
-        [
-          206.3585707403098,
-          224.70651398994448
-        ],
-        [
-          213.9515628093007,
-          222.89151398994449
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            189.16858869553786,
-            354.4795139899445
-          ],
-          [
-            182.7635953856621,
-            350.6715139899445
-          ],
-          [
-            206.3585707403098,
-            224.70651398994448
-          ],
-          [
-            213.9515628093007,
-            222.89151398994449
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          189.518,
-          131.834
-        ],
-        [
-          183.113,
-          128.026
-        ],
-        [
-          206.708,
-          2.061
-        ],
-        [
-          214.301,
-          0.246
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            189.518,
-            131.834
-          ],
-          [
-            183.113,
-            128.026
-          ],
-          [
-            206.708,
-            2.061
-          ],
-          [
-            214.301,
-            0.246
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "road",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80713",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80713",
       "part": 1,
       "name": "书阳路",
-      "kind": "road",
+      "kind": "reference",
       "source_index": 317,
-      "points": [
-        [
-          216.10756055732443,
-          209.57751398994446
-        ],
-        [
-          208.80656818333492,
-          206.32951398994447
-        ],
-        [
-          262.38551221921836,
-          -81.2784860100555
-        ],
-        [
-          270.78150344946295,
-          -81.72648601005554
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            216.10756055732443,
-            209.57751398994446
-          ],
-          [
-            208.80656818333492,
-            206.32951398994447
-          ],
-          [
-            262.38551221921836,
-            -81.2784860100555
-          ],
-          [
-            270.78150344946295,
-            -81.72648601005554
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          216.457,
-          -13.068
-        ],
-        [
-          209.156,
-          -16.316
-        ],
-        [
-          262.735,
-          -303.924
-        ],
-        [
-          271.131,
-          -304.372
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            216.457,
-            -13.068
-          ],
-          [
-            209.156,
-            -16.316
-          ],
-          [
-            262.735,
-            -303.924
-          ],
-          [
-            271.131,
-            -304.372
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "road",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80713",
+        "part": 1,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80724",
       "part": 0,
       "name": "品先路",
-      "kind": "road",
+      "kind": "reference",
       "source_index": 318,
-      "points": [
-        [
-          -50.074161411348484,
-          -485.8414860100555
-        ],
-        [
-          -53.64715767929323,
-          -484.70148601005553
-        ],
-        [
-          -57.41115374773544,
-          -484.33948601005557
-        ],
-        [
-          -60.05015099125802,
-          -479.68548601005557
-        ],
-        [
-          -65.89814488292915,
-          -483.6254860100555
-        ],
-        [
-          -60.56015045855492,
-          -488.92748601005553
-        ],
-        [
-          -54.68115659926381,
-          -492.0544860100556
-        ],
-        [
-          242.48553300508448,
-          -438.5864860100555
-        ],
-        [
-          246.48052883224352,
-          -426.5304860100556
-        ],
-        [
-          241.64353388456684,
-          -432.0054860100555
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -50.074161411348484,
-            -485.8414860100555
-          ],
-          [
-            -53.64715767929323,
-            -484.70148601005553
-          ],
-          [
-            -57.41115374773544,
-            -484.33948601005557
-          ],
-          [
-            -60.05015099125802,
-            -479.68548601005557
-          ],
-          [
-            -65.89814488292915,
-            -483.6254860100555
-          ],
-          [
-            -60.56015045855492,
-            -488.92748601005553
-          ],
-          [
-            -54.68115659926381,
-            -492.0544860100556
-          ],
-          [
-            242.48553300508448,
-            -438.5864860100555
-          ],
-          [
-            246.48052883224352,
-            -426.5304860100556
-          ],
-          [
-            241.64353388456684,
-            -432.0054860100555
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -49.725,
-          -708.487
-        ],
-        [
-          -53.298,
-          -707.347
-        ],
-        [
-          -57.062,
-          -706.985
-        ],
-        [
-          -59.701,
-          -702.331
-        ],
-        [
-          -65.549,
-          -706.271
-        ],
-        [
-          -60.211,
-          -711.573
-        ],
-        [
-          -54.332,
-          -714.7
-        ],
-        [
-          242.835,
-          -661.232
-        ],
-        [
-          246.83,
-          -649.176
-        ],
-        [
-          241.993,
-          -654.651
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -49.725,
-            -708.487
-          ],
-          [
-            -53.298,
-            -707.347
-          ],
-          [
-            -57.062,
-            -706.985
-          ],
-          [
-            -59.701,
-            -702.331
-          ],
-          [
-            -65.549,
-            -706.271
-          ],
-          [
-            -60.211,
-            -711.573
-          ],
-          [
-            -54.332,
-            -714.7
-          ],
-          [
-            242.835,
-            -661.232
-          ],
-          [
-            246.83,
-            -649.176
-          ],
-          [
-            241.993,
-            -654.651
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "road",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80724",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80726",
       "part": 0,
       "name": "尚书路",
-      "kind": "road",
+      "kind": "reference",
       "source_index": 319,
-      "points": [
-        [
-          184.60959345748577,
-          -111.52548601005552
-        ],
-        [
-          179.1785991302515,
-          -117.82548601005553
-        ],
-        [
-          238.0955375905092,
-          -421.8754860100555
-        ],
-        [
-          243.5585318843189,
-          -421.3044860100556
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            184.60959345748577,
-            -111.52548601005552
-          ],
-          [
-            179.1785991302515,
-            -117.82548601005553
-          ],
-          [
-            238.0955375905092,
-            -421.8754860100555
-          ],
-          [
-            243.5585318843189,
-            -421.3044860100556
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          184.959,
-          -334.171
-        ],
-        [
-          179.528,
-          -340.471
-        ],
-        [
-          238.445,
-          -644.521
-        ],
-        [
-          243.908,
-          -643.95
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            184.959,
-            -334.171
-          ],
-          [
-            179.528,
-            -340.471
-          ],
-          [
-            238.445,
-            -644.521
-          ],
-          [
-            243.908,
-            -643.95
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "road",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80726",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80731",
@@ -5506,591 +4171,43 @@
       "name": "B02-彩虹长廊",
       "kind": "reference",
       "source_index": 320,
-      "points": [
-        [
-          -253.2499491907892,
-          350.7445139899445
-        ],
-        [
-          -267.9949337894025,
-          337.6415139899445
-        ],
-        [
-          -208.3939960435937,
-          274.75551398994446
-        ],
-        [
-          -161.99204451121977,
-          218.68651398994447
-        ],
-        [
-          -137.49707009663635,
-          187.72151398994447
-        ],
-        [
-          -119.87608850205075,
-          161.58751398994448
-        ],
-        [
-          -113.94409469811896,
-          154.17651398994448
-        ],
-        [
-          -105.48310353576787,
-          138.7735139899445
-        ],
-        [
-          -90.42511926408804,
-          96.47751398994447
-        ],
-        [
-          -76.39213392177945,
-          54.17351398994447
-        ],
-        [
-          -68.71814193739434,
-          17.111513989944484
-        ],
-        [
-          -65.32114548561479,
-          -0.8484860100555238
-        ],
-        [
-          -48.815162726393986,
-          -133.50348601005552
-        ],
-        [
-          -30.535181820144345,
-          -282.8814860100555
-        ],
-        [
-          -21.266191501762076,
-          -363.6974860100555
-        ],
-        [
-          -8.344204998996329,
-          -467.6344860100555
-        ],
-        [
-          -1.7372119001127746,
-          -466.5344860100555
-        ],
-        [
-          7.674778268903722,
-          -460.3704860100555
-        ],
-        [
-          -14.052199036899662,
-          -273.9614860100555
-        ],
-        [
-          -29.176183239641432,
-          -150.1674860100555
-        ],
-        [
-          -50.04816143850589,
-          10.022513989944486
-        ],
-        [
-          -61.23014975872928,
-          68.04951398994447
-        ],
-        [
-          -86.48212338261418,
-          136.36551398994447
-        ],
-        [
-          -92.9521166245964,
-          151.33051398994448
-        ],
-        [
-          -101.65510753417466,
-          167.48951398994447
-        ],
-        [
-          -129.18207878178592,
-          208.06851398994448
-        ],
-        [
-          -147.95905916891118,
-          230.81651398994447
-        ],
-        [
-          -177.99602779478755,
-          267.28651398994447
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            -253.2499491907892,
-            350.7445139899445
-          ],
-          [
-            -267.9949337894025,
-            337.6415139899445
-          ],
-          [
-            -208.3939960435937,
-            274.75551398994446
-          ],
-          [
-            -161.99204451121977,
-            218.68651398994447
-          ],
-          [
-            -137.49707009663635,
-            187.72151398994447
-          ],
-          [
-            -119.87608850205075,
-            161.58751398994448
-          ],
-          [
-            -113.94409469811896,
-            154.17651398994448
-          ],
-          [
-            -105.48310353576787,
-            138.7735139899445
-          ],
-          [
-            -90.42511926408804,
-            96.47751398994447
-          ],
-          [
-            -76.39213392177945,
-            54.17351398994447
-          ],
-          [
-            -68.71814193739434,
-            17.111513989944484
-          ],
-          [
-            -65.32114548561479,
-            -0.8484860100555238
-          ],
-          [
-            -48.815162726393986,
-            -133.50348601005552
-          ],
-          [
-            -30.535181820144345,
-            -282.8814860100555
-          ],
-          [
-            -21.266191501762076,
-            -363.6974860100555
-          ],
-          [
-            -8.344204998996329,
-            -467.6344860100555
-          ],
-          [
-            -1.7372119001127746,
-            -466.5344860100555
-          ],
-          [
-            7.674778268903722,
-            -460.3704860100555
-          ],
-          [
-            -14.052199036899662,
-            -273.9614860100555
-          ],
-          [
-            -29.176183239641432,
-            -150.1674860100555
-          ],
-          [
-            -50.04816143850589,
-            10.022513989944486
-          ],
-          [
-            -61.23014975872928,
-            68.04951398994447
-          ],
-          [
-            -86.48212338261418,
-            136.36551398994447
-          ],
-          [
-            -92.9521166245964,
-            151.33051398994448
-          ],
-          [
-            -101.65510753417466,
-            167.48951398994447
-          ],
-          [
-            -129.18207878178592,
-            208.06851398994448
-          ],
-          [
-            -147.95905916891118,
-            230.81651398994447
-          ],
-          [
-            -177.99602779478755,
-            267.28651398994447
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          -252.901,
-          128.099
-        ],
-        [
-          -267.646,
-          114.996
-        ],
-        [
-          -208.045,
-          52.11
-        ],
-        [
-          -161.643,
-          -3.959
-        ],
-        [
-          -137.148,
-          -34.924
-        ],
-        [
-          -119.527,
-          -61.058
-        ],
-        [
-          -113.595,
-          -68.469
-        ],
-        [
-          -105.134,
-          -83.872
-        ],
-        [
-          -90.076,
-          -126.168
-        ],
-        [
-          -76.043,
-          -168.472
-        ],
-        [
-          -68.369,
-          -205.534
-        ],
-        [
-          -64.972,
-          -223.494
-        ],
-        [
-          -48.466,
-          -356.149
-        ],
-        [
-          -30.186,
-          -505.527
-        ],
-        [
-          -20.917,
-          -586.343
-        ],
-        [
-          -7.995,
-          -690.28
-        ],
-        [
-          -1.388,
-          -689.18
-        ],
-        [
-          8.024,
-          -683.016
-        ],
-        [
-          -13.703,
-          -496.607
-        ],
-        [
-          -28.827,
-          -372.813
-        ],
-        [
-          -49.699,
-          -212.623
-        ],
-        [
-          -60.881,
-          -154.596
-        ],
-        [
-          -86.133,
-          -86.28
-        ],
-        [
-          -92.603,
-          -71.315
-        ],
-        [
-          -101.306,
-          -55.156
-        ],
-        [
-          -128.833,
-          -14.577
-        ],
-        [
-          -147.61,
-          8.171
-        ],
-        [
-          -177.647,
-          44.641
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            -252.901,
-            128.099
-          ],
-          [
-            -267.646,
-            114.996
-          ],
-          [
-            -208.045,
-            52.11
-          ],
-          [
-            -161.643,
-            -3.959
-          ],
-          [
-            -137.148,
-            -34.924
-          ],
-          [
-            -119.527,
-            -61.058
-          ],
-          [
-            -113.595,
-            -68.469
-          ],
-          [
-            -105.134,
-            -83.872
-          ],
-          [
-            -90.076,
-            -126.168
-          ],
-          [
-            -76.043,
-            -168.472
-          ],
-          [
-            -68.369,
-            -205.534
-          ],
-          [
-            -64.972,
-            -223.494
-          ],
-          [
-            -48.466,
-            -356.149
-          ],
-          [
-            -30.186,
-            -505.527
-          ],
-          [
-            -20.917,
-            -586.343
-          ],
-          [
-            -7.995,
-            -690.28
-          ],
-          [
-            -1.388,
-            -689.18
-          ],
-          [
-            8.024,
-            -683.016
-          ],
-          [
-            -13.703,
-            -496.607
-          ],
-          [
-            -28.827,
-            -372.813
-          ],
-          [
-            -49.699,
-            -212.623
-          ],
-          [
-            -60.881,
-            -154.596
-          ],
-          [
-            -86.133,
-            -86.28
-          ],
-          [
-            -92.603,
-            -71.315
-          ],
-          [
-            -101.306,
-            -55.156
-          ],
-          [
-            -128.833,
-            -14.577
-          ],
-          [
-            -147.61,
-            8.171
-          ],
-          [
-            -177.647,
-            44.641
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "reference",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80731",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     },
     {
       "id": "80746",
       "part": 0,
       "name": "盘锦校区东门",
-      "kind": "gate",
+      "kind": "reference",
       "source_index": 321,
-      "points": [
-        [
-          312.99645935522494,
-          158.15751398994448
-        ],
-        [
-          323.5434483387159,
-          93.60351398994447
-        ],
-        [
-          327.97944370524345,
-          94.47551398994449
-        ],
-        [
-          331.7164398018876,
-          97.56151398994447
-        ],
-        [
-          320.0234520154118,
-          160.32251398994447
-        ],
-        [
-          316.0004562174993,
-          160.5115139899445
-        ]
-      ],
-      "render_polygons": [
-        [
-          [
-            312.99645935522494,
-            158.15751398994448
-          ],
-          [
-            323.5434483387159,
-            93.60351398994447
-          ],
-          [
-            327.97944370524345,
-            94.47551398994449
-          ],
-          [
-            331.7164398018876,
-            97.56151398994447
-          ],
-          [
-            320.0234520154118,
-            160.32251398994447
-          ],
-          [
-            316.0004562174993,
-            160.5115139899445
-          ]
-        ]
-      ],
-      "height": 0.06,
-      "height_source": "unmeasured-outline-estimate",
-      "footprint_source": "http://map.dlut.edu.cn/openmap/mapi/bd/v1/bound",
+      "points": [],
+      "render_polygons": [],
+      "height": null,
+      "height_source": "unavailable",
+      "footprint_source": null,
       "facade": {},
-      "reference_points": [
-        [
-          313.346,
-          -64.488
-        ],
-        [
-          323.893,
-          -129.042
-        ],
-        [
-          328.329,
-          -128.17
-        ],
-        [
-          332.066,
-          -125.084
-        ],
-        [
-          320.373,
-          -62.323
-        ],
-        [
-          316.35,
-          -62.134
-        ]
-      ],
-      "reference_render_polygons": [
-        [
-          [
-            313.346,
-            -64.488
-          ],
-          [
-            323.893,
-            -129.042
-          ],
-          [
-            328.329,
-            -128.17
-          ],
-          [
-            332.066,
-            -125.084
-          ],
-          [
-            320.373,
-            -62.323
-          ],
-          [
-            316.35,
-            -62.134
-          ]
-        ]
-      ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "withheld-pending-valid-ground-source",
+      "source_kind": "gate",
+      "withheld_geometry": {
+        "reason": "dlutmap-3d-selection-bound-is-not-ground-geometry",
+        "archive": "references/panjin/mapping/bounds.json",
+        "official_id": "80746",
+        "part": 0,
+        "previous_status": "legacy-silhouette-pending-replacement"
+      }
     }
   ]
 }
