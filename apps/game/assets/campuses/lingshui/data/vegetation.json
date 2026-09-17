@@ -4036,7 +4036,7 @@
 {"height":0.798,"kind":"shrub","position":[685.721,-0.59,354.234],"rotation_y":3.908,"variant":2,"width":1.062,"zone":"training-east-row"},
 {"height":0.778,"kind":"shrub","position":[683.18,-0.687,356.757],"rotation_y":1.422,"variant":2,"width":0.939,"zone":"training-east-row"},
 {"height":0.846,"kind":"shrub","position":[683.037,-0.725,359.069],"rotation_y":5.887,"variant":1,"width":0.954,"zone":"training-east-row"},
-{"height":0.829,"kind":"shrub","position":[683.338,-0.756,361.912],"rotation_y":3.557,"variant":1,"width":1.096,"zone":"training-east-row"},
+{"height":0.829,"kind":"shrub","position":[683.338,-0.757,361.912],"rotation_y":3.557,"variant":1,"width":1.096,"zone":"training-east-row"},
 {"height":7.69,"kind":"willow","position":[-54.245,5.098,16.954],"rotation_y":2.475,"variant":1,"width":1.034,"zone":"lake-east-lawn"},
 {"height":7.331,"kind":"willow","position":[-53.606,4.874,23.323],"rotation_y":1.313,"variant":2,"width":1.059,"zone":"lake-east-lawn"},
 {"height":9.693,"kind":"willow","position":[-48.216,4.864,23.146],"rotation_y":6.05,"variant":1,"width":1.082,"zone":"lake-east-lawn"},

@@ -13008,7 +13008,7 @@
       "part": 0,
       "source_index": 40,
       "name": "A3区05-现代实验楼",
-      "kind": "building",
+      "kind": "reference",
       "points": [
         [
           597.4728902102169,
@@ -13205,7 +13205,13 @@
           ]
         ]
       ],
-      "geometry_status": "legacy-silhouette-pending-replacement"
+      "geometry_status": "shared-compound-reference; legacy silhouette not rendered",
+      "source_kind": "building",
+      "geometry_assembly": "lingshui-modern-training-compound",
+      "shared_geometry": {
+        "id": "77420",
+        "part": 0
+      }
     },
     {
       "id": "77420",
@@ -13289,7 +13295,7 @@
       ],
       "osm_id": "relation/2898296",
       "osm_version": 2,
-      "geometry_status": "osm-source-outline; absolute accuracy unverified",
+      "geometry_status": "osm-shared-compound; internal partition and absolute accuracy unverified",
       "holes": [
         [
           [
@@ -13309,7 +13315,12 @@
             392.53658399955896
           ]
         ]
-      ]
+      ],
+      "shared_official_ids": [
+        "77420",
+        "77419"
+      ],
+      "geometry_assembly": "lingshui-modern-training-compound"
     },
     {
       "id": "77421",
