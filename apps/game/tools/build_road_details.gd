@@ -190,7 +190,20 @@ func build() -> void:
 	right = Vector2(cos(angle),sin(angle))
 	forward = Vector2(-sin(angle),cos(angle))
 	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/campus.json"))
-	if manifest.has("legacy_reference_transform"):
+	if profile.has("osm_registration"):
+		var anchor: Dictionary = profile.osm_registration
+		assert(float(anchor.local_endpoint[0]) == 0.0 and is_equal_approx(float(anchor.local_endpoint[1]),float(profile.end_depth)), "Photo garden endpoint changed; recheck road anchor")
+		var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/lingshui/data/osm_roads.json")).roads
+		var matches: Array = roads.filter(func(road): return int(road.osm_way_id) == int(anchor.osm_way_id) and int(road.part) == int(anchor.part))
+		assert(matches.size() == 1, "Photo garden road anchor missing or ambiguous")
+		var road: Dictionary = matches[0]
+		assert(int(road.osm_version) == int(anchor.osm_version), "Photo garden road changed; recheck registration")
+		var index := int(anchor.segment)
+		assert(index >= 0 and index+1 < road.points.size() and float(anchor.fraction) >= 0.0 and float(anchor.fraction) <= 1.0)
+		var a := Vector2(road.points[index][0],road.points[index][1])
+		var b := Vector2(road.points[index+1][0],road.points[index+1][1])
+		origin = a.lerp(b,float(anchor.fraction))-right*float(anchor.local_endpoint[0])-forward*float(anchor.local_endpoint[1])
+	elif manifest.has("legacy_reference_transform"):
 		var registration: Dictionary = manifest.legacy_reference_transform
 		origin = Vector2(origin.x*float(registration.scale_x)+float(registration.offset_xz[0]),origin.y+float(registration.offset_xz[1]))
 		right.x *= float(registration.scale_x)
