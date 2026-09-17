@@ -1,5 +1,6 @@
-"""Convert archived official Panjin polygons into the desktop model manifest."""
+"""Build the Panjin manifest from registered OSM geometry and archived source identities."""
 import json
+import hashlib
 import math
 import re
 from pathlib import Path
@@ -12,6 +13,27 @@ REFERENCES = CLIENT.parents[1] / 'references/panjin'
 ORIGIN = (122.12445312006, 40.6862493884607)
 # These facilities are south of Yanzhong Street, outside this campus model.
 EXCLUDED_IDS = {80152, 80155, 80158, 80161, 80164, 80691, 80693, 80694, 80697}
+
+
+def parking_surfaces(world):
+    """Only reviewed OSM ground areas; no official selection-box correspondence."""
+    path = REFERENCES / 'mapping/ground-surfaces.json'
+    registry = json.loads(path.read_text(encoding='utf-8'))
+    assert registry['coordinate_frame'] == 'references/shared/mapping/osm-world-frame.json'
+    areas = {area['osm_id']: area for area in world['areas']}
+    result = []
+    for spec in registry['surfaces']:
+        area = areas[spec['osm_id']]
+        assert area['version'] == spec['osm_version'] and area['category'] == 'parking'
+        assert area['scope'] == 'inside' and len(area['polygons']) == 1
+        digest = hashlib.sha256(json.dumps(area['polygons'],sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        assert digest == spec['polygon_sha256'], 'Parking geometry changed; review required'
+        polygon = area['polygons'][0]
+        result.append(dict(id=spec['id'],outer=polygon['outer'],holes=polygon['holes'],
+                           surface_type=spec['surface_type'],render_lift_m=spec['render_lift_m'],osm_id=spec['osm_id'],
+                           osm_version=spec['osm_version'],source='references/panjin/mapping/ground-surfaces.json',
+                           geometry_status='reviewed OSM parking area; boundary and level approximate'))
+    return result
 
 
 def main():
@@ -73,7 +95,9 @@ def main():
             feature['geometry_status']='legacy-silhouette-pending-replacement'
     osm_world.withhold_selection_bounds(features, 'panjin')
     from prepare_osm_world import build as osm_geometry
-    points = [p for f in features for p in f['points']] + osm_geometry('panjin')['boundary']
+    world = osm_geometry('panjin')
+    overlays = parking_surfaces(world)
+    points = [p for f in features for p in f['points']] + world['boundary']
     low = [math.floor(min(p[i] for p in points)/10)*10-30 for i in range(2)]
     high = [math.ceil(max(p[i] for p in points)/10)*10+30 for i in range(2)]
     output = CLIENT / 'assets/campuses/panjin/data'
@@ -82,7 +106,7 @@ def main():
             'geographic_crs':'EPSG:4326','coordinate_frame':'references/shared/mapping/osm-world-frame.json',
             'spawn_xz':moved([12,-62]),'elevation_status':'provisional filtered Copernicus DSM in shared WGS84 frame; not surveyed ground',
             'source': source['source'], 'retrieved': source['retrieved'],
-            'bounds': low+[high[i]-low[i] for i in range(2)], 'features': features}
+            'bounds': low+[high[i]-low[i] for i in range(2)], 'features': features, 'ground_overlays': overlays}
     (output/'campus.json').write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n',encoding='utf-8')
     (REFERENCES/'mapping/excluded.json').write_text(json.dumps(excluded, ensure_ascii=False, indent=2)+'\n',encoding='utf-8')
     scene_path=CLIENT/'scenes/campuses/panjin.tscn'

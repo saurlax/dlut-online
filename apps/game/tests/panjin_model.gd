@@ -58,6 +58,26 @@ func _run() -> void:
 	for frame in 3:
 		await physics_frame
 	assert(server.get_meta("spawn")==campus.spawn_position)
+	# Interior ground samples must hit the saved paving, in both physics worlds.
+	for point in [Vector2(-60,-412),Vector2(-55,-430),Vector2(-46,-445)]:
+		var query := PhysicsRayQueryParameters3D.create(Vector3(point.x,20,point.y),Vector3(point.x,-20,point.y))
+		query.exclude = [player.get_rid()]
+		var client_floor := campus.get_world_3d().direct_space_state.intersect_ray(query)
+		var server_floor := server.get_world_3d().direct_space_state.intersect_ray(query)
+		assert(not client_floor.is_empty() and not server_floor.is_empty())
+		assert(absf(client_floor.position.y-terrain.elevation(point.x,point.y)-0.02)<0.002)
+		assert(client_floor.position.distance_to(server_floor.position)<0.001)
+	# Cross the western parking edge in both directions without a collision seam.
+	for direction in [1,-1]:
+		player.position = Vector3(-75 if direction==1 else -55,terrain.elevation(-65,-418)+0.4,-418)
+		for frame in 90:
+			await physics_frame
+			player.rotation.y = 0
+			preload("res://scripts/shared/movement.gd").step(player,Vector2(direction,0),true,false,1.0/60.0,campus.spawn_position)
+		print("PARKING TRAVERSE ",direction," ",player.position)
+		assert(player.is_on_floor())
+		assert(player.position.x>-60 if direction==1 else player.position.x<-70,"Parking edge blocks traversal")
+	print("PARKING PASS: saved client/server paving levels and bidirectional edge traversal")
 	var b: Array = campus.manifest.bounds
 	var boundary_ray := PhysicsRayQueryParameters3D.create(Vector3(b[0]+4,-3,0),Vector3(b[0]-4,-3,0))
 	var low_client := campus.get_world_3d().direct_space_state.intersect_ray(boundary_ray)
