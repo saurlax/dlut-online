@@ -189,3 +189,5 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 学生文化中心外部空间另参考设计单位天津大学建筑设计规划研究总院的[项目页](https://www.aatu.com.cn/project/post/301/)，2026-09-17读取并离线归档4张外观原图，来源和SHA-256见[照片记录](references/lingshui/buildings/photos/83718-design.json)。版权归来源权利人，未发现再分发许可，原图不进入客户端；未从照片推断净高、完整平面或内部通行结构。
 
 锦屏山植被改用OSM林地way/232560269 v2，结合学校双湖航拍和Esri影像核对范围。完整来源、版本、瓦片摘要及林木近似分布限制见[独立配准记录](references/eda/vegetation/jinping-registration.json)。沿用OSM和Esri既有来源与许可说明，原始影像不进入客户端，不将程序化树木视作逐树调查。
+
+博留公寓6号楼另核对25张Esri、12张天地图和12张MapTiler影像瓦片及学校相册13张照片，登记屋顶与墙脚错位疑点。仅将一张楼群航拍作为离线上下文归档，见[照片用途记录](references/lingshui/buildings/photos/77572-context.json)和[轮廓审查](references/shared/mapping/footprint-review.json)；相册包含邻楼，不能全部用于6号楼。原始影像和照片不进入客户端，未据此采用未经控制点验证的平移。
