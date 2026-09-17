@@ -607,6 +607,39 @@
             "ReleaseName": "Raster Basemaps 2026.R01"
           }
         ]
+      },
+      "saved_ground_review": {
+        "date": "2026-09-17",
+        "method": "Read ground_surface_id mesh triangles from the saved development_campus.tscn; apply node transform and project local X/Z through the shared WGS84 origin to the source tile frame. Yellow is saved paving, cyan source building footprint, red road centerlines (not road edges).",
+        "inputs_sha256": {
+          "apps/game/assets/campuses/eda/data/campus.json": "fba814251514131a514dd39a9201575c60401f7ac243f203b018205b2c08c6d0",
+          "apps/game/assets/campuses/eda/models/development_campus.tscn": "25fe8d741c5aee0fea079bd789aa350f6179f7c953e09b88af8e3dc758717464"
+        },
+        "surfaces": [
+          {
+            "id": "eda-comprehensive-south-plaza",
+            "raw_net_area_m2": 1820.8792470292683,
+            "saved_projected_area_m2": 1820.86461671069,
+            "saved_triangles": 725
+          },
+          {
+            "id": "eda-comprehensive-north-court",
+            "raw_net_area_m2": 777.3499442383109,
+            "saved_projected_area_m2": 466.572089671623,
+            "saved_triangles": 143
+          }
+        ],
+        "observations": [
+          "南广场的保存几何位于综合楼南侧，绿岛保留；北环岛及南绿岛在该影像中与OSM底稿大体对应，仅为目视结论，未量化地面控制点残差。",
+          "北院原始外轮廓不能当作游戏最终铺装：生成器扣除建筑占地，实际仅保留143个三角形。",
+          "照片中的屋顶与侧墙存在明显投影位移，黄色北院局部落在影像屋顶投影上不能据此认定地面穿楼，也不能证明真实北院边界正确。"
+        ],
+        "limits": [
+          "面积是保存网格的平面投影面积，不是实测面积；原始与保存面积的小差异包括裁切及浮点误差。",
+          "南广场外缘及北侧入口墙脚仍需可辨认地面控制点或平面资料。",
+          "2025影像早于2026南广场改造，不能确认当前铺装材质与工程边界。"
+        ],
+        "geometry_changed": false
       }
     }
   ],
