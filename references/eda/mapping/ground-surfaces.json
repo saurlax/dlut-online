@@ -271,13 +271,118 @@
       ],
       "method": "Local similarity: map island center to OSM loop bounding-box center, scale and direction from registered main-building south edge. Ground outline traced separately from roof; no global datum shift.",
       "limits": "Illustrated paving outline and OSM loop are not surveyed. Bounding-box center is an estimated island anchor. Keep original road source; suppress asphalt only within this surface. Building intersections are cut out at mesh generation.",
+      "surface_type": "paving",
+      "surface_basis": {
+        "photo": "references/eda/buildings/photos/77921-0.jpg",
+        "image_id": 79694,
+        "photo_index": "references/eda/buildings/comprehensive_profile.json",
+        "reviewed": "2026-09-17",
+        "observation": "77921-0拍摄北侧院内环岛，不能证明南侧广场材质；原沥青材质判断撤回。南侧俯视图为分格铺装，暂按图面铺装处理，材质待南侧实照核实。",
+        "limits": "不将北侧照片用作南侧材料依据；暂定铺装材质来自俯视图，未恢复砖缝或图案。"
+      }
+    },
+    {
+      "id": "eda-comprehensive-north-court",
+      "status": "provisional-image-supported-ground-outline",
+      "osm_anchor": {
+        "way_id": "1076344134",
+        "version": 1,
+        "loop_start_vertex": 2,
+        "closing_way": {
+          "way_id": "1076344135",
+          "version": 1
+        }
+      },
+      "pixel_anchor": [
+        471,
+        275
+      ],
+      "scale_direction": {
+        "way_id": "232559719",
+        "version": 7,
+        "vertices": [
+          2,
+          0
+        ],
+        "pixels": [
+          [
+            343,
+            533
+          ],
+          [
+            695,
+            533
+          ]
+        ]
+      },
+      "pixel_outer": [
+        [
+          442,
+          336
+        ],
+        [
+          487,
+          342
+        ],
+        [
+          468,
+          397
+        ],
+        [
+          484,
+          394
+        ],
+        [
+          554,
+          400
+        ],
+        [
+          593,
+          396
+        ],
+        [
+          583,
+          417
+        ],
+        [
+          580,
+          443
+        ],
+        [
+          592,
+          463
+        ],
+        [
+          475,
+          463
+        ],
+        [
+          383,
+          420
+        ],
+        [
+          377,
+          400
+        ],
+        [
+          393,
+          402
+        ],
+        [
+          423,
+          392
+        ]
+      ],
+      "pixel_holes": [],
+      "method": "Local similarity: north island center to bounding-box center of the two explicitly joined OSM ways; same main-building scale/direction as south plaza. Trace visible courtyard and loop approach separately from roofs.",
+      "limits": "Provisional map paving outline; building overlap is clipped at generation. Eastern round-roof zone is excluded from this outline because its ground wall and overhang are unresolved; this exclusion does not define a building footprint. Photo confirms north courtyard asphalt but not calibrated boundaries. No claim of survey accuracy.",
       "surface_type": "asphalt",
       "surface_basis": {
         "photo": "references/eda/buildings/photos/77921-0.jpg",
         "image_id": 79694,
         "photo_index": "references/eda/buildings/comprehensive_profile.json",
         "reviewed": "2026-09-17",
-        "observation": "院内照片可见深色连续沥青车行面、黄色车道线、浅色路缘及中央绿岛；不采用俯视图绘画色作为浅色铺砖依据。",
+        "observation": "77921-0 faces the inner L-shaped courtyard with the north road island, glass projection and asphalt; supports the north courtyard material and connection, not the south plaza material.",
         "limits": "颜色沿用道路近似材质；照片年代及遮挡不能证明现状铺装，未补未经配准的车道线或路缘尺寸。"
       }
     }
