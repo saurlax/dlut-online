@@ -44,8 +44,6 @@ shadow_enabled = true
 directional_shadow_max_distance = 250.0
 
 [node name="Camera" type="Camera3D" parent="."]
-position = Vector3(75, 12, 65)
-rotation_degrees = Vector3(0, 5.2, 0)
 current = true
 fov = 68.0
 far = 2500.0
