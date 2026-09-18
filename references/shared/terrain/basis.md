@@ -12,6 +12,18 @@ Mapzen Terrain Tiles 等其他高程来源未混入网格；混合前须核实�
 
 MapTiler Terrain RGB v2 已取得三校区局部样本并完成RGB解码，属于候选比对来源，尚未混入运行网格。全球标称水平分辨率为30米，校园是否属于5米覆盖未确认；512像素瓦片和较细渲染采样不能证明新增测量精度。样本缺少本地采集日期、明确垂直基准与独立控制点，不直接与EGM2008高程相加或替换。天地图地形晕渲仅为绘制图像，另列的三维地形服务尚未取得有效实体数据。具体来源及范围见[补充数据记录](../mapping/provider-data-review.json)。
 
+## 校园周边背景与大黑山
+
+背景覆盖配置见 [surroundings.json](surroundings.json)，每校区 `terrain/surroundings-dem.tif` 保存扩大的原始像元裁剪，`surroundings-source.json` 记录像元窗口、摘要、共同垂直偏移与过滤方法。凌水和盘锦沿用既有 OSM 档案；开发区另存 `mapping/osm-surroundings.osm.gz` 和来源记录，不改校园已核对的几何。OSM 建筑只取校界外有效闭合多边形，保留孔洞、对象 ID 与版本；数据仍不完整，不补造缺失墙脚。
+
+离线工具 `apps/game/tools/prepare_surroundings.py` 需要 NumPy、Rasterio、Shapely 2.1（仅离线环境，本次分别为2.5.3、1.5.1、2.1.2）。运行 `python apps/game/tools/prepare_surroundings.py` 后，再执行 `godot --headless --path apps/game --script tools/build_surroundings.gd`。工具按自身位置解析目录，首次下载固定摘要的 DSM 瓦片，后续复用 `.local/surroundings/` 缓存。源数据变更后须重新生成背景并检查接缝。
+
+背景剔除原校园地形矩形，采样包含校园边界全部顶点，边外150米平滑衔接地坪及颜色。一般区域沿用3×3最小值与均值过滤；开发区西侧绝对高程130–230米以上渐进保留65%的原始DSM起伏，减少山脊削平，不是地形放大。开发区30米、其余50米的网格间距并非测量精度。坡度控制的岩面、林木颜色与稀疏树冠是视觉近似，不是逐树或地质调查。
+
+大黑山参考 [KFQ00背向全景](../../eda/terrain/daheishan-panorama.json)，云层遮挡山顶以DSM为形状依据；东侧住宅色彩和分组高度见 [楼群复核](../../eda/buildings/surroundings-review.json)。照片拍摄日期未知，影像与DSM有时效差。照片分组高度优先于旧DSM，仍有约9–18米或更大的不确定性；其他建筑依次使用OSM高度、层数×估计3米、DSM屋顶差，最后为明确标识的9米占位。未经独立墙脚数据支持的西侧高楼不生成，不能把照片或屋檐投影到地面。
+
+模型位于专属 `models/surroundings.tscn`，输入为注册表声明的 `data/surroundings.json`。地形按600米单元剔除、楼体按颜色合批、树冠采用MultiMesh且关闭远景投影，不在运行时生成或下载。玩家相机远裁剪为12公里，仅影响可见性；`Daheishan` 保留独立节点与高程供后续副本建设，当前无新碰撞，现有校园通行边界不变。开放区域须另行建设通行面和服务端碰撞，背景不是已完成的副本。
+
 ## 文件与网格
 
 每校区 `terrain/` 保存：
