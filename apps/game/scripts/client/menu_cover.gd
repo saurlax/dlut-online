@@ -23,7 +23,6 @@ func _ready() -> void:
 	_layout()
 	show_account_page(preview_page == 1)
 	if background_enabled:
-		if not Engine.is_editor_hint(): Engine.max_fps = 60
 		$StartupLoading/Retry.pressed.connect(_start_loading)
 		_start_loading()
 

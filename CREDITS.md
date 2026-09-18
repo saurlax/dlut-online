@@ -199,3 +199,8 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 开发区一舍弯段另核对25张Esri、9张天地图和9张MapTiler瓦片。争议转角的Esri z19元数据为2019-09-18，道路西北节点有不同日期覆盖重叠，不能使用综合楼的2025日期代表全校区；其余两家影像日期未确认。本次仅用于识别时效与地面控制缺口，不修改运行道路。来源摘要与逐点查询见[一舍影像审查](references/shared/mapping/world-imagery-review.json)，原图不进入运行包。
 
 建筑艺术馆道路核对复用已归档的6张官网原图，并读取9张天地图影像瓦片；来源、摘要、拍摄日期缺口与用途见[轮廓审查](references/shared/mapping/footprint-review.json)。照片及瓦片仅用于离线核对，本轮未改动运行几何，也未新增运行照片。
+
+
+## 图形设置技术参考
+
+2026-09-18 通过 Context7 与 Godot 4.7 官方文档核对图形选项及兼容性：[渲染器比较](https://docs.godotengine.org/en/4.7/tutorials/rendering/renderers.html)、[Viewport](https://docs.godotengine.org/en/4.7/classes/class_viewport.html)、[Environment](https://docs.godotengine.org/en/4.7/classes/class_environment.html)、[RenderingDevice](https://docs.godotengine.org/en/4.7/classes/class_renderingdevice.html)、[SDFGI](https://docs.godotengine.org/en/4.7/tutorials/3d/global_illumination/using_sdfgi.html)。用于 MSAA/FXAA/SMAA/TAA、FSR/MetalFX、屏幕空间效果、动态 GI 与设备能力判断；文档按 Godot 的 CC BY 3.0 许可说明归属。设置齿轮为项目自行绘制的 SVG，没有引入第三方图标资源。

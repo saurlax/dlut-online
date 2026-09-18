@@ -2,6 +2,10 @@ extends CanvasLayer
 
 @export var login_only := false
 var loading_campus := false
+const Graphics = preload("res://scripts/client/graphics_settings.gd")
+const GraphicsPanel = preload("res://scripts/client/graphics_panel.gd")
+var settings_panel: ColorRect
+var settings_button: Button
 
 const MenuScene = preload("res://scenes/ui/login_menu.tscn")
 const MenuTheme = preload("res://assets/ui/campus_theme.tres")
@@ -51,7 +55,6 @@ var chat_mouse_mode := Input.MOUSE_MODE_VISIBLE
 
 func _ready() -> void:
 	if login_only:
-		Engine.max_fps = 60
 		build(null, null)
 
 func build(body: CharacterBody3D, world: Node3D) -> void:
@@ -105,6 +108,8 @@ func build(body: CharacterBody3D, world: Node3D) -> void:
 	cancel_login.pressed.connect(_cancel_login)
 	network = get_node("/root/GameNetwork")
 	network.menu_required.connect(_show_login)
+	_build_settings()
+	Graphics.apply_all(get_tree())
 	if login_only:
 		if network.status_text != "未连接": menu_status.text = network.status_text
 		return
@@ -289,7 +294,7 @@ func enter_campus() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if player.touch_enabled else Input.MOUSE_MODE_CAPTURED
 	capture_pending = not player.touch_enabled
 	capture_elapsed = 0
-	enter_button.release_focus()
+	get_viewport().gui_release_focus()
 
 func pause_exploration() -> void:
 	capture_pending = false
@@ -301,6 +306,14 @@ func pause_exploration() -> void:
 	overlay.visible = not Catalog.started
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.echo and event.is_action("ui_cancel"):
+		get_viewport().set_input_as_handled()
+		return
+	if _settings_open():
+		if event.is_action_pressed("ui_cancel"):
+			settings_panel.dismiss()
+			get_viewport().set_input_as_handled()
+		return
 	if login_only and overlay.get_node("Composition/Form").visible and event.is_action_pressed("ui_cancel"):
 		_cancel_login()
 		get_viewport().set_input_as_handled()
@@ -347,6 +360,9 @@ func _input(event: InputEvent) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		if _settings_open():
+			settings_panel.dismiss()
+			return
 		if login_only:
 			_cancel_login()
 		elif switching:
@@ -366,6 +382,8 @@ func _notification(what: int) -> void:
 			pause_exploration()
 
 func _process(delta: float) -> void:
+	if is_instance_valid(settings_button):
+		settings_button.visible = _settings_available() and not _settings_open()
 	_update_player_status_visibility()
 	if is_instance_valid(chat):
 		chat.visible = _chat_visible()
@@ -443,7 +461,7 @@ func _connection_quality_changed(state: String, rtt_ms: int) -> void:
 
 func _update_player_status_visibility() -> void:
 	if not is_instance_valid(player_status): return
-	player_status.visible = Catalog.started and not Account.token.is_empty() and not overlay.visible and not map_overlay.visible and not switching and network.transfer_phase.is_empty()
+	player_status.visible = Catalog.started and not Account.token.is_empty() and not overlay.visible and not map_overlay.visible and not _settings_open() and not switching and network.transfer_phase.is_empty()
 
 func build_map() -> void:
 	minimap = MapView.new()
@@ -519,8 +537,10 @@ func build_map() -> void:
 	transfer_panel.hide()
 	if LocalSession.enabled: _build_local_environment()
 	map_overlay.hide()
+	root_control.move_child(settings_panel, -1)
 
 func toggle_map() -> void:
+	if _settings_open(): return
 	if is_instance_valid(chat) and chat.editing: return
 	if switching:
 		cancel_transfer()
@@ -595,6 +615,7 @@ func _exit_tree() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if _settings_open(): return
 	if is_instance_valid(chat) and chat.editing: return
 	if Catalog.started and not switching and not player.playing and not map_overlay.visible:
 		if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT) or (event is InputEventScreenTouch and event.pressed):
@@ -606,7 +627,7 @@ func _connection_status_changed(value: String) -> void:
 	label.text = value
 
 func _chat_visible() -> bool:
-	return Catalog.started and not Account.token.is_empty() and not overlay.visible and not map_overlay.visible and not switching and network.transfer_phase.is_empty()
+	return Catalog.started and not Account.token.is_empty() and not overlay.visible and not map_overlay.visible and not _settings_open() and not switching and network.transfer_phase.is_empty()
 
 func _chat_available() -> bool:
 	return _chat_visible() and network.welcomed
@@ -695,4 +716,44 @@ func _build_local_environment() -> void:
 	weather_select.item_selected.connect(func(index: int):
 		LocalSession.weather_code = weather_select.get_item_id(index)
 		LocalSession.revision += 1
+	)
+
+func _settings_open() -> bool:
+	return is_instance_valid(settings_panel) and settings_panel.visible
+
+func _settings_available() -> bool:
+	if loading_campus or switching: return false
+	if login_only:
+		return not overlay.loading and overlay.get_node("Composition/Modes").visible
+	return Catalog.started and not overlay.visible and not map_overlay.visible and not (is_instance_valid(chat) and chat.editing)
+
+func _build_settings() -> void:
+	settings_button = Button.new()
+	settings_button.name = "SettingsButton"
+	settings_button.icon = preload("res://assets/ui/settings.svg")
+	settings_button.tooltip_text = "设置"
+	settings_button.accessibility_name = "设置"
+	root_control.add_child(settings_button)
+	settings_button.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	settings_button.offset_left = -76
+	settings_button.offset_right = -20
+	settings_button.offset_top = 20
+	settings_button.offset_bottom = 76
+	if is_instance_valid(player) and player.touch_enabled:
+		# Keep the existing touch pause target free.
+		settings_button.offset_left -= 96
+		settings_button.offset_right -= 96
+	settings_panel = GraphicsPanel.new()
+	root_control.add_child(settings_panel)
+	settings_button.pressed.connect(func():
+		if not _settings_available(): return
+		if is_instance_valid(player): pause_exploration()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		settings_panel.open()
+		settings_button.hide()
+	)
+	settings_panel.closed.connect(func():
+		# Closing returns to cursor/pause mode. A separate world click or Esc resumes.
+		settings_button.show()
+		settings_button.grab_focus()
 	)
