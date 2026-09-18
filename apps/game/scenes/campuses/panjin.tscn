@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/client/campus.gd" id="1"]
 [ext_resource type="PackedScene" path="res://assets/campuses/panjin/models/panjin_campus.tscn" id="2"]
@@ -7,6 +7,8 @@
 
 [ext_resource type="PackedScene" path="res://assets/campuses/panjin/models/vegetation.tscn" id="Vegetation"]
 [ext_resource type="PackedScene" path="res://assets/campuses/panjin/models/terrain.tscn" id="Terrain"]
+
+[ext_resource type="PackedScene" path="res://assets/campuses/panjin/models/surroundings.tscn" id="Surroundings"]
 
 [node name="Campus" type="Node3D"]
 script = ExtResource("1")
@@ -20,3 +22,5 @@ spawn_position = Vector3(11.650774, 0.35, 160.645514)
 [node name="Vegetation" parent="." instance=ExtResource("Vegetation")]
 
 [node name="Terrain" parent="." instance=ExtResource("Terrain")]
+
+[node name="Surroundings" parent="." instance=ExtResource("Surroundings")]
