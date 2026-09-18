@@ -1,0 +1,37 @@
+{
+  "reviewed": "2026-09-18",
+  "osm_object": "way/309375782",
+  "osm_version": 7,
+  "page": "https://xszx.dlut.edu.cn/info/1007/7372.htm",
+  "published": "2026-01-05",
+  "capture_date": null,
+  "license": "No redistribution license located; offline reference only, no original photos in runtime.",
+  "images": [
+    {
+      "object_id": "7372:image-0",
+      "url": "https://xszx.dlut.edu.cn/virtual_attach_file.vsb?afc=tolrjVL7VfnzGYMw4l4oz98LmUDUmnXVUmAVL7V7UNCbMmv0gihFp2hmCIa0M1yPUYy8n1yanz9aozNiollZMlQ7LlVkLmL4o7WfoR-4nNnFLz7ZUm7sMRrFoRMkMlLagtXaQ4Oeo4xZ_5A4_j90qIbtpYyPLRGsg4v4M4-Jqd/nx&oid=1983475514&tid=1007&nid=7372&e=.jpg",
+      "sha256": "16ca019d3e155a4fa2a6dc70cda1822d00498fd97e2212960f84fb13ab412847",
+      "local_archive": "Ignored .local/eda-exterior; retrieve by URL/hash when needed"
+    },
+    {
+      "object_id": "7372:image-1",
+      "url": "https://xszx.dlut.edu.cn/virtual_attach_file.vsb?afc=tL8LjbozAkL8-PMwm7YU8UaMzC4U49XZLRNPM49bUzvPL4C0gihFp2hmCIa0LYhRnkybUShVMmLbU4GbnmfVMl7PnNlbUzLbozA7n7CYU4rFLzr7M8M7UlrFozNYU8r7gtXaQ4Oeo4xZ_5A4_j90qIbtpYyPLRGsg4v4M4-Jqd/nx&oid=1983475514&tid=1007&nid=7372&e=.jpg",
+      "sha256": "7f4be02dbbeefbbbab9bb5189c673f7e3f17524c87b31f5bad25009757762149",
+      "local_archive": "Ignored .local/eda-exterior; retrieve by URL/hash when needed"
+    },
+    {
+      "object_id": "7372:image-4",
+      "url": "https://xszx.dlut.edu.cn/virtual_attach_file.vsb?afc=tUNnjkMlQ2MR9Pnw7r7MRT2U4f7oRlXanzN4MN-iLRA7Um90gihFp2hmCIa0LSyZUShRU1yanl7PUmMRnNVfL8LsnlU8olUPn77aL4Nsnm6FUmCPMzVVLzQFMlLZL8UZgtXaQ4Oeo4xZ_5A4_j90qIbtpYyPLRGsg4v4M4-Jqd/nx&oid=1983475514&tid=1007&nid=7372&e=.jpg",
+      "sha256": "860ffb56f8ebe1975c7f52595df35c521b76641ab1c042cc500e84bfd8b21773",
+      "local_archive": "Ignored .local/eda-exterior; retrieve by URL/hash when needed"
+    },
+    {
+      "object_id": "7372:image-5",
+      "url": "https://xszx.dlut.edu.cn/virtual_attach_file.vsb?afc=tMm-jPMNLZnlCaowz9ZMlUZL8LiLz-X8L7WfLzM7nR-ZUNU0gihFp2hmCIa0n1hfoSyDUShkMRn7UmviMRnVLRCPL4-iMzGsM8LbLRT2LR6FoRNiUNQVUlMFM7UPnzLagtXaQ4Oeo4xZ_5A4_j90qIbtpYyPLRGsg4v4M4-Jqd/nx&oid=1983475514&tid=1007&nid=7372&e=.jpg",
+      "sha256": "9ed3097e7d65d073516bd2ee08d8b1904845f47d0803ee3a5820e7fb45a7e55a",
+      "local_archive": "Ignored .local/eda-exterior; retrieve by URL/hash when needed"
+    }
+  ],
+  "use": "Visible covered rib cross-section, metal deck, horizontal rails, turquoise canopy and 5 cm anti-slip strips. No inferred absolute deck elevations, pier coordinates, complete stair geometry or construction dimensions.",
+  "registration": "Object identity verified by school report and OSM name; no camera pose or metric bridge profile supplied. Foreground people obscure part of deck; canopy and sides conceal supporting structure."
+}
