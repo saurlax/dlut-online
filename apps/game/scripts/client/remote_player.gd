@@ -46,6 +46,7 @@ func configure(username: String, point: Vector3, yaw: float) -> void:
 
 func _part(parent: Node3D, mesh: Mesh, material: Material, point: Vector3) -> void:
 	var instance := MeshInstance3D.new()
+	instance.gi_mode = GeometryInstance3D.GI_MODE_DISABLED
 	instance.mesh = mesh
 	instance.material_override = material
 	instance.position = point

@@ -1,6 +1,8 @@
 @tool
 extends Node3D
 
+const Graphics = preload("res://scripts/client/graphics_settings.gd")
+
 const LocalSession = preload("res://scripts/client/local_session.gd")
 var local_revision := -1
 
@@ -21,6 +23,9 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	world.environment = world.environment.duplicate(true)
 	world.environment.ssr_enabled = RenderingServer.get_current_rendering_method() == "forward_plus"
+	if not Engine.is_editor_hint():
+		add_to_group(Graphics.GROUP)
+		apply_graphics_settings()
 	_update(0.0)
 
 func _process(delta: float) -> void:
@@ -81,3 +86,7 @@ func _update(delta: float) -> void:
 	material.set_shader_parameter("cloud_offset",offset)
 	var camera := get_viewport().get_camera_3d()
 	if camera != null: material.set_shader_parameter("camera_position", camera.global_position)
+
+func apply_graphics_settings() -> void:
+	Graphics.apply_viewport(get_viewport())
+	Graphics.apply_environment(world.environment, sun)
