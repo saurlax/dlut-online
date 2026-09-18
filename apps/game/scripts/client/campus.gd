@@ -12,7 +12,6 @@ var player: CharacterBody3D
 var hud: CanvasLayer
 
 func _ready() -> void:
-	Engine.max_fps = 60
 	_setup_input()
 	var entry: Dictionary = Catalog.CAMPUSES[campus_id]
 	manifest = JSON.parse_string(FileAccess.get_file_as_string(entry.manifest)) if entry.has("manifest") else {"features":[]}
