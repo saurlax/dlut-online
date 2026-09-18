@@ -1,0 +1,23 @@
+{
+  "source": "https://360.toowtech.com/dalian/DUT/",
+  "object_id": "scene_DUT_KFQ00, back cube, level 2",
+  "retrieved": "2026-09-18",
+  "photo_date": "Unknown",
+  "view": "Aerial view from west gate towards Daheishan beyond campus; cloud obscures some high ridges.",
+  "use": "Wooded lower slopes, grey exposed upper rock and grey-white residential towers; does not supply footprint or measured height.",
+  "registration": "Campus gym and lakes identify direction; actual terrain uses Copernicus WGS84, panorama is not metrically registered.",
+  "license": "No redistribution license confirmed; offline reference only, excluded from client.",
+  "processing": "3x3 cube tile assembly, cropped to native 1152-square face; no geometric warp.",
+  "sha256": "290b6f59e2f1e6efba6e7e256e51acd38f234dfd7da5398b3c7eb47fb8417fc2",
+  "tiles": [
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l2/01/l2_b_01_01.jpg",
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l2/01/l2_b_01_02.jpg",
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l2/01/l2_b_01_03.jpg",
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l2/02/l2_b_02_01.jpg",
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l2/02/l2_b_02_02.jpg",
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l2/02/l2_b_02_03.jpg",
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l2/03/l2_b_03_01.jpg",
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l2/03/l2_b_03_02.jpg",
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/b/l2/03/l2_b_03_03.jpg"
+  ]
+}

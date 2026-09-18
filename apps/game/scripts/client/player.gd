@@ -33,7 +33,7 @@ func _ready() -> void:
 	camera.position.y = EYE_HEIGHT
 	camera.fov = 75
 	camera.near = 0.08
-	camera.far = 2200
+	camera.far = 12000
 	camera.current = true
 	add_child(camera)
 

@@ -100,8 +100,8 @@ def category(tags):
     return None
 
 
-def build(campus, include_outside=False, refine=False):
-    source,nodes,ways,relations = osm.archive(campus)
+def build(campus, include_outside=False, refine=False, source_path=None):
+    source,nodes,ways,relations = osm.archive(campus, source_path)
     spec = osm.frame(campus)
     boundary = [osm.local(campus,*p) for p in osm.way_coordinates(ways[spec['boundary_way']],nodes)[:-1]]
     records, lines, points, rejected, outside, members = [], [], [], [], Counter(), set()
