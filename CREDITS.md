@@ -207,3 +207,7 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 建筑艺术馆道路核对复用已归档的6张官网原图，并读取9张天地图影像瓦片；来源、摘要、拍摄日期缺口与用途见[轮廓审查](references/shared/mapping/footprint-review.json)。照片及瓦片仅用于离线核对，本轮未改动运行几何，也未新增运行照片。
 
 开发区环湖东侧道路外景复用学校KFQ00航拍和双湖照片，2026-09-18核对约162米局部道线、五盏弯臂路灯的外观；位置和尺寸为沿既有OSM道路的视觉估计，见[外景登记](references/eda/mapping/exterior-details.json)。同时读取修缮中心[学苑桥防滑改造报道](https://xszx.dlut.edu.cn/info/1007/7372.htm)及[照明改造报道](https://xszx.dlut.edu.cn/info/1007/13382.htm)，前者公开5厘米防滑条做法，后者说明66套灯具更新，但不提供完整定位平面。桥梁照片URL、摘要及遮挡限制见[学苑桥审查](references/eda/mapping/xueyuan-bridge-review.json)。原图版权归来源权利人，未确认再分发许可，仅离线参考，不进入客户端；本轮未生成无高程及桥头配准的天桥，不把历史路灯当作全部2026改造结果。
+
+## 图形设置技术参考
+
+2026-09-18 通过 Context7 与 Godot 4.7 官方文档核对图形选项及兼容性：[渲染器比较](https://docs.godotengine.org/en/4.7/tutorials/rendering/renderers.html)、[Viewport](https://docs.godotengine.org/en/4.7/classes/class_viewport.html)、[Environment](https://docs.godotengine.org/en/4.7/classes/class_environment.html)、[RenderingDevice](https://docs.godotengine.org/en/4.7/classes/class_renderingdevice.html)、[SDFGI](https://docs.godotengine.org/en/4.7/tutorials/3d/global_illumination/using_sdfgi.html)。用于 MSAA/FXAA/SMAA/TAA、FSR/MetalFX、屏幕空间效果、动态 GI 与设备能力判断；文档按 Godot 的 CC BY 3.0 许可说明归属。设置齿轮为项目自行绘制的 SVG，没有引入第三方图标资源。
