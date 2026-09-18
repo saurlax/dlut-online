@@ -89,8 +89,10 @@ func twig(a: Vector3, b: Vector3, r0: float, r1: float) -> void:
 		var c := Color(0.7, 0.68, 0.6, 1)
 		var u0 := float(i) / sides * maxf(0.2, r0 * TAU)
 		var u1 := float(i + 1) / sides * maxf(0.2, r0 * TAU)
-		triangle(wood, a + d0*r0, b + d0*r1, b + d1*r1, c, Vector2(u0, 0), Vector2(u0, length), Vector2(u1, length))
-		triangle(wood, a + d0*r0, b + d1*r1, a + d1*r0, c, Vector2(u0, 0), Vector2(u1, length), Vector2(u1, 0))
+		# Clockwise when seen from outside: reverse both winding and attached UVs.
+		# Reversing only the normal leaves the exterior culled by the bark material.
+		triangle(wood, a + d0*r0, b + d1*r1, b + d0*r1, c, Vector2(u0, 0), Vector2(u1, length), Vector2(u0, length))
+		triangle(wood, a + d0*r0, a + d1*r0, b + d1*r1, c, Vector2(u0, 0), Vector2(u1, 0), Vector2(u1, length))
 
 func leaf(center: Vector3, direction: Vector3, length: float, width: float, color: Color, shape := "oval") -> void:
 	var along := direction.normalized()

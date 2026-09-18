@@ -20,6 +20,16 @@
 
 ## 更新
 
+### 2026-09-18 局部道路外景
+
+`exterior-details.json` 登记环湖东侧OSM way/1076344082 v2顶点25至36之间约162米路段的黄色中心虚线、白色边线及五盏弯臂路灯。依据KFQ00下向航拍与已归档双湖照片的湖岸、图书馆和路口拓扑匹配，不是相机标定；线宽、灯高、灯具细部及沿道路的灯位均为视觉估计，不能称逐灯实测。路口斑马线尚未完成配准，未按任意桩号补建。
+
+沥青采用世界尺度细颗粒材质，远处衰减颗粒以避免闪烁；不是对每处磨损的复刻。静态道线按DSM地形三角形裁切，位于路面上8毫米。灯杆仅采用半径0.085米简单圆柱碰撞，不为灯头、底座螺栓增加细碎碰撞。开发区既有道路向下绕序同时纠正；共享贴地生成器已修正，其余校区保存的模型本轮不重建。
+
+生成入口为 `godot --headless --path apps/game --script tools/build_eda_exterior.gd`，静态细节场景挂在 `scenes/campuses/eda.tscn`；灯杆变更后执行既有服务端碰撞生成器。共享树干绕序修复使用 `tools/rebuild_vegetation_meshes.gd` 重建现有近远景资源，不改变种植数据与实例缓冲。
+
+学苑桥审查见 `xueyuan-bridge-review.json`。2026年修缮近照确认青蓝顶棚、弧形骨架、水平栏杆、金属桥面及5厘米防滑条，但不能给出绝对标高、完整桥头台阶与支撑坐标；OSM way/309375782 v7仅作中心线底稿，layer=2不代表2米。本轮保留未完成状态，不以任意拱高或地形插值代替桥梁配准。
+
 修改原始来源数据或 `apps/game/tools/prepare_campus.py` 中的高度估计，然后在仓库根目录依次执行 `python3 apps/game/tools/prepare_campus.py`和 `godot --headless --path apps/game --script tools/build_model.gd`，最后运行 `godot --headless --path apps/game --script tools/server_export/build_worlds.gd` 更新服务端碰撞。精细建筑可以以相同 Feature ID 替换，保持 Feature ID 和空间坐标一致。
 
 ## 综合楼南广场2026年改造的时效与范围
