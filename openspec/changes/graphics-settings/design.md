@@ -43,3 +43,17 @@
 - https://docs.godotengine.org/en/4.7/classes/class_renderingdevice.html
 - https://docs.godotengine.org/en/4.7/classes/class_environment.html
 - https://docs.godotengine.org/en/4.7/tutorials/3d/global_illumination/using_sdfgi.html
+
+
+## Quality Presets
+
+预设按当前渲染器校验后应用，显示模式、垂直同步、帧率上限不参与档位识别，也不被预设覆盖。所有档位使用 Filmic，FSR 锐化保持默认 80%；以下为 Forward+ 配置，Mobile 自动禁用 FSR、SSAO/SSIL/SSR/SDFGI 和体积雾。默认值继续对应平衡，不迁移已有用户配置。自定义是参数匹配结果，不是第五组覆盖值。
+
+| 预设 | 分辨率与抗锯齿 | 过滤与阴影 | 效果 |
+| --- | --- | --- | --- |
+| 性能 | 67%，FSR 1 + FXAA | 2×，低阴影 100 米 | 关闭反射和新增后期效果 |
+| 平衡 | 100%，MSAA 2× | 4×，中阴影 250 米 | SSR，沿用原有默认画质 |
+| 画质 | 100%，MSAA 4× | 8×，高阴影 250 米 | SSAO、SSR、辉光、消除色带 |
+| 极致 | 100%，MSAA 8× | 16×，高阴影 500 米 | SSAO、SSIL、SSR、SDFGI、辉光、体积雾、消除色带 |
+
+极致不自动开启 200% 超采样，避免把像素数量和 MSAA 成本同时放大；用户仍可手动选择超采样。不承诺任何档位达到固定帧率。

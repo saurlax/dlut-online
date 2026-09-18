@@ -9,6 +9,17 @@ func _initialize() -> void: run.call_deferred()
 func run() -> void:
 	create_timer(90).timeout.connect(func(): quit(2))
 	Settings.values = Settings.defaults()
+	var display_choices := {"window_mode": 1, "fps": 144, "vsync": 0}
+	for id: String in Settings.PRESETS:
+		var preset := Settings.preset_values(id, display_choices)
+		assert(preset.fps == 144 and preset.vsync == 0)
+		assert(preset.window_mode == (1 if Settings.supported("window_mode", 1) else 0))
+		assert(Settings.matching_preset(preset) == id, "Preset recognition must survive renderer fallback")
+		assert(preset == Settings.sanitize(preset))
+		preset.scale = 85
+		assert(Settings.matching_preset(preset).is_empty())
+	assert(Settings.matching_preset(Settings.defaults()) == "balanced")
+	assert(Settings.preset_values("unknown", Settings.defaults()) == Settings.defaults())
 	var invalid := Settings.sanitize({"fps": -1, "aa": "6", "scale": 9999, "sdfgi": "true"})
 	assert(invalid.fps == 60 and invalid.aa == 1 and invalid.scale == 100 and not invalid.sdfgi)
 	var temporal := Settings.sanitize({"upscaler": 2, "aa": 6, "scale": 200})
@@ -31,6 +42,14 @@ func run() -> void:
 	hud.settings_button.pressed.emit()
 	var panel: ColorRect = hud.settings_panel
 	assert(panel.visible and not hud.player.playing)
+	panel.preset_select.item_selected.emit(4)
+	assert(Settings.matching_preset(panel.draft) == "ultra")
+	assert(Settings.values == Settings.defaults(), "Selecting a preset must only modify the draft")
+	panel.fields.scale.item_selected.emit(4) # 85% is not a preset.
+	assert(panel.preset_select.selected == 0)
+	panel.dismiss()
+	panel.open()
+	assert(panel.preset_select.selected == 2, "Discarded draft must not survive reopening")
 	hud.toggle_map()
 	assert(not hud.map_overlay.visible)
 	var click := InputEventMouseButton.new()

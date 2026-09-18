@@ -9,6 +9,8 @@ var status: Label
 var apply_button: Button
 var close_button: Button
 var panel: PanelContainer
+var preset_select: OptionButton
+var preset_hint: Label
 
 func _ready() -> void:
 	name = "GraphicsSettings"
@@ -48,6 +50,7 @@ func _ready() -> void:
 	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rows.add_theme_constant_override("separation", 4)
 	scroll.add_child(rows)
+	_build_presets(rows)
 	_section(rows, "显示")
 	_option(rows, "window_mode", "显示模式", "全屏使用当前显示器分辨率。")
 	_option(rows, "vsync", "垂直同步", "减少画面撕裂；开启后帧率受显示器刷新率限制。")
@@ -109,6 +112,30 @@ func _section(rows: VBoxContainer, text: String) -> void:
 	label.custom_minimum_size.y = 44
 	rows.add_child(label)
 
+func _build_presets(rows: VBoxContainer) -> void:
+	_section(rows, "画质预设")
+	preset_select = OptionButton.new()
+	preset_select.name = "QualityPreset"
+	preset_select.custom_minimum_size.y = 44
+	preset_select.add_item("自定义")
+	preset_select.set_item_metadata(0, "")
+	preset_select.set_item_disabled(0, true)
+	for id: String in Settings.PRESETS:
+		preset_select.add_item(Settings.PRESETS[id].title)
+		preset_select.set_item_metadata(preset_select.item_count - 1, id)
+	rows.add_child(preset_select)
+	preset_hint = Label.new()
+	preset_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	preset_hint.add_theme_font_size_override("font_size", 13)
+	preset_hint.add_theme_color_override("font_color", Color("aab6c0"))
+	rows.add_child(preset_hint)
+	preset_select.item_selected.connect(func(index: int):
+		var id: String = preset_select.get_item_metadata(index)
+		draft = Settings.preset_values(id, draft)
+		_refresh()
+		status.text = "已选择%s，点击应用生效。" % Settings.PRESETS[id].title
+	)
+
 func _option(rows: VBoxContainer, key: String, title: String, description: String) -> void:
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 20)
@@ -159,6 +186,11 @@ func dismiss() -> void:
 	closed.emit()
 
 func _refresh() -> void:
+	var preset_id := Settings.matching_preset(draft)
+	for index in preset_select.item_count:
+		if preset_select.get_item_metadata(index) == preset_id: preset_select.select(index)
+	preset_hint.text = "已手动调整画质选项。" if preset_id.is_empty() else Settings.PRESETS[preset_id].description
+	preset_hint.text += " 预设保留显示模式、垂直同步与帧率上限，不支持的效果自动关闭。"
 	for key in fields:
 		var select: OptionButton = fields[key]
 		var reason := ""
