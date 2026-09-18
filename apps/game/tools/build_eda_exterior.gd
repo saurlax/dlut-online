@@ -75,6 +75,23 @@ func lamp(at: Vector2, toward: Vector2, height: float) -> void:
 	var head := previous+dir*0.55-Vector3.UP*0.04
 	box(head, Vector3(0.65, 0.12, 0.25), "Housing", basis)
 	box(head-Vector3.UP*0.063, Vector3(0.48, 0.012, 0.18), "Lens", basis)
+	var light := SpotLight3D.new()
+	light.name = "StreetLight%d" % scene.get_child_count()
+	light.position = head-Vector3.UP*0.085
+	light.basis = Basis(Quaternion(Vector3.FORWARD, (Vector3.DOWN+dir*0.2).normalized()))
+	light.light_color = Color("fff0cf")
+	light.light_energy = 0.0
+	light.visible = false
+	light.spot_range = 16.0
+	light.spot_angle = 62.0
+	light.spot_attenuation = 1.0
+	light.shadow_enabled = true
+	light.distance_fade_enabled = true
+	light.distance_fade_begin = 100.0
+	light.distance_fade_shadow = 40.0
+	light.distance_fade_length = 25.0
+	scene.add_child(light)
+	light.owner = scene
 	for x in [-0.085, 0.085]:
 		for z in [-0.085, 0.085]:
 			tube(base+Vector3(x,0.12,z),base+Vector3(x,0.145,z),0.012,"Housing")
@@ -142,6 +159,8 @@ func build() -> void:
 		scene.add_child(node)
 		node.owner = scene
 	var packed := PackedScene.new()
+	# Assign after generation: the controller requires the saved Lens mesh in _ready.
+	scene.set_script(preload("res://scripts/client/street_lighting.gd"))
 	assert(packed.pack(scene) == OK)
 	assert(ResourceSaver.save(packed, OUTPUT) == OK)
 	print("EDA EXTERIOR SAVED: ", profile.lamps.size(), " lamps, ", snappedf(distance,0.1), " m of road markings")
