@@ -59,10 +59,11 @@ def geographic(campus, x, z):
             origin[1]-z/111320]
 
 
-def archive(campus):
+def archive(campus, source_path=None):
     spec = frame(campus)
-    path = ROOT / spec['archive']
-    source = json.loads(path.with_name('osm-world-source.json').read_text(encoding='utf-8'))
+    source_path = Path(source_path) if source_path else (ROOT / spec['archive']).with_name('osm-world-source.json')
+    source = json.loads(source_path.read_text(encoding='utf-8'))
+    path = source_path.parent / source['archive']
     raw = gzip.decompress(path.read_bytes())
     if hashlib.sha256(raw).hexdigest() != source['sha256_uncompressed']:
         raise ValueError(f'OSM archive checksum mismatch: {campus}')

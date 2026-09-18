@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "campus": "eda",
+  "url": "https://api.openstreetmap.org/api/0.6/map?bbox=121.75,39.055,121.85,39.14",
+  "retrieved": "2026-09-18",
+  "sha256_uncompressed": "a702d59b1cb9e9a504d48ffc4b50436644791becec31d92a186a56365d2b092e",
+  "archive": "osm-surroundings.osm.gz",
+  "license": "ODbL 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "crs": "EPSG:4326",
+  "scope": "Separate extended archive for Daheishan and campus background; not campus geometry migration",
+  "campus_boundary_way": "215560705",
+  "boundary_version": "13",
+  "note": "Raw OSM node/way/relation versions and timestamps preserved; no geometry rounding or correction"
+}
