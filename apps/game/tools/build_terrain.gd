@@ -143,7 +143,15 @@ func fit_road(node: MeshInstance3D) -> void:
 					for piece in Geometry2D.intersect_polygons(outline, cell):
 						var indices := Geometry2D.triangulate_polygon(piece)
 						for j in range(0, indices.size(), 3):
-							for k in [0, 2, 1]:
+							var pa: Vector2 = piece[indices[j]]
+							var pb: Vector2 = piece[indices[j+1]]
+							var pc: Vector2 = piece[indices[j+2]]
+							var signed_area := (pb-pa).cross(pc-pa)
+							if absf(signed_area) < 0.000001:
+								continue
+							# X/Z mapping makes positive 2D area a clockwise +Y face.
+							# Double-sided legacy materials hid the previous inverted faces.
+							for k in ([0, 1, 2] if signed_area > 0 else [0, 2, 1]):
 								var p: Vector2 = piece[indices[j + k]]
 								st.add_vertex(Vector3(p.x, elevation(p.x, p.y) + faces[i].y + 0.08, p.y))
 	st.index()

@@ -205,3 +205,5 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 开发区一舍弯段另核对25张Esri、9张天地图和9张MapTiler瓦片。争议转角的Esri z19元数据为2019-09-18，道路西北节点有不同日期覆盖重叠，不能使用综合楼的2025日期代表全校区；其余两家影像日期未确认。本次仅用于识别时效与地面控制缺口，不修改运行道路。来源摘要与逐点查询见[一舍影像审查](references/shared/mapping/world-imagery-review.json)，原图不进入运行包。
 
 建筑艺术馆道路核对复用已归档的6张官网原图，并读取9张天地图影像瓦片；来源、摘要、拍摄日期缺口与用途见[轮廓审查](references/shared/mapping/footprint-review.json)。照片及瓦片仅用于离线核对，本轮未改动运行几何，也未新增运行照片。
+
+开发区环湖东侧道路外景复用学校KFQ00航拍和双湖照片，2026-09-18核对约162米局部道线、五盏弯臂路灯的外观；位置和尺寸为沿既有OSM道路的视觉估计，见[外景登记](references/eda/mapping/exterior-details.json)。同时读取修缮中心[学苑桥防滑改造报道](https://xszx.dlut.edu.cn/info/1007/7372.htm)及[照明改造报道](https://xszx.dlut.edu.cn/info/1007/13382.htm)，前者公开5厘米防滑条做法，后者说明66套灯具更新，但不提供完整定位平面。桥梁照片URL、摘要及遮挡限制见[学苑桥审查](references/eda/mapping/xueyuan-bridge-review.json)。原图版权归来源权利人，未确认再分发许可，仅离线参考，不进入客户端；本轮未生成无高程及桥头配准的天桥，不把历史路灯当作全部2026改造结果。
