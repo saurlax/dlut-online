@@ -2,6 +2,7 @@
 extends Node3D
 ## Camera-only shots of existing photo-supported facades; no gameplay or physics.
 
+const Graphics = preload("res://scripts/client/graphics_settings.gd")
 const CAMPUS_DATA := "res://assets/campuses/lingshui/data/campus.json"
 # Landmark ID, stand-off distance and lateral travel. Facade comes from its registration.
 # Positions come from current OSM geometry, never the former map coordinates.
@@ -17,6 +18,10 @@ var shot_index := 0
 var elapsed := 0.0
 
 func _ready() -> void:
+	if not Engine.is_editor_hint():
+		$WorldEnvironment.environment = $WorldEnvironment.environment.duplicate(true)
+		add_to_group(Graphics.GROUP)
+		apply_graphics_settings()
 	shots.clear()
 	var campus: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(CAMPUS_DATA))
 	for landmark in SHOT_LANDMARKS:
@@ -65,3 +70,7 @@ func _update_camera() -> void:
 	var progress: float = smoothstep(0.0, 1.0, elapsed / SHOT_DURATION)
 	var start: Vector3 = shot[0]
 	$Camera.look_at_from_position(start.lerp(shot[1], progress), shot[2], Vector3.UP)
+
+func apply_graphics_settings() -> void:
+	Graphics.apply_viewport(get_viewport())
+	Graphics.apply_environment($WorldEnvironment.environment, $Sun)
