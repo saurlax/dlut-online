@@ -2,6 +2,12 @@
 
 Third-Party Notices
 
+## 三校区周边背景资料
+
+2026年9月18日扩展三校区 Copernicus GLO-30 原生裁剪及开发区 OpenStreetMap 档案，沿用下文 Copernicus WorldDEM-30 许可与 OSM ODbL 1.0 署名。来源URL、源瓦片摘要、裁剪窗口、OSM版本、原始档案与精度限制见各校区 `terrain/surroundings-source.json` 和 [背景地形依据](references/shared/terrain/basis.md)。背景派生几何仍采用相同来源，不把OSM称为高程来源。
+
+开发区山体颜色和植被层次参考 [学校KFQ00全景](https://360.toowtech.com/dalian/DUT/)，新增背向面离线参考的URL、用途与摘要见 [记录](references/eda/terrain/daheishan-panorama.json)。周边住宅另用已归档前向面及49张 Esri World Imagery 瓦片核对楼群位置、近似高度和浅色体量，见 [楼群记录](references/eda/buildings/surroundings-review.json)。署名及许可沿用下文学校全景、Esri 说明；照片与瓦片仅离线参考，未进入客户端，无新增再分发授权。颜色、树冠和分组高度为近似表现，不代表实测复刻。
+
 ## 一、适用范围
 
 本声明列明 DLUT Online 桌面客户端、服务端及网站所使用的第三方资料、素材、数据服务和软件的来源、权利归属及适用许可。
