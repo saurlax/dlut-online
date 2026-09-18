@@ -26,6 +26,50 @@ const CHOICES := {
 }
 static var values: Dictionary = {}
 
+const DISPLAY_KEYS := ["window_mode", "vsync", "fps"]
+const PRESETS := {
+	"performance": {
+		"title": "性能",
+		"description": "降低渲染比例，使用低质量近距离阴影，优先减轻显卡负担。",
+		"overrides": {"upscaler": 1, "scale": 67, "aa": 4, "anisotropy": 1, "shadows": 1, "shadow_distance": 100, "ssr": false},
+	},
+	"balanced": {
+		"title": "平衡",
+		"description": "原生分辨率、MSAA 2× 和中等阴影，沿用默认画质。",
+		"overrides": {},
+	},
+	"quality": {
+		"title": "画质",
+		"description": "原生分辨率、MSAA 4× 和高质量阴影，增强接触阴影与高光。",
+		"overrides": {"aa": 2, "anisotropy": 3, "shadows": 3, "ssao": true, "glow": true, "debanding": true},
+	},
+	"ultra": {
+		"title": "极致",
+		"description": "MSAA 8×、远距离高质量阴影，并启用可用的全局光照与体积雾；显卡开销较高。",
+		"overrides": {"aa": 3, "anisotropy": 4, "shadows": 3, "shadow_distance": 500, "ssao": true, "ssil": true, "sdfgi": true, "glow": true, "volumetric_fog": true, "debanding": true},
+	},
+}
+
+static func preset_values(id: String, current: Dictionary) -> Dictionary:
+	if not PRESETS.has(id): return sanitize(current)
+	var result := DEFAULTS.duplicate()
+	result.merge(PRESETS[id].overrides, true)
+	# Quality presets never change the user's display or frame pacing choices.
+	for key in DISPLAY_KEYS: result[key] = current.get(key, DEFAULTS[key])
+	return sanitize(result)
+
+static func matching_preset(current: Dictionary) -> String:
+	var normalized := sanitize(current)
+	for id: String in PRESETS:
+		var preset := preset_values(id, normalized)
+		var matches := true
+		for key in DEFAULTS:
+			if key not in DISPLAY_KEYS and normalized[key] != preset[key]:
+				matches = false
+				break
+		if matches: return id
+	return ""
+
 static func forward_plus() -> bool:
 	return RenderingServer.get_current_rendering_method() == "forward_plus"
 
