@@ -207,6 +207,14 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 建筑艺术馆道路核对复用已归档的6张官网原图，并读取9张天地图影像瓦片；来源、摘要、拍摄日期缺口与用途见[轮廓审查](references/shared/mapping/footprint-review.json)。照片及瓦片仅用于离线核对，本轮未改动运行几何，也未新增运行照片。
 
 
+## 免费人物原型
+
+2026-09-20 读取 [MakeHuman Community 核心资产包](https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html)及 [MPFB 图形数据](https://github.com/makehumancommunity/mpfb2/tree/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data)。原始资产归 MakeHuman Community、Data Collection AB、Joel Palmius、Jonas Hauquier 等原作者，采用 **CC0 1.0 Universal**；[官方许可说明](https://static.makehumancommunity.org/about/license.html)，[许可原文](apps/game/assets/characters/LICENSE.CC0.txt)。固定来源、版本、61 个输入文件的 SHA-256 与用途见[人物来源清单](references/shared/characters/source.json)。
+
+使用范围：hm08 人体、青年 Asian 男女形变和皮肤、game_engine 骨架与权重、脸宽/下颌宽/鼻宽/嘴宽形变、男女各两套 casualsuit、shoes05、short02、ponytail01、high-poly 眼球与 brown 眼睛材质、eyebrow001、eyelashes01。运行时分发其转换后的模型、蒙皮、形变、贴图及材质；原始资产留在本地下载缓存。贴图缩放到最大 2048 像素，头发使用深色乘色；衣物保留上游图案，不将其称为大连理工大学校服。
+
+生成工具由项目编写，仅消费 CC0 图形数据；没有集成 MakeHuman/MPFB/Humanizer 的程序源码。站立、走、跑为项目编排的简易骨骼测试动画，不来自 Mixamo 或付费动作库。人物为虚构预设，不使用真实学生肖像；Asian 标签不代表中国人外貌已经完成精修。
+
 ## 图形设置技术参考
 
 2026-09-18 通过 Context7 与 Godot 4.7 官方文档核对图形选项及兼容性：[渲染器比较](https://docs.godotengine.org/en/4.7/tutorials/rendering/renderers.html)、[Viewport](https://docs.godotengine.org/en/4.7/classes/class_viewport.html)、[Environment](https://docs.godotengine.org/en/4.7/classes/class_environment.html)、[RenderingDevice](https://docs.godotengine.org/en/4.7/classes/class_renderingdevice.html)、[SDFGI](https://docs.godotengine.org/en/4.7/tutorials/3d/global_illumination/using_sdfgi.html)。用于 MSAA/FXAA/SMAA/TAA、FSR/MetalFX、屏幕空间效果、动态 GI 与设备能力判断；文档按 Godot 的 CC BY 3.0 许可说明归属。设置齿轮为项目自行绘制的 SVG，没有引入第三方图标资源。
