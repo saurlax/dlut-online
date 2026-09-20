@@ -18,6 +18,8 @@ var wind := Vector2(1.0, 0.0)
 var offset := Vector2.ZERO
 var update_in := 0.0
 var initialized := false
+var water_phase := 0.0
+var water_material: ShaderMaterial = preload("res://assets/water/campus_water.tres")
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -29,6 +31,8 @@ func _ready() -> void:
 	_update(0.0)
 
 func _process(delta: float) -> void:
+	water_phase += delta * (0.9 + sqrt(wind.length()) * 0.6)
+	water_material.set_shader_parameter("wave_phase", water_phase)
 	update_in -= delta
 	if update_in > 0.0: return
 	var elapsed := 0.25 - update_in
@@ -67,6 +71,7 @@ func _update(delta: float) -> void:
 	cloud = lerpf(cloud,target_cloud,blend)
 	storm = lerpf(storm,target_storm,blend)
 	wind = wind.lerp(target_wind,blend)
+	water_material.set_shader_parameter("wind_velocity", wind)
 	effects = effects.lerp(target_effects, blend)
 	precipitation.set_weather(effects.x, effects.y, wind)
 	offset += wind*delta

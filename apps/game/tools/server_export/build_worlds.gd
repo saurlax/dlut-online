@@ -13,6 +13,7 @@ func _initialize() -> void:
 		var world := Node3D.new()
 		world.name = id
 		world.set_meta("spawn", source.spawn_position)
+		world.set_meta("water_regions", source.get_node("Terrain").get_meta("water_regions", []))
 		copy_bodies(source, world, Transform3D.IDENTITY)
 		var packed := PackedScene.new()
 		assert(packed.pack(world) == OK)

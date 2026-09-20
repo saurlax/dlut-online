@@ -96,11 +96,11 @@ func _update_connection_quality() -> void:
 func begin_prediction(delta: float, axis: Vector2, running: bool) -> void:
 	if not welcomed or not transfer_phase.is_empty() or not is_instance_valid(player): return
 	var input := {"axis":[axis.x, axis.y], "yaw":wrapf(player.rotation.y, -PI, PI),
-		"run":running, "jump":player.jump_sequence}
+		"run":running, "jump":player.jump_sequence, "rise":player.rising}
 	elapsed += delta
 	# Mouse look stays immediate locally; send its latest yaw at 20 Hz.
 	# Discrete movement edges still start their prediction interval immediately.
-	var edge: bool = last_input.is_empty() or input.axis != last_input.axis or input.run != last_input.run or input.jump != last_input.jump
+	var edge: bool = last_input.is_empty() or input.axis != last_input.axis or input.run != last_input.run or input.jump != last_input.jump or input.rise != last_input.rise
 	if not edge and elapsed < 0.05: return
 	elapsed = 0.0
 	last_input = input.duplicate()

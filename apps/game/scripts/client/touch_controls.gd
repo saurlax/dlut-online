@@ -6,6 +6,7 @@ const DEAD_ZONE := 0.15
 var player: CharacterBody3D
 var move_finger := -1
 var look_finger := -1
+var jump_finger := -1
 var stick := Vector2.ZERO
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 
 func reset() -> void:
+	jump_finger = -1
 	move_finger = -1
 	look_finger = -1
 	stick = Vector2.ZERO
@@ -26,6 +28,7 @@ func reset() -> void:
 		player.touch_axis = Vector2.ZERO
 		player.touch_running = false
 		player.touch_jump = false
+		player.touch_rising = false
 
 func stick_center() -> Vector2:
 	return Vector2(144, size.y - 144)
@@ -36,7 +39,10 @@ func _input(event: InputEvent) -> void:
 		return
 	# Releases are observed even when the finger ends over another control.
 	if event is InputEventScreenTouch and not event.pressed:
-		if event.index == move_finger:
+		if event.index == jump_finger:
+			jump_finger = -1
+			player.touch_rising = false
+		elif event.index == move_finger:
 			move_finger = -1
 			stick = Vector2.ZERO
 			player.touch_axis = Vector2.ZERO
@@ -60,7 +66,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		reset()
 		pause_requested.emit()
 	elif event.position.distance_to(Vector2(size.x - 112, size.y - 120)) <= 48:
+		jump_finger = event.index
 		player.touch_jump = true
+		player.touch_rising = true
 	elif move_finger == -1 and event.position.distance_to(stick_center()) <= RADIUS * 1.5:
 		move_finger = event.index
 		_move(event.position)
