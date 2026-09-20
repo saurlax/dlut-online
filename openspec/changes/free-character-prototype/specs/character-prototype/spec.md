@@ -14,6 +14,10 @@
 - **WHEN** 用户调整脸部参数并切换服装
 - **THEN** 人物保留当前脸部设置，显示选定服装，并由相同骨架驱动
 
+#### Scenario: Play animation in exported preview
+- **WHEN** 用户在独立发布包中切换行走或奔跑
+- **THEN** 身体与衣服随骨架持续变形，骨架绑定不依赖主工程的旧版默认路径兼容设置
+
 #### Scenario: Reset preview
 - **WHEN** 用户重置人物
 - **THEN** 恢复明确的默认外观参数和服装，不保存到账号或改变校园人物

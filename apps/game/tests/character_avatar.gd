@@ -25,6 +25,7 @@ func _run() -> void:
 			first.set_outfit(outfit)
 			var visible_count := 0
 			for mesh in first.meshes:
+				assert(not mesh.skeleton.is_empty() and mesh.skeleton != NodePath(".."), "Persist an explicit skeleton path independently of project compatibility defaults")
 				if mesh.visible:
 					visible_count += 1
 				assert(mesh.get_node(mesh.skeleton) == skeleton, "All garments must share the skeleton")
