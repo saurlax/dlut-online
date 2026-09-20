@@ -210,3 +210,10 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 ## 图形设置技术参考
 
 2026-09-18 通过 Context7 与 Godot 4.7 官方文档核对图形选项及兼容性：[渲染器比较](https://docs.godotengine.org/en/4.7/tutorials/rendering/renderers.html)、[Viewport](https://docs.godotengine.org/en/4.7/classes/class_viewport.html)、[Environment](https://docs.godotengine.org/en/4.7/classes/class_environment.html)、[RenderingDevice](https://docs.godotengine.org/en/4.7/classes/class_renderingdevice.html)、[SDFGI](https://docs.godotengine.org/en/4.7/tutorials/3d/global_illumination/using_sdfgi.html)。用于 MSAA/FXAA/SMAA/TAA、FSR/MetalFX、屏幕空间效果、动态 GI 与设备能力判断；文档按 Godot 的 CC BY 3.0 许可说明归属。设置齿轮为项目自行绘制的 SVG，没有引入第三方图标资源。
+
+## 脚步音效
+
+- 来源：[Kenney Impact Sounds 1.0](https://kenney.nl/assets/impact-sounds)，作者 Kenney，2019-12-19 发布，2026-09-20 读取。采用 [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)，允许免费商用、修改与再分发，无强制署名要求。
+- 从[官方压缩包](https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip)选用 `Audio/footstep_concrete_000–004.ogg`、`footstep_grass_000–004.ogg` 和 `footstep_wood_000–004.ogg`，原样存入 `apps/game/assets/audio/footsteps/`，共 15 条、100677 字节；原许可随资源保留在 `LICENSE.txt`。压缩包 SHA-256：`029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8`。
+- 用作本地玩家落脚反馈，硬地包含现有沥青、石砖、台阶和未细分材质；自然地形暂统一使用草地音色。属于通用拟音，不是校园实地录音，不表示地表材质已逐处调查。木地变体供现有网格材质或显式标记选择，不据此新增木地或室内。
+- 播放接口通过 Context7 核对 [Godot 4.7 AudioStreamPlayer](https://docs.godotengine.org/en/4.7/classes/class_audiostreamplayer.html)。
