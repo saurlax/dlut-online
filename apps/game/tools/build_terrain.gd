@@ -25,20 +25,48 @@ func point(c: int, r: int) -> Vector3:
 
 func build(builder: SceneTree, campus: String) -> void:
 	load_campus(campus)
+	var water := preload("res://tools/build_water.gd").new()
+	var regions := water.regions(builder.manifest, self, campus)
+	save_terrain(builder.material("Terrain", Color("74795b")), campus, regions)
+	var model: Node3D = builder.scene
+	var base := model.get_node_or_null("CampusBase")
+	if base != null:
+		model.remove_child(base)
+		base.free()
+	for feature: Dictionary in builder.manifest.features:
+		var node_name: String = "Feature_" + feature.id + ("_" + str(int(feature.part)) if feature.has("part") else "")
+		var group := model.get_node(node_name)
+		if feature.kind == "water": continue
+		if feature.kind == "hill":
+			for child in group.get_children():
+				group.remove_child(child)
+				child.free()
+		elif data.feature_base_y.has(node_name):
+			group.position.y = data.feature_base_y[node_name]
+			group.set_meta("terrain_preview_base_y", group.position.y)
+		else:
+			fit(group)
+	for child in model.get_children():
+		if child is MeshInstance3D: fit(child)
+	water.replace_surfaces(model, regions, self)
+
+func save_terrain(material: Material, campus: String, regions: Array) -> void:
+	var water := preload("res://tools/build_water.gd").new()
 	var terrain := Node3D.new()
 	terrain.name = "Terrain"
+	terrain.set_meta("water_regions", regions)
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for r in int(data.height) - 1:
 		for c in int(data.width) - 1:
-			for p in [point(c,r), point(c+1,r), point(c,r+1), point(c+1,r), point(c+1,r+1), point(c,r+1)]:
-				st.add_vertex(p)
+			water.terrain_triangle(st, PackedVector3Array([point(c,r),point(c+1,r),point(c,r+1)]), regions, self)
+			water.terrain_triangle(st, PackedVector3Array([point(c+1,r),point(c+1,r+1),point(c,r+1)]), regions, self)
 	st.index()
 	st.generate_normals()
 	var mesh := MeshInstance3D.new()
 	mesh.name = "Ground"
 	mesh.mesh = st.commit()
-	mesh.material_override = builder.material("Terrain", Color("74795b"))
+	mesh.material_override = material
 	terrain.add_child(mesh)
 	mesh.owner = terrain
 	mesh.create_trimesh_collision()
@@ -51,26 +79,6 @@ func build(builder: SceneTree, campus: String) -> void:
 	assert(packed.pack(terrain) == OK)
 	assert(ResourceSaver.save(packed, "res://assets/campuses/%s/models/terrain.tscn" % campus) == OK)
 	terrain.free()
-	var model: Node3D = builder.scene
-	var base := model.get_node_or_null("CampusBase")
-	if base != null:
-		model.remove_child(base)
-		base.free()
-	for feature: Dictionary in builder.manifest.features:
-		var node_name: String = "Feature_" + feature.id + ("_" + str(int(feature.part)) if feature.has("part") else "")
-		var group := model.get_node(node_name)
-		if feature.kind == "hill":
-			for child in group.get_children():
-				group.remove_child(child)
-				child.free()
-		elif data.feature_base_y.has(node_name):
-			group.position.y = data.feature_base_y[node_name]
-			group.set_meta("terrain_preview_base_y", group.position.y)
-		else:
-			fit(group)
-	for child in model.get_children():
-		if child is MeshInstance3D:
-			fit(child)
 
 func fit(node: Node3D) -> void:
 	if node is MeshInstance3D:

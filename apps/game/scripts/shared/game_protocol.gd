@@ -1,6 +1,6 @@
 extends RefCounted
 
-const VERSION := 5
+const VERSION := 6
 const CONTROL := 0
 const REALTIME := 1
 const MAPS := ["lingshui", "eda", "panjin"]
