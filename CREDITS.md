@@ -209,11 +209,11 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 
 ## 免费人物原型
 
-2026-09-20 读取 [MakeHuman Community 核心资产包](https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html)及 [MPFB 图形数据](https://github.com/makehumancommunity/mpfb2/tree/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data)。原始资产归 MakeHuman Community、Data Collection AB、Joel Palmius、Jonas Hauquier 等原作者，采用 **CC0 1.0 Universal**；[官方许可说明](https://static.makehumancommunity.org/about/license.html)，[许可原文](apps/game/assets/characters/LICENSE.CC0.txt)。固定来源、版本、61 个输入文件的 SHA-256 与用途见[人物来源清单](references/shared/characters/source.json)。
+2026-09-20 读取 [MakeHuman Community 核心资产包](https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html)及 [MPFB 图形数据](https://github.com/makehumancommunity/mpfb2/tree/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data)。原始资产归 MakeHuman Community、Data Collection AB、Joel Palmius、Jonas Hauquier 等原作者，采用 **CC0 1.0 Universal**；[官方许可说明](https://static.makehumancommunity.org/about/license.html)，[许可原文](apps/game/assets/characters/LICENSE.CC0.txt)。固定来源、版本、77 个输入文件的 SHA-256 与用途见[人物来源清单](references/shared/characters/source.json)。
 
-使用范围：hm08 人体、青年 Asian 男女形变和皮肤、game_engine 骨架与权重、脸宽/下颌宽/鼻宽/嘴宽形变、男女各两套 casualsuit、shoes05、short02、ponytail01、high-poly 眼球与 brown 眼睛材质、eyebrow001、eyelashes01。运行时分发其转换后的模型、蒙皮、形变、贴图及材质；原始资产留在本地下载缓存。贴图缩放到最大 2048 像素，头发使用深色乘色；衣物保留上游图案，不将其称为大连理工大学校服。
+使用范围：hm08 人体、青年 Asian 男女形变和皮肤、game_engine 骨架与权重、11 项脸部比例形变、男女各两套 casualsuit、shoes05、short02、ponytail01、high-poly 眼球与 brown 眼睛材质、eyebrow001、eyelashes01。运行时分发其转换后的模型、蒙皮、形变、贴图及材质；原始资产留在本地下载缓存。贴图缩放到最大 2048 像素，头发使用深色乘色；衣物保留上游图案，不将其称为大连理工大学校服。
 
-生成工具由项目编写，仅消费 CC0 图形数据；没有集成 MakeHuman/MPFB/Humanizer 的程序源码。站立、走、跑为项目编排的简易骨骼测试动画，不来自 Mixamo 或付费动作库。人物为虚构预设，不使用真实学生肖像；Asian 标签不代表中国人外貌已经完成精修。
+生成工具由项目编写，仅消费 CC0 图形数据；没有集成 MakeHuman/MPFB/Humanizer 的程序源码。站立、行走、慢跑使用 Quaternius 的 Idle_A、Walk、Jog，经 [Mesh2Motion CC0 资产仓库](https://github.com/Mesh2Motion/mesh2motion-assets/tree/4e049e704c857636c4d3dec62ef731b3668ec082/CC0-packs/Quaternius) 获取并离线重定向，保留 [原作者声明](apps/game/assets/characters/LICENSE.Quaternius.txt)。没有使用 Mixamo 或付费动作库。皮肤着色器由项目编写，肤色是保留原贴图细节的美术调节，红唇保护使用颜色启发式，尚未制作完整的解剖区域遮罩。人物为虚构预设，不使用真实学生肖像；Asian 标签不代表中国人外貌已经完成精修。
 
 ## 图形设置技术参考
 

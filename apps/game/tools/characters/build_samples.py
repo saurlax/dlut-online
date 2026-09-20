@@ -7,12 +7,11 @@ pack_samples.gd converts it to the runtime TSCN and binary mesh resources.
 import argparse
 import gzip
 import json
-import math
 import sys
 from pathlib import Path
 
 import bpy
-from mathutils import Quaternion, Vector
+from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[4]
 MORPHS = {
@@ -20,6 +19,13 @@ MORPHS = {
     "chin_width": "chin/chin-width",
     "nose_width": "nose/nose-scale-horiz",
     "mouth_width": "mouth/mouth-scale-horiz",
+    "face_height": "head/head-scale-vert",
+    "chin_height": "chin/chin-height",
+    "chin_projection": "chin/chin-prominent",
+    "nose_height": "nose/nose-scale-vert",
+    "nose_depth": "nose/nose-scale-depth",
+    "lip_height": "mouth/mouth-scale-vert",
+    "lip_projection": "mouth/mouth-scale-depth",
 }
 
 
@@ -180,43 +186,6 @@ def build_rig(definition, body, groups, convert):
     return obj
 
 
-def add_test_animations(rig):
-    """Deliberately small authored binding-test cycles, not captured locomotion."""
-    scene = bpy.context.scene
-    scene.render.fps = 30
-    rig.animation_data_create()
-    for clip, frames, amplitude in [("idle", 60, 0), ("walk", 30, 0.35), ("run", 22, 0.62)]:
-        action = bpy.data.actions.new(clip)
-        rig.animation_data.action = action
-        for frame in range(1, frames + 2):
-            phase = 2 * math.pi * (frame - 1) / frames
-            for pose in rig.pose.bones:
-                pose.rotation_mode = "QUATERNION"
-                pose.rotation_quaternion = Quaternion()
-                pose.location = Vector()
-            for side, sign in [("l", 1), ("r", -1)]:
-                for part, angle in [("thigh", math.sin(phase) * amplitude * sign), ("calf", max(0, -math.sin(phase) * sign) * amplitude * 1.4), ("upperarm", -math.sin(phase) * amplitude * sign * 0.6)]:
-                    pose = rig.pose.bones[f"{part}_{side}"]
-                    basis = pose.bone.matrix_local.to_quaternion()
-                    world = Quaternion((1, 0, 0), angle)
-                    if part == "upperarm":
-                        direction = pose.bone.tail_local - pose.bone.head_local
-                        relaxed = direction.rotation_difference(Vector((sign * 0.14, 0, -1)))
-                        world = world @ relaxed
-                    pose.rotation_quaternion = basis.inverted() @ world @ basis
-            rig.pose.bones["pelvis"].location.y = (1 - math.cos(phase * 2)) * amplitude * 0.018
-            for pose in rig.pose.bones:
-                pose.keyframe_insert("rotation_quaternion", frame=frame, group=pose.name)
-                if pose.name == "pelvis":
-                    pose.keyframe_insert("location", frame=frame, group=pose.name)
-        track = rig.animation_data.nla_tracks.new()
-        track.name = clip
-        track.strips.new(clip, 1, action)
-        rig.animation_data.action = None
-    for pose in rig.pose.bones:
-        pose.rotation_quaternion = Quaternion()
-        pose.location = Vector()
-
 
 def build(inputs, output, sex):
     bpy.ops.object.select_all(action="SELECT")
@@ -281,7 +250,8 @@ def build(inputs, output, sex):
     clothing("eyes/high-poly/high-poly.mhclo", "Eyes", "eyes/materials/brown.mhmat")
     clothing("eyebrows/eyebrow001/eyebrow001.mhclo", "Brows")
     clothing("eyelashes/eyelashes01/eyelashes01.mhclo", "Lashes")
-    add_test_animations(rig)
+    from retarget_motion import add_library_animations
+    add_library_animations(rig, inputs / "quaternius.blend")
     bpy.context.scene.frame_set(1)
     bpy.ops.export_scene.gltf(filepath=str(output / f"student_{sex}.glb"), export_format="GLB", export_animations=True, export_animation_mode="NLA_TRACKS", export_optimize_animation_size=False, export_morph=True, export_skins=True, export_yup=True, export_apply=False)
     print(f"Built student_{sex}: {len(rig.data.bones)} bones, {len(shapes)} face targets")

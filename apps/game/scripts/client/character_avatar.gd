@@ -5,7 +5,11 @@ const SAMPLES := [
 	preload("res://assets/characters/models/student_male.tscn"),
 	preload("res://assets/characters/models/student_female.tscn"),
 ]
-const FACE_PARAMETERS := [&"face_width", &"chin_width", &"nose_width", &"mouth_width"]
+const FACE_PARAMETERS := [&"face_width", &"chin_width", &"nose_width", &"mouth_width", &"face_height", &"chin_height", &"chin_projection", &"nose_height", &"nose_depth", &"lip_height", &"lip_projection"]
+
+var skin_depth := 0.0
+var skin_warmth := 0.0
+var skin_materials: Array[ShaderMaterial] = []
 
 var sample_index := 0
 var outfit_index := 0
@@ -24,15 +28,24 @@ func set_sample(index: int) -> void:
 		remove_child(model)
 		model.queue_free()
 	meshes.clear()
+	skin_materials.clear()
 	model = SAMPLES[sample_index].instantiate()
 	add_child(model)
 	for node in model.find_children("*", "MeshInstance3D", true, false):
-		meshes.append(node as MeshInstance3D)
+		var mesh := node as MeshInstance3D
+		meshes.append(mesh)
+		for surface in mesh.mesh.get_surface_count():
+			var source := mesh.mesh.surface_get_material(surface)
+			if source is ShaderMaterial and source.resource_name.begins_with("Skin"):
+				var material := source.duplicate() as ShaderMaterial
+				mesh.set_surface_override_material(surface, material)
+				skin_materials.append(material)
 	animation_player = model.find_child("AnimationPlayer", true, false) as AnimationPlayer
 	set_outfit(outfit_index)
 	for key in FACE_PARAMETERS:
 		set_face_parameter(key, float(face_values.get(key, 0.0)))
 	set_motion(motion)
+	set_skin(skin_depth, skin_warmth)
 
 func set_face_parameter(parameter: StringName, value: float) -> void:
 	if parameter not in FACE_PARAMETERS or not is_finite(value):
@@ -62,7 +75,17 @@ func set_motion(value: StringName) -> void:
 			animation_player.play(clip, 0.2)
 			return
 
+func set_skin(depth: float, warmth: float) -> void:
+	if not is_finite(depth) or not is_finite(warmth):
+		return
+	skin_depth = clampf(depth, 0.0, 1.0)
+	skin_warmth = clampf(warmth, -1.0, 1.0)
+	for material in skin_materials:
+		material.set_shader_parameter("skin_depth", skin_depth)
+		material.set_shader_parameter("skin_warmth", skin_warmth)
+
 func reset_appearance() -> void:
+	set_skin(0.0, 0.0)
 	for key in FACE_PARAMETERS:
 		set_face_parameter(key, 0.0)
 	set_outfit(0)
