@@ -5,6 +5,7 @@ extends Node3D
 @onready var controls: VBoxContainer = $Interface/Panel/Margin/Scroll/Controls
 
 var sliders: Array[HSlider] = []
+var skin_sliders: Array[HSlider] = []
 var sample: OptionButton
 var outfit: OptionButton
 var motion: OptionButton
@@ -22,7 +23,18 @@ func _ready() -> void:
 		_update_camera())
 	outfit = _choice("服装", ["便装一", "便装二"], func(index: int) -> void: avatar.set_outfit(index))
 	_space(10)
-	var names := ["脸宽", "下颌", "鼻宽", "嘴宽"]
+	var main_controls := controls
+	var tabs := TabContainer.new()
+	tabs.custom_minimum_size.y = 275
+	controls.add_child(tabs)
+	var face_scroll := ScrollContainer.new()
+	face_scroll.name = "捏脸"
+	face_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	tabs.add_child(face_scroll)
+	controls = VBoxContainer.new()
+	controls.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	face_scroll.add_child(controls)
+	var names := ["脸宽", "下颌宽度", "鼻宽", "嘴宽", "脸部长度", "下巴长度", "下巴突出", "鼻部长度", "鼻部突出", "嘴部高度", "嘴部突出"]
 	for index in names.size():
 		_add_label(names[index], 16)
 		var slider := HSlider.new()
@@ -34,6 +46,21 @@ func _ready() -> void:
 		slider.value_changed.connect(func(value: float) -> void: avatar.set_face_parameter(parameter, value))
 		controls.add_child(slider)
 		sliders.append(slider)
+	var skin_box := VBoxContainer.new()
+	skin_box.name = "肤色"
+	tabs.add_child(skin_box)
+	controls = skin_box
+	for title in ["肤色深浅", "肤色冷暖"]:
+		_add_label(title, 16)
+		var slider := HSlider.new()
+		slider.min_value = 0.0 if skin_sliders.is_empty() else -1.0
+		slider.max_value = 1.0
+		slider.step = 0.01
+		slider.custom_minimum_size.y = 36
+		skin_sliders.append(slider)
+		slider.value_changed.connect(func(_value: float) -> void: avatar.set_skin(skin_sliders[0].value, skin_sliders[1].value))
+		controls.add_child(slider)
+	controls = main_controls
 	_space(10)
 	motion = _choice("动作预览", ["站立", "行走", "奔跑"], func(index: int) -> void: avatar.set_motion([&"idle", &"walk", &"run"][index]))
 	var views := HBoxContainer.new()
@@ -56,7 +83,7 @@ func _ready() -> void:
 		avatar.reset_appearance()
 		outfit.select(0)
 		motion.select(0)
-		for slider in sliders:
+		for slider in sliders + skin_sliders:
 			slider.set_value_no_signal(0.0))
 	controls.add_child(reset)
 	_space(8)

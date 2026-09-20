@@ -1,5 +1,5 @@
 {
-  "source": "MakeHuman Community / MPFB core graphical assets",
+  "source": "MakeHuman Community / MPFB graphical assets; Quaternius animations distributed by Mesh2Motion",
   "publisher": "MakeHuman Community; Data Collection AB, Joel Palmius, Jonas Hauquier",
   "read_date": "2026-09-20",
   "mpfb_commit": "b58176c661a9680294eb75f127842cb8378e4974",
@@ -551,6 +551,114 @@
       "compression": 8,
       "sha256": "f50016a5507fc687dc8df06599c8ea48de950cd185de33a71cafc1319ddab4d5",
       "license": "CC0-1.0"
+    },
+    {
+      "path": "quaternius.blend",
+      "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-assets/4e049e704c857636c4d3dec62ef731b3668ec082/CC0-packs/Quaternius/Quaternius-human-packs.blend",
+      "sha256": "11dcb101b2006f83e726fd8d3bc56d80fe49a7d453bd3a79c5467b5951d6cc0e",
+      "license": "CC0-1.0",
+      "author": "Quaternius; Mesh2Motion distribution"
+    },
+    {
+      "path": "quaternius-license.txt",
+      "url": "https://raw.githubusercontent.com/Mesh2Motion/mesh2motion-assets/4e049e704c857636c4d3dec62ef731b3668ec082/CC0-packs/Quaternius/License.txt",
+      "sha256": "30235762e8870ff794928567d5ecca4ac4694fe3ad758bf8a1c037c61670672e",
+      "license": "CC0-1.0",
+      "author": "Quaternius; Mesh2Motion distribution"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/head/head-scale-vert-decr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/head/head-scale-vert-decr.target.gz",
+      "sha256": "64e86d59a469eeeb0201026880bcd6ebb0cbd590a74b179f58efa879b3772f6c",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/head/head-scale-vert-incr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/head/head-scale-vert-incr.target.gz",
+      "sha256": "be8b270ec67817578128396433d6e8ab9d530c9d81ea21db92cd1b9627a8110b",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/chin/chin-height-decr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/chin/chin-height-decr.target.gz",
+      "sha256": "1f4196d330b418d576e9400a754cb99d7e60b069ee8fdef645713f84db984e0c",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/chin/chin-height-incr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/chin/chin-height-incr.target.gz",
+      "sha256": "4f05b61b39266801b0a333c208d274ff109250fe9e4512c486a455806878e15c",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/chin/chin-prominent-decr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/chin/chin-prominent-decr.target.gz",
+      "sha256": "4ed14cb51e7ea7b3ecd469a537733924353c683f3cfe545be182d18a220dcb4e",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/chin/chin-prominent-incr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/chin/chin-prominent-incr.target.gz",
+      "sha256": "e0d5ec5e213b88719def0f43ddaa7107796fc02f7447e2b2f140d9fe513a6ac8",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/nose/nose-scale-vert-decr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/nose/nose-scale-vert-decr.target.gz",
+      "sha256": "3eea81bc82ddca8e20c8fc4279092eb2c8540d05e0c2aacf868af5da4ebac108",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/nose/nose-scale-vert-incr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/nose/nose-scale-vert-incr.target.gz",
+      "sha256": "63d297c237e7054a1ea700b83454ef508bf5f42ba8f2eb6bc1eb747ad261f34b",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/nose/nose-scale-depth-decr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/nose/nose-scale-depth-decr.target.gz",
+      "sha256": "0842aa0f4265fef85b6e708cdd0b0665e9a951c08a1c768dc285206f0ae4c7ad",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/nose/nose-scale-depth-incr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/nose/nose-scale-depth-incr.target.gz",
+      "sha256": "49f63b72f04f637ed38061acce579c0948d29175d949bf21e6bfed354c0a10bf",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/mouth/mouth-scale-vert-decr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/mouth/mouth-scale-vert-decr.target.gz",
+      "sha256": "0b1fdda3c01093fadefcb0f12da363ede8a90fb5aaa5791088b732802031fc4d",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/mouth/mouth-scale-vert-incr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/mouth/mouth-scale-vert-incr.target.gz",
+      "sha256": "b7dc2db32e60a0cf01d7ae6b64ba812a7a508b49d1ef4704933887eb880d4ee9",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/mouth/mouth-scale-depth-decr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/mouth/mouth-scale-depth-decr.target.gz",
+      "sha256": "ab2943ece483d3472360e08ce025c05a45e210b7a5c05d205c8445746deb9a0a",
+      "license": "CC0-1.0"
+    },
+    {
+      "path": "base-data/src/mpfb/data/targets/mouth/mouth-scale-depth-incr.target.gz",
+      "url": "https://raw.githubusercontent.com/makehumancommunity/mpfb2/b58176c661a9680294eb75f127842cb8378e4974/src/mpfb/data/targets/mouth/mouth-scale-depth-incr.target.gz",
+      "sha256": "94f7be59e2a999c4be0f8d88d73664ae86db95b9e149510e39aa630dade3499d",
+      "license": "CC0-1.0"
     }
-  ]
+  ],
+  "animation_usage": {
+    "source_commit": "4e049e704c857636c4d3dec62ef731b3668ec082",
+    "clips": {
+      "idle": "Idle_A",
+      "walk": "Walk",
+      "run": "Jog"
+    },
+    "license": "CC0-1.0",
+    "notes": "离线重定向，保留源数据校验；修正头颈前倾基准。不是动作捕捉，未添加脚底 IK。"
+  }
 }

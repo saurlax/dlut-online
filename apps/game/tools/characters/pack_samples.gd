@@ -29,6 +29,13 @@ func _initialize() -> void:
 			for surface in instance.mesh.get_surface_count():
 				var original := instance.mesh.surface_get_material(surface)
 				var label: String = original.resource_name
+				if label.begins_with("Skin"):
+					var skin := ShaderMaterial.new()
+					skin.resource_name = label
+					skin.shader = load(OUTPUT.path_join("skin.gdshader"))
+					skin.set_shader_parameter("skin_texture", load(OUTPUT.path_join("textures/%s.png" % label)))
+					instance.mesh.surface_set_material(surface, skin)
+					continue
 				var material := StandardMaterial3D.new()
 				material.resource_name = label
 				material.albedo_texture = load(OUTPUT.path_join("textures/%s.png" % label))
@@ -36,7 +43,10 @@ func _initialize() -> void:
 					push_error("Missing texture: " + label)
 					quit(1)
 					return
-				material.roughness = 0.8
+				material.roughness = 0.72
+				if label == "Eyes":
+					material.roughness = 0.18
+					material.metallic_specular = 0.5
 				if label.begins_with("Hair"):
 					material.albedo_color = Color(0.16, 0.14, 0.13)
 				if label.begins_with("Hair") or label.begins_with("Brows") or label.begins_with("Lashes") or label == "Eyes":

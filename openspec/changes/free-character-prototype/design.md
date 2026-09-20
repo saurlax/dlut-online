@@ -1,3 +1,5 @@
+> 本文记录初版原型；后续外观参数、材质与动作以 `../character-quality/design.md` 为准。
+
 ## Context
 
 本轮零预算验证免费人体资产是否适合校园项目。使用 MakeHuman Community / MPFB 核心图形数据，原始输入由 `references/shared/characters/source.json` 固定 URL、Git commit 和逐文件 SHA-256。MPFB 本身是 GPL 工具，核心图形资产单独使用 CC0；本工程仅读取图形数据，没有集成 MPFB、MakeHuman 或 Humanizer 的程序代码。
