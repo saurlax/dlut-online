@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/client/character_preview.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/characters/avatar.tscn" id="2"]
+[ext_resource type="FontFile" path="res://assets/fonts/CampusSans.ttf" id="3"]
+
+[sub_resource type="Environment" id="Environment"]
+background_mode = 1
+background_color = Color(0.17, 0.2, 0.23, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.85, 0.91, 1, 1)
+ambient_light_energy = 0.35
+reflected_light_source = 2
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="FloorMaterial"]
+albedo_color = Color(0.2, 0.24, 0.27, 1)
+roughness = 0.95
+
+[sub_resource type="PlaneMesh" id="FloorMesh"]
+material = SubResource("FloorMaterial")
+size = Vector2(200, 200)
+
+[sub_resource type="Theme" id="Theme"]
+default_font = ExtResource("3")
+default_font_size = 16
+VBoxContainer/constants/separation = 4
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.055, 0.075, 0.09, 0.97)
+border_width_left = 1
+border_color = Color(0.25, 0.31, 0.35, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributes"]
+auto_exposure_enabled = false
+
+[node name="CharacterPreview" type="Node3D"]
+script = ExtResource("1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.015, 0)
+mesh = SubResource("FloorMesh")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-35, -35, 0)
+light_color = Color(1, 0.91, 0.82, 1)
+light_energy = 0.8
+shadow_enabled = true
+directional_shadow_max_distance = 15.0
+
+[node name="FillLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-20, 145, 0)
+light_color = Color(0.74, 0.85, 1, 1)
+light_energy = 0.4
+
+[node name="Avatar" parent="." instance=ExtResource("2")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(0.45, 1.02, 3)
+current = true
+fov = 40.0
+attributes = SubResource("CameraAttributes")
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="PanelContainer" parent="Interface"]
+anchors_preset = 15
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -340.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme")
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="Margin" type="MarginContainer" parent="Interface/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="Scroll" type="ScrollContainer" parent="Interface/Panel/Margin"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Controls" type="VBoxContainer" parent="Interface/Panel/Margin/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
