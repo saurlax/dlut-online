@@ -20,8 +20,12 @@ func _initialize() -> void:
 			return
 		var root := document.generate_scene(state)
 		root.name = "Student" + sample.capitalize()
+		var model_skeleton := root.find_child("Skeleton3D", true, false) as Skeleton3D
 		for node in root.find_children("*", "MeshInstance3D", true, false):
 			var instance := node as MeshInstance3D
+			# Name the skeleton explicitly: ".." can be omitted by PackedScene
+			# when the host uses the pre-4.6 default, breaking modern projects.
+			instance.skeleton = NodePath(String(instance.get_path_to(model_skeleton.get_parent())).path_join(String(model_skeleton.name)))
 			for surface in instance.mesh.get_surface_count():
 				var original := instance.mesh.surface_get_material(surface)
 				var label: String = original.resource_name
