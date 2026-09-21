@@ -16,3 +16,6 @@ apps/game/assets/campuses/*/models/vegetation_lawn.res filter=lfs diff=lfs merge
 
 # Preserve the byte digest of the archived Panjin elevation grid on every platform.
 references/panjin/terrain/heightfield.json text eol=lf
+
+# Campus-specific foliage LODs
+apps/game/assets/campuses/*/models/vegetation/*.res filter=lfs diff=lfs merge=lfs -text

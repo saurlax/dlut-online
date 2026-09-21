@@ -12,6 +12,15 @@ func run() -> void:
 	var base_y: float = reference.get_node("Feature_77921").position.y
 	reference.free()
 	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
+	var points := PackedVector2Array()
+	for feature in manifest.features:
+		if feature.id=="77921":
+			for point in feature.points: points.append(Vector2(point[0],point[1]))
+	var axis := (points[7]-points[5]).normalized()
+	var out := Vector2(axis.y,-axis.x)
+	if Geometry2D.is_point_in_polygon((points[5]+points[7])*0.5+out,points): out=-out
+	# Independently registered north projection center and roof interior sample.
+	var projection := points[5].lerp(points[7],0.13)+out*0.9
 	for server in [false,true]:
 		var viewport := SubViewport.new()
 		viewport.own_world_3d = true
@@ -23,16 +32,58 @@ func run() -> void:
 		else:
 			var model: Node3D = load("res://assets/campuses/eda/models/development_campus.tscn").instantiate()
 			world.add_child(model)
-			assert(model.get_node("Feature_77921").get_child_count()<=8)
+			assert(model.get_node("Feature_77921").get_child_count()<=16)
 			Collision.build(world,model,manifest,"eda")
 		await physics_frame
 		await physics_frame
 		var space := world.get_world_3d().direct_space_state
-		for sample in [[Vector2(-270,290),base_y+20.18],[Vector2(-293.70,281.90),base_y+16.225]]:
+		for sample in [[Vector2(-270,290),base_y+20.18],[projection,base_y+16.225]]:
 			var pos: Vector2 = sample[0]
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,base_y+30,pos.y),Vector3(pos.x,base_y,pos.y)))
 			assert(not hit.is_empty(),"Missing comprehensive roof or projection")
 			assert(absf(hit.position.y-float(sample[1]))<0.02,"Wrong comprehensive height: "+str(hit))
+		# The registered rooftop enclosure is bounded to the inner north roof.
+		for fraction in [0.13,0.185,0.24]:
+			for depth in [1.0,4.0]:
+				var at: Vector2 = points[5].lerp(points[7],fraction)-out*depth
+				var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(at.x,base_y+26,at.y),Vector3(at.x,base_y+19,at.y)))
+				assert(not hit.is_empty() and absf(hit.position.y-base_y-23.52)<0.02,"Rooftop enclosure cap missing")
+		for fraction in [0.07,0.30]:
+			var at: Vector2 = points[5].lerp(points[7],fraction)-out*3.0
+			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(at.x,base_y+26,at.y),Vector3(at.x,base_y+19,at.y)))
+			assert(not hit.is_empty() and absf(hit.position.y-base_y-20.18)<0.02,"Rooftop enclosure exceeds registered width")
+		print("COMPREHENSIVE ROOF ENCLOSURE PASS: server=",server," six cap samples and two outside controls")
+		# The round annex steps outward above the lower wall and stays closed.
+		var annex_center: Vector2 = points[5].lerp(points[7],0.78)+out*6.4
+		for degrees in [35.0,90.0,145.0]:
+			var radians := deg_to_rad(degrees)
+			var direction := axis*cos(radians)+out*sin(radians)
+			for spec in [[4.0,9.52],[8.41,9.52]]:
+				var at: Vector2 = annex_center+direction*float(spec[0])
+				var roof_hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(at.x,base_y+12,at.y),Vector3(at.x,base_y+8,at.y)))
+				assert(not roof_hit.is_empty() and absf(roof_hit.position.y-base_y-float(spec[1]))<0.025,"Annex solid roof missing under decorative coping")
+			var at: Vector2 = annex_center+direction*7.8
+			var soffit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(at.x,base_y+2,at.y),Vector3(at.x,base_y+4,at.y)))
+			assert(not soffit.is_empty() and absf(soffit.position.y-base_y-3.3)<0.025,"Annex overhang is not closed")
+		for degrees in [90.0,110.0,140.0]:
+			var radians := deg_to_rad(degrees)
+			var direction := axis*cos(radians)+out*sin(radians)
+			var start: Vector2 = annex_center+direction*8.0
+			var finish: Vector2 = annex_center+direction*6.8
+			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(start.x,base_y+1.7,start.y),Vector3(finish.x,base_y+1.7,finish.y)))
+			assert(not hit.is_empty() and absf(Vector2(hit.position.x,hit.position.z).distance_to(annex_center)-7.3)<0.025,"Annex lower wall is open")
+		print("COMPREHENSIVE ANNEX PASS: server=",server," roofs, overhang underside and lower wall")
+		# The shallow canopy has a solid thin roof and open space below it.
+		for station in [-7.0,0.0,7.0]:
+			var at: Vector2 = points[5].lerp(points[7],0.13)+axis*float(station)+out*2.6
+			var top := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(at.x,base_y+4.2,at.y),Vector3(at.x,base_y+3.5,at.y)))
+			var bottom := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(at.x,base_y+3.5,at.y),Vector3(at.x,base_y+4.2,at.y)))
+			assert(not top.is_empty() and absf(top.position.y-base_y-3.84)<0.005,"Canopy top missing or too thick")
+			assert(not bottom.is_empty() and absf(bottom.position.y-base_y-3.76)<0.005,"Canopy underside missing")
+			var ground_y: float = terrain.elevation(at.x,at.y)+0.02
+			var clearance := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(at.x,ground_y+0.05,at.y),Vector3(at.x,ground_y+2.0,at.y)))
+			assert(clearance.is_empty(),"Canopy blocks standing clearance")
+		print("COMPREHENSIVE CANOPY PASS: server=",server," top, underside and standing clearance")
 		var wall := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(-270,base_y+1.7,305),Vector3(-270,base_y+1.7,290)))
 		assert(not wall.is_empty(),"Exterior must remain closed")
 		# Sample the saved plaza in the complete collision world, so a misplaced
@@ -101,7 +152,9 @@ func run() -> void:
 		var court_samples := 0
 		for p: Vector2 in [Vector2(-303,265),Vector2(-305,270),Vector2(-310,276),Vector2(-293,278),Vector2(-281,278)]:
 			var y: float = terrain.elevation(p.x,p.y)+0.02
-			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+40,p.y),Vector3(p.x,y-1,p.y)))
+			# Test the walking surface below overhead shelter, retaining full
+			# standing clearance instead of accepting an obstructed floor.
+			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(p.x,y+2.05,p.y),Vector3(p.x,y-1,p.y)))
 			if hit.is_empty() or absf(hit.position.y-y)>0.03:
 				push_error("North court missing/obstructed: server=%s at=%s hit=%s" % [server,p,hit])
 				quit(1)

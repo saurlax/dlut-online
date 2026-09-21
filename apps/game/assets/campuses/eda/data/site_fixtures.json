@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "courtyard_lamps": [
+    {
+      "id": "academic-c-path-west",
+      "road_id": 1381476338,
+      "road_version": 1,
+      "vertices": [
+        2,
+        1
+      ],
+      "expected_points": [
+        [
+          149.5541,
+          109.7949
+        ],
+        [
+          161.8153,
+          132.0812
+        ]
+      ],
+      "distance_from_junction_m": 8.7,
+      "west_side_offset_m": 1.35,
+      "position_is_estimated": true,
+      "limits": "Single visible fixture only. Station and offset are proportional estimates relative to the existing path; no repeated spacing or additional fixtures are implied."
+    }
+  ],
+  "bridge_west_lamps": {
+    "bridge_id": "way/309375782",
+    "expected_west": [
+      210.7911126416838,
+      178.62407200003219
+    ],
+    "expected_east": [
+      317.2710831713213,
+      203.54861999943267
+    ],
+    "station_m": -0.6,
+    "across_m": [
+      -5.8,
+      5.8
+    ],
+    "position_is_estimated": true,
+    "limits": "Only the nearest pair. Relative placement uses the existing approximate west stair toe; longitudinal position remains uncertain within -1.5 to +0.3 m. No repeated row or garden boundary is implied."
+  },
+  "bridge_west_noticeboards": {
+    "station_m": 0.5,
+    "across_m": [
+      -6.9,
+      6.9
+    ],
+    "width_m": 3.7,
+    "height_m": 2.5,
+    "top_bar_width_m": 4.3,
+    "panel_bottom_m": 0.8,
+    "panel_height_m": 1.2,
+    "position_is_estimated": true,
+    "limits": "Two nearest pairs of side-by-side panels only. Longitudinal offset is approximate within 0 to 1.5 m from the existing west toe. Poster content and unverified rear displays are not reproduced."
+  }
+}

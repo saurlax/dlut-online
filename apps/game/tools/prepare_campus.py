@@ -111,6 +111,23 @@ for feature in features:
   if feature['id']=='39327169':
    football=records['way/1076344143']
    feature['sports_lines']=[dict(osm_id=football['osm_id'],osm_version=football['version'],points=football['polygons'][0]['outer'],closed=True)]
+   # Keep the pitch markings fixed and leave grass under the rear goal frames.
+   # The apron depth is an approximate finish dimension, not a surveyed edge.
+   grass=next(s for s in feature['sports_surfaces'] if s['surface_type']=='grass')
+   running=next(s for s in feature['sports_surfaces'] if s['surface_type']=='running')
+   old=grass['points']
+   axis=[old[1][i]+old[2][i]-old[0][i]-old[3][i] for i in range(2)]
+   magnitude=math.hypot(*axis)
+   assert magnitude>0
+   apron=3.0
+   extended=[[p[i]+axis[i]/magnitude*apron*(1 if j in [1,2] else -1) for i in range(2)] for j,p in enumerate(old)]
+   assert valid_ring(extended) and all(inside(p,running['points']) for p in extended)
+   assert len(running['holes'])==1 and running['holes'][0]==old
+   grass['points']=extended
+   running['holes']=[extended]
+   for surface in [grass,running]:
+    surface['end_apron_m']=apron
+    surface['dimensions_are_approximate']=True
   if feature['id']=='39327816':
    parts=[records[k] for k in ['way/375541050','way/1381450455','way/1381450456']]
    feature['osm_geometry_sources']=[dict(osm_id=p['osm_id'],osm_version=p['version']) for p in parts]

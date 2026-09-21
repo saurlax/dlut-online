@@ -1,0 +1,500 @@
+{
+  "zones": [
+  {
+    "id": "lake-causeway-willows",
+    "osm_way_id": 1076344124,
+    "osm_version": 2,
+    "from_vertex": 0,
+    "to_vertex": 9,
+    "expected_points": [[-157.8665,176.6648],[-143.7562,176.7539],[-137.5694,178.3346],[-135.1673,178.9469],[-121.1174,181.4739],[-109.1932,182.6761],[-88.7924,182.8208],[-74.1636,182.164],[-66.8621,180.8393],[-62.3344,180.0156]],
+    "kind": "willow",
+    "spacing": 7.5,
+    "offset": 2.15,
+    "clearance": 0.75,
+    "height": [6.8,8.6],
+    "seed": 18092026,
+    "dimensions_are_approximate": true
+  },
+  {
+    "id": "lake-causeway-groundcover",
+    "osm_way_id": 1076344124,
+    "osm_version": 2,
+    "from_vertex": 0,
+    "to_vertex": 9,
+    "expected_points": [[-157.8665,176.6648],[-143.7562,176.7539],[-137.5694,178.3346],[-135.1673,178.9469],[-121.1174,181.4739],[-109.1932,182.6761],[-88.7924,182.8208],[-74.1636,182.164],[-66.8621,180.8393],[-62.3344,180.0156]],
+    "kind": "juniper",
+    "spacing": 1.45,
+    "clearance": 1.4,
+    "height": [0.45,0.65],
+    "seed": 19092026,
+    "dimensions_are_approximate": true,
+    "offsets": [3.4,4.85,6.3]
+  },
+{
+  "id": "academic-c-west-ginkgo-rows",
+  "feature_id": "77927",
+  "osm_id": "way/1422474849",
+  "osm_version": 2,
+  "edge": 24,
+  "expected_points": [
+    [
+      128.86150831184537,
+      65.21403210265652
+    ],
+    [
+      129.4989303208891,
+      -25.9152959999048
+    ]
+  ],
+  "kind": "ginkgo",
+  "start_distance": 10.0,
+  "station_count": 10,
+  "spacing": 5.6,
+  "offsets": [
+    5.8,
+    10.0
+  ],
+  "sides": [
+    -1.0
+  ],
+  "clearance": 2.4,
+  "height": [
+    6.0,
+    7.2
+  ],
+  "seed": 21092026,
+  "dimensions_are_approximate": true
+},
+{
+  "id": "information-entry-hedges",
+  "feature_id": "77914",
+  "osm_id": "way/1422474847",
+  "osm_version": 2,
+  "edge": 6,
+  "expected_points": [
+    [
+      97.90834586363529,
+      488.1827279996398
+    ],
+    [
+      -0.4951833959070269,
+      500.2247652938464
+    ]
+  ],
+  "path_direction": "outward",
+  "anchor_fraction": 0.425,
+  "path_length": 18.0,
+  "kind": "hedge",
+  "align_to_path": true,
+  "start_distance": 11.5,
+  "station_count": 11,
+  "spacing": 0.45,
+  "offsets": [
+    9.8
+  ],
+  "sides": [
+    -1.0,
+    1.0
+  ],
+  "clearance": 0.85,
+  "height": [
+    0.65,
+    0.72
+  ],
+  "seed": 24092026,
+  "dimensions_are_approximate": true
+},
+{
+  "id": "library-east-road-hedge",
+  "osm_way_id": 1076344091,
+  "osm_version": 2,
+  "from_vertex": 7,
+  "to_vertex": 8,
+  "expected_points": [
+    [
+      157.0197,
+      329.8412
+    ],
+    [
+      150.8675,
+      355.8344
+    ]
+  ],
+  "kind": "hedge",
+  "align_to_path": true,
+  "start_distance": 1.0,
+  "station_count": 50,
+  "spacing": 0.45,
+  "offsets": [
+    5.6
+  ],
+  "sides": [
+    1.0
+  ],
+  "clearance": 0.85,
+  "height": [
+    0.65,
+    0.72
+  ],
+  "seed": 25092026,
+  "dimensions_are_approximate": true
+},
+{
+  "id": "academic-b-south-magnolia",
+  "feature_id": "77928",
+  "osm_id": "way/357023723",
+  "osm_version": 4,
+  "edge": 0,
+  "end_vertex": 2,
+  "expected_points": [
+    [
+      85.62119840827418,
+      59.177711999452356
+    ],
+    [
+      73.67968098014428,
+      79.74964799940125
+    ]
+  ],
+  "kind": "magnolia",
+  "align_to_path": false,
+  "start_distance": 2.8,
+  "station_count": 5,
+  "spacing": 4.6,
+  "offsets": [
+    4.1
+  ],
+  "sides": [
+    -1.0
+  ],
+  "clearance": 0.5,
+  "height": [
+    6.1,
+    6.7
+  ],
+  "seed": 26092026,
+  "dimensions_are_approximate": true
+},
+{
+  "id": "academic-b-south-hedge",
+  "feature_id": "77928",
+  "osm_id": "way/357023723",
+  "osm_version": 4,
+  "edge": 0,
+  "end_vertex": 2,
+  "expected_points": [
+    [
+      85.62119840827418,
+      59.177711999452356
+    ],
+    [
+      73.67968098014428,
+      79.74964799940125
+    ]
+  ],
+  "kind": "hedge",
+  "align_to_path": true,
+  "start_distance": 0.9,
+  "station_count": 41,
+  "spacing": 0.55,
+  "offsets": [
+    5.4
+  ],
+  "sides": [
+    -1.0
+  ],
+  "clearance": 0.5,
+  "height": [
+    0.42,
+    0.48
+  ],
+  "seed": 26092027,
+  "dimensions_are_approximate": true
+},
+{
+  "id": "academic-c-south-path-cherries",
+  "osm_way_id": 1381476338,
+  "osm_version": 1,
+  "from_vertex": 1,
+  "to_vertex": 2,
+  "expected_points": [
+    [
+      161.8153,
+      132.0812
+    ],
+    [
+      149.5541,
+      109.7949
+    ]
+  ],
+  "kind": "cherry",
+  "start_distance": 2.64,
+  "station_count": 5,
+  "spacing": 4.0,
+  "offsets": [
+    2.1
+  ],
+  "sides": [
+    -1.0,
+    1.0
+  ],
+  "clearance": 0.75,
+  "height": [
+    4.2,
+    5.2
+  ],
+  "seed": 27092026,
+  "dimensions_are_approximate": true,
+  "limits": "Five paired stations on the visible northern path segment are proportional planting estimates, not a complete tree inventory. Unverified southern continuation is excluded."
+},
+{
+  "osm_way_id": 188806490,
+  "osm_version": 11,
+  "from_vertex": 9,
+  "to_vertex": 10,
+  "expected_points": [
+    [
+      290.6749,
+      51.363
+    ],
+    [
+      224.9965,
+      297.7587
+    ]
+  ],
+  "sides": [
+    1.0
+  ],
+  "dimensions_are_approximate": true,
+  "limits": "Only the bounded 24 m west roadside section south of the bridge. Lateral offsets, station phase, plant count and heights are proportional estimates. A central access gap is retained; no extension into the adjoining garden is inferred.",
+  "id": "xueyuan-west-verge-trees",
+  "kind": "broadleaf",
+  "start_distance": 150.18488807534115,
+  "station_count": 4,
+  "spacing": 6,
+  "offsets": [
+    6.9
+  ],
+  "height": [
+    2.6,
+    3.2
+  ],
+  "clearance": 1.4,
+  "seed": 28092026
+},
+{
+  "osm_way_id": 188806490,
+  "osm_version": 11,
+  "from_vertex": 9,
+  "to_vertex": 10,
+  "expected_points": [
+    [
+      290.6749,
+      51.363
+    ],
+    [
+      224.9965,
+      297.7587
+    ]
+  ],
+  "sides": [
+    1.0
+  ],
+  "dimensions_are_approximate": true,
+  "limits": "Only the bounded 24 m west roadside section south of the bridge. Lateral offsets, station phase, plant count and heights are proportional estimates. A central access gap is retained; no extension into the adjoining garden is inferred.",
+  "id": "xueyuan-west-verge-hedge-north",
+  "kind": "hedge",
+  "start_distance": 148.18488807534115,
+  "station_count": 25,
+  "spacing": 0.45,
+  "offsets": [
+    9.5
+  ],
+  "height": [
+    0.65,
+    0.8
+  ],
+  "clearance": 1.1,
+  "seed": 28092027,
+  "align_to_path": true
+},
+{
+  "osm_way_id": 188806490,
+  "osm_version": 11,
+  "from_vertex": 9,
+  "to_vertex": 10,
+  "expected_points": [
+    [
+      290.6749,
+      51.363
+    ],
+    [
+      224.9965,
+      297.7587
+    ]
+  ],
+  "sides": [
+    1.0
+  ],
+  "dimensions_are_approximate": true,
+  "limits": "Only the bounded 24 m west roadside section south of the bridge. Lateral offsets, station phase, plant count and heights are proportional estimates. A central access gap is retained; no extension into the adjoining garden is inferred.",
+  "id": "xueyuan-west-verge-hedge-south",
+  "kind": "hedge",
+  "start_distance": 162.18488807534115,
+  "station_count": 23,
+  "spacing": 0.45,
+  "offsets": [
+    9.5
+  ],
+  "height": [
+    0.65,
+    0.8
+  ],
+  "clearance": 1.1,
+  "seed": 28092028,
+  "align_to_path": true
+},
+{
+  "osm_way_id": 188806490,
+  "osm_version": 11,
+  "from_vertex": 9,
+  "to_vertex": 10,
+  "expected_points": [
+    [
+      290.6749,
+      51.363
+    ],
+    [
+      224.9965,
+      297.7587
+    ]
+  ],
+  "sides": [
+    1.0
+  ],
+  "dimensions_are_approximate": true,
+  "limits": "Only the bounded 24 m west roadside section south of the bridge. Lateral offsets, station phase, plant count and heights are proportional estimates. A central access gap is retained; no extension into the adjoining garden is inferred.",
+  "id": "xueyuan-west-verge-cypress-north",
+  "kind": "cypress",
+  "start_distance": 148.18488807534115,
+  "station_count": 3,
+  "spacing": 4,
+  "offsets": [
+    13.5
+  ],
+  "height": [
+    5.5,
+    7.0
+  ],
+  "clearance": 1.5,
+  "seed": 28092029
+},
+{
+  "osm_way_id": 188806490,
+  "osm_version": 11,
+  "from_vertex": 9,
+  "to_vertex": 10,
+  "expected_points": [
+    [
+      290.6749,
+      51.363
+    ],
+    [
+      224.9965,
+      297.7587
+    ]
+  ],
+  "sides": [
+    1.0
+  ],
+  "dimensions_are_approximate": true,
+  "limits": "Only the bounded 24 m west roadside section south of the bridge. Lateral offsets, station phase, plant count and heights are proportional estimates. A central access gap is retained; no extension into the adjoining garden is inferred.",
+  "id": "xueyuan-west-verge-cypress-south",
+  "kind": "cypress",
+  "start_distance": 164.18488807534115,
+  "station_count": 3,
+  "spacing": 4,
+  "offsets": [
+    13.5
+  ],
+  "height": [
+    5.5,
+    7.0
+  ],
+  "clearance": 1.5,
+  "seed": 28092030
+},
+{
+  "id": "academic-c-cherry-understory",
+  "osm_way_id": 1381476338,
+  "osm_version": 1,
+  "from_vertex": 1,
+  "to_vertex": 2,
+  "expected_points": [
+    [
+      161.8153,
+      132.0812
+    ],
+    [
+      149.5541,
+      109.7949
+    ]
+  ],
+  "kind": "juniper",
+  "start_distance": 8.336512990777647,
+  "station_count": 15,
+  "spacing": 0.9,
+  "offsets": [
+    2.3
+  ],
+  "sides": [
+    -1,
+    1
+  ],
+  "clearance": 1.2,
+  "height": [
+    0.35,
+    0.45
+  ],
+  "dimensions_are_approximate": true,
+  "seed": 28092026,
+  "limits": "Low spreading evergreen strips are limited to the existing stair corridor; height, spread and strip edges are proportional estimates, not a botanical inventory or a surveyed planting boundary."
+},
+{
+  "id": "gym-north-road-hedge",
+  "osm_way_id": 1076344138,
+  "osm_version": 2,
+  "from_vertex": 2,
+  "to_vertex": 3,
+  "expected_points": [
+    [
+      -327.4672,
+      96.7037
+    ],
+    [
+      -410.9887,
+      96.0358
+    ]
+  ],
+  "kind": "hedge",
+  "align_to_path": true,
+  "start_distance": 5.0,
+  "station_count": 76,
+  "spacing": 0.8,
+  "offsets": [
+    4.9
+  ],
+  "sides": [
+    -1
+  ],
+  "clearance": 1.2,
+  "height": [
+    0.92,
+    1.05
+  ],
+  "dimensions_are_approximate": true,
+  "seed": 28092031,
+  "limits": "Clipped low hedge limited to the south verge of the registered gym north road segment. Extent, height and planting phase are proportional estimates; end access gaps and the existing road remain clear. No unregistered background planting is inferred."
+}
+]
+}

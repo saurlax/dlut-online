@@ -1,6 +1,7 @@
 extends RefCounted
 ## Offline terrain construction and fitting. No runtime mesh generation.
 
+const STAIR_PROFILE=preload("res://tools/eda_stair_profile.gd")
 var data: Dictionary
 
 func load_campus(campus: String) -> void:
@@ -29,10 +30,21 @@ func build(builder: SceneTree, campus: String) -> void:
 	terrain.name = "Terrain"
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var replacements: Array[PackedVector2Array]=[]
+	if campus=="eda":
+		replacements.append(STAIR_PROFILE.mask(STAIR_PROFILE.load_profile()))
+		var entrance=preload("res://tools/eda_sports_entry_profile.gd")
+		replacements.append(entrance.mask(entrance.load_profile()))
 	for r in int(data.height) - 1:
 		for c in int(data.width) - 1:
-			for p in [point(c,r), point(c+1,r), point(c,r+1), point(c+1,r), point(c+1,r+1), point(c,r+1)]:
-				st.add_vertex(p)
+			for triangle in [PackedVector3Array([point(c,r),point(c+1,r),point(c,r+1)]),PackedVector3Array([point(c+1,r),point(c+1,r+1),point(c,r+1)])]:
+				var pieces: Array[PackedVector3Array]=[triangle]
+				for replacement in replacements:
+					var next: Array[PackedVector3Array]=[]
+					for piece in pieces:next.append_array(STAIR_PROFILE.outside_triangle(piece,replacement))
+					pieces=next
+				for piece in pieces:
+					for p in piece: st.add_vertex(p)
 	st.index()
 	st.generate_normals()
 	var mesh := MeshInstance3D.new()

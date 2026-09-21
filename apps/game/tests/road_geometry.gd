@@ -84,7 +84,11 @@ func _run() -> void:
 		for child in model.get_children():
 			if not child is MeshInstance3D or not child.get_meta("road_surface", false):
 				continue
-			var clearance := 0.014 if child.material_override.resource_name == "Photo path edging" else (0.012 if child.material_override.resource_name == "Road edge" else 0.02)
+			var clearance := 0.02
+			match child.material_override.resource_name:
+				"Photo path edging": clearance = 0.014
+				"Road edge", "Library roadside brick": clearance = 0.012
+				"EDA crosswalk paint": clearance = 0.024
 			if child.material_override.resource_name == "Photo path edging":
 				assert(not child.get_meta("walk_collision",true),"Decorative edging regained collision during terrain fitting")
 			var faces: PackedVector3Array = child.mesh.get_faces()
@@ -136,7 +140,8 @@ func _run() -> void:
 		var stage := Node3D.new()
 		root.add_child(stage)
 		for child in model.get_children():
-			if child is MeshInstance3D and child.get_meta("road_surface", false) and child.get_meta("walk_collision", false):
+			# The bounded stair collider replaces its removed sloped road segment.
+			if child is MeshInstance3D and (child.get_meta("road_surface", false) or child.name=="AcademicCStairWalkCollision") and child.get_meta("walk_collision", false):
 				child.owner = null
 				model.remove_child(child)
 				stage.add_child(child)

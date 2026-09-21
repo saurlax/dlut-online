@@ -8,6 +8,7 @@ var terrain: RefCounted
 var excluded: Array[Dictionary] = []
 var roads: Array = []
 var rng := RandomNumberGenerator.new()
+var mesh_paths: Dictionary = {}
 
 func build(_builder: SceneTree = null, campus := "eda") -> void:
 	var directory := "res://assets/campuses/%s/" % campus
@@ -29,6 +30,12 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 	for surface: Dictionary in manifest.get("ground_overlays", []):
 		var points := polygon_points(surface.outer)
 		excluded.append({"points":points,"bounds":polygon_bounds(points).grow(5.0),"id":surface.id})
+	var sidewalk_masks: Array[PackedVector2Array] = []
+	if campus == "eda":
+		var road_profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/road-details.json"))
+		for sidewalk: Dictionary in preload("res://tools/build_roads.gd").new().sidewalk_regions(roads,road_profile):
+			var points: PackedVector2Array = sidewalk.polygon
+			sidewalk_masks.append(points)
 	var instances: Array[Dictionary] = []
 	var lawns := SurfaceTool.new()
 	lawns.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -66,7 +73,7 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 					var corners := [Vector2(x,z),Vector2(x+1,z),Vector2(x,z+1),Vector2(x+1,z+1)]
 					var valid := true
 					for corner: Vector2 in corners:
-						if not Geometry2D.is_point_in_polygon(corner,points) or not allowed(corner,0.5):
+						if not Geometry2D.is_point_in_polygon(corner,points) or not allowed(corner,0.5) or near_sidewalk(corner,sidewalk_masks,0.5):
 							valid = false
 							break
 					if valid:
@@ -80,6 +87,11 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 							lawns.set_color(Color("506335").lerp(Color("707347"),0.5+sin(at.x*0.4)*cos(at.y*0.31)*0.2))
 							lawns.add_vertex(Vector3(at.x,elevation(at)+0.018,at.y))
 						lawn_vertices += 6
+	# Filter after seeded placement so removing grass does not move later plants.
+	instances.assign(instances.filter(func(plant): return not near_sidewalk(Vector2(plant.position[0],plant.position[2]),sidewalk_masks,0.5)))
+	var linear_zones: Array = []
+	if campus == "eda":
+		linear_zones = preload("res://tools/build_eda_planting.gd").new().append(self,instances,manifest)
 	if lawn_vertices > 0:
 		lawns.index()
 		lawns.generate_normals()
@@ -88,6 +100,7 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 		lawns.set_material(mat)
 		assert(ResourceSaver.save(lawns.commit(),directory+"models/vegetation_lawn.res",ResourceSaver.FLAG_COMPRESS) == OK)
 	var data := {"schema_version":4,"registered_zone_ids":registered.keys(),"withheld_zone_ids":withheld_zones,"withheld_reason":"legacy placement requires independent ground registration","campus":campus,"source":"references/%s/vegetation/planting.json" % campus,"precision":"Photo-supported areas; approximate positions, dimensions and counts, not surveyed trees","instances":instances}
+	if not linear_zones.is_empty(): data["linear_zones"] = linear_zones
 	var file := FileAccess.open(directory+"data/vegetation.json",FileAccess.WRITE)
 	assert(file != null, "Cannot write vegetation data: " + directory)
 	var records: Array[String] = []
@@ -130,7 +143,7 @@ func allowed(at: Vector2, clearance: float) -> bool:
 				return false
 	return true
 
-func ensure_meshes(kinds: Array) -> void:
+func ensure_meshes(kinds: Array, directory: String) -> void:
 	var generator := MESH_GENERATOR.new()
 	if meshes.is_empty():
 		generator.materials()
@@ -143,10 +156,24 @@ func ensure_meshes(kinds: Array) -> void:
 				if kind == "grass" and lod == 1:
 					continue
 				var key := "%s_%d_%d" % [kind,variant,lod]
-				if meshes.has(key):
+				var path := MESH_GENERATOR.DIRECTORY+key+".res"
+				generator.dense_crown = directory.contains("/eda/") and kind == "broadleaf"
+				generator.detailed_willow = directory.contains("/eda/") and kind == "willow"
+				generator.flowering_cherry = directory.contains("/eda/") and kind == "cherry"
+				generator.fine_hedge = directory.contains("/eda/") and kind == "hedge"
+				if generator.dense_crown or generator.detailed_willow or (directory.contains("/eda/") and kind in ["juniper","ginkgo","hedge","magnolia","cherry"]):
+					path = directory+"models/vegetation/"+key+".res"
+					DirAccess.make_dir_recursive_absolute(directory+"models/vegetation")
+				mesh_paths[key] = path
+				if meshes.has(key) and meshes[key].resource_path == path:
 					continue
 				var mesh := generator.build(kind,variant,lod)
-				var path := MESH_GENERATOR.DIRECTORY+key+".res"
+				if directory.contains("/eda/") and kind == "ginkgo":
+					mesh.surface_set_material(0,load("res://assets/campuses/eda/materials/ginkgo_bark.tres"))
+					mesh.surface_set_material(1,load("res://assets/campuses/eda/materials/ginkgo_leaves.tres"))
+				if directory.contains("/eda/") and kind == "magnolia":
+					mesh.surface_set_material(0,load("res://assets/campuses/eda/materials/magnolia_bark.tres"))
+					mesh.surface_set_material(1,load("res://assets/campuses/eda/materials/magnolia_petals.tres"))
 				assert(ResourceSaver.save(mesh,path,ResourceSaver.FLAG_COMPRESS) == OK)
 				meshes[key] = load(path)
 
@@ -157,7 +184,7 @@ func write_scene(directory: String, instances: Array[Dictionary], has_lawn: bool
 			kinds.append(entry.kind)
 	kinds.sort()
 	if not kinds.is_empty():
-		ensure_meshes(kinds)
+		ensure_meshes(kinds,directory)
 	var buckets: Dictionary = {}
 	for entry in instances:
 		var at := Vector3(entry.position[0],entry.position[1],entry.position[2])
@@ -173,7 +200,7 @@ func write_scene(directory: String, instances: Array[Dictionary], has_lawn: bool
 				if kind == "grass" and lod == 1:
 					continue
 				var key := "%s_%d_%d" % [kind,variant,lod]
-				resources.append('[ext_resource type="ArrayMesh" path="%s%s.res" id="%s"]' % [MESH_GENERATOR.DIRECTORY,key,key])
+				resources.append('[ext_resource type="ArrayMesh" path="%s%s.res" id="%s"]' % [mesh_paths[key].get_base_dir()+"/",key,key])
 	var nodes: Array[String] = ['[node name="Vegetation" type="Node3D"]']
 	if has_lawn:
 		resources.append('[ext_resource type="ArrayMesh" path="%smodels/vegetation_lawn.res" id="Lawn"]' % directory)
@@ -204,7 +231,7 @@ func write_scene(directory: String, instances: Array[Dictionary], has_lawn: bool
 			bounds = bounds.grow(0.10)
 			var name := ("Cell_%d_%d_%s" % [cell.x,cell.y,mesh_key]).replace("-","n")
 			resources.append('[sub_resource type="MultiMesh" id="%s"]\ntransform_format = 1\ncustom_aabb = %s\ninstance_count = %d\nmesh = ExtResource("%s")\nbuffer = %s' % [name,var_to_str(bounds),bucket.entries.size(),mesh_key,var_to_str(buffer)])
-			var small: bool = bucket.kind in ["shrub","hedge","grass","violet","calibrachoa"]
+			var small: bool = bucket.kind in ["shrub","hedge","grass","violet","calibrachoa","juniper"]
 			var split := 32.0 if small else 48.0
 			var end := (120.0 if small else 650.0) if lod == 1 else split
 			nodes.append('[node name="%s" type="MultiMeshInstance3D" parent="."]\nposition = %s\nmultimesh = SubResource("%s")\nvisibility_range_begin = %.1f\nvisibility_range_end = %.1f\ncast_shadow = %d' % [name,var_to_str(origin),name,split if lod == 1 else 0.0,end,0 if lod == 1 or small else 1])
@@ -212,3 +239,10 @@ func write_scene(directory: String, instances: Array[Dictionary], has_lawn: bool
 	assert(file != null, "Cannot write vegetation scene: " + directory)
 	file.store_string('[gd_scene load_steps=%d format=3]\n\n' % (resources.size()+1)+"\n\n".join(resources)+"\n\n"+"\n\n".join(nodes)+"\n")
 	print("VEGETATION %s: %d instances, %d spatial/species batches, %d kinds" % [directory,instances.size(),buckets.size(),kinds.size()])
+
+func near_sidewalk(at: Vector2, masks: Array[PackedVector2Array], margin: float) -> bool:
+	for polygon in masks:
+		if Geometry2D.is_point_in_polygon(at,polygon): return true
+		for i in polygon.size():
+			if at.distance_to(Geometry2D.get_closest_point_to_segment(at,polygon[i],polygon[(i+1)%polygon.size()]))<margin: return true
+	return false

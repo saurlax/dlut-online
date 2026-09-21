@@ -31,5 +31,68 @@ func _initialize() -> void:
 	wall.position.z = 1.0
 	assert(builder.clip_shell(off_plane, wall, Vector2.ZERO, Vector2.RIGHT, Vector2.DOWN, Rect2(0, 0, 3, 3)) == 0)
 	wall.free()
+	check_curved_cladding(builder)
 	print("PHOTO SURFACE CLIPPING PASS")
 	quit()
+
+func check_curved_cladding(builder) -> void:
+	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
+	var points := PackedVector2Array()
+	for feature in manifest.features:
+		if feature.id=="77927":
+			for p in feature.points: points.append(Vector2(p[0],p[1]))
+	var profiles: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/buildings/academic_facades.json"))
+	var curve := preload("res://tools/eda_ellipse_envelope.gd").new()
+	curve.configure(points,profiles["77927"].osm_registration.curve_refinement)
+	var origin := points[13]
+	var axis := (points[14]-origin).normalized()
+	var length := origin.distance_to(points[14])
+	var out := Vector2(axis.y,-axis.x)
+	if Geometry2D.is_point_in_polygon((origin+points[14])*.5+out,points): out=-out
+	var source := SurfaceTool.new()
+	source.begin(Mesh.PRIMITIVE_TRIANGLES)
+	# The registered C curve carries two bounded patches separated by an opening.
+	for span in [Vector2(0,.4),Vector2(.6,1)]:
+		var a: Vector2 = origin+axis*length*span.x
+		var b: Vector2 = origin+axis*length*span.y
+		var corners := [Vector3(a.x,10,a.y),Vector3(b.x,10,b.y),Vector3(b.x,11,b.y),Vector3(a.x,11,a.y)]
+		for i in [0,2,1,0,3,2]: source.add_vertex(corners[i])
+	var wall := MeshInstance3D.new()
+	wall.mesh=source.commit()
+	var clipped := SurfaceTool.new()
+	clipped.begin(Mesh.PRIMITIVE_TRIANGLES)
+	assert(builder.clip_shell(clipped,wall,origin,axis,out,Rect2(0,10,length,1))>0)
+	var finish := MeshInstance3D.new()
+	finish.mesh=clipped.commit()
+	curve.deform(finish)
+	var arrays: Array = finish.mesh.surface_get_arrays(0)
+	var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+	var indices: PackedInt32Array = arrays[Mesh.ARRAY_INDEX]
+	var curved := false
+	for vertex in vertices:
+		var delta := Vector2(vertex.x,vertex.z)-origin
+		assert(vertex.y>=9.9999 and vertex.y<=11.0001,"Curved cladding escaped its vertical registration")
+		var station := delta.dot(axis)/length
+		assert(station<.415 or station>.585,"Curved material bridged the source opening")
+		if delta.dot(out)>.05: curved=true
+	assert(curved,"C cladding must follow the curved wall instead of remaining a flat chord")
+	for i in range(0,indices.size(),3):
+		var a := vertices[indices[i]]
+		var b := vertices[indices[i+1]]
+		var c := vertices[indices[i+2]]
+		var normal := (c-a).cross(b-a).normalized()
+		assert(normal.dot(Vector3(out.x,0,out.y))>.94,"Curved cladding faces inward")
+		for pair in [[a,b],[b,c],[c,a]]:
+			assert(Vector2(pair[0].x-pair[1].x,pair[0].z-pair[1].z).length()<=.52,"Curved cladding kept a coarse straight segment")
+	# Registration endpoints must survive the pipeline, including both opening jambs.
+	for fraction in [0.0,.4,.6,1.0]:
+		for y in [10.0,11.0]:
+			var p := origin+axis*length*float(fraction)+out*.012
+			var source_p := Vector3(p.x,float(y),p.y)
+			var expected := source_p+curve.shift(source_p)
+			var nearest := INF
+			for vertex in vertices: nearest=minf(nearest,vertex.distance_to(expected))
+			assert(nearest<.003,"Curved cladding lost a registered border or opening jamb")
+	wall.free()
+	finish.free()
+	print("C CURVED CLADDING PASS: vertical bounds, curved coverage, open gap, outward normals and preserved borders")

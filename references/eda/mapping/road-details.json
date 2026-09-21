@@ -22,5 +22,50 @@
       "osm_way_id": 1381476344
     }
   ],
-  "edge_width": 0.12
+  "sidewalk_segments": [
+    {
+      "osm_way_id": 1076344091,
+      "osm_version": 2,
+      "from_vertex": 7,
+      "expected_points": [[157.0197,329.8412],[150.8675,355.8344]],
+      "along": [1.0,23.05],
+      "offsets": [3.12,4.4],
+      "side": 1.0,
+      "dimensions_are_approximate": true
+    }
+  ],
+  "stone_path": {
+    "osm_way_id": 1381476338,
+    "osm_version": 1,
+    "vertices": [2,1],
+    "expected_points": [[149.5541,109.7949],[161.8153,132.0812]],
+    "start_margin_m": 3.2,
+    "dimensions_are_approximate": true
+  },
+  "edge_width": 0.12,
+  "yellow_centerlines": [
+    {
+      "id": "gym-north-centerline",
+      "osm_way_id": 1076344138,
+      "osm_version": 2,
+      "from_vertex": 2,
+      "expected_points": [
+        [
+          -327.4672,
+          96.7037
+        ],
+        [
+          -410.9887,
+          96.0358
+        ]
+      ],
+      "along": [
+        4.0,
+        72.0
+      ],
+      "width_m": 0.12,
+      "dimensions_are_approximate": true,
+      "limits": "Restricted to the road beside the gym north wall. Line width and finite visible extent are proportional estimates; junctions and other road segments are excluded."
+    }
+  ]
 }

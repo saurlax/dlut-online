@@ -17,6 +17,8 @@ build/
 /apps/game/assets/campuses/*/models/*.glb.import
 /apps/game/assets/campuses/*/models/*_albedo.png
 /apps/game/assets/campuses/*/models/*_albedo.png.import
+/apps/game/assets/campuses/*/models/*_dut_emblem.png
+/apps/game/assets/campuses/*/models/*_dut_emblem.png.import
 
 # Python caches
 __pycache__/

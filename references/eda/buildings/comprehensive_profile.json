@@ -103,7 +103,97 @@
             0.06,
             0.94
           ],
-          "end_vertex": 7
+          "end_vertex": 7,
+          "window_stations_by_row": [
+            [
+              0.295,
+              0.342,
+              0.382,
+              0.426,
+              0.472,
+              0.52,
+              0.897,
+              0.959
+            ],
+            [
+              0.295,
+              0.342,
+              0.382,
+              0.426,
+              0.472,
+              0.52,
+              0.567,
+              0.615,
+              0.66,
+              0.696,
+              0.777,
+              0.834,
+              0.897,
+              0.959
+            ],
+            [
+              0.295,
+              0.342,
+              0.382,
+              0.426,
+              0.472,
+              0.52,
+              0.567,
+              0.615,
+              0.66,
+              0.696,
+              0.777,
+              0.834,
+              0.897,
+              0.959
+            ],
+            [
+              0.048,
+              0.078,
+              0.143,
+              0.171,
+              0.218,
+              0.249,
+              0.295,
+              0.342,
+              0.382,
+              0.426,
+              0.472,
+              0.52,
+              0.567,
+              0.615,
+              0.66,
+              0.696,
+              0.777,
+              0.834,
+              0.897,
+              0.959
+            ]
+          ],
+          "window_width_regions": [
+            {
+              "span": [
+                0,
+                0.26
+              ],
+              "width": 1.1
+            },
+            {
+              "span": [
+                0.26,
+                0.73
+              ],
+              "width": 1.3
+            },
+            {
+              "span": [
+                0.73,
+                1
+              ],
+              "width": 1.65
+            }
+          ],
+          "station_precision": "Photo-proportional unrectified facade stations; not a surveyed or perspective-calibrated grid. Ground floor and rotunda-obscured lower bays remain omitted. Narrow inner window groups and wider four outer bays use separate estimated widths."
         },
         {
           "edge": 4,
@@ -164,7 +254,102 @@
           "retrieved": "2026-09-16T11:34:53.004563+00:00",
           "sha256": "b99d1f21f934fd4e06d8684ad76019613341fcb0505f4417637ed150a4dbd9e5"
         }
-      ]
+      ],
+      "court_glass_center_fraction": 0.13,
+      "entry_canopy": {
+        "width": 17.0,
+        "height": 3.8,
+        "rear_offset": 1.35,
+        "front_offset": 3.85,
+        "tie_upper_y": 6.1,
+        "tie_fractions": [
+          0.16,
+          0.38,
+          0.62,
+          0.84
+        ],
+        "dimensions_are_approximate": true,
+        "limits": "Shallow glazed canopy and four ties under the courtyard projection only. Width, projection, heights and member sizes are proportional estimates; the closed lower shell remains and no interior or entrance passage is inferred."
+      },
+      "roof_enclosure": {
+        "front_span": [
+          0.1,
+          0.27
+        ],
+        "depth": 6.0,
+        "base": 20.18,
+        "height": 3.2,
+        "cap_height": 0.14,
+        "front_window_fractions": [
+          0.16,
+          0.34,
+          0.63,
+          0.81
+        ],
+        "window_width": 0.85,
+        "window_height": 1.45,
+        "window_center_above_base": 1.7,
+        "dimensions_are_approximate": true,
+        "depth_range": [
+          5.3,
+          6.7
+        ],
+        "limits": "Closed rooftop exterior only. Front stations and height are proportional estimates; depth uses roof-relative schematic proportions. Rear step, hidden windows, equipment and interiors remain omitted."
+      },
+      "round_annex": {
+        "station": 0.78,
+        "outward_offset": 6.4,
+        "lower_radius": 7.3,
+        "upper_radius": 8.5,
+        "bottom": -0.45,
+        "lower_top": 3.3,
+        "upper_top": 9.5,
+        "roof_top": 9.52,
+        "coping_top": 9.64,
+        "coping_width": 0.18,
+        "segments": 96,
+        "window_width": 0.62,
+        "window_height": 1.9,
+        "lower_window_y": 1.8,
+        "upper_window_y": 6.4,
+        "lower_window_angles": [
+          20,
+          34,
+          48,
+          62
+        ],
+        "upper_window_angles": [
+          20,
+          34,
+          48,
+          62,
+          162
+        ],
+        "dimensions_are_approximate": true,
+        "ranges": {
+          "station": [
+            0.74,
+            0.8
+          ],
+          "outward_offset": [
+            5.8,
+            7.0
+          ],
+          "lower_diameter": [
+            14.2,
+            15.3
+          ],
+          "upper_diameter": [
+            16.3,
+            18.0
+          ],
+          "total_height": [
+            8.8,
+            10.2
+          ]
+        },
+        "limits": "Exterior only. Estimated visible arc window angles; no inferred rear windows, doors, stairs or interior. Rear geometry clipped at existing courtyard wall. Bottom extension closes current terrain gap without raising terrain."
+      }
     }
   }
 }

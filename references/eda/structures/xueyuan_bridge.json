@@ -1,0 +1,36 @@
+{
+  "osm_id": "way/309375782",
+  "osm_version": 7,
+  "west": [
+    210.7911126416838,
+    178.62407200003219
+  ],
+  "east": [
+    317.2710831713213,
+    203.54861999943267
+  ],
+  "deck_y": 3.4,
+  "deck_width": 4.8,
+  "deck_thickness": 0.35,
+  "west_steps": 17,
+  "west_tread": 0.32,
+  "east_steps": 41,
+  "east_tread": 0.34,
+  "canopy_half_width": 2.7,
+  "canopy_spring_height": 1.55,
+  "canopy_rise": 1.8,
+  "rib_spacing": 3.2,
+  "arch_rise": 11.5,
+  "arch_half_width": 3.2,
+  "dimensions_are_approximate": true,
+  "limits": "The OSM alignment is the horizontal baseline. End nodes, flight lengths, deck height, widths and arch envelope are proportional candidates; endpoints are not surveyed stair toes. Ground contact follows the existing terrain datum. Only the visible bridge and straight approaches are represented; neighboring garden footprints are excluded. The main deck has an estimated 0.85m crown; it is not a surveyed longitudinal profile.",
+  "deck_crown_rise": 0.85,
+  "underdeck_ribs": {
+    "count": 8,
+    "pitch_m": 0.6,
+    "width_m": 0.12,
+    "depth_m": 0.055,
+    "dimensions_are_approximate": true,
+    "limits": "Shallow longitudinal underside finish only. Visible flange/pitch proportion informs a uniform candidate; count and section depth are not surveyed or a recovered structural schedule. No extra transverse girders, cables, stair or landing ribs are inferred."
+  }
+}

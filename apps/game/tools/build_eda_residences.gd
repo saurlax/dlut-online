@@ -19,14 +19,31 @@ func panel(x: float, y: float, width: float, height: float, depth: float, offset
 	node.rotation.y = -atan2(axis.y,axis.x)
 	node.set_meta("walk_collision",solid)
 	if facade_path != null: facade_path.deform(node)
+	preload("res://tools/eda_surface_details.gd").tint_glazing(node,mat,x,y)
 
-func window(x: float, y: float, width: float, height: float) -> void:
-	panel(x,y,width,height,0.08,0.08,glass)
-	for dx in [-width/2.0,0.0,width/2.0]:
-		panel(x+dx,y,0.055,height+0.1,0.12,0.16,frame)
-	for dy in [-height/2.0,height*0.25,height/2.0]:
-		panel(x,y+dy,width+0.1,0.055,0.12,0.16,frame)
-	panel(x,y-height/2.0-0.06,width+0.18,0.1,0.26,0.17,frame)
+func window(x: float, y: float, width: float, height: float, detailed := false, reveals := true, transom_offset := INF, outward_shift := 0.0) -> void:
+	panel(x,y,width,height,0.08,0.08+outward_shift,glass)
+	# Main bays have shallow tiled reveals; keep small terminal windows unchanged.
+	if detailed and reveals:
+		for dx in [-width/2.0-0.055,width/2.0+0.055]:
+			panel(x+dx,y,0.11,height+0.16,0.32,0.16,wall)
+		panel(x,y+height/2.0+0.055,width+0.22,0.11,0.32,0.16,wall)
+	var divisions: Array = [-width/2.0,-width*0.10,width*0.32,width/2.0] if detailed else [-width/2.0,0.0,width/2.0]
+	for dx in divisions:
+		panel(x+dx,y,0.055,height+0.1,0.12,0.16+outward_shift,frame)
+	for dy in [-height/2.0,height*0.25 if is_inf(transom_offset) else transom_offset,height/2.0]:
+		panel(x,y+dy,width+0.1,0.055,0.12,0.16+outward_shift,frame)
+	panel(x,y-height/2.0-0.06,width+0.18,0.1,0.26,0.17+outward_shift,frame)
+
+func window_grilles(settings: Dictionary, start: float, spacing: float) -> void:
+	# Fixed to the registered window modules; no extra wall or collision.
+	for col in settings.columns:
+		var x:=start+(float(col)+0.5)*spacing
+		var width:=spacing*0.77
+		var count:=int(settings.vertical_bars)
+		for i in range(1,count+1):
+			var dx:float=-width/2+width*i/(count+1)
+			panel(x+dx,float(settings.center_y),float(settings.bar_width_m),2.15,float(settings.bar_depth_m),float(settings.offset_m),rail)
 
 func railing(x: float, y: float, width: float, offset: float, vertical: bool) -> void:
 	for dy in [0.0,0.3,0.6,0.9]:
@@ -58,6 +75,14 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	for side in profile.get("side_windows",[]): photo_edges.append(int(side.edge))
 	if profile.has("stair_tower") and profile.stair_tower.has("edge"):
 		photo_edges.append(int(profile.stair_tower.edge))
+	for face_key in ["courtyard_windows","north_facade"]:
+		if not profile.has(face_key): continue
+		var vertices: Array = profile[face_key].vertices
+		for i in vertices.size()-1:
+			var a := int(vertices[i])
+			var b := int(vertices[i+1])
+			var wall_edge := maxi(a,b) if absi(a-b)==points.size()-1 else mini(a,b)
+			if wall_edge not in photo_edges: photo_edges.append(wall_edge)
 	group.set_meta("photo_edges",photo_edges)
 	wall = host.material("EDA residence pale tile",Color("b8b6a3"))
 	# Small rectangular ceramic tiles visible in each residence photo.
@@ -97,7 +122,10 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 				recessed.append(first-out*float(gallery.depth))
 				recessed.append(last-out*float(gallery.depth))
 				recessed.append(last)
-		shell(points,float(gallery.bottom),wall,"GalleryBase")
+		if profile.has("ground_arcade"):
+			preload("res://tools/build_eda_residence_arcade.gd").new().build(self,points,profile,float(gallery.bottom))
+		else:
+			shell(points,float(gallery.bottom),wall,"GalleryBase")
 		shell(recessed,float(gallery.top),wall,"GalleryRecess",float(gallery.bottom))
 		shell(points,height,wall,"GalleryHead",float(gallery.top))
 	else:
@@ -123,6 +151,19 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 		outward = facade_path.outward
 		length = facade_path.length
 		group.set_meta("photo_facade_vertices",profile.facade_vertices)
+	if profile.has("ground_arcade") and profile.ground_arcade.has("rear_windows"):
+		var arcade: Dictionary = profile.ground_arcade
+		var rear: Dictionary = arcade.rear_windows
+		var front_origin := origin
+		origin -= outward*float(arcade.depth)
+		for opening in rear.openings:
+			var fraction := lerpf(float(arcade.span[0]),float(arcade.span[1]),(float(opening.bay)+float(opening.within_bay))/int(arcade.bays))
+			window(fraction*length,float(rear.center_y),float(opening.get("width",rear.width)),float(rear.height),true,false)
+		if arcade.has("rear_entry"):
+			var entry:Dictionary=arcade.rear_entry.duplicate(true)
+			entry.fraction=lerpf(float(arcade.span[0]),float(arcade.span[1]),(float(entry.bay)+float(entry.within_bay))/int(arcade.bays))
+			preload("res://tools/build_eda_residence_entry.gd").new().build(self,entry,true)
+		origin = front_origin
 	if profile.has("end_gallery"):
 		var gallery: Dictionary = profile.end_gallery
 		var first: float = length*float(gallery.span[0])
@@ -135,8 +176,11 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 	var finish: float = profile.span[1]*length
 	var count := int(profile.columns)
 	var spacing := (finish-start)/count
+	if profile.has("window_grilles"):window_grilles(profile.window_grilles,start,spacing)
 	var balcony := -100.0 if profile.balcony_center == null else float(profile.balcony_center)*length
 	var balcony_width := spacing*2.0
+	if profile.has("roof_panels"):
+		preload("res://tools/build_eda_residence_roof.gd").new().build(self,profile.roof_panels,length)
 	for row in int(profile.get("window_rows",5)):
 		var y := 4.8+row*3.15
 		for col in count:
@@ -144,12 +188,24 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			var balcony_levels: Array = profile.get("balcony_levels",[9.85,13.0,16.15])
 			if y>float(balcony_levels[0]) and y<float(balcony_levels[2]) and absf(x-balcony)<balcony_width*0.52:
 				continue
-			window(x,y,spacing*0.77,2.15)
+			window(x,y,spacing*0.77,2.15,true)
 			panel(x+spacing*0.35,y-1.43,spacing*0.22,0.48,0.07,0.1,accent)
 			for dx in [-spacing*0.5,spacing*0.5]:
 				panel(x+dx,y,0.18,3.15,0.22,0.12,frame)
 		panel((start+finish)/2.0,y-1.2,finish-start,0.13,0.22,0.12,frame)
 	# Smaller independent windows at the photographed connector-side ends.
+	if profile.has("terminal_vents"):
+		var vents: Dictionary = profile.terminal_vents
+		var size: float = vents.size
+		for fraction in vents.fractions:
+			var x: float = float(fraction)*length
+			for center_y in profile.terminal_windows.centers_y:
+				for offset in vents.row_offsets:
+					var y: float = float(center_y)+float(offset)
+					panel(x,y,size,size,0.06,0.06,glass)
+					for side in [-1.0,1.0]:
+						panel(x+side*size/2,y,0.045,size+0.045,0.12,0.13,frame)
+						panel(x,y+side*size/2,size+0.045,0.045,0.12,0.13,frame)
 	if profile.has("terminal_windows"):
 		var terminal: Dictionary = profile.terminal_windows
 		for fraction in terminal.fractions:
@@ -161,7 +217,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 		var gallery_slab_y: float = profile.get("gallery_slab_y",19.25)
 		for col in count:
 			var x := start+(col+0.5)*spacing
-			window(x,gallery_y,spacing*0.64,1.75)
+			window(x,gallery_y,spacing*float(profile.get("gallery_window_width_ratio",0.64)),float(profile.get("gallery_window_height",1.75)))
 			panel(start+col*spacing,gallery_y,0.2,2.8,0.8,0.4,wall,true)
 		panel(finish,gallery_y,0.2,2.8,0.8,0.4,wall,true)
 		panel((start+finish)/2.0,gallery_slab_y,finish-start,0.18,1.05,0.45,frame,true)
@@ -192,13 +248,31 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 			panel((start+finish)/2.0,gallery_y,finish-start,2.55,0.1,0.86,glass,true)
 			for i in count*3+1:
 				panel(start+(finish-start)*i/(count*3),gallery_y,0.065,2.65,0.12,0.94,frame)
-			for dy in [-1.275,0.0,1.275]:
+			for dy in [-1.275,float(profile.get("gallery_transom_offset",0.0)),1.275]:
 				panel((start+finish)/2.0,gallery_y+dy,finish-start,0.065,0.12,0.94,frame)
-		else:
+		if not profile.get("enclosed_gallery",false) or profile.get("gallery_outer_railing",false):
 			railing((start+finish)/2.0,gallery_slab_y+0.15,finish-start,0.94,true)
 	for extra in profile.get("additional_windows",[]):
 		for y in extra.centers_y:
-			window(float(extra.fraction)*length,float(y),float(extra.width),float(extra.height))
+			var x:=float(extra.fraction)*length
+			var width:=float(extra.width)
+			window(x,float(y),width,float(extra.height),bool(extra.get("detailed",false)),false,float(extra.get("transom_offset",INF)),float(extra.get("outward_shift",0.0)))
+			var bars:=int(extra.get("vertical_bars",0))
+			for i in range(1,bars+1):
+				panel(x-width/2+width*i/(bars+1),float(y),0.016,float(extra.height),0.02,0.24,rail)
+			if extra.has("guard"):
+				var guard:Dictionary=extra.guard
+				var bottom:=float(guard.get("bottom",float(y)-float(extra.height)/2+0.06))
+				var guard_height:=float(guard.height)
+				var guard_offset:=float(guard.get("offset",0.31))
+				var mat:Material=frame if bool(guard.get("light",false)) else rail
+				var vertical:=bool(guard.get("vertical",false))
+				var rows:=2 if vertical else 4
+				for row in rows:
+					panel(x,bottom+guard_height*row/(rows-1),width,0.035,0.04,guard_offset,mat)
+				var posts:=maxi(2,ceili(width/0.15)) if vertical else 1
+				for post in posts+1:
+					panel(x-width/2+width*post/posts,bottom+guard_height/2,0.025,guard_height,0.04,guard_offset,mat)
 	if profile.get("ground_windows",false):
 		for col in count:
 			var x := start+(col+0.5)*spacing
@@ -298,3 +372,103 @@ func build(builder, parent: Node3D, points: PackedVector2Array, profile: Diction
 		for fraction in side.fractions:
 			for y in side.centers_y:
 				window(origin.distance_to(end_point)*float(fraction),float(y),float(side.width),float(side.height))
+
+	if profile.has("courtyard_windows"):
+		var courtyard: Dictionary = profile.courtyard_windows
+		facade_path = preload("res://tools/residence_facade_path.gd").new()
+		facade_path.configure(points,courtyard.vertices)
+		origin = facade_path.origin
+		axis = facade_path.axis
+		outward = facade_path.outward
+		var first: float = float(courtyard.span[0])*facade_path.length
+		var last: float = float(courtyard.span[1])*facade_path.length
+		var count_courtyard := int(courtyard.columns)
+		var bay_width: float = (last-first)/count_courtyard
+		var glazing_width := float(courtyard.get("glazing_width_fraction",0.77))*bay_width
+		var alternating_offset := float(courtyard.get("alternating_offset_fraction",0.0))*bay_width
+		var infill: Material
+		if alternating_offset>0:
+			infill = host.material("EDA residence gray infill",Color("858784"))
+			infill.albedo_texture = null
+		for row in courtyard.centers_y.size():
+			var y := float(courtyard.centers_y[row])
+			var shift := alternating_offset*(1.0 if row%2==0 else -1.0)
+			for column in count_courtyard:
+				var x: float = first+(column+0.5)*bay_width
+				if infill!=null:
+					# The complete opening stays fixed while its internal glazing alternates.
+					panel(x,y-0.35,bay_width*0.90,2.85,0.04,0.035,infill)
+					for side in [-1.0,1.0]:
+						panel(x+side*bay_width*0.45,y-0.35,0.055,2.95,0.12,0.16,frame)
+					for level in [-1.775,1.075]:
+						panel(x,y+level,bay_width*0.90+0.055,0.055,0.12,0.16,frame)
+					var division := x+shift-signf(shift)*glazing_width/2
+					panel(division,y-1.425,0.055,0.70,0.12,0.16,frame)
+					panel(x,y-1.075,bay_width*0.90,0.055,0.12,0.16,frame)
+				window(x+shift,y,glazing_width,2.15,true,infill==null)
+				var accent_side := -1.0 if shift>0 else 1.0
+				panel(x+accent_side*bay_width*(0.34 if infill!=null else 0.35),y-1.425 if infill!=null else y-1.43,bay_width*0.22,0.65 if infill!=null else 0.48,0.07,0.1,accent)
+				for dx in [-bay_width/2,bay_width/2]: panel(x+dx,float(y),0.18,3.15,0.22,0.12,frame)
+			if infill==null: panel((first+last)/2,float(y)-1.2,last-first,0.13,0.22,0.12,frame)
+			window(float(courtyard.terminal_fraction)*facade_path.length,float(y),2.2,1.65)
+		for column in count_courtyard*2:
+			window(first+(column+0.5)*bay_width/2,float(courtyard.gallery_y),bay_width*0.43,float(courtyard.gallery_height))
+		if courtyard.has("gallery_railing"):
+			var guard: Dictionary = courtyard.gallery_railing
+			var guard_start: float = facade_path.length*float(guard.span[0])
+			var guard_end: float = facade_path.length*float(guard.span[1])
+			var guard_width := guard_end-guard_start
+			var bottom: float = guard.bottom_y
+			var guard_height: float = guard.height
+			var offset: float = guard.offset
+			for y in [bottom,bottom+guard_height]:
+				panel((guard_start+guard_end)/2,y,guard_width,0.035,0.04,offset,frame)
+			var bars := ceili(guard_width/float(guard.spacing))
+			for i in range(bars+1):
+				panel(guard_start+guard_width*i/bars,bottom+guard_height/2,0.02,guard_height,0.025,offset,frame)
+			var posts := ceili(guard_width/float(guard.post_spacing))
+			for i in range(posts+1):
+				panel(guard_start+guard_width*i/posts,bottom+guard_height/2,0.045,guard_height+0.05,0.05,offset,frame)
+		if courtyard.has("eave"):
+			var eave: Dictionary = courtyard.eave
+			var join: float = facade_path.length*float(eave.upturn_start)
+			var tip: float = facade_path.length+float(eave.end_extension)
+			panel(join/2,float(eave.center_y),join,float(eave.thickness),float(eave.depth),float(eave.offset),frame,true)
+			var run := tip-join
+			var pos := origin+axis*((join+tip)/2)+outward*float(eave.offset)
+			var raised: MeshInstance3D = host.box(group,Vector3(pos.x,float(eave.center_y),pos.y),Vector3(run,float(eave.thickness),float(eave.depth)),frame,"CourtyardRaisedEave")
+			# Shear the slab, keeping the shared join vertical and exactly closed.
+			var arrays := raised.mesh.surface_get_arrays(0)
+			var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+			for i in vertices.size(): vertices[i].y += float(eave.rise)*(vertices[i].x/run+0.5)
+			arrays[Mesh.ARRAY_VERTEX] = vertices
+			var mesh := ArrayMesh.new()
+			mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
+			raised.mesh = mesh
+			raised.rotation.y = -atan2(axis.y,axis.x)
+			raised.set_meta("walk_collision",true)
+			facade_path.deform(raised)
+		if courtyard.has("ground_windows"):
+			var ground: Dictionary = courtyard.ground_windows
+			var centers: Array[float] = []
+			for column in ground.columns:
+				centers.append(first+(float(column)+0.5)*bay_width)
+			if ground.get("terminal",false): centers.append(float(courtyard.terminal_fraction)*facade_path.length)
+			var width: float = ground.width
+			var window_height: float = ground.height
+			var y: float = ground.center_y
+			var bars := ceili(width/float(ground.bar_spacing))
+			for x in centers:
+				window(x,y,width,window_height)
+				for i in range(bars+1):
+					panel(x-width/2+width*i/bars,y,0.018,window_height,0.022,0.27,rail)
+				for dy in [-window_height/2,window_height/2]:
+					panel(x,y+dy,width+0.04,0.025,0.025,0.27,rail)
+		if courtyard.has("entry"):
+			preload("res://tools/build_eda_residence_entry.gd").new().build(self,courtyard.entry)
+
+	if profile.has("north_facade"):
+		preload("res://tools/build_eda_residence_north.gd").new().build(self,points,profile.north_facade)
+
+	if profile.has("number_markers"):
+		preload("res://tools/build_eda_residence_markers.gd").new().build(self,points,profile.number_markers)

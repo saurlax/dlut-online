@@ -1,0 +1,11 @@
+{
+  "osm_id": "node/12789150469",
+  "osm_version": 1,
+  "lon_lat": [
+    121.8105265,
+    39.0824404
+  ],
+  "height_estimate_m": 6.6,
+  "dimensions_are_approximate": true,
+  "limits": "Map point anchors horizontal location only. Silhouette, depth, base size and east-west orientation are proportional estimates; no surrounding plaza or planting boundaries are inferred."
+}
