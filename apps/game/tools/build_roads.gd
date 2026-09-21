@@ -12,6 +12,7 @@ func build(builder, campus: String) -> void:
 		var stairs=preload("res://tools/eda_stair_profile.gd")
 		var stair_profile:Dictionary=stairs.load_profile()
 		replacement_masks.append(stairs.mask(stair_profile))
+		replacement_masks.append_array(preload("res://tools/eda_xiang_plaza_profile.gd").masks())
 		var sports_entry=preload("res://tools/eda_sports_entry_profile.gd")
 		replacement_masks.append(sports_entry.mask(sports_entry.load_profile()))
 		# This stair segment borders planted ground, not the generic road apron.
@@ -99,7 +100,7 @@ func build(builder, campus: String) -> void:
 		# fit_road adds 0.08 m; keep reviewed thin ground surfaces walkable.
 		var lift: float = float(surface.get("render_lift_m",0.02))
 		assert(lift>0.0 and lift<=0.02)
-		var paving := emit(builder,outer,lift-0.08,surface_material,cutouts)
+		var paving := emit(builder,outer,lift-0.08,surface_material,cutouts+replacement_masks)
 		paving.set_meta("ground_surface_id",surface.id)
 		if surface.id == "eda-xiang-lakeside-paving":
 			var inlays: Array[PackedVector2Array] = []
@@ -107,7 +108,7 @@ func build(builder, campus: String) -> void:
 				for at in range(-146 if axis == 0 else 308, -90 if axis == 0 else 343, 4):
 					var line := PackedVector2Array([Vector2(at-0.035,300),Vector2(at+0.035,300),Vector2(at+0.035,345),Vector2(at-0.035,345)]) if axis == 0 else PackedVector2Array([Vector2(-150,at-0.035),Vector2(-90,at-0.035),Vector2(-90,at+0.035),Vector2(-150,at+0.035)])
 					inlays.append_array(Geometry2D.intersect_polygons(line,ring))
-			var inlay := emit(builder,inlays,-0.056,builder.material("Lake plaza grid inlay",Color("777b72")))
+			var inlay := emit(builder,inlays,-0.056,builder.material("Lake plaza grid inlay",Color("777b72")),replacement_masks)
 			inlay.set_meta("walk_collision",false)
 
 func build_crosswalks(builder) -> void:

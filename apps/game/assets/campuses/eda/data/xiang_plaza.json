@@ -1,0 +1,31 @@
+{
+  "origin_xz": [
+    -118.5,
+    342.0
+  ],
+  "side_ranges": [
+    [
+      -134,
+      -125
+    ],
+    [
+      -112,
+      -103
+    ]
+  ],
+  "back_z": 320.0,
+  "risers": 8,
+  "going_m": 0.42,
+  "rise_m": 0.16,
+  "garden_center_xz": [
+    -118.5,
+    330.5
+  ],
+  "garden_diameter_m": 11.6,
+  "letter_width_m": 16.0,
+  "letter_inclination_deg": 45.0,
+  "letters_front_z": 344.0,
+  "source_url": "https://www.dlut.edu.cn/images/logo.svg",
+  "read_date": "2026-09-21",
+  "precision": "Photo estimates, not measured: eight visible risers, width and going inferred from existing OSM-anchored plaza; letter face 45 degrees above horizontal, plausible range 40-55. Preserve SVG letter spacing and aspect ratio. Project inclined outlines along their inward face normal onto the grass base. Central emblem selects the official double-ring/book/seed paths; omit outer lettering not visible in the hedge."
+}

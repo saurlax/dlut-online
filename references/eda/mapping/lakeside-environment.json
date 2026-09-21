@@ -15,7 +15,7 @@
   "view": "Downward aerial panorama and oblique/near-overhead lake aerial. Plaza, three-way continuous asphalt, brick sidewalks and planted wedges visible.",
   "occlusion": "Canopies conceal individual trunks, sidewalk edges and lamp bases. No surveyed camera pose, elevations or tree inventory.",
   "registration": "OSM way 1076344130/1076344131 plaza access paths, way 1076344125 lake loop, ways 1076344082/1076344089/1076344093 junction topology. Shared WGS84 frame. Offsets describe bounded visual estimates, not a projective or metric reconstruction.",
-  "precision": "Paving outline, sidewalk 2.8 m, curb trim 0.2 m, lamp positions, plant density/heights are estimates. Plaza stairs/sculpture require separate detailed registration; no invented staircase or statue mesh. Historical panorama is not a survey of current markings.",
+  "precision": "Paving outline, sidewalk 2.8 m, curb trim 0.2 m, lamp positions, plant density/heights are estimates. Plaza stairs and school-name stones are now separately photo-registered in references/eda/structures/xiang-plaza/basis.md; Xiang sculpture retains its existing OSM node anchor. Historical panorama is not a survey of current markings.",
   "anchors": [
     {
       "osm_way_id": 1076344082,

@@ -5,12 +5,14 @@ const MESH_GENERATOR = preload("res://tools/vegetation_meshes.gd")
 const CELL_SIZE := 32.0
 var meshes: Dictionary = {}
 var terrain: RefCounted
+var is_eda := false
 var excluded: Array[Dictionary] = []
 var roads: Array = []
 var rng := RandomNumberGenerator.new()
 var mesh_paths: Dictionary = {}
 
 func build(_builder: SceneTree = null, campus := "eda") -> void:
+	is_eda = campus == "eda"
 	var directory := "res://assets/campuses/%s/" % campus
 	var source_path := ProjectSettings.globalize_path("res://../../references/%s/vegetation/planting.json" % campus)
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(source_path))
@@ -122,6 +124,8 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 	write_scene(directory,instances,lawn_vertices > 0)
 
 func elevation(at: Vector2) -> float:
+	if terrain != null and at.x>=-125 and at.x<=-112 and at.y>=320 and at.y<=342 and is_eda:
+		return preload("res://tools/eda_xiang_plaza_profile.gd").garden_height(terrain,at)
 	return terrain.elevation(at.x,at.y) if terrain != null else 0.0
 
 func polygon_points(values: Array) -> PackedVector2Array:

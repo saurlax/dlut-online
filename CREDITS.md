@@ -232,3 +232,7 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 2026-09-21 再核对归档 KFQ00 向下、前向航拍与双湖照片，补充[湖边环境登记](references/eda/mapping/lakeside-environment.json)：三岔口连续铺装、人行道、广场格线、环形绿篱及有照片覆盖的湖畔/图书馆侧绿化。以既有 OSM 道路节点及 way/1076344096 v4 绿地配准；十二盏灯杆与标线扩展范围见外景登记。拍摄日期、相机位姿及单株实测未知，落点、宽度和密度为视觉估计；原图仍仅供离线参考，不进入客户端。
 
 湖泊轮廓精修沿用上述双湖鸟瞰和近景照片，2026-09-21 复核连续岸线形态；原 OSM 两湖9点/16点节点及版本保留，曲线细分控制在原线段2米走廊内，属于视觉近似，不构成新测量。参数和原始轮廓摘要见 [湖岸登记](references/eda/terrain/lake-shores.json)。
+
+### 翔雕像广场校名与绿篱标志
+
+- 大连理工大学官方 VI：https://www.dlut.edu.cn/xxgk/dxwh/xxVI.htm ，校名矢量：https://www.dlut.edu.cn/images/logo.svg ，读取日期 2026-09-21。用于提取广场石字和中央绿篱标志的几何轮廓；标识权利归大连理工大学，未发现明确第三方再分发许可。原始 SVG 与用户提供的三张广场照片只保留为离线参考，不随客户端分发；来源、照片日期和估计误差见 references/eda/structures/xiang-plaza/basis.md。
