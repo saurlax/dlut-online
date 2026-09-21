@@ -212,4 +212,3 @@ func marker(pale:Material):
 	var letter:MeshInstance3D=facade.host.mesh_node(facade.group,text,pale,"BCourtyardLetter")
 	letter.basis=Basis(horizontal,Vector3.UP,normal)
 	letter.position=Vector3(at.x,8.2,at.y)+normal*.034;letter.set_meta("walk_collision",false)
-

@@ -2,7 +2,7 @@
 
 ### Requirement: Android test APK
 
-系统 SHALL 提供 Android arm64 横屏测试 APK，使用 Godot Mobile 渲染器，共用完整三校区资源、Godot 原生界面与 ENet 协议。正式桌面发布仍使用 Windows x86_64、macOS arm64 和 Forward+。Android 作为 build.yml 中第五个构建任务提供测试 APK artifact，GitHub Release 附件仍仅包含桌面 EXE/DMG。
+系统 SHALL 提供 Android arm64 横屏测试 APK，使用 Godot Mobile 渲染器，共用完整三校区资源、Godot 原生界面与 ENet 协议。正式桌面发布仍使用 Windows x86_64、macOS arm64 和 Forward+。Android 作为 build.yml 中第五个构建任务提供测试 APK artifact，版本标签发布时将同次构建的 APK 与 EXE/DMG 一起上传 GitHub Release，供官网长期下载。
 
 #### Scenario: Local export
 
@@ -47,7 +47,7 @@ Android SHALL 保持单人离线无账号，多人使用真实账号；账号 to
 
 ### Requirement: PR test artifacts and temporary signing
 
-系统 SHALL 在统一 build.yml 中增加 android 任务，必须 needs: test，沿用现有 PR、main push、手动和发布复用入口。Android 任务 SHALL 安装 JDK 17、Android SDK 和 Godot 4.7.2 Android 模板，使用现有导出脚本生成 arm64 Release APK 并验证签名、对齐、架构与资源；不运行集成或真机测试。
+系统 SHALL 在统一 build.yml 中增加 android 任务，必须依赖 changes 和 test，普通源码变更按游戏路径选择，版本发布和手动构建必须执行，沿用现有 PR、main push、手动和发布复用入口。Android 任务 SHALL 安装 JDK 17、Android SDK 和 Godot 4.7.2 Android 模板，使用现有导出脚本生成 arm64 Release APK 并验证签名、对齐、架构与资源；不运行集成或真机测试。
 
 #### Scenario: Download from a pull request
 
@@ -60,7 +60,7 @@ Android SHALL 保持单人离线无账号，多人使用真实账号；账号 to
 - **WHEN** 干净的 CI runner 打包测试 APK
 - **THEN** 从 Actions Secret `DO_ANDROID_KEYSTORE_BASE64` 恢复固定 `~/.android/debug.keystore` 并签名；常规 CI 缺失 Secret 时失败，外部 fork/Dependabot PR 才允许生成临时测试密钥；不缓存、提交或将密钥上传到 artifact
 - **AND** 摘要区分固定与临时测试签名；固定签名支持同一密钥版本间覆盖更新，签名不同时需卸载旧版并清除本地数据；不宣称测试签名是商店正式发行签名
-- **AND** APK 不作为 GitHub Release 附件或应用商店正式发行包
+- **AND** APK 作为 GitHub Release 附件发布并明确标注测试版，不作为应用商店正式发行包
 
 ### Requirement: Release mode with test signing
 

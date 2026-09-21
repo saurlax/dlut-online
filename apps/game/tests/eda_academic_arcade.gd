@@ -2,6 +2,11 @@ extends SceneTree
 
 const Collision = preload("res://scripts/shared/campus_collision.gd")
 const Movement = preload("res://scripts/shared/movement.gd")
+var curve := preload("res://tools/eda_ellipse_envelope.gd").new()
+
+func mapped_point(point: Vector2) -> Vector2:
+	var delta: Vector3 = curve.shift(Vector3(point.x,0,point.y))
+	return point+Vector2(delta.x,delta.z)
 
 func _initialize(): run.call_deferred()
 
@@ -12,6 +17,8 @@ func run():
 	for feature in manifest.features:
 		if feature.id=="77927":
 			for p in feature.points: points.append(Vector2(p[0],p[1]))
+	var profiles: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/buildings/academic_facades.json"))
+	curve.configure(points,profiles["77927"].osm_registration.curve_refinement)
 	var reference: Node3D = load("res://assets/campuses/eda/models/development_campus.tscn").instantiate()
 	var base: float = reference.get_node("Feature_77927").position.y
 	reference.free()
@@ -37,16 +44,21 @@ func run():
 			var out := Vector2(axis.y,-axis.x)
 			var center := points[edge].lerp(points[edge+1],0.25)
 			if Geometry2D.is_point_in_polygon(center+out,points): out=-out
-			var inside := center-out*0.8
+			# The registered chord frame is mapped to the saved analytical ellipse.
+			var raw_center := center
+			var raw_out := out
+			center = mapped_point(raw_center)
+			out = (mapped_point(raw_center+raw_out)-center).normalized()
+			var inside := mapped_point(raw_center-raw_out*0.8)
 			for sample in [[base+2.0,base-1.0,base+0.03],[base+7.5,base+9.0,base+8.68]]:
 				var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(inside.x,sample[0],inside.y),Vector3(inside.x,sample[1],inside.y)))
 				assert(not hit.is_empty() and absf(hit.position.y-sample[2])<0.015,"C arcade floor or downward soffit missing")
-			var back := center-out*2.0
+			var back := mapped_point(raw_center-raw_out*2.0)
 			var wall := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(center.x,base+1.5,center.y),Vector3(back.x,base+1.5,back.y)))
-			var expected := center-out*1.6
+			var expected := mapped_point(raw_center-raw_out*1.6)
 			assert(not wall.is_empty() and wall.position.distance_to(Vector3(expected.x,base+1.5,expected.y))<0.015,"C arcade must retain recessed closed rear wall")
 			if edge not in [7,11,14]: continue
-			var spawn_at := center+out*1.3
+			var spawn_at := mapped_point(raw_center+raw_out*1.3)
 			var body := CharacterBody3D.new()
 			Movement.setup(body)
 			body.position=Vector3(spawn_at.x,terrain.elevation(spawn_at.x,spawn_at.y)+0.04,spawn_at.y)

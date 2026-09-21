@@ -4,6 +4,7 @@ signal input_stopped
 
 const LocalSession = preload("res://scripts/client/local_session.gd")
 const Movement = preload("res://scripts/shared/movement.gd")
+const Footsteps = preload("res://scripts/client/footsteps.gd")
 const WALK_SPEED := 6.0
 const RUN_SPEED := 13.0
 const JUMP_SPEED := 7.0
@@ -23,6 +24,10 @@ var touch_enabled := OS.has_feature("android")
 var touch_axis := Vector2.ZERO
 var touch_running := false
 var touch_jump := false
+var touch_rising := false
+var rising := false
+var underwater_environment: Environment
+var footsteps: Node
 
 func _ready() -> void:
 	name = "Player"
@@ -36,6 +41,8 @@ func _ready() -> void:
 	camera.far = 12000
 	camera.current = true
 	add_child(camera)
+	footsteps = Footsteps.new()
+	add_child(footsteps)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not playing:
@@ -57,21 +64,51 @@ func _physics_process(delta: float) -> void:
 	if active and touch_axis != Vector2.ZERO: axis = touch_axis
 	var jumping := active and (touch_jump or Input.is_action_just_pressed("jump"))
 	touch_jump = false
+	rising = active and (touch_rising or Input.is_action_pressed("jump"))
 	if jumping: jump_sequence += 1
 	var running := active and (touch_running or Input.is_action_pressed("run"))
 	var network := get_node("/root/GameNetwork")
 	if not LocalSession.enabled: network.begin_prediction(delta, axis, running)
-	Movement.step(self, axis, running, jumping, delta, spawn_position)
+	var movement_start := global_position
+	Movement.step(self, axis, running, jumping, delta, spawn_position, rising)
+	footsteps.update(self, global_position - movement_start, delta, active and axis.length_squared() > 0.0, running)
 	if not LocalSession.enabled: network.end_prediction()
 
 func _process(delta: float) -> void:
 	visual_offset *= exp(-12.0 * delta)
 	_update_camera_offset()
+	_update_underwater()
+
+func _update_underwater() -> void:
+	var region := Movement.Water.region_at(get_parent().get_meta("water_regions", []), camera.global_position)
+	var submerged := not region.is_empty() and camera.global_position.y < float(region.level) - 0.04
+	if not submerged:
+		camera.environment = null
+		return
+	var source := get_viewport().world_3d.environment
+	if source == null: return
+	if underwater_environment == null: underwater_environment = source.duplicate()
+	underwater_environment.fog_enabled = true
+	underwater_environment.fog_density = 0.18
+	underwater_environment.fog_light_color = Color(0.025,0.15,0.13)
+	underwater_environment.fog_sky_affect = 1.0
+	underwater_environment.fog_aerial_perspective = 0.0
+	underwater_environment.fog_sun_scatter = 0.0
+	underwater_environment.ambient_light_energy = source.ambient_light_energy * 0.55
+	underwater_environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
+	underwater_environment.ambient_light_color = Color(0.18,0.43,0.38)
+	underwater_environment.adjustment_enabled = true
+	underwater_environment.adjustment_saturation = 0.65
+	underwater_environment.adjustment_brightness = 0.8
+	camera.environment = underwater_environment
 
 func _update_camera_offset() -> void:
 	camera.position = Vector3(0, EYE_HEIGHT, 0) + basis.inverse() * visual_offset
 
 func stop() -> void:
+	rising = false
+	touch_rising = false
+	if footsteps != null: footsteps.stop()
 	playing = false
 	drag_look = false
 	velocity = Vector3.ZERO

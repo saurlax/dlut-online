@@ -55,7 +55,8 @@ func build(builder, campus: String) -> void:
 	var rings := Geometry.polygons(roads)
 	var colored := Geometry.polygons(painted)
 	var key: String = "Road" if campus == "eda" else campus.capitalize() + " asphalt"
-	emit(builder, rings, -0.06, builder.material(key, Color("555a5b") if campus == "eda" else Color("656966")), colored+surface_masks)
+	var asphalt: Material = preload("res://assets/roads/asphalt.tres") if campus == "eda" else builder.material(key, Color("656966"))
+	emit(builder, rings, -0.06, asphalt, colored+surface_masks)
 	if not colored.is_empty():
 		emit(builder, colored, -0.06, preload("res://assets/roads/red_path.tres"),surface_masks)
 	for surface: Dictionary in builder.manifest.get("ground_overlays", []):
@@ -78,7 +79,7 @@ func build(builder, campus: String) -> void:
 			cutouts.append_array(Geometry2D.offset_polygon(building,0.001,Geometry2D.JOIN_MITER))
 		var surface_material: Material = builder.material("Map plaza paving",Color("c1b7a1"))
 		if surface.get("surface_type", "paving") == "asphalt":
-			surface_material = builder.material(key, Color("555a5b") if campus == "eda" else Color("656966"))
+			surface_material = asphalt
 		# fit_road adds 0.08 m; keep reviewed thin ground surfaces walkable.
 		var lift: float = float(surface.get("render_lift_m",0.02))
 		assert(lift>0.0 and lift<=0.02)

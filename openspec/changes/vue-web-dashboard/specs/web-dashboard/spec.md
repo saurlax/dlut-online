@@ -52,19 +52,23 @@
 - **THEN** 进入 /download 页面，主标题以毛笔手写体显示
 
 ### Requirement: 系统识别与下载页
-首页主下载按钮 SHALL 识别 Windows/macOS 并使用集中配置的平台 URL；未知或不支持系统 SHALL 指向 /download，移动设备不得误识别为 macOS。当前 URL SHALL 使用 GitHub Releases，后续允许替换为 OSS。
+首页主下载按钮 SHALL 识别 Windows/macOS/Android 并使用集中配置的平台 URL；未知或不支持系统 SHALL 指向 /download，iOS/iPadOS 不得误识别为 macOS。当前 URL SHALL 使用 GitHub Releases，后续允许替换为 OSS。
 
 #### Scenario: 支持的桌面系统
 - **WHEN** Windows 或 macOS 用户打开首页
 - **THEN** 主按钮显示对应平台并指向该平台配置的下载地址
 
+#### Scenario: Android 下载
+- **WHEN** Android 用户打开首页或下载页
+- **THEN** 推荐 Android 测试 APK，指向最新 GitHub Release 的 DLUT-Online-Android.apk 附件
+
 #### Scenario: 其他系统
-- **WHEN** 手机、平板、Linux 或未知系统用户打开首页
-- **THEN** 主按钮引导选择桌面版本，不伪造平台支持
+- **WHEN** iOS、iPadOS、Linux 或未知系统用户打开首页
+- **THEN** 主按钮引导选择客户端版本，不伪造平台支持
 
 #### Scenario: 下载页面直达与刷新
 - **WHEN** 用户直接访问或刷新 /download 或 /download/
-- **THEN** Go 返回应用入口，展示 Windows x86_64 与 macOS Universal 下载选项，未知路径仍返回 404
+- **THEN** Go 返回应用入口，展示 Windows x86_64、macOS arm64 和 Android arm64 测试 APK 下载选项，未知路径仍返回 404
 
 #### Scenario: 精简首屏标题
 - **WHEN** 用户打开首页

@@ -17,6 +17,7 @@ func _ready() -> void:
 	manifest = JSON.parse_string(FileAccess.get_file_as_string(entry.manifest)) if entry.has("manifest") else {"features":[]}
 	roads = JSON.parse_string(FileAccess.get_file_as_string(entry.roads)).roads if entry.has("roads") else []
 	model = $CampusModel
+	set_meta("water_regions", $Terrain.get_meta("water_regions", []))
 	_add_collisions()
 	player = preload("res://scripts/client/player.gd").new()
 	player.spawn_position = spawn_position

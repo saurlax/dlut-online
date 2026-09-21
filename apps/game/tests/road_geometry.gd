@@ -88,7 +88,7 @@ func _run() -> void:
 			match child.material_override.resource_name:
 				"Photo path edging": clearance = 0.014
 				"Road edge", "Library roadside brick": clearance = 0.012
-				"EDA crosswalk paint": clearance = 0.024
+				"EDA crosswalk paint", "EDA bounded yellow road paint": clearance = 0.024
 			if child.material_override.resource_name == "Photo path edging":
 				assert(not child.get_meta("walk_collision",true),"Decorative edging regained collision during terrain fitting")
 			var faces: PackedVector3Array = child.mesh.get_faces()

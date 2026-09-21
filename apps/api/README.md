@@ -52,7 +52,7 @@ Go `DO_API_SERVER_PORT` 默认 8415，也兼容部署平台提供的 `PORT`。Po
 - `GET /`：客户端发布页链接。
 - `POST /api/collections/users/records`：PocketBase 用户注册，必填 email、password、passwordConfirm、username 和 display_name。
 - `/api/collections/users/request-verification`、`confirm-verification`、`auth-with-password`、`request-password-reset`、`confirm-password-reset`、`request-email-change`、`confirm-email-change` 与 `auth-refresh`：PocketBase 标准认证流程。
-- `POST /api/v1/game/tickets`：正文 `{"version":5}`，必须提交 `Authorization: Bearer <PocketBase auth token>`；服务端使用已验证且未禁用账号的 record ID 与 display_name，忽略旧客户端 id；无账号或游客请求返回 401。
+- `POST /api/v1/game/tickets`：正文 `{"version":6}`，必须提交 `Authorization: Bearer <PocketBase auth token>`；服务端使用已验证且未禁用账号的 record ID 与 display_name，忽略旧客户端 id；无账号或游客请求返回 401。
 - `POST /api/v1/game/tickets/consume`：API Key 鉴权，正文 `{"ticket":"..."}`；原子消费，返回 id、username、kind、admission_id。
 - `POST /api/v1/game/register`：API Key 鉴权，正文 instance_id、boot_id；返回 epoch，同启动标识重试幂等，旧启动不可重新注册。
 - `POST /api/v1/game/presence`：API Key 鉴权，正文 instance_id、epoch、递增 seq、players；每位玩家含 id、username、kind、campus、joined_at（Unix 秒）。
@@ -63,21 +63,21 @@ Go `DO_API_SERVER_PORT` 默认 8415，也兼容部署平台提供的 `PORT`。Po
 
 所有持久化通过 Go/PocketBase 处理，Godot 游戏服不直接打开 SQLite。重要操作采用事务和幂等 ID，位置按周期保存，不逐 tick 写数据库。
 
-## 游戏协议版本 5
+## 游戏协议版本 6
 
 客户端先向 Go 获取票据与 `game_server_url`，然后直连 Godot ENet/UDP。Go 不代理游戏流量；游戏服使用 API Key 保护的 HTTP API 兑换票据、上报在线状态。首次连接和真实断线重连时取票，切图不重新认证。
 
-控制通道 0 可靠有序传输 JSON：hello、welcome、heartbeat、roster、世界聊天和切图消息。首条 hello 在 5 秒内发送，包含 version:5、ticket 和 campus。通道 1 不可靠有序传输输入与二进制位置快照；输入仍为 JSON，每秒最多 20 次，服务器不接受客户端位置、速度或帧时长。服务端 60 Hz 物理、10 Hz 同地图快照，客户端预测并纠正。
+控制通道 0 可靠有序传输 JSON：hello、welcome、heartbeat、roster、世界聊天和切图消息。首条 hello 在 5 秒内发送，包含 version:6、ticket 和 campus。通道 1 不可靠有序传输输入与二进制位置快照；输入仍为 JSON，每秒最多 20 次，服务器不接受客户端位置、速度或帧时长。服务端 60 Hz 物理、10 Hz 同地图快照，客户端预测并纠正。
 
 快照每包最多 12 人、820 字节，含 tick、地图、分包编号和每个玩家的 15 字节 ID、位置、速度、朝向、输入确认和 map_epoch。每个 tick 最多 5 包；客户端只保留最新 tick 的完整快照，丢包跳过这一帧，迟到或旧地图数据丢弃。名册通过可靠通道更新。
 
-输入累计跳跃序号抗丢包，500 ms 无有效输入停止水平移动；心跳每 5 秒，15 秒无有效消息断开。切图继续使用 change_map/prepare/ready/entered 和 cancel/status/resume，准备超时 180 秒；本地场景加载时保留连接、停止控制，确认后原子迁移。
+输入累计跳跃序号抗丢包，`rise` 布尔值表示持续上浮，遗漏按 false，非布尔值拒绝；500 ms 无有效输入停止水平移动与上浮，切图重置上浮状态。心跳每 5 秒，15 秒无有效消息断开。切图继续使用 change_map/prepare/ready/entered 和 cancel/status/resume，准备超时 180 秒；本地场景加载时保留连接、停止控制，确认后原子迁移。
 
 世界聊天使用可靠控制通道：客户端发送 `chat_send`（`request_id`、`text`），服务端广播 `chat_event`（`event_id`、`kind`、`id`、`username`、`text`、`request_id`）；`kind` 为 `message`、`joined` 或 `left`。拒绝返回 `chat_result`（`request_id`、`error`、`retry_ms`），成功以广播确认。同实例三个校区共享频道，显示名来自已验证票据，切图和同账号连接替换不触发进出提示。账号两次接受消息至少间隔 1000 ms，重连保留剩余冷却；正文去首尾空白后最多 200 个 Unicode 码点、800 字节 UTF-8，拒绝控制字符和空消息，不持久化聊天。
 
 桌面聊天位于左下角，左侧 16 px、底部 24 px 逻辑留白。回车打开输入，再按回车发送；间隔不足 1 秒时回车无效，保留草稿且不补发。编辑时暂停移动和环视，M 作为文本输入；Escape 取消编辑并保留草稿，恢复编辑前的控制状态。中文候选确认不提交聊天；失焦停止控制。地图与传送覆盖层隐藏聊天但继续接收，同连接保留最近 100 条事件，会话结束清空。世界消息白色，加入/离开提示黄色；右下角玩家状态的底部留白保持原规则。
 
-协议 5 与协议 4 不兼容：Go 票据接口、Godot 游戏服及 Windows/macOS 客户端必须一起升级或回滚；旧客户端申请票据时返回版本错误。
+协议 6 与协议 5 不兼容：水域碰撞、上浮输入和共享运动已更新，Go 票据接口、Godot 游戏服及 Windows/macOS/Android 客户端必须一起升级或回滚；旧客户端申请票据时返回版本错误。新增环境变量和数据库 migration：无。
 
 关闭原因数据：4001 同身份替换并停止重试，4002 协议错误，4003 暂时不可用或超时，4004 满员。当前最多 50 人、100 个待认证/关闭中的连接。Go API 故障不阻塞现有玩家，Go 进程重启也不再断开 ENet 连接，但期间无法新入场且在线数据需要重新注册。
 
@@ -103,7 +103,7 @@ Godot 编辑器打开 `apps/game/project.godot` 后，顶部 `Env: Local / Dev` 
 
 生产部署两个独立服务：Go 通过 HTTPS 对外，游戏服暴露 UDP。在 PocketBase `servers.endpoint` 填写客户端可达地址，例如 enets://game.example.com:1949；不能填容器内部地址。两个服务设 DO_ENV=production；游戏服通过只读挂载提供 DO_GAME_TLS_CERT（PEM 证书链）与 DO_GAME_TLS_KEY（PEM 私钥）路径，由 Godot 直接终止 DTLS，普通 HTTP 反向代理不能替代。客户端按地址验证证书主机名和信任链，可用 DO_GAME_TLS_CA 指定自有 CA 文件；不提供跳过校验的开关。客户端在 development 和 production 均接受 enet://（明文）与 enets://（DTLS），按下发协议连接，不在 DTLS 失败后自动降级。临时无 DTLS 测试时，Go 与游戏服需设置 DO_ENV=development，游戏服清空 DO_GAME_TLS_CERT/DO_GAME_TLS_KEY，servers.endpoint 使用 enet://公网地址:公网UDP端口；正式客户端无需切换 development。Compose 固定将 ./.local/game-tls 挂载到 /run/game-tls，可将上述证书与私钥变量设置为该目录内的文件路径。证书及私钥不提交、不打入客户端或镜像，需要部署平台管理和续期。
 
-工作流固定为 `test.yml`、`build.yml`、`release.yml`。`test.yml` 仅供复用，使用两个独立 Linux runner 并行执行 Vue 与 Go 检查：Vue 运行 `vue-tsc --noEmit`，Go 依次运行 `go test -timeout 60s ./...` 与 `go vet ./...`，两者全部通过后才开始构建，不拉取 LFS 资产或安装 Godot。`build.yml` 统一接收 main 源码 push、PR 和手动运行，先调用测试，成功后并行执行 `windows`、`macos`、`server`、`web` 四个独立任务，分别产出 Windows EXE、Apple 芯片 DMG、Godot 游戏服镜像及 Go 网站镜像。纯文档不触发，功能分支仅在 PR 时构建，相关源码变更统一构建四种产物。版本标签由 `release.yml` 校验后复用整个构建流程，全部成功后下载本次构建的 EXE/DMG 上传 GitHub Release，不复用历史运行的产物。测试失败阻止全部构建和发布。
+工作流固定为 `test.yml`、`build.yml`、`release.yml`。`test.yml` 仅供复用，使用两个独立 Linux runner 并行执行 Vue 类型检查与 Go 单元测试/vet，不下载游戏资源。`build.yml` 接收 main push、PR、手动运行和发布复用；每次构建保留 Vue、Go 前置检查。普通 PR/main push 按路径选择：`apps/web/` 或 `apps/api/` 构建 web 镜像，`apps/game/` 构建 Windows、macOS、Android 和 server，跨应用修改取并集。CREDITS.md、工作流及 CI 脚本、.dockerignore、.gitattributes、compose.yaml 修改触发全量构建，普通文档不触发。版本标签、手动运行及无有效基线的新分支 push 强制全量；PR 使用合并基点到 head 的差异，push 使用 before/after，重命名按删除与新增处理，读取历史失败直接阻止构建。所有被选任务依赖路径检查和成功的 test，不绕过失败门禁。`release.yml` 校验版本后复用完整构建，全部通过后下载同次运行的 EXE、DMG 和 Android 测试 APK 上传 GitHub Release。
 
 CI 不执行集成、E2E、Windows 凭据、Godot 物理世界、账号联调、导出包运行或 Web 容器 smoke 检查，避免资源开销与等待卡死。数据库、PocketBase 认证和前端产物测试均带 `integration` 构建标签，默认 go test 只运行无真实外部依赖的单元测试；测试阶段静态嵌入仅用临时占位文件满足编译，正式构建使用独立检出和真实 Vue 产物。Godot 可选轻量框架为 [GUT 9.7.1](https://github.com/bitwes/Gut/releases/tag/v9.7.1)（对应 Godot 4.7），适合纯函数测试；本次未引入引擎或框架依赖到 CI。
 
@@ -143,7 +143,7 @@ DO_API_SERVER_URL=http://127.0.0.1:8415 python3 apps/game/tools/run_godot.py --h
 
 大地图右下角提供“退出登录”。退出或明确认证失效时清除系统凭据，并写入不含 Token 的本地禁用标记，避免凭据库暂时不可用时下次又自动登录；新登录成功保存后移除标记。网络超时、429 或服务端故障保留凭据，回到可操作表单。macOS 使用系统 security 工具，Windows 使用随客户端导出的 PowerShell 凭据管理器桥接；Token 仅经匿名管道传递，不放入命令行、日志或明文文件。若凭据库不可用仍允许本次密码登录，无法保证下次自动登录。
 
-桌面附件固定为 `DLUT-Online-Windows.exe`（x86_64，内嵌资源包）与 `DLUT-Online-macOS.dmg`（完整 Apple 芯片应用及 Applications 快捷入口）。macOS 导出和 DMG 打包在 macOS 上运行；官方模板仅提供 universal 二进制，因此中间应用仍按 universal 导出，打包时用 lipo 移除 Intel 架构后重新签名，最终仅发布 arm64；打包工具重新做 ad-hoc 签名，并挂载最终 DMG 检查严格签名、应用标识和仅 arm64 架构。检查失败阻止产物上传及 Release。网站直接链接最新正式 Release 的这两个文件，新链接需在首个包含 EXE/DMG 的版本发布后才可用，旧版本附件不会自动转换。
+桌面附件固定为 `DLUT-Online-Windows.exe`（x86_64，内嵌资源包）与 `DLUT-Online-macOS.dmg`（完整 Apple 芯片应用及 Applications 快捷入口）。macOS 导出和 DMG 打包在 macOS 上运行；官方模板仅提供 universal 二进制，因此中间应用仍按 universal 导出，打包时用 lipo 移除 Intel 架构后重新签名，最终仅发布 arm64；打包工具重新做 ad-hoc 签名，并挂载最终 DMG 检查严格签名、应用标识和仅 arm64 架构。检查失败阻止产物上传及 Release。Android 测试附件固定为 `DLUT-Online-Android.apk`（arm64，固定测试签名）。网站直接链接最新正式 Release 的这三个文件；Android 标为测试版，不代表应用商店发行或已完成真机验收。
 
 当前 Windows 未签名，macOS 使用有效 ad-hoc 签名，未使用 Apple Developer ID 或公证，不需要私钥、付费证书或 GitHub Secrets。ad-hoc 修复失效模板签名，但不提供发布者身份认证，浏览器下载仍可能被 Gatekeeper 拦截；不通过关闭 Gatekeeper 或批量清除隔离标记绕过。未来正式签名须另行配置 Developer ID 证书及私钥、公证凭据。
 

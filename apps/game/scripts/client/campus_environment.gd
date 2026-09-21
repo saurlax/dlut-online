@@ -18,6 +18,8 @@ var wind := Vector2(1.0, 0.0)
 var offset := Vector2.ZERO
 var update_in := 0.0
 var initialized := false
+var water_phase := 0.0
+var water_material: ShaderMaterial = preload("res://assets/water/campus_water.tres")
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -29,6 +31,8 @@ func _ready() -> void:
 	_update(0.0)
 
 func _process(delta: float) -> void:
+	water_phase += delta * (0.9 + sqrt(wind.length()) * 0.6)
+	water_material.set_shader_parameter("wave_phase", water_phase)
 	update_in -= delta
 	if update_in > 0.0: return
 	var elapsed := 0.25 - update_in
@@ -67,11 +71,17 @@ func _update(delta: float) -> void:
 	cloud = lerpf(cloud,target_cloud,blend)
 	storm = lerpf(storm,target_storm,blend)
 	wind = wind.lerp(target_wind,blend)
+	water_material.set_shader_parameter("wind_velocity", wind)
 	effects = effects.lerp(target_effects, blend)
 	precipitation.set_weather(effects.x, effects.y, wind)
 	offset += wind*delta
 	sun.look_at_from_position(Vector3.ZERO,-direction,Vector3.UP)
 	var daylight := smoothstep(-0.10,0.18,direction.y)
+	# Fade on near sunset and off at sunrise, including local map time changes.
+	var night_lighting := 1.0 - smoothstep(-0.06, 0.02, direction.y)
+	for lighting in get_tree().get_nodes_in_group("campus_night_lighting"):
+		if get_parent().is_ancestor_of(lighting):
+			lighting.set_night_level(night_lighting)
 	sun.light_energy = smoothstep(-0.015,0.25,direction.y)*(1.0-cloud*0.72)*(1.0-storm*0.6)
 	sun.light_color = Color(1.0,0.53,0.3).lerp(Color(1.0,0.96,0.88),smoothstep(0.0,0.3,direction.y))
 	world.environment.ambient_light_color = Color(0.27,0.35,0.55).lerp(Color(0.78,0.84,0.94),daylight)

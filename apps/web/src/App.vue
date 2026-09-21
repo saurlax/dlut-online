@@ -9,7 +9,7 @@ import filmPoster from "./assets/campus-film-poster.jpg";
 import ProfilePage from "./ProfilePage.vue";
 import AccountPage from "./AccountPage.vue";
 import { account, authReady, authError, restoreSession } from "./auth";
-import { downloads, detectDesktopPlatform } from "./downloads";
+import { downloads, detectDownloadPlatform } from "./downloads";
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -29,10 +29,10 @@ const isAccountPage = /^\/(login|register)\/?$/.test(window.location.pathname);
 const isRegisterPage = /^\/register\/?$/.test(window.location.pathname);
 if (isAccountPage) document.title = `${isRegisterPage ? '注册' : '登录'} | DLUT Online`;
 const isDownloadPage = /^\/download\/?$/.test(window.location.pathname);
-const platform = detectDesktopPlatform(navigator.userAgent, navigator.platform, navigator.maxTouchPoints);
+const platform = detectDownloadPlatform(navigator.userAgent, navigator.platform, navigator.maxTouchPoints);
 const recommended = platform ? downloads[platform] : null;
 const downloadUrl = recommended?.url ?? "/download";
-const downloadLabel = recommended?.button ?? "选择桌面版本";
+const downloadLabel = recommended?.button ?? "选择客户端版本";
 function goHome() { window.location.assign("/"); }
 if (isDownloadPage) document.title = "下载客户端 | DLUT Online";
 const video = ref<HTMLVideoElement | null>(null);
@@ -92,11 +92,11 @@ const currentScene = computed(() => scenes[selected.value]!);
       <main v-else-if="isDownloadPage" class="download-content">
         <n-page-header @back="goHome">
           <template #back><n-button text aria-label="返回首页">←</n-button></template>
-          <template #title><h1 class="download-title">选择你的桌面版本</h1></template>
+          <template #title><h1 class="download-title">选择你的客户端版本</h1></template>
           <template #header><n-text depth="3">DLUT Online</n-text></template>
-          <template #footer><n-text depth="3">支持 Windows x86_64 和 macOS Universal。</n-text></template>
+          <template #footer><n-text depth="3">支持 Windows x86_64、macOS Apple 芯片，另提供 Android arm64 测试版。</n-text></template>
         </n-page-header>
-        <n-grid cols="1 m:2" responsive="screen" :x-gap="24" :y-gap="24" class="download-options">
+        <n-grid cols="1 m:3" responsive="screen" :x-gap="24" :y-gap="24" class="download-options">
           <n-gi v-for="(item, key) in downloads" :key="key">
             <n-card size="large" :title="item.label" :class="{ recommended: platform === key }" class="download-option">
               <template #header-extra><n-tag v-if="platform === key" type="primary" size="small" :bordered="false">当前系统</n-tag></template>
