@@ -210,6 +210,8 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 
 ## 图形设置技术参考
 
+2026-09-20 为校医院既有面砖局部新增项目程序生成的法向及粗糙度数据图，生成器为 `apps/game/tools/build_ceramic_pbr.gd`；照片来源、适用范围、参数与哈希沿用并补充于[建筑材质来源](references/shared/buildings/textures.json)。石铺地微表面同样为项目程序化近似。均不是实景扫描，不增加照片授权范围，不将原有生成颜色图或参考照片标记为 CC0。通过 Context7 核对 Godot 的 [SurfaceTool 切线生成](https://docs.godotengine.org/en/4.7/classes/class_surfacetool.html)及[标准材质法向约定](https://docs.godotengine.org/en/4.7/tutorials/3d/standard_material_3d.html)，文档归属沿用下述许可说明。
+
 2026-09-18 通过 Context7 与 Godot 4.7 官方文档核对图形选项及兼容性：[渲染器比较](https://docs.godotengine.org/en/4.7/tutorials/rendering/renderers.html)、[Viewport](https://docs.godotengine.org/en/4.7/classes/class_viewport.html)、[Environment](https://docs.godotengine.org/en/4.7/classes/class_environment.html)、[RenderingDevice](https://docs.godotengine.org/en/4.7/classes/class_renderingdevice.html)、[SDFGI](https://docs.godotengine.org/en/4.7/tutorials/3d/global_illumination/using_sdfgi.html)。用于 MSAA/FXAA/SMAA/TAA、FSR/MetalFX、屏幕空间效果、动态 GI 与设备能力判断；文档按 Godot 的 CC BY 3.0 许可说明归属。设置齿轮为项目自行绘制的 SVG，没有引入第三方图标资源。
 
 ## 脚步音效

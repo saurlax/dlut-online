@@ -49,10 +49,21 @@ func material(builder, finish: String, color: Color, triplanar := false) -> Stan
 func map_box(node: MeshInstance3D, middle: Vector2) -> void:
 	var arrays: Array = node.mesh.surface_get_arrays(0)
 	var vertices: PackedVector3Array = arrays[Mesh.ARRAY_VERTEX]
+	var normals: PackedVector3Array = arrays[Mesh.ARRAY_NORMAL]
 	var uv := PackedVector2Array()
-	for vertex in vertices:
-		uv.append(Vector2(vertex.x + middle.x, -(vertex.y + middle.y)))
+	for i in vertices.size():
+		var vertex := vertices[i]
+		# Preserve the facade grid, but give the thin box edges non-degenerate UVs.
+		if absf(normals[i].x) > 0.5:
+			uv.append(Vector2(vertex.z, -(vertex.y + middle.y)))
+		elif absf(normals[i].y) > 0.5:
+			uv.append(Vector2(vertex.x + middle.x, vertex.z))
+		else:
+			uv.append(Vector2(vertex.x + middle.x, -(vertex.y + middle.y)))
 	arrays[Mesh.ARRAY_TEX_UV] = uv
 	var mesh := ArrayMesh.new()
 	mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
-	node.mesh = mesh
+	var surface := SurfaceTool.new()
+	surface.create_from(mesh, 0)
+	surface.generate_tangents()
+	node.mesh = surface.commit()

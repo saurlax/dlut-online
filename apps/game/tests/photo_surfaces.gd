@@ -31,5 +31,27 @@ func _initialize() -> void:
 	wall.position.z = 1.0
 	assert(builder.clip_shell(off_plane, wall, Vector2.ZERO, Vector2.RIGHT, Vector2.DOWN, Rect2(0, 0, 3, 3)) == 0)
 	wall.free()
+	# A remapped box must retain geometry and have usable tangent frames on ALL faces.
+	var box := MeshInstance3D.new()
+	box.mesh = BoxMesh.new()
+	box.mesh.size = Vector3(2, 3, 0.03)
+	var original: Array = box.mesh.surface_get_arrays(0)
+	preload("res://tools/build_surface_materials.gd").new().map_box(box, Vector2(4, 5))
+	var mapped: Array = box.mesh.surface_get_arrays(0)
+	for channel in [Mesh.ARRAY_VERTEX, Mesh.ARRAY_NORMAL, Mesh.ARRAY_INDEX]:
+		assert(original[channel] == mapped[channel], "UV remapping changed geometry")
+	var uv: PackedVector2Array = mapped[Mesh.ARRAY_TEX_UV]
+	var indices: PackedInt32Array = mapped[Mesh.ARRAY_INDEX]
+	var normals: PackedVector3Array = mapped[Mesh.ARRAY_NORMAL]
+	var tangents: PackedFloat32Array = mapped[Mesh.ARRAY_TANGENT]
+	for i in range(0, indices.size(), 3):
+		assert(absf((uv[indices[i+1]] - uv[indices[i]]).cross(uv[indices[i+2]] - uv[indices[i]])) > 0.00001, "Degenerate side UV")
+	for i in normals.size():
+		var tangent := Vector3(tangents[i*4], tangents[i*4+1], tangents[i*4+2])
+		assert(tangent.is_finite() and absf(tangent.length() - 1.0) < 0.001)
+		assert(absf(tangent.dot(normals[i])) < 0.001, "Tangent not orthogonal")
+		if absf(normals[i].z) > 0.5:
+			assert(tangent.dot(Vector3.RIGHT) > 0.999, "Facade tangent does not follow U")
+	box.free()
 	print("PHOTO SURFACE CLIPPING PASS")
 	quit()
