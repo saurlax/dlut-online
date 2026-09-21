@@ -12,6 +12,8 @@ apps/web/src/assets/*.mp4 filter=lfs diff=lfs merge=lfs -text
 
 # Compressed, shared runtime vegetation meshes
 apps/game/assets/vegetation/*.res filter=lfs diff=lfs merge=lfs -text
+apps/game/assets/characters/models/*.res filter=lfs diff=lfs merge=lfs -text
+apps/game/assets/characters/models/*.tscn filter=lfs diff=lfs merge=lfs -text
 apps/game/assets/campuses/*/models/vegetation_lawn.res filter=lfs diff=lfs merge=lfs -text
 
 # Preserve the byte digest of the archived Panjin elevation grid on every platform.
