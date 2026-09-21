@@ -8,7 +8,10 @@
 | [heightfield.json](heightfield.json) | 从北到南、从西到东排列的绝对高度网格 |
 | [alignment.json](alignment.json) | 迁移前的轮廓匹配与经验平移档案；当前生成器不使用 |
 | [source.json](source.json) | 来源、日期、许可、坐标、覆盖、处理与输出校验值 |
+| [lake-shores.json](lake-shores.json) | 思源湖、涌泉湖航拍/近景对岸高水低关系的约束及局部坡形估计，不是实测标高 |
 
 网格结构、生成命令及精度边界见 [高程数据依据](../../shared/terrain/basis.md)，许可声明见 [CREDITS.md](../../../CREDITS.md)。当前已用于共享 WGS84 基准下的过滤 DSM 地形近似，不能称为实测裸地；OSM 平面来源及历史官网档案见 [mapping/](../mapping/)。
 
 新增资料须说明水平坐标系、垂直基准、单位、采集日期、分辨率、精度、覆盖范围与许可；未知项明确标注。录入遵循 [目录规范](../../README.md)，不得用插值或照片估计冒充新增测量精度。
+
+双湖近岸按学校照片修正水面与草岸的高低关系，沿用现有 OSM 轮廓和 WGS84 基准。原始 DSM 与 10 米预览网格不改；离线生成时在岸线周围局部采用 1 米网格接合缓坡、步道与原地形，植被同步贴地，细分间距不是测量精度。修改 lake-shores.json 后须运行完整 `apps/game/tools/build_model.gd` 并重建服务端碰撞，不能只更新水面或地形。

@@ -5,7 +5,16 @@ const Catalog = preload("res://scripts/shared/campus_catalog.gd")
 func _initialize() -> void: rebuild.call_deferred()
 
 func rebuild() -> void:
-	for campus: String in Catalog.CAMPUSES:
+	var campuses: Array = Array(OS.get_cmdline_user_args())
+	if campuses.is_empty(): campuses = Catalog.CAMPUSES.keys()
+	# Photo grading also moves paths and planting. Never update only half that set.
+	for campus: String in campuses:
+		assert(Catalog.CAMPUSES.has(campus), "Unknown campus " + campus)
+		if FileAccess.file_exists("res://../../references/%s/terrain/lake-shores.json" % campus):
+			push_error("Photo-graded shores require the full campus generator, including roads and vegetation: " + campus)
+			quit(1)
+			return
+	for campus: String in campuses:
 		var terrain := preload("res://tools/build_terrain.gd").new()
 		terrain.load_campus(campus)
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(Catalog.CAMPUSES[campus].manifest))

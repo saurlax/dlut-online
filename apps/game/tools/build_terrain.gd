@@ -2,11 +2,17 @@ extends RefCounted
 ## Offline terrain construction and fitting. No runtime mesh generation.
 
 var data: Dictionary
+var shores: RefCounted
 
 func load_campus(campus: String) -> void:
 	data = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/%s/data/terrain.json" % campus))
+	shores = preload("res://tools/build_lake_shores.gd").new()
+	shores.load_campus(campus, data)
 
 func elevation(x: float, z: float) -> float:
+	return shores.elevation(self,x,z) if shores != null else raw_elevation(x,z)
+
+func raw_elevation(x: float, z: float) -> float:
 	var col := clampf((x - float(data.origin_xz[0])) / float(data.step_m), 0, int(data.width) - 1.00001)
 	var row := clampf((z - float(data.origin_xz[1])) / float(data.step_m), 0, int(data.height) - 1.00001)
 	var c := int(col)
@@ -21,7 +27,24 @@ func elevation(x: float, z: float) -> float:
 	return a + u * (b - a) + v * (d - a) if u + v <= 1 else e + (1 - u) * (d - e) + (1 - v) * (b - e)
 
 func point(c: int, r: int) -> Vector3:
-	return Vector3(float(data.origin_xz[0]) + c * float(data.step_m), data.rows[r][c], float(data.origin_xz[1]) + r * float(data.step_m))
+	var x := float(data.origin_xz[0])+c*float(data.step_m)
+	var z := float(data.origin_xz[1])+r*float(data.step_m)
+	return Vector3(x,elevation(x,z),z)
+
+func cell_triangles(col: int, row: int) -> Array[PackedVector2Array]:
+	var result: Array[PackedVector2Array] = []
+	var divisions: int = shores.divisions(col,row) if shores != null else 1
+	var step := float(data.step_m)/divisions
+	var origin := Vector2(data.origin_xz[0],data.origin_xz[1])+Vector2(col,row)*float(data.step_m)
+	for r in divisions:
+		for c in divisions:
+			var a := origin+Vector2(c,r)*step
+			var b := a+Vector2(step,0)
+			var d := a+Vector2(0,step)
+			var e := a+Vector2(step,step)
+			result.append(PackedVector2Array([a,b,d]))
+			result.append(PackedVector2Array([b,e,d]))
+	return result
 
 func build(builder: SceneTree, campus: String) -> void:
 	load_campus(campus)
@@ -59,8 +82,10 @@ func save_terrain(material: Material, campus: String, regions: Array) -> void:
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for r in int(data.height) - 1:
 		for c in int(data.width) - 1:
-			water.terrain_triangle(st, PackedVector3Array([point(c,r),point(c+1,r),point(c,r+1)]), regions, self)
-			water.terrain_triangle(st, PackedVector3Array([point(c+1,r),point(c+1,r+1),point(c,r+1)]), regions, self)
+			for cell in cell_triangles(c,r):
+				var points := PackedVector3Array()
+				for p in cell: points.append(Vector3(p.x,elevation(p.x,p.y),p.y))
+				water.terrain_triangle(st, points, regions, self)
 	st.index()
 	st.generate_normals()
 	var mesh := MeshInstance3D.new()
@@ -143,11 +168,7 @@ func fit_road(node: MeshInstance3D) -> void:
 		var last := Vector2i((bounds.end - origin) / step)
 		for row in range(maxi(0, first.y), mini(int(data.height) - 2, last.y) + 1):
 			for col in range(maxi(0, first.x), mini(int(data.width) - 2, last.x) + 1):
-				var a := origin + Vector2(col, row) * step
-				var b := a + Vector2(step, 0)
-				var c := a + Vector2(0, step)
-				var d := a + Vector2(step, step)
-				for cell in [PackedVector2Array([a, b, c]), PackedVector2Array([b, d, c])]:
+				for cell in cell_triangles(col,row):
 					for piece in Geometry2D.intersect_polygons(outline, cell):
 						var indices := Geometry2D.triangulate_polygon(piece)
 						for j in range(0, indices.size(), 3):

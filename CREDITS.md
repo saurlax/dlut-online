@@ -49,7 +49,7 @@ Third-Party Notices
 
 盘锦C01道路与建筑身份核对参考[2024年校史文化展厅启用报道](https://news.dlut.edu.cn/info/1011/106214.htm)及[校区物业服务范围](https://pjxqzwb.dlut.edu.cn/fwzn/xqfw/xqwyfw.htm)，读取日期2026-09-17。仅用于区分旧地图名称与后续用途，不能据此迁移建筑或推导平面尺寸；照片80090及lm30瓦片来源摘要见共享footprint-review.json的77977记录，原图未打入客户端，适用第2.1条授权说明。
 
-室外道路细节还参考 [令希图书馆南侧阅读空间报道](https://news.dlut.edu.cn/info/1292/117214.htm)、[开发区校园风光](https://news.dlut.edu.cn/info/1292/147345.htm)和[教学区南侧阅读空间报道](https://news.dlut.edu.cn/info/1022/143385.htm)。读取日期为 2026-09-16，照片对象、原始 URL、哈希与用途见 [道路细节依据](references/shared/mapping/roads.md)及对应照片索引。仅离线参考铺装与台阶，原图不打入游戏；开放许可仍未确认，适用第 2.1 条授权说明。程序生成纹理不直接复用照片像素。
+室外道路细节还参考 [令希图书馆南侧阅读空间报道](https://news.dlut.edu.cn/info/1292/117214.htm)、[开发区校园风光](https://news.dlut.edu.cn/info/1292/147345.htm)和[教学区南侧阅读空间报道](https://news.dlut.edu.cn/info/1022/143385.htm)。读取日期为 2026-09-16，照片对象、原始 URL、哈希与用途见 [道路细节依据](references/shared/mapping/roads.md)及对应照片索引。2026-09-21 复核既有开发区双湖照片，用于[湖岸高低关系与缓坡修正](references/eda/terrain/lake-shores.json)，拍摄日期未知，照片不提供绝对高程或实测水深。仅离线参考铺装、台阶和湖岸，原图不打入游戏；开放许可仍未确认，适用第 2.1 条授权说明。程序生成纹理不直接复用照片像素。
 
 ### 2.4 Copernicus 高程数据
 

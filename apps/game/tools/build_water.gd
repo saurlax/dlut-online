@@ -20,6 +20,8 @@ func regions(manifest: Dictionary, terrain: RefCounted, campus: String) -> Array
 			var holes: Array[PackedVector2Array] = []
 			for hole: Array in feature.get("holes", []): holes.append(packed(hole))
 			var level := float(terrain.data.feature_base_y.get(name, height)) + (0.2 if campus == "eda" else 0.05)
+			if terrain.shores != null and terrain.shores.water_levels.has(name):
+				level = float(terrain.shores.water_levels[name])
 			result.append({"polygon":ring, "holes":holes, "bounds":bounds.grow(0.001), "level":level, "source":name})
 	return result
 
@@ -56,7 +58,9 @@ func terrain_triangle(st: SurfaceTool, points: PackedVector3Array, regions: Arra
 	for quad in Roads.new().tessellate(rings, cuts): emit_quad(st, quad, {}, terrain, false)
 
 func emit_quad(st: SurfaceTool, quad: PackedVector2Array, region: Dictionary, terrain: RefCounted, surface: bool) -> void:
-	for indices in [[0,2,1], [0,3,2]]:
+	# Match the terrain's east/south winding. Reversed clipped faces corrupt
+	# shared shoreline normals and incorrectly expose the underside of the water.
+	for indices in [[0,1,2], [0,2,3]]:
 		emit(st, quad[indices[0]], quad[indices[1]], quad[indices[2]], region, terrain, surface)
 
 func emit(st: SurfaceTool, a: Vector2, b: Vector2, c: Vector2, region: Dictionary, terrain: RefCounted, surface: bool) -> void:
