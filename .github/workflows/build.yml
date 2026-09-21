@@ -8,6 +8,8 @@ on:
       - "apps/**"
       - "!apps/**/*.md"
       - ".github/workflows/**"
+      - ".github/scripts/**"
+      - "compose.yaml"
       - ".dockerignore"
       - ".gitattributes"
   pull_request:
@@ -16,6 +18,8 @@ on:
       - "apps/**"
       - "!apps/**/*.md"
       - ".github/workflows/**"
+      - ".github/scripts/**"
+      - "compose.yaml"
       - ".dockerignore"
       - ".gitattributes"
   workflow_dispatch:
@@ -38,11 +42,28 @@ concurrency:
   cancel-in-progress: ${{ github.ref_type != 'tag' }}
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      game: ${{ steps.targets.outputs.game }}
+      web: ${{ steps.targets.outputs.web }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Select application builds
+        id: targets
+        env:
+          DO_RELEASE_BUILD: ${{ inputs.release || false }}
+        run: python3 .github/scripts/build_targets.py
+
   test:
     uses: ./.github/workflows/test.yml
 
   windows:
-    needs: test
+    needs: [changes, test]
+    if: needs.changes.outputs.game == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
@@ -79,7 +100,8 @@ jobs:
           if-no-files-found: error
 
   android:
-    needs: test
+    needs: [changes, test]
+    if: needs.changes.outputs.game == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     permissions:
@@ -157,7 +179,8 @@ jobs:
           EOF
 
   macos:
-    needs: test
+    needs: [changes, test]
+    if: needs.changes.outputs.game == 'true'
     runs-on: macos-latest
     timeout-minutes: 40
     env:
@@ -197,7 +220,8 @@ jobs:
           if-no-files-found: error
 
   server:
-    needs: test
+    needs: [changes, test]
+    if: needs.changes.outputs.game == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:
@@ -271,7 +295,8 @@ jobs:
           done
 
   web:
-    needs: test
+    needs: [changes, test]
+    if: needs.changes.outputs.web == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
