@@ -238,6 +238,9 @@ func integer(value: Variant) -> bool:
 	return finite_number(value) and float(value) >= 0 and float(value) <= 9007199254740991.0 and floorf(float(value)) == float(value)
 
 func receive_input(c: Dictionary, m: Dictionary) -> void:
+	if m.has("rise") and not m.rise is bool:
+		close(c, 4006, "invalid rise input")
+		return
 	if not integer(m.get("seq")) or not integer(m.get("jump")) or not finite_number(m.get("yaw")) or absf(float(m.yaw)) > TAU or not m.get("run") is bool or not m.get("axis") is Array or m.axis.size() != 2 or not finite_number(m.axis[0]) or not finite_number(m.axis[1]) or m.has("position") or m.has("delta") or m.has("speed"):
 		close(c, 4006, "invalid input")
 		return
@@ -245,6 +248,7 @@ func receive_input(c: Dictionary, m: Dictionary) -> void:
 	c.seq = int(m.seq)
 	c.axis = Vector2(clampf(float(m.axis[0]), -1.0, 1.0), clampf(float(m.axis[1]), -1.0, 1.0)).limit_length()
 	c.run = m.run
+	c.rise = m.get("rise", false)
 	c.yaw = float(m.yaw)
 	c.last_input = Time.get_ticks_msec()
 	c.last = c.last_input
@@ -267,7 +271,7 @@ func _physics_process(delta: float) -> void:
 		if c.frozen: continue
 		c.body.rotation.y = c.yaw
 		var axis: Vector2 = c.axis if Time.get_ticks_msec() - c.last_input <= 500 else Vector2.ZERO
-		Movement.step(c.body, axis, c.run, c.get("jump_pending", false), delta, worlds[c.campus].get_meta("spawn"))
+		Movement.step(c.body, axis, c.run, c.get("jump_pending", false), delta, worlds[c.campus].get_meta("spawn"), c.get("rise", false) and Time.get_ticks_msec() - c.last_input <= 500)
 		c.jump_pending = false
 	if tick % 6 == 0:
 		for campus: String in MAPS:
@@ -354,6 +358,7 @@ func finish_transfer(c: Dictionary, status: String) -> void:
 	c.seq = -1
 	c.jump = 0
 	c.jump_pending = false
+	c.rise = false
 	c.axis = Vector2.ZERO
 	c.body.velocity = Vector3.ZERO
 	c.frozen = status == "cancelled"
