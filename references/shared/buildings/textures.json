@@ -150,6 +150,55 @@
         1
       ],
       "limitations": "不是实景扫描；微观结构、尺寸及粗糙度均为近似。生成结果不保证逐像素无缝，已检查重复铺贴。方砖变体重复尺度为 0.4 × 0.8 米；矿物面最终采用 0.5 米尺度缩小颗粒。"
+    },
+    {
+      "name": "small_ceramic_tiles_pbr",
+      "type": "project procedural data maps",
+      "date": "2026-09-20",
+      "generator": "apps/game/tools/build_ceramic_pbr.gd",
+      "coverage": "凌水校医院 77487 已有 Photo tile b5ae83 局部；不自动扩展其他 ceramic 材质",
+      "reference": "沿用 small_ceramic_tiles_albedo.png 条目中的 77487 照片与既有配准，不新增外部素材",
+      "repeat_metres": [
+        0.4,
+        0.4
+      ],
+      "normal_convention": "OpenGL",
+      "visual_parameters": {
+        "grid": [
+          4,
+          8
+        ],
+        "joint_transition_depth_metres": 0.00035,
+        "tile_roughness": 0.48,
+        "grout_roughness": 0.9
+      },
+      "files": [
+        {
+          "path": "apps/game/assets/textures/buildings/small_ceramic_tiles_normal.png",
+          "sha256": "1c764a9130ebac5c3f5bde9a5d95ec84070a17a47c903db6a548fe2abe0963e2"
+        },
+        {
+          "path": "apps/game/assets/textures/buildings/small_ceramic_tiles_roughness.png",
+          "sha256": "4a30f0a1a5d817630b57f1b93b6c8baa213c9ddc9357fa4288f816f2f210f398"
+        }
+      ],
+      "limitations": "按既有生成颜色图的规则网格构造浅填缝过渡，未从亮度推断深度；微观尺寸、釉面粗糙度及逐像素配准均为视觉近似，非扫描或测量。无顶点位移，不改变几何与碰撞。",
+      "license_note": "项目自行编写程序生成，不将原有参考照片或生成颜色图重新标记为 CC0。"
     }
-  ]
+  ],
+  "stone_paving_detail": {
+    "date": "2026-09-20",
+    "implementation": "apps/game/assets/roads/photo_surface.gdshader",
+    "coverage": "仅现有 stone_paving.tres 引用面，保留原有配准、方向与 0.6 米尺度；红路面和人字砖未启用",
+    "visual_parameters": {
+      "joint_transition_depth_metres": 0.0008,
+      "micrograin_height_metres": 8e-05,
+      "stone_roughness_range": [
+        0.76,
+        0.82
+      ],
+      "joint_roughness": 0.94
+    },
+    "limitations": "程序化微表面视觉近似；并非实测铺地高度或反射参数。无位移、积水或碰撞变化。远处细颗粒按屏幕导数淡化。"
+  }
 }
