@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "campus_id": "eda",
+  "reviewed": "2026-09-21",
+  "sources": [
+    {
+      "photo": "references/eda/vegetation/photos/eda-lake-2.jpg",
+      "source_url": "https://news.dlut.edu.cn/info/1292/147345.htm",
+      "object_id": "eda-lake:2",
+      "retrieved": "2026-09-16",
+      "capture_date": "unknown",
+      "view": "斜视航拍和近俯视，主湖、北侧小湖、分隔步道、南侧广场及外围道路可辨认",
+      "occlusion": "树冠遮挡局部岸线与步道边缘；无法确认湖底和绝对标高",
+      "registration": "沿用已登记的两个 OSM 水面轮廓，以湖形、分隔步道及南侧广场关系匹配，不使用照片外包络或 DLUTMap bound",
+      "use": "水面位于岸内，草岸连接既有红色步道，保留两湖与外围地形的关系"
+    },
+    {
+      "photo": "references/eda/vegetation/photos/eda-lake-4.jpg",
+      "source_url": "https://news.dlut.edu.cn/info/1292/147345.htm",
+      "object_id": "eda-lake:4",
+      "retrieved": "2026-09-16",
+      "capture_date": "unknown",
+      "view": "主湖沿岸步道、草坡与景石的地面斜视近景",
+      "occlusion": "植物遮挡部分坡脚；透视图无尺度控制点",
+      "registration": "与航拍中的主湖东侧环形步道和临水景石位置交叉核对，仅作高低关系与草岸形态证据",
+      "use": "水面低于草岸和步道，草岸缓坡向水边下降，禁止水面高于外围地坪"
+    }
+  ],
+  "classification": "photo-constrained local visual approximation, not a surveyed shoreline elevation or bathymetry",
+  "precision": "照片只支持岸高水低和缓坡形态。水位取原 DSM 湖区地坪减 0.45 米；0.6 米岸高、3 米坡宽、8 米近岸平台、16 米过渡范围均为视觉估计。不得声称实测，不改变 OSM 水面边界或绝对 DSM 档案；两湖保留原估计标高差。重叠过渡仅插值合成地形，不提供新测量控制点。",
+  "water_offset_m": -0.45,
+  "wet_edge_offset_m": -0.12,
+  "bank_height_m": 0.6,
+  "bank_width_m": 3.0,
+  "shelf_width_m": 8.0,
+  "blend_end_m": 16.0,
+  "mesh_step_m": 1.0,
+  "lakes": [
+    {"feature_id": "2304775", "osm_id": "way/232560296"},
+    {"feature_id": "39328846", "osm_id": "way/232560016"}
+  ]
+}

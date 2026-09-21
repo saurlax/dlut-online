@@ -28,14 +28,14 @@ func TestAdmissionAndPresence(t *testing.T) {
 		return w.Code, v
 	}
 	id := "0123456789abcde"
-	if code, _ := request("POST", "/api/v1/game/tickets", id, map[string]any{"version": 4}); code != 400 {
-		t.Fatal("old chat-incompatible protocol must be rejected", code)
+	if code, _ := request("POST", "/api/v1/game/tickets", id, map[string]any{"version": 5}); code != 400 {
+		t.Fatal("old swimming-incompatible protocol must be rejected", code)
 	}
-	c, v := request("POST", "/api/v1/game/tickets", id, map[string]any{"id": id, "version": 5})
+	c, v := request("POST", "/api/v1/game/tickets", id, map[string]any{"id": id, "version": 6})
 	if c != 201 {
 		t.Fatal(c, v)
 	}
-	if v["game_server_url"] != "enet://game.example.com:1949" || v["version"] != float64(5) {
+	if v["game_server_url"] != "enet://game.example.com:1949" || v["version"] != float64(6) {
 		t.Fatal("missing trusted game endpoint", v)
 	}
 	if _, ok := v["ws_path"]; ok {
@@ -64,12 +64,12 @@ func TestAdmissionAndPresence(t *testing.T) {
 		t.Fatal(c)
 	}
 	now = now.Add(time.Second)
-	_, v = request("POST", "/api/v1/game/tickets", id, map[string]any{"id": id, "version": 5})
+	_, v = request("POST", "/api/v1/game/tickets", id, map[string]any{"id": id, "version": 6})
 	now = now.Add(31 * time.Second)
 	if c, _ := request("POST", "/api/v1/game/tickets/consume", "service", map[string]any{"ticket": v["ticket"]}); c != 401 {
 		t.Fatal("expired", c)
 	}
-	if c, _ := request("POST", "/api/v1/game/tickets", id, map[string]any{"id": id, "version": 5, "campus": "eda"}); c != 400 {
+	if c, _ := request("POST", "/api/v1/game/tickets", id, map[string]any{"id": id, "version": 6, "campus": "eda"}); c != 400 {
 		t.Fatal("campus must not bind ticket")
 	}
 	_, v = request("GET", "/api/v1/game/online", "", nil)
@@ -127,7 +127,7 @@ func TestOriginAndTicketLimits(t *testing.T) {
 		}
 	}
 	for i := 0; i < 101; i++ {
-		b, _ := json.Marshal(map[string]any{"id": fmt.Sprintf("%015x", i), "version": 5})
+		b, _ := json.Marshal(map[string]any{"id": fmt.Sprintf("%015x", i), "version": 6})
 		q := httptest.NewRequest("POST", "/api/v1/game/tickets", bytes.NewReader(b))
 		q.Header.Set("Authorization", "Bearer "+fmt.Sprintf("%015x", i))
 		w := httptest.NewRecorder()
@@ -151,7 +151,7 @@ func TestAccountTicketUsesResolvedIdentity(t *testing.T) {
 		return admission{ID: "account12345678", Username: "王同学", Kind: "account"}, true
 	}
 	r := apiHandler(g, false)
-	body, _ := json.Marshal(map[string]any{"id": "forged12345678", "version": 5})
+	body, _ := json.Marshal(map[string]any{"id": "forged12345678", "version": 6})
 	req := httptest.NewRequest("POST", "/api/v1/game/tickets", bytes.NewReader(body))
 	req.Header.Set("Authorization", "Bearer valid")
 	w := httptest.NewRecorder()
