@@ -1,5 +1,6 @@
 extends RefCounted
-## Photo-constrained local grading. Original DSM rows and water outlines stay intact.
+## Photo-constrained local grading. Original DSM rows remain intact; the manifest
+## supplies the same reviewed shoreline to grading, water, maps and collision.
 const Water = preload("res://scripts/shared/water.gd")
 var profile: Dictionary = {}
 var regions: Array[Dictionary] = []

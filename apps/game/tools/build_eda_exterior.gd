@@ -115,38 +115,22 @@ func build() -> void:
 	terrain.load_campus("eda")
 	var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/exterior-details.json"))
 	var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json")).roads
-	var matches := roads.filter(func(r): return int(r.osm_way_id) == int(profile.road.osm_way_id) and int(r.part) == int(profile.road.part))
-	assert(matches.size() == 1)
-	road = matches[0]
-	assert(int(road.osm_version) == int(profile.road.osm_version))
 	material("WhitePaint", Color("dedfd4"))
 	material("YellowPaint", Color("cfa24c"))
 	material("Pole", Color("c4cfca"), 0.45)
 	material("Housing", Color("687d7a"), 0.6)
 	material("Lens", Color("e7e6cf"))
 	var distance := 0.0
-	for i in range(int(profile.road.from_vertex), int(profile.road.to_vertex)):
-		var a := point(i)
-		var b := point(i+1)
-		var length := a.distance_to(b)
-		var side := (b-a).normalized().orthogonal()
-		# Edge lines follow photo-supported asphalt only, ending before junctions.
-		for sign_side in [-1.0, 1.0]:
-			strip(a+side*sign_side*3.08, b+side*sign_side*3.08, 0.10, "WhitePaint")
-		# Carry dash phase across OSM vertices; no restart at each segment.
-		var at := 0.0
-		while at < length-0.001:
-			var phase := fposmod(distance+at, 6.0)
-			var remaining := (3.0-phase) if phase < 3.0 else (6.0-phase)
-			var end := minf(length, at+maxf(remaining,0.001))
-			if phase < 3.0: strip(a.lerp(b,at/length),a.lerp(b,end/length),0.12,"YellowPaint")
-			at = end
-		distance += length
-	for entry: Dictionary in profile.lamps:
-		var a := point(int(entry.segment))
-		var b := point(int(entry.segment)+1)
-		var side := (b-a).normalized().orthogonal()*float(entry.side)
-		lamp(a.lerp(b,float(entry.fraction))+side*4.4,-side,float(profile.lamp_height_m))
+	var lamp_count := 0
+	for section: Dictionary in profile.sections:
+		var matches := roads.filter(func(r): return int(r.osm_way_id) == int(section.osm_way_id) and int(r.part) == int(section.part))
+		assert(matches.size() == 1 and int(matches[0].osm_version) == int(section.osm_version))
+		road = matches[0]
+		distance += road_details(section, float(profile.lamp_height_m))
+		lamp_count += section.lamps.size()
+	# The paired OSM carriageway lines enclose one photographed paved approach.
+	road = {"points": profile.approach_markings.points}
+	distance += road_details(profile.approach_markings, float(profile.lamp_height_m))
 	for key: String in batches:
 		var st: SurfaceTool = batches[key]
 		st.index()
@@ -163,5 +147,32 @@ func build() -> void:
 	scene.set_script(preload("res://scripts/client/street_lighting.gd"))
 	assert(packed.pack(scene) == OK)
 	assert(ResourceSaver.save(packed, OUTPUT) == OK)
-	print("EDA EXTERIOR SAVED: ", profile.lamps.size(), " lamps, ", snappedf(distance,0.1), " m of road markings")
+	print("EDA EXTERIOR SAVED: ", lamp_count, " lamps, ", snappedf(distance,0.1), " m of road markings")
 	quit()
+
+func road_details(section: Dictionary, lamp_height: float) -> float:
+	var distance := 0.0
+	for i in range(int(section.from_vertex), int(section.to_vertex)):
+		var a := point(i)
+		var b := point(i+1)
+		var length := a.distance_to(b)
+		var side := (b-a).normalized().orthogonal()
+		# Edge lines follow photo-supported asphalt only, ending before junctions.
+		for sign_side in [-1.0, 1.0]:
+			var offset: float = section.get("edge_offset_m", 3.08)
+			strip(a+side*sign_side*offset, b+side*sign_side*offset, 0.10, "WhitePaint")
+		# Carry dash phase across OSM vertices; no restart at each segment.
+		var at := 0.0
+		while at < length-0.001:
+			var phase := fposmod(distance+at, 6.0)
+			var remaining := (3.0-phase) if phase < 3.0 else (6.0-phase)
+			var end := minf(length, at+maxf(remaining,0.001))
+			if phase < 3.0: strip(a.lerp(b,at/length),a.lerp(b,end/length),0.12,"YellowPaint")
+			at = end
+		distance += length
+	for entry: Dictionary in section.lamps:
+		var a := point(int(entry.segment))
+		var b := point(int(entry.segment)+1)
+		var side := (b-a).normalized().orthogonal()*float(entry.side)
+		lamp(a.lerp(b,float(entry.fraction))+side*4.4,-side,lamp_height)
+	return distance

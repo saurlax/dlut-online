@@ -97,6 +97,7 @@ func save_terrain(material: Material, campus: String, regions: Array) -> void:
 					for piece in pieces: next.append_array(STAIR_PROFILE.outside_triangle(piece,replacement))
 					pieces = next
 				for piece in pieces: water.terrain_triangle(st, piece, regions, self)
+	if not shores.profile.is_empty(): water.seal_shores(st,regions,self)
 	st.index()
 	st.generate_normals()
 	var mesh := MeshInstance3D.new()

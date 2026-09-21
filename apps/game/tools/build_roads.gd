@@ -53,6 +53,20 @@ func build(builder, campus: String) -> void:
 		var edging := emit(builder, Geometry.polygons(painted, profile.edge_width), -0.066, builder.material("Photo path edging", Color("d0cec2")),surface_masks)
 		edging.set_meta("walk_collision", false)
 	var rings := Geometry.polygons(roads)
+	if campus == "eda":
+		var lake_profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/lakeside-environment.json"))
+		var walks: Array = []
+		var original: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json")).roads
+		for selection: Dictionary in lake_profile.sidewalk_roads:
+			for road: Dictionary in original:
+				if int(road.osm_way_id) == int(selection.osm_way_id):
+					var selected := road.duplicate()
+					selected.points = road.points.slice(int(selection.from_vertex), int(selection.to_vertex)+1)
+					walks.append(selected)
+		# Cut every road out of the sidewalk union so crossings remain open.
+		var trim := emit(builder, Geometry.polygons(walks, 3.0), -0.057, builder.material("Lake sidewalk stone trim", Color("c5c4b6")), rings+surface_masks)
+		trim.set_meta("walk_collision", true)
+		emit(builder, Geometry.polygons(walks, 2.8), -0.056, preload("res://assets/roads/red_brick_path.tres"), Geometry.polygons(roads, 0.16)+surface_masks)
 	var colored := Geometry.polygons(painted)
 	var key: String = "Road" if campus == "eda" else campus.capitalize() + " asphalt"
 	var asphalt: Material = preload("res://assets/roads/asphalt.tres") if campus == "eda" else builder.material(key, Color("656966"))
@@ -80,11 +94,21 @@ func build(builder, campus: String) -> void:
 		var surface_material: Material = builder.material("Map plaza paving",Color("c1b7a1"))
 		if surface.get("surface_type", "paving") == "asphalt":
 			surface_material = asphalt
+		elif surface.get("surface_type", "paving") == "stone":
+			surface_material = preload("res://assets/roads/stone_paving.tres")
 		# fit_road adds 0.08 m; keep reviewed thin ground surfaces walkable.
 		var lift: float = float(surface.get("render_lift_m",0.02))
 		assert(lift>0.0 and lift<=0.02)
 		var paving := emit(builder,outer,lift-0.08,surface_material,cutouts)
 		paving.set_meta("ground_surface_id",surface.id)
+		if surface.id == "eda-xiang-lakeside-paving":
+			var inlays: Array[PackedVector2Array] = []
+			for axis in 2:
+				for at in range(-146 if axis == 0 else 308, -90 if axis == 0 else 343, 4):
+					var line := PackedVector2Array([Vector2(at-0.035,300),Vector2(at+0.035,300),Vector2(at+0.035,345),Vector2(at-0.035,345)]) if axis == 0 else PackedVector2Array([Vector2(-150,at-0.035),Vector2(-90,at-0.035),Vector2(-90,at+0.035),Vector2(-150,at+0.035)])
+					inlays.append_array(Geometry2D.intersect_polygons(line,ring))
+			var inlay := emit(builder,inlays,-0.056,builder.material("Lake plaza grid inlay",Color("777b72")))
+			inlay.set_meta("walk_collision",false)
 
 func build_crosswalks(builder) -> void:
 	var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json")).roads

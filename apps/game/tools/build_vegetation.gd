@@ -50,7 +50,10 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 			continue
 		var area: Dictionary = registered[zone.id]
 		var registration: Dictionary = zone.get("osm_registration", {})
-		assert(area.osm_id == registration.get("osm_id") and area.osm_version == registration.get("osm_version") and area.geometry_sha256 == registration.get("expected_geometry_sha256"), "Regenerate registered planting geometry before building")
+		if area.has("photo_registration_sha256"):
+			assert(area.photo_registration_sha256 == FileAccess.get_sha256("res://../../references/eda/mapping/lakeside-environment.json"), "Regenerate lake planting registration")
+		else:
+			assert(area.osm_id == registration.get("osm_id") and area.osm_version == registration.get("osm_version") and area.geometry_sha256 == registration.get("expected_geometry_sha256"), "Regenerate registered planting geometry before building")
 		rng.seed = int(zone.seed)
 		var points := polygon_points(area.points)
 		var bounds := polygon_bounds(points)
@@ -61,7 +64,14 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 				var x := bounds.position.x + spacing*0.5
 				while x < bounds.end.x:
 					var at := Vector2(x,z) + Vector2(rng.randf_range(-0.28,0.28),rng.randf_range(-0.28,0.28))*spacing*float(plant.get("jitter",1.0))
-					if Geometry2D.is_point_in_polygon(at,points) and allowed(at,float(plant.get("clearance",2.0))):
+					var in_pattern := true
+					if plant.has("annuli"):
+						var pattern: Dictionary = plant.annuli
+						var radius := at.distance_to(Vector2(pattern.center[0],pattern.center[1]))
+						in_pattern = false
+						for target: float in pattern.radii:
+							if absf(radius-target) <= float(pattern.half_width): in_pattern = true
+					if in_pattern and Geometry2D.is_point_in_polygon(at,points) and allowed(at,float(plant.get("clearance",2.0))):
 						var height := rng.randf_range(float(plant.height[0]),float(plant.height[1]))
 						instances.append({"position":[snappedf(at.x,0.001),snappedf(elevation(at),0.001),snappedf(at.y,0.001)],"kind":plant.kind,"height":snappedf(height,0.001),"width":snappedf(rng.randf_range(0.88,1.16),0.001),"rotation_y":snappedf(rng.randf()*TAU,0.001),"variant":rng.randi_range(0,MESH_GENERATOR.VARIANTS-1),"zone":zone.id})
 					x += spacing
