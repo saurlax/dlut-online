@@ -1,5 +1,6 @@
 extends SceneTree
 
+var surface_deformations: Array[Dictionary] = []
 var scene := Node3D.new()
 var materials: Dictionary = {}
 var manifest: Dictionary
@@ -376,6 +377,9 @@ func build() -> void:
 							var a: Array = outline.points[i]
 							var b: Array = outline.points[(i+1)%outline.points.size()]
 							line(group,Vector3(a[0],0.4,a[1]),Vector3(b[0],0.4,b[1]),0.12,material("Court markings",Color("f6eedc")))
+					if feature.id == "39327169":
+						preload("res://tools/build_eda_goals.gd").new().build(self,group,feature)
+						preload("res://tools/build_eda_stands.gd").new().build(self,group,feature)
 				else:
 					sports(group,points,kind)
 			"gate":
@@ -394,7 +398,24 @@ func build() -> void:
 	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "eda"):
 		quit(1)
 		return
+	for item in surface_deformations: item.curve.apply(item.group,item.first_child)
+	surface_deformations.clear()
 	preload("res://tools/build_terrain.gd").new().build(self, "eda")
+	var bridge_profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/structures/xueyuan_bridge.json"))
+	var bridge_terrain = preload("res://tools/build_terrain.gd").new()
+	bridge_terrain.load_campus("eda")
+	preload("res://tools/build_eda_xueyuan_bridge.gd").new().build(self,bridge_profile,bridge_terrain)
+	preload("res://tools/build_eda_academic_c_stairs.gd").new().build(self)
+	preload("res://tools/build_eda_sports_entry.gd").new().build(self)
+	preload("res://tools/build_roads.gd").new().build_crosswalks(self)
+	preload("res://tools/build_eda_road_markings.gd").new().build(self)
+	preload("res://tools/build_eda_causeway_curb.gd").new().build(self)
+	preload("res://tools/build_eda_site_fixtures.gd").new().build(self)
+	preload("res://tools/build_eda_tree_pits.gd").new().build(self)
+	preload("res://tools/build_eda_entry_paving.gd").new().build(self)
+	preload("res://tools/build_eda_academic_entry_paving.gd").new().build(self)
+	preload("res://tools/build_eda_sculpture.gd").new().build(self)
+	preload("res://tools/eda_surface_details.gd").new().apply(scene)
 	merge_meshes(scene)
 	for mat in materials.values():
 		if mat.albedo_texture is NoiseTexture2D and mat.albedo_texture.get_image() == null:

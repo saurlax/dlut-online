@@ -1,6 +1,7 @@
 extends RefCounted
 ## Offline terrain construction and fitting. No runtime mesh generation.
 
+const STAIR_PROFILE=preload("res://tools/eda_stair_profile.gd")
 var data: Dictionary
 var shores: RefCounted
 
@@ -80,12 +81,22 @@ func save_terrain(material: Material, campus: String, regions: Array) -> void:
 	terrain.set_meta("water_regions", regions)
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var replacements: Array[PackedVector2Array]=[]
+	if campus=="eda":
+		replacements.append(STAIR_PROFILE.mask(STAIR_PROFILE.load_profile()))
+		var entrance=preload("res://tools/eda_sports_entry_profile.gd")
+		replacements.append(entrance.mask(entrance.load_profile()))
 	for r in int(data.height) - 1:
 		for c in int(data.width) - 1:
 			for cell in cell_triangles(c,r):
 				var points := PackedVector3Array()
 				for p in cell: points.append(Vector3(p.x,elevation(p.x,p.y),p.y))
-				water.terrain_triangle(st, points, regions, self)
+				var pieces: Array[PackedVector3Array] = [points]
+				for replacement in replacements:
+					var next: Array[PackedVector3Array] = []
+					for piece in pieces: next.append_array(STAIR_PROFILE.outside_triangle(piece,replacement))
+					pieces = next
+				for piece in pieces: water.terrain_triangle(st, piece, regions, self)
 	st.index()
 	st.generate_normals()
 	var mesh := MeshInstance3D.new()

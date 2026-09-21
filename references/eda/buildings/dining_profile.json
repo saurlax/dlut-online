@@ -11,7 +11,7 @@
         "sha256": "7508e8adb07e71ebf57f3914013750ad1dca4e4a47ebaabf3e709d186a8f27dd"
       }
     ],
-    "note": "照片左侧圆体对应官方西南折线边0/1，右侧矩形翼南立面对应边11、东立面对应边10。三层沿用12米估计高度，屋面12.18米；弧面保留原折线，不擅自替换官方轮廓。南面三列高窗、东面可见段四列高窗；西侧分隔高墙估计14.5米。窗高2.6米、层距4米、饰带和突出量均为照片比例估计；北侧、风管遮挡连接、底层入口及室内仍待核实。",
+    "note": "照片左侧圆体对应官方西南折线边0/1，右侧矩形翼南立面对应边11、东立面对应边10。三层沿用12米估计高度，屋面12.18米；圆体采用统一解析椭圆弧，固定与直翼相接的两端，纠正原多折线控制点；椭圆轴比与尺寸为近似。南面三列高窗、东面可见段四列高窗；西侧分隔高墙估计14.5米。窗高2.6米、层距4米、饰带和突出量均为照片比例估计；北侧、风管遮挡连接、底层入口及室内仍待核实。",
     "surface_details": {
       "source": "77943-0.jpg / 79682",
       "reviewed": "2026-09-14",
@@ -91,7 +91,77 @@
       ],
       "source": "photos/77943-0.jpg / 79682",
       "basis": "照片确认西南圆体、南侧矩形翼与东墙两条可见风管。圆体登记至西南/南弧段6、7、8；南翼按14到13由东向西读取，东墙按15到14由北向南读取，保持分隔墙和风管的物理方向。",
-      "limits": "原 OSM 语义为餐饮区域，依据本楼照片审阅后用于暂定外形，不泛化为所有餐饮区域的建筑基底。保留原照片估计层高与可见段比例，北侧和连接区域不推定；原轮廓仅保存在来源档案，不与新轮廓平均。"
+      "limits": "原 OSM 语义为餐饮区域，依据本楼照片审阅后用于暂定外形，不泛化为所有餐饮区域的建筑基底。保留原照片估计层高与可见段比例，北侧和连接区域不推定；原轮廓仅保存在来源档案，不与新轮廓平均。",
+      "southwest_roof_railing": {
+        "edges": [
+          6,
+          7,
+          8
+        ],
+        "horizontal_heights": [
+          12.22,
+          12.78,
+          12.95
+        ],
+        "main_post_max_spacing": 1.5,
+        "infill_per_bay": 6,
+        "infill_width": 0.018,
+        "infill_bottom": 12.22,
+        "infill_top": 12.78,
+        "inset": 0.08,
+        "corner_overlap": 0.025,
+        "dimensions_are_approximate": true,
+        "note": "西南已登记弧段使用三横杆与密竖栅，替代旧两横杆简化形式；转角取内偏线交点并共用立柱。仅装饰，不改变屋面与楼体碰撞。其他栏杆段保留原简化形式，不向未知背弧外推。"
+      },
+      "lower_sash_frames": {
+        "edges": [
+          6,
+          7,
+          8
+        ],
+        "floor_centers": [
+          6.0,
+          10.0
+        ],
+        "bay_midpoint": 0.5,
+        "relative_bottom": -1.4,
+        "relative_top": -0.45,
+        "width": 0.045,
+        "depth": 0.14,
+        "offset": 0.19,
+        "dimensions_are_approximate": true,
+        "note": "上两层保留三行横向分格，仅在最下行每个既有主跨中增加短竖梃。尺寸沿用已登记窗格的比例估计，底层、未知弧段和开启状态不外推。"
+      },
+      "curved_outline": {
+        "first_vertex": 4,
+        "last_vertex": 10,
+        "max_segment_m": 0.45,
+        "method": "analytic ellipse fitted to round-body anchors with fixed junction endpoints",
+        "control_points_preserved": false,
+        "dimensions_are_approximate": true,
+        "limits": "Approximate ellipse, not surveyed geometry. Junction vertices 4 and 10 are fixed; intermediate round-body vertices move by at most 1.041 m. Straight wing is unchanged. Shell, roof, glazing, frames and railing share this ellipse. Existing levels and window counts remain. Unobserved openings and interior are not inferred.",
+        "ellipse": {
+          "center_xz": [
+            349.25042050458484,
+            222.74208873853775
+          ],
+          "radii_m": [
+            20.350595635447394,
+            28.794295414141423
+          ],
+          "rotation_rad": 0.653882499335397,
+          "vertex_angles_rad": [
+            3.103104728875731,
+            2.6655133532118542,
+            2.18108359393466,
+            1.7589890510696509,
+            1.062621901439484,
+            0.5821459201474076,
+            0.3547030698025399
+          ]
+        },
+        "max_control_displacement_m": 1.0406407066181191
+      }
     }
   }
 }

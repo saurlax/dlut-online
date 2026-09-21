@@ -163,6 +163,9 @@ def build(campus, fetch=False):
         world_source, nodes, ways, _ = osm_world.archive(campus)
         for way_id in coverage['way_ids']:
             way = ways[way_id]
+            expected_version = coverage.get('expected_versions', {}).get(way_id)
+            if expected_version is not None and int(way.get('version')) != expected_version:
+                raise ValueError(f'Reviewed road coverage version changed: {way_id}')
             tags = osm_world.tags(way)
             roads = [r for r in roads if r['osm_way_id'] != int(way_id)]
             excluded = [r for r in excluded if r['osm_way_id'] != int(way_id)]
@@ -170,7 +173,7 @@ def build(campus, fetch=False):
                     or tags.get('indoor','no')!='no' or tags.get('bridge','no')!='no'
                     or tags.get('tunnel','no')!='no' or tags.get('layer','0')!='0'):
                 excluded.append({'osm_way_id':int(way_id),'osm_version':int(way.get('version')),
-                                 'tags':tags,'reason':'north coverage: unsupported stairs or non-ground-level way',
+                                 'tags':tags,'reason':coverage.get('runtime_scope', 'north coverage')+': unsupported stairs or non-ground-level way',
                                  'archive':coverage['archive']})
                 continue
             points = [osm_world.local(campus,*p) for p in osm_world.way_coordinates(way,nodes)]
@@ -179,7 +182,12 @@ def build(campus, fetch=False):
                 roads.append({'osm_way_id':int(way_id),'osm_version':int(way.get('version')),
                               'part':part,'name':tags.get('name',''),'highway':tags['highway'],
                               'width':road_width,'width_basis':basis,'points':path,
-                              'archive':coverage['archive'],'coverage':'explicit north-campus extension'})
+                              'archive':coverage['archive'],'coverage':coverage.get('runtime_scope', 'explicit north-campus extension')})
+                if 'edge_width_m' in coverage:
+                    edge_width = float(coverage['edge_width_m'])
+                    if not 0 <= edge_width <= 1.5:
+                        raise ValueError('Invalid reviewed road edge width')
+                    roads[-1]['edge_width'] = edge_width
         roads.sort(key=lambda r:(r['osm_way_id'],r['part']))
     terminations_path = refs / 'road-terminations.json'
     if terminations_path.exists():

@@ -1,0 +1,19 @@
+{
+  "crosswalks": [
+    {
+      "id": "academic-c-south",
+      "road_id": 1076344083,
+      "road_version": 3,
+      "road_vertex": 12,
+      "expected_road_points": [[155.9915,106.5666],[149.5541,109.7949],[146.357,111.3979]],
+      "footway_id": 1381476338,
+      "footway_version": 1,
+      "stripe_count": 7,
+      "stripe_width_m": 0.45,
+      "stripe_pitch_m": 0.85,
+      "stripe_length_m": 3.2,
+      "dimensions_are_approximate": true,
+      "limits": "Junction anchors horizontal location. Stripe dimensions and count are appearance estimates within the existing estimated 6 m carriageway; this does not establish stair stations or planting boundaries."
+    }
+  ]
+}

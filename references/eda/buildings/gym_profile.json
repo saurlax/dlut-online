@@ -222,7 +222,62 @@
           }
         ]
       },
-      "limits": "OSM 轮廓作为主体平面依据；3米基座、屋盖13.5/17米高度、挑檐比例和立杆尺寸沿用照片估计。原斜视轮廓的东侧突出部分不再作为建筑基底；东侧台阶、平台及室内没有有效配准与高程，继续保留缺口。"
+      "limits": "OSM 轮廓作为主体平面依据；3米基座、屋盖13.5/17米高度、挑檐比例和立杆尺寸沿用照片估计。原斜视轮廓的东侧突出部分不再作为建筑基底；东侧台阶、平台及室内没有有效配准与高程，继续保留缺口。",
+      "east_stair_review": {
+        "reviewed": "2026-09-20",
+        "osm_id": "way/1381503832",
+        "osm_version": 1,
+        "nodes": [
+          12790120950,
+          12790120951
+        ],
+        "centerline_points": [
+          [
+            -289.6034,
+            136.0442
+          ],
+          [
+            -247.3588,
+            136.2112
+          ]
+        ],
+        "centerline_length_m": 42.245,
+        "status": "three-part-approach-identified; flight-boundaries-and-grading-pending",
+        "limits": "完整正面图可辨主梯、中央树池、宽前场及前缘另一级；官网独立俯视图支持前场东侧另有窄梯接东路。主梯约17至18级仅为目测，保留一级左右误差。OSM西端位于墙外约6.16米，可以作为主梯脚候选，但官网图示的相对深度与此候选冲突，尚未确认，不能自动平均。不得以图示瓦片坐标直接替代WGS84地面坐标，也不得套旧质心平移。现有入口及地形均非测量高程；前场整平需解决至东路约3.30米、东南角约4.30米的承托差值。没有现成前场OSM面，需分别配准主梯/平台/外梯与侧边衔接，裁除旧斜坡后再生成碰撞，不以薄铺地覆盖高差。",
+        "sequence": [
+          "main broad entrance stair with central planter and side platforms",
+          "broad paved forecourt",
+          "separate narrow eastern stair connecting to the road"
+        ],
+        "existing_east_wall_x_approx": -295.76,
+        "west_node_distance_from_wall_m_approx": 6.16,
+        "main_stair_rise_count_estimate": [
+          17,
+          18
+        ],
+        "east_road": {
+          "osm_id": "way/1076344089",
+          "estimated_width_m": 7.0,
+          "west_edge_at_route_xz": [
+            -250.854,
+            136.2112
+          ],
+          "terrain_y": 15.803
+        },
+        "grade_constraints": {
+          "existing_entry_y": 22.1605,
+          "west_route_node_terrain_y": 19.1001,
+          "east_road_edge_terrain_y": 15.803,
+          "east_forecourt_corner_terrain_y_range": [
+            14.797,
+            16.815
+          ],
+          "fill_if_forecourt_kept_at_west_level_m_range": [
+            2.285,
+            4.303
+          ]
+        }
+      }
     }
   }
 }

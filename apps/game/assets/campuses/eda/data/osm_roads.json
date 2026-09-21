@@ -17,14 +17,73 @@
       "width_basis": "estimated:highway-class",
       "points": [
         [
-          263.9651,
-          196.8777
+          147.6263,
+          645.0
         ],
         [
-          269.1217,
-          176.863
+          153.0104,
+          621.5218
+        ],
+        [
+          155.5335,
+          611.926
+        ],
+        [
+          169.9808,
+          557.0675
+        ],
+        [
+          225.9211,
+          344.5688
+        ],
+        [
+          240.1005,
+          289.5322
+        ],
+        [
+          258.7905,
+          216.9627
+        ],
+        [
+          288.5233,
+          101.5572
+        ],
+        [
+          304.2581,
+          40.4871
+        ],
+        [
+          338.8125,
+          -92.173
+        ],
+        [
+          390.9421,
+          -292.3152
+        ],
+        [
+          401.6048,
+          -334.0936
+        ],
+        [
+          452.0754,
+          -531.8313
+        ],
+        [
+          453.9505,
+          -538.5662
+        ],
+        [
+          463.101,
+          -573.6765
+        ],
+        [
+          481.7879,
+          -645.0
         ]
-      ]
+      ],
+      "archive": "references/eda/mapping/osm-world.osm.gz",
+      "coverage": "Xuefu Avenue carriageways around Xueyuan footbridge, clipped to the existing terrain frame",
+      "edge_width": 0.12
     },
     {
       "osm_way_id": 188806490,
@@ -36,14 +95,69 @@
       "width_basis": "estimated:highway-class",
       "points": [
         [
-          257.8821,
-          174.3869
+          470.6892,
+          -645.0
         ],
         [
-          252.6045,
-          194.1859
+          453.0086,
+          -577.595
+        ],
+        [
+          452.3606,
+          -575.1125
+        ],
+        [
+          451.2546,
+          -570.9491
+        ],
+        [
+          451.0558,
+          -570.2033
+        ],
+        [
+          397.8893,
+          -368.792
+        ],
+        [
+          379.6746,
+          -294.8867
+        ],
+        [
+          328.2276,
+          -95.5794
+        ],
+        [
+          327.3721,
+          -92.2398
+        ],
+        [
+          290.6749,
+          51.363
+        ],
+        [
+          224.9965,
+          297.7587
+        ],
+        [
+          144.361,
+          610.991
+        ],
+        [
+          141.8898,
+          620.5979
+        ],
+        [
+          140.8702,
+          625.1397
+        ],
+        [
+          136.4219,
+          645.0
         ]
-      ]
+      ],
+      "archive": "references/eda/mapping/osm-world.osm.gz",
+      "coverage": "Xuefu Avenue carriageways around Xueyuan footbridge, clipped to the existing terrain frame",
+      "edge_width": 0.12
     },
     {
       "osm_way_id": 1076344082,
@@ -3022,5 +3136,10 @@
       },
       "reason": "unsupported area, steps, construction or non-ground-level way"
     }
-  ]
+  ],
+  "additional_coverage": {
+    "source": "references/eda/mapping/road-coverage.json",
+    "archive": "references/eda/mapping/osm-world.osm.gz",
+    "sha256_uncompressed": "5fe60eccd44b591e9e2e92087d77c67f15a0769ba694cc02b0f1bbfc253373a7"
+  }
 }

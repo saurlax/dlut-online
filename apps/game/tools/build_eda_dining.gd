@@ -1,6 +1,6 @@
 extends RefCounted
 
-const Facade = preload("res://tools/build_eda_academic.gd")
+const Facade = preload("res://tools/eda_dining_curved_facade.gd")
 
 func roof_railing(facade, start: float, finish: float, metal: Material) -> void:
 	var width := finish-start
@@ -10,38 +10,89 @@ func roof_railing(facade, start: float, finish: float, metal: Material) -> void:
 	for i in posts+1:
 		facade.panel(start+width*i/posts,12.57,0.035,0.78,0.035,-0.08,metal)
 
+func southwest_roof_railing(facade, points: PackedVector2Array, edge: int, edges: Array[int], metal: Material) -> void:
+	# Intersect the inset edge lines so adjacent railing sections share corners.
+	var start := 0.0
+	var finish: float = facade.length
+	var previous := (edge+points.size()-1)%points.size()
+	var following := (edge+1)%points.size()
+	var inset: Vector2 = facade.origin-facade.out*0.08
+	for neighbor in [previous,following]:
+		if not edges.has(neighbor): continue
+		var other := Facade.new()
+		other.frame_for(points,neighbor)
+		var cross: float = facade.axis.cross(other.axis)
+		if absf(cross)<0.00001: continue
+		var station: float = (other.origin-other.out*0.08-inset).cross(other.axis)/cross
+		if neighbor==previous: start=station
+		else: finish=station
+	# Small overlaps close the outer corners of the rectangular horizontal bars.
+	var rail_start := start-0.025 if edges.has(previous) else start
+	var rail_end := finish+0.025 if edges.has(following) else finish
+	for y in [12.22,12.78,12.95]:
+		facade.panel((rail_start+rail_end)/2,y,rail_end-rail_start,0.035,0.035,-0.08,metal)
+	var posts := maxi(1,ceili((finish-start)/1.5))
+	var pitch: float = (finish-start)/posts
+	for i in posts+1:
+		if i==0 and edges.has(previous): continue
+		facade.panel(start+pitch*i,12.57,0.035,0.78,0.035,-0.08,metal)
+	for i in posts:
+		for j in range(1,7):
+			facade.panel(start+pitch*(i+j/7.0),12.5,0.018,0.56,0.018,-0.08,metal)
+
 func build(host, group: Node3D, points: PackedVector2Array, registration: Dictionary = {}) -> void:
 	var facade := Facade.new()
 	facade.host = host
 	facade.group = group
+	facade.configure_curve(points,registration.get("curved_outline",{}))
 	group.set_meta("photo_reference","references/eda/buildings/dining_profile.json")
 	group.set_meta("interior_available",false)
 	var wall: Material = host.material("EDA dining buff masonry",Color("b6aa7f"))
 	var band: Material = host.material("EDA dining pale cornice",Color("c7bb93"))
 	var glass: Material = host.material("EDA dining opaque glazing",Color("506a61"))
 	var metal: Material = host.material("EDA dining window frames",Color("a4b0a0"))
+	var railing: Material = host.material("EDA dining southwest roof railing",Color("a4b0a0"))
+	railing.albedo_texture = null
+	railing.cull_mode = BaseMaterial3D.CULL_BACK
+	var curved_glass: Material = host.material("EDA dining curved blue glazing",Color("3c5d6c"))
+	var curved_metal: Material = host.material("EDA dining curved dark frames",Color("343f40"))
+	curved_glass.albedo_texture=null
+	curved_glass.metallic=0.45
+	curved_glass.roughness=0.24
+	curved_metal.albedo_texture=null
+	var sash: Material = host.material("EDA dining lower sash frames",Color("343f40"))
+	sash.albedo_texture = null
+	sash.cull_mode = BaseMaterial3D.CULL_BACK
 	var plinth: Material = host.material("EDA dining stone plinth",Color("7b7b6b"))
 	for mat in [wall,band,glass,metal,plinth]: mat.albedo_texture = null
 	# Small square tiles only on the individually registered visible wall portions.
 	var tile: Material = preload("res://tools/build_surface_materials.gd").new().material(host,"square_ceramic",Color("b6aa7f"))
 	glass.metallic = 0.3
 	glass.roughness = 0.3
-	facade.shell(points,12,0,wall)
-	facade.shell(points,12.18,12,band)
+	var outline: PackedVector2Array=facade.refined_outline(points)
+	facade.shell(outline,12,0,wall)
+	facade.shell(outline,12.18,12,band)
 	# Only the photo-visible southwest arc is registered for glazing.
-	for edge in registration.get("glazing_edges",[0,1]):
+	var glazing_edges: Array[int] = []
+	for edge in registration.get("glazing_edges",[0,1]): glazing_edges.append(int(edge))
+	for edge in glazing_edges:
 		facade.frame_for(points,edge)
 		for y in [2.0,6.0,10.0]:
-			facade.panel(facade.length/2,y,facade.length,2.9,0.1,0.1,glass)
+			facade.panel(facade.length/2,y,facade.length,2.9,0.1,0.1,curved_glass)
 			var columns := ceili(facade.length/1.8)
 			for i in columns+1:
-				facade.panel(i*facade.length/columns,y,0.08,2.95,0.14,0.19,metal)
-			for dy in [-1.4,0.0,1.4]:
-				facade.panel(facade.length/2,y+dy,facade.length,0.08,0.14,0.19,metal)
+				facade.panel(i*facade.length/columns,y,0.08,2.95,0.14,0.19,curved_metal)
+			# Only the two upper floors have confirmed split lower lights.
+			if y>=6.0:
+				for i in columns:
+					facade.panel((i+0.5)*facade.length/columns,y-0.925,0.045,0.95,0.14,0.19,sash)
+			# Three glazing rows across the registered southwest arc.
+			for dy in [-1.4,-0.45,0.45,1.4]:
+				facade.panel(facade.length/2,y+dy,facade.length,0.08,0.14,0.19,curved_metal)
 		for y in [4.0,8.0,12.0]:
 			facade.panel(facade.length/2,y,facade.length,0.6,0.7,0.3,band,true)
 		facade.panel(facade.length/2,0.3,facade.length,0.6,0.25,0.1,plinth)
-		roof_railing(facade,0.0,facade.length,metal)
+		southwest_roof_railing(facade,points,edge,glazing_edges,railing)
 	# Rectangular wing: only the portions visible in the official photograph.
 	for face in registration.get("faces",[[11,-1,3,0.05,0.65],[10,-1,4,0.3,0.95]]):
 		facade.frame_for(points,int(face[0]),int(face[1]))

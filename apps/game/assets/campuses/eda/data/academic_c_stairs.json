@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "osm_way_id": 1381476338,
+  "osm_version": 1,
+  "vertices": [
+    2,
+    1
+  ],
+  "expected_points": [
+    [
+      149.5541,
+      109.7949
+    ],
+    [
+      161.8153,
+      132.0812
+    ]
+  ],
+  "station_range_m": [
+    4.0,
+    18.0
+  ],
+  "width_m": 2.0,
+  "low_landing_y": -0.9585146200039821,
+  "high_landing_y": -0.04590885452966233,
+  "risers_per_flight": 3,
+  "riser_height_m": 0.15210096091238665,
+  "going_m": 0.32,
+  "flight_starts_m": [
+    8.0,
+    15.0
+  ],
+  "ramp_ranges_m": [
+    [
+      7.68,
+      8.64
+    ],
+    [
+      14.68,
+      15.64
+    ]
+  ],
+  "end_blend_length_m": 0.8,
+  "road_lift_m": 0.02,
+  "side_ground_lift_m": 0.0,
+  "dimensions_are_estimated": true,
+  "precision": "Bounded interpretation of short stair breaks on the registered path; positions, width, rise and step count are estimates. Existing grade retained outside this footprint."
+}

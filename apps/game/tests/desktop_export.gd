@@ -25,8 +25,9 @@ func _initialize() -> void:
 		var scene: Node = load("res://scenes/campuses/"+id+".tscn").instantiate()
 		assert(scene.get_node("CampusModel").get_child_count()>0)
 		assert(scene.has_node("Vegetation"))
-		assert(not scene.get_node("Vegetation").find_children("*", "MultiMeshInstance3D", true, false).is_empty())
 		assert(FileAccess.file_exists("res://assets/campuses/"+id+"/data/vegetation.json"))
+		var planting: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/"+id+"/data/vegetation.json"))
+		assert(scene.get_node("Vegetation").find_children("*", "MultiMeshInstance3D", true, false).is_empty() == planting.instances.is_empty(), "Exported vegetation must match registered planting, including withheld campuses")
 		var manifest_path: String = "res://assets/campuses/"+id+"/data/campus.json"
 		assert(FileAccess.file_exists(manifest_path))
 		var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(manifest_path))

@@ -14,6 +14,22 @@ func run() -> void:
 		assert(is_equal_approx(float(feature.height),12.0))
 		for p in feature.points: ring.append(Vector2(p[0],p[1]))
 	assert(ring.size()==19)
+	var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/buildings/dining_profile.json"))["77943"].osm_registration
+	var curve = preload("res://tools/eda_dining_curved_facade.gd").new()
+	curve.configure_curve(ring,profile.curved_outline)
+	var outline: PackedVector2Array = curve.refined_outline(ring)
+	assert(outline.size()>150,"Round body must contain real geometric subdivisions")
+	for i in ring.size():
+		if i<=4 or i>=10:
+			var nearest:=INF
+			for point in outline:nearest=minf(nearest,point.distance_to(ring[i]))
+			assert(nearest<0.001,"Straight dining wing connection moved")
+	for edge in range(4,10):
+		for step in range(1,20):
+			var p: Vector2=curve.curve_point(edge,float(step)/20)
+			var local:Vector2=(p-curve.ellipse_center).rotated(-curve.ellipse_rotation)/curve.ellipse_radii
+			assert(absf(local.length_squared()-1)<0.0001,"Dining curve must follow one analytic ellipse")
+		if edge<9: assert(curve.curve_tangent(edge,1).dot(curve.curve_tangent(edge+1,0))>0.99999,"Dining curve tangent discontinuity")
 	var reference: Node3D = load("res://assets/campuses/eda/models/development_campus.tscn").instantiate()
 	var base: float = reference.get_node("Feature_77943").position.y
 	reference.free()
@@ -37,11 +53,26 @@ func run() -> void:
 		else:
 			var model: Node3D = load("res://assets/campuses/eda/models/development_campus.tscn").instantiate()
 			world.add_child(model)
-			assert(model.get_node("Feature_77943").get_child_count()<=8)
+			# Baseline has eleven batches, including lower sash frames and ventilation ducts.
+			# Curving the existing components must not introduce another material batch.
+			var dining: Node3D=model.get_node("Feature_77943")
+			assert(dining.get_child_count()<=11,"Dining material batches increased: "+str(dining.get_child_count()))
 			Collision.build(world,model,manifest,"eda")
 		await physics_frame
 		await physics_frame
 		var space := world.get_world_3d().direct_space_state
+		# Test the saved curved wall, not merely interpolation or smooth normals.
+		for edge in range(4,10):
+			for t in [0.25,0.5,0.75]:
+				var p: Vector2=curve.curve_point(edge,t)
+				var tangent: Vector2=curve.curve_tangent(edge,t)
+				var outward:=Vector2(tangent.y,-tangent.x)
+				if Geometry2D.is_point_in_polygon(p+outward*0.1,outline): outward=-outward
+				var from:=p+outward*2
+				var to:=p-outward*2
+				var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(from.x,base+5,from.y),Vector3(to.x,base+5,to.y)))
+				assert(not hit.is_empty(),"Missing curved dining exterior: "+str(edge))
+				assert(hit.position.distance_to(Vector3(p.x,base+5,p.y))<0.01,"Saved dining wall still follows coarse chords")
 		for sample in [[Vector2(350,220),12.18],[Vector2(341,239),12.18],[divider,14.5]]:
 			var pos: Vector2 = sample[0]
 			var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(pos.x,base+30,pos.y),Vector3(pos.x,base+10,pos.y)))

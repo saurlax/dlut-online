@@ -24,6 +24,7 @@ func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary)
 	facade.shell(points,float(profile.height)+0.18,float(profile.height),band)
 	var court_edge := int(profile.get("court_edge",5))
 	var court_end_vertex := int(profile.get("court_end_vertex",-1))
+	var glass_center_fraction := float(profile.get("court_glass_center_fraction",0.3))
 	for face in profile.faces:
 		facade.frame_for(points,int(face.edge),int(face.get("end_vertex",-1)))
 		var start: float = face.span[0]*facade.length
@@ -32,13 +33,21 @@ func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary)
 		var width := minf(2.1,spacing*0.52)
 		for row in 4:
 			var y := 6.2+row*4.0
-			for col in int(face.columns):
-				var x := start+(col+0.5)*spacing
-				if int(face.edge)==court_edge and row<3 and absf(x-facade.length*0.3)<8.7: continue
-				facade.panel(x,y,width+0.16,2.36,0.08,0.08,frame)
-				facade.panel(x,y,width,2.2,0.06,0.14,glass)
+			var stations: Array = []
+			if face.has("window_stations_by_row"):
+				stations=face.window_stations_by_row[row]
+			else:
+				for col in int(face.columns): stations.append((start+(col+0.5)*spacing)/facade.length)
+			for fraction in stations:
+				var x := float(fraction)*facade.length
+				var window_width := width
+				for region in face.get("window_width_regions",[]):
+					if float(fraction)>=float(region.span[0]) and float(fraction)<=float(region.span[1]): window_width=float(region.width)
+				if int(face.edge)==court_edge and row<3 and absf(x-facade.length*glass_center_fraction)<8.7: continue
+				facade.panel(x,y,window_width+0.16,2.36,0.08,0.08,frame)
+				facade.panel(x,y,window_width,2.2,0.06,0.14,glass)
 				facade.panel(x,y,0.07,2.2,0.08,0.2,frame)
-				facade.panel(x,y+0.62,width,0.07,0.08,0.2,frame)
+				facade.panel(x,y+0.62,window_width,0.07,0.08,0.2,frame)
 			facade.panel(facade.length/2,y-1.6,facade.length,0.18,0.16,0.1,band)
 		facade.panel(facade.length/2,20.09,facade.length,0.18,0.35,0.1,band,true)
 	# The courtyard wing ends in two columns of short high windows, not full bays.
@@ -61,7 +70,7 @@ func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary)
 	# Closed three-storey glass projection on the court-side wing. The photo
 	# does not establish an interior or a walkable entrance behind the glass.
 	facade.frame_for(points,court_edge,court_end_vertex)
-	var center: float = facade.length*0.3
+	var center: float = facade.length*glass_center_fraction
 	facade.panel(center,10.0,17,12,1.4,0.6,wall,true)
 	facade.panel(center,10.0,16.7,11.7,0.08,1.35,glass)
 	for i in 10:
@@ -69,3 +78,12 @@ func build(host, group: Node3D, points: PackedVector2Array, profile: Dictionary)
 	for y in [4.15,6.1,8.05,10.0,11.95,13.9,15.85]:
 		facade.panel(center,y,16.8,0.08,0.12,1.44,metal)
 	facade.panel(center,16.1,17.3,0.25,1.7,0.6,band,true)
+
+	if profile.has("entry_canopy"):
+		preload("res://tools/build_eda_comprehensive_canopy.gd").new().build(facade,center,profile.entry_canopy)
+
+	if profile.has("roof_enclosure"):
+		preload("res://tools/build_eda_comprehensive_roof.gd").new().build(facade,points,profile)
+
+	if profile.has("round_annex"):
+		preload("res://tools/build_eda_comprehensive_annex.gd").new().build(host,group,points,profile)

@@ -2,6 +2,7 @@ extends SceneTree
 ## Regression for artificial curbs caused by rendering offsets in road collision.
 const Movement = preload("res://scripts/shared/movement.gd")
 const CASES = [
+	{"campus":"eda", "road":1076344091, "center":Vector2(153.564958,344.438611), "normal":Vector2(-0.9731607,-0.2303170), "halfwidth":3.0},
 	{"campus":"lingshui", "road":33126278, "center":Vector2(30.7761,26.36615), "normal":Vector2(-0.9998341,0.01821482), "halfwidth":2.5},
 	{"campus":"eda", "road":1076344083, "center":Vector2(-30.4457,-66.5805), "normal":Vector2(0.00123832,0.99999923), "halfwidth":3.0},
 	{"campus":"panjin", "road":1318388512, "center":Vector2(13.0249,-23.15455), "normal":Vector2(0.98453302,0.17519911), "halfwidth":2.5},

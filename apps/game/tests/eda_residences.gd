@@ -36,9 +36,9 @@ func run() -> void:
 			world.add_child(model)
 			for c in CASES:
 				var group := model.get_node("Feature_"+c[0])
-				# Ceramic cladding has its own material; solid and decorative frames batch separately.
-				assert(group.get_child_count()<=(9 if c[0] in ["77937","77938"] else 7 if c[0]=="77935" else 8),"Keep material batching per residence")
-				var expected_edges: Dictionary = {"77931":[2,1,0],"77933":[2,1,3],"77935":[1,2],"77937":[4],"77938":[1],"77941":[1,2,3]}
+				# Residence four includes ground grilles/entry materials; four and five each add one numeral material.
+				assert(group.get_child_count()<=(16 if c[0]=="77937" else 11 if c[0]=="77938" else 10 if c[0] in ["77931","77933","77935"] else 9),"Keep material batching per residence: "+str(c[0]))
+				var expected_edges: Dictionary = {"77931":[2,1,0],"77933":[2,1,3],"77935":[1,2],"77937":[4,1,2],"77938":[1,3,4],"77941":[1,2,3]}
 				assert(group.get_meta("photo_edges")==expected_edges[c[0]],"Photo facade moved off registered OSM walls")
 			Collision.build(world,model,manifest,"eda")
 		await physics_frame
@@ -85,6 +85,10 @@ func run() -> void:
 			else:
 				hit(space,gallery+Vector3.UP*0.8,gallery-Vector3.UP*0.8,gallery,c[0]+" gallery slab")
 			if c[0] in ["77931","77933"]:
+				for fraction in [0.25,0.43,0.75]:
+					p = a.lerp(b,fraction)
+					var enclosure := Vector3(p.x,21.0,p.y)
+					hit(space,enclosure+normal*2,enclosure-normal,enclosure+normal*0.91,c[0]+" continuous gallery glazing")
 				var outer_fraction := 0.96 if c[0]=="77931" else 0.04
 				p = a.lerp(b,outer_fraction)+out*0.9
 				var outer_eave := Vector3(p.x,23.21,p.y)
@@ -109,6 +113,22 @@ func run() -> void:
 				var eave := Vector3(p.x,top,p.y)
 				hit(space,eave+Vector3.UP*2,eave-Vector3.UP*2,eave,"Fifth residence raised eave")
 			if c[0]=="77935":
+				for bay in 7:
+					var fraction := 0.14+0.72*(bay+0.5)/7
+					var at := a.lerp(b,fraction)-out*1.5
+					var floor_at := Vector3(at.x,0.03,at.y)
+					hit(space,floor_at+Vector3.UP,floor_at-Vector3.UP,floor_at,"Third arcade floor")
+					var ceiling_at := Vector3(at.x,3.5,at.y)
+					hit(space,ceiling_at-Vector3.UP,ceiling_at+Vector3.UP,ceiling_at,"Third arcade soffit")
+					var rear := Vector3(at.x,1.5,at.y)-normal*1.5
+					hit(space,rear+normal,rear-normal,rear,"Third arcade closed rear")
+					var capsule := CapsuleShape3D.new()
+					capsule.radius=0.3
+					capsule.height=1.8
+					var query := PhysicsShapeQueryParameters3D.new()
+					query.shape=capsule
+					query.transform.origin=mapped(Vector3(at.x,1.05,at.y))
+					assert(space.intersect_shape(query).is_empty(),"Third arcade walking clearance")
 				p = a.lerp(b,0.8875)
 				var recessed_wall := Vector3(p.x,5.1,p.y)
 				hit(space,recessed_wall+normal*1.5,recessed_wall-normal*1.5,recessed_wall-normal*0.8,"Third residence recessed gallery wall")
@@ -119,6 +139,17 @@ func run() -> void:
 				for y in ([6.8,9.95,13.1] if lower else [9.95,13.1,16.25]):
 					var slab := Vector3(p.x,y,p.y)
 					hit(space,slab+Vector3.UP*0.7,slab-Vector3.UP*0.7,slab,c[0]+" balcony slab")
+			if c[0]=="77937":
+				facade_path = preload("res://tools/residence_facade_path.gd").new()
+				facade_path.configure(points,[1,2,3])
+				var court_length: float = facade_path.length
+				for fraction in [0.5,0.869,0.871,0.98]:
+					var station: float = court_length*fraction
+					var center_y := 19.95+0.8*maxf(0,station-court_length*0.87)/(court_length*0.13+0.8)
+					var at: Vector2 = facade_path.origin+facade_path.axis*station+facade_path.outward*1.8
+					for direction in [-1.0,1.0]:
+						var surface := Vector3(at.x,center_y+direction*0.11,at.y)
+						hit(space,surface+Vector3.UP*direction*0.5,surface-Vector3.UP*direction*0.2,surface,"Fourth courtyard eave top/underside")
 		print("RESIDENCES PHYSICS PASS: server=",server," six registered facade chains, roofs, galleries, eaves, enclosures and balcony slabs")
 		world.free()
 		viewport.free()

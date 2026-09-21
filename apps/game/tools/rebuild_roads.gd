@@ -17,6 +17,9 @@ func build() -> void:
 			for child in scene.get_children():
 				if child is MeshInstance3D and child.get_meta("road_surface", false):
 					terrain.fit_road(child)
+		if campus == "eda":
+			preload("res://tools/eda_surface_details.gd").new().apply(scene)
+			preload("res://tools/build_eda_road_markings.gd").new().build(self)
 		for mat in materials.values():
 			if mat.albedo_texture is NoiseTexture2D and mat.albedo_texture.get_image() == null:
 				await mat.albedo_texture.changed

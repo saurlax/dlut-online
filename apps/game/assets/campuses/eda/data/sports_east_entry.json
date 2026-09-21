@@ -1,0 +1,45 @@
+{
+  "feature_id": "39327169",
+  "osm_id": "way/1076344139",
+  "osm_version": 4,
+  "origin_xz": [
+    -272.91892873076426,
+    -26.709978892592723
+  ],
+  "outward_xz": [
+    0.9998865912465074,
+    -0.015060034709117752
+  ],
+  "expected_base_y": 20.7851,
+  "upper_lip_m": 3.03,
+  "going_m": 0.53,
+  "risers": 4,
+  "riser_m": 0.13,
+  "clear_width_m": 7.0,
+  "cheek_width_m": 0.35,
+  "lower_landing_m": 1.0,
+  "end_station_m": 8.0,
+  "upper_surface_offset_m": 0.3,
+  "existing_base_offset_m": 0.15,
+  "dimensions_are_approximate": true,
+  "limits": "Bounded east central entrance. Four risers and upper-lip/depth proportions are conditional projective estimates, not surveyed dimensions. End return and side closures reconcile the existing flattened site locally; they do not establish the complete east apron or end stands.",
+  "cross_xz": [
+    0.004052529813657249,
+    0.9999917884673402
+  ],
+  "running_edge_indices": [
+    12,
+    13
+  ],
+  "expected_running_edge": [
+    [
+      -273.1226682714058,
+      -76.98422164857357
+    ],
+    [
+      -272.7117671061664,
+      24.408688460643205
+    ]
+  ],
+  "upper_stone_strip_m": 0.48
+}

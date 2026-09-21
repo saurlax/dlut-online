@@ -107,7 +107,7 @@
       ],
       "height": 0.55,
       "thickness": 0.25,
-      "note": "82977-0右侧航拍可见抬高屋面的西侧、南侧矮墙收边，配准raised_podium边2/3；高0.55米、厚0.25米为照片比例估计，顶标高12.85米。只补两段可见收边，不推定塔楼交界处及背侧构造。"
+      "note": "历史分区将两段收边记为西侧、南侧；该朝向不适用于当前raised_registration生成的矩形。当前边2朝北偏东约15度，边3朝东偏南约15度，边号与原估计高0.55米、厚0.25米、顶标高12.85米沿用；不得将历史方位当作当前两边已独立配准的证明。该抬高屋面与低裙房北、西侧圆角女儿墙为不同构件，最终收边范围继续待核对。"
     }
   },
   "end_windows": {
@@ -339,6 +339,27 @@
     "remaining": "已采用两个来源轮廓重建高层及低裙房，并重新登记内院窗面、北端窄窗、抬高屋面及女儿墙。北侧裙房圆弧、竣工端墙图案及高度细分仍未精确配准；施工照片仅证明其可见内容。"
   },
   "osm_registration": {
+    "south_visible_faces": [
+      {
+        "edge": 3,
+        "span": [0.62, 0.985],
+        "centers_from_end": [2.05, 6.15, 10.25],
+        "side_glass_width": 0.9,
+        "central_louver_width": 1.0,
+        "floor_pairs": [0, 1],
+        "dimensions_are_approximate": true,
+        "limits": "Three eastern modules on the south outer wall, limited to the first two paired tower-floor groups above the existing podium. Positions and widths are proportional estimates; no extension to the remaining wall, upper floors, podium openings or approach levels."
+      }
+    ],
+    "low_podium_parapet": {
+      "edges": [8, 9, 10, 11, 12],
+      "height": 0.85,
+      "thickness": 0.25,
+      "corner_radii": {"10": 2.0, "12": 1.5},
+      "dimensions_are_approximate": true,
+      "limits": "Upper north and west perimeter only; height, thickness and inset corner radii are proportional estimates. The existing 8.2 m roof and lower compound outline remain unchanged, including the small roof corners outside the rounded wall. This does not establish the obscured lower facade, openings or entrances."
+    },
+    "west_end_facade": {"vertices": [0,1,2], "outer_strips": [0.16,0.90], "inner_strips": [0.355,0.74], "window_fraction": 0.55, "strip_width_fraction": 0.09, "upper_grille": {"center_fraction": 0.53, "width_fraction": 0.48, "columns": 10}, "dimensions_are_approximate": true},
     "courtyard_faces": [
       {
         "edge": 7,
@@ -367,6 +388,6 @@
       "width": 22
     },
     "basis": "82977-0右侧施工航拍确认内院两翼、端墙和内院偏西的抬高屋面；两翼窗列仍沿用施工照片估计。抬高区域相对南翼内墙向北登记，保留原3/7米退距与22米宽度估计，不宣称实测屋面边界。",
-    "limits": "仅修正可见构件的依附墙面；北侧裙房曲线及端墙竣工图案仍待独立精修，保留来源差异。"
+    "limits": "可见端墙构件及低裙房北、西侧上部收边已分别登记；低裙房下部曲线、开窗与入口仍待配准，不从屋顶曲线推导地脚。"
   }
 }

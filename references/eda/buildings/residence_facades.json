@@ -105,9 +105,16 @@
           "note": "本楼近照左侧端墙可辨两列独立窗，配准官方边0。位置、尺寸和楼层标高为照片比例估计；底层店面不补。"
         }
       ]
-    }
+    },
+    "enclosed_gallery": true,
+    "gallery_transom_offset": 0.85,
+    "gallery_outer_railing": true,
+    "gallery_note": "已登记南侧顶层为连续封闭玻璃廊，保留外侧栏杆并将横框置于上部；沿用估计2.55米玻璃高，每开间三分格，上亮横框相对窗中心高0.85米。仅覆盖现有立面范围，未核实的端部连接及屋顶设备另行处理。"
   },
   "77933": {
+    "additional_windows": [{"fraction": 0.77, "centers_y": [1.6], "width": 2.674, "height": 1.9, "detailed": true, "vertical_bars": 16}, {"fraction": 0.83, "centers_y": [1.6], "width": 2.674, "height": 1.9, "detailed": true, "vertical_bars": 16}, {"fraction": 0.88, "centers_y": [1.6], "width": 2.0, "height": 1.9, "vertical_bars": 10}, {"fraction": 0.88, "centers_y": [4.8, 7.95, 11.1, 14.25, 17.4], "width": 2.0, "height": 2.15, "guard": {"height": 0.65}}, {"fraction": 0.88, "centers_y": [20.65], "width": 2.0, "height": 2.55, "transom_offset": 0.85, "outward_shift": 0.78, "guard": {"height": 0.9, "bottom": 19.4, "offset": 0.94, "light": true, "vertical": true}}],
+    "roof_panels": {"span": [0.18,0.70], "panels": 14, "depth": 2.0, "rise": 1.0, "offset": -2.2, "low_y": 23.35, "dimensions_are_approximate": true},
+    "roof_panels_note": "南侧屋顶可见浅框深色斜置板列，仅按已登记立面累计长度18%至70%放置一排；14格、进深2米、升高1米、后退2.2米及低端23.35米均为比例估计。未补背面管线，不据此推定其他楼栋设备。",
     "edge": 7,
     "columns": 12,
     "span": [
@@ -208,9 +215,18 @@
           "note": "本楼近照右侧近端墙可辨局部窗列，配准紧邻南面边7的边6，只补中间五排。位置、尺寸和楼层标高为照片比例估计，不延伸到后折边5、顶层或底层遮挡处。"
         }
       ]
-    }
+    },
+    "enclosed_gallery": true,
+    "gallery_transom_offset": 0.85,
+    "gallery_outer_railing": true,
+    "gallery_note": "已登记南侧顶层为连续封闭玻璃廊，保留外侧栏杆并将横框置于上部；沿用估计2.55米玻璃高，每开间三分格，上亮横框相对窗中心高0.85米。仅覆盖现有立面范围，未核实的端部连接及屋顶设备另行处理。"
   },
   "77935": {
+    "window_grilles": {"columns": [0, 1, 2, 3, 4, 5], "center_y": 4.8, "vertical_bars": 14, "bar_width_m": 0.014, "bar_depth_m": 0.018, "offset_m": 0.235, "dimensions_are_approximate": true},
+    "terminal_vents": {"fractions": [0.035,0.965], "row_offsets": [-0.36,0.36], "size": 0.3},
+    "ground_arcade": {"span": [0.14,0.86], "depth": 3.0, "bays": 7, "column_width": 0.5, "rear_windows": {"openings": [{"bay": 2, "within_bay": 0.25, "width": 2.2}, {"bay": 2, "within_bay": 0.75, "width": 2.2}, {"bay": 3, "within_bay": 0.5}], "center_y": 1.9, "width": 3.0, "height": 1.6}, "rear_entry": {"bay": 1, "within_bay": 0.5, "width": 2.4, "height": 2.8, "bottom": 0.05, "transom_height": 0.5, "frame_width": 0.07}, "dimensions_are_approximate": true},
+    "gallery_window_width_ratio": 0.9,
+    "gallery_window_height": 2.7,
     "edge": 4,
     "columns": 14,
     "span": [
@@ -295,6 +311,7 @@
     }
   },
   "77937": {
+    "number_markers": [{"vertices": [1, 2, 3], "fraction": 0.983, "center_y": 15.4, "diameter": 1.15, "text": "4", "dimensions_are_approximate": true}],
     "edge": 7,
     "columns": 7,
     "span": [
@@ -378,6 +395,22 @@
       }
     ],
     "lower_facade_note": "77937-2026右半幅可见黄色框两侧底层封闭窗，按既有主窗列补窗，框下涉及入口的区域排除。左端塔体外侧的小窗列亦由77937-0互证，配准边7的96.5%，补5排1.6×1.65米窗。位置/尺寸/楼层标高仍为照片比例估计；不把塔体相邻窗列复制到塔体面上，不生成门洞。",
+    "courtyard_windows": {
+      "vertices": [1,2,3],
+      "span": [0.0,0.87],
+      "columns": 8,
+      "glazing_width_fraction": 0.68,
+      "alternating_offset_fraction": 0.11,
+      "centers_y": [4.8,7.95,11.1,14.25],
+      "terminal_fraction": 0.93,
+      "gallery_y": 18.0,
+      "gallery_height": 2.7,
+      "gallery_railing": {"span": [0.0,1.0], "bottom_y": 16.25, "height": 0.65, "offset": 0.42, "spacing": 0.18, "post_spacing": 1.5},
+      "eave": {"center_y": 19.95, "depth": 2.6, "offset": 1.1, "thickness": 0.22, "upturn_start": 0.87, "end_extension": 0.8, "rise": 0.8},
+      "ground_windows": {"columns": [2,3,6,7], "terminal": true, "center_y": 1.2, "width": 2.3, "height": 1.8, "bar_spacing": 0.15},
+      "dimensions_are_approximate": true,
+      "entry": {"fraction": 0.598125, "width": 2.1, "height": 2.7, "bottom": 0.08, "transom_height": 0.5, "frame_width": 0.07, "dimensions_are_approximate": true, "limits": "Closed exterior door assembly beneath the third full bay from the eastern terminal. Position and dimensions are proportional estimates; existing wall remains, with no new interior, passage or inferred steps."}
+    },
     "osm_registration": {
       "osm_id": "way/309375780",
       "osm_version": 4,
@@ -394,6 +427,45 @@
     }
   },
   "77938": {
+    "number_markers": [{"vertices": [3, 4, 0], "fraction": 0.983, "center_y": 15.4, "diameter": 1.15, "text": "5", "dimensions_are_approximate": true}],
+    "north_facade": {
+      "vertices": [
+        3,
+        4,
+        0
+      ],
+      "span": [
+        0.185,
+        0.906
+      ],
+      "columns": 7,
+      "centers_y": [
+        4.8,
+        7.95,
+        11.1,
+        14.25
+      ],
+      "ground_columns": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "east_terminal_fraction": 0.08,
+      "east_narrow_fraction": 0.166,
+      "west_terminal_fraction": 0.956,
+      "gallery_span": [
+        0.13,
+        0.91
+      ],
+      "gallery_center_y": 17.8,
+      "gallery_slab_y": 16.4,
+      "gallery_height": 2.75,
+      "gallery_panes": 28,
+      "dimensions_are_approximate": true,
+      "limits": "Bounded north exterior on the registered wall chain. Proportional window stations and module heights; eastern ground entrance and western gallery setback remain closed and unmodified. No interior or new access."
+    },
     "edge": 5,
     "columns": 6,
     "span": [

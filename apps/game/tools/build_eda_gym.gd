@@ -53,6 +53,25 @@ func surface(vertices: Array, mat: Material, solid := true) -> void:
 func quad(a: Vector3,b: Vector3,c: Vector3,d: Vector3,mat: Material,solid := true) -> void:
 	surface([a,b,c,a,c,d],mat,solid)
 
+func north_columns(steel: Material) -> void:
+	# Bounded visible row; stations and diameter are proportional estimates.
+	assert(not registration.is_empty())
+	var west: float = registration.wall_frame.west_x
+	var east: float = registration.wall_frame.east_x
+	var north: float = registration.wall_frame.north_z
+	for station in [0.18,0.29,0.40,0.51,0.62]:
+		var x := lerpf(east,west,station)
+		var top := roof_y(x)-0.45
+		var mesh := CylinderMesh.new()
+		mesh.top_radius = 0.11
+		mesh.bottom_radius = 0.11
+		mesh.height = top-3.0
+		mesh.radial_segments = 24
+		mesh.rings = 1
+		var node: MeshInstance3D = host.mesh_node(group,mesh,steel,"GymNorthColumn")
+		node.position = Vector3(x,(top+3.0)*0.5,north-0.8)
+		node.set_meta("walk_collision",true)
+
 func build(builder, parent: Node3D, points: PackedVector2Array, osm_registration: Dictionary = {}) -> void:
 	host = builder
 	group = parent
@@ -97,15 +116,16 @@ func build(builder, parent: Node3D, points: PackedVector2Array, osm_registration
 			var b := p.lerp(q,float(j+1)/segments)
 			quad(Vector3(a.x,3,a.y),Vector3(b.x,3,b.y),Vector3(b.x,roof_y(b.x)-0.5,b.y),Vector3(a.x,roof_y(a.x)-0.5,a.y),wall)
 	# Cylindrical sagging roof, discretized only along its long axis.
+	var skylights = preload("res://tools/build_eda_gym_skylights.gd").new()
 	for i in 50:
 		var a := -379.0+i*2.5
 		var b := a+2.5
-		quad(Vector3(a,roof_y(a),-90),Vector3(b,roof_y(b),-90),Vector3(b,roof_y(b),-12),Vector3(a,roof_y(a),-12),roof)
-		quad(Vector3(a,roof_y(a)-0.45,-12),Vector3(b,roof_y(b)-0.45,-12),Vector3(b,roof_y(b)-0.45,-90),Vector3(a,roof_y(a)-0.45,-90),roof)
+		skylights.segment(self,a,b,roof)
 		for z in [-90.0,-12.0]:
 			quad(Vector3(a,roof_y(a),z),Vector3(b,roof_y(b),z),Vector3(b,roof_y(b)-0.45,z),Vector3(a,roof_y(a)-0.45,z),steel)
 	for x in [-379.0,-254.0]:
 		box(Vector3(x,roof_y(x)-0.225,-51),Vector3(0.15,0.45,78),steel,true)
+	skylights.reveals(self,steel)
 	# East frontage and the visible south side are independently referenced.
 	box(Vector3(-261.9,8.6,-50),Vector3(0.12,11.2,51),glass)
 	for i in 24:
@@ -120,7 +140,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array, osm_registration
 		beam.rotation.z = atan((roof_y(-254.6)-roof_y(-261.2))/6.6)
 	# Entry surround is kept closed pending calibrated stairs and platform.
 	box(Vector3(-261.5,5.2,-50),Vector3(0.65,4.4,33),base,true)
-	box(Vector3(-261.1,4.1,-50),Vector3(0.1,2.2,23),glass)
+	preload("res://tools/build_eda_gym_entry.gd").new().build(self,glass,steel,base)
 	for i in 11:
 		var x := -370.0+i*9.5
 		var z := -15.255+(x+362.382)*(-3.469/101.256)
@@ -131,6 +151,7 @@ func build(builder, parent: Node3D, points: PackedVector2Array, osm_registration
 		var h := roof_y(x)-3.45
 		box(Vector3(x,3+h/2,z+1.0),Vector3(0.3,h,0.3),steel,true)
 
+	if not registration.is_empty(): north_columns(steel)
 	# Six visible roof posts; cable attachment topology remains unverified.
 	var profile_path := ProjectSettings.globalize_path("res://").path_join("../../references/eda/buildings/gym_profile.json").simplify_path()
 	var profiles: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(profile_path))
@@ -148,6 +169,10 @@ func build(builder, parent: Node3D, points: PackedVector2Array, osm_registration
 		var node: MeshInstance3D = host.mesh_node(group,mesh,steel,"GymRoofPost")
 		node.position = Vector3(x,(base_y+top_y)/2,float(posts.z[i]))
 		node.set_meta("walk_collision",true)
+	skylights.dividers(self,steel)
 	if not registration.is_empty():
 		register_details(base_node)
 		group.set_meta("osm_facade_registration",registration.osm_id)
+	for index in group.get_child_count():
+		var node: MeshInstance3D = group.get_child(index)
+		preload("res://tools/eda_surface_details.gd").tint_glazing(node,node.material_override,float(index),8.6)

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "scope": "Xuefu Avenue carriageways around Xueyuan footbridge, clipped to the existing terrain frame",
+  "basis": "Both archived directional carriageways are preserved independently in the shared WGS84 frame; university-boundary clipping must not erase the public road beneath the footbridge.",
+  "review_date": "2026-09-20",
+  "archive": "references/eda/mapping/osm-world.osm.gz",
+  "way_ids": [
+    "188806483",
+    "188806490"
+  ],
+  "expected_versions": {
+    "188806483": 12,
+    "188806490": 11
+  },
+  "limits": "Widths remain highway-class estimates of 9 metres for each two-lane carriageway. No lane markings, traffic signals, roadside fixtures or planting positions are inferred. Existing sourced terrain supplies elevation; this is not surveyed bridge clearance. No other surrounding street is added by proximity. A 0.12m visual edging replaces the generic 1.5m apron so the separated carriageways retain their median; it is not a measured sidewalk or raised curb.",
+  "edge_width_m": 0.12,
+  "runtime_scope": "Xuefu Avenue carriageways around Xueyuan footbridge, clipped to the existing terrain frame"
+}

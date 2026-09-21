@@ -30,7 +30,22 @@ func run() -> void:
 		else:
 			var model: Node3D = load("res://assets/campuses/eda/models/development_campus.tscn").instantiate()
 			world.add_child(model)
-			assert(model.get_node("Feature_2304982").get_child_count()<=4)
+			var seventh := model.get_node("Feature_2304982")
+			# Four existing materials plus shared backing and blade batches.
+			assert(seventh.get_child_count()<=6)
+			var west_start := Vector2(360.492118,121.294272)
+			var west_end := Vector2(354.771941,141.554512)
+			var west_axis := (west_end-west_start).normalized()
+			var west_out := Vector2(-west_axis.y,west_axis.x)
+			for node: MeshInstance3D in seventh.get_children():
+				if not node.material_override.resource_name.begins_with("Seventh end "): continue
+				assert(not node.get_meta("walk_collision",false),"Endwall louvers must remain decorative")
+				for vertex: Vector3 in node.mesh.get_faces():
+					var point := node.transform*vertex
+					var delta := Vector2(point.x,point.z)-west_start
+					assert(delta.dot(west_axis)>0 and delta.dot(west_axis)<west_start.distance_to(west_end),"Louvers left the west end span")
+					# The shared metal batch includes window frames reaching 0.175 m.
+					assert(delta.dot(west_out)>0.015 and delta.dot(west_out)<0.19,"Louvers moved off the west end wall")
 			Collision.build(world,model,manifest,"eda")
 		await physics_frame
 		await physics_frame

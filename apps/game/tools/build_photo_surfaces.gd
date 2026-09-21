@@ -70,7 +70,9 @@ func build(builder, campus: String) -> bool:
 		for child in source_nodes:
 			if not child is MeshInstance3D:
 				continue
-			var mat: StandardMaterial3D = child.material_override
+			var mat := child.material_override as StandardMaterial3D
+			if mat == null:
+				continue
 			for prefix in entry.get("detail_finishes", {}):
 				if mat.resource_name.begins_with(prefix):
 					child.material_override = palette.material(builder, entry.detail_finishes[prefix], mat.albedo_color, true)
