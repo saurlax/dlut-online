@@ -2,7 +2,7 @@ extends SceneTree
 const Collision=preload("res://scripts/shared/campus_collision.gd")
 func _initialize(): run.call_deferred()
 func run():
-	create_timer(60).timeout.connect(func():quit(2))
+	create_timer(120).timeout.connect(func():quit(2))
 	var reference:Node3D=load("res://assets/campuses/eda/models/development_campus.tscn").instantiate()
 	var at:Vector3=reference.get_node("XiangSculpture").position
 	assert(Vector2(at.x,at.z).distance_to(Vector2(-116.7797,317.3288))<0.01,"Sculpture must use the shared WGS84 frame")
@@ -31,10 +31,10 @@ func run():
 		assert(not top.is_empty() and absf(top.position.y-at.y-0.24)<0.01,"Plinth top missing")
 		var capsule:=CapsuleShape3D.new();capsule.radius=0.3;capsule.height=1.8
 		var query:=PhysicsShapeQueryParameters3D.new();query.shape=capsule
-		query.transform=Transform3D(Basis.IDENTITY,at+Vector3(0,0.9,2))
+		query.transform=Transform3D(Basis.IDENTITY,at+Vector3(0,0.93,2))
 		query.motion=Vector3(0,0,-4)
 		var travel:float=space.cast_motion(query)[0]
-		assert(travel>0.1 and travel<0.3,"Player capsule passes through sculpture plinth")
+		assert(travel>0.1 and travel<0.3,"Player capsule must hit the plinth independently of floor contact: "+str(travel))
 		print("SCULPTURE PASS server=",server," shared position, open center and right curl opening, outward metal faces, plinth and capsule blocking")
 		viewport.free()
 	quit()

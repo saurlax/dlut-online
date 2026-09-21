@@ -76,7 +76,10 @@ func check_roads(model: Node3D, terrain: RefCounted) -> void:
 				if region.bounds.has_point(Vector2(p.x,p.z)): local = true
 			if not local: continue
 			var lift: float = p.y-terrain.elevation(p.x,p.z)
-			assert(lift >= -0.001 and lift <= 0.025, "Road must track the new terrain, not float or be buried")
+			if mesh.get_meta("raised_lake_sidewalk",false):
+				assert(lift>=.179 and lift<=.183,"Lake sidewalk must maintain its raised curb height")
+			else:
+				assert(lift >= -0.001 and lift <= 0.025, "Road must track the new terrain, not float or be buried")
 			checked += 1
 	assert(checked > 100)
 	print("EDA SHORE ROAD FIT PASS vertices=",checked)

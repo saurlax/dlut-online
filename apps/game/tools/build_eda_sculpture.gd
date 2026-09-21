@@ -41,7 +41,8 @@ func build(host) -> void:
 	var at:=Vector2((float(profile.lon_lat[0])-float(origin[0]))*111320*cos(deg_to_rad(float(origin[1]))),(float(origin[1])-float(profile.lon_lat[1]))*111320)
 	var terrain:=preload("res://tools/build_terrain.gd").new();terrain.load_campus("eda")
 	var group:=Node3D.new();group.name="XiangSculpture";host.scene.add_child(group);group.owner=host.scene
-	group.position=Vector3(at.x,terrain.elevation(at.x,at.y),at.y)
+	var plaza=preload("res://tools/eda_xiang_plaza_profile.gd")
+	group.position=Vector3(at.x,plaza.upper_height(terrain,plaza.load_profile()),at.y)
 	group.set_meta("osm_id",profile.osm_id);group.set_meta("dimensions_are_approximate",true)
 	var stone:StandardMaterial3D=host.material("Xiang sculpture pale stone",Color("aeb1ab"))
 	stone.albedo_texture=load("res://assets/textures/buildings/mineral_render_albedo.png")

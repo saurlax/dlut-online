@@ -58,16 +58,18 @@ func build(builder, campus: String) -> void:
 		var lake_profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/lakeside-environment.json"))
 		var walks: Array = []
 		var original: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json")).roads
-		for selection: Dictionary in lake_profile.sidewalk_roads:
+		for selection: Dictionary in lake_profile.hedge_roads:
 			for road: Dictionary in original:
 				if int(road.osm_way_id) == int(selection.osm_way_id):
 					var selected := road.duplicate()
 					selected.points = road.points.slice(int(selection.from_vertex), int(selection.to_vertex)+1)
 					walks.append(selected)
 		# Cut every road out of the sidewalk union so crossings remain open.
-		var trim := emit(builder, Geometry.polygons(walks, 3.0), -0.057, builder.material("Lake sidewalk stone trim", Color("c5c4b6")), rings+surface_masks)
+		var trim := emit(builder, Geometry.polygons(walks, 5.0), 0.10, builder.material("Lake sidewalk stone trim", Color("c5c4b6")), Geometry.polygons(walks, 2.0)+rings+surface_masks)
 		trim.set_meta("walk_collision", true)
-		emit(builder, Geometry.polygons(walks, 2.8), -0.056, preload("res://assets/roads/red_brick_path.tres"), Geometry.polygons(roads, 0.16)+surface_masks)
+		trim.set_meta("raised_lake_sidewalk",true)
+		var lake_walk:=emit(builder, Geometry.polygons(walks, 4.8), 0.102, preload("res://assets/roads/red_brick_path.tres"), Geometry.polygons(walks, 2.16)+Geometry.polygons(roads, 0.16)+surface_masks)
+		lake_walk.set_meta("raised_lake_sidewalk",true)
 	var colored := Geometry.polygons(painted)
 	var key: String = "Road" if campus == "eda" else campus.capitalize() + " asphalt"
 	var asphalt: Material = preload("res://assets/roads/asphalt.tres") if campus == "eda" else builder.material(key, Color("656966"))

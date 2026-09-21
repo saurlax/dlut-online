@@ -6192,7 +6192,7 @@
           166.7351
         ]
       ],
-      "photo_registration_sha256": "710f0031940e61130cc433cc3d857e44c321cee9c5b98fe19268fde7ff262ba3"
+      "photo_registration_sha256": "fd18db57cc0ec08c127c61c5c54d28b54ae1dd794ac70e011d7e5694e076a7ae"
     },
     {
       "id": "lake-southeast-shrubs",
@@ -6230,7 +6230,7 @@
           313.9001
         ]
       ],
-      "photo_registration_sha256": "710f0031940e61130cc433cc3d857e44c321cee9c5b98fe19268fde7ff262ba3"
+      "photo_registration_sha256": "fd18db57cc0ec08c127c61c5c54d28b54ae1dd794ac70e011d7e5694e076a7ae"
     },
     {
       "id": "lake-west-conifers",
@@ -6316,7 +6316,7 @@
           326.4014
         ]
       ],
-      "photo_registration_sha256": "710f0031940e61130cc433cc3d857e44c321cee9c5b98fe19268fde7ff262ba3"
+      "photo_registration_sha256": "fd18db57cc0ec08c127c61c5c54d28b54ae1dd794ac70e011d7e5694e076a7ae"
     },
     {
       "id": "lake-northwest-willows",
@@ -6366,29 +6366,29 @@
           240.2063
         ]
       ],
-      "photo_registration_sha256": "710f0031940e61130cc433cc3d857e44c321cee9c5b98fe19268fde7ff262ba3"
+      "photo_registration_sha256": "fd18db57cc0ec08c127c61c5c54d28b54ae1dd794ac70e011d7e5694e076a7ae"
     },
     {
       "id": "xiang-plaza-garden",
       "points": [
         [
-          -124.8,
-          320.2
+          -124.75,
+          327.49
         ],
         [
-          -112.2,
-          320.2
+          -112.25,
+          327.49
         ],
         [
-          -112.2,
-          341.5
+          -112.25,
+          338.75
         ],
         [
-          -124.8,
-          341.5
+          -124.75,
+          338.75
         ]
       ],
-      "photo_registration_sha256": "710f0031940e61130cc433cc3d857e44c321cee9c5b98fe19268fde7ff262ba3"
+      "photo_registration_sha256": "fd18db57cc0ec08c127c61c5c54d28b54ae1dd794ac70e011d7e5694e076a7ae"
     }
   ]
 }

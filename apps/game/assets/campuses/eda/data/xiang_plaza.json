@@ -1,7 +1,7 @@
 {
   "origin_xz": [
     -118.5,
-    342.0
+    339.0
   ],
   "side_ranges": [
     [
@@ -13,19 +13,60 @@
       -103
     ]
   ],
-  "back_z": 320.0,
-  "risers": 8,
-  "going_m": 0.42,
+  "back_z": 307.0,
+  "risers": 10,
+  "going_m": 1.176,
   "rise_m": 0.16,
   "garden_center_xz": [
     -118.5,
-    330.5
+    333.12
   ],
-  "garden_diameter_m": 11.6,
-  "letter_width_m": 16.0,
-  "letter_inclination_deg": 45.0,
-  "letters_front_z": 344.0,
+  "garden_diameter_m": 10.9,
+  "letter_width_m": 12.0,
+  "letter_inclination_deg": 45,
   "source_url": "https://www.dlut.edu.cn/images/logo.svg",
   "read_date": "2026-09-21",
-  "precision": "Photo estimates, not measured: eight visible risers, width and going inferred from existing OSM-anchored plaza; letter face 45 degrees above horizontal, plausible range 40-55. Preserve SVG letter spacing and aspect ratio. Project inclined outlines along their inward face normal onto the grass base. Central emblem selects the official double-ring/book/seed paths; omit outer lettering not visible in the hedge."
+  "precision": "Photo and user confirmed: ten risers; 13 m equal-width emblem/name beds; stair-width red entrances replacing the roadside hedge strip; 2 m estimated shared depth for the curved name bed and continuous lake-road hedge band. The road-side boundary follows the lake-facing edge of OSM 1076344093, not a rectangular extension into the junction. Letter face 45 degrees, vertical orthogonal projection onto the ground, preserving SVG proportions. All metric dimensions remain estimates.",
+  "planter_raise_m": 0.25,
+  "frame_width_m": 0.22,
+  "hedge_height_m": 0.62,
+  "letter_bed": [
+    -125,
+    0,
+    -112,
+    0
+  ],
+  "curb_min_rise_m": 0.16,
+  "border_depth_m": 2.0,
+  "front_road_points": [
+    [
+      -154.7472,
+      339.5594
+    ],
+    [
+      -142.3132,
+      344.2682
+    ],
+    [
+      -130.7605,
+      347.0178
+    ],
+    [
+      -113.358,
+      347.4742
+    ],
+    [
+      -106.359,
+      346.8731
+    ],
+    [
+      -96.2752,
+      346.016
+    ],
+    [
+      -81.5255,
+      341.8303
+    ]
+  ],
+  "road_half_width_m": 3.5
 }

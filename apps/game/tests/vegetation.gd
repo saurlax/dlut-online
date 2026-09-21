@@ -129,7 +129,10 @@ func verify() -> void:
 				if feature.kind not in ["building","water","road","plaza","gate","sports","track","basketball","tennis"]:
 					continue
 				for polygon: Array in feature.get("render_polygons",[feature.points]):
-					check(not Geometry2D.is_point_in_polygon(Vector2(at.x,at.z),points(polygon)), "Plant overlaps official feature "+feature.id)
+					var outline:=points(polygon)
+					var feature_bounds:=Rect2(outline[0],Vector2.ZERO)
+					for vertex:Vector2 in outline:feature_bounds=feature_bounds.expand(vertex)
+					check(not feature_bounds.has_point(Vector2(at.x,at.z)) or not Geometry2D.is_point_in_polygon(Vector2(at.x,at.z),outline), "Plant overlaps official feature "+feature.id)
 					if plant.kind == "juniper":
 						var boundary := points(polygon)
 						for index in boundary.size():
@@ -259,6 +262,6 @@ func polygon_area(ring: PackedVector2Array) -> float:
 
 func planting_floor(terrain:RefCounted,x:float,z:float,campus:String)->float:
 	if terrain==null:return 0.0
-	if campus=="eda" and x>=-125 and x<=-112 and z>=320 and z<=342:
-		return terrain.elevation(-118.5,342)+0.32+0.96*clampf((342.0-z)/22.0,0,1)
+	if campus=="eda" and x>=-125 and x<=-112 and z>=327.24 and z<=339:
+		return preload("res://tools/eda_xiang_plaza_profile.gd").garden_height(terrain,Vector2(x,z))
 	return terrain.elevation(x,z)
