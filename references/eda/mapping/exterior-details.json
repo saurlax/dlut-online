@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "reviewed": "2026-09-18",
+  "source_scene": "scene_DUT_KFQ00",
+  "source_photos": ["references/eda/imagery/panoramas/KFQ00-down.jpg", "references/eda/vegetation/photos/eda-lake-2.jpg"],
+  "source_url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/vr/pano_d.jpg",
+  "capture_date": null,
+  "view": "Oblique aerial panorama, lake east road between the library junction and teaching-area junction.",
+  "registration": "Topology matched by lake, library and two road junctions to OSM way 1076344082 v2. OSM centerline and shared WGS84 origin retained. Lamp stations are approximate road-relative placements, not photogrammetric coordinates.",
+  "occlusion": "Trees conceal portions of the sidewalk and lamp bases. Unseen road arms, hidden fixtures and crossing extents are withheld.",
+  "precision": "Road width remains the existing 7 m highway-class estimate. Paint widths 0.10/0.12 m, dash/gap 3/3 m, pole height 6 m and fixture dimensions are visual estimates. No independent metric accuracy or current-condition claim.",
+  "road": {"osm_way_id": 1076344082, "osm_version": 2, "part": 0, "from_vertex": 25, "to_vertex": 36},
+  "lamp_height_m": 6.0,
+  "lamps": [
+    {"segment": 25, "fraction": 0.4, "side": 1},
+    {"segment": 28, "fraction": 0.3, "side": 1},
+    {"segment": 30, "fraction": 0.3, "side": 1},
+    {"segment": 32, "fraction": 0.2, "side": 1},
+    {"segment": 34, "fraction": 0.5, "side": 1}
+  ],
+  "withheld": {
+    "crossings": "Photos confirm crossings, but exact cross-road registration/extent has not been established; do not place zebra crossings on guessed chainages.",
+    "bridge": "OSM way 309375782 v7 locates Xueyuan Bridge. Aerial appearance and 2026-01-05 repair photos confirm covered curved ribs, turquoise roof, metal deck and 5 cm anti-slip strips. Absolute deck profile, stair/landing plan and support coordinates are not supplied. Hold the connected bridge model until these are registered; do not fit an arbitrary hump to terrain.",
+    "lighting_2026": "2026-06-24 official report confirms 66 replaced/new LED fixtures at more than 10 locations, without a location schedule. The five estimated poles represent only visible historical fixtures, not the whole upgrade."
+  }
+}
