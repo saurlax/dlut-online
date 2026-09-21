@@ -4,6 +4,7 @@ signal input_stopped
 
 const LocalSession = preload("res://scripts/client/local_session.gd")
 const Movement = preload("res://scripts/shared/movement.gd")
+const Footsteps = preload("res://scripts/client/footsteps.gd")
 const WALK_SPEED := 6.0
 const RUN_SPEED := 13.0
 const JUMP_SPEED := 7.0
@@ -23,6 +24,7 @@ var touch_enabled := OS.has_feature("android")
 var touch_axis := Vector2.ZERO
 var touch_running := false
 var touch_jump := false
+var footsteps: Node
 
 func _ready() -> void:
 	name = "Player"
@@ -36,6 +38,8 @@ func _ready() -> void:
 	camera.far = 12000
 	camera.current = true
 	add_child(camera)
+	footsteps = Footsteps.new()
+	add_child(footsteps)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not playing:
@@ -61,7 +65,9 @@ func _physics_process(delta: float) -> void:
 	var running := active and (touch_running or Input.is_action_pressed("run"))
 	var network := get_node("/root/GameNetwork")
 	if not LocalSession.enabled: network.begin_prediction(delta, axis, running)
+	var movement_start := global_position
 	Movement.step(self, axis, running, jumping, delta, spawn_position)
+	footsteps.update(self, global_position - movement_start, delta, active and axis.length_squared() > 0.0, running)
 	if not LocalSession.enabled: network.end_prediction()
 
 func _process(delta: float) -> void:
@@ -72,6 +78,7 @@ func _update_camera_offset() -> void:
 	camera.position = Vector3(0, EYE_HEIGHT, 0) + basis.inverse() * visual_offset
 
 func stop() -> void:
+	if footsteps != null: footsteps.stop()
 	playing = false
 	drag_look = false
 	velocity = Vector3.ZERO
