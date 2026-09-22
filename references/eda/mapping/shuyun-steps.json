@@ -1,20 +1,21 @@
 {
-  "source": "references/eda/structures/xiang-plaza/user-aerial.png",
+  "source": "references/eda/imagery/areas/07-library/user-library-shuyun-aerial.png",
   "reviewed": "2026-09-22",
   "capture_date": null,
   "user_annotation_percent": [
-    87.4,
-    13.0
+    94.3,
+    94.7
   ],
   "feature_id": "2304850",
   "osm_id": "way/1381503838",
-  "from_vertex": 26,
-  "to_vertex": 32,
+  "from_vertex": 22,
+  "to_vertex": 23,
   "risers": 3,
   "rise_m": 0.15,
   "tread_m": 0.45,
-  "basis": "用户明确更正：书韵广场为下沉广场，从周围草地沿三级台阶向内下行；不是抬升平台。保留已登记可见弧边和OSM定位底稿，级高0.15米及踏深0.45米仍为比例估计。",
-  "limits": "照片有透视、树冠遮挡且拍摄日期未知；不将三级台阶推广到未见东侧边界。",
+  "basis": "2026-09-22 新鸟瞰明确定位右下角三级下沉入口。结合2025总平面图主圆广场与南侧连接口，将旧西侧长弧26—32撤回，缩到现有OSM东南连接口22—23。三级向广场内下行，级高0.15米、踏深0.45米与具体端点为比例估计，非实测。",
+  "limits": "三级仅在已见入口，不沿整个广场周边复制；图书馆侧独立抬升平台由shuyun-terraces.json登记。",
   "direction": "descend_from_grass_into_square",
-  "plaza_offset_m": -0.45
+  "plaza_offset_m": -0.45,
+  "layout_revision": 2
 }

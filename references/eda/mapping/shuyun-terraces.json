@@ -1,0 +1,158 @@
+{
+  "revision": 1,
+  "source_photo": "references/eda/imagery/areas/07-library/user-library-shuyun-aerial.png",
+  "source_sha256": "2f84f67425ab04fe876f5cbc410b9cb891746a613cde94af361a95277356a1a9",
+  "original_filename": "codex-clipboard-97cea034-bf8b-4df7-a933-6ae5e8e3ab15.png",
+  "source_url": null,
+  "provided_by": "用户",
+  "capture_date": null,
+  "reviewed": "2026-09-22",
+  "licence": "原权利人及再分发许可未核实，仅离线参考",
+  "plan": "references/eda/mapping/campus-master-plan-2025/lakes-xiang-shuyun-south-gate.png",
+  "plan_date": "2025-09",
+  "registration": {
+    "method": "信息楼四个外角对应现有OSM地面轮廓的局部仿射，作为拓扑与位置近似；非CGCS2000至WGS84正式坐标转换",
+    "plan_pixel_anchors": [
+      [
+        534,
+        1234
+      ],
+      [
+        1038,
+        1238
+      ],
+      [
+        1021,
+        1331
+      ],
+      [
+        574,
+        1384
+      ]
+    ],
+    "local_xz_anchors": [
+      [
+        -70.5085,
+        459.9074
+      ],
+      [
+        99.6019,
+        463.3027
+      ],
+      [
+        97.9083,
+        488.1827
+      ],
+      [
+        -59.6989,
+        510.2797
+      ]
+    ],
+    "pixel_to_xz": [
+      [
+        0.34409728229667064,
+        -0.0028730272121271294
+      ],
+      [
+        -0.0021149403112172005,
+        0.3175824188850349
+      ],
+      [
+        -252.8707744098181,
+        70.86784260603268
+      ]
+    ],
+    "fit_residual_m": [
+      1.8024,
+      3.0655,
+      3.3434,
+      2.0803
+    ],
+    "precision": "拟合残差不是测绘精度；图纸景观为示意，照片优先，树冠与透视遮挡端点。"
+  },
+  "annotations_percent": {
+    "semicircular_planter": [
+      50.1,
+      74.1
+    ],
+    "steps": [
+      58.4,
+      79.2
+    ],
+    "woodland": [
+      65.6,
+      72.8
+    ],
+    "lower_entrance": [
+      94.3,
+      94.7
+    ]
+  },
+  "center_xz": [
+    30.906,
+    394.002
+  ],
+  "rear_axis_xz": [
+    26.84,
+    -0.224
+  ],
+  "side_axis_xz": [
+    6.39,
+    22.86
+  ],
+  "plaza_offset_m": -0.45,
+  "upper_offset_m": 0.75,
+  "front_stage_radius_m": 6.0,
+  "front_risers": 8,
+  "side_risers": 8,
+  "rise_m": 0.15,
+  "tread_m": 0.35,
+  "planter_inner_scale": 0.94,
+  "planter_soil_raise_m": 0.3,
+  "planter_rim_raise_m": 0.38,
+  "forecourt_xz": [
+    [
+      49,
+      377
+    ],
+    [
+      72,
+      374
+    ],
+    [
+      80,
+      399
+    ],
+    [
+      72,
+      425
+    ],
+    [
+      48,
+      415
+    ]
+  ],
+  "woodland_xz": [
+    [
+      38,
+      420
+    ],
+    [
+      49,
+      413
+    ],
+    [
+      71,
+      426
+    ],
+    [
+      68,
+      446
+    ],
+    [
+      50,
+      442
+    ]
+  ],
+  "limits": "半圆花坛、前方弧梯、侧边直梯、图书馆前场抬升及林地来自用户照片。圆弧和绿地平面位置参考公示图并匹配现有地面底稿；前/侧梯暂按8级、总高1.2米近似，照片未提供实测级高，不当作用户确认数量。树木为照片支持范围内的近似分布，不是逐树复刻。不新增未见楼梯或室内。"
+}

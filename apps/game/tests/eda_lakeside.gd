@@ -42,12 +42,22 @@ func run() -> void:
 		for at:Vector2 in [Vector2(-81.5255,341.8303),Vector2(-99.1094,351.3148)]:
 			check_height(space,terrain,at,.02,"Asphalt at woodland stop")
 		# Three distinct treads plus the adjoining plaza, checked in both collision worlds.
-		var a:=Vector2(-48.6301447812,415.401712)
-		var b:=Vector2(-51.343340492,401.954256)
+		var a:=Vector2(31.3659249396,436.196288)
+		var b:=Vector2(33.6211608649,445.402452)
 		var outward:Vector2=(b-a).normalized().orthogonal()
 		for level in range(3):
 			check_height(space,terrain,a.lerp(b,.5)+outward*(level*.45+.225),-float(3-level)*.15,"Shuyun tread")
 		check_height(space,terrain,a.lerp(b,.5)-outward*.5,-.45,"Shuyun landing")
+		check_height(space,terrain,Vector2(-50.64841,408.8115),0.0,"Removed western stair ground")
+		var terrace_center:=Vector2(30.906,394.002)
+		var terrace_axis:=Vector2(26.84,-.224).normalized()
+		var side_landing:=terrace_center+Vector2(6.39,22.86)*.77
+		check_height(space,terrain,terrace_center-terrace_axis*3.0,.75,"Raised stage")
+		check_height(space,terrain,Vector2(65,399),.75,"Library forecourt")
+		for i in range(8):
+			var height:float=.75-(i+1)*.15+.003
+			check_height(space,terrain,terrace_center-terrace_axis*(6+i*.35+.175),height,"Curved terrace stairs")
+			check_height(space,terrain,side_landing-terrace_axis*(i*.35+.175),height,"Side terrace stairs")
 		var body := CharacterBody3D.new()
 		var shape := CollisionShape3D.new()
 		var capsule := CapsuleShape3D.new()

@@ -2,7 +2,7 @@ extends RefCounted
 ## Three visible perimeter risers; dimensions are photo proportions, not a survey.
 func build(host)->void:
  var plaza:Node3D=host.scene.get_node("Feature_2304850")
- if plaza.get_meta("shuyun_sunken",false):return
+ if int(plaza.get_meta("shuyun_layout_revision",0))==2:return
  var old=host.scene.get_node_or_null("ShuyunSteps")
  if old!=null:host.scene.remove_child(old);old.free()
  var terrain=preload("res://tools/build_terrain.gd").new();terrain.load_campus("eda")
@@ -12,7 +12,7 @@ func build(host)->void:
   if str(feature.id)=="2304850":points=feature.points
  assert(not points.is_empty())
  # Lower the plaza below the surrounding grass; migrate the earlier raised model once.
- var previous_height:float=.45 if plaza.has_meta("shuyun_steps") else .18
+ var previous_height:float=-.45 if plaza.get_meta("shuyun_sunken",false) else (.45 if plaza.has_meta("shuyun_steps") else .18)
  for child in plaza.get_children():
   if child is MeshInstance3D:child.position.y+=-float(data.rise_m)*3.0-previous_height
  var group:=Node3D.new();group.name="ShuyunSteps";host.scene.add_child(group);group.owner=host.scene;group.set_meta("static_collision_group",true)
@@ -48,7 +48,7 @@ func build(host)->void:
   helper.quad(sides,a,b,b-Vector3.UP*.45,a-Vector3.UP*.45,n)
  sides.index();sides.generate_normals()
  host.mesh_node(group,sides.commit(),host.material("Shuyun step risers",Color("ada79e")),"Risers").set_meta("walk_collision",true)
- plaza.set_meta("shuyun_sunken",true);plaza.set_meta("shuyun_steps",3);group.set_meta("riser_count",3)
+ plaza.set_meta("shuyun_layout_revision",2);plaza.set_meta("shuyun_sunken",true);plaza.set_meta("shuyun_steps",3);group.set_meta("riser_count",3)
 
 static func terrain_masks()->Array[PackedVector2Array]:
  var manifest:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
