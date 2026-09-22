@@ -81,6 +81,25 @@ func run()->void:
    var z:float=Profile.curb_z(x,p)-float(p.border_depth_m)-.5
    var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(x,upper+2,z),Vector3(x,base-2,z)))
    check(not hit.is_empty() and absf(hit.position.y-base)<.025,"Entrance and adjoining red walk kerbs have different levels")
+  # The saved road mesh, not just an equal-height floor, must remain red across the plaza frontage.
+  var path_samples:=0
+  for road:Dictionary in JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json")).roads:
+   if int(road.osm_way_id)!=1076344125:continue
+   for i in range(road.points.size()-1):
+    var a:=Vector2(road.points[i][0],road.points[i][1]);var b:=Vector2(road.points[i+1][0],road.points[i+1][1])
+    var normal:Vector2=(b-a).normalized().orthogonal()
+    for j in 12:
+     var at:Vector2=a.lerp(b,(j+.5)/12)
+     if at.x< -144 or at.x> -94 or at.y<300:continue
+     for offset:float in [-.8,0,.8]:
+      var sample:Vector2=at+normal*offset
+      var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(sample.x,upper+2,sample.y),Vector3(sample.x,base-2,sample.y)))
+      check(not hit.is_empty() and absf(hit.position.y-terrain.elevation(sample.x,sample.y)-.02)<.012,"Promenade has a gap or plaza-height obstacle")
+      if not server and not hit.is_empty():
+       var mesh=hit.collider.get_parent()
+       check(mesh is MeshInstance3D and mesh.material_override.resource_name=="Photo red path","Plaza paving replaced the continuous red promenade")
+      path_samples+=1
+  check(path_samples>60,"Too few samples across the promenade frontage")
   for x in [-124.9,-112.1]:
    for z:float in [Profile.curb_z(x,p)-.08,Profile.curb_z(x,p)-float(p.border_depth_m)+.08]:
     var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(x,upper+1,z),Vector3(x,base-1,z)))
@@ -96,7 +115,7 @@ func run()->void:
    var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(-118.5,upper+2,z),Vector3(-118.5,base-1,z)))
    check(not hit.is_empty() and absf(hit.position.y-garden_y)<0.005,"Raised garden collision differs from visible turf")
   for x in [-132.0,-122.0,-105.0]:
-   for z in [308.0,312.0,320.0,326.0]:
+   for z in [314.0,316.0,320.0,326.0]:
     var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(x,upper+2,z),Vector3(x,base-2,z)))
     check(not hit.is_empty() and absf(hit.position.y-upper)<0.005,"Upper plaza is sloped or missing")
   for z in [329.0,333.0,337.0]:

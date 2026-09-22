@@ -21,6 +21,7 @@ func build(builder, campus: String) -> void:
 		stair_edge_mask=stairs.mask(edge_profile)
 	var surface_masks: Array[PackedVector2Array] = replacement_masks.duplicate()
 	for surface: Dictionary in builder.manifest.get("ground_overlays", []):
+		if campus == "eda" and surface.id == "eda-xiang-lakeside-paving":continue
 		var ring := PackedVector2Array()
 		for p: Array in surface.outer: ring.append(Vector2(p[0],p[1]))
 		surface_masks.append(ring)

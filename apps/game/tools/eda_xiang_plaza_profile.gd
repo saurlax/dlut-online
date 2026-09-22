@@ -12,7 +12,7 @@ static func rectangle(x0:float,z0:float,x1:float,z1:float)->PackedVector2Array:
  return PackedVector2Array([Vector2(x0,z0),Vector2(x1,z0),Vector2(x1,z1),Vector2(x0,z1)])
 static func masks() -> Array[PackedVector2Array]:
  var p:=load_profile()
- return [front_polygon(p.side_ranges[0][0],p.side_ranges[1][1],p.back_z,p),rectangle(p.upper_left_x,p.back_z,p.upper_right_x,p.upper_wing_front_z)]
+ return [front_polygon(p.side_ranges[0][0],p.side_ranges[1][1],p.upper_wing_front_z,p),upper_polygon(p)]
 static func garden_height(terrain, at:Vector2) -> float:
  var p:=load_profile()
  return lower_height(terrain,p)+float(p.planter_raise_m)+clampf((float(p.origin_xz[1])-at.y)/(float(p.origin_xz[1])-upper_z(p)),0,1)*float(p.risers)*float(p.rise_m)
@@ -56,3 +56,35 @@ static func ground_height(at:Vector2,original:float,base:float,p:Dictionary)->fl
  var fraction:float=clampf((at.y-upper_z(p))/(float(p.origin_xz[1])-upper_z(p)),0,1)
  var target:float=lerpf(base+float(p.risers)*float(p.rise_m)-.02,base-.18,fraction)
  return lerpf(original,target,weight)
+
+static func promenade_polygons()->Array[PackedVector2Array]:
+ var roads:Array=JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json")).roads
+ for road:Dictionary in roads:
+  if int(road.osm_way_id)==1076344125:
+   # Keep the same two-metre ribbon and 12 cm edging as the red-path generator.
+   return preload("res://scripts/shared/road_geometry.gd").polygons([road],.12)
+ assert(false,"Missing registered lake promenade")
+ return []
+
+static func upper_polygon(p:Dictionary)->PackedVector2Array:
+ # The plaza ends at the landward promenade edge; the red ribbon crosses its entire frontage.
+ var ribbons:=promenade_polygons()
+ var cuts:Array[float]=[float(p.upper_left_x),float(p.upper_right_x)]
+ for ring:PackedVector2Array in ribbons:
+  for v:Vector2 in ring:
+   if v.x>float(p.upper_left_x) and v.x<float(p.upper_right_x) and not cuts.has(v.x):cuts.append(v.x)
+ cuts.sort()
+ var outline:=PackedVector2Array()
+ for x:float in cuts:
+  var south:float=-INF
+  for ring:PackedVector2Array in ribbons:
+   for i in ring.size():
+    var a:Vector2=ring[i];var b:Vector2=ring[(i+1)%ring.size()]
+    if x<minf(a.x,b.x)-.0001 or x>maxf(a.x,b.x)+.0001:continue
+    if absf(a.x-b.x)<.00001:south=maxf(south,maxf(a.y,b.y))
+    else:south=maxf(south,lerpf(a.y,b.y,clampf((x-a.x)/(b.x-a.x),0,1)))
+  assert(is_finite(south),"Plaza edge must meet the registered promenade")
+  outline.append(Vector2(x,south))
+ outline.append(Vector2(p.upper_right_x,p.upper_wing_front_z))
+ outline.append(Vector2(p.upper_left_x,p.upper_wing_front_z))
+ return outline

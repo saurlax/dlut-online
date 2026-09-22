@@ -51,7 +51,10 @@ func extrude(values:Array,letters:bool,mat:Material)->void:
    quad(st,a,b,mapped(ring[(i+1)%ring.size()],letters,false),mapped(ring[i],letters,false),out)
  save(st,mat,"SchoolNameStone" if letters else "OfficialEmblemHedge",letters)
 func level(st:SurfaceTool,ring:PackedVector2Array,height:float)->void:
- for i in range(1,ring.size()-1):tri(st,Vector3(ring[0].x,height,ring[0].y),Vector3(ring[i].x,height,ring[i].y),Vector3(ring[i+1].x,height,ring[i+1].y),Vector3.UP)
+ var indices:=Geometry2D.triangulate_polygon(ring)
+ for i in range(0,indices.size(),3):
+  var a:Vector2=ring[indices[i]];var b:Vector2=ring[indices[i+1]];var c:Vector2=ring[indices[i+2]]
+  tri(st,Vector3(a.x,height,a.y),Vector3(b.x,height,b.y),Vector3(c.x,height,c.y),Vector3.UP)
 func build(builder)->void:
  host=builder;p=Profile.load_profile()
  terrain=preload("res://tools/build_terrain.gd").new();terrain.load_campus("eda")
@@ -66,12 +69,15 @@ func build(builder)->void:
  var left:float=p.side_ranges[0][0];var right:float=p.side_ranges[1][1]
  var walk:=SurfaceTool.new();walk.begin(Mesh.PRIMITIVE_TRIANGLES)
  var deck:=SurfaceTool.new();deck.begin(Mesh.PRIMITIVE_TRIANGLES)
- level(deck,Profile.rectangle(p.upper_left_x,p.back_z,p.upper_right_x,p.upper_wing_front_z),upper)
+ var lake_edge:=Profile.upper_polygon(p)
+ level(deck,lake_edge,upper)
  level(deck,Profile.rectangle(left,p.upper_wing_front_z,right,start),upper)
- build_paving(float(p.upper_left_x),float(p.upper_right_x),float(p.back_z),float(p.upper_wing_front_z),upper)
+ build_paving(float(p.upper_left_x),float(p.upper_right_x),float(p.back_z),float(p.upper_wing_front_z),upper,lake_edge)
  build_paving(left,right,float(p.upper_wing_front_z),start,upper)
  # Close the outer back and side walls all the way below the original ground.
- var perimeter:=PackedVector2Array([Vector2(p.upper_left_x,p.back_z),Vector2(p.upper_right_x,p.back_z),Vector2(p.upper_right_x,p.upper_wing_front_z),Vector2(right,p.upper_wing_front_z),Vector2(right,start),Vector2(left,start),Vector2(left,p.upper_wing_front_z),Vector2(p.upper_left_x,p.upper_wing_front_z)])
+ var perimeter:=lake_edge.duplicate()
+ perimeter.remove_at(perimeter.size()-1)
+ perimeter.append_array(PackedVector2Array([Vector2(right,p.upper_wing_front_z),Vector2(right,start),Vector2(left,start),Vector2(left,p.upper_wing_front_z),Vector2(p.upper_left_x,p.upper_wing_front_z)]))
  for i in perimeter.size():
   var a:Vector2=perimeter[i];var b:Vector2=perimeter[(i+1)%perimeter.size()]
   if is_equal_approx(a.y,start) and is_equal_approx(b.y,start):continue
@@ -150,9 +156,10 @@ func build(builder)->void:
 func garden_point(at:Vector2)->Vector3:
  return Vector3(at.x,Profile.garden_height(terrain,at),at.y)
 
-func build_paving(left:float,right:float,back:float,front:float,height:float)->void:
+func build_paving(left:float,right:float,back:float,front:float,height:float,outline:=PackedVector2Array())->void:
+ if outline.is_empty():outline=Profile.rectangle(left,back,right,front)
  var tiles:=SurfaceTool.new();tiles.begin(Mesh.PRIMITIVE_TRIANGLES)
- level(tiles,Profile.rectangle(left,back,right,front),height+.002)
+ level(tiles,outline,height+.002)
  save(tiles,preload("res://assets/roads/stone_paving.tres"),"UpperPlazaStoneTiles",false)
  var lines:=SurfaceTool.new();lines.begin(Mesh.PRIMITIVE_TRIANGLES)
  for axis in 2:
@@ -163,6 +170,7 @@ func build_paving(left:float,right:float,back:float,front:float,height:float)->v
    for offset:float in [-.14,.14]:
     var lo:float=clampf(at+offset-.035,begin,end)
     var hi:float=clampf(at+offset+.035,begin,end)
-    level(lines,Profile.rectangle(lo,back,hi,front) if axis==0 else Profile.rectangle(left,lo,right,hi),height+.006)
+    var strip:=Profile.rectangle(lo,back,hi,front) if axis==0 else Profile.rectangle(left,lo,right,hi)
+    for piece:PackedVector2Array in Geometry2D.intersect_polygons(strip,outline):level(lines,piece,height+.006)
    at+=4.0
  save(lines,host.material("Xiang plaza double-line stone inlay",Color("697874")),"UpperPlazaGrid",false)
