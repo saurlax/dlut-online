@@ -8,9 +8,59 @@ var generated_count := 0
 var residence_profiles: Dictionary = {}
 var seventh_profile: Dictionary = {}
 var academic_profiles: Dictionary = {}
+var building_assets: Dictionary = {}
 
 func _initialize() -> void:
 	call_deferred("build")
+
+func add_blender_building(feature: Dictionary, placeholder: Node3D) -> void:
+	assert(building_assets.has(feature.id), "Missing Blender building asset: " + feature.id)
+	var entry: Dictionary = building_assets[feature.id]
+	var path := "res://assets/campuses/eda/models/buildings/%s.glb" % feature.id
+	var packed := load(path) as PackedScene
+	assert(packed != null, "Missing Blender building GLB: " + path)
+	scene.remove_child(placeholder)
+	placeholder.free()
+	var group := packed.instantiate() as Node3D
+	group.name = "Feature_" + feature.id
+	group.position = Vector3(entry.origin[0], entry.origin[1], entry.origin[2])
+	group.set_meta("source_id", feature.id)
+	group.set_meta("geometry_status", feature.get("geometry_status", ""))
+	group.set_meta("display_name", feature.name)
+	group.set_meta("height_is_approximate", true)
+	group.set_meta("interior_available", false)
+	group.set_meta("terrain_preview_base_y", entry.origin[1])
+	group.set_meta("blender_source", "references/eda/buildings/blender/%s.blend" % feature.id)
+	for key in ["osm_id", "osm_version", "footprint_refinement", "height_source"]:
+		if feature.has(key):
+			group.set_meta(key, feature[key])
+	for key in entry:
+		if key not in ["id", "origin"]:
+			group.set_meta(key, entry[key])
+	scene.add_child(group)
+	group.owner = scene
+
+func save_campus_scene(packed: PackedScene, resource_path: String) -> Error:
+	var target := ProjectSettings.globalize_path(resource_path)
+	var pending := target.get_basename() + ".new." + target.get_extension()
+	var backup := target.get_basename() + ".bak." + target.get_extension()
+	var error := ResourceSaver.save(packed, pending)
+	if error != OK:
+		return error
+	if FileAccess.file_exists(backup):
+		DirAccess.remove_absolute(backup)
+	if FileAccess.file_exists(target):
+		error = DirAccess.rename_absolute(target, backup)
+		if error != OK:
+			return error
+	error = DirAccess.rename_absolute(pending, target)
+	if error != OK:
+		if FileAccess.file_exists(backup):
+			DirAccess.rename_absolute(backup, target)
+		return error
+	if FileAccess.file_exists(backup):
+		DirAccess.remove_absolute(backup)
+	return OK
 
 func material(key: String, color: Color) -> StandardMaterial3D:
 	if materials.has(key):
@@ -194,12 +244,14 @@ func sports(parent: Node3D, points: PackedVector2Array, kind: String) -> void:
 
 
 func merge_meshes(parent: Node3D) -> void:
+	if parent.has_meta("blender_source"):
+		return
 	var buckets: Dictionary = {}
 	for child in parent.get_children():
 		if child is MeshInstance3D:
 			# Roads and traced overlays carry distinct terrain offsets and source
 			# metadata even when they share asphalt. Preserve those mesh boundaries.
-			if child.get_meta("road_surface",false):
+			if child.get_meta("road_surface",false) or child.material_override == null:
 				continue
 			var key: String = child.material_override.resource_name + ("_Solid" if child.get_meta("walk_collision",false) else "")
 			if not buckets.has(key):
@@ -228,6 +280,9 @@ func build() -> void:
 	scene.name = "DevelopmentCampus"
 	root.add_child(scene)
 	manifest = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
+	var building_manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/building_assets.json"))
+	for entry: Dictionary in building_manifest.buildings:
+		building_assets[entry.id] = entry
 	if not valid_ground_sources():
 		quit(1)
 		return
@@ -256,6 +311,11 @@ func build() -> void:
 		var height: float = feature.height if feature.height != null else 0.0
 		match kind:
 			"building":
+				add_blender_building(feature, group)
+				generated_count += 1
+				# The legacy builders below remain loadable by geometry regression tests,
+				# but the production campus build cannot reach them.
+				continue
 				if feature.id == "77943":
 					var registration: Dictionary = {}
 					if feature.has("osm_id"):
@@ -395,9 +455,6 @@ func build() -> void:
 					surface.set_meta("walk_collision",true)
 		generated_count += 1
 	preload("res://tools/build_vegetation.gd").new().build(self)
-	if not preload("res://tools/build_photo_surfaces.gd").new().build(self, "eda"):
-		quit(1)
-		return
 	for item in surface_deformations: item.curve.apply(item.group,item.first_child)
 	surface_deformations.clear()
 	preload("res://tools/build_terrain.gd").new().build(self, "eda")
@@ -426,12 +483,8 @@ func build() -> void:
 			await mat.albedo_texture.changed
 	var packed := PackedScene.new()
 	assert(packed.pack(scene)==OK)
-	assert(ResourceSaver.save(packed,"res://assets/campuses/eda/models/development_campus.tscn")==OK)
-	var document := GLTFDocument.new()
-	var state := GLTFState.new()
-	assert(document.append_from_scene(scene,state)==OK)
-	assert(document.write_to_filesystem(state,"res://assets/campuses/eda/models/development_campus.glb")==OK)
-	print("MODEL PASS: %d source identity nodes, generated TSCN and GLB" % generated_count)
+	assert(save_campus_scene(packed,"res://assets/campuses/eda/models/development_campus.tscn")==OK)
+	print("MODEL PASS: %d source identity nodes, assembled TSCN with Blender buildings" % generated_count)
 	quit()
 
 func valid_ground_sources() -> bool:

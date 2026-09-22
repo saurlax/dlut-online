@@ -20,6 +20,15 @@ build/
 /apps/game/assets/campuses/*/models/*_dut_emblem.png
 /apps/game/assets/campuses/*/models/*_dut_emblem.png.import
 
+# Blender-owned development-campus buildings. Commit .blend and runtime GLB;
+# ignore Blender backups and temporary images extracted during migration/import.
+/references/eda/buildings/blender/*.blend1
+/apps/game/assets/campuses/eda/models/buildings/*.glb.import
+/apps/game/assets/campuses/eda/models/buildings/*.png
+/apps/game/assets/campuses/eda/models/buildings/*.png.import
+/apps/game/assets/campuses/eda/models/development_campus.new.tscn
+/apps/game/assets/campuses/eda/models/development_campus.bak.tscn
+
 # Python caches
 __pycache__/
 *.pyc
