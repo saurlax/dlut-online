@@ -17,7 +17,7 @@
   "withheld": {
     "crossings": "Photos confirm crossings, but exact cross-road registration/extent has not been established; do not place zebra crossings on guessed chainages.",
     "bridge": "OSM way 309375782 v7 locates Xueyuan Bridge. Aerial appearance and 2026-01-05 repair photos confirm covered curved ribs, turquoise roof, metal deck and 5 cm anti-slip strips. Absolute deck profile, stair/landing plan and support coordinates are not supplied. Hold the connected bridge model until these are registered; do not fit an arbitrary hump to terrain.",
-    "lighting_2026": "2026-06-24 official report confirms 66 replaced/new LED fixtures at more than 10 locations, without a location schedule. The twelve estimated poles represent only visible historical fixtures, not the whole upgrade."
+    "lighting_2026": "2026-06-24 official report confirms 66 replaced/new LED fixtures at more than 10 locations, without a location schedule. The fourteen estimated poles represent only visible historical fixtures, not the whole upgrade."
   },
   "sections": [
     {
@@ -66,6 +66,16 @@
           "segment": 23,
           "fraction": 0.5,
           "side": 1
+        },
+        {
+          "segment": 13,
+          "fraction": 0.25,
+          "side": -1
+        },
+        {
+          "segment": 8,
+          "fraction": 0.6,
+          "side": -1
         }
       ]
     },
@@ -130,5 +140,23 @@
       "to_vertex": 6,
       "side": -1
     }
-  ]
+  ],
+  "annotation_20260922": {
+    "photo": "references/eda/structures/xiang-plaza/user-aerial.png",
+    "markers_percent": [
+      [
+        55.9,
+        61.3
+      ],
+      [
+        65.9,
+        65.2
+      ],
+      [
+        88.4,
+        63.0
+      ]
+    ],
+    "basis": "第一处保持连续沥青和白色外缘，不铺红步道或树篱；后两处补两盏既有造型路灯。灯基沿东侧环湖路与南向引道外侧约定位，树冠遮挡底座，非实测坐标。"
+  }
 }

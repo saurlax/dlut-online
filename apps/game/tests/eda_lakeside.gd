@@ -38,6 +38,16 @@ func run() -> void:
 			for x in [-132.7,-105.3]:
 				check_height(space,terrain,Vector2(x,z),.182,"Outer red sidewalk");count+=1
 
+		# Woodland paths must not cut a hole where their source axes meet the carriageway.
+		for at:Vector2 in [Vector2(-81.5255,341.8303),Vector2(-99.1094,351.3148)]:
+			check_height(space,terrain,at,.02,"Asphalt at woodland stop")
+		# Three distinct treads plus the adjoining plaza, checked in both collision worlds.
+		var a:=Vector2(-48.6301447812,415.401712)
+		var b:=Vector2(-51.343340492,401.954256)
+		var outward:Vector2=(b-a).normalized().orthogonal()
+		for level in range(3):
+			check_height(space,terrain,a.lerp(b,.5)+outward*(level*.45+.225),float(3-level)*.15,"Shuyun tread")
+		check_height(space,terrain,a.lerp(b,.5)-outward*.5,.45,"Shuyun landing")
 		var body := CharacterBody3D.new()
 		var shape := CollisionShape3D.new()
 		var capsule := CapsuleShape3D.new()
@@ -66,16 +76,21 @@ func check_height(space:PhysicsDirectSpaceState3D,terrain:RefCounted,at:Vector2,
 func check_finishes(model:Node3D)->void:
 	var gravel:MeshInstance3D
 	for child in model.get_children():
-		if child is MeshInstance3D and child.material_override!=null and child.material_override.resource_name=="EDA woodland pebble path":gravel=child
-	assert(gravel!=null,"Woodland paths still lack the gravel surface")
+		if child is MeshInstance3D and child.material_override!=null and child.material_override.resource_name=="EDA woodland grass gaps":gravel=child
+	assert(gravel!=null,"Woodland paths lack their planted ground")
 	var faces:PackedVector3Array=gravel.mesh.get_faces()
 	for at:Vector2 in [Vector2(-69.7,362.0),Vector2(-71.4,394.5),Vector2(-58.1,397.0),Vector2(-20.7,346.7)]:
 		var covered:=false
 		for i in range(0,faces.size(),3):
 			var triangle:=PackedVector2Array([Vector2(faces[i].x,faces[i].z),Vector2(faces[i+1].x,faces[i+1].z),Vector2(faces[i+2].x,faces[i+2].z)])
 			if Geometry2D.is_point_in_polygon(at,triangle):covered=true;break
-		assert(covered,"Photographed woodland path is not covered by saved gravel: "+str(at))
+		assert(covered,"Woodland grass is missing at: "+str(at))
+	var slabs:MeshInstance3D
+	for child in model.get_children():
+		if child is MeshInstance3D and child.get_meta("woodland_stepping_stones",false):slabs=child
+	assert(slabs!=null and int(slabs.get_meta("slab_count"))>100,"Discrete woodland slabs are missing")
 	var square:=model.get_node("Feature_2304850")
+	assert(int(square.get_meta("shuyun_steps",0))==3,"Shuyun needs exactly three perimeter risers")
 	var patterned:=false
 	for child in square.get_children():
 		if child is MeshInstance3D and child.material_override is ShaderMaterial:

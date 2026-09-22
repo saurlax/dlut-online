@@ -57,7 +57,7 @@ func build(builder, campus: String) -> void:
 			emit(builder,polygons,-0.068,material,surface_masks)
 		var edging := emit(builder, Geometry.polygons(painted, profile.edge_width), -0.066, builder.material("Photo path edging", Color("d0cec2")),surface_masks)
 		edging.set_meta("walk_collision", false)
-	var rings := Geometry.polygons(roads)
+	var rings := Geometry.polygons(roads.filter(func(r):return not gravel.has(r)))
 	if campus == "eda":
 		var lake_profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/lakeside-environment.json"))
 		var bands=preload("res://tools/eda_lake_road_profile.gd")
@@ -73,9 +73,9 @@ func build(builder, campus: String) -> void:
 	var colored := Geometry.polygons(painted)
 	var key: String = "Road" if campus == "eda" else campus.capitalize() + " asphalt"
 	var asphalt: Material = preload("res://assets/roads/asphalt.tres") if campus == "eda" else builder.material(key, Color("656966"))
-	emit(builder, rings, -0.06, asphalt, colored+Geometry.polygons(gravel)+surface_masks)
+	emit(builder, rings, -0.06, asphalt, colored+surface_masks)
 	if not gravel.is_empty():
-		emit(builder,Geometry.polygons(gravel),-.06,preload("res://tools/eda_surface_details.gd").new().ground_material("EDA woodland pebble path",Color("aba497"),8),surface_masks)
+		preload("res://tools/build_eda_woodland_paths.gd").new().build(builder,gravel,surface_masks)
 	if not colored.is_empty():
 		emit(builder, colored, -0.06, preload("res://assets/roads/red_path.tres"),surface_masks)
 	for surface: Dictionary in builder.manifest.get("ground_overlays", []):

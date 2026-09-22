@@ -1,0 +1,18 @@
+{
+  "source": "references/eda/structures/xiang-plaza/user-aerial.png",
+  "reviewed": "2026-09-22",
+  "capture_date": null,
+  "user_annotation_percent": [
+    87.4,
+    13.0
+  ],
+  "feature_id": "2304850",
+  "osm_id": "way/1381503838",
+  "from_vertex": 26,
+  "to_vertex": 32,
+  "risers": 3,
+  "rise_m": 0.15,
+  "tread_m": 0.45,
+  "basis": "用户标注三级台阶；仅沿面向林下草地的西侧弧边登记。现有OSM广场轮廓作为定位底稿，台阶数量由用户确认，级高、踏深及边界覆盖为照片比例估计，不是实测。",
+  "limits": "照片有透视、树冠遮挡且拍摄日期未知；不将三级台阶推广到未见东侧边界。"
+}

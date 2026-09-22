@@ -31,7 +31,7 @@ func verify() -> void:
 		if marking: check(node.get_child_count()==0,"Paint must not have collision")
 	check(samples > 100, "Missing saved markings")
 	var poles := details.find_children("*", "StaticBody3D", true, false)
-	check(poles.size() == 12, "Expected twelve bounded photo poles")
+	check(poles.size() == 14, "Expected fourteen bounded photo poles")
 	# The same ray and swept capsule must hit the post in client and server worlds.
 	for server_mode in [false, true]:
 		var viewport := SubViewport.new()
