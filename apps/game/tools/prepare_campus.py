@@ -168,6 +168,8 @@ for feature in features:
   # Keep identity/reference data while withholding unsupported runtime geometry.
   feature.update(render_polygons=[],geometry_status='source-reference-only; gate geometry pending photo registration',height=None,height_source='unavailable')
 osm_world.withhold_selection_bounds(features, 'eda')
+from refine_lake_outlines import apply as refine_lakes
+refine_lakes(features, json.loads((ROOT.parents[1]/'references/eda/terrain/lake-shores.json').read_text(encoding='utf-8')))
 all_points=world['boundary']+[p for f in features for p in f['points']]
 low=[math.floor(min(p[i] for p in all_points)/10)*10-30 for i in (0,1)]
 high=[math.ceil(max(p[i] for p in all_points)/10)*10+30 for i in (0,1)]
@@ -176,6 +178,10 @@ data.update(origin=world['origin_lon_lat'],coordinate_frame=world['coordinate_fr
             migration_status='shared-frame-active; selection-bound geometry withheld')
 data['ground_overlays']=ground_surfaces('eda')
 data['vegetation_areas']=osm_world.registered_planting_areas('eda')
+from prepare_eda_lakeside import build as lake_environment
+lake_surfaces, lake_areas = lake_environment()
+data['ground_overlays'].extend(lake_surfaces)
+data['vegetation_areas'].extend(lake_areas)
 (ROOT/'assets/campuses/eda/data/campus.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 scene_path=ROOT/'scenes/campuses/eda.tscn'
 scene=scene_path.read_text(encoding='utf-8')

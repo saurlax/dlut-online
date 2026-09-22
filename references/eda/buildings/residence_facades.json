@@ -10,7 +10,7 @@
     "height": 23.0,
     "photos": [
       {
-        "file": "photos/77931-0.jpg",
+        "file": "../imagery/areas/02-residences-courtyard/77931-0.jpg",
         "image_id": 79703,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77931_20160302113542791.jpg",
         "retrieved": "2026-09-09",
@@ -18,7 +18,7 @@
         "sha256": "e771b3f407a52633c2e9432bc7a201284df93527cdf191d5bc2ba1337ad74dca"
       },
       {
-        "file": "photos/77933-0.jpg",
+        "file": "../imagery/areas/02-residences-courtyard/77933-0.jpg",
         "image_id": 79702,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
         "retrieved": "2026-09-09",
@@ -81,7 +81,7 @@
         1
       ],
       "reviewed": "2026-09-16",
-      "source": "photos/77931-0.jpg; archived way/309375779 version 4",
+      "source": "../imagery/areas/02-residences-courtyard/77931-0.jpg; archived way/309375779 version 4",
       "basis": "按相邻楼栋关系及照片可见立面方向登记完整 OSM 墙线，保留原顶点和各段转折；沿墙累计长度分配原照片比例参数，侧墙独立登记。",
       "limits": "保留原照片估计高度和细部尺寸，不据此推定未确认立面、室内或两楼连接体。",
       "side_windows": [
@@ -125,7 +125,7 @@
     "height": 23.0,
     "photos": [
       {
-        "file": "photos/77933-0.jpg",
+        "file": "../imagery/areas/02-residences-courtyard/77933-0.jpg",
         "image_id": 79702,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
         "retrieved": "2026-09-09",
@@ -133,7 +133,7 @@
         "sha256": "978b168ccbe4343451aa3b9edd79dd86e18325c43e9aed95da50836ecc0c7ad4"
       },
       {
-        "file": "photos/77933-1.jpg",
+        "file": "../imagery/areas/02-residences-courtyard/77933-1.jpg",
         "image_id": 79704,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113604487.jpg",
         "retrieved": "2026-09-09",
@@ -193,7 +193,7 @@
         1
       ],
       "reviewed": "2026-09-16",
-      "source": "photos/77933-0.jpg; archived way/309375778 version 4",
+      "source": "../imagery/areas/02-residences-courtyard/77933-0.jpg; archived way/309375778 version 4",
       "basis": "按相邻楼栋关系及照片可见立面方向登记完整 OSM 墙线，保留原顶点和各段转折；沿墙累计长度分配原照片比例参数，侧墙独立登记。",
       "limits": "保留原照片估计高度和细部尺寸，不据此推定未确认立面、室内或两楼连接体。",
       "side_windows": [
@@ -237,7 +237,7 @@
     "height": 23.0,
     "photos": [
       {
-        "file": "photos/77935-0.jpg",
+        "file": "../imagery/areas/02-residences-courtyard/77935-0.jpg",
         "image_id": 79701,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77935_20160302113438786.jpg",
         "retrieved": "2026-09-09",
@@ -245,7 +245,7 @@
         "sha256": "1507bace6bd3af21cbd2b40f423714209d03991cef5b694a704e215ff8cfd814"
       },
       {
-        "file": "photos/77933-0.jpg",
+        "file": "../imagery/areas/02-residences-courtyard/77933-0.jpg",
         "image_id": 79702,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77933_20160302113452567.jpg",
         "retrieved": "2026-09-09",
@@ -300,7 +300,7 @@
         3
       ],
       "reviewed": "2026-09-16",
-      "source": "photos/77935-0.jpg; archived way/309375777 version 4",
+      "source": "../imagery/areas/02-residences-courtyard/77935-0.jpg; archived way/309375777 version 4",
       "basis": "按相邻楼栋关系及照片可见立面方向登记完整 OSM 墙线，保留原顶点和各段转折；沿墙累计长度分配原照片比例参数，侧墙独立登记。",
       "limits": "保留原照片估计高度和细部尺寸，不据此推定未确认立面、室内或两楼连接体。",
       "recess_edge": 2,
@@ -331,7 +331,7 @@
     ],
     "photos": [
       {
-        "file": "photos/77937-0.jpg",
+        "file": "../imagery/areas/02-residences-courtyard/77937-0.jpg",
         "image_id": 79700,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77937_2016030211335637.jpg",
         "retrieved": "2026-09-09",
@@ -339,7 +339,7 @@
         "sha256": "04dc28e31227d9ad50f57d82e3423f9c0e5e9a62bfd75cce1d5f053fb91dde04"
       },
       {
-        "file": "photos/77937-2026.jpg",
+        "file": "../imagery/areas/02-residences-courtyard/77937-2026.jpg",
         "url": "https://news.dlut.edu.cn/virtual_attach_file.vsb?afc=PUmnYVLNUaLzrVU4mAVMR9bMzl4olL8sU4-inNlYLRnRM7L0gihFp2hmCIa0nkh7MkhRnkhRn7lZLzGYnlr2LR9PUmGYozviMzGaMmAkLRQFLmV2MRUbUlWFMzLsMlUJqjfjo4OeoDnOp26N_dAs6YhXptQ0g47aLm-0LzlPL4CigtA8pUicc&oid=1819948287&tid=1022&nid=151365&e=.jpg",
         "article_url": "https://news.dlut.edu.cn/info/1022/151365.htm",
         "published": "2026-09-04",
@@ -421,7 +421,7 @@
         5
       ],
       "reviewed": "2026-09-16",
-      "source": "photos/77937-0.jpg; archived way/309375780 version 4",
+      "source": "../imagery/areas/02-residences-courtyard/77937-0.jpg; archived way/309375780 version 4",
       "basis": "按相邻楼栋关系及照片可见立面方向登记完整 OSM 墙线，保留原顶点和各段转折；沿墙累计长度分配原照片比例参数，侧墙独立登记。",
       "limits": "保留原照片估计高度和细部尺寸，不据此推定未确认立面、室内或两楼连接体。"
     }
@@ -485,7 +485,7 @@
     ],
     "photos": [
       {
-        "file": "photos/77938-0.jpg",
+        "file": "../imagery/areas/02-residences-courtyard/77938-0.jpg",
         "image_id": 79699,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77938_20160302113344746.jpg",
         "retrieved": "2026-09-09",
@@ -544,7 +544,7 @@
       "edge": 1,
       "reverse_edge": true,
       "reviewed": "2026-09-16",
-      "source": "photos/77938-0.jpg / 79699; archived OSM way/309375781 version 4",
+      "source": "../imagery/areas/02-residences-courtyard/77938-0.jpg / 79699; archived OSM way/309375781 version 4",
       "basis": "旧南边5从东向西，新 OSM 南边1从西向东；反向读取1到2，保留原照片窗列、东端楼梯塔、西端挑檐的比例锚点。",
       "limits": "只迁移本楼照片可见立面。尺寸、高度及跨度沿用照片比例估计；与四舍之间的空中连接体未包含在该 OSM 轮廓中，不据此推断连接体基底或内部。"
     }
@@ -564,7 +564,7 @@
     "ground_bars": true,
     "photos": [
       {
-        "file": "photos/77941-0.jpg",
+        "file": "../imagery/areas/16-sixth-residence-dining/77941-0.jpg",
         "image_id": 79698,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77941_20160302113258884.jpg",
         "retrieved": "2026-09-09",
@@ -623,7 +623,7 @@
         3
       ],
       "reviewed": "2026-09-16",
-      "source": "photos/77941-0.jpg; archived way/375541046 version 4",
+      "source": "../imagery/areas/16-sixth-residence-dining/77941-0.jpg; archived way/375541046 version 4",
       "basis": "按相邻楼栋关系及照片可见立面方向登记完整 OSM 墙线，保留原顶点和各段转折；沿墙累计长度分配原照片比例参数，侧墙独立登记。",
       "limits": "保留原照片估计高度和细部尺寸，不据此推定未确认立面、室内或两楼连接体。",
       "stair_tower": {

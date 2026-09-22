@@ -3,7 +3,7 @@
     "height": 12.0,
     "photos": [
       {
-        "file": "photos/77943-0.jpg",
+        "file": "../imagery/areas/16-sixth-residence-dining/77943-0.jpg",
         "image_id": 79682,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77943_20160302105424396.jpg",
         "retrieved": "2026-09-09",
@@ -89,7 +89,7 @@
         15,
         14
       ],
-      "source": "photos/77943-0.jpg / 79682",
+      "source": "../imagery/areas/16-sixth-residence-dining/77943-0.jpg / 79682",
       "basis": "照片确认西南圆体、南侧矩形翼与东墙两条可见风管。圆体登记至西南/南弧段6、7、8；南翼按14到13由东向西读取，东墙按15到14由北向南读取，保持分隔墙和风管的物理方向。",
       "limits": "原 OSM 语义为餐饮区域，依据本楼照片审阅后用于暂定外形，不泛化为所有餐饮区域的建筑基底。保留原照片估计层高与可见段比例，北侧和连接区域不推定；原轮廓仅保存在来源档案，不与新轮廓平均。",
       "southwest_roof_railing": {

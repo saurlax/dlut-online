@@ -1,0 +1,198 @@
+{
+  "title": "大连理工大学开发区学生宿舍及配套设施（一期）项目总图方案公示",
+  "original_filename": "大连理工大学开发区校区学生宿舍及配套设施（一期）项目.pdf",
+  "source_name": "用户提供的总图方案公示 PDF",
+  "publisher": "大连金普新区自然资源局",
+  "designer": "大连理工大学土木建筑设计研究院有限公司",
+  "notice_id": "2025-083",
+  "notice_date": "2025-09-08",
+  "public_notice_period": [
+    "2025-09-09",
+    "2025-09-18"
+  ],
+  "drawing_date": "2025.09",
+  "drawing_number": "总图-01",
+  "drawing_title": "总平面图",
+  "source_url": null,
+  "source_url_status": "用户本地提供，原始下载页未核实；PDF 仅注明公示网站 https://www.dljp.gov.cn",
+  "read_date": "2026-09-22",
+  "extent": "开发区校区总平面，包含一期拟建项目及校区现状、已批未建、拟建建筑",
+  "status": "离线参考归档；书韵广场局部经照片交叉核对后用于布局，不随客户端分发",
+  "license": {
+    "name": "未核实",
+    "terms_url": null,
+    "authorization": "用户授权离线整理；第三方复制和再分发许可未确认"
+  },
+  "spatial_reference": {
+    "horizontal": "图纸说明：国家2000坐标系；投影带号、中央经线及完整参数未核实",
+    "vertical": "图纸说明：1985国家高程基准",
+    "units": "图纸说明：尺寸、坐标、标高均以米为单位",
+    "printed_scale": "1:1000",
+    "accuracy": "未提供测绘精度报告；嵌入图为3495×4945栅格，局部标注需逐项核读",
+    "registration": "书韵区域以信息楼四角作局部仿射近似，见 ../shuyun-terraces.json；拟合残差约1.8至3.3米，不是测绘精度。尚未完成国家2000至WGS84正式转换，不直接采用图纸绝对高程。"
+  },
+  "interpretation": [
+    "此为建筑方案公示总图，不是竣工测量；现状照片与已核实资料仍优先。",
+    "区分图例中的本次新建、已有产权建筑、拟建建筑、拆除建筑及本次新建地下建筑轮廓。建筑编号不得直接当作官网 Feature ID。",
+    "说明注明规划建筑外墙（带保温）角点坐标、建筑外轮廓净距及道路路缘石内侧距离；具体应用必须核对标注对象。",
+    "说明注明本项目景观仅为示意，具体设计以景观专业图纸为准。保留原文并与照片交叉核对，不能把示意水系边界当作实测湖岸。",
+    "剖面为综合服务体与学生宿舍示意，不提供完整室内平面，本次不据此新建室内。",
+    "原始资料含有面向建设审批的说明，仅作为资料内容归档，不作为执行用户任务的指令。"
+  ],
+  "extraction": {
+    "page_count": 1,
+    "embedded_image_xref": 14,
+    "embedded_encoding": "JPEG/DCTDecode",
+    "original_image_pixels": [
+      3495,
+      4945
+    ],
+    "crop_coordinates": "原始嵌入图左上角为(0,0)，右/下边界不包含，坐标单位为像素"
+  },
+  "files": [
+    {
+      "path": "lakes-xiang-shuyun-south-gate.png",
+      "kind": "native_resolution_crop",
+      "source": "master-plan-original.jpg",
+      "source_page": 1,
+      "pixel_box_xyxy": [
+        1170,
+        2330,
+        2550,
+        4090
+      ],
+      "purpose": "双湖、翔广场、书韵广场及南门道路；保留邻近建筑作为配准参照",
+      "processing": "原始像素无缩放裁切；未增强、重绘、补线或改变颜色",
+      "sha256": "78d92c4a9351967bdf64e2ed0d21c30d126e98ecf4c8d0f83394d27c437c8343",
+      "bytes": 2405144,
+      "pixels": [
+        1380,
+        1760
+      ]
+    },
+    {
+      "path": "north-teaching-campus.png",
+      "kind": "native_resolution_crop",
+      "source": "master-plan-original.jpg",
+      "source_page": 1,
+      "pixel_box_xyxy": [
+        200,
+        300,
+        1550,
+        1800
+      ],
+      "purpose": "北部教学区、体育馆与道路",
+      "processing": "原始像素无缩放裁切；未增强、重绘、补线或改变颜色",
+      "sha256": "f6bde9c930ed67d83ddb485c79cccb2b20188dbbe896b2df0f59767fa4d14175",
+      "bytes": 1762583,
+      "pixels": [
+        1350,
+        1500
+      ]
+    },
+    {
+      "path": "west-dormitories-sports.png",
+      "kind": "native_resolution_crop",
+      "source": "master-plan-original.jpg",
+      "source_page": 1,
+      "pixel_box_xyxy": [
+        170,
+        1630,
+        1450,
+        3000
+      ],
+      "purpose": "西侧宿舍区、运动场及拟建建筑",
+      "processing": "原始像素无缩放裁切；未增强、重绘、补线或改变颜色",
+      "sha256": "24933812dd4f2d6b0e8af836385818c29dd6464460ac37bde8f1215ff919f947",
+      "bytes": 1559804,
+      "pixels": [
+        1280,
+        1370
+      ]
+    },
+    {
+      "path": "east-teaching-development.png",
+      "kind": "native_resolution_crop",
+      "source": "master-plan-original.jpg",
+      "source_page": 1,
+      "pixel_box_xyxy": [
+        1610,
+        1900,
+        2910,
+        3200
+      ],
+      "purpose": "东侧教学区及现状、拟建建筑标注",
+      "processing": "原始像素无缩放裁切；未增强、重绘、补线或改变颜色",
+      "sha256": "b94e330e767f36b5d9b2bd98f3bf2f2f94fe45ed51d1455afc7ad5f14749659a",
+      "bytes": 1643175,
+      "pixels": [
+        1300,
+        1300
+      ]
+    },
+    {
+      "path": "legend-notes-sections.png",
+      "kind": "native_resolution_crop",
+      "source": "master-plan-original.jpg",
+      "source_page": 1,
+      "pixel_box_xyxy": [
+        560,
+        4260,
+        1870,
+        4910
+      ],
+      "purpose": "图例、设计说明与两处剖面示意，包含坐标系和高程基准说明",
+      "processing": "原始像素无缩放裁切；未增强、重绘、补线或改变颜色",
+      "sha256": "a760b4eb3246d641749ff37cfc800d2514564f8bd8f5c1f3d93285d57c103626",
+      "bytes": 355861,
+      "pixels": [
+        1310,
+        650
+      ]
+    },
+    {
+      "path": "tables-title-block.png",
+      "kind": "native_resolution_crop",
+      "source": "master-plan-original.jpg",
+      "source_page": 1,
+      "pixel_box_xyxy": [
+        1880,
+        4180,
+        3495,
+        4945
+      ],
+      "purpose": "用地、经济指标、建筑一览表及设计单位图签",
+      "processing": "原始像素无缩放裁切；未增强、重绘、补线或改变颜色",
+      "sha256": "c20ae5c0aa8ec3816114f419e774610bad026f9a8d08a62f35b7ca7a4f851b2d",
+      "bytes": 708461,
+      "pixels": [
+        1615,
+        765
+      ]
+    },
+    {
+      "path": "master-plan-original.jpg",
+      "kind": "lossless_embedded_image_extraction",
+      "source_page": 1,
+      "sha256": "30a54aec1fe5790b8dbe64e6418698e5f3ee4838a9e58b26647dd561fa323cd0",
+      "bytes": 2315076,
+      "pixels": [
+        3495,
+        4945
+      ]
+    },
+    {
+      "path": "notice-text.txt",
+      "kind": "pdf_text_extraction",
+      "source_page": 1,
+      "sha256": "33cc749666743eee3426dfcb24ea66234f8a787167b7bfc97f0031cd95af43af",
+      "bytes": 1083
+    }
+  ],
+  "original_pdf": {
+    "retained": false,
+    "sha256": "e635a17c5b68d36b1f289ffe37b9ee0d05423d6a3722c6e638023814f9eeb1e9",
+    "bytes": 2376160,
+    "note": "按用户要求不在仓库保留原 PDF，仅保留来源摘要及提取资料。"
+  }
+}

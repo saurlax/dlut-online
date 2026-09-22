@@ -10,6 +10,8 @@ func run() -> void:
 	create_timer(60).timeout.connect(func(): quit(2))
 	var terrain := Terrain.new()
 	terrain.load_campus("eda")
+	check_refined_outlines()
+	assert(absf(float(terrain.shores.water_levels.Feature_39328846)-float(terrain.shores.water_levels.Feature_2304775)-1.0)<.0001,"Small lake must be exactly one metre below the large lake")
 	# Local grading must not perturb remote parts of the campus.
 	assert(is_equal_approx(terrain.elevation(200,400),terrain.raw_elevation(200,400)))
 	for server: bool in [false,true]:
@@ -75,7 +77,34 @@ func check_roads(model: Node3D, terrain: RefCounted) -> void:
 				if region.bounds.has_point(Vector2(p.x,p.z)): local = true
 			if not local: continue
 			var lift: float = p.y-terrain.elevation(p.x,p.z)
-			assert(lift >= -0.001 and lift <= 0.025, "Road must track the new terrain, not float or be buried")
+			if mesh.get_meta("raised_lake_sidewalk",false):
+				assert(lift>=.179 and lift<=.183,"Lake sidewalk must maintain its raised curb height")
+			else:
+				assert(lift >= -0.001 and lift <= 0.025, "Road must track the new terrain, not float or be buried")
 			checked += 1
 	assert(checked > 100)
 	print("EDA SHORE ROAD FIT PASS vertices=",checked)
+
+func check_refined_outlines() -> void:
+	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
+	for feature: Dictionary in manifest.features:
+		if feature.kind != "water": continue
+		var original := PackedVector2Array()
+		var curve := PackedVector2Array()
+		for p: Array in feature.source_outline: original.append(Vector2(p[0],p[1]))
+		for p: Array in feature.points: curve.append(Vector2(p[0],p[1]))
+		assert(curve.size()>original.size()*8, "Lake retains coarse source chords")
+		for p in original:
+			var nearest := INF
+			for q in curve: nearest = minf(nearest,p.distance_to(q))
+			assert(nearest<0.001, "Reviewed source node displaced beyond serialization tolerance")
+		var region := {"polygon":original,"holes":[]}
+		for i in curve.size():
+			assert(curve[i].distance_to(curve[(i+1)%curve.size()]) <= 2.001, "Shoreline tessellation too coarse")
+			assert(Water.shore_distance(region,curve[i]) <= 2.001, "Shoreline escaped reviewed uncertainty corridor")
+			var incoming := (curve[i]-curve[(i-1+curve.size())%curve.size()]).normalized()
+			var outgoing := (curve[(i+1)%curve.size()]-curve[i]).normalized()
+			assert(incoming.dot(outgoing)>0.94, "Shoreline retains a hard corner")
+		var triangles := Geometry2D.triangulate_polygon(curve)
+		assert(not triangles.is_empty(), "Refined outline cannot be triangulated")
+		print("EDA SHORE OUTLINE PASS: ",feature.id," ",original.size()," -> ",curve.size()," bounded vertices")

@@ -228,3 +228,19 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 - 从[官方压缩包](https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip)选用 `Audio/footstep_concrete_000–004.ogg`、`footstep_grass_000–004.ogg` 和 `footstep_wood_000–004.ogg`，原样存入 `apps/game/assets/audio/footsteps/`，共 15 条、100677 字节；原许可随资源保留在 `LICENSE.txt`。压缩包 SHA-256：`029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8`。
 - 用作本地玩家落脚反馈，硬地包含现有沥青、石砖、台阶和未细分材质；自然地形暂统一使用草地音色。属于通用拟音，不是校园实地录音，不表示地表材质已逐处调查。木地变体供现有网格材质或显式标记选择，不据此新增木地或室内。
 - 播放接口通过 Context7 核对 [Godot 4.7 AudioStreamPlayer](https://docs.godotengine.org/en/4.7/classes/class_audiostreamplayer.html)。
+
+2026-09-21 再核对归档 KFQ00 向下、前向航拍与双湖照片，补充[湖边环境登记](references/eda/mapping/lakeside-environment.json)：三岔口连续铺装、人行道、广场格线、环形绿篱及有照片覆盖的湖畔/图书馆侧绿化。以既有 OSM 道路节点及 way/1076344096 v4 绿地配准；十二盏灯杆与标线扩展范围见外景登记。拍摄日期、相机位姿及单株实测未知，落点、宽度和密度为视觉估计；原图仍仅供离线参考，不进入客户端。
+
+湖泊轮廓精修沿用上述双湖鸟瞰和近景照片，2026-09-21 复核连续岸线形态；原 OSM 两湖9点/16点节点及版本保留，曲线细分控制在原线段2米走廊内，属于视觉近似，不构成新测量。参数和原始轮廓摘要见 [湖岸登记](references/eda/terrain/lake-shores.json)。
+
+### 翔雕像广场校名与绿篱标志
+
+- 大连理工大学官方 VI：https://www.dlut.edu.cn/xxgk/dxwh/xxVI.htm ，校名矢量：https://www.dlut.edu.cn/images/logo.svg ，读取日期 2026-09-21。用于提取广场石字和中央绿篱标志的几何轮廓；标识权利归大连理工大学，未发现明确第三方再分发许可。原始 SVG 与用户提供的三张广场近景、一张俯视照片及 2026-09-22 补充的三图航拍拼图只保留为离线参考，不随客户端分发；来源、照片日期和估计误差见 references/eda/structures/xiang-plaza/basis.md。
+
+## 开发区校区学生宿舍及配套设施一期总图方案
+
+用户于 2026-09-22 提供“大连理工大学开发区学生宿舍及配套设施（一期）项目总图方案公示”PDF，编号 2025-083，发布者为大连金普新区自然资源局，落款 2025-09-08；总平面图设计单位为大连理工大学土木建筑设计研究院有限公司。原始下载页未核实，公示正文注明金普新区网站。原 PDF 不在仓库保留；无损提取的完整总图、分区裁图及来源 SHA-256 见[资料索引](references/eda/mapping/campus-master-plan-2025/basis.md)和[来源记录](references/eda/mapping/campus-master-plan-2025/source.json)。书韵广场局部结合用户提供的图书馆鸟瞰照片作布局参考，配准与误差限制见[局部登记](references/eda/mapping/shuyun-terraces.json)；区分现状与拟建，景观为方案示意，局部仿射拟合不等于坐标系正式转换或实测高程。版权归原权利人，第三方复制和再分发许可未核实，原始资料与裁图不进入客户端或发行资源。
+
+## 大工掠影照片参考
+
+用户于 2026-09-22 提供本地“大工掠影”照片集，精选照片及其原始文件名、SHA-256、区域与处理记录见[开发区区域照片档案](references/eda/imagery/areas/source.json)。版权归各原摄影者或权利人，原始发布 URL、逐图摄影者及许可条款未核实。仓库收录保留完整画幅与可见署名的压缩副本，仅作离线外观与场地参考，不进入客户端或网站展示；用户提供文件不代表已取得第三方公开再分发许可。

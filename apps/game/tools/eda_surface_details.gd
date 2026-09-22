@@ -167,7 +167,7 @@ func apply(node: Node, feature_id := "") -> void:
 				node.material_override = ground_material(key,Color("555958"),0)
 				stone_path(node.material_override)
 			"Map plaza paving", "Paving":
-				node.material_override = ground_material(key,Color("b4b0a3"),1)
+				node.material_override = ground_material("EDA Shuyun rose grid",Color("c4b3af"),9) if feature_id=="2304850" else ground_material(key,Color("b4b0a3"),1)
 			"Photo red path":
 				node.material_override = ground_material(key,Color("a66e62"),2)
 				path_uv(node)

@@ -1,5 +1,6 @@
 extends RefCounted
-## Photo-constrained local grading. Original DSM rows and water outlines stay intact.
+## Photo-constrained local grading. Original DSM rows remain intact; the manifest
+## supplies the same reviewed shoreline to grading, water, maps and collision.
 const Water = preload("res://scripts/shared/water.gd")
 var profile: Dictionary = {}
 var regions: Array[Dictionary] = []
@@ -30,6 +31,9 @@ func load_campus(campus: String, data: Dictionary) -> void:
 			var bounds := Rect2(ring[0], Vector2.ZERO)
 			for p in ring: bounds = bounds.expand(p)
 			var level := float(data.feature_base_y[name]) + float(profile.water_offset_m)
+			if selection.has("relative_level"):
+				var relative:Dictionary=selection.relative_level
+				level=float(data.feature_base_y["Feature_"+str(relative.feature_id)])+float(profile.water_offset_m)+float(relative.offset_m)
 			water_levels[name] = level
 			regions.append({"polygon":ring, "holes":[], "bounds":bounds.grow(float(profile.blend_end_m)), "level":level})
 			var first := Vector2i(((bounds.position - Vector2.ONE * float(profile.blend_end_m) - origin) / base_step).floor())
@@ -64,13 +68,20 @@ func sample(terrain: RefCounted, grid: Vector2i) -> float:
 	var raw: float = terrain.raw_elevation(at.x,at.y)
 	var displacement := 0.0
 	var total := 0.0
+	var nearest:=INF
+	var nearest_height:=raw
 	for region: Dictionary in regions:
 		if not region.bounds.has_point(at): continue
 		var distance := 0.0 if Geometry2D.is_point_in_polygon(at,region.polygon) else Water.shore_distance(region,at)
 		var weight := 1.0-smoothstep(float(profile.shelf_width_m),float(profile.blend_end_m),distance)
 		var height := float(region.level)+lerpf(float(profile.wet_edge_offset_m),float(profile.bank_height_m),smoothstep(0.0,float(profile.bank_width_m),distance))
+		if distance<nearest:
+			nearest=distance
+			nearest_height=height
 		displacement += (height-raw)*weight
 		total += weight
 	var result := raw+displacement/maxf(1.0,total)
+	# Adjacent lake transitions cannot pull a wet edge above its own waterline.
+	result=lerpf(nearest_height,result,smoothstep(float(profile.bank_width_m)+1.0,float(profile.shelf_width_m),nearest))
 	samples[grid] = result
 	return result

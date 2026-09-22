@@ -1016,7 +1016,7 @@
       "limits": "Apron edge interpretation approximately 3-5 pixels; north/east approach clipped at stated join lines, not inferred curb ends. Central island approximated by a 48-point circle from visible curb, not surveyed. Existing shadowed court boundary remains a transferred lm30 estimate and is clipped against OSM buildings; eastern round-roof ground wall remains unknown. No independently measured georegistration accuracy or elevation.",
       "surface_type": "asphalt",
       "surface_basis": {
-        "photo": "references/eda/buildings/photos/77921-0.jpg",
+        "photo": "references/eda/imagery/areas/14-comprehensive-building/77921-0.jpg",
         "image_id": 79694,
         "photo_index": "references/eda/buildings/comprehensive_profile.json",
         "reviewed": "2026-09-17",

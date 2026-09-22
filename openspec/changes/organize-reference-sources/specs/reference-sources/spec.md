@@ -41,3 +41,17 @@ README SHALL 只维护目录职责、录入规范和索引；长期配准及估�
 
 - **WHEN** 导出桌面客户端或打包 macOS 安装镜像
 - **THEN** 读取仓库根目录 CREDITS.md，读取失败通过导出错误及构建脚本的错误拦截使构建失败；不维护第二份天气署名文件，CREDITS.md 变更触发构建
+
+### Requirement: Regional photo archive
+
+校园照片 SHALL 按已确认区域建立英文目录与中文查找索引。同一照片 MUST NOT 为跨区域查找重复存储；已配准专题、原始接口响应与底图 SHALL 保留其档案结构并通过区域索引引用。用户下载原文件 SHALL 保持不变，归档压缩副本 SHALL 保留完整画幅、可见水印与署名，登记原文件名、压缩参数、原始和归档 SHA-256、用途及许可状态。
+
+#### Scenario: Import a local photo collection
+
+- **WHEN** 从用户指定照片集挑选可用于建模的照片
+- **THEN** 排除重复视角和无关特写，按可靠区域归档；位置无法确认的照片单独放入待核对目录，不据此推断位置或生成无依据的几何
+
+#### Scenario: Move an existing reference photograph
+
+- **WHEN** 将已有照片迁入区域目录
+- **THEN** 保持照片字节与原始来源响应不变，更新本地引用并检查文件和哈希；纯目录整理不重建游戏资源

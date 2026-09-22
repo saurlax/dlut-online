@@ -58,7 +58,7 @@
     "note": "77925-0：A区居中、B区在左、C区在右，配准A区南侧边12。五层主楼先补上四排窗格、浅色层间分带和近东端玻璃塔体；底层入口已补封闭门窗组和浅挑雨棚，左右翼尚未分区。21米主楼沿用原比例估计，塔高度按分构件更新，宽4.8米/深2米、塔中心在有向边13%、17列窗和4米层距均为照片比例估计，不是实测。",
     "photos": [
       {
-        "file": "photos/77925-0.jpg",
+        "file": "../imagery/areas/03-teaching-a/77925-0.jpg",
         "image_id": 79686,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77925_20160302105742896.jpg",
         "retrieved": "2026-09-09",
@@ -202,7 +202,7 @@
     "note": "B区两层低楼翼沿用9.6米估计高度，当前定位和几何使用 osm_registration。南端拆分东侧两列上下窗与西侧室外楼梯、双圆柱外廊及薄檐，尺寸为比例估计，室内保持封闭；院内中央入口、楼梯及其余墙段仍待配准。旧边18参数只保留为迁移前记录，不参与当前生成。",
     "photos": [
       {
-        "file": "photos/77928-0.jpg",
+        "file": "../imagery/areas/04-teaching-b/77928-0.jpg",
         "image_id": 79685,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77928_201603021057270.jpg",
         "retrieved": "2026-09-09",
@@ -344,7 +344,7 @@
     "note": "77927-0/1：南端圆体在左、主楼向北延伸；配准东侧长边3。可辨六层，主楼高度由21米调为24.6米比例估计，先补上五排东侧窗格及层间饰带；最南凹槽、底层入口、圆体细节另见rotunda，背面仍待逐段精修。18列窗、3.8米层距、窗宽列距60%均为照片比例估计。",
     "photos": [
       {
-        "file": "photos/77927-0.jpg",
+        "file": "../imagery/areas/05-teaching-c-ginkgo/77927-0.jpg",
         "image_id": 79687,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77927_20160302105813117.jpg",
         "retrieved": "2026-09-09",
@@ -352,7 +352,7 @@
         "sha256": "f77c8c247794a5cd993a3e3ff2eef944164eeda5a986a2b0bb2011a3f9a99699"
       },
       {
-        "file": "photos/77927-1.jpg",
+        "file": "../imagery/areas/05-teaching-c-ginkgo/77927-1.jpg",
         "image_id": 79688,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77927_20160302105836164.jpg",
         "retrieved": "2026-09-09",

@@ -2,6 +2,7 @@ extends "res://tools/build_model.gd"
 ## Rebuild only road meshes in saved campuses, preserving unrelated model assets.
 func build() -> void:
 	for campus in ["eda", "lingshui", "panjin"]:
+		if not OS.get_cmdline_user_args().is_empty() and campus not in OS.get_cmdline_user_args(): continue
 		var filename: String = "development_campus" if campus == "eda" else campus + "_campus"
 		var path: String = "res://assets/campuses/%s/models/%s.tscn" % [campus, filename]
 		scene.free()

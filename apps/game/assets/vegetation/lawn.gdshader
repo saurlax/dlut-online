@@ -1,5 +1,6 @@
 shader_type spatial;
 render_mode cull_disabled;
+uniform bool procedural_path_tint = false;
 varying vec3 tint;
 varying vec2 ground;
 varying float edge;
@@ -14,6 +15,11 @@ void vertex() {
 	tint = pow(COLOR.rgb, vec3(2.2));
 	ground = VERTEX.xz;
 	edge = UV2.x;
+	if (procedural_path_tint) {
+		vec3 grass = mix(vec3(0.3137,0.3882,0.2078), vec3(0.4392,0.4510,0.2784), 0.5+sin(ground.x*0.4)*cos(ground.y*0.31)*0.2);
+		tint = pow(grass,vec3(2.2));
+		edge = 1.0;
+	}
 }
 void fragment() {
 	float fibres = noise(ground*120.0);

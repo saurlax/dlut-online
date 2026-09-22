@@ -1,26 +1,162 @@
 {
   "schema_version": 1,
-  "reviewed": "2026-09-18",
+  "reviewed": "2026-09-21",
   "source_scene": "scene_DUT_KFQ00",
-  "source_photos": ["references/eda/imagery/panoramas/KFQ00-down.jpg", "references/eda/vegetation/photos/eda-lake-2.jpg"],
+  "source_photos": [
+    "references/eda/imagery/panoramas/KFQ00-down.jpg",
+    "references/eda/vegetation/photos/eda-lake-2.jpg",
+    "references/eda/structures/xiang-plaza/user-aerial.png"
+  ],
   "source_url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/vr/pano_d.jpg",
   "capture_date": null,
-  "view": "Oblique aerial panorama, lake east road between the library junction and teaching-area junction.",
-  "registration": "Topology matched by lake, library and two road junctions to OSM way 1076344082 v2. OSM centerline and shared WGS84 origin retained. Lamp stations are approximate road-relative placements, not photogrammetric coordinates.",
-  "occlusion": "Trees conceal portions of the sidewalk and lamp bases. Unseen road arms, hidden fixtures and crossing extents are withheld.",
-  "precision": "Road width remains the existing 7 m highway-class estimate. Paint widths 0.10/0.12 m, dash/gap 3/3 m, pole height 6 m and fixture dimensions are visual estimates. No independent metric accuracy or current-condition claim.",
-  "road": {"osm_way_id": 1076344082, "osm_version": 2, "part": 0, "from_vertex": 25, "to_vertex": 36},
+  "view": "Downward and forward aerial panorama plus lake aerial, reviewed east/west lake arms and the south approach to the Xiang plaza junction.",
+  "registration": "Topology matched by lake, library and two road junctions to OSM way 1076344082 v2. OSM centerline and shared WGS84 origin retained. Lamp stations are approximate road-relative placements, not photogrammetric coordinates. Lake southern/eastern and western arms now bounded by lakeside-environment.json; historical photo presence and relative roadside positions only.",
+  "occlusion": "树冠遮挡部分路缘；三岔口短暂缺少步道和树篱，白色外缘仍连续圆润相接，范围见 lakeside-environment.json。",
+  "precision": "道路沿用 OSM 两条7米车道基底。白线宽0.10米、距道路中心3.08米，圆角裁切最多2米；三岔口及隔离带鼻端按用户俯视照片估计，非实测。中央隔离带取代旧单幅引道，不再在绿带中画黄色中线。灯杆及其余尺寸沿用既有照片估计。",
   "lamp_height_m": 6.0,
-  "lamps": [
-    {"segment": 25, "fraction": 0.4, "side": 1},
-    {"segment": 28, "fraction": 0.3, "side": 1},
-    {"segment": 30, "fraction": 0.3, "side": 1},
-    {"segment": 32, "fraction": 0.2, "side": 1},
-    {"segment": 34, "fraction": 0.5, "side": 1}
-  ],
   "withheld": {
     "crossings": "Photos confirm crossings, but exact cross-road registration/extent has not been established; do not place zebra crossings on guessed chainages.",
     "bridge": "OSM way 309375782 v7 locates Xueyuan Bridge. Aerial appearance and 2026-01-05 repair photos confirm covered curved ribs, turquoise roof, metal deck and 5 cm anti-slip strips. Absolute deck profile, stair/landing plan and support coordinates are not supplied. Hold the connected bridge model until these are registered; do not fit an arbitrary hump to terrain.",
-    "lighting_2026": "2026-06-24 official report confirms 66 replaced/new LED fixtures at more than 10 locations, without a location schedule. The five estimated poles represent only visible historical fixtures, not the whole upgrade."
+    "lighting_2026": "2026-06-24 official report confirms 66 replaced/new LED fixtures at more than 10 locations, without a location schedule. The fourteen estimated poles represent only visible historical fixtures, not the whole upgrade."
+  },
+  "sections": [
+    {
+      "osm_way_id": 1076344082,
+      "osm_version": 2,
+      "part": 0,
+      "from_vertex": 16,
+      "to_vertex": 36,
+      "lamps": [
+        {
+          "segment": 25,
+          "fraction": 0.4,
+          "side": 1
+        },
+        {
+          "segment": 28,
+          "fraction": 0.3,
+          "side": 1
+        },
+        {
+          "segment": 30,
+          "fraction": 0.3,
+          "side": 1
+        },
+        {
+          "segment": 32,
+          "fraction": 0.2,
+          "side": 1
+        },
+        {
+          "segment": 34,
+          "fraction": 0.5,
+          "side": 1
+        },
+        {
+          "segment": 17,
+          "fraction": 0.5,
+          "side": 1
+        },
+        {
+          "segment": 20,
+          "fraction": 0.5,
+          "side": 1
+        },
+        {
+          "segment": 23,
+          "fraction": 0.5,
+          "side": 1
+        },
+        {
+          "segment": 13,
+          "fraction": 0.25,
+          "side": -1
+        },
+        {
+          "segment": 8,
+          "fraction": 0.6,
+          "side": -1
+        }
+      ]
+    },
+    {
+      "osm_way_id": 1076344089,
+      "osm_version": 3,
+      "part": 0,
+      "from_vertex": 17,
+      "to_vertex": 33,
+      "lamps": [
+        {
+          "segment": 19,
+          "fraction": 0.5,
+          "side": -1
+        },
+        {
+          "segment": 23,
+          "fraction": 0.5,
+          "side": -1
+        },
+        {
+          "segment": 27,
+          "fraction": 0.5,
+          "side": -1
+        },
+        {
+          "segment": 30,
+          "fraction": 0.5,
+          "side": -1
+        }
+      ]
+    }
+  ],
+  "white_edges": [
+    {
+      "osm_way_id": 1076344089,
+      "from_vertex": 17,
+      "to_vertex": 48,
+      "side": -1
+    },
+    {
+      "osm_way_id": 1076344082,
+      "from_vertex": 0,
+      "to_vertex": 38,
+      "side": -1
+    },
+    {
+      "osm_way_id": 1076344089,
+      "from_vertex": 17,
+      "to_vertex": 34,
+      "side": 1
+    },
+    {
+      "osm_way_id": 1076344082,
+      "from_vertex": 14,
+      "to_vertex": 38,
+      "side": 1
+    },
+    {
+      "osm_way_id": 1076344093,
+      "from_vertex": 0,
+      "to_vertex": 6,
+      "side": -1
+    }
+  ],
+  "annotation_20260922": {
+    "photo": "references/eda/structures/xiang-plaza/user-aerial.png",
+    "markers_percent": [
+      [
+        55.9,
+        61.3
+      ],
+      [
+        65.9,
+        65.2
+      ],
+      [
+        88.4,
+        63.0
+      ]
+    ],
+    "basis": "第一处保持连续沥青和白色外缘，不铺红步道或树篱；后两处补两盏既有造型路灯。灯基沿东侧环湖路与南向引道外侧约定位，树冠遮挡底座，非实测坐标。"
   }
 }

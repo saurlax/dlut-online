@@ -64,7 +64,9 @@ func emit_quad(st: SurfaceTool, quad: PackedVector2Array, region: Dictionary, te
 		emit(st, quad[indices[0]], quad[indices[1]], quad[indices[2]], region, terrain, surface)
 
 func emit(st: SurfaceTool, a: Vector2, b: Vector2, c: Vector2, region: Dictionary, terrain: RefCounted, surface: bool) -> void:
-	if absf((b-a).cross(c-a)) < 0.000001: return
+	# Float32 serialization can collapse sub-millimetre clipping slivers.
+	var longest := maxf(a.distance_to(b),maxf(b.distance_to(c),c.distance_to(a)))
+	if absf((b-a).cross(c-a)) < maxf(0.000001,longest*0.0001): return
 	if not region.is_empty() and maxf(a.distance_squared_to(b), maxf(b.distance_squared_to(c), c.distance_squared_to(a))) > 4.0:
 		if a.distance_squared_to(b) >= maxf(b.distance_squared_to(c), c.distance_squared_to(a)):
 			emit(st,a,(a+b)*0.5,c,region,terrain,surface)
@@ -77,11 +79,30 @@ func emit(st: SurfaceTool, a: Vector2, b: Vector2, c: Vector2, region: Dictionar
 			emit(st,(c+a)*0.5,b,c,region,terrain,surface)
 		return
 	for p in [a,b,c]:
-		if surface: st.set_uv(Vector2(smoothstep(0.0, 3.0, Water.shore_distance(region,p)), 0.0))
+		if surface: st.set_uv(Vector2(smoothstep(0.0, 3.0, Water.shore_distance(region,p)) if Geometry2D.is_point_in_polygon(p,region.polygon) else 0.0, 0.0))
 		var y: float = terrain.elevation(p.x,p.y)
 		if not region.is_empty():
 			y = float(region.level) if surface else lerpf(y, float(region.level)-Water.DEPTH, smoothstep(0.0, Water.SHORE_WIDTH, Water.shore_distance(region,p)))
 		st.add_vertex(Vector3(p.x,y,p.y))
+
+func seal_shores(st: SurfaceTool, regions: Array, terrain: RefCounted) -> void:
+	# Clipper rounds cell/polygon intersections independently. A submerged 1 cm
+	# overlap on either side closes microscopic cracks without moving the contour.
+	# Use the same graded/basin height function as the adjoining terrain faces.
+	for region: Dictionary in regions:
+		var ring: PackedVector2Array = region.polygon
+		for i in ring.size():
+			var a := ring[i]
+			var b := ring[(i+1)%ring.size()]
+			var side := (b-a).normalized().orthogonal()*0.01
+			var count := maxi(1,ceili(a.distance_to(b)/0.5))
+			for j in count:
+				var p := a.lerp(b,float(j)/count)
+				var q := a.lerp(b,float(j+1)/count)
+				for triangle in [[p-side,q-side,q+side],[p-side,q+side,p+side]]:
+					var points := PackedVector2Array(triangle)
+					if Geometry2D.is_polygon_clockwise(points): points.reverse()
+					emit(st,points[0],points[1],points[2],region,terrain,false)
 
 func replace_surfaces(model: Node3D, regions: Array, terrain: RefCounted) -> void:
 	var cleared := {}
@@ -96,6 +117,8 @@ func replace_surfaces(model: Node3D, regions: Array, terrain: RefCounted) -> voi
 		var st := SurfaceTool.new()
 		st.begin(Mesh.PRIMITIVE_TRIANGLES)
 		var rings: Array[PackedVector2Array] = [region.polygon]
+		if terrain.shores!=null and terrain.shores.profile.has("visual_overlap_m"):
+			rings=Geometry2D.offset_polygon(region.polygon,float(terrain.shores.profile.visual_overlap_m),Geometry2D.JOIN_ROUND)
 		for quad in Roads.new().tessellate(rings, region.holes): emit_quad(st,quad,region,terrain,true)
 		st.index()
 		st.generate_normals()

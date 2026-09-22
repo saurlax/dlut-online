@@ -123,13 +123,16 @@ func verify() -> void:
 				for segment in range(line.size()-1):
 					var nearest := Geometry2D.get_closest_point_to_segment(Vector2(at.x,at.z),line[segment],line[segment+1])
 					check(Vector2(at.x,at.z).distance_to(nearest) >= float(road.width)*0.5+clearance-0.002, "Serialized plant intrudes into road clearance " + key)
-			var y: float = terrain.elevation(at.x,at.z) if terrain != null else 0.0
+			var y: float = planting_floor(terrain,at.x,at.z,campus)
 			check(absf(y-at.y)<0.002, "Floating root "+key)
 			for feature: Dictionary in manifest.features:
 				if feature.kind not in ["building","water","road","plaza","gate","sports","track","basketball","tennis"]:
 					continue
 				for polygon: Array in feature.get("render_polygons",[feature.points]):
-					check(not Geometry2D.is_point_in_polygon(Vector2(at.x,at.z),points(polygon)), "Plant overlaps official feature "+feature.id)
+					var outline:=points(polygon)
+					var feature_bounds:=Rect2(outline[0],Vector2.ZERO)
+					for vertex:Vector2 in outline:feature_bounds=feature_bounds.expand(vertex)
+					check(not feature_bounds.has_point(Vector2(at.x,at.z)) or not Geometry2D.is_point_in_polygon(Vector2(at.x,at.z),outline), "Plant overlaps official feature "+feature.id)
 					if plant.kind == "juniper":
 						var boundary := points(polygon)
 						for index in boundary.size():
@@ -247,7 +250,7 @@ func verify_lawn(scene: Node3D, registered: Dictionary, zones: Dictionary, manif
 					check(false,"Saved lawn covers a building or non-grass feature")
 					return
 		for p: Vector3 in [faces[i],faces[i+1],faces[i+2],(faces[i]+faces[i+1]+faces[i+2])/3.0]:
-			if absf(p.y-terrain.elevation(p.x,p.z)-0.018)>0.002:
+			if absf(p.y-planting_floor(terrain,p.x,p.z,campus)-0.018)>0.002:
 				check(false,"Saved lawn floats above shared terrain triangles")
 				return
 	print("LAWN CHECK: ",faces.size()/3," saved triangles inside registered area, terrain fit and exclusions checked")
@@ -256,3 +259,9 @@ func polygon_area(ring: PackedVector2Array) -> float:
 	var area := 0.0
 	for i in ring.size(): area += (ring[i]-ring[0]).cross(ring[(i+1)%ring.size()]-ring[0])*0.5
 	return absf(area)
+
+func planting_floor(terrain:RefCounted,x:float,z:float,campus:String)->float:
+	if terrain==null:return 0.0
+	if campus=="eda" and x>=-125 and x<=-112 and z>=327.24 and z<=339:
+		return preload("res://tools/eda_xiang_plaza_profile.gd").garden_height(terrain,Vector2(x,z))
+	return terrain.elevation(x,z)

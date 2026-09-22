@@ -5,12 +5,14 @@ const MESH_GENERATOR = preload("res://tools/vegetation_meshes.gd")
 const CELL_SIZE := 32.0
 var meshes: Dictionary = {}
 var terrain: RefCounted
+var is_eda := false
 var excluded: Array[Dictionary] = []
 var roads: Array = []
 var rng := RandomNumberGenerator.new()
 var mesh_paths: Dictionary = {}
 
 func build(_builder: SceneTree = null, campus := "eda") -> void:
+	is_eda = campus == "eda"
 	var directory := "res://assets/campuses/%s/" % campus
 	var source_path := ProjectSettings.globalize_path("res://../../references/%s/vegetation/planting.json" % campus)
 	var source: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(source_path))
@@ -36,6 +38,12 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 		for sidewalk: Dictionary in preload("res://tools/build_roads.gd").new().sidewalk_regions(roads,road_profile):
 			var points: PackedVector2Array = sidewalk.polygon
 			sidewalk_masks.append(points)
+		var lake_profile:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/lakeside-environment.json"))
+
+		var garden:=preload("res://tools/eda_xiang_plaza_profile.gd").rectangle(-125,327.24,-112,339)
+		for ring:PackedVector2Array in preload("res://tools/eda_lake_road_profile.gd").bands(roads,lake_profile.hedge_roads,0.0,float(lake_profile.hedge_depth_m)+3.0):
+			for piece:PackedVector2Array in Geometry2D.clip_polygons(ring,garden):
+				excluded.append({"points":piece,"bounds":polygon_bounds(piece).grow(.5),"id":"lake-raised-walk"})
 	var instances: Array[Dictionary] = []
 	var lawns := SurfaceTool.new()
 	lawns.begin(Mesh.PRIMITIVE_TRIANGLES)
@@ -50,7 +58,10 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 			continue
 		var area: Dictionary = registered[zone.id]
 		var registration: Dictionary = zone.get("osm_registration", {})
-		assert(area.osm_id == registration.get("osm_id") and area.osm_version == registration.get("osm_version") and area.geometry_sha256 == registration.get("expected_geometry_sha256"), "Regenerate registered planting geometry before building")
+		if area.has("photo_registration_sha256"):
+			assert(area.photo_registration_sha256 == FileAccess.get_sha256("res://../../references/eda/mapping/lakeside-environment.json"), "Regenerate lake planting registration")
+		else:
+			assert(area.osm_id == registration.get("osm_id") and area.osm_version == registration.get("osm_version") and area.geometry_sha256 == registration.get("expected_geometry_sha256"), "Regenerate registered planting geometry before building")
 		rng.seed = int(zone.seed)
 		var points := polygon_points(area.points)
 		var bounds := polygon_bounds(points)
@@ -61,7 +72,15 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 				var x := bounds.position.x + spacing*0.5
 				while x < bounds.end.x:
 					var at := Vector2(x,z) + Vector2(rng.randf_range(-0.28,0.28),rng.randf_range(-0.28,0.28))*spacing*float(plant.get("jitter",1.0))
-					if Geometry2D.is_point_in_polygon(at,points) and allowed(at,float(plant.get("clearance",2.0))):
+					at=Vector2(snappedf(at.x,.001),snappedf(at.y,.001))
+					var in_pattern := true
+					if plant.has("annuli"):
+						var pattern: Dictionary = plant.annuli
+						var radius := at.distance_to(Vector2(pattern.center[0],pattern.center[1]))
+						in_pattern = false
+						for target: float in pattern.radii:
+							if absf(radius-target) <= float(pattern.half_width): in_pattern = true
+					if in_pattern and Geometry2D.is_point_in_polygon(at,points) and allowed(at,float(plant.get("clearance",2.0))):
 						var height := rng.randf_range(float(plant.height[0]),float(plant.height[1]))
 						instances.append({"position":[snappedf(at.x,0.001),snappedf(elevation(at),0.001),snappedf(at.y,0.001)],"kind":plant.kind,"height":snappedf(height,0.001),"width":snappedf(rng.randf_range(0.88,1.16),0.001),"rotation_y":snappedf(rng.randf()*TAU,0.001),"variant":rng.randi_range(0,MESH_GENERATOR.VARIANTS-1),"zone":zone.id})
 					x += spacing
@@ -112,6 +131,8 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 	write_scene(directory,instances,lawn_vertices > 0)
 
 func elevation(at: Vector2) -> float:
+	if terrain != null and at.x>=-125 and at.x<=-112 and at.y>=327.24 and at.y<=339 and is_eda:
+		return preload("res://tools/eda_xiang_plaza_profile.gd").garden_height(terrain,at)
 	return terrain.elevation(at.x,at.y) if terrain != null else 0.0
 
 func polygon_points(values: Array) -> PackedVector2Array:

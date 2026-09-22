@@ -415,6 +415,10 @@ func build() -> void:
 	preload("res://tools/build_eda_entry_paving.gd").new().build(self)
 	preload("res://tools/build_eda_academic_entry_paving.gd").new().build(self)
 	preload("res://tools/build_eda_sculpture.gd").new().build(self)
+	preload("res://tools/build_eda_xiang_plaza.gd").new().build(self)
+	preload("res://tools/build_eda_lake_hedges.gd").new().build(self)
+	preload("res://tools/build_eda_shuyun_steps.gd").new().build(self)
+	preload("res://tools/build_eda_shuyun_terraces.gd").new().build(self)
 	preload("res://tools/eda_surface_details.gd").new().apply(scene)
 	merge_meshes(scene)
 	for mat in materials.values():

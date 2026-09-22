@@ -181,7 +181,7 @@
         ]
       ],
       "photos": [
-        "../buildings/photos/77917-1.jpg"
+        "../imagery/areas/07-library/77917-1.jpg"
       ],
       "plants": [
         {
@@ -221,7 +221,7 @@
         ]
       ],
       "photos": [
-        "../buildings/photos/77914-1.jpg"
+        "../imagery/areas/08-information-south-gate/77914-1.jpg"
       ],
       "plants": [
         {
@@ -271,7 +271,7 @@
         ]
       ],
       "photos": [
-        "../buildings/photos/77938-0.jpg"
+        "../imagery/areas/02-residences-courtyard/77938-0.jpg"
       ],
       "plants": [
         {
@@ -561,6 +561,304 @@
         },
         "review": "references/eda/vegetation/jinping-registration.json"
       }
+    },
+    {
+      "id": "lake-east-conifers",
+      "seed": 9210,
+      "photos": [
+        "../imagery/panoramas/KFQ00-down.jpg",
+        "photos/eda-lake-2.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "cypress",
+          "spacing": 4.8,
+          "height": [
+            4,
+            7
+          ],
+          "clearance": 3.7,
+          "jitter": 0.65
+        },
+        {
+          "kind": "shrub",
+          "spacing": 5.5,
+          "height": [
+            0.55,
+            1.1
+          ],
+          "clearance": 3.5,
+          "jitter": 0.8
+        },
+        {
+          "kind": "grass",
+          "spacing": 1.2,
+          "height": [
+            0.08,
+            0.15
+          ],
+          "clearance": 3.1,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "photo_registration": "references/eda/mapping/lakeside-environment.json",
+      "precision": "Photo-bounded planting wedge between archived OSM road and lake path; positions and sizes estimated."
+    },
+    {
+      "id": "lake-southeast-shrubs",
+      "seed": 9211,
+      "photos": [
+        "../imagery/panoramas/KFQ00-down.jpg",
+        "photos/eda-lake-2.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "shrub",
+          "spacing": 2.5,
+          "height": [
+            0.7,
+            1.25
+          ],
+          "clearance": 3.7,
+          "jitter": 0.65
+        },
+        {
+          "kind": "shrub",
+          "spacing": 5.5,
+          "height": [
+            0.55,
+            1.1
+          ],
+          "clearance": 3.5,
+          "jitter": 0.8
+        },
+        {
+          "kind": "grass",
+          "spacing": 1.2,
+          "height": [
+            0.08,
+            0.15
+          ],
+          "clearance": 3.1,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "photo_registration": "references/eda/mapping/lakeside-environment.json",
+      "precision": "Photo-bounded planting wedge between archived OSM road and lake path; positions and sizes estimated."
+    },
+    {
+      "id": "lake-west-conifers",
+      "seed": 9212,
+      "photos": [
+        "../imagery/panoramas/KFQ00-down.jpg",
+        "photos/eda-lake-2.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "cedar",
+          "spacing": 7,
+          "height": [
+            5,
+            8
+          ],
+          "clearance": 3.7,
+          "jitter": 0.65
+        },
+        {
+          "kind": "shrub",
+          "spacing": 5.5,
+          "height": [
+            0.55,
+            1.1
+          ],
+          "clearance": 3.5,
+          "jitter": 0.8
+        },
+        {
+          "kind": "grass",
+          "spacing": 1.2,
+          "height": [
+            0.08,
+            0.15
+          ],
+          "clearance": 3.1,
+          "jitter": 1
+        },
+        {
+          "kind": "cypress",
+          "spacing": 5.8,
+          "height": [
+            4.5,
+            7
+          ],
+          "clearance": 3.7,
+          "jitter": 0.7
+        }
+      ],
+      "lawn": true,
+      "photo_registration": "references/eda/mapping/lakeside-environment.json",
+      "precision": "Photo-bounded planting wedge between archived OSM road and lake path; positions and sizes estimated."
+    },
+    {
+      "id": "lake-northwest-willows",
+      "seed": 9213,
+      "photos": [
+        "../imagery/panoramas/KFQ00-down.jpg",
+        "photos/eda-lake-2.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "willow",
+          "spacing": 8,
+          "height": [
+            5,
+            8
+          ],
+          "clearance": 3.7,
+          "jitter": 0.65
+        },
+        {
+          "kind": "shrub",
+          "spacing": 5.5,
+          "height": [
+            0.55,
+            1.1
+          ],
+          "clearance": 3.5,
+          "jitter": 0.8
+        },
+        {
+          "kind": "grass",
+          "spacing": 1.2,
+          "height": [
+            0.08,
+            0.15
+          ],
+          "clearance": 3.1,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "photo_registration": "references/eda/mapping/lakeside-environment.json",
+      "precision": "Photo-bounded planting wedge between archived OSM road and lake path; positions and sizes estimated."
+    },
+    {
+      "id": "xiang-plaza-garden",
+      "seed": 9215,
+      "photos": [
+        "../imagery/panoramas/KFQ00-down.jpg",
+        "photos/eda-lake-2.jpg",
+        "../imagery/panoramas/KFQ00-front.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "grass",
+          "spacing": 0.7,
+          "height": [
+            0.07,
+            0.12
+          ],
+          "clearance": 0.15,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "photo_registration": "references/eda/mapping/lakeside-environment.json"
+    },
+    {
+      "id": "library-lakeside-garden",
+      "seed": 9216,
+      "photos": [
+        "../imagery/panoramas/KFQ00-down.jpg",
+        "photos/eda-lake-2.jpg",
+        "../imagery/panoramas/KFQ00-front.jpg"
+      ],
+      "plants": [
+        {
+          "kind": "cypress",
+          "spacing": 8,
+          "height": [
+            4.5,
+            7.5
+          ],
+          "clearance": 4,
+          "jitter": 0.9
+        },
+        {
+          "kind": "broadleaf",
+          "spacing": 13,
+          "height": [
+            6,
+            9
+          ],
+          "clearance": 4,
+          "jitter": 1
+        },
+        {
+          "kind": "shrub",
+          "spacing": 4.5,
+          "height": [
+            0.6,
+            1.2
+          ],
+          "clearance": 3.2,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "osm_registration": {
+        "osm_id": "way/1076344096",
+        "osm_version": 4,
+        "expected_geometry_sha256": "6c7e41326677c0b84b586fbdbb817c082cfddab511290aad4944c3c496c634f7",
+        "expected_tags": {
+          "landuse": "grass"
+        },
+        "review": "references/eda/mapping/lakeside-environment.json"
+      }
+    },
+    {
+      "id": "xiang-west-shrubs",
+      "seed": 9222,
+      "photos": [
+        "../structures/xiang-plaza/user-lake-aerials.png"
+      ],
+      "plants": [
+        {
+          "kind": "shrub",
+          "spacing": 2.5,
+          "height": [
+            0.7,
+            1.25
+          ],
+          "clearance": 3.7,
+          "jitter": 0.65
+        },
+        {
+          "kind": "shrub",
+          "spacing": 5.5,
+          "height": [
+            0.55,
+            1.1
+          ],
+          "clearance": 3.5,
+          "jitter": 0.8
+        },
+        {
+          "kind": "grass",
+          "spacing": 1.2,
+          "height": [
+            0.08,
+            0.15
+          ],
+          "clearance": 3.1,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "photo_registration": "references/eda/mapping/lakeside-environment.json",
+      "precision": "Photo-bounded planting wedge between archived OSM road and lake path; positions and sizes estimated."
     }
   ],
   "deferred_zones": [
@@ -586,7 +884,7 @@
         ]
       ],
       "photos": [
-        "../buildings/photos/77935-0.jpg"
+        "../imagery/areas/02-residences-courtyard/77935-0.jpg"
       ],
       "plants": [
         {

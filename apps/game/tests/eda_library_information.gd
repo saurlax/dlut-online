@@ -14,6 +14,7 @@ func run() -> void:
 	var info_base: float = reference.get_node("Feature_77914").position.y
 	var library_base: float = reference.get_node("Feature_77917").position.y
 	check_wing_glazing(reference.get_node("Feature_77917"))
+	check_west_ground(reference.get_node("Feature_77917"))
 	reference.free()
 	var manifest: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/campus.json"))
 	var info := PackedVector2Array()
@@ -344,3 +345,19 @@ func check_ellipse_perimeter(space: PhysicsDirectSpaceState3D, base: float) -> v
 		assert(Vector2(hit.position.x,hit.position.z).distance_to(p)<0.04,"Library retains an indented mapped contour")
 		assert(Vector2(hit.normal.x,hit.normal.z).normalized().dot(normal)>.985,"Library ellipse normal mismatch")
 	print("LIBRARY ELLIPSE PASS: analytical exposed perimeter and complete roof coverage")
+
+func check_west_ground(library:Node3D)->void:
+	# Inspect the saved facade, not the solid backing shell: the shell already
+	# collided correctly while the entire lowest glazed storey was missing.
+	var bottom:=INF
+	var low_vertices:=0
+	for child in library.get_children():
+		if not child is MeshInstance3D or child.material_override==null:continue
+		if not child.material_override.resource_name.begins_with("Library west glazing"):continue
+		for surface in child.mesh.get_surface_count():
+			for vertex:Vector3 in child.mesh.surface_get_arrays(surface)[Mesh.ARRAY_VERTEX]:
+				var p:Vector3=child.transform*vertex
+				bottom=minf(bottom,p.y)
+				if p.y<4.4:low_vertices+=1
+	assert(absf(bottom-.85)<.01 and low_vertices>=12,"Library west ground-floor glazing must reach the forecourt instead of starting one storey above it")
+	print("LIBRARY WEST GROUND GLAZING PASS bottom=",bottom," vertices=",low_vertices)

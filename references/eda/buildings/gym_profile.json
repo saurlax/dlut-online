@@ -3,7 +3,7 @@
     "height": 17.0,
     "photos": [
       {
-        "file": "photos/77923-0.jpg",
+        "file": "../imagery/areas/11-sports/77923-0.jpg",
         "image_id": 79697,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77923_20160302113154275.jpg",
         "retrieved": "2026-09-09",
@@ -11,7 +11,7 @@
         "sha256": "e5020044719458af84cbe233fe794f33dc3570110b567cb990cffa09736ecff0"
       },
       {
-        "file": "photos/77923-1.jpg",
+        "file": "../imagery/areas/11-sports/77923-1.jpg",
         "image_id": 79696,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77923_20160302113142674.jpg",
         "retrieved": "2026-09-09",
@@ -81,8 +81,8 @@
       ],
       "basis": "官网 lm30 俯视图确认矩形主体及东侧铺装与屋盖分界；以 OSM 四角确定主馆墙线，旧生成器南面参考直线映射到 OSM 南边，东面映射至东边。屋盖挑檐、柱梁及六根立杆按同一归一化坐标映射，不再独立平移。",
       "sources": [
-        "photos/77923-0.jpg / 79697",
-        "photos/77923-1.jpg / 79696"
+        "../imagery/areas/11-sports/77923-0.jpg / 79697",
+        "../imagery/areas/11-sports/77923-1.jpg / 79696"
       ],
       "top_view": {
         "pixel_origin": [

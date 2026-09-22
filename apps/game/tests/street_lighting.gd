@@ -17,7 +17,7 @@ func run() -> void:
 	campus.add_child(lamps)
 	var environment: Node3D = load("res://scenes/campus_environment.tscn").instantiate()
 	campus.add_child(environment)
-	assert(lamps.lights.size() == 5)
+	assert(lamps.lights.size() == 12)
 	for light: SpotLight3D in lamps.lights:
 		assert(not light.visible and light.light_energy == 0.0, "Daytime lamp must be off")
 		assert((-light.basis.z).dot(Vector3.DOWN) > 0.95, "Light must face road surface")
