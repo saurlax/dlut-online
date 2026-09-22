@@ -171,13 +171,6 @@
       ]
     },
     {
-      "path": "public-notice.pdf",
-      "kind": "original_pdf",
-      "source_page": 1,
-      "sha256": "e635a17c5b68d36b1f289ffe37b9ee0d05423d6a3722c6e638023814f9eeb1e9",
-      "bytes": 2376160
-    },
-    {
       "path": "master-plan-original.jpg",
       "kind": "lossless_embedded_image_extraction",
       "source_page": 1,
@@ -195,5 +188,11 @@
       "sha256": "33cc749666743eee3426dfcb24ea66234f8a787167b7bfc97f0031cd95af43af",
       "bytes": 1083
     }
-  ]
+  ],
+  "original_pdf": {
+    "retained": false,
+    "sha256": "e635a17c5b68d36b1f289ffe37b9ee0d05423d6a3722c6e638023814f9eeb1e9",
+    "bytes": 2376160,
+    "note": "按用户要求不在仓库保留原 PDF，仅保留来源摘要及提取资料。"
+  }
 }
