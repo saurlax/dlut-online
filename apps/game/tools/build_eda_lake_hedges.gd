@@ -27,23 +27,39 @@ func build(host)->void:
     for side:int in selection.sides:
      for j in steps:
       var u:Vector2=a.lerp(b,float(j)/steps);var v:Vector2=a.lerp(b,float(j+1)/steps)
-      var center:Vector2=(u+v)/2+normal*side*(float(road.width)/2+1.0)
+      var center:Vector2=(u+v)/2+normal*side*(float(road.width)/2+float(plaza.border_depth_m)/2)
       if blocked(center,int(road.osm_way_id)):continue
       var edge0:Vector2=normal*side*float(road.width)/2
-      var edge1:Vector2=normal*side*(float(road.width)/2+2.0)
+      var edge1:Vector2=normal*side*(float(road.width)/2+float(plaza.border_depth_m))
       helper.quad(soil,point(u+edge0,.17),point(v+edge0,.17),point(v+edge1,.17),point(u+edge1,.17),Vector3.UP)
-      for offset:Vector2 in [edge0,normal*side*(float(road.width)/2+5.0)]:
+      for offset:Vector2 in [edge0,normal*side*(float(road.width)/2+float(plaza.border_depth_m)+3.0)]:
        for n:Vector3 in [Vector3(normal.x*side,0,normal.y*side)]:
         helper.quad(curb,point(u+offset,.18),point(v+offset,.18),point(v+offset,-.12),point(u+offset,-.12),n)
-      var scale:=Vector3(1.85/bounds.size.x,.72/bounds.size.y,1.85/bounds.size.z)
+      var scale:=Vector3(1.85/bounds.size.x,.72/bounds.size.y,(float(plaza.border_depth_m)-.15)/bounds.size.z)
       var basis:=Basis(Vector3.UP,-atan2(axis.y,axis.x)).scaled(scale)
       var origin:=point(center,.17)-basis*Vector3(bounds.get_center().x,bounds.position.y,bounds.get_center().z)
       var transform:=Transform3D(basis,origin)
       placements.append(transform)
       count+=1
+ # Only the grass-facing T perimeter is planted; leave the lake promenade and stair mouths open.
+ var borders:Array=[
+  [Vector2(plaza.upper_left_x-.55,plaza.back_z+3.0),Vector2(plaza.upper_left_x-.55,plaza.upper_wing_front_z+.55)],
+  [Vector2(plaza.upper_left_x-.55,plaza.upper_wing_front_z+.55),Vector2(plaza.side_ranges[0][0]-.65,plaza.upper_wing_front_z+.55)],
+  [Vector2(plaza.side_ranges[0][0]-.65,plaza.upper_wing_front_z+.55),Vector2(plaza.side_ranges[0][0]-.65,plaza.origin_xz[1]-.7)],
+  [Vector2(plaza.upper_right_x+.55,plaza.back_z+3.0),Vector2(plaza.upper_right_x+.55,plaza.upper_wing_front_z+.55)],
+  [Vector2(plaza.upper_right_x+.55,plaza.upper_wing_front_z+.55),Vector2(plaza.side_ranges[1][1]+.65,plaza.upper_wing_front_z+.55)],
+  [Vector2(plaza.side_ranges[1][1]+.65,plaza.upper_wing_front_z+.55),Vector2(plaza.side_ranges[1][1]+.65,plaza.origin_xz[1]-.7)]]
+ for border:Array in borders:
+  var a:Vector2=border[0];var b:Vector2=border[1];var axis:Vector2=(b-a).normalized()
+  var steps:int=ceili(a.distance_to(b)/.9)
+  for i in steps:
+   var center:Vector2=a.lerp(b,(i+.5)/steps)
+   var basis:=Basis(Vector3.UP,-atan2(axis.y,axis.x)).scaled(Vector3(1.02/bounds.size.x,.65/bounds.size.y,1.0/bounds.size.z))
+   var origin:=point(center,.02)-basis*Vector3(bounds.get_center().x,bounds.position.y,bounds.get_center().z)
+   placements.append(Transform3D(basis,origin));count+=1
  var foliage_path:="res://assets/campuses/eda/models/lake_hedges.tscn"
  save_foliage(placements,mesh,foliage_path)
- var foliage:Node3D=load(foliage_path).instantiate();foliage.name="HedgeFoliage"
+ var foliage:Node3D=ResourceLoader.load(foliage_path,"PackedScene",ResourceLoader.CACHE_MODE_IGNORE).instantiate();foliage.name="HedgeFoliage"
  group.add_child(foliage);foliage.owner=host.scene
  soil.index();soil.generate_normals()
  host.mesh_node(group,soil.commit(),host.material("Lake hedge planting soil",Color("434b31")),"HedgeSoil").set_meta("walk_collision",true)

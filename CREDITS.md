@@ -235,4 +235,4 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 
 ### 翔雕像广场校名与绿篱标志
 
-- 大连理工大学官方 VI：https://www.dlut.edu.cn/xxgk/dxwh/xxVI.htm ，校名矢量：https://www.dlut.edu.cn/images/logo.svg ，读取日期 2026-09-21。用于提取广场石字和中央绿篱标志的几何轮廓；标识权利归大连理工大学，未发现明确第三方再分发许可。原始 SVG 与用户提供的三张广场近景及一张俯视照片只保留为离线参考，不随客户端分发；来源、照片日期和估计误差见 references/eda/structures/xiang-plaza/basis.md。
+- 大连理工大学官方 VI：https://www.dlut.edu.cn/xxgk/dxwh/xxVI.htm ，校名矢量：https://www.dlut.edu.cn/images/logo.svg ，读取日期 2026-09-21。用于提取广场石字和中央绿篱标志的几何轮廓；标识权利归大连理工大学，未发现明确第三方再分发许可。原始 SVG 与用户提供的三张广场近景、一张俯视照片及 2026-09-22 补充的三图航拍拼图只保留为离线参考，不随客户端分发；来源、照片日期和估计误差见 references/eda/structures/xiang-plaza/basis.md。

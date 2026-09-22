@@ -65,10 +65,10 @@ func build(builder, campus: String) -> void:
 					selected.points = road.points.slice(int(selection.from_vertex), int(selection.to_vertex)+1)
 					walks.append(selected)
 		# Cut every road out of the sidewalk union so crossings remain open.
-		var trim := emit(builder, Geometry.polygons(walks, 5.0), 0.10, builder.material("Lake sidewalk stone trim", Color("c5c4b6")), Geometry.polygons(walks, 2.0)+rings+surface_masks)
+		var trim := emit(builder, Geometry.polygons(walks, float(lake_profile.hedge_depth_m)+3.0), 0.10, builder.material("Lake sidewalk stone trim", Color("c5c4b6")), Geometry.polygons(walks, float(lake_profile.hedge_depth_m))+rings+surface_masks)
 		trim.set_meta("walk_collision", true)
 		trim.set_meta("raised_lake_sidewalk",true)
-		var lake_walk:=emit(builder, Geometry.polygons(walks, 4.8), 0.102, preload("res://assets/roads/red_brick_path.tres"), Geometry.polygons(walks, 2.16)+Geometry.polygons(roads, 0.16)+surface_masks)
+		var lake_walk:=emit(builder, Geometry.polygons(walks, float(lake_profile.hedge_depth_m)+2.8), 0.102, preload("res://assets/roads/red_brick_path.tres"), Geometry.polygons(walks, float(lake_profile.hedge_depth_m)+.16)+Geometry.polygons(roads, 0.16)+surface_masks)
 		lake_walk.set_meta("raised_lake_sidewalk",true)
 	var colored := Geometry.polygons(painted)
 	var key: String = "Road" if campus == "eda" else campus.capitalize() + " asphalt"
@@ -77,6 +77,8 @@ func build(builder, campus: String) -> void:
 	if not colored.is_empty():
 		emit(builder, colored, -0.06, preload("res://assets/roads/red_path.tres"),surface_masks)
 	for surface: Dictionary in builder.manifest.get("ground_overlays", []):
+		# The dedicated level T plaza owns this entire paving footprint.
+		if campus == "eda" and surface.id == "eda-xiang-lakeside-paving":continue
 		var outer: Array[PackedVector2Array] = []
 		var cutouts: Array[PackedVector2Array] = replacement_masks.duplicate()
 		var ring := PackedVector2Array()
@@ -104,14 +106,6 @@ func build(builder, campus: String) -> void:
 		assert(lift>0.0 and lift<=0.02)
 		var paving := emit(builder,outer,lift-0.08,surface_material,cutouts+replacement_masks)
 		paving.set_meta("ground_surface_id",surface.id)
-		if surface.id == "eda-xiang-lakeside-paving":
-			var inlays: Array[PackedVector2Array] = []
-			for axis in 2:
-				for at in range(-146 if axis == 0 else 308, -90 if axis == 0 else 343, 4):
-					var line := PackedVector2Array([Vector2(at-0.035,300),Vector2(at+0.035,300),Vector2(at+0.035,345),Vector2(at-0.035,345)]) if axis == 0 else PackedVector2Array([Vector2(-150,at-0.035),Vector2(-90,at-0.035),Vector2(-90,at+0.035),Vector2(-150,at+0.035)])
-					inlays.append_array(Geometry2D.intersect_polygons(line,ring))
-			var inlay := emit(builder,inlays,-0.056,builder.material("Lake plaza grid inlay",Color("777b72")),replacement_masks)
-			inlay.set_meta("walk_collision",false)
 
 func build_crosswalks(builder) -> void:
 	var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json")).roads

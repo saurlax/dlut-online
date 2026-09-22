@@ -5,7 +5,8 @@
     "references/eda/imagery/panoramas/KFQ00-down.jpg",
     "references/eda/vegetation/photos/eda-lake-2.jpg",
     "references/eda/imagery/panoramas/KFQ00-front.jpg",
-    "references/eda/structures/xiang-plaza/user-aerial.png"
+    "references/eda/structures/xiang-plaza/user-aerial.png",
+    "references/eda/structures/xiang-plaza/user-lake-aerials.png"
   ],
   "source_urls": [
     "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/vr/pano_d.jpg",
@@ -1164,6 +1165,37 @@
         0.5,
         0.65
       ]
+    },
+    {
+      "id": "xiang-west-shrubs",
+      "points": [
+        [
+          -172,
+          325
+        ],
+        [
+          -146,
+          314
+        ],
+        [
+          -134.8,
+          321
+        ],
+        [
+          -134.8,
+          332
+        ],
+        [
+          -154,
+          333
+        ]
+      ],
+      "kind": "shrub",
+      "spacing": 2.5,
+      "height": [
+        0.7,
+        1.25
+      ]
     }
   ],
   "hedge_roads": [
@@ -1194,5 +1226,5 @@
       ]
     }
   ],
-  "hedge_depth_m": 2.0
+  "hedge_depth_m": 3.0
 }

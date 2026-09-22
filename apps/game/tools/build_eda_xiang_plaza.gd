@@ -31,7 +31,9 @@ func mapped(v:Vector2,letters:bool,top:bool)->Vector3:
   var height:float=(48.3418-v.y)*scale
   var angle:=deg_to_rad(float(p.letter_inclination_deg))
   var x:float=float(p.origin_xz[0])+(v.x-(282.00051+86.92)/2)*scale
-  return Vector3(x,base+0.055+(height*sin(angle) if top else 0.0),Profile.curb_z(x,p)-.12-height*cos(angle))
+  # The rear face follows the letter-face normal: their top angle is 90 degrees.
+  # Both feet lie on the soil, so the ground segment is the hypotenuse.
+  return Vector3(x,base+0.055+(height*sin(angle) if top else 0.0),Profile.curb_z(x,p)-.12-height*cos(angle)-(0.0 if top else height*sin(angle)*tan(angle)))
  var at:=Vector2(p.garden_center_xz[0],p.garden_center_xz[1])+(v-Vector2(37.15,36.1))*float(p.garden_diameter_m)/50.31
  return Vector3(at.x,Profile.garden_height(terrain,at)+(float(p.hedge_height_m) if top else 0.0),at.y)
 func extrude(values:Array,letters:bool,mat:Material)->void:
@@ -64,10 +66,12 @@ func build(builder)->void:
  var left:float=p.side_ranges[0][0];var right:float=p.side_ranges[1][1]
  var walk:=SurfaceTool.new();walk.begin(Mesh.PRIMITIVE_TRIANGLES)
  var deck:=SurfaceTool.new();deck.begin(Mesh.PRIMITIVE_TRIANGLES)
- level(deck,Profile.rectangle(left,p.back_z,right,start),upper)
- build_paving(left,right,float(p.back_z),start,upper)
+ level(deck,Profile.rectangle(p.upper_left_x,p.back_z,p.upper_right_x,p.upper_wing_front_z),upper)
+ level(deck,Profile.rectangle(left,p.upper_wing_front_z,right,start),upper)
+ build_paving(float(p.upper_left_x),float(p.upper_right_x),float(p.back_z),float(p.upper_wing_front_z),upper)
+ build_paving(left,right,float(p.upper_wing_front_z),start,upper)
  # Close the outer back and side walls all the way below the original ground.
- var perimeter:=Profile.rectangle(left,p.back_z,right,start)
+ var perimeter:=PackedVector2Array([Vector2(p.upper_left_x,p.back_z),Vector2(p.upper_right_x,p.back_z),Vector2(p.upper_right_x,p.upper_wing_front_z),Vector2(right,p.upper_wing_front_z),Vector2(right,start),Vector2(left,start),Vector2(left,p.upper_wing_front_z),Vector2(p.upper_left_x,p.upper_wing_front_z)])
  for i in perimeter.size():
   var a:Vector2=perimeter[i];var b:Vector2=perimeter[(i+1)%perimeter.size()]
   if is_equal_approx(a.y,start) and is_equal_approx(b.y,start):continue

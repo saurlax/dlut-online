@@ -51,13 +51,36 @@ func run()->void:
     for i in range(0,faces.size(),3):
      var a:Vector3=mesh.transform*faces[i];var b:Vector3=mesh.transform*faces[i+1];var c:Vector3=mesh.transform*faces[i+2]
      if a.z>=start-0.01 and a.z<=front+.01 and maxf(a.x,maxf(b.x,c.x))<=-125 and absf(a.z-b.z)<0.001 and absf(b.z-c.z)<0.001 and absf(a.y-b.y)+absf(b.y-c.y)>0.1:riser_faces+=1
+   # Inspect saved stone vertices, including the back feet, rather than the generator's mapping function.
+   var stone_points:Dictionary={};var letter_tops:Array[Vector3]=[]
+   for child in plaza.get_children():
+    if not child is MeshInstance3D or child.material_override.resource_name!="Xiang plaza pale granite" or not child.get_meta("walk_collision",false):continue
+    for v:Vector3 in child.mesh.get_faces():
+     stone_points[Vector3i(roundi(v.x*500),roundi(v.y*500),roundi(v.z*500))]=true
+     if v.x>float(p.letter_bed[0])+.1 and v.x<float(p.letter_bed[2])-.1 and v.z>front+.15 and v.y>base+.06:letter_tops.append(v)
+   check(letter_tops.size()>50,"Missing inclined letter stone vertices")
+   for top:Vector3 in letter_tops:
+    var h:float=top.y-base-.055
+    var foot:=Vector3(top.x,base+.055,top.z-h*tan(deg_to_rad(float(p.letter_inclination_deg))))
+    var found:=false
+    var key:=Vector3i(roundi(foot.x*500),roundi(foot.y*500),roundi(foot.z*500))
+    for dz in [-1,0,1]:
+     if stone_points.has(key+Vector3i(0,0,dz)):found=true
+    check(found,"Stone back is vertically extruded; ground hypotenuse is missing")
+    check(foot.z>=Profile.curb_z(foot.x,p)-float(p.border_depth_m)-.002,"Stone back foot escapes the grass bed")
    check(hedges==1 and letters>0,"Missing traced emblem or stone name")
    check(riser_faces>=20,"Visible stair risers replaced by a ramp")
   await physics_frame;await physics_frame
   var space:=world.get_world_3d().direct_space_state
-  for sample in [{"a":Vector3(-135,upper-.1,325),"b":Vector3(-133,upper-.1,325)}, {"a":Vector3(-102,upper-.1,325),"b":Vector3(-104,upper-.1,325)}, {"a":Vector3(-120,upper-.1,306),"b":Vector3(-120,upper-.1,308)}]:
-   var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(sample.a,sample.b))
-   check(not hit.is_empty(),"Upper plaza back or outer side is open")
+  # Sample across the actual promenade/T-wing seam and the entrance/hedge kerb.
+  for x:float in [-145.04,-144.96,-93.04,-92.96]:
+   var z:float=308.5 if x< -120 else 306.5
+   var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(x,upper+2,z),Vector3(x,base-2,z)))
+   check(not hit.is_empty() and absf(hit.position.y-upper)<.06,"Lake promenade and plaza have a step or gap")
+  for x:float in [-134.05,-133.95,-103.05,-102.95]:
+   var z:float=Profile.curb_z(x,p)-float(p.border_depth_m)-.5
+   var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(x,upper+2,z),Vector3(x,base-2,z)))
+   check(not hit.is_empty() and absf(hit.position.y-base)<.025,"Entrance and adjoining red walk kerbs have different levels")
   for x in [-124.9,-112.1]:
    for z:float in [Profile.curb_z(x,p)-.08,Profile.curb_z(x,p)-float(p.border_depth_m)+.08]:
     var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(x,upper+1,z),Vector3(x,base-1,z)))

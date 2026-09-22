@@ -817,6 +817,48 @@
         },
         "review": "references/eda/mapping/lakeside-environment.json"
       }
+    },
+    {
+      "id": "xiang-west-shrubs",
+      "seed": 9222,
+      "photos": [
+        "../structures/xiang-plaza/user-lake-aerials.png"
+      ],
+      "plants": [
+        {
+          "kind": "shrub",
+          "spacing": 2.5,
+          "height": [
+            0.7,
+            1.25
+          ],
+          "clearance": 3.7,
+          "jitter": 0.65
+        },
+        {
+          "kind": "shrub",
+          "spacing": 5.5,
+          "height": [
+            0.55,
+            1.1
+          ],
+          "clearance": 3.5,
+          "jitter": 0.8
+        },
+        {
+          "kind": "grass",
+          "spacing": 1.2,
+          "height": [
+            0.08,
+            0.15
+          ],
+          "clearance": 3.1,
+          "jitter": 1
+        }
+      ],
+      "lawn": true,
+      "photo_registration": "references/eda/mapping/lakeside-environment.json",
+      "precision": "Photo-bounded planting wedge between archived OSM road and lake path; positions and sizes estimated."
     }
   ],
   "deferred_zones": [

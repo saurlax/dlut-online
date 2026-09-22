@@ -2,10 +2,8 @@ extends RefCounted
 static func load_profile() -> Dictionary:
  return JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/xiang_plaza.json"))
 static func lower_height(terrain,p:Dictionary)->float:
- var highest:float=terrain.elevation(p.origin_xz[0],p.origin_xz[1])
- for x:float in [p.side_ranges[0][0],p.side_ranges[1][1]]:
-  for z:float in [p.origin_xz[1],curb_z(x,p)]:highest=maxf(highest,terrain.elevation(x,z))
- return highest+float(p.curb_min_rise_m)
+ # Anchor the level plaza to the existing lake promenade, not the highest roadside corner.
+ return terrain.shore_elevation(float(p.origin_xz[0]),float(p.back_z))+.02-float(p.risers)*float(p.rise_m)
 static func upper_height(terrain,p:Dictionary)->float:
  return lower_height(terrain,p)+float(p.risers)*float(p.rise_m)
 static func upper_z(p:Dictionary)->float:
@@ -14,7 +12,7 @@ static func rectangle(x0:float,z0:float,x1:float,z1:float)->PackedVector2Array:
  return PackedVector2Array([Vector2(x0,z0),Vector2(x1,z0),Vector2(x1,z1),Vector2(x0,z1)])
 static func masks() -> Array[PackedVector2Array]:
  var p:=load_profile()
- return [front_polygon(p.side_ranges[0][0],p.side_ranges[1][1],p.back_z,p)]
+ return [front_polygon(p.side_ranges[0][0],p.side_ranges[1][1],p.back_z,p),rectangle(p.upper_left_x,p.back_z,p.upper_right_x,p.upper_wing_front_z)]
 static func garden_height(terrain, at:Vector2) -> float:
  var p:=load_profile()
  return lower_height(terrain,p)+float(p.planter_raise_m)+clampf((float(p.origin_xz[1])-at.y)/(float(p.origin_xz[1])-upper_z(p)),0,1)*float(p.risers)*float(p.rise_m)
@@ -46,3 +44,15 @@ static func name_bed(p:Dictionary)->PackedVector2Array:
  for i in range(count+1):
   var x:=lerpf(right,left,float(i)/count);ring.append(Vector2(x,curb_z(x,p)))
  return ring
+
+static func ground_height(at:Vector2,original:float,base:float,p:Dictionary)->float:
+ # One local grade feeds paving, soil, plant roots and both collision worlds.
+ if at.x<float(p.upper_left_x)-8 or at.x>float(p.upper_right_x)+8 or at.y<303 or at.y>359:return original
+ var wing:float=1.0-smoothstep(float(p.upper_wing_front_z),float(p.upper_wing_front_z)+3,at.y)
+ var left:float=lerpf(float(p.side_ranges[0][0])-1.2,float(p.upper_left_x),wing)
+ var right:float=lerpf(float(p.side_ranges[1][1])+1.2,float(p.upper_right_x),wing)
+ var distance:float=maxf(left-at.x,at.x-right)
+ var weight:float=(1.0-smoothstep(0,8,distance))*smoothstep(303,float(p.back_z),at.y)*(1.0-smoothstep(351,359,at.y))
+ var fraction:float=clampf((at.y-upper_z(p))/(float(p.origin_xz[1])-upper_z(p)),0,1)
+ var target:float=lerpf(base+float(p.risers)*float(p.rise_m)-.02,base-.18,fraction)
+ return lerpf(original,target,weight)

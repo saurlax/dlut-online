@@ -4,13 +4,32 @@ extends RefCounted
 const STAIR_PROFILE=preload("res://tools/eda_stair_profile.gd")
 var data: Dictionary
 var shores: RefCounted
+var xiang_profile:Dictionary={}
+var xiang_base:float=0.0
 
 func load_campus(campus: String) -> void:
 	data = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/%s/data/terrain.json" % campus))
 	shores = preload("res://tools/build_lake_shores.gd").new()
 	shores.load_campus(campus, data)
+	xiang_profile.clear()
+	if campus=="eda":
+		xiang_profile=preload("res://tools/eda_xiang_plaza_profile.gd").load_profile()
+		xiang_base=preload("res://tools/eda_xiang_plaza_profile.gd").lower_height(self,xiang_profile)
 
 func elevation(x: float, z: float) -> float:
+	if xiang_profile.is_empty() or x < -160 or x > -80 or z < 300 or z > 360:return shore_elevation(x,z)
+	# Interpolate the same one-metre triangles used by the ground and road cutters.
+	var grid:=Vector2(x,z)-Vector2(data.origin_xz[0],data.origin_xz[1])
+	var corner:=grid.floor()+Vector2(data.origin_xz[0],data.origin_xz[1])
+	var uv:=grid-grid.floor()
+	var a:=graded_sample(corner);var b:=graded_sample(corner+Vector2.RIGHT)
+	var c:=graded_sample(corner+Vector2.DOWN);var d:=graded_sample(corner+Vector2.ONE)
+	return a+uv.x*(b-a)+uv.y*(c-a) if uv.x+uv.y<=1 else d+(1-uv.x)*(c-d)+(1-uv.y)*(b-d)
+
+func graded_sample(at:Vector2)->float:
+	return preload("res://tools/eda_xiang_plaza_profile.gd").ground_height(at,shore_elevation(at.x,at.y),xiang_base,xiang_profile)
+
+func shore_elevation(x:float,z:float)->float:
 	return shores.elevation(self,x,z) if shores != null else raw_elevation(x,z)
 
 func raw_elevation(x: float, z: float) -> float:
@@ -35,6 +54,9 @@ func point(c: int, r: int) -> Vector3:
 func cell_triangles(col: int, row: int) -> Array[PackedVector2Array]:
 	var result: Array[PackedVector2Array] = []
 	var divisions: int = shores.divisions(col,row) if shores != null else 1
+	var cell_x:float=float(data.origin_xz[0])+col*float(data.step_m)
+	var cell_z:float=float(data.origin_xz[1])+row*float(data.step_m)
+	if not xiang_profile.is_empty() and cell_x>=-170 and cell_x<=-70 and cell_z>=290 and cell_z<=370:divisions=int(data.step_m)
 	var step := float(data.step_m)/divisions
 	var origin := Vector2(data.origin_xz[0],data.origin_xz[1])+Vector2(col,row)*float(data.step_m)
 	for r in divisions:
