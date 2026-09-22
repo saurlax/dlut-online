@@ -3,8 +3,9 @@
 - `fonts/`：三校区共享的中文字体和许可，运行时 UI 使用。
 - `campuses/eda/data/campus.json`：开发区 27 个官方轮廓、来源和高度估计；模型生成、运行时碰撞关联和地图使用，不代表全校数据。
 - `campuses/eda/data/roads.json`：开发区道路描摹数据，模型生成和地图使用。
-- `campuses/eda/data/building_assets.json`：16 栋 Blender 建筑的局部坐标原点及来源元数据，供校区离线组装使用。
-- `campuses/eda/models/development_campus.tscn`：开发区地形、道路、广场、水域、绿地等非建筑静态内容，并实例引用拆分后的建筑资源。
+- `campuses/eda/data/building_assets.json`：16 栋 Blender 建筑的局部坐标原点及来源元数据，供离线组装和运行时距离加载使用。
+- `campuses/eda/models/development_campus.tscn`：开发区编辑器场景，包含地形、道路、环境及拆分后的 Blender 建筑实例。
+- `campuses/eda/models/development_campus_runtime.scn`：开发区运行时二进制场景，地形等仍为整体，建筑位置保留为异步加载占位节点。
 - `campuses/eda/models/buildings/<feature_id>.glb`：开发区建筑运行时模型。可编辑源文件位于仓库根目录 `references/eda/buildings/blender/`，建筑几何以 Blender 文件为准，不再由 GDScript 生成。
 - `.import`：Godot 资源导入配置，由编辑器管理；移动资产时同步更新。
 

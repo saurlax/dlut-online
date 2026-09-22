@@ -36,9 +36,33 @@ func add_blender_building(feature: Dictionary, placeholder: Node3D) -> void:
 			group.set_meta(key, feature[key])
 	for key in entry:
 		if key not in ["id", "origin"]:
-			group.set_meta(key, entry[key])
+			var value: Variant = entry[key]
+			if key == "photo_edges":
+				var edge_indices: Array[int] = []
+				for edge: Variant in value:
+					edge_indices.append(int(edge))
+				value = edge_indices
+			group.set_meta(key, value)
 	scene.add_child(group)
 	group.owner = scene
+
+func replace_buildings_with_streaming_placeholders() -> void:
+	for feature_id: String in building_assets:
+		var group := scene.get_node_or_null("Feature_" + feature_id) as Node3D
+		if group == null:
+			continue
+		var index := group.get_index()
+		var placeholder := Node3D.new()
+		placeholder.name = group.name
+		placeholder.transform = group.transform
+		for key in group.get_meta_list():
+			placeholder.set_meta(key, group.get_meta(key))
+		placeholder.set_meta("building_asset", "res://assets/campuses/eda/models/buildings/%s.glb" % feature_id)
+		scene.remove_child(group)
+		group.free()
+		scene.add_child(placeholder)
+		scene.move_child(placeholder, index)
+		placeholder.owner = scene
 
 func save_campus_scene(packed: PackedScene, resource_path: String) -> Error:
 	var target := ProjectSettings.globalize_path(resource_path)
@@ -484,7 +508,11 @@ func build() -> void:
 	var packed := PackedScene.new()
 	assert(packed.pack(scene)==OK)
 	assert(save_campus_scene(packed,"res://assets/campuses/eda/models/development_campus.tscn")==OK)
-	print("MODEL PASS: %d source identity nodes, assembled TSCN with Blender buildings" % generated_count)
+	replace_buildings_with_streaming_placeholders()
+	packed = PackedScene.new()
+	assert(packed.pack(scene)==OK)
+	assert(save_campus_scene(packed,"res://assets/campuses/eda/models/development_campus_runtime.scn")==OK)
+	print("MODEL PASS: %d source identity nodes, Blender editor scene and streamed runtime scene" % generated_count)
 	quit()
 
 func valid_ground_sources() -> bool:

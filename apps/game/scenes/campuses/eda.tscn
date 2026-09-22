@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/client/campus.gd" id="1"]
-[ext_resource type="PackedScene" path="res://assets/campuses/eda/models/development_campus.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://assets/campuses/eda/models/development_campus_runtime.scn" id="2"]
 [ext_resource type="PackedScene" path="res://assets/campuses/eda/models/vegetation.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://assets/campuses/eda/models/exterior_details.tscn" id="Exterior"]
 
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" path="res://assets/campuses/eda/models/terrain.tscn" id="Terrain"]
 
 [ext_resource type="PackedScene" path="res://assets/campuses/eda/models/surroundings.tscn" id="Surroundings"]
+[ext_resource type="Script" path="res://scripts/client/building_streamer.gd" id="BuildingStreamer"]
 
 [node name="Campus" type="Node3D"]
 script = ExtResource("1")
@@ -27,3 +28,6 @@ spawn_position = Vector3(-21.769462, 0.35, 584.121531)
 [node name="Terrain" parent="." instance=ExtResource("Terrain")]
 
 [node name="Surroundings" parent="." instance=ExtResource("Surroundings")]
+
+[node name="BuildingStreamer" type="Node" parent="."]
+script = ExtResource("BuildingStreamer")

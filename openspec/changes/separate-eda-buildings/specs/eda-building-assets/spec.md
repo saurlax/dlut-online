@@ -14,6 +14,11 @@
 - **WHEN** 开发区校区场景被生成或加载
 - **THEN** 每栋建筑以 `Feature_<id>` 独立场景实例出现在登记世界位置，地形、道路、广场、水体、植被和室外细节仍保留在校区级资源中
 
+#### Scenario: Enter and traverse the campus
+
+- **WHEN** 玩家进入开发区或在校区内移动
+- **THEN** 非建筑整体场景先完成加载，附近建筑异步挂入对应 `Feature_<id>` 节点并建立碰撞，远离加载范围的建筑释放实例
+
 ### Requirement: Preserve verified geometry and collision
 
 初次迁移 SHALL 从现有已验收开发区模型提取建筑，不重新推断未确认的外观或室内，并 SHALL 在 glTF/Blender 往返后恢复通行碰撞标记和不可见碰撞辅助网格。
