@@ -79,7 +79,7 @@ func emit(st: SurfaceTool, a: Vector2, b: Vector2, c: Vector2, region: Dictionar
 			emit(st,(c+a)*0.5,b,c,region,terrain,surface)
 		return
 	for p in [a,b,c]:
-		if surface: st.set_uv(Vector2(smoothstep(0.0, 3.0, Water.shore_distance(region,p)), 0.0))
+		if surface: st.set_uv(Vector2(smoothstep(0.0, 3.0, Water.shore_distance(region,p)) if Geometry2D.is_point_in_polygon(p,region.polygon) else 0.0, 0.0))
 		var y: float = terrain.elevation(p.x,p.y)
 		if not region.is_empty():
 			y = float(region.level) if surface else lerpf(y, float(region.level)-Water.DEPTH, smoothstep(0.0, Water.SHORE_WIDTH, Water.shore_distance(region,p)))
@@ -117,6 +117,8 @@ func replace_surfaces(model: Node3D, regions: Array, terrain: RefCounted) -> voi
 		var st := SurfaceTool.new()
 		st.begin(Mesh.PRIMITIVE_TRIANGLES)
 		var rings: Array[PackedVector2Array] = [region.polygon]
+		if terrain.shores!=null and terrain.shores.profile.has("visual_overlap_m"):
+			rings=Geometry2D.offset_polygon(region.polygon,float(terrain.shores.profile.visual_overlap_m),Geometry2D.JOIN_ROUND)
 		for quad in Roads.new().tessellate(rings, region.holes): emit_quad(st,quad,region,terrain,true)
 		st.index()
 		st.generate_normals()

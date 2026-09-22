@@ -4,14 +4,15 @@
   "source_scene": "scene_DUT_KFQ00",
   "source_photos": [
     "references/eda/imagery/panoramas/KFQ00-down.jpg",
-    "references/eda/vegetation/photos/eda-lake-2.jpg"
+    "references/eda/vegetation/photos/eda-lake-2.jpg",
+    "references/eda/structures/xiang-plaza/user-aerial.png"
   ],
   "source_url": "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/vr/pano_d.jpg",
   "capture_date": null,
   "view": "Downward and forward aerial panorama plus lake aerial, reviewed east/west lake arms and the south approach to the Xiang plaza junction.",
   "registration": "Topology matched by lake, library and two road junctions to OSM way 1076344082 v2. OSM centerline and shared WGS84 origin retained. Lamp stations are approximate road-relative placements, not photogrammetric coordinates. Lake southern/eastern and western arms now bounded by lakeside-environment.json; historical photo presence and relative roadside positions only.",
-  "occlusion": "Canopy-hidden lamp bases remain estimated. Junction interiors are kept free of edge lines. See lakeside-environment.json for scope.",
-  "precision": "Road width remains the existing 7 m highway-class estimate. Paint widths 0.10/0.12 m, dash/gap 3/3 m, pole height 6 m and fixture dimensions are visual estimates. No independent metric accuracy or current-condition claim. South approach edge offset 8.45 m is an estimate within the continuous two-line OSM envelope; it is not a measured lane width.",
+  "occlusion": "树冠遮挡部分路缘；三岔口短暂缺少步道和树篱，白色外缘仍连续圆润相接，范围见 lakeside-environment.json。",
+  "precision": "道路沿用 OSM 两条7米车道基底。白线宽0.10米、距道路中心3.08米，圆角裁切最多2米；三岔口及隔离带鼻端按用户俯视照片估计，非实测。中央隔离带取代旧单幅引道，不再在绿带中画黄色中线。灯杆及其余尺寸沿用既有照片估计。",
   "lamp_height_m": 6.0,
   "withheld": {
     "crossings": "Photos confirm crossings, but exact cross-road registration/extent has not been established; do not place zebra crossings on guessed chainages.",
@@ -98,25 +99,36 @@
       ]
     }
   ],
-  "approach_markings": {
-    "points": [
-      [
-        -118.98,
-        494
-      ],
-      [
-        -118.98,
-        398
-      ],
-      [
-        -119.02,
-        378
-      ]
-    ],
-    "from_vertex": 0,
-    "to_vertex": 2,
-    "edge_offset_m": 8.45,
-    "lamps": [],
-    "registration": "Centre between the two archived OSM approach lines 1076344082 v2 / 1076344089 v3. Ends before the open junction; widths and endpoints are visual estimates from KFQ00 downward/front faces."
-  }
+  "white_edges": [
+    {
+      "osm_way_id": 1076344089,
+      "from_vertex": 17,
+      "to_vertex": 48,
+      "side": -1
+    },
+    {
+      "osm_way_id": 1076344082,
+      "from_vertex": 0,
+      "to_vertex": 38,
+      "side": -1
+    },
+    {
+      "osm_way_id": 1076344089,
+      "from_vertex": 17,
+      "to_vertex": 34,
+      "side": 1
+    },
+    {
+      "osm_way_id": 1076344082,
+      "from_vertex": 14,
+      "to_vertex": 38,
+      "side": 1
+    },
+    {
+      "osm_way_id": 1076344093,
+      "from_vertex": 0,
+      "to_vertex": 6,
+      "side": -1
+    }
+  ]
 }

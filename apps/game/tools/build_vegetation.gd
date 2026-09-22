@@ -39,15 +39,9 @@ func build(_builder: SceneTree = null, campus := "eda") -> void:
 			var points: PackedVector2Array = sidewalk.polygon
 			sidewalk_masks.append(points)
 		var lake_profile:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/lakeside-environment.json"))
-		var lake_roads:Array=[]
-		for selection:Dictionary in lake_profile.hedge_roads:
-			for road:Dictionary in roads:
-				if int(road.osm_way_id)==int(selection.osm_way_id):
-					var selected:Dictionary=road.duplicate()
-					selected.points=road.points.slice(int(selection.from_vertex),int(selection.to_vertex)+1)
-					lake_roads.append(selected)
+
 		var garden:=preload("res://tools/eda_xiang_plaza_profile.gd").rectangle(-125,327.24,-112,339)
-		for ring:PackedVector2Array in preload("res://scripts/shared/road_geometry.gd").polygons(lake_roads,float(lake_profile.hedge_depth_m)+3.0):
+		for ring:PackedVector2Array in preload("res://tools/eda_lake_road_profile.gd").bands(roads,lake_profile.hedge_roads,0.0,float(lake_profile.hedge_depth_m)+3.0):
 			for piece:PackedVector2Array in Geometry2D.clip_polygons(ring,garden):
 				excluded.append({"points":piece,"bounds":polygon_bounds(piece).grow(.5),"id":"lake-raised-walk"})
 	var instances: Array[Dictionary] = []

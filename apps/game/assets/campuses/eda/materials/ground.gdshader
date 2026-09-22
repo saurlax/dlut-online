@@ -45,7 +45,7 @@ void fragment() {
 	bool stone=kind==0 && stone_path_extent.x>0.0 && stone_uv.x>=0.0 && stone_uv.x<=stone_path_extent.x && abs(stone_uv.y)<=stone_path_extent.y;
 	if (stone) { kind=7; base=vec3(0.26,0.27,0.25); }
 
-	if (kind>=2) { p=UV; }
+	if (kind>=2 && kind<=7) { p=UV; }
 	if (stone) { p=stone_uv; }
 	if (kind==6) { vec2 d=ground-paving_origin; p=vec2(dot(d,paving_axis),dot(d,vec2(-paving_axis.y,paving_axis.x))); }
 	float footprint=max(length(dFdx(p)),length(dFdy(p)));
@@ -53,12 +53,19 @@ void fragment() {
 	float mottling=noise(p*1.9)*0.6+noise(p*0.19)*0.4;
 	vec3 color=base*(0.88+0.17*mottling+0.12*grain);
 	float joint=1.0;
-	if (kind>=1) {
-		vec2 size=kind==7 ? vec2(0.4,0.6) : kind==4 ? vec2(0.6) : (kind==1 ? vec2(0.6,0.4) : (kind==2 || kind==5 || kind==6 ? vec2(0.10,0.20) : vec2(0.065,0.24)));
+	if (kind>=1 && kind!=8) {
+		vec2 size=kind==9 ? vec2(0.5) : kind==7 ? vec2(0.4,0.6) : kind==4 ? vec2(0.6) : (kind==1 ? vec2(0.6,0.4) : (kind==2 || kind==5 || kind==6 ? vec2(0.10,0.20) : vec2(0.065,0.24)));
 		vec2 uv=kind==1 ? mat2(vec2(0.9763,-0.2164),vec2(0.2164,0.9763))*p/size : p/size;
 		if (kind==1) { uv.x+=mod(floor(uv.y),2.0)*0.5; }
 		if (kind==2 || kind==6 || kind==7) { uv.y+=mod(floor(uv.x),2.0)*0.5; }
 		vec2 cell=floor(uv), f=fract(uv);
+		if (kind==9) {
+			vec2 grid=abs(mod(p+vec2(3.0),vec2(6.0))-vec2(3.0));
+			float distance=min(grid.x,grid.y);
+			float aa=max(fwidth(distance),0.005);
+			float band=1.0-smoothstep(0.14-aa,0.14+aa,distance);
+			color=mix(color,vec3(0.46,0.25,0.25)*(0.92+0.16*mottling),band);
+		}
 		if (kind==5) {
 			vec2 grid=mod(p+vec2(2.0,0.0),vec2(4.0));
 			float band=1.0-smoothstep(0.18,0.20,min(grid.x,grid.y));
@@ -80,14 +87,15 @@ void fragment() {
 		color*=mix(1.0,0.88+0.24*hash(cell),visible);
 		joint=mix(0.97,joint,visible);
 		color=mix(base*0.52,color,joint);
-	} else if (kind==0) {
+	} else if (kind==0 || kind==8) {
 		// Centimetre-scale irregular aggregate, filtered before becoming subpixel.
-		float detail=1.0-smoothstep(0.004,0.024,footprint);
-		vec2 chip=aggregate(p*105.0);
+		float detail=1.0-smoothstep(0.004,kind==8 ? 0.06 : 0.024,footprint);
+		vec2 chip=aggregate(p*(kind==8 ? 32.0 : 105.0));
 		float relief=chip.x*(0.7+0.3*chip.y);
 		float finish=mix(0.98,0.86+0.19*relief+0.08*(chip.y-0.5),detail);
 		color=base*(0.90+0.16*mottling)*finish;
-		float height=0.0007*relief*detail;
+		if (kind==8) { color*=mix(1.0,0.65+0.6*chip.y,detail); }
+		float height=(kind==8 ? 0.004 : 0.0007)*relief*detail;
 		vec3 dx=dFdx(VERTEX), dy=dFdy(VERTEX);
 		vec3 rx=cross(dy,NORMAL), ry=cross(NORMAL,dx);
 		float determinant=dot(dx,rx);

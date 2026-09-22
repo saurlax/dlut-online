@@ -27,7 +27,7 @@
     }
   ],
   "classification": "photo-constrained local visual approximation, not a surveyed shoreline elevation or bathymetry",
-  "precision": "照片只支持岸高水低和缓坡形态。水位取原 DSM 湖区地坪减 0.45 米；0.6 米岸高、3 米坡宽、8 米近岸平台、16 米过渡范围均为视觉估计。不得声称实测，保留原始 OSM 水面节点和绝对 DSM 档案；运行边界依照片连续弧形特征作有界曲线细分，控制点距原线段至多2米，边长至多2米，不能将细分当作新增测量；两湖保留原估计标高差。重叠过渡仅插值合成地形，不提供新测量控制点。",
+  "precision": "照片只支持岸高水低和缓坡形态。水位取原 DSM 湖区地坪减 0.45 米；0.6 米岸高、3 米坡宽、8 米近岸平台、16 米过渡范围均为视觉估计。不得声称实测，保留原始 OSM 水面节点和绝对 DSM 档案；运行边界依照片连续弧形特征作有界曲线细分，控制点距原线段至多2米，边长至多2米，不能将细分当作新增测量；大湖保留原估计标高，小湖按用户确认比大湖低1米；该相对高差不是PDF提供的测量结果。重叠过渡仅插值合成地形，不提供新测量控制点。 2026-09-22：水面视觉轮廓向陆侧延伸1.1米埋入3米缓坡，游戏水域仍保留登记轮廓，外延不改变地图和游泳判定；交叠过渡在岸边优先保持最近湖的坡脚。",
   "water_offset_m": -0.45,
   "wet_edge_offset_m": -0.12,
   "bank_height_m": 0.6,
@@ -45,6 +45,10 @@
         "max_deviation_m": 2.0,
         "max_segment_m": 2.0,
         "method": "closed tangent-continuous cubic interpolation through archived OSM nodes; control points constrained to each source segment corridor"
+      },
+      "relative_level": {
+        "feature_id": "39328846",
+        "offset_m": -1.0
       }
     },
     {
@@ -58,5 +62,6 @@
         "method": "closed tangent-continuous cubic interpolation through archived OSM nodes; control points constrained to each source segment corridor"
       }
     }
-  ]
+  ],
+  "visual_overlap_m": 1.1
 }

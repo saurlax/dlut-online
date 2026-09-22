@@ -11,6 +11,7 @@ func run() -> void:
 	var terrain := Terrain.new()
 	terrain.load_campus("eda")
 	check_refined_outlines()
+	assert(absf(float(terrain.shores.water_levels.Feature_39328846)-float(terrain.shores.water_levels.Feature_2304775)-1.0)<.0001,"Small lake must be exactly one metre below the large lake")
 	# Local grading must not perturb remote parts of the campus.
 	assert(is_equal_approx(terrain.elevation(200,400),terrain.raw_elevation(200,400)))
 	for server: bool in [false,true]:

@@ -41,6 +41,33 @@ func build(host)->void:
       var transform:=Transform3D(basis,origin)
       placements.append(transform)
       count+=1
+ # Raised median shares one reviewed polygon with asphalt subtraction and verification.
+ var median:=preload("res://tools/eda_lake_road_profile.gd").median(profile)
+ var median_rings:Array[PackedVector2Array]=[median]
+ var road_builder=preload("res://tools/build_roads.gd").new()
+ var rim:MeshInstance3D=road_builder.emit(host,median_rings,.10,host.material("South median stone rim",Color("c5c4b6")))
+ terrain.fit_road(rim);host.scene.remove_child(rim);group.add_child(rim);rim.owner=host.scene;rim.set_meta("road_surface",false)
+ rim.set_meta("raised_lake_sidewalk",true)
+ var inset:Array[PackedVector2Array]=Geometry2D.offset_polygon(median,-.16)
+ var turf:MeshInstance3D=road_builder.emit(host,inset,.102,host.material("South median planted ground",Color("647047")))
+ terrain.fit_road(turf);host.scene.remove_child(turf);group.add_child(turf);turf.owner=host.scene;turf.set_meta("road_surface",false)
+ turf.set_meta("raised_lake_sidewalk",true)
+ for i in median.size():
+  var a:Vector2=median[i];var b:Vector2=median[(i+1)%median.size()]
+  var normal:Vector2=(b-a).normalized().orthogonal()
+  helper.quad(curb,point(a,.18),point(b,.18),point(b,-.12),point(a,-.12),Vector3(normal.x,0,normal.y))
+ # Low trimmed planting fits inside the median, never across its rounded nose.
+ for z in range(int(profile.south_median.nose_z[0])+4,int(profile.south_median.nose_z[1])-3,2):
+  var crossings:=median_span(median,float(z))
+  var next_span:=median_span(median,float(z)+1.0)
+  if crossings.size()!=2 or next_span.size()!=2:continue
+  var center:=Vector2((crossings[0]+crossings[1])*.5,z)
+  var axis:=Vector2((next_span[0]+next_span[1])*.5-center.x,1.0).normalized()
+  # Orient rows along the curved approach so their corners stay inside the curb.
+  var width:float=(crossings[1]-crossings[0])*axis.y-.55
+  var basis:=Basis(Vector3.UP,atan2(axis.x,axis.y)).scaled(Vector3(width/bounds.size.x,.62/bounds.size.y,(2.0/axis.y+.15)/bounds.size.z))
+  var at:=point(center,.182)-basis*Vector3(bounds.get_center().x,bounds.position.y,bounds.get_center().z)
+  placements.append(Transform3D(basis,at));count+=1
  # Only the grass-facing T perimeter is planted; leave the lake promenade and stair mouths open.
  var borders:Array=[
   [Vector2(plaza.upper_left_x-.55,plaza.back_z+3.0),Vector2(plaza.upper_left_x-.55,plaza.upper_wing_front_z+.55)],
@@ -103,3 +130,11 @@ func save_foliage(transforms:Array[Transform3D],mesh:Mesh,path:String)->void:
   nodes.append('[node name="%s" type="MultiMeshInstance3D" parent="."]\nposition = %s\nmultimesh = SubResource("%s")\nvisibility_range_end = 360.0'%[key,var_to_str(origin),key])
  var file:=FileAccess.open(path,FileAccess.WRITE)
  file.store_string('[gd_scene load_steps=%d format=3]\n\n'%(resources.size()+1)+"\n\n".join(resources)+"\n\n"+"\n\n".join(nodes)+"\n")
+
+func median_span(ring:PackedVector2Array,z:float)->Array[float]:
+ var crossings:Array[float]=[]
+ for i in ring.size():
+  var a:Vector2=ring[i];var b:Vector2=ring[(i+1)%ring.size()]
+  if (a.y<=z and b.y>z) or (b.y<=z and a.y>z):crossings.append(lerpf(a.x,b.x,(z-a.y)/(b.y-a.y)))
+ crossings.sort()
+ return crossings

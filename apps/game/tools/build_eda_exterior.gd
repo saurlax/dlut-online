@@ -45,6 +45,7 @@ func point(index: int) -> Vector2:
 	return Vector2(road.points[index][0], road.points[index][1])
 
 func strip(a: Vector2, b: Vector2, width: float, key: String) -> void:
+	if a.distance_to(b)<.005:return
 	var side := (b-a).normalized().orthogonal() * width * 0.5
 	var vertices := [a-side, a+side, b+side, b-side]
 	var st := SurfaceTool.new()
@@ -56,7 +57,10 @@ func strip(a: Vector2, b: Vector2, width: float, key: String) -> void:
 	node.mesh = st.commit()
 	# Intersect with the exact terrain grid, not a separately sampled polyline.
 	terrain.fit_road(node)
-	append_mesh(node.mesh, Transform3D.IDENTITY, key)
+	if node.mesh.get_surface_count()>0:
+		append_mesh(node.mesh, Transform3D.IDENTITY, key)
+	else:
+		assert(a.distance_to(b)<.05,"Road marking lost during terrain fitting")
 	node.free()
 
 func lamp(at: Vector2, toward: Vector2, height: float) -> void:
@@ -128,9 +132,32 @@ func build() -> void:
 		road = matches[0]
 		distance += road_details(section, float(profile.lamp_height_m))
 		lamp_count += section.lamps.size()
-	# The paired OSM carriageway lines enclose one photographed paved approach.
-	road = {"points": profile.approach_markings.points}
-	distance += road_details(profile.approach_markings, float(profile.lamp_height_m))
+	var helper=preload("res://tools/eda_lake_road_profile.gd")
+	var lake_edge:=PackedVector2Array()
+	# One joined chain runs from the west arm across the plaza frontage to the east arm.
+	for index in [2,4,3]:
+		var edge:Dictionary=profile.white_edges[index]
+		for source:Dictionary in roads:
+			if int(source.osm_way_id)!=int(edge.osm_way_id):continue
+			var path:=helper.offset_points(source,edge,3.08,int(edge.side))
+			if index==4:path.reverse()
+			if not lake_edge.is_empty():
+				lake_edge[-1]=(lake_edge[-1]+path[0])*.5
+				path=path.slice(1)
+			lake_edge.append_array(path)
+	lake_edge=helper.rounded(lake_edge)
+	for i in range(lake_edge.size()-1):strip(lake_edge[i],lake_edge[i+1],.10,"WhitePaint")
+	for edge:Dictionary in profile.white_edges.slice(0,2):
+		for source:Dictionary in roads:
+			if int(source.osm_way_id)!=int(edge.osm_way_id):continue
+			var path:=helper.rounded(helper.offset_points(source,edge,3.08,int(edge.side)))
+			for i in range(path.size()-1):strip(path[i],path[i+1],.10,"WhitePaint")
+	# Follow the complete rounded median rim, including its northern nose.
+	var lake:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/lakeside-environment.json"))
+	var median:=helper.median(lake)
+	for ring:PackedVector2Array in Geometry2D.offset_polygon(median,.35,Geometry2D.JOIN_ROUND):
+		for i in ring.size():strip(ring[i],ring[(i+1)%ring.size()],.10,"WhitePaint")
+
 	for key: String in batches:
 		var st: SurfaceTool = batches[key]
 		st.index()
@@ -157,10 +184,6 @@ func road_details(section: Dictionary, lamp_height: float) -> float:
 		var b := point(i+1)
 		var length := a.distance_to(b)
 		var side := (b-a).normalized().orthogonal()
-		# Edge lines follow photo-supported asphalt only, ending before junctions.
-		for sign_side in [-1.0, 1.0]:
-			var offset: float = section.get("edge_offset_m", 3.08)
-			strip(a+side*sign_side*offset, b+side*sign_side*offset, 0.10, "WhitePaint")
 		# Carry dash phase across OSM vertices; no restart at each segment.
 		var at := 0.0
 		while at < length-0.001:

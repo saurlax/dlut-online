@@ -16,6 +16,7 @@ func run() -> void:
 			world = load("res://scenes/server/eda.scn").instantiate()
 		else:
 			var model: Node3D = load("res://assets/campuses/eda/models/development_campus.tscn").instantiate()
+			check_finishes(model)
 			world.add_child(model)
 			var ground: Node3D = load("res://assets/campuses/eda/models/terrain.tscn").instantiate()
 			ground.name = "Terrain"
@@ -26,13 +27,17 @@ func run() -> void:
 		await physics_frame
 		var space := world.get_world_3d().direct_space_state
 		var count := 0
-		# The former triangular hole and split approach must hit asphalt, not grass.
-		for z in range(353,496,2):
+		# The Y remains open; the divided approach has two carriageways and a raised green median.
+		for z in range(353,372,2):
 			for x in [-121.0,-119.0,-117.0]:
-				var hit := space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(x,80,z),Vector3(x,-20,z)))
-				assert(not hit.is_empty(), "Junction collision gap")
-				assert(absf(hit.position.y-terrain.elevation(x,z)-0.02)<0.002, "Junction centre is not paved at the terrain surface")
-				count += 1
+				check_height(space,terrain,Vector2(x,z),.02,"Open junction");count+=1
+		for z in range(382,496,3):
+			for x in [-124.7,-113.3]:
+				check_height(space,terrain,Vector2(x,z),.02,"South carriageway");count+=1
+			check_height(space,terrain,Vector2(-119,z),.182,"Raised median");count+=1
+			for x in [-132.7,-105.3]:
+				check_height(space,terrain,Vector2(x,z),.182,"Outer red sidewalk");count+=1
+
 		var body := CharacterBody3D.new()
 		var shape := CollisionShape3D.new()
 		var capsule := CapsuleShape3D.new()
@@ -52,3 +57,27 @@ func run() -> void:
 		print("EDA LAKESIDE PASS server=",server," infill rays=",count," continuous capsule walk")
 		world.free()
 	quit()
+
+func check_height(space:PhysicsDirectSpaceState3D,terrain:RefCounted,at:Vector2,lift:float,label:String)->void:
+	var hit:=space.intersect_ray(PhysicsRayQueryParameters3D.create(Vector3(at.x,80,at.y),Vector3(at.x,-20,at.y)))
+	assert(not hit.is_empty(),label+" collision gap")
+	assert(absf(hit.position.y-terrain.elevation(at.x,at.y)-lift)<.006,label+" height mismatch at "+str(at))
+
+func check_finishes(model:Node3D)->void:
+	var gravel:MeshInstance3D
+	for child in model.get_children():
+		if child is MeshInstance3D and child.material_override!=null and child.material_override.resource_name=="EDA woodland pebble path":gravel=child
+	assert(gravel!=null,"Woodland paths still lack the gravel surface")
+	var faces:PackedVector3Array=gravel.mesh.get_faces()
+	for at:Vector2 in [Vector2(-69.7,362.0),Vector2(-71.4,394.5),Vector2(-58.1,397.0),Vector2(-20.7,346.7)]:
+		var covered:=false
+		for i in range(0,faces.size(),3):
+			var triangle:=PackedVector2Array([Vector2(faces[i].x,faces[i].z),Vector2(faces[i+1].x,faces[i+1].z),Vector2(faces[i+2].x,faces[i+2].z)])
+			if Geometry2D.is_point_in_polygon(at,triangle):covered=true;break
+		assert(covered,"Photographed woodland path is not covered by saved gravel: "+str(at))
+	var square:=model.get_node("Feature_2304850")
+	var patterned:=false
+	for child in square.get_children():
+		if child is MeshInstance3D and child.material_override is ShaderMaterial:
+			if child.material_override.get_shader_parameter("surface_kind")==9:patterned=true
+	assert(patterned,"Shuyun square lacks its saved rose grid finish")

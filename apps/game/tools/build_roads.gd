@@ -6,6 +6,7 @@ const Geometry = preload("res://scripts/shared/road_geometry.gd")
 func build(builder, campus: String) -> void:
 	var roads: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/%s/data/osm_roads.json" % campus)).roads
 	var painted: Array = []
+	var gravel: Array = []
 	var replacement_masks: Array[PackedVector2Array] = []
 	var stair_edge_mask:=PackedVector2Array()
 	if campus=="eda":
@@ -33,6 +34,7 @@ func build(builder, campus: String) -> void:
 		var border_masks := surface_masks.duplicate()
 		border_masks.append(stair_edge_mask)
 		for sidewalk: Dictionary in sidewalks: border_masks.append(sidewalk.polygon)
+		var gravel_ids:Array=JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/lakeside-environment.json")).gravel_paths
 		var split: Array = []
 		for road in roads:
 			for i in range(road.points.size() - 1):
@@ -43,9 +45,10 @@ func build(builder, campus: String) -> void:
 						segment.edge_width = float(profile.edge_width)
 						painted.append(segment)
 						break
+				if gravel_ids.any(func(id):return int(id)==int(road.osm_way_id)):gravel.append(segment)
 				split.append(segment)
 		roads = split
-		emit(builder, Geometry.polygons(roads, 1.5), -0.068, builder.material("Road edge", Color("a9a69c")),border_masks)
+		emit(builder, Geometry.polygons(roads.filter(func(r):return not gravel_ids.any(func(id):return int(id)==int(r.osm_way_id))), 1.5), -0.068, builder.material("Road edge", Color("a9a69c")),border_masks)
 		for sidewalk: Dictionary in sidewalks:
 			var material := preload("res://tools/eda_surface_details.gd").new().ground_material("Library roadside brick",Color("a66e62"),6)
 			material.set_shader_parameter("paving_origin",sidewalk.origin)
@@ -57,24 +60,22 @@ func build(builder, campus: String) -> void:
 	var rings := Geometry.polygons(roads)
 	if campus == "eda":
 		var lake_profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/lakeside-environment.json"))
-		var walks: Array = []
+		var bands=preload("res://tools/eda_lake_road_profile.gd")
 		var original: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/campuses/eda/data/osm_roads.json")).roads
-		for selection: Dictionary in lake_profile.hedge_roads:
-			for road: Dictionary in original:
-				if int(road.osm_way_id) == int(selection.osm_way_id):
-					var selected := road.duplicate()
-					selected.points = road.points.slice(int(selection.from_vertex), int(selection.to_vertex)+1)
-					walks.append(selected)
-		# Cut every road out of the sidewalk union so crossings remain open.
-		var trim := emit(builder, Geometry.polygons(walks, float(lake_profile.hedge_depth_m)+3.0), 0.10, builder.material("Lake sidewalk stone trim", Color("c5c4b6")), Geometry.polygons(walks, float(lake_profile.hedge_depth_m))+rings+surface_masks)
-		trim.set_meta("walk_collision", true)
+		var depth:=float(lake_profile.hedge_depth_m)
+		var trim := emit(builder, bands.bands(original,lake_profile.hedge_roads,depth,depth+3.0), 0.10, builder.material("Lake sidewalk stone trim", Color("c5c4b6")), rings+surface_masks)
 		trim.set_meta("raised_lake_sidewalk",true)
-		var lake_walk:=emit(builder, Geometry.polygons(walks, float(lake_profile.hedge_depth_m)+2.8), 0.102, preload("res://assets/roads/red_brick_path.tres"), Geometry.polygons(walks, float(lake_profile.hedge_depth_m)+.16)+Geometry.polygons(roads, 0.16)+surface_masks)
+		var lake_walk:=emit(builder,bands.bands(original,lake_profile.hedge_roads,depth+.16,depth+2.8),0.102,preload("res://assets/roads/red_brick_path.tres"),Geometry.polygons(roads,.16)+surface_masks)
 		lake_walk.set_meta("raised_lake_sidewalk",true)
+		# The centre green strip replaces the old uninterrupted asphalt approach.
+		surface_masks.append(bands.median(lake_profile))
+
 	var colored := Geometry.polygons(painted)
 	var key: String = "Road" if campus == "eda" else campus.capitalize() + " asphalt"
 	var asphalt: Material = preload("res://assets/roads/asphalt.tres") if campus == "eda" else builder.material(key, Color("656966"))
-	emit(builder, rings, -0.06, asphalt, colored+surface_masks)
+	emit(builder, rings, -0.06, asphalt, colored+Geometry.polygons(gravel)+surface_masks)
+	if not gravel.is_empty():
+		emit(builder,Geometry.polygons(gravel),-.06,preload("res://tools/eda_surface_details.gd").new().ground_material("EDA woodland pebble path",Color("aba497"),8),surface_masks)
 	if not colored.is_empty():
 		emit(builder, colored, -0.06, preload("res://assets/roads/red_path.tres"),surface_masks)
 	for surface: Dictionary in builder.manifest.get("ground_overlays", []):
@@ -82,6 +83,9 @@ func build(builder, campus: String) -> void:
 		if campus == "eda" and surface.id == "eda-xiang-lakeside-paving":continue
 		var outer: Array[PackedVector2Array] = []
 		var cutouts: Array[PackedVector2Array] = replacement_masks.duplicate()
+		if campus=="eda":
+			var lake_profile:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://../../references/eda/mapping/lakeside-environment.json"))
+			cutouts.append(preload("res://tools/eda_lake_road_profile.gd").median(lake_profile))
 		var ring := PackedVector2Array()
 		for p: Array in surface.outer: ring.append(Vector2(p[0],p[1]))
 		outer.append(ring)
