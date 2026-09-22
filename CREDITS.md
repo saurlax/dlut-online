@@ -236,3 +236,7 @@ Android 图标布局参考 [Android 自适应图标文档](https://developer.and
 ### 翔雕像广场校名与绿篱标志
 
 - 大连理工大学官方 VI：https://www.dlut.edu.cn/xxgk/dxwh/xxVI.htm ，校名矢量：https://www.dlut.edu.cn/images/logo.svg ，读取日期 2026-09-21。用于提取广场石字和中央绿篱标志的几何轮廓；标识权利归大连理工大学，未发现明确第三方再分发许可。原始 SVG 与用户提供的三张广场近景、一张俯视照片及 2026-09-22 补充的三图航拍拼图只保留为离线参考，不随客户端分发；来源、照片日期和估计误差见 references/eda/structures/xiang-plaza/basis.md。
+
+## 开发区校区学生宿舍及配套设施一期总图方案
+
+用户于 2026-09-22 提供“大连理工大学开发区学生宿舍及配套设施（一期）项目总图方案公示”PDF，编号 2025-083，发布者为大连金普新区自然资源局，落款 2025-09-08；总平面图设计单位为大连理工大学土木建筑设计研究院有限公司。原始下载页未核实，公示正文注明金普新区网站。原 PDF、无损提取的完整总图、分区裁图及 SHA-256 见[资料索引](references/eda/mapping/campus-master-plan-2025/basis.md)和[来源记录](references/eda/mapping/campus-master-plan-2025/source.json)。仅用于离线参考，未据此生成本轮模型；区分现状与拟建，景观为方案示意，坐标及高程须另行配准。版权归原权利人，第三方复制和再分发许可未核实，原始资料与裁图不进入客户端或发行资源。
