@@ -37,7 +37,7 @@
     ],
     "photos": [
       {
-        "file": "photos/77921-0.jpg",
+        "file": "../imagery/areas/14-comprehensive-building/77921-0.jpg",
         "image_id": 79694,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77921_20160302113022434.jpg",
         "retrieved": "2026-09-09",
@@ -45,7 +45,7 @@
         "sha256": "90a4ce189d6e07e8d346156a077e7a0afd3de93674d9e98b400d135741b12ef2"
       },
       {
-        "file": "photos/77921-1.jpg",
+        "file": "../imagery/areas/14-comprehensive-building/77921-1.jpg",
         "image_id": 79695,
         "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77921_20160302113034559.jpg",
         "retrieved": "2026-09-09",

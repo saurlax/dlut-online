@@ -554,7 +554,7 @@
       "osm_version": 2,
       "photos": [
         {
-          "path": "references/eda/buildings/photos/77927-0.jpg",
+          "path": "references/eda/imagery/areas/05-teaching-c-ginkgo/77927-0.jpg",
           "photo_id": 79687,
           "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77927_20160302105813117.jpg",
           "sha256": "f77c8c247794a5cd993a3e3ff2eef944164eeda5a986a2b0bb2011a3f9a99699",
@@ -563,7 +563,7 @@
           "limits": "透视、绿化遮挡和屋檐不能提供完整墙脚或通道净高。"
         },
         {
-          "path": "references/eda/buildings/photos/77927-1.jpg",
+          "path": "references/eda/imagery/areas/05-teaching-c-ginkgo/77927-1.jpg",
           "photo_id": 79688,
           "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77927_20160302105836164.jpg",
           "sha256": "eeff43bd7d2b4ada26b0d1e7a7ab391cb09d90270b869d4227d1935b2aa981a4",
@@ -1437,7 +1437,7 @@
       },
       "photos": [
         {
-          "path": "references/eda/buildings/photos/77931-0.jpg",
+          "path": "references/eda/imagery/areas/02-residences-courtyard/77931-0.jpg",
           "photo_id": 79703,
           "url": "http://map.dlut.edu.cn/images/resize_1280x1024//BUILDING/77931_20160302113542791.jpg",
           "sha256": "e771b3f407a52633c2e9432bc7a201284df93527cdf191d5bc2ba1337ad74dca",

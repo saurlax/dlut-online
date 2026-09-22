@@ -176,7 +176,7 @@
         0.7,
         1.0
       ],
-      "photo_cross_check": "references/eda/imagery/panoramas/KFQ00-front.jpg shows the main wing and lower connecting volume; references/eda/buildings/photos/77914-1.jpg shows exterior stair/wing junction. No interior is inferred.",
+      "photo_cross_check": "references/eda/imagery/panoramas/KFQ00-front.jpg shows the main wing and lower connecting volume; references/eda/imagery/areas/08-information-south-gate/77914-1.jpg shows exterior stair/wing junction. No interior is inferred.",
       "limits": [
         "保留 OSM 四个外角及整体位置，仅从 lm30 图面补两翼之间的凹口；不将官网斜视 bound 平均进轮廓。",
         "四角投影转移是局部形状注册，不是底图正射校正，不证明米制尺寸或绝对定位准确。",

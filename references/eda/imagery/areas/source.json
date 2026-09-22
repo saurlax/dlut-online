@@ -1,0 +1,2252 @@
+{
+  "source_name": "用户提供的大工掠影照片集",
+  "provided_directory": "大工掠影/大工掠影",
+  "publisher": "原摄影者未逐一核实；目录由用户提供",
+  "original_url": null,
+  "retrieved": "2026-09-22",
+  "licence": "未核实",
+  "licence_url": null,
+  "authorization_status": "用户授权筛选压缩作离线建模参考；原摄影版权及对外再分发授权未核实",
+  "status": "offline_reference_only",
+  "processing": {
+    "max_edge_px": 2048,
+    "exif_orientation_applied": true,
+    "crop": false,
+    "watermarks": "保留原图内的署名、日期和水印，不裁切",
+    "originals": "用户下载目录保持不变；仓库只存压缩副本",
+    "format": "WebP",
+    "quality": 82,
+    "method": 6
+  },
+  "selection": "按可见立面、道路、台阶、植被与铺装筛选；排除重复视角、烟花、花草动物特写及难以使用的照片。源99/102/103与现有翔广场正面照片同视角，不重复收录。",
+  "limits": "除明确标记的重新归类外沿用用户区域分类；照片日期无EXIF时未知，水印日期须逐图核对。季节及拍摄年份不同，不能视为同一时刻现状或测绘数据。待定位照片不据此增加几何；可见室内片段不提供完整室内平面。",
+  "photos": [
+    {
+      "file": "references/eda/imagery/areas/01-seventh-residence/dgly-001-74e22e20.webp",
+      "source_relative_path": "01_七舍新楼/V5bCQA4OTU5Nzc4MjMwXWllOJDOA.jpg",
+      "original_sha256": "74e22e2002ad00e4d2836d761f696727fbbf7fe507d6af84d21fa27661bf20b0",
+      "original_bytes": 656551,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "c723120c936b91fa9ac32fb4358d574e1f3027ea0bf1f061b6a85a59b7908f12",
+      "bytes": 492170,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": "2023:12:01 12:12:27",
+      "area": "01_七舍新楼",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "新楼立面、端墙和标识"
+    },
+    {
+      "file": "references/eda/imagery/areas/01-seventh-residence/dgly-003-25b527d2.webp",
+      "source_relative_path": "01_七舍新楼/V5bCQA4OTU5Nzc4MjNC6aBmDWxtHg.jpg",
+      "original_sha256": "25b527d2a8fe666aae2a24bba9a6b48b80299d9f3d5050f9d9d55f784eb09d3b",
+      "original_bytes": 433745,
+      "original_size": [
+        1600,
+        2362
+      ],
+      "sha256": "db061c39e72fcb46b8d043e999266e3dad10ceab077d587482f245e1190ee397",
+      "bytes": 230378,
+      "size": [
+        1387,
+        2048
+      ],
+      "date_taken_exif": "2024:07:15 16:39:42",
+      "area": "01_七舍新楼",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "新楼立面、端墙和标识"
+    },
+    {
+      "file": "references/eda/imagery/areas/01-seventh-residence/dgly-006-2bbc330d.webp",
+      "source_relative_path": "01_七舍新楼/V5bCQA4OTU5Nzc4MjPuAhpmw5EDKw.jpg",
+      "original_sha256": "2bbc330dd304735b8c6e9a17772d2780c44cca219732c5d1b29c94d45e402ff5",
+      "original_bytes": 414883,
+      "original_size": [
+        1962,
+        1600
+      ],
+      "sha256": "6deaf208419fe15f3557e9d6dbe001505a17c06f568ee7451fb60ff4e7e771c3",
+      "bytes": 261180,
+      "size": [
+        1962,
+        1600
+      ],
+      "date_taken_exif": "2024:04:12 17:20:10",
+      "area": "01_七舍新楼",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "新楼立面、端墙和标识"
+    },
+    {
+      "file": "references/eda/imagery/areas/02-residences-courtyard/dgly-008-ef1ed1d3.webp",
+      "source_relative_path": "02_一至五舍及中央庭院/V5bCQA4OTU5Nzc4MjN2q3ZlGrM2Ow.jpg",
+      "original_sha256": "ef1ed1d3668e021518d467ef4bab93dc1fc10760aac5c96a0718b2f5fc06be73",
+      "original_bytes": 288581,
+      "original_size": [
+        1948,
+        1600
+      ],
+      "sha256": "cf087524af8a36bc7cd1fb2733fe6e0b820255fb95c79426cae2b317734f1087",
+      "bytes": 186120,
+      "size": [
+        1948,
+        1600
+      ],
+      "date_taken_exif": "2023:12:11 14:17:33",
+      "area": "02_一至五舍及中央庭院",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "宿舍立面、中央庭院与步道"
+    },
+    {
+      "file": "references/eda/imagery/areas/02-residences-courtyard/dgly-010-a1a0e101.webp",
+      "source_relative_path": "02_一至五舍及中央庭院/V5bCQA4OTU5Nzc4MjN9zMhkNC35CA.jpg",
+      "original_sha256": "a1a0e101b1292e7d353a2dd7f5f60d06beaa82168bf790631445a74e15e895ff",
+      "original_bytes": 626780,
+      "original_size": [
+        3206,
+        1600
+      ],
+      "sha256": "d7ea638615edf3e38dae05f5596c508da8a8a0e1d960ca7beee7e1414fa3bfbe",
+      "bytes": 201412,
+      "size": [
+        2048,
+        1022
+      ],
+      "date_taken_exif": null,
+      "area": "02_一至五舍及中央庭院",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "宿舍立面、中央庭院与步道"
+    },
+    {
+      "file": "references/eda/imagery/areas/02-residences-courtyard/dgly-012-67af0fbb.webp",
+      "source_relative_path": "02_一至五舍及中央庭院/V5bCQA4OTU5Nzc4MjO1aLlkf2mkKw.jpg",
+      "original_sha256": "67af0fbb054c5a2efe05fe8dad7026ac8d95ede7bf612fd24e263a02b445772c",
+      "original_bytes": 787269,
+      "original_size": [
+        2127,
+        1600
+      ],
+      "sha256": "41cd7ceecc3af15bf8e33882b6481d4170125598ca4760ed09eb5ea850074ce5",
+      "bytes": 633292,
+      "size": [
+        2048,
+        1541
+      ],
+      "date_taken_exif": "2022:07:31 10:05:37",
+      "area": "02_一至五舍及中央庭院",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "宿舍立面、中央庭院与步道"
+    },
+    {
+      "file": "references/eda/imagery/areas/02-residences-courtyard/dgly-013-afb65c03.webp",
+      "source_relative_path": "02_一至五舍及中央庭院/V5bCQA4OTU5Nzc4MjO5aLlkPN1YKw.jpg",
+      "original_sha256": "afb65c03f368d25b029b0ba9c8d112f0ae504e2018a8f90b6c07f560c133d588",
+      "original_bytes": 676816,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "96f8b744f93dd27b45d1572137bc72c967c3193c46edfe900c43497fa301b9c3",
+      "bytes": 536726,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2022:09:23 10:52:21",
+      "area": "02_一至五舍及中央庭院",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "宿舍立面、中央庭院与步道"
+    },
+    {
+      "file": "references/eda/imagery/areas/02-residences-courtyard/dgly-014-be353988.webp",
+      "source_relative_path": "02_一至五舍及中央庭院/V5bCQA4OTU5Nzc4MjOHzMhkciWPCQ.jpg",
+      "original_sha256": "be353988195ac94c7b62ec063018d1ee901b91dbeaec66584cd485df2c22f4a3",
+      "original_bytes": 516439,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "31d95cc14b915ab640def367ee3d751f9ad86983b3e4962acef5915193b23eb9",
+      "bytes": 353796,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "02_一至五舍及中央庭院",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "宿舍立面、中央庭院与步道"
+    },
+    {
+      "file": "references/eda/imagery/areas/03-teaching-a/dgly-015-8de60744.webp",
+      "source_relative_path": "03_教学楼A/V5bCQA4OTU5Nzc4MjMylLxk92z0Ew.jpg",
+      "original_sha256": "8de60744ad0b6b0686b7d9686b786f3b9422c0b069b2bbdc95916e9da40fda81",
+      "original_bytes": 522106,
+      "original_size": [
+        1920,
+        1294
+      ],
+      "sha256": "5a99bdc116164dba3435107078927d5db942d6159b2b514042e207bf95e1b916",
+      "bytes": 418822,
+      "size": [
+        1920,
+        1294
+      ],
+      "date_taken_exif": null,
+      "area": "03_教学楼A",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "A区入口、塔体及可见中庭"
+    },
+    {
+      "file": "references/eda/imagery/areas/03-teaching-a/dgly-016-d68d49b6.webp",
+      "source_relative_path": "03_教学楼A/V5bCQA4OTU5Nzc4MjN9q3ZlRqaUOg.jpg",
+      "original_sha256": "d68d49b695193550908788d6e0e157dd8ad1988cb5efe8d9e316e3e648a4eba4",
+      "original_bytes": 489524,
+      "original_size": [
+        1948,
+        1600
+      ],
+      "sha256": "6bccb1d1d7f0995c2ef5aaa7638a80a20ad63a3512e3b4763b8c7bc687b0e500",
+      "bytes": 375060,
+      "size": [
+        1948,
+        1600
+      ],
+      "date_taken_exif": "2023:12:11 13:49:16",
+      "area": "03_教学楼A",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "A区入口、塔体及可见中庭"
+    },
+    {
+      "file": "references/eda/imagery/areas/03-teaching-a/dgly-018-0cb5e27d.webp",
+      "source_relative_path": "03_教学楼A/V5bCQA4OTU5Nzc4MjOm5qBmcqONA.jpg",
+      "original_sha256": "0cb5e27d713e9e6d1a81ebda25a8ef9dc9ed447b0e2ae340453d851b50c7c040",
+      "original_bytes": 468317,
+      "original_size": [
+        1600,
+        2312
+      ],
+      "sha256": "63d47955329fc0212e88c2df1fb73f0822fd415dfc53a4db34d83a63bbee0b44",
+      "bytes": 246046,
+      "size": [
+        1417,
+        2048
+      ],
+      "date_taken_exif": "2024:04:17 14:17:02",
+      "area": "03_教学楼A",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "A区入口、塔体及可见中庭"
+    },
+    {
+      "file": "references/eda/imagery/areas/03-teaching-a/dgly-019-c4023a71.webp",
+      "source_relative_path": "03_教学楼A/V5bCQA4OTU5Nzc4MjPlEP5nKffmKg.jpg",
+      "original_sha256": "c4023a710228854729e7f210d9c9e7f963c0786a6aeb94445ef92fe601dd273e",
+      "original_bytes": 1632861,
+      "original_size": [
+        2844,
+        1600
+      ],
+      "sha256": "c1d372b49980ba724e64ee953b9ac392c2b1b00adad63d77cfaf6da745b0b5ca",
+      "bytes": 950296,
+      "size": [
+        2048,
+        1152
+      ],
+      "date_taken_exif": "2025:04:15 10:40:19",
+      "area": "03_教学楼A",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "A区入口、塔体及可见中庭"
+    },
+    {
+      "file": "references/eda/imagery/areas/03-teaching-a/dgly-020-24ec41f6.webp",
+      "source_relative_path": "03_教学楼A/V5bCQA4OTU5Nzc4MjPPlbxkoeePLg.jpg",
+      "original_sha256": "24ec41f6f93a26a02aa6433b27ca3d194cf8c2e1812a70ba22cb8182c2173ead",
+      "original_bytes": 238368,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "b2d816a3c6967cb8898a218b7085b355fe1c46242e15d3cbfe51459dd7c08e44",
+      "bytes": 93282,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": "2023:06:03 18:54:16",
+      "area": "03_教学楼A",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "A区入口、塔体及可见中庭"
+    },
+    {
+      "file": "references/eda/imagery/areas/04-teaching-b/dgly-021-af77be24.webp",
+      "source_relative_path": "04_教学楼B/V5bCQA4OTU5Nzc4MjN7zMhkOMXaCA.jpg",
+      "original_sha256": "af77be240cf6c3de38b7b67385e0fb6148f6f9d22f49ff7fa272032cb2b660f0",
+      "original_bytes": 856989,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "2dc1211f8095c86a7a6f28ec43e9a94bb5ea1cf5f63e24057dab33273dc6e9c2",
+      "bytes": 724938,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "04_教学楼B",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "B区立面、入口与庭院铺装"
+    },
+    {
+      "file": "references/eda/imagery/areas/04-teaching-b/dgly-023-8f7512ee.webp",
+      "source_relative_path": "04_教学楼B/V5bCQA4OTU5Nzc4MjNO4pxm6p1uIw.jpg",
+      "original_sha256": "8f7512eed3c2bf3dffedd3b9c3a526670b39595f2397a47f6967d4e1b61e2604",
+      "original_bytes": 369128,
+      "original_size": [
+        1848,
+        1600
+      ],
+      "sha256": "cb65826b423b27c37a912444bc9010a22a45d5936e9e5fb59c666f272af760a7",
+      "bytes": 202294,
+      "size": [
+        1848,
+        1600
+      ],
+      "date_taken_exif": "2024:04:12 11:05:10",
+      "area": "04_教学楼B",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "B区立面、入口与庭院铺装"
+    },
+    {
+      "file": "references/eda/imagery/areas/04-teaching-b/dgly-025-d699cbc6.webp",
+      "source_relative_path": "04_教学楼B/V5bCQA4OTU5Nzc4MjOczMhkF3XZCg.jpg",
+      "original_sha256": "d699cbc6ab9251c7086193844ab984131068d0693a56bd031475142655c527a3",
+      "original_bytes": 728930,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "d085a8952200ae0255181903ac1ff9377968ba782488fa7a7fedd64b674bb5bb",
+      "bytes": 529934,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "04_教学楼B",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "B区立面、入口与庭院铺装"
+    },
+    {
+      "file": "references/eda/imagery/areas/04-teaching-b/dgly-028-a99d7a35.webp",
+      "source_relative_path": "04_教学楼B/V5bCQA4OTU5Nzc4MjPGaLlk6fxQKg.jpg",
+      "original_sha256": "a99d7a35526badf53956f9d2b15acb646d8be83119469fb66508af81695ffd0d",
+      "original_bytes": 395123,
+      "original_size": [
+        1083,
+        1440
+      ],
+      "sha256": "089e0fe8d8ea98a29f05f0a04ea2007cbca4405799c8784e1b6c384f4194aa28",
+      "bytes": 396702,
+      "size": [
+        1083,
+        1440
+      ],
+      "date_taken_exif": "2023:04:03 23:02:34",
+      "area": "04_教学楼B",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "B区立面、入口与庭院铺装"
+    },
+    {
+      "file": "references/eda/imagery/areas/04-teaching-b/dgly-029-71221f87.webp",
+      "source_relative_path": "04_教学楼B/V5bCQA4OTU5Nzc4MjPioXZlskd8Hg.jpg",
+      "original_sha256": "71221f8707c641763cfdca48f7f4fe21898219aeae6608e848ee1b0157328103",
+      "original_bytes": 486125,
+      "original_size": [
+        1948,
+        1600
+      ],
+      "sha256": "60fd61a5fd900826a044d715c98386130ff2dea281876f321bd7047077d6556d",
+      "bytes": 375530,
+      "size": [
+        1948,
+        1600
+      ],
+      "date_taken_exif": "2023:12:11 11:59:29",
+      "area": "04_教学楼B",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "B区立面、入口与庭院铺装"
+    },
+    {
+      "file": "references/eda/imagery/areas/05-teaching-c-ginkgo/dgly-030-a1f09160.webp",
+      "source_relative_path": "05_教学楼C及银杏步道/V5bCQA4OTU5Nzc4MjM0lLxkV4PqEw.jpg",
+      "original_sha256": "a1f0916076eee411a59cb92c4da1abfa938f16bc835284e6cfcb3e55fa94980e",
+      "original_bytes": 990456,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "61d360e4c5e6ff6165d974fbcf0daca3951a65f1188bc9ec6ac5d2f44d094074",
+      "bytes": 843162,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "05_教学楼C及银杏步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "C区立面、银杏步道与树池"
+    },
+    {
+      "file": "references/eda/imagery/areas/05-teaching-c-ginkgo/dgly-031-ab954298.webp",
+      "source_relative_path": "05_教学楼C及银杏步道/V5bCQA4OTU5Nzc4MjN1wgxpz5e4NQ.jpg",
+      "original_sha256": "ab9542980f27efcb5384e11fbf5524c3077b2af0b9629488bba6a04f1f546b1b",
+      "original_bytes": 1096332,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "c1c81b4cda45c20171166c209abef0563ec86afebd32992ad0fb70e3fde37091",
+      "bytes": 942438,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "05_教学楼C及银杏步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "C区立面、银杏步道与树池"
+    },
+    {
+      "file": "references/eda/imagery/areas/05-teaching-c-ginkgo/dgly-032-3e544e6e.webp",
+      "source_relative_path": "05_教学楼C及银杏步道/V5bCQA4OTU5Nzc4MjNJ4pxmx7KlIw.jpg",
+      "original_sha256": "3e544e6e9f08ea639b1c23ca2ad10259e36982f2c5f71a0f376e4f6a565a07b0",
+      "original_bytes": 648421,
+      "original_size": [
+        1849,
+        1600
+      ],
+      "sha256": "a86464d18658f6705967121d1780369d3cce4bcc3c8d2e41d0a18bbc7099c6f1",
+      "bytes": 564076,
+      "size": [
+        1849,
+        1600
+      ],
+      "date_taken_exif": "2024:04:16 11:57:46",
+      "area": "05_教学楼C及银杏步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "C区立面、银杏步道与树池"
+    },
+    {
+      "file": "references/eda/imagery/areas/05-teaching-c-ginkgo/dgly-034-45dbdf0d.webp",
+      "source_relative_path": "05_教学楼C及银杏步道/V5bCQA4OTU5Nzc4MjNN4pxmTt1uIw.jpg",
+      "original_sha256": "45dbdf0da94c0227f188080db2ae5ead77401502bdd1df871dea07413398dac2",
+      "original_bytes": 600271,
+      "original_size": [
+        1848,
+        1600
+      ],
+      "sha256": "b5c4b4048de1e1df03afeb503ab8ee05321d1ab9311ac25685cf63a0c089ed85",
+      "bytes": 498642,
+      "size": [
+        1848,
+        1600
+      ],
+      "date_taken_exif": "2024:04:12 11:05:30",
+      "area": "05_教学楼C及银杏步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "C区立面、银杏步道与树池"
+    },
+    {
+      "file": "references/eda/imagery/areas/05-teaching-c-ginkgo/dgly-036-fca7e7b6.webp",
+      "source_relative_path": "05_教学楼C及银杏步道/V5bCQA4OTU5Nzc4MjO8zMhkVnvHDA.jpg",
+      "original_sha256": "fca7e7b69e18e3e145f8b8bd8138de425c18d12feb70166dc8b483cdfef12a6d",
+      "original_bytes": 878554,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "a4ca9fc653b5278e103fe0ecb54d68fe6a577a706285ec2a27182fbe231c1128",
+      "bytes": 724368,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "05_教学楼C及银杏步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "C区立面、银杏步道与树池"
+    },
+    {
+      "file": "references/eda/imagery/areas/05-teaching-c-ginkgo/dgly-037-3c96ed2c.webp",
+      "source_relative_path": "05_教学楼C及银杏步道/V5bCQA4OTU5Nzc4MjOhzMhki5slCw.jpg",
+      "original_sha256": "3c96ed2cb1cef1243772e446f4023ffc526c521b2b99d299ccef043000e71a7d",
+      "original_bytes": 960989,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "55905306a3f18d1f97cc31a44e0980911504907aecf3d618f92aa896e4d99a17",
+      "bytes": 820284,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "05_教学楼C及银杏步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "C区立面、银杏步道与树池"
+    },
+    {
+      "file": "references/eda/imagery/areas/05-teaching-c-ginkgo/dgly-040-e549b0dc.webp",
+      "source_relative_path": "05_教学楼C及银杏步道/V5bCQA4OTU5Nzc4MjPJaLlkB7c7Kg.jpg",
+      "original_sha256": "e549b0dc790924494f5abfa9bf807cadd2da95572c359cd74b7aefc33219478e",
+      "original_bytes": 371687,
+      "original_size": [
+        1440,
+        1080
+      ],
+      "sha256": "24030136a2575f9fa6bfb3adc0b58d5320f04aea855991a02e81f6b59420d2b9",
+      "bytes": 349020,
+      "size": [
+        1440,
+        1080
+      ],
+      "date_taken_exif": "2023:04:10 22:57:03",
+      "area": "05_教学楼C及银杏步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "C区立面、银杏步道与树池"
+    },
+    {
+      "file": "references/eda/imagery/areas/06-teaching-square/dgly-042-eeaac440.webp",
+      "source_relative_path": "06_教学广场及院训路/V5bCQA4OTU5Nzc4MjMslLxkltYTFA.jpg",
+      "original_sha256": "eeaac440a39f2e82953bad0951361b929b637564452f18b8f1c9d473aa2363a2",
+      "original_bytes": 455436,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "6ce27745e99aec721953c597d875897cde65c41283393f0e3a43c5a5fe086ce5",
+      "bytes": 341610,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "06_教学广场及院训路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准；可见宽台阶前校名与翔广场花坛布局不同，不能作为翔广场几何证据",
+      "usage": "教学广场附近宽台阶、校名及道路边缘；不作为翔广场证据"
+    },
+    {
+      "file": "references/eda/imagery/areas/06-teaching-square/dgly-044-fb4f6703.webp",
+      "source_relative_path": "06_教学广场及院训路/V5bCQA4OTU5Nzc4MjNB6aBmulsHg.jpg",
+      "original_sha256": "fb4f670369c3dc24d8d820ca38a5bea830e99dce28422b9f54258b5274fcae8f",
+      "original_bytes": 543636,
+      "original_size": [
+        1866,
+        1600
+      ],
+      "sha256": "84bc3e1e0cc16bdf414cf9aadfb30d186c1298ae4ff37244f52d0a406a37f0e0",
+      "bytes": 416852,
+      "size": [
+        1866,
+        1600
+      ],
+      "date_taken_exif": "2024:07:15 16:38:19",
+      "area": "06_教学广场及院训路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "教学广场铺装、台阶与种植边界"
+    },
+    {
+      "file": "references/eda/imagery/areas/06-teaching-square/dgly-046-400f0a74.webp",
+      "source_relative_path": "06_教学广场及院训路/V5bCQA4OTU5Nzc4MjNmcLlkknoQIQ.jpg",
+      "original_sha256": "400f0a74f73f3cc1d239a70cba0495a7d34313e8e5ae4de954242263ac2327b4",
+      "original_bytes": 881183,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "5262e97ee1089924b977bceed7a252ccb7225b6b661ec3d5301fd5940f77d6cc",
+      "bytes": 726860,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": "2023:05:04 11:33:07",
+      "area": "06_教学广场及院训路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "教学广场铺装、台阶与种植边界"
+    },
+    {
+      "file": "references/eda/imagery/areas/06-teaching-square/dgly-051-26740845.webp",
+      "source_relative_path": "06_教学广场及院训路/V5bCQA4OTU5Nzc4MjNzMhkTx0YCQ.jpg",
+      "original_sha256": "26740845e8dfbee9d22ec3bc71530e0c04697eb04d2e8f90098c302231c39035",
+      "original_bytes": 973181,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "59f02db8649cffbb5765793849f68d694691b2d029f7c863cfdea9e11767a959",
+      "bytes": 832124,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "06_教学广场及院训路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "教学广场铺装、台阶与种植边界"
+    },
+    {
+      "file": "references/eda/imagery/areas/06-teaching-square/dgly-052-292f45aa.webp",
+      "source_relative_path": "06_教学广场及院训路/V5bCQA4OTU5Nzc4MjPAaLlkj0.4Kg.jpg",
+      "original_sha256": "292f45aac4ebd3c68e50b3a7d0f7fff67a1a82a2216e15fa6ea53a08e9543e20",
+      "original_bytes": 453931,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "bdc30fa495d5aef747607ef1ba2a7f52765f8b1e75f0a05c3373ea187d866b92",
+      "bytes": 266558,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2022:10:04 09:41:41",
+      "area": "06_教学广场及院训路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "教学广场铺装、台阶与种植边界"
+    },
+    {
+      "file": "references/eda/imagery/areas/06-teaching-square/dgly-053-e0616648.webp",
+      "source_relative_path": "06_教学广场及院训路/V5bCQA4OTU5Nzc4MjPDaLlkxbCgKg.jpg",
+      "original_sha256": "e06166488e018ba2e0f95dea18661c25da43dd1b69a8fc971f8e605f8acd926a",
+      "original_bytes": 468947,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "0432986d91285047e2b6c1c74b3a6265c84ee312e84a2a12324069080d94019a",
+      "bytes": 312956,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2022:12:06 16:41:25",
+      "area": "06_教学广场及院训路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "教学广场铺装、台阶与种植边界"
+    },
+    {
+      "file": "references/eda/imagery/areas/07-library/dgly-058-ad01b677.webp",
+      "source_relative_path": "07_图书馆及邻近绿地/V5bCQA4OTU5Nzc4MjMvlLxkqlYFFA.jpg",
+      "original_sha256": "ad01b6770dab31ff5327ee3b10a12fc4c6bc6a79ac983c896967bd0b9058e3ea",
+      "original_bytes": 266292,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "92647cbd7158aa3d3afecf02d1ab972aa563d65ee4f8c0bb28560fe6f80a245c",
+      "bytes": 143074,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "07_图书馆及邻近绿地",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "图书馆立面及邻近绿地"
+    },
+    {
+      "file": "references/eda/imagery/areas/07-library/dgly-065-46d098b9.webp",
+      "source_relative_path": "07_图书馆及邻近绿地/V5bCQA4OTU5Nzc4MjOY5qBmjZo4Ng.jpg",
+      "original_sha256": "46d098b996bec9ed9719494333c4a68df6729741681f9ec7ac35c11d903a45f9",
+      "original_bytes": 678680,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "fc779e88cdde27459005cb8fee1125873b2c109363f4e4dbaa6d223f3fd31a5c",
+      "bytes": 533918,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": "2024:05:26 12:59:50",
+      "area": "07_图书馆及邻近绿地",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "图书馆立面及邻近绿地"
+    },
+    {
+      "file": "references/eda/imagery/areas/07-library/dgly-066-b6f6e820.webp",
+      "source_relative_path": "07_图书馆及邻近绿地/V5bCQA4OTU5Nzc4MjPDzMhkYMgwDQ.jpg",
+      "original_sha256": "b6f6e82005203e47cffecd9bcbdbc7a47749d4a68185864e12ff528dfab62492",
+      "original_bytes": 1125141,
+      "original_size": [
+        2125,
+        1600
+      ],
+      "sha256": "b706062bc8ec03390fbc3f846ece912603a06f7b02d24776bf36d1138cb9d37d",
+      "bytes": 988958,
+      "size": [
+        2048,
+        1542
+      ],
+      "date_taken_exif": null,
+      "area": "07_图书馆及邻近绿地",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "图书馆立面及邻近绿地"
+    },
+    {
+      "file": "references/eda/imagery/areas/08-information-south-gate/dgly-067-808c918d.webp",
+      "source_relative_path": "08_信息楼及南入口/V5bCQA4OTU5Nzc4MjMd7BhovM8vLg.jpg",
+      "original_sha256": "808c918db89976e5aed4f78cf2729dda742f99e557e40de593e43bb3b82ed297",
+      "original_bytes": 580202,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "34ae10d89c441665048cc34c229190f4857bdf92754469e9776051c6a715c64a",
+      "bytes": 422366,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "08_信息楼及南入口",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "信息楼立面、南门与入口道路"
+    },
+    {
+      "file": "references/eda/imagery/areas/08-information-south-gate/dgly-069-0a79c50f.webp",
+      "source_relative_path": "08_信息楼及南入口/V5bCQA4OTU5Nzc4MjOur9Bkd8PvAw.jpg",
+      "original_sha256": "0a79c50f70f4d9487a8a75f98feaf7bd8fa56449d8112a8f3a7f5013c35e3bc2",
+      "original_bytes": 555060,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "d5ceb7ce25ca79e5187ec05a17350b214fda90a7045289059a272c59126dd367",
+      "bytes": 427066,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": "2023:08:07 16:46:27",
+      "area": "08_信息楼及南入口",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "信息楼立面、南门与入口道路"
+    },
+    {
+      "file": "references/eda/imagery/areas/08-information-south-gate/dgly-071-04da2674.webp",
+      "source_relative_path": "08_信息楼及南入口/V5bCQA4OTU5Nzc4MjPB6xhoESVPKQ.jpg",
+      "original_sha256": "04da2674aad816f1c9e1abee5e1cb1bfe560b5eed3fde13ebb309b3fb0932e16",
+      "original_bytes": 1217461,
+      "original_size": [
+        2844,
+        1600
+      ],
+      "sha256": "16f459e252b1a1879a1383b647d689329e3c05c974f3069c1fe2b0181c124244",
+      "bytes": 645648,
+      "size": [
+        2048,
+        1152
+      ],
+      "date_taken_exif": "2025:05:05 14:20:12",
+      "area": "08_信息楼及南入口",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "信息楼立面、南门与入口道路"
+    },
+    {
+      "file": "references/eda/imagery/areas/08-information-south-gate/dgly-072-5d3a770d.webp",
+      "source_relative_path": "08_信息楼及南入口/V5bCQA4OTU5Nzc4MjPCaLlka62iKg.jpg",
+      "original_sha256": "5d3a770d8789d667a9de822eb06eaa7b8b5676b8ce5b05f03957e6fe59a330e9",
+      "original_bytes": 642470,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "4c7f613737b3ce524365a6eee6e37adebd395c14b706526f85c084115cf1b94c",
+      "bytes": 455312,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2022:11:05 15:50:10",
+      "area": "08_信息楼及南入口",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "信息楼立面、南门与入口道路"
+    },
+    {
+      "file": "references/eda/imagery/areas/08-information-south-gate/dgly-075-6996f755.webp",
+      "source_relative_path": "08_信息楼及南入口/V5bCQA4OTU5Nzc4MjPLaLlkWovKg.jpg",
+      "original_sha256": "6996f7552b01ae2a54edb7b4f3d33fda6d5aa0e0b11c156bf020826b37b90ff7",
+      "original_bytes": 338389,
+      "original_size": [
+        1083,
+        1440
+      ],
+      "sha256": "9014eecee16c1923848e296cc13da1dafedc08c91ac2eaf7e8b2524a1a7bfdff",
+      "bytes": 314026,
+      "size": [
+        1083,
+        1440
+      ],
+      "date_taken_exif": "2023:04:13 23:08:14",
+      "area": "08_信息楼及南入口",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "信息楼立面、南门与入口道路"
+    },
+    {
+      "file": "references/eda/imagery/areas/08-information-south-gate/dgly-076-5ad0a461.webp",
+      "source_relative_path": "08_信息楼及南入口/V5bCQA4OTU5Nzc4MjPwRRdow3RKQ.jpg",
+      "original_sha256": "5ad0a461253a015e795699e09c91f82bdb0e460c7ef0833302025b117d791613",
+      "original_bytes": 1139404,
+      "original_size": [
+        2844,
+        1600
+      ],
+      "sha256": "e602e7a87fb96388eb627730eda4c43db2acf11f4573a0e23c3bcececdc6a220",
+      "bytes": 603906,
+      "size": [
+        2048,
+        1152
+      ],
+      "date_taken_exif": "2025:05:04 18:40:44",
+      "area": "08_信息楼及南入口",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "信息楼立面、南门与入口道路"
+    },
+    {
+      "file": "references/eda/imagery/areas/08-information-south-gate/dgly-077-90d10a89.webp",
+      "source_relative_path": "08_信息楼及南入口/V5bCQA4OTU5Nzc4MjPXlbxk.yqTLQ.jpg",
+      "original_sha256": "90d10a896c7777d414c3b2f25b31e5be7957b8e240bdbde75711f73438d8302b",
+      "original_bytes": 433525,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "492366fddb874d6d6b61a758e9fb33764c57b0cdc9a476fc0e54ab174fa34d1f",
+      "bytes": 307632,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2023:04:06 18:10:05",
+      "area": "08_信息楼及南入口",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "信息楼立面、南门与入口道路"
+    },
+    {
+      "file": "references/eda/imagery/areas/08-information-south-gate/dgly-079-59868ee3.webp",
+      "source_relative_path": "08_信息楼及南入口/V5bCQA4OTU5Nzc4MjPyRRdoFSOKQ.jpg",
+      "original_sha256": "59868ee3f0324987ef45be37934c93f48d23d0158dcccef8f011b984296671f8",
+      "original_bytes": 460119,
+      "original_size": [
+        2844,
+        1600
+      ],
+      "sha256": "752860c4fe1dc1d3cc6044def01bad28a6fce3ea725e03efd9c6ece46a22d876",
+      "bytes": 182132,
+      "size": [
+        2048,
+        1152
+      ],
+      "date_taken_exif": "2025:05:04 18:41:53",
+      "area": "08_信息楼及南入口",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "信息楼立面、南门与入口道路"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-080-02174d73.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjMjlLxkHblKFA.jpg",
+      "original_sha256": "02174d73228747146e333ee0883239a94f64994053018a45d127859df6fce1ce",
+      "original_bytes": 660866,
+      "original_size": [
+        1920,
+        1440
+      ],
+      "sha256": "c5112b6ff6008f1dc0b0ee6d47c075b7ac5c7a8f954c52561caa39b0ecb512f9",
+      "bytes": 596040,
+      "size": [
+        1920,
+        1440
+      ],
+      "date_taken_exif": null,
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-081-f670c924.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjMklLxk7aVJFA.jpg",
+      "original_sha256": "f670c9248c5c5e1be99021b97583048cf73cdac85432c2cffec9f41f86e1eb65",
+      "original_bytes": 351649,
+      "original_size": [
+        1920,
+        1440
+      ],
+      "sha256": "bde5aa9043984e8259b169e2fda7ef639039a409b5604514c0a07b68b3f8fde8",
+      "bytes": 273792,
+      "size": [
+        1920,
+        1440
+      ],
+      "date_taken_exif": null,
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-083-4a1ed7f9.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjN2zMhkwFeNCA.jpg",
+      "original_sha256": "4a1ed7f963259c66168aaf84293756d69205f8cc267e9fd8b9554e3efcb81207",
+      "original_bytes": 623678,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "6f607df6c4e702b43b4fb8a7c55e4911e3bed351ea0b415f94ee82e324e218d5",
+      "bytes": 259210,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-086-5812a4ea.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjNG4pxmlAKyIw.jpg",
+      "original_sha256": "5812a4ea87635724f1b57753451418afe576496011d03fb3018a284eb92413b5",
+      "original_bytes": 742917,
+      "original_size": [
+        1849,
+        1600
+      ],
+      "sha256": "f950cd5f23612c97118e933e4bec0b17f8db1697f7fbca938ba28d62c096c8a3",
+      "bytes": 662122,
+      "size": [
+        1849,
+        1600
+      ],
+      "date_taken_exif": "2024:04:20 16:54:59",
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-087-21c466d8.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjNK5aBmigO5HQ.jpg",
+      "original_sha256": "21c466d8189a9da175ed879444d4ea7e21a8227edac1466eb86ec5c5b80f0bd6",
+      "original_bytes": 380253,
+      "original_size": [
+        2287,
+        1034
+      ],
+      "sha256": "81424e397465999ce3b6e9172dbc4d82f3dd8b0124234b0f6d765213e7371870",
+      "bytes": 251100,
+      "size": [
+        2048,
+        926
+      ],
+      "date_taken_exif": "2022:10:17 12:06:13",
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-088-7cea7ef4.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjNM5aBm4LajHQ.jpg",
+      "original_sha256": "7cea7ef4ed8ab32d06dc8e24c4e9549e0b996b8ab1475495986ddd6a0a3d0af9",
+      "original_bytes": 782352,
+      "original_size": [
+        2287,
+        1034
+      ],
+      "sha256": "82b0aa7143592d955e4e65f8d87def4043673dc702b80829fc64c103b93b09ac",
+      "bytes": 601934,
+      "size": [
+        2048,
+        926
+      ],
+      "date_taken_exif": "2022:10:17 12:03:59",
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-093-f021e8de.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjO9aLlkL0IPKw.jpg",
+      "original_sha256": "f021e8de5dba0ac3659c1bf919167420e1a2e606393ba912fcf25cd0352efe9f",
+      "original_bytes": 867040,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "8731b3578591422fdf02a392ffaba946bce0b33d4366b3668d96be47f021709e",
+      "bytes": 714618,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2022:09:24 09:15:23",
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-094-5a8b7d11.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjOl5qBm2HrGNA.jpg",
+      "original_sha256": "5a8b7d113dc3c714c6f5daacb15d023c43f36b35329a2fa048c1097c022fac19",
+      "original_bytes": 581115,
+      "original_size": [
+        1600,
+        2312
+      ],
+      "sha256": "be3b13c5c4f7ea1fd15757e6405d9cb8eb0d2169a1f03621930fe9825b84864a",
+      "bytes": 356884,
+      "size": [
+        1417,
+        2048
+      ],
+      "date_taken_exif": "2024:04:17 16:46:38",
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-096-00efaf0c.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjPIzMhkNF9zDQ.jpg",
+      "original_sha256": "00efaf0cc8f60aee9131ad8b4eadf056dd9e2a92e2c3efc63c320f263379c9cd",
+      "original_bytes": 672924,
+      "original_size": [
+        2844,
+        1600
+      ],
+      "sha256": "01c618c20454c089992fc7de39de3450b7aa22ca6cae416d6f1f156a640a8ea3",
+      "bytes": 304862,
+      "size": [
+        2048,
+        1152
+      ],
+      "date_taken_exif": null,
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-097-9bd603b2.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjPKzMhkO0SRDQ.jpg",
+      "original_sha256": "9bd603b2f92ede55e64d40180610c2ca4773d7d702e9fc767c5623b0ac0bb9d0",
+      "original_bytes": 656996,
+      "original_size": [
+        2844,
+        1600
+      ],
+      "sha256": "1fb2b3a53b36512ad7de18e5419fcca9f21169e4a3e83304f19041317db635ed",
+      "bytes": 279070,
+      "size": [
+        2048,
+        1152
+      ],
+      "date_taken_exif": null,
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/09-lakes/dgly-098-e4ac1606.webp",
+      "source_relative_path": "09_湖区及两湖间步道/V5bCQA4OTU5Nzc4MjPPzMhkK0PZDQ.jpg",
+      "original_sha256": "e4ac1606988c586bbcbaa42c104da495e7930a64fa01bacee5bb419820dbec95",
+      "original_bytes": 361638,
+      "original_size": [
+        2893,
+        1600
+      ],
+      "sha256": "deb752dd73034a4484be002f5d6cabdf9851629b942f2a43e1dacff0e2923496",
+      "bytes": 142914,
+      "size": [
+        2048,
+        1133
+      ],
+      "date_taken_exif": null,
+      "area": "09_湖区及两湖间步道",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "湖岸、红步道、铺装及植被"
+    },
+    {
+      "file": "references/eda/imagery/areas/10-xiang-plaza/dgly-100-ee104bc9.webp",
+      "source_relative_path": "10_翔雕塑及湖岸广场/V5bCQA4OTU5Nzc4MjNnzMhkCRSqBw.jpg",
+      "original_sha256": "ee104bc9bd64866342616d2ff81d070ec1eb8a2ce165d3d35d577ed754b5fe4c",
+      "original_bytes": 468665,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "fd6c16d3d4ff9b9d0f1bd607cb34873de9564a002b7dec5595f9e5dff69aad20",
+      "bytes": 316836,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "10_翔雕塑及湖岸广场",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "翔雕塑背面、台阶和广场边界"
+    },
+    {
+      "file": "references/eda/imagery/areas/10-xiang-plaza/dgly-101-3328ca02.webp",
+      "source_relative_path": "10_翔雕塑及湖岸广场/V5bCQA4OTU5Nzc4MjNxzMhkYo9CA.jpg",
+      "original_sha256": "3328ca02e0b1a8ee05c9699cec8ad3306cf03f2b0c069d14a2f789d81065bb13",
+      "original_bytes": 310773,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "8f996ba8b8ee537d7af610cf0bb85e2ff8be2f4b1b04d19008efa7c248686a70",
+      "bytes": 172676,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "10_翔雕塑及湖岸广场",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "翔雕塑背面、台阶和广场边界"
+    },
+    {
+      "file": "references/eda/imagery/areas/11-sports/dgly-106-cec94b99.webp",
+      "source_relative_path": "11_体育馆及运动场/V5bCQA4OTU5Nzc4MjNF5aBm9STLHQ.jpg",
+      "original_sha256": "cec94b99bc5289341fe5618d7f0b130415afbf75297185f25fc0807873e5bd44",
+      "original_bytes": 432296,
+      "original_size": [
+        3539,
+        1600
+      ],
+      "sha256": "33fc03bfccfb64017519c4ca20129de68bc4787de8bb7733284bf32fccfb794f",
+      "bytes": 110184,
+      "size": [
+        2048,
+        926
+      ],
+      "date_taken_exif": "2023:09:15 17:55:10",
+      "area": "11_体育馆及运动场",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "体育馆立面、运动场及入口台阶"
+    },
+    {
+      "file": "references/eda/imagery/areas/11-sports/dgly-107-46beeda7.webp",
+      "source_relative_path": "11_体育馆及运动场/V5bCQA4OTU5Nzc4MjNH5aBm5BbFHQ.jpg",
+      "original_sha256": "46beeda77434207afabe6603717c537a060c5327d407d77494b6744cec888d4f",
+      "original_bytes": 544144,
+      "original_size": [
+        3539,
+        1600
+      ],
+      "sha256": "9dc92c75ae0fef6f00d4e7729c663cd308199784500afc4d3db6520d912ac180",
+      "bytes": 134920,
+      "size": [
+        2048,
+        926
+      ],
+      "date_taken_exif": "2023:09:15 17:28:39",
+      "area": "11_体育馆及运动场",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "体育馆立面、运动场及入口台阶"
+    },
+    {
+      "file": "references/eda/imagery/areas/11-sports/dgly-108-1339574d.webp",
+      "source_relative_path": "11_体育馆及运动场/V5bCQA4OTU5Nzc4MjOH.0Vm58DTGA.jpg",
+      "original_sha256": "1339574d3dfbf2f40af9de699fca1226057dad885555d69585b3b115fe191014",
+      "original_bytes": 50423,
+      "original_size": [
+        960,
+        434
+      ],
+      "sha256": "dde435fb390da57e2741496425bd43e750d27dd44fe305654ce1316558cd8fb7",
+      "bytes": 46794,
+      "size": [
+        960,
+        434
+      ],
+      "date_taken_exif": null,
+      "area": "11_体育馆及运动场",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "体育馆立面、运动场及入口台阶"
+    },
+    {
+      "file": "references/eda/imagery/areas/11-sports/dgly-109-f4616fd7.webp",
+      "source_relative_path": "11_体育馆及运动场/V5bCQA4OTU5Nzc4MjOj5qBm0hd9NQ.jpg",
+      "original_sha256": "f4616fd74ba5608b434c7ea6c4c7215259c9dbd1898178622a385c4f0df5e54e",
+      "original_bytes": 814843,
+      "original_size": [
+        1918,
+        1600
+      ],
+      "sha256": "4f09a59c15905afe107690ec54a1561a331906fbb963fab92877a7b72686e779",
+      "bytes": 721218,
+      "size": [
+        1918,
+        1600
+      ],
+      "date_taken_exif": "2024:04:17 16:50:44",
+      "area": "11_体育馆及运动场",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "体育馆立面、运动场及入口台阶"
+    },
+    {
+      "file": "references/eda/imagery/areas/11-sports/dgly-112-6570f7ca.webp",
+      "source_relative_path": "11_体育馆及运动场/V5bCQA4OTU5Nzc4MjPSzMhkkPsKDg.jpg",
+      "original_sha256": "6570f7caf04ba724363c2df4680ee63a1d30e1ff3c4eed57ab5939df1319df00",
+      "original_bytes": 506273,
+      "original_size": [
+        2416,
+        1600
+      ],
+      "sha256": "10999321a91b1fc251109e4d8c0ce8abc2e983cb045d6fa7c765e2ac959ce5fd",
+      "bytes": 282668,
+      "size": [
+        2048,
+        1356
+      ],
+      "date_taken_exif": null,
+      "area": "11_体育馆及运动场",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "体育馆立面、运动场及入口台阶"
+    },
+    {
+      "file": "references/eda/imagery/areas/11-sports/dgly-113-f2e9cc91.webp",
+      "source_relative_path": "11_体育馆及运动场/V5bCQA4OTU5Nzc4MjPWlbxkgESRLQ.jpg",
+      "original_sha256": "f2e9cc915e226e5c6166bb8f0e9bc0e337a9b616c9676ad8e3f3fdc5736bd0ed",
+      "original_bytes": 308998,
+      "original_size": [
+        2127,
+        1600
+      ],
+      "sha256": "1c2e4a31c1885084bbb981495db31557787f7522ad571666ee302234e058833b",
+      "bytes": 168198,
+      "size": [
+        2048,
+        1541
+      ],
+      "date_taken_exif": "2023:04:06 18:24:52",
+      "area": "11_体育馆及运动场",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "体育馆立面、运动场及入口台阶"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-114-c4f6a259.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjMulLxkhn8LFA.jpg",
+      "original_sha256": "c4f6a259a71072ee51fe60395568bd40f9a3df75f52891dd3a64e09b5e999247",
+      "original_bytes": 544885,
+      "original_size": [
+        3095,
+        1600
+      ],
+      "sha256": "034c3d5c23ba25e44171c938382b2c46c6b0669c153f892c76e219976e846802",
+      "bytes": 187826,
+      "size": [
+        2048,
+        1059
+      ],
+      "date_taken_exif": null,
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-116-dcedd6ea.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjN4q3ZlTeA1Ow.jpg",
+      "original_sha256": "dcedd6eaf8143c1eeb68e814c597f47181c3f9f82da07b6bccb006116d311445",
+      "original_bytes": 570407,
+      "original_size": [
+        1948,
+        1600
+      ],
+      "sha256": "4f27fc289de1dccc3db533e8d5a5308f12c5ca1fa8be2de3129a181a97111620",
+      "bytes": 454564,
+      "size": [
+        1948,
+        1600
+      ],
+      "date_taken_exif": "2023:12:11 14:11:38",
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-117-33b49f7e.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjN5q3Zln5bFOg.jpg",
+      "original_sha256": "33b49f7eb67885dcdb841ed60feec7c20980d1e3f7dd2565bb568edceffc56c6",
+      "original_bytes": 308462,
+      "original_size": [
+        1948,
+        1600
+      ],
+      "sha256": "ab353ff74bdebdbeafaa378e6b16fe53a1e2987435ed8366a40d43c027698c6a",
+      "bytes": 206452,
+      "size": [
+        1948,
+        1600
+      ],
+      "date_taken_exif": "2023:12:11 14:10:49",
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-120-24000927.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjNL4pxmJ3d9Iw.jpg",
+      "original_sha256": "2400092723a1dfccb21ed252efbc231a5760131f7a77447db5f9589a608e32fa",
+      "original_bytes": 481280,
+      "original_size": [
+        1849,
+        1600
+      ],
+      "sha256": "b6ffaa4f29e477b2386deb2c7e702d3365cbeb81b6769123a309be1a78e7a541",
+      "bytes": 349216,
+      "size": [
+        1849,
+        1600
+      ],
+      "date_taken_exif": "2024:04:12 11:11:33",
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-121-b081c411.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjNM4pxmbHBIw.jpg",
+      "original_sha256": "b081c411d79987cc04e6a4980b44c6533607e7444c6ff4917512ce2af0f376c0",
+      "original_bytes": 446043,
+      "original_size": [
+        1849,
+        1600
+      ],
+      "sha256": "33d95a54a9a46e2d779c2de8fba39d8e4f890af9d270ad7a5845dc33d2620d19",
+      "bytes": 315750,
+      "size": [
+        1849,
+        1600
+      ],
+      "date_taken_exif": "2024:04:12 11:11:25",
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-122-d57ef8fb.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjNP4pxm66NtIw.jpg",
+      "original_sha256": "d57ef8fbcc0f1ae46ee57ccb1f9a6c8fe856f3706988c0fd3073d53a40ccf74d",
+      "original_bytes": 937781,
+      "original_size": [
+        1600,
+        2379
+      ],
+      "sha256": "2e94848409a3fff7f18f445b696cfa592e8ea871d5901ffb8fcbc62f5197b970",
+      "bytes": 616346,
+      "size": [
+        1377,
+        2048
+      ],
+      "date_taken_exif": "2024:04:10 12:37:29",
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-124-4523b06a.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjO7zMhkIVynDA.jpg",
+      "original_sha256": "4523b06a79efb5f68fc9cdce387507488b7b66ba6fe75856f96a3de3b03ba5c1",
+      "original_bytes": 188852,
+      "original_size": [
+        1440,
+        1080
+      ],
+      "sha256": "16fadd8a7f36cee3620e9bf9e9763c0f95da7222ab843b6dfa4cebc16f871155",
+      "bytes": 118856,
+      "size": [
+        1440,
+        1080
+      ],
+      "date_taken_exif": null,
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-126-fa5e8575.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjOZ5qBmcufTNQ.jpg",
+      "original_sha256": "fa5e8575382c12571e355a8b5bf4283f5de212892b2c7181a448941756781c2a",
+      "original_bytes": 244183,
+      "original_size": [
+        1919,
+        1080
+      ],
+      "sha256": "510ea82d10e94e2f591155502301502d248d2177a9942ccd52dfaba49b199864",
+      "bytes": 163294,
+      "size": [
+        1919,
+        1080
+      ],
+      "date_taken_exif": null,
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-128-0ac6c414.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjPGfRJmX02ANA.jpg",
+      "original_sha256": "0ac6c414edf896f64139841e68268065e2edb86d215d6966be395d58229dd338",
+      "original_bytes": 1042943,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "f8f2d5c9b2dd1c99bd96d17a889c0b746a5067cbb0485857954d82a5a9b62c8d",
+      "bytes": 878994,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": "2024:04:07 19:03:59",
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-131-9b59f453.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjPQaLlkPAxyJg.jpg",
+      "original_sha256": "9b59f45334283d7b04e7e9996a86ffefee54c916455bff6c600f6b45c94a829d",
+      "original_bytes": 864004,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "2c7f8806ed61928c556cec33f923a7d95a414bd776a5598429b7d4612718b33b",
+      "bytes": 731244,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2023:07:05 12:31:29",
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/12-xueyuan-bridge/dgly-132-4138d2b6.webp",
+      "source_relative_path": "12_学苑桥及东西园路/V5bCQA4OTU5Nzc4MjPRlbxkbTN.Lg.jpg",
+      "original_sha256": "4138d2b67cfed6ea0972e7560ad0e581de1e4f344fcf91cbde118f2913c7cdb8",
+      "original_bytes": 344459,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "1f2633f60e4e7a57b2b126902880978cfa236266c0fec256f2051a0a3ab588d9",
+      "bytes": 208880,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2023:05:30 17:50:52",
+      "area": "12_学苑桥及东西园路",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "学苑桥可见构件、园路与隔离带"
+    },
+    {
+      "file": "references/eda/imagery/areas/13-east-bridge-buildings/dgly-134-35f57869.webp",
+      "source_relative_path": "13_桥东圆体及矩形翼/V5bCQA4OTU5Nzc4MjNn5aBmdfEXHw.jpg",
+      "original_sha256": "35f57869403ece03e52a5c11eb136cc8751215fe7f27f24a715191f8e7d4bb15",
+      "original_bytes": 278448,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "011216dd6bfd06feeb9401f77d79808aaeb4d656d41ce1f94e21eec12da1b850",
+      "bytes": 149500,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": "2024:06:28 18:51:24",
+      "area": "13_桥东圆体及矩形翼",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "桥东圆体、矩形翼及相邻布局"
+    },
+    {
+      "file": "references/eda/imagery/areas/13-east-bridge-buildings/dgly-135-cc93c038.webp",
+      "source_relative_path": "13_桥东圆体及矩形翼/V5bCQA4OTU5Nzc4MjNT4pxmQXJCIw.jpg",
+      "original_sha256": "cc93c0382a437c422d341b9ceb91979c9a28882b3c7036113be27bed4fd8ed8d",
+      "original_bytes": 577499,
+      "original_size": [
+        2134,
+        1600
+      ],
+      "sha256": "10bccf446b15a5bdee2dc3c3b83c720146d95c759c15f85c269c1e80eb9fafe7",
+      "bytes": 404798,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": "2023:04:29 14:45:08",
+      "area": "13_桥东圆体及矩形翼",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "桥东圆体、矩形翼及相邻布局"
+    },
+    {
+      "file": "references/eda/imagery/areas/13-east-bridge-buildings/dgly-137-7917389f.webp",
+      "source_relative_path": "13_桥东圆体及矩形翼/V5bCQA4OTU5Nzc4MjPPaLlkKeyMJQ.jpg",
+      "original_sha256": "7917389f0efdfd0cebaa23e0216a063fb254630259e51ddc5764ea5114837ef6",
+      "original_bytes": 900917,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "53fa660ba15dde4119a584e32bad10c02ff6a444e357e0d406653bd9d8d5530f",
+      "bytes": 772208,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2023:07:05 12:31:03",
+      "area": "13_桥东圆体及矩形翼",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "桥东圆体、矩形翼及相邻布局"
+    },
+    {
+      "file": "references/eda/imagery/areas/14-comprehensive-building/dgly-138-c20a4eef.webp",
+      "source_relative_path": "14_综合楼/V5bCQA4OTU5Nzc4MjOxsFJmn3wWDQ.jpg",
+      "original_sha256": "c20a4eeff6170fcb6e80077f017d7dd06b2abc835f9290488e7ea287db36f2ce",
+      "original_bytes": 590945,
+      "original_size": [
+        2000,
+        1125
+      ],
+      "sha256": "2f9b47e53f18e1ea7a051092810e41c0797491dec371965aa8af76d1ead16cb9",
+      "bytes": 557000,
+      "size": [
+        2000,
+        1125
+      ],
+      "date_taken_exif": null,
+      "area": "14_综合楼",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "综合楼外观及周围场地"
+    },
+    {
+      "file": "references/eda/imagery/areas/15-north-lawns/dgly-139-84a5c904.webp",
+      "source_relative_path": "15_山前草地及北侧楼群/V5bCQA4OTU5Nzc4MjM20gVlsMWDEw.jpg",
+      "original_sha256": "84a5c90484498f271b6af9de5ede07579125ab0a0dbd28ca3c2d4a6db5133bc0",
+      "original_bytes": 917862,
+      "original_size": [
+        2888,
+        1436
+      ],
+      "sha256": "722731e847928fc75bd44e7a3cc6183e99ac741709065c96e4aead2bd3ccee27",
+      "bytes": 498504,
+      "size": [
+        2048,
+        1018
+      ],
+      "date_taken_exif": "2023:09:16 16:45:22",
+      "area": "15_山前草地及北侧楼群",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "北侧草地、校名石与楼群关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/15-north-lawns/dgly-140-12771aca.webp",
+      "source_relative_path": "15_山前草地及北侧楼群/V5bCQA4OTU5Nzc4MjNCmxloyimQJA.jpg",
+      "original_sha256": "12771aca1dbfba9702d0a34edd88bcff6911156790413937ab9721f2d9022f8c",
+      "original_bytes": 333839,
+      "original_size": [
+        1440,
+        1080
+      ],
+      "sha256": "82a1bb150af46866858d3f0aa61562ba5fb047e79deea27812acc429271451ab",
+      "bytes": 302910,
+      "size": [
+        1440,
+        1080
+      ],
+      "date_taken_exif": null,
+      "area": "15_山前草地及北侧楼群",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "北侧草地、校名石与楼群关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/15-north-lawns/dgly-141-eb9969ff.webp",
+      "source_relative_path": "15_山前草地及北侧楼群/V5bCQA4OTU5Nzc4MjOBzMhkgdU2CQ.jpg",
+      "original_sha256": "eb9969ff9842667a517ee07cdb5a7fd0c22a5f04de46b4ab490570cea64b8ab0",
+      "original_bytes": 676532,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "3c8ecf6d2c379789a5043d6051f33c4c4a9bbfdabb810495db9d92926514cecc",
+      "bytes": 535262,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "15_山前草地及北侧楼群",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "北侧草地、校名石与楼群关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/90-cross-area/dgly-145-703fc34a.webp",
+      "source_relative_path": "90_跨区域远景/V5bCQA4OTU5Nzc4MjMxlLxkB.31Ew.jpg",
+      "original_sha256": "703fc34ad806404a4084c8be460b792ad99323078149ffc12e6d435685d3841b",
+      "original_bytes": 660743,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "b652bc4f62b3f6d8380ca105e14aa19e3826a72dca5b758de309c1eb5dbf1be3",
+      "bytes": 536008,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "90_跨区域远景",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "建筑之间及校园与山体的可见关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/90-cross-area/dgly-147-889441e8.webp",
+      "source_relative_path": "90_跨区域远景/V5bCQA4OTU5Nzc4MjNE4pxmr.W9Iw.jpg",
+      "original_sha256": "889441e89541bbfa4f1aeee07bb0fd54b38731f6a9bd1d473aaf2780de0443bd",
+      "original_bytes": 283646,
+      "original_size": [
+        1849,
+        1600
+      ],
+      "sha256": "cccffbe1ca738a2bb9ccbf6f963d10daab32cb93db257ded80e9afa58a1fb561",
+      "bytes": 180202,
+      "size": [
+        1849,
+        1600
+      ],
+      "date_taken_exif": "2024:04:20 19:04:35",
+      "area": "90_跨区域远景",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "建筑之间及校园与山体的可见关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/90-cross-area/dgly-148-02680334.webp",
+      "source_relative_path": "90_跨区域远景/V5bCQA4OTU5Nzc4MjNG5aBmIAnFHQ.jpg",
+      "original_sha256": "026803346447974f81984b4b5df0012abe3634f6797b5b5945c105e2ad7603e1",
+      "original_bytes": 489152,
+      "original_size": [
+        3539,
+        1600
+      ],
+      "sha256": "f469e253956ade5b7611cab91fe17a70e3483343f16b32ffbdb7eb4ad0bfca4d",
+      "bytes": 137554,
+      "size": [
+        2048,
+        926
+      ],
+      "date_taken_exif": "2023:09:15 17:26:11",
+      "area": "90_跨区域远景",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "建筑之间及校园与山体的可见关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/90-cross-area/dgly-149-85207c11.webp",
+      "source_relative_path": "90_跨区域远景/V5bCQA4OTU5Nzc4MjNm5aBm3tUYHw.jpg",
+      "original_sha256": "85207c114a051c6a5ea600dfc0951e090bf40e24d2f25741b1b0f8926aa6db85",
+      "original_bytes": 460390,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "0a3fa34e1ff3ceeb67898b3ee2493caad3633f061ccea6858ce751df612ab329",
+      "bytes": 316692,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": "2024:06:24 14:01:41",
+      "area": "90_跨区域远景",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "建筑之间及校园与山体的可见关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/90-cross-area/dgly-158-150b3d3a.webp",
+      "source_relative_path": "90_跨区域远景/V5bCQA4OTU5Nzc4MjOwsFJmlkYWDQ.jpg",
+      "original_sha256": "150b3d3a9f60d87e8f86f4bdf3e2a0d64e66c83dd98e2fb26d444bfa0597428a",
+      "original_bytes": 358870,
+      "original_size": [
+        2847,
+        1600
+      ],
+      "sha256": "76da60c592d0e21ba779d265c92ab504be8fee6de744652d88149471176a3cca",
+      "bytes": 129030,
+      "size": [
+        2048,
+        1151
+      ],
+      "date_taken_exif": null,
+      "area": "90_跨区域远景",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "建筑之间及校园与山体的可见关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/90-cross-area/dgly-159-7a927f99.webp",
+      "source_relative_path": "90_跨区域远景/V5bCQA4OTU5Nzc4MjPBaLlkYO20Kg.jpg",
+      "original_sha256": "7a927f99f2cc82200b68b62cb4f9f139f71e584389791b87f804b3350df292be",
+      "original_bytes": 623385,
+      "original_size": [
+        2127,
+        1600
+      ],
+      "sha256": "0653df4e5bd381b4a96eb37c86f69d4ccbb97701821b030ff02ed757f6fc60c6",
+      "bytes": 470238,
+      "size": [
+        2048,
+        1541
+      ],
+      "date_taken_exif": "2022:10:08 06:38:54",
+      "area": "90_跨区域远景",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "建筑之间及校园与山体的可见关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/90-cross-area/dgly-161-b9cafa2d.webp",
+      "source_relative_path": "90_跨区域远景/V5bCQA4OTU5Nzc4MjPMzMhkivWqDQ.jpg",
+      "original_sha256": "b9cafa2d450acc6695f0ae052e12a06c8f7ebb451719e128a3c1430257102a8a",
+      "original_bytes": 367281,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "401efc47859c70436672d9f69a860d5aa982b7ef163cefb037fe6838d4377d57",
+      "bytes": 209330,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "90_跨区域远景",
+      "location_status": "沿用用户来源区域分类，未做坐标配准",
+      "usage": "建筑之间及校园与山体的可见关系"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-175-9318234c.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjN0wgxp7bq9NQ.jpg",
+      "original_sha256": "9318234c34b4de1e39b4682ed8e6296fcee4afc6bf50b716be70bfb99f4d55e8",
+      "original_bytes": 1245777,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "937537e2720de8e239e1b412665d394a7618dc53820f251a4b522ed682a260d3",
+      "bytes": 1153710,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-176-3a5c1011.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjN2wgxpP.aNQ.jpg",
+      "original_sha256": "3a5c1011c3ad031728d633bde79d4adb036fcd123361ec352fafd79ef5f38fcb",
+      "original_bytes": 1179413,
+      "original_size": [
+        1599,
+        2131
+      ],
+      "sha256": "27cce474c0f68f8b895b78ae93188dae5e67792c7412a65222ef5a3f906c72b7",
+      "bytes": 1052160,
+      "size": [
+        1537,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-179-bbcad862.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjNGRmJoIgqbOg.jpg",
+      "original_sha256": "bbcad862f4fa6ee5d303c2bf29ae541b08633011c96c197f4b77e4694d0e7713",
+      "original_bytes": 2263414,
+      "original_size": [
+        1068,
+        1600
+      ],
+      "sha256": "c304e8ee3ec880e261607483bb378362355fa940b9c757d8755d8ef93a6a8a47",
+      "bytes": 326672,
+      "size": [
+        1068,
+        1600
+      ],
+      "date_taken_exif": null,
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-182-3d14a361.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjNL5aBm5j2lHQ.jpg",
+      "original_sha256": "3d14a36142ccad23fe8599fbede84c36ed3a1cd9ec7d8979ed62845d0e05bfd3",
+      "original_bytes": 789396,
+      "original_size": [
+        2287,
+        1034
+      ],
+      "sha256": "38419f2917634060374ab0660b04bfb310dc2e2807baffd98feab7a132e090e1",
+      "bytes": 620674,
+      "size": [
+        2048,
+        926
+      ],
+      "date_taken_exif": "2022:10:17 10:54:26",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-185-3182b437.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjNuzMhkbVAcCA.jpg",
+      "original_sha256": "3182b4372cd93784fa8251c29117a6fe3cbd2581f1afdd23ebfd22eee68d38fe",
+      "original_bytes": 1034572,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "91ea6b32d583904d3fa317abf7a7eae0cf0510d73af094e3188a533e84ebe139",
+      "bytes": 902934,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-187-40459206.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjNyzMhkoqRUCA.jpg",
+      "original_sha256": "4045920654d0d4dc94d2cd3a49780f13a9f3a9263f3365f32a23f195c7253cf0",
+      "original_bytes": 115217,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "6c0b1921b7000a67cfc5efed3567790f613c8f9c7710f31597bbd73288d8d714",
+      "bytes": 47014,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-193-bffe7dd5.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjOd5qBm4Yu3NQ.jpg",
+      "original_sha256": "bffe7dd51686cd8d42afb914413256daa25168a8a3f805a4bd9bbabb793477d5",
+      "original_bytes": 858996,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "6e1804495b277d73c765381f122efa7f085ffb04c71a3e94be04f54d584e35bd",
+      "bytes": 748654,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": "2024:05:07 16:58:31",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-197-6a21e157.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjOFzMhk0pl2CQ.jpg",
+      "original_sha256": "6a21e1571e6198f3a76bead37fec9ece52ecdd5de23c2f9ed9feec54e90e190c",
+      "original_bytes": 889784,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "e27bf83501ab6ac7cc0f56531497d39188b3158e106c79915559a79d62cd1e87",
+      "bytes": 722798,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-198-96ce1240.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjOg5qBmkhmWNQ.jpg",
+      "original_sha256": "96ce12408f944bc160974ef2e6d99d79cbd71e3c8e85c85e6121ab22754ddec7",
+      "original_bytes": 908603,
+      "original_size": [
+        1918,
+        1600
+      ],
+      "sha256": "c4c24d7eb8fdc538275a1553d795b892164eb1ccfa350fdbdd2e266cffd05252",
+      "bytes": 840516,
+      "size": [
+        1918,
+        1600
+      ],
+      "date_taken_exif": "2024:04:17 17:34:54",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-201-cd5a915f.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjOJzMhkhS61CQ.jpg",
+      "original_sha256": "cd5a915f9183f91721baac995bba404973199ec9a64a18fd9df64b7a2183c5f1",
+      "original_bytes": 1297679,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "946ff6ff6f10adf5867064d2de80951bc958977e1932e2174612a1e37cda2cd2",
+      "bytes": 1160886,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-204-65f00f06.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjOn5qBmV1vGNA.jpg",
+      "original_sha256": "65f00f06c931a4d7c584048b964dd200ab319b2886ecf5549abb25cfeae87bc9",
+      "original_bytes": 722072,
+      "original_size": [
+        1918,
+        1600
+      ],
+      "sha256": "94304e3fe2f58d9f990dfe910d801d61a63aab7a30374e74d85b519305cd0b93",
+      "bytes": 641580,
+      "size": [
+        1918,
+        1600
+      ],
+      "date_taken_exif": "2024:04:17 11:46:12",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-212-bc911c4f.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjOUzMhkMxtaCg.jpg",
+      "original_sha256": "bc911c4f4a7b389053656cf34de7444411c7c89f8d8237f59e956606164d3a5f",
+      "original_bytes": 551608,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "77be6fab246c109323e4a6762199273207567ef925cb6a73f3832bd7796f3797",
+      "bytes": 418616,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": null,
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-213-c9dca75f.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjOV5qBmwEOMNg.jpg",
+      "original_sha256": "c9dca75f59ee4f183e8e07c307e0bf423cbbee4634c3f67fd1cadc6cde1ba016",
+      "original_bytes": 1072944,
+      "original_size": [
+        1600,
+        2133
+      ],
+      "sha256": "4b199606db823f60abdb3682f122045ff15c025db25a8d15b458ba2e9f3a583d",
+      "bytes": 956544,
+      "size": [
+        1536,
+        2048
+      ],
+      "date_taken_exif": "2024:06:30 14:31:29",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-216-03e5ee77.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjOWzMhkbf91Cg.jpg",
+      "original_sha256": "03e5ee77677ee75849fbfd35ba8fe0e29f1fddf0b4378c5173a10282dc191012",
+      "original_bytes": 673966,
+      "original_size": [
+        2133,
+        1600
+      ],
+      "sha256": "a4b218112e46b65cd028739f05f2b42456d1ca5e7eee573d96a3b1f0cce983d0",
+      "bytes": 523334,
+      "size": [
+        2048,
+        1536
+      ],
+      "date_taken_exif": null,
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-223-42b7e48e.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjPC6xhoqDE7KQ.jpg",
+      "original_sha256": "42b7e48e4fb56ebf44113b094842e78e1f1f5bf74261f829aabe7abf6906a262",
+      "original_bytes": 1260283,
+      "original_size": [
+        2844,
+        1600
+      ],
+      "sha256": "bc250ed9d33405af72546456843c4440e5c7b475f8948551d7e927f6ee2a575a",
+      "bytes": 678646,
+      "size": [
+        2048,
+        1152
+      ],
+      "date_taken_exif": "2025:05:05 14:30:22",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-230-0d13cb4d.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjPMaLlk62iMJg.jpg",
+      "original_sha256": "0d13cb4dd16403d559e6589e28eade9fe46eb949434dff05871e56d20f66eb1d",
+      "original_bytes": 370287,
+      "original_size": [
+        1440,
+        1083
+      ],
+      "sha256": "e5efcd70634a4f458406cece7126525a367fa42fe2e2409627c3c066ba6119a3",
+      "bytes": 343136,
+      "size": [
+        1440,
+        1083
+      ],
+      "date_taken_exif": "2023:04:13 23:04:34",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-231-549e2205.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjPNlbxkcRRLw.jpg",
+      "original_sha256": "549e22053205deaa8dbf5d1ff56da12a3bb68cbfe00506eed3739a924f9adb1d",
+      "original_bytes": 680590,
+      "original_size": [
+        1600,
+        2127
+      ],
+      "sha256": "858dc92e35d9e316a6c6a98f8f73e5c82ec1120d16ce4b31ac229ac7edb75555",
+      "bytes": 536108,
+      "size": [
+        1541,
+        2048
+      ],
+      "date_taken_exif": "2023:06:03 18:52:19",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-232-b90e3837.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjPOaLlkz8t5Jg.jpg",
+      "original_sha256": "b90e383787219364821b8a15620cb7f418aac2faf5743cb83dd13b6a0823e9e8",
+      "original_bytes": 720869,
+      "original_size": [
+        2127,
+        1600
+      ],
+      "sha256": "438570143ced4afd31a5c5070c96ad6da774de163f669ac884e69fe952ef5e0d",
+      "bytes": 584644,
+      "size": [
+        2048,
+        1541
+      ],
+      "date_taken_exif": "2023:04:26 16:02:11",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    },
+    {
+      "file": "references/eda/imagery/areas/99-unlocated/dgly-233-33d9c289.webp",
+      "source_relative_path": "99_待核对位置/V5bCQA4OTU5Nzc4MjPQlbxk8uuALg.jpg",
+      "original_sha256": "33d9c289b565ba98c94fd650e1194c0ad4f52e41811dd5887fdcda0dd4119e69",
+      "original_bytes": 752362,
+      "original_size": [
+        2127,
+        1600
+      ],
+      "sha256": "fbf158631530d520fb3c7bcaea2c309c99cf0a8bb50df3cf9a22af72011e0443",
+      "bytes": 611176,
+      "size": [
+        2048,
+        1541
+      ],
+      "date_taken_exif": "2023:06:03 18:52:07",
+      "area": "99_待核对位置",
+      "location_status": "待核对位置，不用于定位建模",
+      "usage": "待定位的道路、铺装、台阶及种植细节"
+    }
+  ],
+  "relocated_existing_photos": [
+    {
+      "old": "references/eda/buildings/photos/77912-0.jpg",
+      "new": "references/eda/imagery/areas/08-information-south-gate/77912-0.jpg",
+      "sha256": "e57a942b6c29f4031c8bd2097a851a003fb00200fa3f6e015f6123bbaaed1be5"
+    },
+    {
+      "old": "references/eda/buildings/photos/77912-1.jpg",
+      "new": "references/eda/imagery/areas/08-information-south-gate/77912-1.jpg",
+      "sha256": "dc47bd4c0d34c8cba412f72d92ac8efcd9777cdc8127230ca473ab9643b1c7fe"
+    },
+    {
+      "old": "references/eda/buildings/photos/77914-0.jpg",
+      "new": "references/eda/imagery/areas/08-information-south-gate/77914-0.jpg",
+      "sha256": "8566d61e3f8abc39d4b9af011598b811833dc4406b6968f3293db6f7dc8cd31c"
+    },
+    {
+      "old": "references/eda/buildings/photos/77914-1.jpg",
+      "new": "references/eda/imagery/areas/08-information-south-gate/77914-1.jpg",
+      "sha256": "4438fe443f0007dd5e208b3f76af10ed3b712c1607f3aa22b83910a85b5ef7a2"
+    },
+    {
+      "old": "references/eda/buildings/photos/77914-roof-2023.jpg",
+      "new": "references/eda/imagery/areas/08-information-south-gate/77914-roof-2023.jpg",
+      "sha256": "7d14a02c3a41a6ad1c63af99806e530720fb06dab419462329d79551631b1edd"
+    },
+    {
+      "old": "references/eda/buildings/photos/77917-0.jpg",
+      "new": "references/eda/imagery/areas/07-library/77917-0.jpg",
+      "sha256": "818957253f2dabd44047ca692513d24a80e74c72b40187842ae5123c613f3055"
+    },
+    {
+      "old": "references/eda/buildings/photos/77917-1.jpg",
+      "new": "references/eda/imagery/areas/07-library/77917-1.jpg",
+      "sha256": "7edd807de1c72436b535aa9f3760e2df1a0fb3377337732959289289ae22dd74"
+    },
+    {
+      "old": "references/eda/buildings/photos/77917-2.jpg",
+      "new": "references/eda/imagery/areas/07-library/77917-2.jpg",
+      "sha256": "30863affbcabd2e95d53d4958be8341456ac5be6594213f1a66cc9b0a0d25807"
+    },
+    {
+      "old": "references/eda/buildings/photos/77921-0.jpg",
+      "new": "references/eda/imagery/areas/14-comprehensive-building/77921-0.jpg",
+      "sha256": "90a4ce189d6e07e8d346156a077e7a0afd3de93674d9e98b400d135741b12ef2"
+    },
+    {
+      "old": "references/eda/buildings/photos/77921-1.jpg",
+      "new": "references/eda/imagery/areas/14-comprehensive-building/77921-1.jpg",
+      "sha256": "cc1a23eea178e6768e64dfc7274fdc956af94e7d1a2d0d91c9e76ef95c671d3a"
+    },
+    {
+      "old": "references/eda/buildings/photos/77923-0.jpg",
+      "new": "references/eda/imagery/areas/11-sports/77923-0.jpg",
+      "sha256": "e5020044719458af84cbe233fe794f33dc3570110b567cb990cffa09736ecff0"
+    },
+    {
+      "old": "references/eda/buildings/photos/77923-1.jpg",
+      "new": "references/eda/imagery/areas/11-sports/77923-1.jpg",
+      "sha256": "e777f2b15a11cd09999ce187396e8af65478215010a1691f6109e6f4de786dae"
+    },
+    {
+      "old": "references/eda/buildings/photos/77925-0.jpg",
+      "new": "references/eda/imagery/areas/03-teaching-a/77925-0.jpg",
+      "sha256": "b6dd355d42ec870f8fb3291e00663aefabc02b662729cc81dca3162359da1370"
+    },
+    {
+      "old": "references/eda/buildings/photos/77927-0.jpg",
+      "new": "references/eda/imagery/areas/05-teaching-c-ginkgo/77927-0.jpg",
+      "sha256": "f77c8c247794a5cd993a3e3ff2eef944164eeda5a986a2b0bb2011a3f9a99699"
+    },
+    {
+      "old": "references/eda/buildings/photos/77927-1.jpg",
+      "new": "references/eda/imagery/areas/05-teaching-c-ginkgo/77927-1.jpg",
+      "sha256": "eeff43bd7d2b4ada26b0d1e7a7ab391cb09d90270b869d4227d1935b2aa981a4"
+    },
+    {
+      "old": "references/eda/buildings/photos/77928-0.jpg",
+      "new": "references/eda/imagery/areas/04-teaching-b/77928-0.jpg",
+      "sha256": "0c5a21b13e1138b6286fcd96b5195b92e70508234778101901d6111be8933281"
+    },
+    {
+      "old": "references/eda/buildings/photos/77931-0.jpg",
+      "new": "references/eda/imagery/areas/02-residences-courtyard/77931-0.jpg",
+      "sha256": "e771b3f407a52633c2e9432bc7a201284df93527cdf191d5bc2ba1337ad74dca"
+    },
+    {
+      "old": "references/eda/buildings/photos/77933-0.jpg",
+      "new": "references/eda/imagery/areas/02-residences-courtyard/77933-0.jpg",
+      "sha256": "978b168ccbe4343451aa3b9edd79dd86e18325c43e9aed95da50836ecc0c7ad4"
+    },
+    {
+      "old": "references/eda/buildings/photos/77933-1.jpg",
+      "new": "references/eda/imagery/areas/02-residences-courtyard/77933-1.jpg",
+      "sha256": "4d0be2a7a097c1df00f6db2d51a169f7be9697d3e543c4043ea936b65c755247"
+    },
+    {
+      "old": "references/eda/buildings/photos/77935-0.jpg",
+      "new": "references/eda/imagery/areas/02-residences-courtyard/77935-0.jpg",
+      "sha256": "1507bace6bd3af21cbd2b40f423714209d03991cef5b694a704e215ff8cfd814"
+    },
+    {
+      "old": "references/eda/buildings/photos/77937-0.jpg",
+      "new": "references/eda/imagery/areas/02-residences-courtyard/77937-0.jpg",
+      "sha256": "04dc28e31227d9ad50f57d82e3423f9c0e5e9a62bfd75cce1d5f053fb91dde04"
+    },
+    {
+      "old": "references/eda/buildings/photos/77937-2026.jpg",
+      "new": "references/eda/imagery/areas/02-residences-courtyard/77937-2026.jpg",
+      "sha256": "0a9631e7e54507da8fbc0f0901d8a11eecf4baf52d8039a9e653a3360dcd8a1c"
+    },
+    {
+      "old": "references/eda/buildings/photos/77938-0.jpg",
+      "new": "references/eda/imagery/areas/02-residences-courtyard/77938-0.jpg",
+      "sha256": "c9dd800a45ea1371f63702f272a8ed104d23945a00e7aa94e5a120fc0a430e6e"
+    },
+    {
+      "old": "references/eda/buildings/photos/77941-0.jpg",
+      "new": "references/eda/imagery/areas/16-sixth-residence-dining/77941-0.jpg",
+      "sha256": "f9e22bc1415ddd04b20ef9fef9aecfffe9745b73f0f625247a1e151450bba2e6"
+    },
+    {
+      "old": "references/eda/buildings/photos/77943-0.jpg",
+      "new": "references/eda/imagery/areas/16-sixth-residence-dining/77943-0.jpg",
+      "sha256": "7508e8adb07e71ebf57f3914013750ad1dca4e4a47ebaabf3e709d186a8f27dd"
+    }
+  ]
+}
