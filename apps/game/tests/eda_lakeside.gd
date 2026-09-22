@@ -46,8 +46,8 @@ func run() -> void:
 		var b:=Vector2(-51.343340492,401.954256)
 		var outward:Vector2=(b-a).normalized().orthogonal()
 		for level in range(3):
-			check_height(space,terrain,a.lerp(b,.5)+outward*(level*.45+.225),float(3-level)*.15,"Shuyun tread")
-		check_height(space,terrain,a.lerp(b,.5)-outward*.5,.45,"Shuyun landing")
+			check_height(space,terrain,a.lerp(b,.5)+outward*(level*.45+.225),-float(3-level)*.15,"Shuyun tread")
+		check_height(space,terrain,a.lerp(b,.5)-outward*.5,-.45,"Shuyun landing")
 		var body := CharacterBody3D.new()
 		var shape := CollisionShape3D.new()
 		var capsule := CapsuleShape3D.new()

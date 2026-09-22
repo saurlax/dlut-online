@@ -106,6 +106,7 @@ func save_terrain(material: Material, campus: String, regions: Array) -> void:
 	var replacements: Array[PackedVector2Array]=[]
 	if campus=="eda":
 		replacements.append(STAIR_PROFILE.mask(STAIR_PROFILE.load_profile()))
+		replacements.append_array(preload("res://tools/build_eda_shuyun_steps.gd").terrain_masks())
 		replacements.append_array(preload("res://tools/eda_xiang_plaza_profile.gd").masks())
 		var entrance=preload("res://tools/eda_sports_entry_profile.gd")
 		replacements.append(entrance.mask(entrance.load_profile()))
