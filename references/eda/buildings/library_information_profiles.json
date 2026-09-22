@@ -546,6 +546,7 @@
         "limits": "East and west height transitions are independently estimated from visible facade extents. The joining roof boundary, 13.2 m roof height, 8.8 m gallery floor, 2.2 m recess and support spacing are provisional exterior proportions; no interior or new access stairs are inferred."
       },
       "west_facade": {
+        "ground_floor": {"sill_y": 0.85, "surface_bottom": 0.0, "extend_window_indices": [1, 4], "sources": ["../imagery/areas/07-library/77917-1.jpg", "../imagery/areas/07-library/user-library-shuyun-aerial.png"], "limits": "Central glazing below the library name and adjacent tall glazed strip reach the forecourt. Extend only these visible bays and their frames; concealed side ground-floor openings remain unmodelled. Sill 0.85 m is an estimated tie to the 0.75 m forecourt, not a measured elevation; glazing remains closed with no invented interior."},
         "surfaces": [
           {
             "edge": 37,

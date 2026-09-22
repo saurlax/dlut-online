@@ -75,10 +75,12 @@ func build(facade,points:PackedVector2Array,profile:Dictionary)->void:
 		frame(points,int(region.edge))
 		var left:=float(region.span[0])*length
 		var right:=float(region.span[1])*length
-		panel((left+right)/2,11.2,right-left,12.8,0.025,0.04,wall)
+		var bottom:float=profile.get("ground_floor",{}).get("surface_bottom",4.8)
+		panel((left+right)/2,(17.6+bottom)/2,right-left,17.6-bottom,0.025,0.04,wall)
 		for y in [8.8,13.2]: panel((left+right)/2,y,right-left,0.35,0.055,0.04,pale)
 	cornice(points,profile,pale)
-	for region in profile.windows:
+	for window_index in profile.windows.size():
+		var region:Dictionary=profile.windows[window_index]
 		frame(points,int(region.edge))
 		var left:=float(region.span[0])*length
 		var right:=float(region.span[1])*length
@@ -86,7 +88,12 @@ func build(facade,points:PackedVector2Array,profile:Dictionary)->void:
 		var pitch:float=(right-left)/bays
 		var width:float=pitch*float(region.width_fraction)
 		var height:float=region.height
-		for y in region.centers_y:
+		for original_y in region.centers_y:
+			var y:float=original_y
+			if window_index in PackedInt32Array(profile.get("ground_floor",{}).get("extend_window_indices",[])):
+				var top:float=y+height/2
+				var sill:float=profile.ground_floor.sill_y
+				height=top-sill;y=(top+sill)/2
 			for bay in bays:
 				var center:float=left+(bay+0.5)*pitch
 				panel(center,float(y),width,height,0.1,0.08,glass)
