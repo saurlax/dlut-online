@@ -17,7 +17,12 @@
 #### Scenario: Enter and traverse the campus
 
 - **WHEN** 玩家进入开发区或在校区内移动
-- **THEN** 非建筑整体场景先完成加载，附近建筑异步挂入对应 `Feature_<id>` 节点并建立碰撞，远离加载范围的建筑释放实例
+- **THEN** 非建筑整体场景先完成加载，远景代理先出现，LOD1 与 LOD0 按距离在后台加载和实例化，离线生成的独立碰撞在玩家接近前挂入对应 `Feature_<id>`，远离加载范围后释放细节和碰撞实例
+
+#### Scenario: Load offline collision
+
+- **WHEN** 玩家接近已登记建筑
+- **THEN** 客户端加载 Blender 导出的碰撞场景，运行时不得从视觉高模调用 `create_trimesh_collision()`
 
 ### Requirement: Preserve verified geometry and collision
 

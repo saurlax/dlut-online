@@ -15,23 +15,26 @@ ROOT = Path(__file__).resolve().parents[4]
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--blender", required=True, type=Path)
+    parser.add_argument("--feature", help="Export one Feature ID instead of all buildings")
     args = parser.parse_args()
+    command = [
+        str(args.blender),
+        "--background",
+        "--factory-startup",
+        "--python-exit-code",
+        "1",
+        "--python",
+        str(Path(__file__).with_name("build_eda_streaming_assets.py")),
+        "--",
+        "--sources",
+        str(ROOT / "references" / "eda" / "buildings" / "blender"),
+        "--runtime",
+        str(ROOT / "apps" / "game" / "assets" / "campuses" / "eda" / "models" / "buildings"),
+    ]
+    if args.feature:
+        command.extend(["--feature", args.feature])
     subprocess.run(
-        [
-            str(args.blender),
-            "--background",
-            "--factory-startup",
-            "--python-exit-code",
-            "1",
-            "--python",
-            str(Path(__file__).with_name("build_eda_blend.py")),
-            "--",
-            "--output",
-            str(ROOT / "references" / "eda" / "buildings" / "blender"),
-            "--runtime",
-            str(ROOT / "apps" / "game" / "assets" / "campuses" / "eda" / "models" / "buildings"),
-            "--export-only",
-        ],
+        command,
         check=True,
         cwd=ROOT,
     )

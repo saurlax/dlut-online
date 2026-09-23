@@ -25,6 +25,8 @@ build/
 /references/eda/buildings/blender/*.blend1
 /apps/game/assets/campuses/eda/models/buildings/*.png
 /apps/game/assets/campuses/eda/models/buildings/*.png.import
+/apps/game/assets/campuses/eda/models/buildings/**/*.png
+/apps/game/assets/campuses/eda/models/buildings/**/*.png.import
 /apps/game/assets/campuses/eda/models/development_campus.new.tscn
 /apps/game/assets/campuses/eda/models/development_campus.bak.tscn
 
