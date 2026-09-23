@@ -1,6 +1,9 @@
 extends RefCounted
 
 static func _collider(mesh: MeshInstance3D) -> void:
+	var extras: Variant = mesh.get_meta("extras", {})
+	if extras is Dictionary and extras.has("dlut_visible"):
+		mesh.visible = bool(extras["dlut_visible"])
 	mesh.create_trimesh_collision()
 	for child in mesh.get_children():
 		if child is StaticBody3D:
@@ -8,16 +11,33 @@ static func _collider(mesh: MeshInstance3D) -> void:
 				if shape is CollisionShape3D and shape.shape is ConcavePolygonShape3D:
 					shape.shape.backface_collision = true
 
+static func build_feature(group: Node3D) -> void:
+	for node in group.find_children("*", "MeshInstance3D", true, false):
+		var mesh := node as MeshInstance3D
+		var extras: Variant = mesh.get_meta("extras", {})
+		if extras is Dictionary and extras.has("dlut_visible"):
+			mesh.visible = bool(extras["dlut_visible"])
+		if _flag(mesh, "walk_collision") or mesh.name in ["Building", "Roof", "HillBase", "SchematicTerrain", "GateFootprint", "Gate"]:
+			_collider(mesh)
+
+static func _flag(node: Node, key: StringName, fallback := false) -> bool:
+	if node.has_meta(key):
+		return bool(node.get_meta(key))
+	var extras: Variant = node.get_meta("extras", {})
+	if extras is Dictionary:
+		return bool(extras.get(str(key), fallback))
+	return fallback
+
 static func build(root: Node3D, model: Node3D, manifest: Dictionary, campus_id: String) -> void:
 	var base := model.get_node_or_null("CampusBase")
 	if base != null:
 		_collider(base)
 	for child in model.get_children():
-		if child is MeshInstance3D and child.get_meta("walk_collision",false):
+		if child is MeshInstance3D and _flag(child, "walk_collision"):
 			_collider(child)
-		elif child is Node3D and child.get_meta("static_collision_group",false):
+		elif child is Node3D and _flag(child, "static_collision_group"):
 			for mesh in child.get_children():
-				if mesh is MeshInstance3D and mesh.get_meta("walk_collision",false):
+				if mesh is MeshInstance3D and _flag(mesh, "walk_collision"):
 					_collider(mesh)
 	for feature in manifest.features:
 		if campus_id not in ["lingshui", "eda"] and feature.kind not in ["building", "hill", "gate", "sports"]:
@@ -25,10 +45,9 @@ static func build(root: Node3D, model: Node3D, manifest: Dictionary, campus_id: 
 		var node_name: String = "Feature_"+feature.id
 		if feature.has("part"):
 			node_name += "_"+str(int(feature.part))
-		var group := model.get_node(node_name)
-		for child in group.get_children():
-			if child is MeshInstance3D and (child.get_meta("walk_collision",false) or child.name in ["Building", "Roof", "HillBase", "SchematicTerrain", "GateFootprint", "Gate"]):
-				_collider(child)
+		var group := model.get_node_or_null(node_name) as Node3D
+		if group != null and not group.has_meta("building_asset"):
+			build_feature(group)
 	var boundaries := [
 		[Vector3(-635,80,55),Vector3(2,160,930)],
 		[Vector3(635,80,55),Vector3(2,160,930)],

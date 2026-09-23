@@ -1,0 +1,20 @@
+{
+  "buildings": [
+    {"id":"77914","origin":[-0.013071537,2.796,480.537994],"photo_reference":"references/eda/buildings/library_information_profiles.json"},
+    {"id":"77917","origin":[99.059555,5.9084,369.131134],"photo_reference":"references/eda/buildings/library_information_profiles.json"},
+    {"id":"77921","origin":[-301.527618,13.9502,281.728668],"photo_reference":"references/eda/buildings/comprehensive_profile.json"},
+    {"id":"77923","origin":[-350.667603,19.1605,137.324356],"photo_reference":"references/eda/buildings/gym_profile.json","osm_facade_registration":"way/1076344144"},
+    {"id":"77925","origin":[94.138824,0.1824,-38.769974],"photo_reference":"references/eda/buildings/academic_facades.json"},
+    {"id":"77927","origin":[148.642822,-1.2355,73.151306],"photo_reference":"references/eda/buildings/academic_facades.json"},
+    {"id":"77928","origin":[48.579258,1.4057,25.305515],"photo_reference":"references/eda/buildings/academic_facades.json"},
+    {"id":"77931","origin":[507.841125,-14.7784,-48.974121],"photo_reference":"references/eda/buildings/residence_facades.json","photo_edges":[2,1,0],"photo_facade_vertices":[3.0,2.0,1.0]},
+    {"id":"77933","origin":[449.908325,-13.9339,-48.524387],"photo_reference":"references/eda/buildings/residence_facades.json","photo_edges":[2,1,3],"photo_facade_vertices":[3.0,2.0,1.0]},
+    {"id":"77935","origin":[403.592194,-12.1548,-10.350534],"photo_reference":"references/eda/buildings/residence_facades.json","photo_edges":[1,2],"photo_facade_vertices":[1.0,2.0,3.0]},
+    {"id":"77937","origin":[405.57959,-11.8591,35.221649],"photo_reference":"references/eda/buildings/residence_facades.json","photo_edges":[4,1,2],"photo_facade_vertices":[4.0,5.0]},
+    {"id":"77938","origin":[458.276031,-14.0348,44.924301],"photo_reference":"references/eda/buildings/residence_facades.json","photo_edges":[1,3,4]},
+    {"id":"77941","origin":[332.680786,-0.8215,296.324097],"photo_reference":"references/eda/buildings/residence_facades.json","photo_edges":[1,2,3],"photo_facade_vertices":[1.0,2.0,3.0]},
+    {"id":"77943","origin":[353.21936,-2.774,222.696243],"photo_reference":"references/eda/buildings/dining_profile.json"},
+    {"id":"96575","origin":[-467.13623,18.3693,263.752686],"facade_source":"unavailable"},
+    {"id":"2304982","origin":[391.055115,-9.6297,116.940804],"photo_reference":"references/eda/buildings/seventh-residence/profile.json"}
+  ]
+}

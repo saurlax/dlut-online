@@ -112,6 +112,8 @@ func field_markings(feature: Dictionary) -> PackedVector4Array:
 	return segments
 
 func apply(node: Node, feature_id := "") -> void:
+	if node is Node3D and node.has_meta("blender_source"):
+		return
 	if node.name.begins_with("Feature_"):
 		feature_id = node.name.get_slice("_",1)
 	if node is MeshInstance3D and node.material_override != null:
