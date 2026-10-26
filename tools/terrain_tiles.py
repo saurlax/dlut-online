@@ -52,8 +52,8 @@ def base_tile(material, variant):
     elif material == "water":
         if variant:
             x, y = [(2, 5), (7, 11), (4, 8)][variant - 1]
-            d.line((x, y, x + 4, y), fill=light)
-            d.line((x + 1, y + 1, x + 5, y + 1), fill=dark)
+            d.line([(x,y+1),(x+2,y+1),(x+3,y),(x+5,y)], fill=light)
+            d.line([(x+1,y+2),(x+3,y+2),(x+4,y+1),(x+6,y+1)], fill=dark)
     else:
         for _ in range(2):
             x, y = rng.randrange(2, 13), rng.randrange(2, 14)
@@ -77,7 +77,7 @@ def shape_mask(mask):
                 dx, dy = abs(x - cx), abs(y - cy)
                 if not cardinal[first] and not cardinal[second]:
                     # Rounded outer corner, including isolated cells and endcaps.
-                    if dx < 6 and dy < 6 and (dx - 6) ** 2 + (dy - 6) ** 2 > 12:
+                    if dx < 8 and dy < 8 and (dx - 8) ** 2 + (dy - 8) ** 2 > 25:
                         clipped = True
                 elif cardinal[first] and cardinal[second] and not mask & (1 << diagonal):
                     # Concave corner where a different material occupies the diagonal.
