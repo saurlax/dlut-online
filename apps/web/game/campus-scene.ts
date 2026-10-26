@@ -118,7 +118,7 @@ export class CampusScene extends Phaser.Scene {
         }
       }
     }
-    if (!/^(grass|path|asphalt|redwalk|track|court)/.test(material))
+    if (!/^(grass|woodland|field|path|asphalt|red-walk|track|court|paving|bridge)-/.test(material))
       return false;
     for (const b of this.campus.buildings) {
       let inside = false;
@@ -162,6 +162,7 @@ export class CampusScene extends Phaser.Scene {
     this.itemCatalog = items;
     this.pose = "";
     if (!state.profile) {
+      this.cameras.main.stopFollow();
       this.actor?.destroy();
       this.actor = undefined;
       return;
@@ -177,12 +178,17 @@ export class CampusScene extends Phaser.Scene {
           color: v.color,
         })),
     );
-    const previous = this.actor ? { x: this.actor.x, y: this.actor.y } : null;
-    this.actor?.destroy();
+    if (this.actor) {
+      const texture = this.textures.get("player") as Phaser.Textures.CanvasTexture;
+      texture.context.clearRect(0, 0, 16, 32);
+      texture.context.drawImage(canvas, 0, 0);
+      texture.refresh();
+      return;
+    }
     if (this.textures.exists("player")) this.textures.remove("player");
     this.textures.addCanvas("player", canvas);
-    let x = previous?.x ?? this.campus.focus[0] * 16,
-      y = previous?.y ?? this.campus.focus[1] * 16;
+    let x = this.campus.focus[0] * 16,
+      y = this.campus.focus[1] * 16;
     if (!this.walkable(x, y)) {
       find: for (let r = 0; r < 20; r++) {
         for (let dy = -r; dy <= r; dy++) {
@@ -203,6 +209,7 @@ export class CampusScene extends Phaser.Scene {
       .image(x, y, "player")
       .setOrigin(0.5, 1)
       .setDepth(100 + y / 16);
+    this.cameras.main.startFollow(this.actor, true, 1, 1);
   }
 
   constructor(
@@ -233,6 +240,7 @@ export class CampusScene extends Phaser.Scene {
     );
     this.cameras.main.setRoundPixels(true);
     this.cameras.main.setZoom(1);
+    this.cameras.main.setDeadzone(this.scale.width / 2, this.scale.height / 2);
     this.updateBounds();
     this.cameras.main.centerOn(
       this.campus.focus[0] * 16,
@@ -242,7 +250,10 @@ export class CampusScene extends Phaser.Scene {
       const camera = this.cameras.main;
       camera.setSize(this.scale.width, this.scale.height);
       this.updateBounds();
-      camera.centerOn(this.campus.focus[0] * 16, this.campus.focus[1] * 16);
+      camera.setDeadzone(camera.width / 2, camera.height / 2);
+      if (!this.actor) {
+        camera.centerOn(this.campus.focus[0] * 16, this.campus.focus[1] * 16);
+      }
     });
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.scale.removeAllListeners("resize");
@@ -310,9 +321,7 @@ export class CampusScene extends Phaser.Scene {
         const distance = (32 * Math.min(delta, 50)) / 1000 / Math.hypot(dx, dy);
         const x = this.actor.x + dx * distance,
           y = this.actor.y + dy * distance;
-        const v = this.cameras.main.worldView;
         if (
-          v.contains(x, y) &&
           this.walkable(x - 3, y) &&
           this.walkable(x + 3, y)
         )
