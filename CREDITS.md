@@ -19,3 +19,9 @@
 `tools/terrain_tiles.py` 直接在 16×16 画布生成原创像素贴图；`tools/draw_yongquan_study.py` 为独立美术构图工具。未使用星露谷物语的游戏贴图；该游戏只作为视觉风格参考。
 
 湖岸的朝向、坡面与水线层次具体参考星露谷 Wiki 的 [ThePond.png](https://stardewvalleywiki.com/File:ThePond.png) 和 [CindersapForest.png](https://stardewvalleywiki.com/File:CindersapForest.png)，图像版权属于 ConcernedApe。参考图仅存于忽略的本地目录，不提交、不作为地图贴图分发；岸坡颜色及像素由 `tools/shore_tiles.py` 独立绘制。
+
+## 标题画面
+
+首页标志与主楼广场背景由 imagegen 生成，经像素网格采样、有限调色板整理后使用。标志的书籍与幼苗意象参考[大连理工大学校徽说明](https://www.dlut.edu.cn/info/1364/35309.htm)，蓝色为游戏美术配色。
+
+背景以学校官网的[主楼广场照片](https://www.dlut.edu.cn/__local/F/15/C0/3CF32C7A03F1F6164F28544D708_61DC62F5_5F904.jpg)、校园地图建筑 77386 的正面照片和[主楼介绍](https://news.dlut.edu.cn/info/1261/83254.htm)为地域参考。照片版权归原权利人，仅离线参考；插画不用于测绘。构图与像素氛围参考星露谷官方[游戏页面](https://store.playstation.com/en-au/product/EP2319-CUSA26625_00-2010147637670638)的标题美术，未使用其贴图或标志。生成提示词、来源与处理参数见 `references/branding/title-screen.json`。
