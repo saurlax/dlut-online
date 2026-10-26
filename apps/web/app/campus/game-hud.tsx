@@ -20,7 +20,7 @@ export default function GameHud({ portal }: { portal: HTMLElement | null }) {
 
   useEffect(() => {
     function keydown(event: KeyboardEvent) {
-      if (event.key === 'Escape' && !event.defaultPrevented && !open) {
+      if (event.key === 'Escape' && !event.defaultPrevented && !open && !document.querySelector('[role="dialog"]')) {
         event.preventDefault();
         setOpen(true);
       }

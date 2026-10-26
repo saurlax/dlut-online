@@ -39,3 +39,7 @@
 首页标志与主楼广场背景由 imagegen 生成，经像素网格采样、有限调色板整理后使用。标志的书籍与幼苗意象参考[大连理工大学校徽说明](https://www.dlut.edu.cn/info/1364/35309.htm)，蓝色为游戏美术配色。
 
 背景以学校官网的[主楼广场照片](https://www.dlut.edu.cn/__local/F/15/C0/3CF32C7A03F1F6164F28544D708_61DC62F5_5F904.jpg)、校园地图建筑 77386 的正面照片和[主楼介绍](https://news.dlut.edu.cn/info/1261/83254.htm)为地域参考。照片版权归原权利人，仅离线参考；插画不用于测绘。构图与像素氛围参考星露谷官方[游戏页面](https://store.playstation.com/en-au/product/EP2319-CUSA26625_00-2010147637670638)的标题美术，未使用其贴图或标志。生成提示词、来源与处理参数见 `references/branding/title-screen.json`。
+
+## 校园大地图
+
+大地图由 imagegen 参考本项目 OSM 地理底稿与登记建筑生成，采用原创屋顶与地貌表达，参考[星露谷物语](https://www.stardewvalley.net/)的地图窗口风格，未使用其地图贴图。通过 tools/prepare_world_map.py 缩为 128×148 像素、64 色；来源与比例记录见 references/eda/world-map.json。OSM 数据署名与许可同本文前述约定。

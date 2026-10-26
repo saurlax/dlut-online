@@ -1,0 +1,23 @@
+{
+  "asset": "apps/web/public/campuses/eda/world-map.png",
+  "nativeSize": [
+    128,
+    148
+  ],
+  "metersPerPixel": 10,
+  "colors": 64,
+  "orientation": "north-up",
+  "readDate": "2026-10-26",
+  "geometrySource": "apps/web/public/campuses/eda/map.json",
+  "geometrySha256": "ed9db5b1d1465ed8aea3a2654618b549e516ed69b45183b4307fa0227913d804",
+  "referenceGenerator": "tools/prepare_world_map.py",
+  "generation": "imagegen, geographic material grid and registered building footprints provided as image reference",
+  "prompt": "North-up DLUT Online campus map, preserve full geographic reference bounds, buildings, two running ovals, lakes and roads. Stardew-inspired low-resolution pixel map with sage grass, teal water, warm parchment, rust tracks and prominent blue/ivory building roofs. No text, frame, legend or pins. Target 128x148, 10 meters per pixel.",
+  "processing": "Nearest-neighbor resize to ceil(worldWidthMeters/10) by ceil(worldHeightMeters/10), quantize to 64 colors without dithering. Final bottom row includes 8 meters padding.",
+  "limits": [
+    "Generated art is illustrative and may simplify or shift individual shapes; not a surveying or collision source.",
+    "Position marker and building hit areas use actual world coordinates, not positions inferred from generated artwork."
+  ],
+  "styleReference": "https://www.stardewvalley.net/",
+  "license": "Original generated artwork; no game textures copied."
+}

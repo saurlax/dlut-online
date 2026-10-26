@@ -19,6 +19,7 @@ export interface CampusMap {
   chunks: { x: number; y: number; layers: number[][]; overview: number[] }[];
   buildings: {
     id: string;
+    name: string;
     image: string;
     x: number;
     y: number;
@@ -97,6 +98,19 @@ export class CampusScene extends Phaser.Scene {
   private direction = 0;
   private keys = new Set<string>();
   private pose = "";
+
+  mapSnapshot() {
+    return {
+      width: Math.ceil(this.campus.width / 10),
+      height: Math.ceil(this.campus.height / 10),
+      player: this.actor ? { x: Math.round(this.actor.x / 160), y: Math.round(this.actor.y / 160) } : null,
+      landmarks: this.campus.buildings.filter(b=>!b.id.endsWith('-podium')).map(b=>{
+        const xs=b.footprint.map(p=>p[0]),ys=b.footprint.map(p=>p[1]);
+        const x=Math.floor(Math.min(...xs)/10),y=Math.floor(Math.min(...ys)/10);
+        return {id:b.id,name:b.name,x,y,width:Math.max(1,Math.ceil(Math.max(...xs)/10)-x),height:Math.max(1,Math.ceil(Math.max(...ys)/10)-y)};
+      }),
+    };
+  }
 
   private walkable(x: number, y: number) {
     const tx = Math.floor(x / 16),
