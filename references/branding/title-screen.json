@@ -1,0 +1,64 @@
+{
+  "created": "2026-10-26",
+  "method": "Built-in imagegen, followed by nearest-neighbor pixel-grid alignment, palette reduction without dithering, binary-alpha cleanup. No procedural scene redraw.",
+  "assets": [
+    {
+      "path": "apps/web/public/title/dlut-online.png",
+      "size": [
+        320,
+        160
+      ],
+      "visibleColors": 40,
+      "alpha": [
+        0,
+        255
+      ],
+      "motifs": [
+        "blue game lettering",
+        "open book supporting a green seedling",
+        "decorative coastal waves"
+      ],
+      "prompt": "Use case: logo-brand. Create one pixel-art title logo for a browser campus life game, exact lettering \"DLUT\" on the large upper line and \"Online\" on the smaller lower line. University of Technology in coastal Dalian: deep university blue #0b468f, blue midtones #3478bc, pale sky blue highlights, warm ivory edge, small green seedling rising from an open book integrated above the center of the letters. The seedling/open book is the main university motif, not wheat ears. Inspired by the cozy handcrafted presence and carefully composed large title lettering of classic 16-bit farming RPGs. ORIGINAL design, no wooden sign, no wood grain, no copied logo, no seal/circular university badge, no slogan, no additional lettering. Chunky bespoke pixel serif letters, friendly shaped silhouette, short dark-blue extrusion, clean readable type, balanced two-line composition. Truly crisp low-resolution pixel design on a consistent coarse square pixel grid, visually authored at 320x160 logical pixels with small limited palette. No antialiasing, no smooth vector curves, no blur, no photoreal textures, no gradients, no mockup, no background. Actual transparent background. All letters readable verbatim: DLUT Online. This is a composition reference for a later native-resolution pixel redraw."
+    },
+    {
+      "path": "apps/web/public/title/landscape.png",
+      "size": [
+        512,
+        288
+      ],
+      "colors": 64,
+      "view": "horizontal, directly south-to-north along the main-building axis; central frontal statue and facade",
+      "prompt": "Use case: precise-object-edit / illustration composition.\nCreate the FINAL LANDSCAPE (horizontal, 16:9) title-screen background. Image 1 is a STYLE REFERENCE only: preserve its lush detailed pixel clusters, warm pale-beige stone, blue sky and spring greenery. Image 2 is the FRONT-ON facade photo of Dalian University of Technology's MAIN BUILDING: use it as the architectural/camera reference.\nCRITICAL CHANGE: place the camera EXACTLY ON THE MAIN BUILDING'S CENTRAL NORTH-SOUTH AXIS, facing its front facade STRAIGHT ON. Perfectly level horizontal roof lines, central portico centered at x=50%, matching left and right wings in a balanced symmetric frontal composition. The facade is parallel to the picture plane. This is a DIRECT FRONT VIEW, not an oblique view from either side, not an isometric angle. Do not preserve image 1's diagonal/off-center viewpoint.\nPut the Mao Zedong stone statue and red-granite plinth exactly on the SAME CENTER LINE in the foreground (x=50%), seen STRAIGHT FROM THE FRONT, BOTH HANDS BEHIND HIS BACK, long coat, no raised arm. Statue head at y=46%, full figure down to about y=73%, stepped red pedestal down to y=86%. The six-storey main building forms the background with its central entrance directly behind the monument; upper roof around y=57%, ground near y=80%. The building should read as a real six-storey flat-roof campus main block with lower symmetric side wings, not a castle or European palace. Rectangular column portico, repeated narrow windows and shallow cornices supported by the facade photo. Warm spring sun from upper left.\nMake the UPPER 40% mainly calm rich blue sky with a few beautifully clustered pixel clouds toward the outer sides, reserved for a separately overlaid logo. Frame both outside edges with finely detailed leafy trees, leave the center unobstructed. Low clipped hedges run symmetrically left and right of the statue. Lower foreground: warm stone square tiles recede with ONE-POINT perspective to center; fine leaf shadows, subtle stone texture, a few round stone bollards. Keep the bottom center clear enough for one separate small menu button. No invented lake or river. No people.\nPolished cozy 16-bit pixel-art game title background with Stardew Valley-like richness and intentional pixels, not a photo filter. Consistent square logical pixel grid (512x288 logical canvas, request exactly 3x nearest-neighbor enlargement, 1536x864). Approximately 64 coordinated colors, clean hard pixel clusters, delicate restrained dithering, readable architecture and sculpted foliage, no smooth anti-aliased outlines or painterly blur.\nNO text, NO logo, NO menu, NO title, NO frame. Horizontal panoramic canvas. The camera and central alignment are the main requested correction."
+    }
+  ],
+  "references": [
+    {
+      "url": "https://www.dlut.edu.cn/info/1364/35309.htm",
+      "use": "official book and seedling symbolism",
+      "retrieved": "2026-10-26"
+    },
+    {
+      "url": "https://www.dlut.edu.cn/__local/F/15/C0/3CF32C7A03F1F6164F28544D708_61DC62F5_5F904.jpg",
+      "use": "main square, statue with hands behind back, red granite plinth, hedge and paving references",
+      "retrieved": "2026-10-26",
+      "photoDate": null
+    },
+    {
+      "url": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77386",
+      "use": "front-facing main building reference, image 825330, archived photo 77386-0.jpg",
+      "retrieved": "2026-09-09",
+      "photoDate": null
+    },
+    {
+      "url": "https://news.dlut.edu.cn/info/1261/83254.htm",
+      "use": "main-building identity and six-storey facade",
+      "retrieved": "2026-10-26"
+    },
+    {
+      "url": "https://store.playstation.com/en-au/product/EP2319-CUSA26625_00-2010147637670638",
+      "use": "Stardew Valley title composition and pixel-art mood only; no source game assets reused",
+      "retrieved": "2026-10-26"
+    }
+  ],
+  "limits": "Title illustration only, not a survey or ground-map source. Reference photographs and intermediate generated images are not runtime assets."
+}
