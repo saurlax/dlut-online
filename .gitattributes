@@ -1,1 +1,2 @@
+# Track assets directly in Git; do not add Git LFS filters.
 * text=auto eol=lf

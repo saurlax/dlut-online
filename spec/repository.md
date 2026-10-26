@@ -13,6 +13,8 @@
 
 `main` 为产品主线，独立任务在对应类型的工作分支上开发。
 
+源码、字体、像素图片与参考数据直接使用普通 Git 跟踪，不依赖 Git LFS。`.gitattributes` 只维护普通 Git 属性，不添加 LFS 过滤规则；检出和 CI 不需要安装、拉取或推送 LFS 对象。此约定适用于当前主线及后续提交，不重写已有历史。
+
 ## 构建与发行
 
 Next.js 使用 `output: "export"` 和 `trailingSlash: true`，构建输出 `apps/web/out/`。Go 通过文件系统提供完整导出目录，不用 SPA 首页兜底掩盖未知 URL，也不覆盖 PocketBase `/api/` 与 `/_/`。
