@@ -27,6 +27,7 @@ body { margin: 0; font-size: calc(12 * var(--pixel)); line-height: 1; }
 .pixel-text-content { position: absolute; width: 0; height: 0; overflow: hidden; }
 .missing-page { padding: calc(12 * var(--pixel)); }
 .missing-page p, .missing-page h1 { margin: 0 0 calc(12 * var(--pixel)); font: inherit; }
-.title-logo { position: absolute; width: 0; height: 0; overflow: hidden; margin: 0; }
+.title-logo { position: absolute; left: 50%; top: 24px; transform: translateX(-50%); width: 320px; height: 160px; margin: 0; line-height: 0; pointer-events: none; }
+.title-logo img { display: block; width: 320px; height: 160px; image-rendering: pixelated; }
 a { color: inherit; text-underline-offset: calc(2 * var(--pixel)); }
 a:focus-visible { outline: var(--pixel) solid currentColor; outline-offset: calc(2 * var(--pixel)); }

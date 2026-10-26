@@ -15,7 +15,6 @@ export default function TitleMenu() {
   const [portal, setPortal] = useState<HTMLElement | null>(null);
   return (
     <section className="title-menu pixel-interface" aria-label="游戏主菜单" ref={setPortal}>
-      <h1 className="title-logo">DLUT Online</h1>
       <Dialog.Root>
         <div className="title-actions">
           <GameLink className="campus-entry" href="/campus/">进入校园</GameLink>
