@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Phaser from "phaser";
-import { CampusScene, type CampusMap } from "../../game/campus-scene";
+import { CampusScene, type CampusMap, type EnvironmentAnimations } from "../../game/campus-scene";
 import GameHud from "./game-hud";
 import Wardrobe from "./wardrobe";
 import WorldMap from "./world-map";
@@ -25,13 +25,15 @@ export default function MapCanvas() {
     let game: Phaser.Game | undefined;
     let stop: (() => void) | undefined;
     async function start() {
-      const response = await fetch("/campuses/eda/map.json", {
-        signal: abort.signal,
-      });
-      if (!response.ok) throw new Error("Map request failed");
+      const [response, animationResponse] = await Promise.all([
+        fetch("/campuses/eda/map.json", { signal: abort.signal }),
+        fetch("/campuses/eda/animations/manifest.json", { signal: abort.signal }),
+      ]);
+      if (!response.ok || !animationResponse.ok) throw new Error("Map request failed");
       const data: CampusMap = await response.json();
+      const animations: EnvironmentAnimations = await animationResponse.json();
       if (abort.signal.aborted) return;
-      const campus = new CampusScene(data, () => setLoaded(true));
+      const campus = new CampusScene(data, () => setLoaded(true), animations);
       scene.current = campus;
       const grid = pixelGrid();
       game = new Phaser.Game({
