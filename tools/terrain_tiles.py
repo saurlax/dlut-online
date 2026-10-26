@@ -1,6 +1,7 @@
-"""Native 16x16 material tiles selected with normalized eight-neighbor masks."""
+"""Native 16x16 material tiles with diagonal cell-center contours."""
 
 import random
+from functools import lru_cache
 
 from PIL import Image, ImageColor, ImageDraw
 
@@ -14,17 +15,6 @@ PALETTE = {
 }
 
 
-def normalize_mask(mask):
-    """A diagonal participates only when its two cardinal neighbors connect."""
-    for diagonal, first, second in ((4, 0, 1), (5, 1, 2), (6, 2, 3), (7, 3, 0)):
-        if not (mask & (1 << first) and mask & (1 << second)):
-            mask &= ~(1 << diagonal)
-    return mask
-
-
-MASKS = sorted({normalize_mask(value) for value in range(256)})
-
-
 def variant_at(x, y):
     """Stable world-grid variation, independent of crop or generation order."""
     value = ((x * 374761393) ^ (y * 668265263)) & 0xFFFFFFFF
@@ -35,7 +25,7 @@ def variant_at(x, y):
 def neighbor_mask(material_at, x, y, material):
     mask = sum(1 << bit for bit, (dx, dy) in enumerate(NEIGHBORS)
                if material_at(x + dx, y + dy) == material)
-    return normalize_mask(mask)
+    return mask | (int(material_at(x, y) == material) << 8)
 
 
 def base_tile(material, variant):
@@ -61,50 +51,45 @@ def base_tile(material, variant):
     return image
 
 
-def shape_mask(mask):
-    """The material's silhouette inside one cell; neighboring cells stay intact."""
-    image = Image.new("1", (SIZE, SIZE))
-    cardinal = [bool(mask & (1 << bit)) for bit in range(4)]
-    corners = [(15, 0, 0, 1, 4), (15, 15, 1, 2, 5),
-               (0, 15, 2, 3, 6), (0, 0, 3, 0, 7)]
-    for y in range(SIZE):
-        for x in range(SIZE):
-            if ((not cardinal[0] and y < 3) or (not cardinal[1] and x > 12)
-                    or (not cardinal[2] and y > 12) or (not cardinal[3] and x < 3)):
-                continue
-            clipped = False
-            for cx, cy, first, second, diagonal in corners:
-                dx, dy = abs(x - cx), abs(y - cy)
-                if not cardinal[first] and not cardinal[second]:
-                    # Rounded outer corner, including isolated cells and endcaps.
-                    if dx < 8 and dy < 8 and (dx - 8) ** 2 + (dy - 8) ** 2 > 25:
-                        clipped = True
-                elif cardinal[first] and cardinal[second] and not mask & (1 << diagonal):
-                    # Concave corner where a different material occupies the diagonal.
-                    if dx + dy < 3:
-                        clipped = True
-            if not clipped:
-                image.putpixel((x, y), 1)
+@lru_cache(maxsize=1024)
+def shape_mask(mask, padding=0):
+    """Interpolate cell-center occupancy into a hard-pixel diagonal contour."""
+    values = {position: bool(mask & (1 << bit))
+              for bit, position in enumerate((*NEIGHBORS, (0, 0)))}
+    image = Image.new("1", (SIZE+padding*2, SIZE+padding*2))
+    for y in range(-padding,SIZE+padding):
+        sy = -1 if y < 8 else 0
+        ty = 2*y + 17 if y < 8 else 2*y - 15
+        for x in range(-padding,SIZE+padding):
+            sx = -1 if x < 8 else 0
+            tx = 2*x + 17 if x < 8 else 2*x - 15
+            # Integer bilinear weights avoid filtering or fractional-color pixels.
+            value = (values[sx,sy]*(32-tx)*(32-ty)
+                     + values[sx+1,sy]*tx*(32-ty)
+                     + values[sx,sy+1]*(32-tx)*ty
+                     + values[sx+1,sy+1]*tx*ty)
+            if value >= 512:
+                image.putpixel((x+padding,y+padding),1)
     return image
 
 
 def transition_tile(material, mask, variant):
     """Transparent land-side pixels reveal the independent grass underlay."""
     image = base_tile(material, variant).convert("RGBA")
-    shape = shape_mask(mask)
+    shape = shape_mask(mask,2)
     pixels = image.load()
     bank = ImageColor.getrgb("#a9b579")
     curb = ImageColor.getrgb("#e8d9b5")
     for y in range(SIZE):
         for x in range(SIZE):
-            if not shape.getpixel((x, y)):
+            if not shape.getpixel((x+2, y+2)):
                 pixels[x, y] = (0, 0, 0, 0)
                 continue
-            # Only sample within this tile: connected edges are not outlines.
+            # Continue the same contour across the seam when drawing the rim.
             distance = min((abs(xx-x)+abs(yy-y)
-                            for yy in range(max(0,y-2), min(SIZE,y+3))
-                            for xx in range(max(0,x-2), min(SIZE,x+3))
-                            if not shape.getpixel((xx,yy))), default=3)
+                            for yy in range(y-2,y+3)
+                            for xx in range(x-2,x+3)
+                            if not shape.getpixel((xx+2,yy+2))), default=3)
             if distance == 1:
                 pixels[x, y] = (*(curb if material == "red-walk" else bank), 255)
             elif distance == 2 and material == "water":
@@ -112,16 +97,16 @@ def transition_tile(material, mask, variant):
     return image
 
 
-def generate_tiles(directory):
+def generate_tiles(directory, masks_by_material):
     directory.mkdir(parents=True, exist_ok=True)
     tiles = {}
     for variant in range(4):
         name = f"grass-{variant}"
         tiles[name] = base_tile("grass", variant).convert("RGBA")
-    for material in ("water", "red-walk"):
-        for mask in MASKS:
+    for material, masks in masks_by_material.items():
+        for mask in sorted(masks):
             for variant in range(4):
-                name = f"{material}-{mask:02x}-{variant}"
+                name = f"{material}-{mask:03x}-{variant}"
                 tiles[name] = transition_tile(material, mask, variant)
     for name, image in tiles.items():
         image.save(directory / f"{name}.png", optimize=True)

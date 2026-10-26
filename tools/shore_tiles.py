@@ -20,9 +20,8 @@ def assemble_shores(materials, bounds, directory):
     water = Image.new("1", ((width+2)*16, (height+2)*16))
     for y in range(top-1, bottom+1):
         for x in range(left-1, right+1):
-            if materials[x,y] == "water":
-                mask = neighbor_mask(lambda xx,yy: materials[xx,yy], x,y,"water")
-                water.paste(shape_mask(mask), ((x-left+1)*16, (y-top+1)*16))
+            mask = neighbor_mask(lambda xx,yy: materials[xx,yy], x,y,"water")
+            water.paste(shape_mask(mask), ((x-left+1)*16, (y-top+1)*16))
 
     tiles, cells = {}, []
     for y in range(height):
