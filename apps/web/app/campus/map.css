@@ -1,14 +1,35 @@
-.campus-map { position: fixed; inset: 0; background: #737d61; overflow: hidden; }
+.campus-map { position: fixed; inset: 0; background: #737d61; overflow: hidden; color: #123e70; }
 .campus-canvas { width: 100%; height: 100%; touch-action: none; }
 .campus-canvas canvas { display: block; image-rendering: pixelated; }
-.map-back, .map-controls { position: absolute; top: 1rem; z-index: 1; background: #f6f4eb; border: 1px solid #69765e; border-radius: 4px; box-shadow: 0 2px 0 #3b503b40; }
-.map-back { left: 1rem; width: 2.5rem; height: 2.5rem; display: grid; place-items: center; text-decoration: none; }
-.map-controls { right: 1rem; display: flex; }
-.map-controls button { width: 2.5rem; height: 2.5rem; background: none; border: 0; color: #243b32; font: inherit; font-size: 24px; cursor: pointer; }
-.map-controls button:hover { background: #e2e6d4; }
-.map-controls button:focus-visible { outline: 2px solid #243b32; outline-offset: -4px; }
-.map-attribution { position: absolute; bottom: 0; right: 0; padding: .2rem .5rem; background: #f6f4ebdd; color: #243b32; font-size: 12px; text-decoration: none; }
+.game-hud { position: absolute; top: max(1rem, env(safe-area-inset-top)); right: max(1rem, env(safe-area-inset-right)); display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.mini-map-frame { position: relative; padding: 6px; border: 2px solid #123e70; background: #fff3d0; box-shadow: 2px 2px 0 #123e70, inset 0 0 0 2px #d2d9ba; }
+.mini-map { display: block; width: 160px; height: 184px; image-rendering: pixelated; }
+.mini-map-north { position: absolute; top: 10px; right: 10px; padding: 2px 3px; background: #fff3d0; font-size: 12px; line-height: 1; }
+.hud-settings { display: grid; place-items: center; width: 44px; height: 44px; padding: 4px; border: 2px solid #123e70; background: #fff3d0; color: #123e70; box-shadow: 2px 2px 0 #123e70, inset 0 -3px 0 #d2d9ba; cursor: pointer; }
+.hud-settings svg { display: block; width: 32px; height: 32px; }
+.hud-settings:hover { background: #fff9e7; }
+.hud-settings:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 #123e70; }
+.game-settings { width: min(340px, calc(100vw - 32px)); max-height: calc(100svh - 32px); padding: 0; border: 4px solid #123e70; background: #fff3d0; color: #123e70; box-shadow: 4px 4px 0 #123e70; font: inherit; }
+.game-settings::backdrop { background: #10283b70; }
+.settings-content { display: flex; flex-direction: column; gap: 16px; padding: 24px; border: 2px solid #c5cdaa; }
+.settings-content h2 { margin: 0 0 8px; font: inherit; text-align: center; }
+.settings-option { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 40px; cursor: pointer; }
+.settings-option input { appearance: none; width: 24px; height: 24px; margin: 0; border: 2px solid #123e70; background: #f6f4eb; cursor: pointer; }
+.settings-option input:checked { background: #3478bc; box-shadow: inset 0 0 0 4px #fff3d0; }
+.settings-action, .settings-resume { display: grid; place-items: center; min-height: 44px; width: 100%; padding: 8px; border: 2px solid #123e70; background: #fff9e7; color: #123e70; font: inherit; line-height: 1; text-decoration: none; cursor: pointer; }
+.settings-action:hover, .settings-resume:hover { background: #e1e8cf; }
+.settings-resume { margin-top: 8px; background: #2166a4; color: #fff3d0; box-shadow: inset 0 -3px 0 #123e70; }
+.settings-resume:hover { background: #3478bc; }
+.settings-content form { margin: 0; }
+.settings-error { margin: 0; font-size: 12px; color: #9b423c; }
+.hud-settings:focus-visible, .settings-content :focus-visible { outline: 2px solid #3478bc; outline-offset: 4px; }
+.map-attribution { position: absolute; bottom: 0; right: 0; padding: .2rem .5rem; background: #f6f4ebdd; color: #243b32; font-size: 12px; pointer-events: none; user-select: none; }
 .map-error { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 1rem; background: #f6f4eb; }
 .map-progress { position: absolute; bottom: 0; height: 3px; width: 40%; background: #e4d6a7; animation: map-loading 1.4s ease-in-out infinite alternate; }
 @keyframes map-loading { from { left: 0; } to { left: 60%; } }
 @media (prefers-reduced-motion: reduce) { .map-progress { animation: none; left: 0; width: 100%; } }
+@media (max-height: 480px) {
+  .game-hud { top: 12px; right: 12px; gap: 8px; }
+  .mini-map { width: 120px; height: 138px; }
+  .settings-content { padding: 16px; gap: 8px; }
+}
