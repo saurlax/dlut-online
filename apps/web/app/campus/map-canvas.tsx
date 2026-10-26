@@ -62,7 +62,6 @@ export default function MapCanvas() {
         {!loaded && !error && <div className="map-progress" role="progressbar" aria-label="地图加载中" />}
         {error && <p className="map-error" role="alert"><PixelText>地图加载失败</PixelText></p>}
         {loaded && <GameHud portal={interfaceHost} />}
-        <span className="map-attribution"><PixelText>© OpenStreetMap</PixelText><PixelText> contributors</PixelText></span>
       </div>
     </div>
   );

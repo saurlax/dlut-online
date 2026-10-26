@@ -2,7 +2,7 @@
 
 ## 界面交互
 
-设置弹窗使用 [Radix Primitives](https://www.radix-ui.com/primitives/docs/overview/introduction) 的 `@radix-ui/react-dialog` 1.3.1，按 [MIT License](https://github.com/radix-ui/primitives/blob/main/LICENSE) 授权。按钮外观及书籍、禾苗等像素图标由本项目制作，沿用标题标志的大工意象。
+设置与关于弹窗使用 [Radix Primitives](https://www.radix-ui.com/primitives/docs/overview/introduction) 的 `@radix-ui/react-dialog` 1.3.1，按 [MIT License](https://github.com/radix-ui/primitives/blob/main/LICENSE) 授权。按钮外观及书籍、禾苗等像素图标由本项目制作，沿用标题标志的大工意象。
 
 ## 界面字体
 
@@ -11,6 +11,8 @@
 ## OpenStreetMap
 
 开发区校区地图来源于 © OpenStreetMap contributors，采用 [Open Database License 1.0](https://opendatacommons.org/licenses/odbl/1-0/)。来源及署名信息见 [OpenStreetMap Copyright](https://www.openstreetmap.org/copyright)。
+
+游戏内署名与许可入口集中于首页“关于”，不占用地图画面；采用 OSMF [署名指南中游戏与模拟](https://osmfoundation.org/wiki/Licence/Attribution_Guidelines#Computer_games_and_simulations)允许的菜单署名位置。
 
 `references/eda/osm.osm.gz` 保存 2026-09-16 下载的原始数据；请求范围、版本与校验值见 `references/eda/osm-source.json`。涌泉湖生成工具使用其中的水面和步道几何，导出的材质网格保留来源对象 ID、版本与署名。数据库及其派生数据遵循 ODbL；像素贴图与数据库分开维护。
 

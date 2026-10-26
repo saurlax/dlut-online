@@ -2,7 +2,7 @@ import type { ComponentPropsWithRef } from 'react';
 import PixelText from './pixel-text';
 import './game-button.css';
 
-type IconName = 'sprout' | 'settings' | 'fullscreen' | 'window' | 'home';
+type IconName = 'sprout' | 'settings' | 'fullscreen' | 'window' | 'home' | 'info';
 type Appearance = 'primary' | 'secondary' | 'icon';
 
 export function GameIcon({ name }: { name: IconName }) {
@@ -18,6 +18,7 @@ export function GameIcon({ name }: { name: IconName }) {
       {name === 'fullscreen' && <path fill="currentColor" d="M1 1h5v2H3v3H1zm9 0h5v5h-2V3h-3zM1 10h2v3h3v2H1zm12 0h2v5h-5v-2h3z" />}
       {name === 'window' && <path fill="currentColor" fillRule="evenodd" d="M1 2h14v12H1zm2 4v6h10V6z" />}
       {name === 'home' && <path fill="currentColor" d="M7 1h2v2h2v2h2v2h2v2h-2v6H9v-4H7v4H3V9H1V7h2V5h2V3h2z" />}
+      {name === 'info' && <path fill="currentColor" fillRule="evenodd" d="M4 1h8v2h2v2h1v6h-1v2h-2v2H4v-2H2v-2H1V5h1V3h2zm1 2v2H3v6h2v2h6v-2h2V5h-2V3zM7 4h2v2H7zm0 3h2v5H7z" />}
     </svg>
   );
 }

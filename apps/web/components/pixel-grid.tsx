@@ -12,6 +12,7 @@ export default function PixelGrid() {
     root.style.setProperty('--center-x', `${Math.floor(width / 2)}px`);
     root.style.setProperty('--center-y', `${Math.floor(height / 2)}px`);
     root.style.setProperty('--panel-width', `${Math.min(180, 2 * Math.floor((width - 16) / 2))}px`);
+    root.style.setProperty('--about-width', `${Math.min(272, 2 * Math.floor((width - 16) / 2))}px`);
     root.style.setProperty('--panel-max-height', `${2 * Math.floor((height - 16) / 2)}px`);
     root.dataset.pixelCompact = String(compact);
     root.dataset.pixelNarrow = String(width < 160);

@@ -2,17 +2,11 @@
 .campus-canvas { width: 100%; height: 100%; touch-action: none; }
 .campus-canvas canvas { display: block; transform-origin: 0 0; image-rendering: pixelated; }
 .game-hud { position: absolute; top: calc(8 * var(--pixel)); right: calc(8 * var(--pixel)); }
-.game-settings-overlay { position: absolute; left: 0; top: 0; width: calc(100% + var(--pixel)); height: calc(100% + var(--pixel)); z-index: 20; background: #10283b70; pointer-events: auto; }
-.game-settings { position: absolute; left: var(--center-x); top: var(--center-y); z-index: 21; transform: translate(-50%, -50%); width: var(--panel-width); max-height: var(--panel-max-height); overflow-y: auto; border: calc(2 * var(--pixel)) solid #123e70; background: #fff3d0; color: #123e70; box-shadow: calc(2 * var(--pixel)) calc(2 * var(--pixel)) 0 #0b2d50, inset 0 0 0 var(--pixel) #d5b975; font: inherit; pointer-events: auto; }
-.settings-header { display: flex; align-items: center; justify-content: center; gap: calc(6 * var(--pixel)); height: calc(34 * var(--pixel)); border-bottom: calc(2 * var(--pixel)) solid #123e70; background: #2166a4; color: #fff3d0; box-shadow: inset 0 var(--pixel) 0 #80c7e3, inset 0 calc(-1 * var(--pixel)) 0 #174779; }
-.settings-header h2 { display: flex; margin: 0; font: inherit; }
 .settings-content { display: flex; flex-direction: column; gap: calc(8 * var(--pixel)); padding: calc(12 * var(--pixel)); }
 .settings-content .game-button { width: 100%; justify-content: flex-start; flex-shrink: 0; }
 .settings-error { margin: 0; color: #9b423c; }
-.map-attribution { position: absolute; bottom: 0; right: 0; display: flex; flex-wrap: wrap; width: max-content; max-width: 100%; padding: calc(2 * var(--pixel)) calc(4 * var(--pixel)); background: #f6f4ebdd; color: #243b32; pointer-events: none; user-select: none; }
 .map-error { position: absolute; left: calc(8 * var(--pixel)); top: var(--center-y); margin: 0; padding: calc(8 * var(--pixel)); background: #f6f4eb; }
 .map-progress { position: absolute; bottom: 0; height: calc(2 * var(--pixel)); width: 100%; background: #e4d6a7; }
 :root[data-pixel-narrow="true"] .settings-content { padding: calc(8 * var(--pixel)); }
-:root[data-pixel-compact="true"] .settings-header { height: calc(24 * var(--pixel)); }
 :root[data-pixel-compact="true"] .settings-content { padding: calc(6 * var(--pixel)); gap: calc(4 * var(--pixel)); }
 :root[data-pixel-compact="true"] .settings-content .game-button { height: calc(28 * var(--pixel)); padding-top: calc(3 * var(--pixel)); padding-bottom: calc(3 * var(--pixel)); }
