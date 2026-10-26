@@ -16,6 +16,8 @@ export interface CampusMap {
   height: number;
   textures: string[];
   focus: [number, number];
+  materials: string[];
+  materialRuns: number[];
   chunks: { x: number; y: number; layers: number[][]; overview: number[] }[];
   buildings: {
     id: string;
@@ -98,6 +100,41 @@ export class CampusScene extends Phaser.Scene {
   private direction = 0;
   private keys = new Set<string>();
   private pose = "";
+
+  minimapTerrain() {
+    const palette: Record<string, string> = {
+      outside: '#778e5a', grass: '#93bb60', woodland: '#608044', water: '#448f99',
+      asphalt: '#777b72', path: '#c4b48b', 'red-walk': '#c7785e', paving: '#b8b59b',
+      bridge: '#b9bea8', track: '#b46c55', court: '#719c8f', field: '#8aaa5a',
+    };
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.ceil(this.campus.width / 2);
+    canvas.height = Math.ceil(this.campus.height / 2);
+    const context = canvas.getContext('2d')!;
+    let offset = 0;
+    for (let i = 0; i < this.campus.materialRuns.length; i += 2) {
+      const count = this.campus.materialRuns[i];
+      context.fillStyle = palette[this.campus.materials[this.campus.materialRuns[i + 1]]];
+      for (let j = offset; j < offset + count; j++) {
+        const x = j % this.campus.width, y = Math.floor(j / this.campus.width);
+        if (x % 2 === 1 && y % 2 === 1) context.fillRect(Math.floor(x / 2), Math.floor(y / 2), 1, 1);
+      }
+      offset += count;
+    }
+    context.fillStyle = '#e2d5b4';
+    for (const building of this.campus.buildings) {
+      context.beginPath();
+      building.footprint.forEach(([x,y], i) => i === 0 ? context.moveTo(x/2,y/2) : context.lineTo(x/2,y/2));
+      context.closePath(); context.fill();
+    }
+    return canvas;
+  }
+
+  minimapPosition() {
+    return this.actor
+      ? { x: this.actor.x / 32, y: this.actor.y / 32, direction: this.direction, active: true }
+      : { x: this.campus.focus[0] / 2, y: this.campus.focus[1] / 2, direction: 0, active: false };
+  }
 
   mapSnapshot() {
     return {

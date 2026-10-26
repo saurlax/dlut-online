@@ -43,7 +43,7 @@ export default function GameHud({ portal }: { portal: HTMLElement | null }) {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <aside className="game-hud" aria-label="游戏界面">
         <Dialog.Trigger asChild>
-          <GameButton appearance="icon" icon="settings" aria-label="设置" />
+          <GameButton appearance="icon" aria-label="设置">⚙</GameButton>
         </Dialog.Trigger>
       </aside>
       <Dialog.Portal container={portal}>
