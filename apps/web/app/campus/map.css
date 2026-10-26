@@ -4,10 +4,10 @@
 .map-back, .map-controls { position: absolute; top: 1rem; z-index: 1; background: #f6f4eb; border: 1px solid #69765e; border-radius: 4px; box-shadow: 0 2px 0 #3b503b40; }
 .map-back { left: 1rem; width: 2.5rem; height: 2.5rem; display: grid; place-items: center; text-decoration: none; }
 .map-controls { right: 1rem; display: flex; }
-.map-controls button { width: 2.5rem; height: 2.5rem; background: none; border: 0; color: #243b32; font: inherit; font-size: 1.4rem; cursor: pointer; }
+.map-controls button { width: 2.5rem; height: 2.5rem; background: none; border: 0; color: #243b32; font: inherit; font-size: 24px; cursor: pointer; }
 .map-controls button:hover { background: #e2e6d4; }
 .map-controls button:focus-visible { outline: 2px solid #243b32; outline-offset: -4px; }
-.map-attribution { position: absolute; bottom: 0; right: 0; padding: .2rem .5rem; background: #f6f4ebdd; color: #243b32; font-size: .65rem; text-decoration: none; }
+.map-attribution { position: absolute; bottom: 0; right: 0; padding: .2rem .5rem; background: #f6f4ebdd; color: #243b32; font-size: 12px; text-decoration: none; }
 .map-error { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 1rem; background: #f6f4eb; }
 .map-progress { position: absolute; bottom: 0; height: 3px; width: 40%; background: #e4d6a7; animation: map-loading 1.4s ease-in-out infinite alternate; }
 @keyframes map-loading { from { left: 0; } to { left: 60%; } }

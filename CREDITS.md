@@ -1,5 +1,9 @@
 # 素材与数据来源
 
+## 界面字体
+
+界面使用 [缝合像素字体 / Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font)，版本 [2026.10.25](https://github.com/TakWolf/fusion-pixel-font/releases/tag/2026.10.25)，12px 简体中文比例版（`fusion-pixel-12px-proportional-zh_hans.otf.woff2`）。字体版权归 TakWolf 及相应上游作者，按 SIL Open Font License 1.1 授权。本地字体文件仅更名，未修改字形；完整授权及随包上游授权保留在 `apps/web/public/fonts/fusion-pixel/`，随站点静态资源发布。
+
 ## OpenStreetMap
 
 开发区校区地图来源于 © OpenStreetMap contributors，采用 [Open Database License 1.0](https://opendatacommons.org/licenses/odbl/1-0/)。来源及署名信息见 [OpenStreetMap Copyright](https://www.openstreetmap.org/copyright)。
