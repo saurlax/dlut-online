@@ -59,3 +59,7 @@ tools/terrain_tiles.py 和 tools/campus_objects.py 读取这些已提交原片�
 阔叶树、柳树、针叶树和低灌木采用 imagegen 生成的独立透明素材，每类两种变体。正式原片位于 apps/web/public/campuses/eda/vegetation：阔叶树与柳树 96×144，针叶树 48×112，灌木 32×32；最多 16 种可见颜色，透明度仅 0 或 255。原片按底部接地区域登记锚点，以最近邻缩到原生画布，清理离散边缘，再拆成严格 16×16 模块。tools/campus_objects.py 直接读取已提交原片，不再程序化堆叠圆团绘制植被。
 
 python tools/prepare_vegetation.py --refresh 重建植被模块和 plantPrototypes，清理废弃模块，保持原始植物实例位置、原型画布尺寸和地理要素不变；地面纹理名称映射保持一致。完整校园生成同样读取这些原片，无需再次 imagegen。来源与提示词见 references/eda/vegetation-art.json。沿用已实现的树冠整数像素风摆，树根固定。
+
+## 建筑遮挡
+
+独立建筑 PNG 的透明画布不作为落地排序依据。前端根据登记 footprint 和建筑表达高度生成复用原图的裁片，按局部外墙落点排序；圆形、斜边及凹形轮廓沿用真实占地，不为解决遮挡而强行方正化。图片留白不参与人物重叠判定；具体渲染精度和半透明规则见前端规范。
