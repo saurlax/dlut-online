@@ -12,7 +12,7 @@ from campus_objects import build_building, plant_prototypes
 from campus_terrain import IDS, MATERIALS, load_osm, rasterize
 from generate_lakeside_grid import inside_polygon
 from shore_tiles import assemble_shores
-from terrain_tiles import base_tile, neighbor_mask, shape_mask, transition_tile, variant_at
+from terrain_tiles import SURFACE_MATERIALS, base_tile, neighbor_mask, shape_mask, transition_tile, variant_at
 
 ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT/"references/eda"
@@ -90,7 +90,8 @@ def main():
             x,y=left+i%width,top+i//width
             mask=neighbor_mask(material_at,x,y,code)
             if not shape_mask(mask).getbbox():continue
-            variant=variant_at(x,y) if mask==511 else 0
+            textured=mask==511 or (name in SURFACE_MATERIALS and mask & 256)
+            variant=variant_at(x,y) if textured else 0
             tile=catalog(f"{name}-{mask:03x}-{variant}",lambda:transition_tile(name,mask,variant))
             layer[i]=tile
         layers.append(layer)

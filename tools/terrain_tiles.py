@@ -8,6 +8,7 @@ from PIL import Image, ImageColor, ImageDraw
 SIZE = 16
 NEIGHBORS = ((0, -1), (1, 0), (0, 1), (-1, 0),
              (1, -1), (1, 1), (-1, 1), (-1, -1))
+SURFACE_MATERIALS = {"asphalt", "path", "red-walk", "track", "court"}
 PALETTE = {
     "grass": ("#93bb60", "#80aa54", "#acce77"),
     "water": ("#448f99", "#3c828e", "#66adb0"),
@@ -58,10 +59,11 @@ def base_tile(material, variant):
         d.line((7,0,7,6),fill=dark)
         d.line((15,8,15,15),fill=dark)
         d.line((0,8,14,8),fill=light)
-    else:
-        for _ in range(2):
-            x, y = rng.randrange(2, 13), rng.randrange(2, 14)
-            d.line((x, y, x + 1, y), fill=light if variant % 2 else dark)
+    elif variant:
+        # Surface grain uses square clusters, not a repeated one-pixel hatch.
+        positions = [(x, y) for y in range(2, 14, 2) for x in range(2, 14, 2)]
+        for x, y in rng.sample(positions, 2 if variant == 2 else 1):
+            d.rectangle((x, y, x + 1, y + 1), fill=light if variant % 2 else dark)
     return image
 
 
