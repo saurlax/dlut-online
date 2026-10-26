@@ -5,7 +5,7 @@
 | 路径 | 内容 |
 | --- | --- |
 | `apps/api/` | Go 模块、PocketBase 服务、后续权威世界和 Pion 模块 |
-| `apps/web/` | Next.js App Router、TypeScript、后续 Phaser 游戏 |
+| `apps/web/` | Next.js App Router、TypeScript、Phaser 校园场景及原生像素资源 |
 | `spec/` | 当前行为与架构契约 |
 | `docs/` | 操作与部署指南 |
 | `.github/workflows/` | test.yml、build.yml、release.yml |
@@ -25,4 +25,4 @@ test.yml 提供可复用的前端类型检查与 Go test/vet。build.yml 在主�
 
 ## 状态
 
-当前仅初始化工程。完整校园和多人实现完成前，镜像不能描述为正式可玩的多人版本。
+镜像提供产品入口与开发区校区地图浏览，不包含可玩的角色、碰撞或多人同步。生成资源随静态导出复制进镜像；生成工具和原始照片不进入运行进程。

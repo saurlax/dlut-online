@@ -12,6 +12,15 @@ PALETTE = {
     "grass": ("#93bb60", "#80aa54", "#acce77"),
     "water": ("#448f99", "#3c828e", "#66adb0"),
     "red-walk": ("#c7785e", "#b66a56", "#d88e6c"),
+    "outside": ("#778e5a", "#6e8553", "#829b62"),
+    "woodland": ("#72934d", "#608044", "#8bab59"),
+    "asphalt": ("#777b72", "#6d726b", "#85887c"),
+    "path": ("#c4b48b", "#b4a47f", "#d2c49c"),
+    "paving": ("#b8b59b", "#a5a58e", "#cacaad"),
+    "bridge": ("#b9bea8", "#9da88f", "#d3d4bb"),
+    "track": ("#b46c55", "#a56452", "#c67c61"),
+    "court": ("#719c8f", "#678f82", "#83ac97"),
+    "field": ("#8aaa5a", "#7e9c51", "#9cba68"),
 }
 
 
@@ -33,7 +42,7 @@ def base_tile(material, variant):
     image = Image.new("RGB", (SIZE, SIZE), base)
     d = ImageDraw.Draw(image)
     rng = random.Random(variant + 127)
-    if material == "grass":
+    if material in ("grass", "woodland", "outside", "field"):
         if variant:
             for _ in range(variant):
                 x, y = rng.randrange(2, 13), rng.randrange(3, 14)
@@ -44,6 +53,11 @@ def base_tile(material, variant):
             x, y = [(2, 5), (7, 11), (4, 8)][variant - 1]
             d.line([(x,y+1),(x+2,y+1),(x+3,y),(x+5,y)], fill=light)
             d.line([(x+1,y+2),(x+3,y+2),(x+4,y+1),(x+6,y+1)], fill=dark)
+    elif material in ("paving", "bridge"):
+        d.line((0,7,15,7),fill=dark)
+        d.line((7,0,7,6),fill=dark)
+        d.line((15,8,15,15),fill=dark)
+        d.line((0,8,14,8),fill=light)
     else:
         for _ in range(2):
             x, y = rng.randrange(2, 13), rng.randrange(2, 14)
@@ -79,7 +93,9 @@ def transition_tile(material, mask, variant):
     shape = shape_mask(mask,2)
     pixels = image.load()
     bank = ImageColor.getrgb("#a9b579")
-    curb = ImageColor.getrgb("#e8d9b5")
+    rims={"woodland":"#7c9c51","field":"#749d50","asphalt":"#a1a28b",
+          "track":"#e4d1ae","court":"#dedfc5","paving":"#d0cbb1"}
+    curb = ImageColor.getrgb(rims.get(material,"#e8d9b5"))
     for y in range(SIZE):
         for x in range(SIZE):
             if not shape.getpixel((x+2, y+2)):

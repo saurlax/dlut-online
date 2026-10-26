@@ -34,7 +34,20 @@ go run . serve --http=127.0.0.1:8415
 
 访问 http://127.0.0.1:8415 。前端单独开发可在 `apps/web/` 运行 `pnpm dev`；该开发服务不代理 PocketBase API，涉及后端的联调使用上述静态构建路径。
 
-## 检查
+## 像素地图资源
+
+地图生成使用 Python 与 Pillow：
+
+```sh
+python -m pip install -r tools/requirements.txt
+python tools/generate_eda_map.py
+```
+
+生成工具读取仓库 `references/eda/` 中的来源记录，不需要原始照片或另一个项目目录。地面和植被输出为原生 16×16 PNG；建筑为与地面保持同一像素密度的独立透明整图。预览湖岸连接可运行 `python tools/generate_lakeside_grid.py`，结果位于忽略的 `.local/`。
+
+资源或来源更新后先核对北朝上坐标、建筑落地点、原生尺寸及连接接缝，再执行前端类型检查、生产构建和浏览器检查。原始照片只作离线参考，不进入 `public/`。
+
+## 代码检查
 
 ```sh
 cd apps/web

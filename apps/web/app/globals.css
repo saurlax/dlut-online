@@ -11,6 +11,6 @@ main { max-width: 64rem; min-height: 100svh; padding: clamp(2rem, 8vw, 7rem); di
 .name { font-weight: 700; font-size: 1.1rem; margin: 0 0 2rem; }
 h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); line-height: 1.25; margin: 0 0 1.5rem; text-wrap: balance; }
 .description { max-width: 32rem; line-height: 1.9; color: #526258; margin: 0; }
-.status { margin-top: 3rem; font-size: .9rem; color: #526258; }
+.campus-entry { align-self: flex-start; margin-top: 2.5rem; padding: .8rem 1.4rem; background: #344f3e; color: #f6f4eb; border-radius: 4px; text-decoration: none; }
 a { color: inherit; text-underline-offset: .25em; }
 a:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
