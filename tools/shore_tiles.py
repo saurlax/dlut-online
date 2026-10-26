@@ -13,14 +13,14 @@ PROFILE = [(183, 195, 111), (137, 165, 78), (112, 139, 66),
            (105, 102, 69), (54, 103, 107)]
 
 
-def assemble_shores(materials, bounds, directory):
+def assemble_shores(material_at, bounds, directory, water_material="water"):
     left, top, right, bottom = bounds
     width, height = right-left, bottom-top
     # The extra pixel border lets a face cross a cell seam or the preview crop.
     water = Image.new("1", ((width+2)*16, (height+2)*16))
     for y in range(top-1, bottom+1):
         for x in range(left-1, right+1):
-            mask = neighbor_mask(lambda xx,yy: materials[xx,yy], x,y,"water")
+            mask = neighbor_mask(material_at, x,y,water_material)
             water.paste(shape_mask(mask), ((x-left+1)*16, (y-top+1)*16))
 
     tiles, cells = {}, []

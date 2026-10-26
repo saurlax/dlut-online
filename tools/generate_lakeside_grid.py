@@ -111,7 +111,7 @@ def main():
             preview.alpha_composite(tiles[name],((i%width)*16,(i//width)*16))
 
     preview.convert("RGB").save(out / "flat-grid-native.png")
-    shore_tiles, shore_cells = assemble_shores(materials, (left,top,right,bottom), out/"tiles")
+    shore_tiles, shore_cells = assemble_shores(lambda x,y:materials[x,y], (left,top,right,bottom), out/"tiles")
     for name,image in shore_tiles.items():
         texture_ids[name]=len(texture_names)
         texture_names.append(name)
