@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import { drawCharacter, type CharacterState, type Item } from "./character";
+import { buildingSlices } from "./occlusion";
 
 export interface TileRegion {
   x: number;
@@ -40,6 +41,8 @@ export interface CampusMap {
     height: number;
     footprint: [number, number][];
     depth: number;
+    heightMeters: number;
+    style: string;
   }[];
   plantPrototypes: Record<
     string,
@@ -102,7 +105,7 @@ function rectangles(region: TileRegion): Rectangle[] {
 export class CampusScene extends Phaser.Scene {
   private activeRegions = new Map<
     string,
-    Phaser.GameObjects.Container | Phaser.GameObjects.Image
+    Phaser.GameObjects.Container | Phaser.GameObjects.Group
   >();
   private viewKey = "";
   private actor?: Phaser.GameObjects.Image;
@@ -112,6 +115,7 @@ export class CampusScene extends Phaser.Scene {
   private keys = new Set<string>();
   private pose = "";
   private environmentTick = "";
+  private readonly occlusionCanvas = document.createElement('canvas');
 
   minimapTerrain() {
     const palette: Record<string, string> = {
@@ -450,7 +454,7 @@ export class CampusScene extends Phaser.Scene {
     const maxX = Math.ceil(view.right / (size * 16));
     const maxY = Math.ceil(view.bottom / (size * 16));
     const viewKey = `${minX},${minY},${maxX},${maxY}`;
-    if (viewKey === this.viewKey) return;
+    if (viewKey === this.viewKey) { this.updateOcclusion(); return; }
     this.viewKey = viewKey;
     const visible = new Set<string>();
     for (const chunk of this.campus.chunks) {
@@ -483,11 +487,11 @@ export class CampusScene extends Phaser.Scene {
       const key = `building:${building.id}`;
       visible.add(key);
       if (!this.activeRegions.has(key)) {
-        const image = this.add
+        const parts = buildingSlices(building).map(slice => this.add
           .image(building.x * 16, building.y * 16, `building:${building.id}`)
-          .setOrigin(0)
-          .setDepth(100 + building.depth);
-        this.activeRegions.set(key, image);
+          .setOrigin(0).setCrop(slice.x, slice.y, slice.width, slice.height)
+          .setDepth(slice.depth).setData('occlusionCrop', slice));
+        this.activeRegions.set(key, this.add.group(parts));
       }
     }
     for (const plant of this.campus.plants) {
@@ -513,6 +517,51 @@ export class CampusScene extends Phaser.Scene {
       if (!visible.has(key)) {
         container.destroy(true);
         this.activeRegions.delete(key);
+      }
+    }
+    this.updateOcclusion();
+  }
+
+  private updateOcclusion() {
+    const actor = this.actor;
+    const canvas = this.occlusionCanvas;
+    canvas.width = 16; canvas.height = 32;
+    const context = canvas.getContext('2d', {willReadFrequently:true})!;
+    const actorAlpha = actor
+      ? (this.textures.get('player') as Phaser.Textures.CanvasTexture).context.getImageData(0,0,16,32).data
+      : null;
+    const left = actor ? Math.round(actor.x-8) : 0, top = actor ? Math.round(actor.y-32) : 0;
+    const overlaps = (image: CanvasImageSource, x: number, y: number, sx: number, sy: number, width: number, height: number, repeat: boolean) => {
+      const x1 = Math.max(left,x), y1 = Math.max(top,y), x2 = Math.min(left+16,x+width), y2 = Math.min(top+32,y+height);
+      if (x1>=x2 || y1>=y2) return false;
+      context.clearRect(0,0,16,32);
+      if (repeat) {
+        for (let py=Math.floor((y1-y)/16)*16; py<y2-y; py+=16) {
+          for (let px=Math.floor((x1-x)/16)*16; px<x2-x; px+=16) context.drawImage(image,x+px-left,y+py-top);
+        }
+      } else {
+        context.drawImage(image,sx+x1-x,sy+y1-y,x2-x1,y2-y1,x1-left,y1-top,x2-x1,y2-y1);
+      }
+      const data = context.getImageData(0,0,16,32).data;
+      for (let i=3;i<data.length;i+=4) if (data[i] && actorAlpha![i]) return true;
+      return false;
+    };
+    for (const [key,object] of this.activeRegions) {
+      if (key.startsWith('building:')) {
+        const parts = (object as Phaser.GameObjects.Group).getChildren() as Phaser.GameObjects.Image[];
+        const hidden = Boolean(actor && parts.some(part => {
+          if (part.depth <= actor.depth) return false;
+          const crop = part.getData('occlusionCrop') as {x:number;y:number;width:number;height:number};
+          return overlaps(part.texture.getSourceImage() as CanvasImageSource,Math.round(part.x)+crop.x,Math.round(part.y)+crop.y,crop.x,crop.y,crop.width,crop.height,false);
+        }));
+        for (const part of parts) part.setAlpha(hidden ? .45 : 1);
+      } else if (key.startsWith('plant:')) {
+        const plant = object as Phaser.GameObjects.Container;
+        const hidden = Boolean(actor && plant.depth>actor.depth && plant.list.some(child => {
+          const tile = child as Phaser.GameObjects.TileSprite;
+          return overlaps(tile.texture.getSourceImage() as CanvasImageSource,Math.round(plant.x+tile.x),Math.round(plant.y+tile.y),0,0,tile.width,tile.height,true);
+        }));
+        plant.setAlpha(hidden ? .45 : 1);
       }
     }
   }
