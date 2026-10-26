@@ -9,6 +9,17 @@ export interface TileRegion {
   runs: number[];
 }
 
+export interface EnvironmentAnimations {
+  water: {
+    image: string;
+    frameWidth: number;
+    frameHeight: number;
+    frameDurationMs: number;
+    framesByTile: Record<string, number[]>;
+  };
+  trees: { frameDurationMs: number; offsets: number[]; fixedRootPixels: number };
+}
+
 export interface CampusMap {
   tileSize: number;
   chunkSize: number;
@@ -100,6 +111,7 @@ export class CampusScene extends Phaser.Scene {
   private direction = 0;
   private keys = new Set<string>();
   private pose = "";
+  private environmentTick = "";
 
   minimapTerrain() {
     const palette: Record<string, string> = {
@@ -290,12 +302,18 @@ export class CampusScene extends Phaser.Scene {
   constructor(
     private readonly campus: CampusMap,
     private readonly onReady: () => void,
+    private readonly environment: EnvironmentAnimations,
   ) {
     super("campus");
   }
 
   preload() {
+    this.load.spritesheet('water-animation', `/campuses/eda/${this.environment.water.image}`, {
+      frameWidth: this.environment.water.frameWidth,
+      frameHeight: this.environment.water.frameHeight,
+    });
     for (const texture of this.campus.textures) {
+      if (this.environment.water.framesByTile[texture]) continue;
       this.load.image(texture, `/campuses/eda/tiles/${texture}.png`);
     }
     for (const building of this.campus.buildings) {
@@ -360,26 +378,38 @@ export class CampusScene extends Phaser.Scene {
     camera.setBounds(-padX, -padY, width + padX * 2, height + padY * 2);
   }
 
-  private addRegion(key: string, region: TileRegion, depth: number) {
+  private addRegion(key: string, region: TileRegion, depth: number, windPhase?: number) {
     const container = this.add
       .container(region.x * 16, region.y * 16)
       .setDepth(depth);
+    const animatedTiles: Phaser.GameObjects.TileSprite[] = [];
     for (const rectangle of rectangles(region)) {
+      const frames = this.environment.water.framesByTile[this.campus.textures[rectangle.tile]];
       const tile = this.add
         .tileSprite(
           rectangle.x * 16,
           rectangle.y * 16,
           rectangle.width * 16,
           rectangle.height * 16,
-          this.campus.textures[rectangle.tile],
+          frames ? 'water-animation' : this.campus.textures[rectangle.tile],
+          frames ? frames[Math.floor(this.time.now / this.environment.water.frameDurationMs) % frames.length] : undefined,
         )
         .setOrigin(0);
+      if (frames) tile.setData('waterFrames', frames);
+      if (windPhase !== undefined && (rectangle.y + rectangle.height) * 16 <= region.height * 16 - this.environment.trees.fixedRootPixels) {
+        tile.setData('wind', { phase: windPhase, x: tile.x });
+        const trees = this.environment.trees;
+        tile.x += trees.offsets[(Math.floor(this.time.now / trees.frameDurationMs) + windPhase) % trees.offsets.length];
+      }
+      if (frames || tile.getData('wind')) animatedTiles.push(tile);
       container.add(tile);
     }
+    container.setData('animatedTiles', animatedTiles);
     this.activeRegions.set(key, container);
   }
 
   update(time: number, delta: number) {
+    this.animateEnvironment(time);
     if (this.actor) {
       const paused =
         Boolean(document.querySelector('[role="dialog"]')) ||
@@ -476,12 +506,40 @@ export class CampusScene extends Phaser.Scene {
           key,
           { ...prototype, x: plant.x, y: plant.y },
           100 + plant.depth,
+          plant.id,
         );
     }
     for (const [key, container] of this.activeRegions) {
       if (!visible.has(key)) {
         container.destroy(true);
         this.activeRegions.delete(key);
+      }
+    }
+  }
+
+  private animateEnvironment(time: number) {
+    const water = this.environment.water;
+    const trees = this.environment.trees;
+    const tick = `${Math.floor(time / water.frameDurationMs)}:${Math.floor(time / trees.frameDurationMs)}`;
+    if (tick === this.environmentTick) return;
+    this.environmentTick = tick;
+    const view = this.cameras.main.worldView;
+    for (const object of this.activeRegions.values()) {
+      if (!(object instanceof Phaser.GameObjects.Container)) continue;
+      for (const tile of object.getData('animatedTiles') as Phaser.GameObjects.TileSprite[]) {
+        const x = object.x + tile.x, y = object.y + tile.y;
+        if (x + tile.width < view.left - 16 || x > view.right + 16 ||
+            y + tile.height < view.top - 16 || y > view.bottom + 16) continue;
+        const frames = tile.getData('waterFrames') as number[] | undefined;
+        if (frames) {
+          const frame = frames[Math.floor(time / water.frameDurationMs) % frames.length];
+          if (Number(tile.frame.name) !== frame) tile.setFrame(frame);
+        }
+        const wind = tile.getData('wind') as { phase: number; x: number } | undefined;
+        if (wind) {
+          const offset = trees.offsets[(Math.floor(time / trees.frameDurationMs) + wind.phase) % trees.offsets.length];
+          tile.x = wind.x + offset;
+        }
       }
     }
   }

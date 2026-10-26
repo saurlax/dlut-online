@@ -47,3 +47,7 @@
 ## 场景材质
 
 草地、屋面、墙面与玻璃材质由 imagegen 生成，经 tools/campus_materials.py 整理为 16×16、每片最多 8 色的原生贴图。建筑沿用登记轮廓和实景配色，程序仅按原材质遮罩拼合贴图；不新增未经核实的建筑结构。风格参考[星露谷物语](https://www.stardewvalley.net/)，未使用其贴图。提示词与处理约定见 references/eda/materials.json。
+
+## 环境动画
+
+水面循环波纹由 tools/generate_environment_animations.py 在原有 16×16 水面瓦片上生成，保持岸线与透明遮罩。树冠风摆复用原有原创植被图块，以整数像素偏移播放；不引入外部动图素材。
