@@ -1,5 +1,5 @@
 export function pixelGrid() {
-  const physicalPixel = Math.max(1, Math.round(2 * window.devicePixelRatio));
+  const physicalPixel = Math.max(1, Math.round(3 * window.devicePixelRatio));
   const pixel = physicalPixel / window.devicePixelRatio;
   const width = Math.floor(window.innerWidth / pixel);
   const height = Math.floor(window.innerHeight / pixel);
