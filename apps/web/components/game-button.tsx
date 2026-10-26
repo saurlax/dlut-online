@@ -1,4 +1,5 @@
-import type { ComponentPropsWithRef, ReactNode } from 'react';
+import type { ComponentPropsWithRef } from 'react';
+import PixelText from './pixel-text';
 import './game-button.css';
 
 type IconName = 'sprout' | 'settings' | 'fullscreen' | 'window' | 'home';
@@ -8,10 +9,10 @@ export function GameIcon({ name }: { name: IconName }) {
   return (
     <svg className="game-icon" viewBox="0 0 16 16" aria-hidden="true" shapeRendering="crispEdges">
       {name === 'sprout' && <>
-        <path fill="currentColor" d="M1 9h4l3 2 3-2h4v5h-4l-3 2-3-2H1z" />
-        <path fill="#fff3d0" d="M2 10h3l3 2v2l-3-2H2zm12 0h-3l-3 2v2l3-2h3z" />
-        <path fill="#3c764a" d="M7 4h2v7H7zM2 1h3l3 3v2H5L2 3zm7 3 3-3h3v3l-3 3H9z" />
-        <path fill="#9bc85b" d="M3 2h2l2 2H5zm7 3 2-2h2v1l-2 2h-2z" />
+        <path fill="currentColor" d="M1 9h4v1h2v1h2v-1h2V9h4v5h-4v1H9v1H7v-1H5v-1H1z" />
+        <path fill="#fff3d0" d="M2 10h3v1h2v1h1v2H7v-1H5v-1H2zm12 0h-3v1H9v1H8v2h1v-1h2v-1h3z" />
+        <path fill="#3c764a" d="M7 4h2v7H7zM2 1h3v1h1v1h1v1h1v2H5V5H4V4H3V3H2zm7 3h1V3h1V2h1V1h3v3h-1v1h-1v1h-1v1H9z" />
+        <path fill="#9bc85b" d="M3 2h2v1h1v1H5V3H3zm7 3h1V4h1V3h2v1h-1v1h-1v1h-2z" />
       </>}
       {name === 'settings' && <path fill="currentColor" fillRule="evenodd" d="M6 1h4v2h2V2h2v2h-1v2h2v4h-2v2h1v2h-2v-1h-2v2H6v-2H4v1H2v-2h1v-2H1V6h2V4H2V2h2v1h2V1ZM6 6v4h4V6H6Z" />}
       {name === 'fullscreen' && <path fill="currentColor" d="M1 1h5v2H3v3H1zm9 0h5v5h-2V3h-3zM1 10h2v3h3v2H1zm12 0h2v5h-5v-2h3z" />}
@@ -21,11 +22,11 @@ export function GameIcon({ name }: { name: IconName }) {
   );
 }
 
-function ButtonContents({ icon, children }: { icon: IconName; children?: ReactNode }) {
-  return <><span className="game-button-icon"><GameIcon name={icon} /></span>{children && <span className="game-button-label">{children}</span>}</>;
+function ButtonContents({ icon, children }: { icon: IconName; children?: string }) {
+  return <><span className="game-button-icon"><GameIcon name={icon} /></span>{children && <span className="game-button-label"><PixelText>{children}</PixelText></span>}</>;
 }
 
-type ButtonStyle = { icon: IconName; appearance?: Appearance };
+type ButtonStyle = { icon: IconName; appearance?: Appearance; children?: string };
 
 export function GameButton({ icon, appearance = 'secondary', children, className = '', ...props }: ButtonStyle & ComponentPropsWithRef<'button'>) {
   return <button type="button" {...props} className={`game-button game-button--${appearance} ${className}`}><ButtonContents icon={icon}>{children}</ButtonContents></button>;
