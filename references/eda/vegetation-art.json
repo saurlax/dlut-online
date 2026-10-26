@@ -1,0 +1,36 @@
+{
+  "readDate": "2026-10-26",
+  "source": "imagegen",
+  "nativeSprites": {
+    "broadleaf": [
+      96,
+      144
+    ],
+    "willow": [
+      96,
+      144
+    ],
+    "cypress": [
+      48,
+      112
+    ],
+    "shrub": [
+      32,
+      32
+    ]
+  },
+  "variantsPerKind": 2,
+  "colorsPerSprite": 16,
+  "alpha": [
+    0,
+    255
+  ],
+  "styleReference": "https://www.stardewvalley.net/",
+  "prompt": "Original north-up slightly elevated SNES/Stardew-inspired campus vegetation, two distinct natural variants per kind, true transparent background. Natural interlocking leaf clusters with openings and top-left light, forest green/olive foliage and gray-brown bark. No stacked circular balls, lollipops, cones, triangles, noisy dots or labels. Broadleaf: branching asymmetrical spreading crown. Willow: unmistakable drooping sprays and graceful branches. Cypress: uneven narrow columnar evergreen. Shrub: low spreading irregular small-leaf bush with notch and tiny visible branches. Final native canvas sizes as recorded, 16 colors and binary alpha.",
+  "processing": "Separate two equal image cells, threshold alpha at 128, trim, register bottom contact area, nearest-neighbor fit into native canvas with two-pixel margins. Remove isolated fringe fragments, median-cut to sixteen colors without dithering. Split native sprites into 16x16 runtime tiles.",
+  "spriteDirectory": "apps/web/public/campuses/eda/vegetation",
+  "generator": "tools/prepare_vegetation.py",
+  "refreshCommand": "python tools/prepare_vegetation.py --refresh",
+  "placement": "Existing plant positions, prototype canvas sizes and world anchors retained; no terrain or collision changes. Existing integer-pixel canopy wind applies to these sprites.",
+  "limits": "Stylized species groups, not individual botanical or photographic reconstructions; planting positions remain source-area estimates."
+}

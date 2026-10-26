@@ -52,4 +52,10 @@
 
 草地四种变体与屋面、墙面、玻璃各四种材质存于 apps/web/public/campuses/eda/materials，均为 16×16、每片最多 8 色的 imagegen 派生 PNG。草地直接作为四种地面原片；建筑保留原生像素密度、轮廓和颜色族，将生成材质的明暗细节映射到原屋面、墙面和玻璃遮罩，保留已有窗框、楼层线和檐边。来源与提示词见 references/eda/materials.json。
 
-tools/terrain_tiles.py 和 tools/campus_objects.py 读取这些已提交原片，完整重生成无需再次调用 imagegen。仅刷新本批草地与建筑时运行 python tools/campus_materials.py --refresh；该操作不修改 map.json，不改变占地、建筑尺寸、原透明轮廓、道路与碰撞。其他地表、植被和建筑结构仍沿用既有绘制方式，尚未完成逐栋造型重绘。
+tools/terrain_tiles.py 和 tools/campus_objects.py 读取这些已提交原片，完整重生成无需再次调用 imagegen。仅刷新本批草地与建筑时运行 python tools/campus_materials.py --refresh；该操作不修改 map.json，不改变占地、建筑尺寸、原透明轮廓、道路与碰撞。其他地表和建筑结构仍沿用既有绘制方式，尚未完成逐栋造型重绘。
+
+## 植被美术
+
+阔叶树、柳树、针叶树和低灌木采用 imagegen 生成的独立透明素材，每类两种变体。正式原片位于 apps/web/public/campuses/eda/vegetation：阔叶树与柳树 96×144，针叶树 48×112，灌木 32×32；最多 16 种可见颜色，透明度仅 0 或 255。原片按底部接地区域登记锚点，以最近邻缩到原生画布，清理离散边缘，再拆成严格 16×16 模块。tools/campus_objects.py 直接读取已提交原片，不再程序化堆叠圆团绘制植被。
+
+python tools/prepare_vegetation.py --refresh 重建植被模块和 plantPrototypes，清理废弃模块，保持原始植物实例位置、原型画布尺寸和地理要素不变；地面纹理名称映射保持一致。完整校园生成同样读取这些原片，无需再次 imagegen。来源与提示词见 references/eda/vegetation-art.json。沿用已实现的树冠整数像素风摆，树根固定。
