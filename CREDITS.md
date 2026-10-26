@@ -4,6 +4,8 @@
 
 设置与关于弹窗使用 [Radix Primitives](https://www.radix-ui.com/primitives/docs/overview/introduction) 的 `@radix-ui/react-dialog` 1.3.1，按 [MIT License](https://github.com/radix-ui/primitives/blob/main/LICENSE) 授权。按钮外观及书籍、禾苗等像素图标由本项目制作，沿用标题标志的大工意象。
 
+按钮与面板的轮廓、高光和阴影层次参考星露谷物语角色创建界面的[游戏截图](https://stardewguide.com/wp-content/uploads/2022/04/Main_Menu.jpg)，图像版权属于 ConcernedApe。仅作离线视觉参考，项目按蓝白配色独立绘制界面，不分发或使用该游戏的 UI 贴图。
+
 ## 界面字体
 
 界面使用 [缝合像素字体 / Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font)，版本 [2026.10.25](https://github.com/TakWolf/fusion-pixel-font/releases/tag/2026.10.25)，12px 简体中文比例版（`fusion-pixel-12px-proportional-zh_hans.otf.woff2`）。字体版权归 TakWolf 及相应上游作者，按 SIL Open Font License 1.1 授权。本地字体文件仅更名，未修改字形；完整授权及随包上游授权保留在 `apps/web/public/fonts/fusion-pixel/`，随站点静态资源发布。

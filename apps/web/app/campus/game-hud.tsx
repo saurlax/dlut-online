@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { GameButton, GameIcon, GameLink } from '../../components/game-button';
+import { GameButton, GameLink } from '../../components/game-button';
 import PixelText from '../../components/pixel-text';
 import '../../components/game-dialog.css';
 
@@ -50,12 +50,11 @@ export default function GameHud({ portal }: { portal: HTMLElement | null }) {
         <Dialog.Overlay className="game-dialog-overlay" />
         <Dialog.Content className="game-dialog game-settings" aria-describedby={undefined}>
           <header className="game-dialog-header">
-            <GameIcon name="sprout" />
             <Dialog.Title><PixelText>设置</PixelText></Dialog.Title>
           </header>
           <div className="settings-content">
             <GameButton onClick={toggleFullscreen}>{fullscreen ? '退出全屏' : '进入全屏'}</GameButton>
-            {fullscreenError && <p className="settings-error" role="alert"><PixelText>无法切换全屏</PixelText></p>}
+            {fullscreenError && <p className="settings-error" role="alert"><PixelText wrap>无法切换全屏</PixelText></p>}
             <GameLink appearance="secondary" href="/">返回标题</GameLink>
             <Dialog.Close asChild>
               <GameButton appearance="primary">继续游戏</GameButton>

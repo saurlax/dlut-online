@@ -3,7 +3,7 @@ export function pixelGrid() {
   const pixel = physicalPixel / window.devicePixelRatio;
   const width = Math.floor(window.innerWidth / pixel);
   const height = Math.floor(window.innerHeight / pixel);
-  return { pixel, physicalPixel, width, height, compact: height < 220 };
+  return { pixel, physicalPixel, width, height, compact: height < 160 };
 }
 
 export type PixelGrid = ReturnType<typeof pixelGrid>;
