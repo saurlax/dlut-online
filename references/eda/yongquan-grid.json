@@ -1,0 +1,25 @@
+{
+  "campus": "eda",
+  "originWgs84": [121.811878, 39.085291],
+  "boundsMeters": [-88, 192, -40, 232],
+  "metersPerCell": 1,
+  "tilePixels": 16,
+  "orientation": "north-up, x east, y south",
+  "waterWay": "232560016",
+  "redWalkWays": ["1076344124", "1076344125", "1076344132", "1076344133"],
+  "walkWidthMeters": 2,
+  "walkWidthBasis": "estimate, not surveyed; width absent from the archived OSM ways",
+  "landMaterial": "grass",
+  "landMaterialBasis": "lakeside grass shown in the reference photographs; individual planting beds are not georeferenced",
+  "reviewed": "2026-10-26",
+  "photoReference": {
+    "url": "https://news.dlut.edu.cn/info/1292/147345.htm",
+    "archivePaths": [
+      "references/eda/vegetation/photos/eda-lake-2.jpg",
+      "references/eda/vegetation/photos/eda-lake-4.jpg"
+    ],
+    "use": "water below grass bank, red walk and pale curb; no feature-specific coordinate corrections",
+    "captureDate": null
+  },
+  "unplacedObjects": ["scholar rock", "bench", "lamps", "individual trees"]
+}
