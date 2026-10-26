@@ -67,6 +67,8 @@ def build_building(building,offset,directory):
     for a,b in zip(roof_points,roof_points[1:]+roof_points[:1]):
         if -sign*(b[0]-a[0])>0:d.line([a,b],fill="#64746c",width=2)
     directory.mkdir(parents=True,exist_ok=True)
+    from campus_materials import detail_building
+    image=detail_building(image,style,(wall,roof,glass))
     filename=building["id"]+".png"
     image.save(directory/filename,optimize=True)
     return {"id":building["id"],"name":building["name"],"osmId":building["osm_id"],
