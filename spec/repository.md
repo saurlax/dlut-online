@@ -11,13 +11,13 @@
 | `.github/workflows/` | test.yml、build.yml、release.yml |
 | `Dockerfile` | 唯一发行镜像构建入口 |
 
-`main` 为浏览器像素版本主线，`3d` 保存历史 Godot 版本，不维护 `pixel` 分支。旧分支的客户端导出、三维资源和双镜像流水线不进入新主线。
+`main` 为产品主线，独立任务在对应类型的工作分支上开发。
 
 ## 构建与发行
 
 Next.js 使用 `output: "export"` 和 `trailingSlash: true`，构建输出 `apps/web/out/`。Go 通过文件系统提供完整导出目录，不用 SPA 首页兜底掩盖未知 URL，也不覆盖 PocketBase `/api/` 与 `/_/`。
 
-根 Dockerfile 分别构建前端和 Go，最终阶段只包含 Go 可执行文件、静态网页、证书及必要系统文件，无 Node 服务。镜像名统一为 `dlut-online`，仓库发行地址为 `ghcr.io/saurlax/dlut-online`；不再生成 `dlut-online-web` 或独立三维游戏服镜像。
+根 Dockerfile 分别构建前端和 Go，最终阶段只包含 Go 可执行文件、静态网页、证书及必要系统文件，无 Node 服务。镜像名统一为 `dlut-online`，仓库发行地址为 `ghcr.io/saurlax/dlut-online`。
 
 SQLite 数据放在 `/data/pb_data` 持久卷，运行用户为非 root。当前镜像仅开放 HTTP 8415；未实现 WebRTC 时不发布虚假的 UDP 服务端口。
 
