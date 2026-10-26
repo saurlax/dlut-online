@@ -1,11 +1,9 @@
 """Native pixel building images and reusable 16px planting modules."""
 
 import math
-import random
 
 from PIL import Image, ImageDraw
 
-from draw_yongquan_study import cluster, P
 
 STYLES={
     "information":("#b9af94","#9c9f8e","#538088"),
@@ -78,40 +76,9 @@ def build_building(building,offset,directory):
 
 
 def plant_sprite(kind,variant):
-    rng=random.Random(901+variant*17)
-    shrub=kind=="shrub"
-    column=kind=="cypress"
-    width,height=(32,32) if shrub else (48,112) if column else (96,144)
-    image=Image.new("RGBA",(width,height))
-    d=ImageDraw.Draw(image)
-    cx=width//2;ground=height-3
-    d.ellipse((cx-width//3,ground-4,cx+width//3,ground+2),fill="#537b49")
-    if not shrub:
-        d.polygon([(cx-4,ground-2),(cx-3,height//3),(cx+4,height//3),
-                   (cx+4,ground-4),(cx+9,ground)],fill=P["bark_dark"])
-        d.line((cx-1,height//3,cx-1,ground-3),fill=P["bark_light"],width=2)
-        for sign in (-1,1):
-            d.line((cx,height*3//5,cx+sign*width//4,height//3),fill=P["bark"],width=3)
-        d.rectangle((cx-3,ground-14,cx+4,ground-3),fill="#c9ccaa")
-    if shrub:lobes=[(10,15,8,9),(21,14,8,10)]
-    elif column:lobes=[(23,18,10,14),(20,40,14,20),(25,65,16,21),(24,83,15,17)]
-    else:lobes=[(45,24,24,21),(26,46,23,24),(67,46,24,25),
-                (21,72,20,23),(48,68,28,26),(74,74,21,22),(44,91,27,19)]
-    for x,y,rx,ry in lobes:cluster(d,x,y,rx,ry,"leaf_outline")
-    for x,y,rx,ry in lobes:
-        cluster(d,x,y-2,rx-1,ry-1,"leaf_dark")
-        cluster(d,x-1,y-6,rx-3,ry-5,"leaf_mid")
-        cluster(d,x-4,y-10,max(3,rx-7),max(3,ry-9),"leaf_light")
-        for _ in range(max(4,rx)):
-            xx=x+rng.randrange(-rx+3,rx-2); yy=y+rng.randrange(-ry+3,ry-2)
-            d.line((xx,yy,xx+2,yy),fill=P[rng.choice(["leaf_mid","leaf_light","leaf_sun"])])
-    if kind=="willow":
-        for xx in range(12,width-8,10):
-            yy=height//3+rng.randrange(-8,10)
-            end=min(height-15,yy+rng.randrange(25,50))
-            d.line((xx,yy,xx-2,end),fill=P["leaf_dark"],width=3)
-            d.line((xx-1,yy,xx-3,end-4),fill=P["leaf_light"])
-    return image
+    from pathlib import Path
+    directory=Path(__file__).resolve().parents[1]/"apps/web/public/campuses/eda/vegetation"
+    return Image.open(directory/f"{kind}-{variant}.png").convert("RGBA")
 
 
 def plant_prototypes(catalog,encode):

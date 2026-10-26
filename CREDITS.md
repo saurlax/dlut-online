@@ -50,4 +50,8 @@
 
 ## 环境动画
 
-水面循环波纹由 tools/generate_environment_animations.py 在原有 16×16 水面瓦片上生成，保持岸线与透明遮罩。树冠风摆复用原有原创植被图块，以整数像素偏移播放；不引入外部动图素材。
+水面循环波纹由 tools/generate_environment_animations.py 在原有 16×16 水面瓦片上生成，保持岸线与透明遮罩。树冠风摆复用当前植被图块，以整数像素偏移播放；不引入外部动图素材。
+
+## 树木与灌木
+
+阔叶树、柳树、针叶树及灌木由 imagegen 生成，每类两种变体，参考[星露谷物语](https://www.stardewvalley.net/)的像素美术层次，未使用其游戏素材。经 tools/prepare_vegetation.py 缩到登记的原生画布、量化为最多 16 色和二值透明，并拆成 16×16 游戏图块。形象为物种类别的风格化表达，种植位置仍采用已有来源区域与估计布置；来源、提示词和处理约定见 references/eda/vegetation-art.json。
