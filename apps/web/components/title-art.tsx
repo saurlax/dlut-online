@@ -7,14 +7,12 @@ export default function TitleArt() {
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const landscape = new Image();
-    const logo = new Image();
     landscape.src = '/title/landscape.png';
-    logo.src = '/title/dlut-online.png';
     let stop: (() => void) | undefined;
     let disposed = false;
-    Promise.all([landscape.decode(), logo.decode()]).then(() => {
+    landscape.decode().then(() => {
       if (disposed) return;
-      stop = watchPixelGrid(({ pixel, width, height, compact }) => {
+      stop = watchPixelGrid(({ pixel, width, height }) => {
         const surface = canvas.current!;
         // Only complete logical pixels are rendered; the last cell is clipped.
         surface.width = width + 1;
@@ -28,8 +26,6 @@ export default function TitleArt() {
         const artWidth = Math.ceil(landscape.width * cover);
         const artHeight = Math.ceil(landscape.height * cover);
         context.drawImage(landscape, Math.floor((surface.width - artWidth) / 2), surface.height - artHeight, artWidth, artHeight);
-        const logoWidth = 2 * Math.floor(Math.min(320, width * .9, height * (compact ? .6 : 1.44)) / 2);
-        context.drawImage(logo, Math.floor((width - logoWidth) / 2), Math.floor(height * (width < 350 ? .08 : .02)), logoWidth, logoWidth / 2);
       });
     });
     return () => { disposed = true; stop?.(); };
