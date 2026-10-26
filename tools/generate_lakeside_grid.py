@@ -11,6 +11,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 from terrain_tiles import MASKS, generate_tiles, neighbor_mask, variant_at
+from shore_tiles import assemble_shores
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "references/eda"
@@ -61,8 +62,8 @@ def main():
     materials = {}
 
     # Evaluate an extra border, so cropping never changes the adjacency masks.
-    for y in range(top - 1, bottom + 1):
-        for x in range(left - 1, right + 1):
+    for y in range(top - 2, bottom + 2):
+        for x in range(left - 2, right + 2):
             cx, cy = x + .5, y + .5
             material = "water" if inside_polygon(cx, cy, lake) else "grass"
             if any(distance_squared(cx, cy, walk) <= half_walk_squared for walk in walks):
@@ -94,7 +95,20 @@ def main():
             coverage.append("osm-water" if material == "water" else "osm-centerline-estimated-width" if material == "red-walk" else "photo-inferred-ground")
             used.add(name)
 
+    preview.convert("RGB").save(out / "flat-grid-native.png")
+    shore_tiles, shore_cells = assemble_shores(materials, (left,top,right,bottom), out/"tiles")
+    for name,image in shore_tiles.items():
+        texture_ids[name]=len(texture_names)
+        texture_names.append(name)
+        tiles[name]=image
+    for i,name in enumerate(shore_cells):
+        if name:
+            preview.alpha_composite(tiles[name], ((i%width)*16,(i//width)*16))
     preview.convert("RGB").save(out / "north-up-native.png")
+    detail_bounds=(-80,182,-56,198)
+    detail=preview.crop(((detail_bounds[0]-left)*16,(detail_bounds[1]-top)*16,
+                         (detail_bounds[2]-left)*16,(detail_bounds[3]-top)*16))
+    detail.resize((detail.width*3,detail.height*3),Image.Resampling.NEAREST).convert("RGB").save(out/"north-bank-detail.png")
     # Same pixels assembled above, displayed at integer zoom only.
     preview.resize((width * 32, height * 32), Image.Resampling.NEAREST).convert("RGB").save(out / "north-up-preview.png")
     debug = preview.copy()
@@ -138,6 +152,11 @@ def main():
         "neighbors": ["N", "E", "S", "W", "NE", "SE", "SW", "NW"],
         "connectionShapes": len(MASKS), "materials": material_names, "materialCells": grid,
         "textures": texture_names, "textureCells": texture_grid, "neighborMasks": masks,
+        "shoreFaceCells": [texture_ids[name] if name else -1 for name in shore_cells],
+        "shorePresentation": {"direction": "south-facing banks visible, north-facing banks occluded",
+                              "facePixels": 8, "heightBasis": "visual low-bank estimate, not surveyed",
+                              "pass": "separate 16x16 transparent modules above base material tiles"},
+        "detailPreview": {"boundsMeters": detail_bounds, "integerZoom": 3},
         "underlay": "grass variant selected by world cell; transparent transition tiles overlay it",
         "evidenceClasses": coverage, "objects": [], "unplacedObjects": config["unplacedObjects"],
         "sources": [{"id": "way/"+i, "version": ways[i].attrib["version"]}
@@ -148,7 +167,7 @@ def main():
                    "1m sampling quantization is not source measurement accuracy"],
     }
     (out / "grid.json").write_text(json.dumps(manifest, ensure_ascii=False, separators=(",", ":"))+"\n", encoding="utf-8")
-    print(f"Generated {width}x{height} north-up 1m cells, {len(tiles)} native 16x16 tiles, {len(MASKS)} connection shapes per material, {len(used)} tiles used")
+    print(f"Generated {width}x{height} north-up 1m cells, {len(tiles)} native 16x16 tiles, {len(MASKS)} connection shapes per material, {len(shore_tiles)} shore-face modules")
 
 
 if __name__ == "__main__":

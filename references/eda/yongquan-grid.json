@@ -1,7 +1,7 @@
 {
   "campus": "eda",
   "originWgs84": [121.811878, 39.085291],
-  "boundsMeters": [-88, 192, -40, 232],
+  "boundsMeters": [-88, 176, -40, 232],
   "metersPerCell": 1,
   "tilePixels": 16,
   "orientation": "north-up, x east, y south",
@@ -12,6 +12,17 @@
   "landMaterial": "grass",
   "landMaterialBasis": "lakeside grass shown in the reference photographs; individual planting beds are not georeferenced",
   "reviewed": "2026-10-26",
+  "styleReferences": [
+    {
+      "url": "https://stardewvalleywiki.com/File:ThePond.png",
+      "use": "visible north-bank soil face, thin foreground edge, waterline and rounded tile corners",
+      "scope": "visual study only; original game pixels are not imported into generated assets"
+    },
+    {
+      "url": "https://stardewvalleywiki.com/File:CindersapForest.png",
+      "use": "consistent south-facing terrain sides and shared pixel scale"
+    }
+  ],
   "photoReference": {
     "url": "https://news.dlut.edu.cn/info/1292/147345.htm",
     "archivePaths": [
