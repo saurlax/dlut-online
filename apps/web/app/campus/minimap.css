@@ -1,0 +1,22 @@
+.pixel-minimap {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.pixel-minimap canvas {
+  display: block;
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+}
+.pixel-minimap:focus-visible {
+  outline: 1px solid #d19735;
+  outline-offset: 2px;
+}

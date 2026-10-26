@@ -41,7 +41,16 @@ export default function WorldMap({
       setError("");
     }
     document.addEventListener("keydown", keydown);
-    return () => document.removeEventListener("keydown", keydown);
+    function openMap() {
+      if (document.querySelector('[role="dialog"]')) return;
+      setSnapshot(scene().mapSnapshot());
+      setLandmark(""); setSelected(""); setError("");
+    }
+    window.addEventListener('do:open-map', openMap);
+    return () => {
+      document.removeEventListener("keydown", keydown);
+      window.removeEventListener('do:open-map', openMap);
+    };
   }, [snapshot, scene]);
   return (
     <Dialog.Root

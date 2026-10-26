@@ -6,6 +6,7 @@ import { CampusScene, type CampusMap } from "../../game/campus-scene";
 import GameHud from "./game-hud";
 import Wardrobe from "./wardrobe";
 import WorldMap from "./world-map";
+import Minimap from "./minimap";
 import { pixelGrid, watchPixelGrid } from "../../game/pixel-grid";
 import PixelText from "../../components/pixel-text";
 import "./map.css";
@@ -91,6 +92,7 @@ export default function MapCanvas() {
         {loaded && (
           <>
             <GameHud portal={interfaceHost} />
+            <Minimap scene={()=>scene.current!} />
             <WorldMap portal={interfaceHost} scene={()=>scene.current!} />
             <Wardrobe
               portal={interfaceHost}
