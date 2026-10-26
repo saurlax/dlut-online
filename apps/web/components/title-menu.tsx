@@ -18,8 +18,8 @@ export default function TitleMenu() {
       <h1 className="title-logo">DLUT Online</h1>
       <Dialog.Root>
         <div className="title-actions">
-          <GameLink className="campus-entry" href="/campus/" icon="sprout">进入校园</GameLink>
-          <Dialog.Trigger asChild><GameButton icon="info">关于</GameButton></Dialog.Trigger>
+          <GameLink className="campus-entry" href="/campus/">进入校园</GameLink>
+          <Dialog.Trigger asChild><GameButton>关于</GameButton></Dialog.Trigger>
         </div>
         <Dialog.Portal container={portal}>
           <Dialog.Overlay className="game-dialog-overlay" />
@@ -64,7 +64,7 @@ export default function TitleMenu() {
               </section>
             </div>
             <footer className="about-footer">
-              <Dialog.Close asChild><GameButton icon="home" appearance="primary">返回</GameButton></Dialog.Close>
+              <Dialog.Close asChild><GameButton appearance="primary">返回</GameButton></Dialog.Close>
             </footer>
           </Dialog.Content>
         </Dialog.Portal>

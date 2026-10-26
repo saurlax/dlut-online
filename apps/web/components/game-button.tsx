@@ -23,11 +23,11 @@ export function GameIcon({ name }: { name: IconName }) {
   );
 }
 
-function ButtonContents({ icon, children }: { icon: IconName; children?: string }) {
-  return <><span className="game-button-icon"><GameIcon name={icon} /></span>{children && <span className="game-button-label"><PixelText>{children}</PixelText></span>}</>;
+function ButtonContents({ icon, children }: { icon?: IconName; children?: string }) {
+  return <>{icon && <span className="game-button-icon"><GameIcon name={icon} /></span>}{children && <span className="game-button-label"><PixelText>{children}</PixelText></span>}</>;
 }
 
-type ButtonStyle = { icon: IconName; appearance?: Appearance; children?: string };
+type ButtonStyle = { icon?: IconName; appearance?: Appearance; children?: string };
 
 export function GameButton({ icon, appearance = 'secondary', children, className = '', ...props }: ButtonStyle & ComponentPropsWithRef<'button'>) {
   return <button type="button" {...props} className={`game-button game-button--${appearance} ${className}`}><ButtonContents icon={icon}>{children}</ButtonContents></button>;
