@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { GameButton, GameIcon, GameLink } from '../../components/game-button';
 import PixelText from '../../components/pixel-text';
+import '../../components/game-dialog.css';
 
 export default function GameHud({ portal }: { portal: HTMLElement | null }) {
   const [open, setOpen] = useState(false);
@@ -46,9 +47,9 @@ export default function GameHud({ portal }: { portal: HTMLElement | null }) {
         </Dialog.Trigger>
       </aside>
       <Dialog.Portal container={portal}>
-        <Dialog.Overlay className="game-settings-overlay" />
-        <Dialog.Content className="game-settings" aria-describedby={undefined}>
-          <header className="settings-header">
+        <Dialog.Overlay className="game-dialog-overlay" />
+        <Dialog.Content className="game-dialog game-settings" aria-describedby={undefined}>
+          <header className="game-dialog-header">
             <GameIcon name="sprout" />
             <Dialog.Title><PixelText>设置</PixelText></Dialog.Title>
           </header>
