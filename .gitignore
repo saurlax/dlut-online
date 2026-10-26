@@ -1,0 +1,13 @@
+.local/
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+pb_data/
+apps/api/public/
+build/
+*.exe
+*.log

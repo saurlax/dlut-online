@@ -1,0 +1,33 @@
+name: Test
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --global pnpm@11.6.0
+      - run: pnpm install --frozen-lockfile
+        working-directory: apps/web
+      - run: pnpm typecheck
+        working-directory: apps/web
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: apps/api/go.mod
+          cache-dependency-path: apps/api/go.sum
+      - run: go test -timeout 60s ./...
+        working-directory: apps/api
+      - run: go vet ./...
+        working-directory: apps/api
