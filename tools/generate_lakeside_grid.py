@@ -10,7 +10,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-from terrain_tiles import MASKS, generate_tiles, neighbor_mask, variant_at
+from terrain_tiles import generate_tiles, neighbor_mask, shape_mask, variant_at
 from shore_tiles import assemble_shores
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -70,30 +70,45 @@ def main():
                 material = "red-walk"
             materials[x, y] = material
 
-    tiles = generate_tiles(out / "tiles")
+    connection_cells = {material: [] for material in ("water", "red-walk")}
+    for y in range(top, bottom):
+        for x in range(left, right):
+            for material, cells in connection_cells.items():
+                mask = neighbor_mask(lambda xx,yy: materials[xx,yy],x,y,material)
+                cells.append(mask if shape_mask(mask).getbbox() else -1)
+    shape_sets = {material: set(cells)-{-1} for material,cells in connection_cells.items()}
+    tiles = generate_tiles(out / "tiles", shape_sets)
     texture_names = list(tiles)
     texture_ids = {name: i for i, name in enumerate(texture_names)}
     material_names = ["grass", "water", "red-walk"]
     grid, texture_grid, masks, coverage = [], [], [], []
+    layers = {material: [] for material in connection_cells}
     preview = Image.new("RGBA", (width * 16, height * 16))
     semantic = Image.new("RGB", (width, height))
     colors = {"grass": "#93bb60", "water": "#448f99", "red-walk": "#c7785e"}
-    used = set()
     for y in range(top, bottom):
         for x in range(left, right):
             material = materials[x, y]
             variant = variant_at(x, y)
             mask = neighbor_mask(lambda xx, yy: materials[xx, yy], x, y, material)
-            name = f"grass-{variant}" if material == "grass" else f"{material}-{mask:02x}-{variant}"
+            name = f"grass-{variant}"
             px, py = (x - left) * 16, (y - top) * 16
             preview.alpha_composite(tiles[f"grass-{variant}"], (px, py))
-            preview.alpha_composite(tiles[name], (px, py))
             semantic.putpixel((x-left, y-top), tuple(int(colors[material][i:i+2],16) for i in (1,3,5)))
             grid.append(material_names.index(material))
             texture_grid.append(texture_ids[name])
             masks.append(mask)
             coverage.append("osm-water" if material == "water" else "osm-centerline-estimated-width" if material == "red-walk" else "photo-inferred-ground")
-            used.add(name)
+
+    for material,cells in connection_cells.items():
+        for i,mask in enumerate(cells):
+            if mask < 0:
+                layers[material].append(-1)
+                continue
+            x,y=left+i%width,top+i//width
+            name=f"{material}-{mask:03x}-{variant_at(x,y)}"
+            layers[material].append(texture_ids[name])
+            preview.alpha_composite(tiles[name],((i%width)*16,(i//width)*16))
 
     preview.convert("RGB").save(out / "flat-grid-native.png")
     shore_tiles, shore_cells = assemble_shores(materials, (left,top,right,bottom), out/"tiles")
@@ -134,15 +149,13 @@ def main():
     ld.polygon([(10, 5), (7, 11), (13, 11)], fill="#294c47")
     ld.text((17, 5), "N", fill="#294c47")
     locator.resize((lw*4, lh*4), Image.Resampling.NEAREST).save(out / "location-preview.png")
-    # All 47 connection shapes shown independently, four texture variations each.
-    sheet = Image.new("RGBA", (16 * 16, 24 * 16), "#93bb60")
-    for row, material in enumerate(("water", "red-walk")):
-        for i, mask in enumerate(MASKS):
-            for variant in range(4):
-                cell = i * 4 + variant
-                sheet.alpha_composite(tiles[f"{material}-{mask:02x}-{variant}"],
-                                      ((cell % 16)*16, (row*12+cell//16)*16))
-    sheet.resize((768, 1152), Image.Resampling.NEAREST).convert("RGB").save(out / "connections-preview.png")
+    # Show the generated diagonal contours and their four texture variants.
+    names=[f"{material}-{mask:03x}-{variant}"
+           for material,shapes in shape_sets.items() for mask in sorted(shapes) for variant in range(4)]
+    sheet=Image.new("RGBA",(256,math.ceil(len(names)/16)*16),"#93bb60")
+    for i,name in enumerate(names):
+        sheet.alpha_composite(tiles[name],((i%16)*16,(i//16)*16))
+    sheet.resize((sheet.width*3,sheet.height*3),Image.Resampling.NEAREST).convert("RGB").save(out/"connections-preview.png")
     manifest = {
         "campus": "eda", "orientation": "north-up", "axis": {"x": "east", "y": "south"},
         "originWgs84": config["originWgs84"], "boundsMeters": config["boundsMeters"],
@@ -150,8 +163,11 @@ def main():
         "coordinateTransform": "local equirectangular: east=(lon-lon0)*111320*cos(lat0); south=(lat0-lat)*111320",
         "sampling": "cell centers at x+0.5m, y+0.5m; no rotation, smoothing or per-feature shifts",
         "neighbors": ["N", "E", "S", "W", "NE", "SE", "SW", "NW"],
-        "connectionShapes": len(MASKS), "materials": material_names, "materialCells": grid,
+        "connectionShapes": {material:len(shapes) for material,shapes in shape_sets.items()},
+        "centerBit": 8, "contour": "cell-center bilinear occupancy threshold, native hard pixels",
+        "materials": material_names, "materialCells": grid,
         "textures": texture_names, "textureCells": texture_grid, "neighborMasks": masks,
+        "terrainLayers": [{"material": material,"textureCells":cells} for material,cells in layers.items()],
         "shoreFaceCells": [texture_ids[name] if name else -1 for name in shore_cells],
         "shorePresentation": {"direction": "south-facing banks visible, north-facing banks occluded",
                               "facePixels": 8, "heightBasis": "visual low-bank estimate, not surveyed",
@@ -167,7 +183,7 @@ def main():
                    "1m sampling quantization is not source measurement accuracy"],
     }
     (out / "grid.json").write_text(json.dumps(manifest, ensure_ascii=False, separators=(",", ":"))+"\n", encoding="utf-8")
-    print(f"Generated {width}x{height} north-up 1m cells, {len(tiles)} native 16x16 tiles, {len(MASKS)} connection shapes per material, {len(shore_tiles)} shore-face modules")
+    print(f"Generated {width}x{height} north-up 1m cells, {len(tiles)} native 16x16 tiles, diagonal connection shapes {manifest['connectionShapes']}, {len(shore_tiles)} shore-face modules")
 
 
 if __name__ == "__main__":
