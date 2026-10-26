@@ -316,9 +316,11 @@ export class CampusScene extends Phaser.Scene {
       const dy =
         Number(this.keys.has("s") || this.keys.has("arrowdown")) -
         Number(this.keys.has("w") || this.keys.has("arrowup"));
+      const sprinting = this.keys.has("shift");
       if (dx || dy) {
         this.direction = dx ? (dx > 0 ? 1 : 3) : dy > 0 ? 0 : 2;
-        const distance = (32 * Math.min(delta, 50)) / 1000 / Math.hypot(dx, dy);
+        const speed = sprinting ? 64 : 32;
+        const distance = (speed * Math.min(delta, 50)) / 1000 / Math.hypot(dx, dy);
         const x = this.actor.x + dx * distance,
           y = this.actor.y + dy * distance;
         if (
@@ -327,7 +329,7 @@ export class CampusScene extends Phaser.Scene {
         )
           this.actor.setPosition(x, y).setDepth(100 + y / 16);
       }
-      const step = dx || dy ? Math.floor(time / 160) % 3 : 0;
+      const step = dx || dy ? Math.floor(time / (sprinting ? 80 : 160)) % 3 : 0;
       const pose = `${this.direction}:${step}`;
       if (pose !== this.pose) {
         this.animateCharacter(step);
