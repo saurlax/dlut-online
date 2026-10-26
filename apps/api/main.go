@@ -7,12 +7,14 @@ import (
 	"github.com/pocketbase/pocketbase"
 	"github.com/pocketbase/pocketbase/core"
 
+	"github.com/saurlax/dlut-online/apps/api/internal/characters"
 	"github.com/saurlax/dlut-online/apps/api/internal/site"
 )
 
 func main() {
 	app := pocketbase.New()
 	app.OnServe().BindFunc(func(event *core.ServeEvent) error {
+		characters.Register(event)
 		root := os.Getenv("DO_WEB_ROOT")
 		if root == "" {
 			root = "./public"

@@ -26,6 +26,8 @@
 
 ## 原生像素绘制
 
+人物由 apps/web/game/character.ts 在原生 16×32 画布原创绘制，比例与分层参考[星露谷人物精灵说明](https://wiki.stardewvalley.net/Modding%3AFarmer_sprite)，未使用其角色贴图。
+
 [大连理工大学校园地图](http://map.dlut.edu.cn)及既有七舍照片用于建筑颜色、楼层和可见立面参考，原始 URL、对象 ID、读取日期及用途保留在 `references/eda/building-photos.json`。照片版权归原权利人，原图只作离线参考，不随项目分发。独立建筑透明 PNG 由 `tools/campus_objects.py` 在原生像素画布绘制，属于简化外观，不代表完整立面测绘。
 
 `tools/terrain_tiles.py` 直接在 16×16 画布生成原创像素贴图；`tools/draw_yongquan_study.py` 为独立美术构图工具。未使用星露谷物语的游戏贴图；该游戏只作为视觉风格参考。

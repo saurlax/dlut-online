@@ -1,0 +1,46 @@
+.wardrobe-trigger {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  pointer-events: auto;
+}
+.wardrobe-content {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+.wardrobe-content form,
+.inventory-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.wardrobe-content label {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.wardrobe-content input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #123e70;
+  background: #fff9e8;
+  color: #123e70;
+  font: inherit;
+  padding: 3px;
+}
+.wardrobe-content p {
+  margin: 0;
+}
+.character-preview {
+  width: 16px;
+  height: 32px;
+  image-rendering: pixelated;
+}
+.wardrobe { width:var(--about-width); }
+.inventory-list { grid-template-columns:1fr; }
+@media (max-width:600px) { .wardrobe-content form { grid-template-columns:1fr; } }
