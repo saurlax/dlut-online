@@ -26,6 +26,7 @@ flowchart LR
 | --- | --- |
 | [仓库与构建](repository.md) | 源码布局、SSG、单镜像与分支边界 |
 | [前端与像素世界](frontend.md) | 页面、Phaser 生命周期、美术与输入 |
+| [地理网格与瓦片生成](map-generation.md) | 地理坐标、材质格、连接变体与独立物件 |
 | [账号与持久化](backend.md) | PocketBase、API、数据权威和运行配置 |
 | [多人通信](networking.md) | WebRTC、可靠性、模拟、恢复与部署目标 |
 

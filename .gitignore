@@ -11,3 +11,4 @@ apps/api/public/
 build/
 *.exe
 *.log
+__pycache__/
