@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import PixelGrid from '../components/pixel-grid';
 
 export const metadata: Metadata = {
   title: 'DLUT Online',
@@ -7,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="zh-CN"><body>{children}</body></html>;
+  return <html lang="zh-CN"><body><PixelGrid />{children}</body></html>;
 }

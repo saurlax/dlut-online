@@ -83,7 +83,7 @@ export class CampusScene extends Phaser.Scene {
   create() {
     this.cameras.main.setBounds(0, 0, this.campus.width * 16, this.campus.height * 16);
     this.cameras.main.setRoundPixels(true);
-    this.cameras.main.setZoom(2);
+    this.cameras.main.setZoom(1);
     this.updateBounds();
     this.cameras.main.centerOn(this.campus.focus[0] * 16, this.campus.focus[1] * 16);
     this.scale.on('resize', () => {
