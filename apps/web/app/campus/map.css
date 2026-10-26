@@ -3,7 +3,7 @@
 .campus-canvas canvas { display: block; transform-origin: 0 0; image-rendering: pixelated; }
 .game-hud { position: absolute; top: calc(8 * var(--pixel)); right: calc(8 * var(--pixel)); }
 .settings-content { display: flex; flex-direction: column; gap: calc(8 * var(--pixel)); padding: calc(12 * var(--pixel)); }
-.settings-content .game-button { width: 100%; justify-content: flex-start; flex-shrink: 0; }
+.settings-content .game-button { width: 100%; flex-shrink: 0; }
 .settings-error { margin: 0; color: #9b423c; }
 .map-error { position: absolute; left: calc(8 * var(--pixel)); top: var(--center-y); margin: 0; padding: calc(8 * var(--pixel)); background: #f6f4eb; }
 .map-progress { position: absolute; bottom: 0; height: calc(2 * var(--pixel)); width: 100%; background: #e4d6a7; }
