@@ -15,15 +15,11 @@ export interface CampusMap {
   height: number;
   textures: string[];
   focus: [number, number];
-  materials: string[];
-  materialRuns: number[];
   chunks: { x: number; y: number; layers: number[][]; overview: number[] }[];
   buildings: { id: string; image: string; x: number; y: number; width: number; height: number; footprint: [number, number][]; depth: number }[];
   plantPrototypes: Record<string, { width: number; height: number; runs: number[] }>;
   plants: { id: number; prototype: string; x: number; y: number; depth: number }[];
 }
-
-export interface CampusView { x: number; y: number; width: number; height: number }
 
 interface Rectangle { x: number; y: number; width: number; height: number; tile: number }
 
@@ -67,12 +63,10 @@ function rectangles(region: TileRegion): Rectangle[] {
 export class CampusScene extends Phaser.Scene {
   private activeRegions = new Map<string, Phaser.GameObjects.Container | Phaser.GameObjects.Image>();
   private viewKey = '';
-  private viewportKey = '';
 
   constructor(
     private readonly campus: CampusMap,
     private readonly onReady: () => void,
-    private readonly onViewChange: (view: CampusView) => void,
   ) {
     super('campus');
   }
@@ -130,11 +124,6 @@ export class CampusScene extends Phaser.Scene {
   update() {
     const camera = this.cameras.main;
     const view = camera.worldView;
-    const viewportKey = `${view.x},${view.y},${view.width},${view.height}`;
-    if (viewportKey !== this.viewportKey) {
-      this.viewportKey = viewportKey;
-      this.onViewChange({ x: view.x / 16, y: view.y / 16, width: view.width / 16, height: view.height / 16 });
-    }
     const size = this.campus.chunkSize;
     const minX = Math.floor(view.left / (size * 16));
     const minY = Math.floor(view.top / (size * 16));

@@ -1,3 +1,5 @@
+import { GameLink } from '../components/game-button';
+
 export default function Home() {
   return (
     <main className="title-screen">
@@ -6,10 +8,7 @@ export default function Home() {
         <h1 className="title-logo">
           <img src="/title/dlut-online.png" width="320" height="160" alt="DLUT Online" fetchPriority="high" />
         </h1>
-        <a className="campus-entry" href="/campus/">
-          <span className="entry-arrow" aria-hidden="true" />
-          进入校园
-        </a>
+        <GameLink className="campus-entry" href="/campus/" icon="sprout">进入校园</GameLink>
       </section>
     </main>
   );
