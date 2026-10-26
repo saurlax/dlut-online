@@ -15,11 +15,15 @@ export interface CampusMap {
   height: number;
   textures: string[];
   focus: [number, number];
+  materials: string[];
+  materialRuns: number[];
   chunks: { x: number; y: number; layers: number[][]; overview: number[] }[];
   buildings: { id: string; image: string; x: number; y: number; width: number; height: number; footprint: [number, number][]; depth: number }[];
   plantPrototypes: Record<string, { width: number; height: number; runs: number[] }>;
   plants: { id: number; prototype: string; x: number; y: number; depth: number }[];
 }
+
+export interface CampusView { x: number; y: number; width: number; height: number }
 
 interface Rectangle { x: number; y: number; width: number; height: number; tile: number }
 
@@ -60,13 +64,16 @@ function rectangles(region: TileRegion): Rectangle[] {
   return result;
 }
 
-const ZOOMS = [1 / 128, 1 / 64, 1 / 32, 1 / 16, 1 / 8, 1 / 4, 1 / 2, 1, 2, 3, 4];
-
 export class CampusScene extends Phaser.Scene {
   private activeRegions = new Map<string, Phaser.GameObjects.Container | Phaser.GameObjects.Image>();
   private viewKey = '';
+  private viewportKey = '';
 
-  constructor(private readonly campus: CampusMap, private readonly onReady: () => void) {
+  constructor(
+    private readonly campus: CampusMap,
+    private readonly onReady: () => void,
+    private readonly onViewChange: (view: CampusView) => void,
+  ) {
     super('campus');
   }
 
@@ -85,46 +92,17 @@ export class CampusScene extends Phaser.Scene {
     this.cameras.main.setZoom(2);
     this.updateBounds();
     this.cameras.main.centerOn(this.campus.focus[0] * 16, this.campus.focus[1] * 16);
-    this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
-      if (!pointer.isDown) return;
-      const camera = this.cameras.main;
-      camera.scrollX -= (pointer.x - pointer.prevPosition.x) / camera.zoom;
-      camera.scrollY -= (pointer.y - pointer.prevPosition.y) / camera.zoom;
-    });
-    this.input.on('wheel', (pointer: Phaser.Input.Pointer, _objects: unknown[], _dx: number, dy: number) => {
-      this.zoom(dy < 0 ? 1 : -1, pointer.x, pointer.y);
-    });
     this.scale.on('resize', () => {
       const camera = this.cameras.main;
       camera.setSize(this.scale.width, this.scale.height);
       this.updateBounds();
+      camera.centerOn(this.campus.focus[0] * 16, this.campus.focus[1] * 16);
     });
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       this.scale.removeAllListeners('resize');
       this.activeRegions.clear();
     });
     this.onReady();
-  }
-
-  fit() {
-    const camera = this.cameras.main;
-    const fit = Math.min(camera.width / (this.campus.width * 16), camera.height / (this.campus.height * 16));
-    camera.setZoom(ZOOMS.filter(value => value <= fit).at(-1) ?? ZOOMS[0]);
-    this.updateBounds();
-    camera.centerOn(this.campus.width * 8, this.campus.height * 8);
-  }
-
-  zoom(direction: number, screenX = this.scale.width / 2, screenY = this.scale.height / 2) {
-    const camera = this.cameras.main;
-    const anchor = camera.getWorldPoint(screenX, screenY);
-    const index = ZOOMS.indexOf(camera.zoom);
-    const zoom = ZOOMS[Phaser.Math.Clamp(index + direction, 0, ZOOMS.length - 1)];
-    camera.setZoom(zoom);
-    this.updateBounds();
-    camera.preRender();
-    const after = camera.getWorldPoint(screenX, screenY);
-    camera.scrollX += anchor.x - after.x;
-    camera.scrollY += anchor.y - after.y;
   }
 
   private updateBounds() {
@@ -136,12 +114,12 @@ export class CampusScene extends Phaser.Scene {
     camera.setBounds(-padX, -padY, width + padX * 2, height + padY * 2);
   }
 
-  private addRegion(key: string, region: TileRegion, depth: number, step = 1) {
+  private addRegion(key: string, region: TileRegion, depth: number) {
     const container = this.add.container(region.x * 16, region.y * 16).setDepth(depth);
     for (const rectangle of rectangles(region)) {
       const tile = this.add.tileSprite(
-        rectangle.x * 16 * step, rectangle.y * 16 * step,
-        rectangle.width * 16 * step, rectangle.height * 16 * step,
+        rectangle.x * 16, rectangle.y * 16,
+        rectangle.width * 16, rectangle.height * 16,
         this.campus.textures[rectangle.tile],
       ).setOrigin(0);
       container.add(tile);
@@ -152,24 +130,26 @@ export class CampusScene extends Phaser.Scene {
   update() {
     const camera = this.cameras.main;
     const view = camera.worldView;
+    const viewportKey = `${view.x},${view.y},${view.width},${view.height}`;
+    if (viewportKey !== this.viewportKey) {
+      this.viewportKey = viewportKey;
+      this.onViewChange({ x: view.x / 16, y: view.y / 16, width: view.width / 16, height: view.height / 16 });
+    }
     const size = this.campus.chunkSize;
-    const coarse = camera.zoom < 0.5;
     const minX = Math.floor(view.left / (size * 16));
     const minY = Math.floor(view.top / (size * 16));
     const maxX = Math.ceil(view.right / (size * 16));
     const maxY = Math.ceil(view.bottom / (size * 16));
-    const viewKey = `${coarse}:${minX},${minY},${maxX},${maxY}`;
+    const viewKey = `${minX},${minY},${maxX},${maxY}`;
     if (viewKey === this.viewKey) return;
     this.viewKey = viewKey;
     const visible = new Set<string>();
     for (const chunk of this.campus.chunks) {
       if (chunk.x < minX * size || chunk.y < minY * size || chunk.x >= maxX * size || chunk.y >= maxY * size) continue;
-      const layers = coarse ? [chunk.overview] : chunk.layers;
-      const step = coarse ? 4 : 1;
-      layers.forEach((runs, i) => {
-        const key = `ground:${coarse}:${chunk.x}:${chunk.y}:${i}`;
+      chunk.layers.forEach((runs, i) => {
+        const key = `ground:${chunk.x}:${chunk.y}:${i}`;
         visible.add(key);
-        if (!this.activeRegions.has(key)) this.addRegion(key, { x: chunk.x, y: chunk.y, width: size / step, height: size / step, runs }, i, step);
+        if (!this.activeRegions.has(key)) this.addRegion(key, { x: chunk.x, y: chunk.y, width: size, height: size, runs }, i);
       });
     }
     for (const building of this.campus.buildings) {
@@ -182,7 +162,7 @@ export class CampusScene extends Phaser.Scene {
         this.activeRegions.set(key, image);
       }
     }
-    if (!coarse) for (const plant of this.campus.plants) {
+    for (const plant of this.campus.plants) {
       const prototype = this.campus.plantPrototypes[plant.prototype];
       if (plant.x + prototype.width < minX * size || plant.y + prototype.height < minY * size || plant.x > maxX * size || plant.y > maxY * size) continue;
       const key = `plant:${plant.id}`;
