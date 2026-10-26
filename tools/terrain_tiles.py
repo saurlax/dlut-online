@@ -39,6 +39,9 @@ def neighbor_mask(material_at, x, y, material):
 
 
 def base_tile(material, variant):
+    if material == "grass":
+        from campus_materials import load_material
+        return load_material("grass", variant)
     base, dark, light = PALETTE[material]
     image = Image.new("RGB", (SIZE, SIZE), base)
     d = ImageDraw.Draw(image)

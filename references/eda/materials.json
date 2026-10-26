@@ -1,0 +1,23 @@
+{
+  "assets": "apps/web/public/campuses/eda/materials/",
+  "readDate": "2026-10-26",
+  "generation": "imagegen, 4x4 material atlas",
+  "nativeTileSize": [
+    16,
+    16
+  ],
+  "colorsPerTile": 8,
+  "rows": [
+    "grass",
+    "roof",
+    "wall",
+    "glass"
+  ],
+  "variantsPerRow": 4,
+  "prompt": "Production Stardew-inspired campus material atlas, four columns and four rows without gutters. Four matching sage grass variants with blade clusters and subtle organic patches; four desaturated flat-roof membrane/concrete/metal textures; four pale campus facade brick/plaster/masonry/stone textures; four cool blue-gray glass reflections. Native 16x16 pixels per tile, no objects or building silhouettes, sparse grouped details, no antialiasing or high-resolution microdetail.",
+  "processing": "Nearest-neighbor sample atlas to 64x64; split sixteen 16x16 tiles and quantize each to at most eight colors without dithering. Preserve actual tiles as sources. Building materials remap generated luminance around existing photographed color families and composite into the original solid material masks.",
+  "refreshCommand": "python tools/campus_materials.py --refresh",
+  "geometry": "Existing footprints, size, alpha and positions unchanged. No added architectural structures or invented facade features.",
+  "styleReference": "https://www.stardewvalley.net/",
+  "grassRevision": "Second imagegen pass: separate 4:1 atlas, four native 16x16 tiles. Same #93bb60 flat base covering 85 percent, only one to three small 2x3-pixel blade clusters per tile, shadows #86af58 and highlights #a0c66b. No noise or scattered dots. Resize to 64x16, quantize to these three fixed colors, then split."
+}

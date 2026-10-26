@@ -43,3 +43,7 @@
 ## 校园大地图
 
 大地图由 imagegen 参考本项目 OSM 地理底稿与登记建筑生成，采用原创屋顶与地貌表达，参考[星露谷物语](https://www.stardewvalley.net/)的地图窗口风格，未使用其地图贴图。通过 tools/prepare_world_map.py 缩为 128×148 像素、64 色；来源与比例记录见 references/eda/world-map.json。OSM 数据署名与许可同本文前述约定。
+
+## 场景材质
+
+草地、屋面、墙面与玻璃材质由 imagegen 生成，经 tools/campus_materials.py 整理为 16×16、每片最多 8 色的原生贴图。建筑沿用登记轮廓和实景配色，程序仅按原材质遮罩拼合贴图；不新增未经核实的建筑结构。风格参考[星露谷物语](https://www.stardewvalley.net/)，未使用其贴图。提示词与处理约定见 references/eda/materials.json。
