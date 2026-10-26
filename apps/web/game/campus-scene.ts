@@ -112,6 +112,30 @@ export class CampusScene extends Phaser.Scene {
     };
   }
 
+  travelToLandmark(id: string) {
+    const building = this.campus.buildings.find(b => b.id === id)!;
+    const xs = building.footprint.map(p => p[0]);
+    const ys = building.footprint.map(p => p[1]);
+    // Prefer open ground just south of the footprint; this is not an inferred entrance.
+    const targetX = Math.floor((Math.min(...xs) + Math.max(...xs)) / 2);
+    const targetY = Math.ceil(Math.max(...ys)) + 2;
+    for (let radius = 0; radius <= 32; radius++) {
+      for (let dy = -radius; dy <= radius; dy++) {
+        for (let dx = -radius; dx <= radius; dx++) {
+          if (Math.max(Math.abs(dx), Math.abs(dy)) !== radius) continue;
+          const x = (targetX + dx) * 16 + 8;
+          const y = (targetY + dy) * 16 + 8;
+          if (!this.walkable(x - 3, y) || !this.walkable(x + 3, y)) continue;
+          this.keys.clear();
+          this.actor!.setPosition(x, y).setDepth(100 + y / 16);
+          this.cameras.main.centerOn(x, y);
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   private walkable(x: number, y: number) {
     const tx = Math.floor(x / 16),
       ty = Math.floor(y / 16),

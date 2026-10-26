@@ -18,6 +18,8 @@ export default function WorldMap({
 }) {
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
   const [landmark, setLandmark] = useState("");
+  const [selected, setSelected] = useState("");
+  const [error, setError] = useState("");
   useEffect(() => {
     function keydown(e: KeyboardEvent) {
       if (
@@ -35,6 +37,8 @@ export default function WorldMap({
       e.preventDefault();
       setSnapshot(snapshot ? null : scene().mapSnapshot());
       setLandmark("");
+      setSelected("");
+      setError("");
     }
     document.addEventListener("keydown", keydown);
     return () => document.removeEventListener("keydown", keydown);
@@ -75,6 +79,7 @@ export default function WorldMap({
                   <button
                     key={b.id}
                     className="world-map-landmark"
+                    aria-pressed={selected === b.id}
                     aria-label={b.name}
                     title={b.name}
                     style={{
@@ -87,7 +92,7 @@ export default function WorldMap({
                     onMouseLeave={() => setLandmark("")}
                     onFocus={() => setLandmark(b.name)}
                     onBlur={() => setLandmark("")}
-                    onClick={() => setLandmark(b.name)}
+                    onClick={() => { setSelected(b.id); setError(""); }}
                   />
                 ))}
                 {snapshot.player && (
@@ -100,8 +105,17 @@ export default function WorldMap({
                 )}
               </div>
               <div className="world-map-caption">
-                <PixelText>{landmark || "北 ↑"}</PixelText>
+                <PixelText>{snapshot.landmarks.find(b => b.id === selected)?.name || landmark || "北 ↑"}</PixelText>
               </div>
+              <GameButton
+                appearance="primary"
+                disabled={!selected || !snapshot.player}
+                onClick={() => {
+                  if (scene().travelToLandmark(selected)) setSnapshot(null);
+                  else setError("附近没有可通行落点");
+                }}
+              >快速前往</GameButton>
+              {error && <p role="alert"><PixelText wrap>{error}</PixelText></p>}
               <Dialog.Close asChild>
                 <GameButton>返回</GameButton>
               </Dialog.Close>
