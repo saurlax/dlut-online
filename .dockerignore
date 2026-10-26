@@ -1,0 +1,10 @@
+.git
+.local
+**/node_modules
+**/.next
+**/out
+**/pb_data
+**/*.tsbuildinfo
+.env
+.env.*
+build

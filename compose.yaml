@@ -1,0 +1,13 @@
+services:
+  dlut-online:
+    image: dlut-online:local
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8415:8415"
+    volumes:
+      - pb_data:/data/pb_data
+    stop_grace_period: 20s
+
+volumes:
+  pb_data:
