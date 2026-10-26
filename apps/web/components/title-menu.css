@@ -2,9 +2,6 @@
 .title-actions .game-button { width: 100%; flex-shrink: 0; }
 .about-dialog { width: var(--about-width); height: min(calc(360 * var(--pixel)), var(--panel-max-height)); display: flex; flex-direction: column; overflow: hidden; }
 .about-body { min-height: 0; flex: 1; padding: calc(4 * var(--pixel)); overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; gap: calc(12 * var(--pixel)); }
-.about-body::-webkit-scrollbar { width: calc(4 * var(--pixel)); }
-.about-body::-webkit-scrollbar-track { background: #e5d6a4; }
-.about-body::-webkit-scrollbar-thumb { background: #2166a4; border: var(--pixel) solid #e5d6a4; }
 .about-body section { display: flex; flex-direction: column; align-items: stretch; gap: calc(4 * var(--pixel)); flex-shrink: 0; }
 .about-body h3, .about-body p { margin: 0; font: inherit; }
 .about-line { display: flex; flex-wrap: wrap; max-width: 100%; row-gap: calc(2 * var(--pixel)); }
