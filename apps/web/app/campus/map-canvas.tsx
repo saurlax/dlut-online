@@ -60,7 +60,7 @@ export default function MapCanvas() {
       <div className="campus-canvas" ref={host} aria-label="开发区校区像素地图" />
       <div className="pixel-interface" ref={setInterfaceHost}>
         {!loaded && !error && <div className="map-progress" role="progressbar" aria-label="地图加载中" />}
-        {error && <p className="map-error" role="alert"><PixelText>地图加载失败</PixelText></p>}
+        {error && <p className="map-error" role="alert"><PixelText wrap>地图加载失败</PixelText></p>}
         {loaded && <GameHud portal={interfaceHost} />}
       </div>
     </div>

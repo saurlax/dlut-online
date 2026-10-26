@@ -24,6 +24,7 @@ body { margin: 0; font-size: calc(12 * var(--pixel)); line-height: 1; }
 .pixel-interface a, .pixel-interface button { pointer-events: auto; }
 .pixel-text { position: relative; display: inline-flex; vertical-align: top; }
 .pixel-text canvas { display: block; image-rendering: pixelated; }
+.pixel-text--wrap { display: block; width: 100%; }
 .pixel-text-content { position: absolute; width: 0; height: 0; overflow: hidden; }
 .missing-page { padding: calc(12 * var(--pixel)); }
 .missing-page p, .missing-page h1 { margin: 0 0 calc(12 * var(--pixel)); font: inherit; }
