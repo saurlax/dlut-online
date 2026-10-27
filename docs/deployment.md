@@ -32,3 +32,28 @@ PocketBase 命令行参数管理监听和数据路径。网页静态文件固定
 测试成功后由同一个 Dockerfile 发布单一镜像。上线前备份数据库，使用 PocketBase 官方支持的备份方式或停机备份一致的数据目录。涉及 schema 或 PocketBase 版本升级时先验证迁移；回滚应用前确认数据库兼容性，必要时恢复匹配备份。
 
 更新镜像采用重建容器方式，保留 `pb_data` 卷。当前只有 HTTP 服务，未来 WebRTC UDP、TURN 和 EdgeOne 四层配置需在对应功能交付时补充，不能只映射一个未监听的 UDP 端口。
+
+## OIDC
+
+统一认证在 PocketBase 的 `users` 集合 OAuth2 配置中设置，不使用部署环境变量。本地和正式环境使用独立客户端；回调地址与密钥约定见 `spec/backend.md`。
+
+也可将下面格式的 JSON 放入仅部署操作员可访问的私密文件，再执行一次配置命令：
+
+```json
+{
+  "name": "oidc",
+  "clientId": "dlut-online",
+  "clientSecret": "填写本环境的实际密钥，不提交此文件",
+  "authURL": "https://dlutsso.saurlax.com/authorize",
+  "tokenURL": "https://dlutsso.saurlax.com/token",
+  "userInfoURL": "https://dlutsso.saurlax.com/userinfo",
+  "displayName": "大工统一认证",
+  "pkce": true
+}
+```
+
+```sh
+/app/dlut-online configure-oidc --file /data/oidc-client.json --dir /data/pb_data
+```
+
+完成后移除临时配置文件并重启服务；提供商配置及密钥已保存在持久化数据库中。注册 SSO 客户端时同时允许 `openid profile email`，学校未提供邮箱的用户也可登录。
