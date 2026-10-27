@@ -3,7 +3,6 @@ package characters
 import (
 	"database/sql"
 	"errors"
-	"fmt"
 	"net/http"
 
 	"github.com/pocketbase/dbx"
@@ -78,13 +77,17 @@ func init() {
 func state(app core.App, user string) (map[string]any, error) {
 	p, err := app.FindFirstRecordByFilter("profiles", "userId = {:u}", dbx.Params{"u": user})
 	if errors.Is(err, sql.ErrNoRows) {
-		return map[string]any{"profile": nil, "inventory": []any{}}, nil
+		return map[string]any{"profile": nil, "inventory": []any{}, "capacity": 0}, nil
 	}
 	if err != nil {
 		return nil, err
 	}
 	items, err := app.FindRecordsByFilter("inventory", "userId = {:u}", "slotId", 0, 0, dbx.Params{"u": user})
-	return map[string]any{"profile": p, "inventory": items}, err
+	if err != nil {
+		return nil, err
+	}
+	capacity, err := inventoryCapacity(app, items)
+	return map[string]any{"profile": p, "inventory": items, "capacity": capacity}, err
 }
 func Register(e *core.ServeEvent) {
 	e.Router.GET("/api/v1/character", func(r *core.RequestEvent) error {
@@ -131,7 +134,7 @@ func Register(e *core.ServeEvent) {
 			if err != nil {
 				return err
 			}
-			keys := []string{"shirt", b.Bottom, "sneakers"}
+			keys := []string{"shirt", b.Bottom, "sneakers", "backpack_10"}
 			if b.Hat {
 				keys = append(keys, "cap")
 			}
@@ -168,56 +171,10 @@ func Register(e *core.ServeEvent) {
 			return r.BadRequestError("无效物品", err)
 		}
 		err := r.App.RunInTransaction(func(tx core.App) error {
-			owned, err := tx.FindFirstRecordByFilter("inventory", "id = {:id} && userId = {:u}", dbx.Params{"id": b.Id, "u": r.Auth.Id})
-			if err != nil {
-				return err
-			}
-			item, err := tx.FindRecordById("items", owned.GetString("itemId"))
-			if err != nil {
-				return err
-			}
-			old := owned.GetString("slotId")
-			target := item.GetString("slotId")
-			all, err := tx.FindRecordsByFilter("inventory", "userId = {:u}", "", 0, 0, dbx.Params{"u": r.Auth.Id})
-			if err != nil {
-				return err
-			}
-			if old == target {
-				used := map[string]bool{}
-				for _, v := range all {
-					used[v.GetString("slotId")] = true
-				}
-				target = ""
-				for i := 0; i < 24; i++ {
-					s := fmt.Sprintf("bag:%d", i)
-					if !used[s] {
-						target = s
-						break
-					}
-				}
-				if target == "" {
-					return errors.New("背包已满")
-				}
-			}
-			for _, v := range all {
-				if v.GetString("slotId") == target {
-					v.Set("slotId", "swap:"+v.Id)
-					if err = tx.Save(v); err != nil {
-						return err
-					}
-					owned.Set("slotId", target)
-					if err = tx.Save(owned); err != nil {
-						return err
-					}
-					v.Set("slotId", old)
-					return tx.Save(v)
-				}
-			}
-			owned.Set("slotId", target)
-			return tx.Save(owned)
+			return wearItem(tx, r.Auth.Id, b.Id)
 		})
 		if err != nil {
-			return r.BadRequestError("无法穿脱物品", err)
+			return err
 		}
 		s, err := state(r.App, r.Auth.Id)
 		if err != nil {
@@ -225,4 +182,23 @@ func Register(e *core.ServeEvent) {
 		}
 		return r.JSON(200, s)
 	}).Bind(apis.RequireAuth("users"))
+	e.Router.POST("/api/v1/character/move", func(r *core.RequestEvent) error {
+		var b struct {
+			Id     string `json:"id"`
+			SlotId string `json:"slotId"`
+		}
+		if err := r.BindBody(&b); err != nil {
+			return r.BadRequestError("无效物品位置", err)
+		}
+		err := r.App.RunInTransaction(func(tx core.App) error { return moveItem(tx, r.Auth.Id, b.Id, b.SlotId) })
+		if err != nil {
+			return err
+		}
+		s, err := state(r.App, r.Auth.Id)
+		if err != nil {
+			return err
+		}
+		return r.JSON(http.StatusOK, s)
+	}).Bind(apis.RequireAuth("users"))
+
 }

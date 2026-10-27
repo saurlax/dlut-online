@@ -237,7 +237,7 @@ export class CampusScene extends Phaser.Scene {
       texture.canvas,
       state.profile!.appearance,
       state.inventory
-        .filter((v) => !v.slotId.startsWith("bag:"))
+        .filter((v) => !v.slotId.startsWith("hotbar:") && !v.slotId.startsWith("bag:"))
         .map((v) => ({
           key: this.itemCatalog.find((i) => i.id === v.itemId)!.key,
           color: v.color,
@@ -263,7 +263,7 @@ export class CampusScene extends Phaser.Scene {
       canvas,
       state.profile.appearance,
       state.inventory
-        .filter((v) => !v.slotId.startsWith("bag:"))
+        .filter((v) => !v.slotId.startsWith("hotbar:") && !v.slotId.startsWith("bag:"))
         .map((v) => ({
           key: items.find((i) => i.id === v.itemId)!.key,
           color: v.color,

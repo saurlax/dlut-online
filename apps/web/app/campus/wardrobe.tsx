@@ -12,6 +12,7 @@ import {
 } from "../../game/character";
 import "../../components/game-dialog.css";
 import "./wardrobe.css";
+import { Hotbar, InventoryPanel } from "./inventory-panel";
 
 async function request(path: string, token: string, body?: unknown) {
   const r = await fetch(path, {
@@ -38,6 +39,7 @@ export default function Wardrobe({
   const [state, setState] = useState<CharacterState>({
       profile: null,
       inventory: [],
+      capacity: 0,
     }),
     [items, setItems] = useState<Item[]>([]),
     [appearance, setAppearance] = useState<Appearance>(initialAppearance),
@@ -48,6 +50,8 @@ export default function Wardrobe({
     [direction, setDirection] = useState(0),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
+  const [selected, setSelected] = useState("hotbar:0");
+  const [active, setActive] = useState("hotbar:0");
   const preview = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const saved = sessionStorage.getItem("do-session");
@@ -88,7 +92,7 @@ export default function Wardrobe({
     if (!preview.current || (state.profile && !items.length)) return;
     const wear = state.profile
       ? state.inventory
-          .filter((v) => !v.slotId.startsWith("bag:"))
+          .filter((v) => !v.slotId.startsWith("hotbar:") && !v.slotId.startsWith("bag:"))
           .map((v) => ({
             key: items.find((i) => i.id === v.itemId)!.key,
             color: v.color,
@@ -137,6 +141,24 @@ export default function Wardrobe({
       publish(s, items);
     });
   }
+  useEffect(() => {
+    function keydown(e: KeyboardEvent) {
+      if (e.repeat || e.ctrlKey || e.metaKey || e.altKey || (e.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]')) return;
+      if (e.code === "KeyI") {
+        if (!open && document.querySelector('[role="dialog"]')) return;
+        e.preventDefault(); if (!open) setSelected(active); setOpen(!open);
+      } else if (!document.querySelector('[role="dialog"]') && /^Digit[0-9]$/.test(e.code)) {
+        const index = (Number(e.code.slice(-1)) + 9) % 10;
+        e.preventDefault(); setActive(`hotbar:${index}`);
+      }
+    }
+    document.addEventListener("keydown",keydown);
+    return () => document.removeEventListener("keydown",keydown);
+  },[open,active]);
+  const previewCanvas = <canvas ref={preview} className="character-preview" aria-label="角色预览" />;
+  function itemAction(action:"wear"|"move",id:string,slotId?:string) {
+    void run(async()=>publish(await request(`/api/v1/character/${action}`,token,{id,slotId}),items));
+  }
   const choices: [keyof Appearance, string, number][] = [
     ["skin", "肤色", 4],
     ["face", "脸型", 2],
@@ -151,21 +173,17 @@ export default function Wardrobe({
   ];
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <div className="wardrobe-trigger">
-        <Dialog.Trigger asChild>
-          <GameButton>角色</GameButton>
-        </Dialog.Trigger>
-      </div>
+      <Hotbar state={state} items={items} active={active} onSelect={setActive} onOpen={()=>{setSelected(active);setOpen(true);}} />
       <Dialog.Portal container={portal}>
         <Dialog.Overlay className="game-dialog-overlay" />
         <Dialog.Content
-          className="game-dialog wardrobe"
+          className={`game-dialog wardrobe${state.profile ? " wardrobe-inventory" : ""}`}
           aria-describedby={undefined}
         >
           <header className="game-dialog-header">
             <Dialog.Title>
               <PixelText>
-                {!token ? "账号" : state.profile ? "背包与穿戴" : "创建角色"}
+                {!token ? "账号" : state.profile ? "背包" : "创建角色"}
               </PixelText>
             </Dialog.Title>
           </header>
@@ -211,15 +229,10 @@ export default function Wardrobe({
               </form>
             ) : (
               <>
-                <canvas
-                  ref={preview}
-                  className="character-preview"
-                  aria-label="角色预览"
-                />
-                <GameButton onClick={() => setDirection((direction + 1) % 4)}>
-                  转身
-                </GameButton>
                 {!state.profile ? (
+                  <>
+                  {previewCanvas}
+                  <GameButton onClick={() => setDirection((direction + 1) % 4)}>转身</GameButton>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -276,38 +289,11 @@ export default function Wardrobe({
                       确认创建
                     </GameButton>
                   </form>
+                  </>
                 ) : (
                   <>
-                    <p>
-                      <PixelText>{state.profile.name}</PixelText>
-                    </p>
-                    <div className="inventory-list">
-                      {state.inventory.map((v) => {
-                        const item = items.find((i) => i.id === v.itemId)!;
-                        const bag = v.slotId.startsWith("bag:");
-                        return (
-                          <GameButton
-                            key={v.id}
-                            disabled={busy}
-                            onClick={() =>
-                              void run(async () =>
-                                publish(
-                                  await request(
-                                    "/api/v1/character/wear",
-                                    token,
-                                    { id: v.id },
-                                  ),
-                                  items,
-                                ),
-                              )
-                            }
-                          >{`${item.name} ${bag ? "穿上" : "脱下"}`}</GameButton>
-                        );
-                      })}
-                    </div>
-                    <p>
-                      <PixelText>{`背包 ${state.inventory.filter((v) => v.slotId.startsWith("bag:")).length}/24`}</PixelText>
-                    </p>
+                    <InventoryPanel state={state} items={items} selected={selected} setSelected={setSelected} busy={busy} onAction={itemAction} active={active} onActivate={setActive}
+                      preview={previewCanvas} onTurn={()=>setDirection((direction+1)%4)} />
                   </>
                 )}
               </>
@@ -317,20 +303,6 @@ export default function Wardrobe({
                 <PixelText wrap>{error}</PixelText>
               </p>
             )}
-            {token && (
-              <GameButton
-                onClick={() => {
-                  sessionStorage.removeItem("do-session");
-                  setToken("");
-                  publish({ profile: null, inventory: [] }, items);
-                }}
-              >
-                退出账号
-              </GameButton>
-            )}
-            <Dialog.Close asChild>
-              <GameButton>返回</GameButton>
-            </Dialog.Close>
           </div>
         </Dialog.Content>
       </Dialog.Portal>
