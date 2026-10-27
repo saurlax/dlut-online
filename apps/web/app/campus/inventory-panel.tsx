@@ -39,9 +39,9 @@ function ItemIcon({ item, color }: { item: Item; color: number }) {
   return <canvas ref={canvas} width={16} height={16} aria-hidden="true" />;
 }
 
-function EmptySlot({ locked }: { locked:boolean }) {
+function LockedSlot() {
   return <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" shapeRendering="crispEdges">
-    {locked ? <path fill="currentColor" fillRule="evenodd" d="M6 3h4v1h1v4h1v6H4V8h1V4h1zm1 2v3h2V5zm0 5v2h2v-2z" /> : <path fill="currentColor" d="M2 2h4v1H3v3H2zm8 0h4v4h-1V3h-3zM2 10h1v3h3v1H2zm11 0h1v4h-4v-1h3z" />}
+    <path fill="currentColor" fillRule="evenodd" d="M6 3h4v1h1v4h1v6H4V8h1V4h1zm1 2v3h2V5zm0 5v2h2v-2z" />
   </svg>;
 }
 
@@ -62,7 +62,7 @@ export function InventorySlot({ slot, owned, items, locked=false, selected=false
     title={item?.name||label} data-slot={slot} onClick={onClick} onDoubleClick={onDoubleClick}
     draggable={Boolean(owned)&&!disabled} onDragStart={e=>e.dataTransfer.setData("text/plain",owned!.id)}
     onDragOver={e=>{if(onDropItem&&!locked)e.preventDefault();}} onDrop={e=>{e.preventDefault();onDropItem?.(e.dataTransfer.getData("text/plain"));}}>
-    {item ? <ItemIcon item={item} color={owned!.color} /> : <EmptySlot locked={locked} />}
+    {item ? <ItemIcon item={item} color={owned!.color} /> : locked ? <LockedSlot /> : null}
     {shortcut&&<Shortcut value={shortcut} />}
   </button>;
 }
