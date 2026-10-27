@@ -454,7 +454,7 @@ export class CampusScene extends Phaser.Scene {
     const maxX = Math.ceil(view.right / (size * 16));
     const maxY = Math.ceil(view.bottom / (size * 16));
     const viewKey = `${minX},${minY},${maxX},${maxY}`;
-    if (viewKey === this.viewKey) { this.updateOcclusion(); return; }
+    if (viewKey === this.viewKey) { this.updateOcclusion(delta); return; }
     this.viewKey = viewKey;
     const visible = new Set<string>();
     for (const chunk of this.campus.chunks) {
@@ -519,10 +519,15 @@ export class CampusScene extends Phaser.Scene {
         this.activeRegions.delete(key);
       }
     }
-    this.updateOcclusion();
+    this.updateOcclusion(delta);
   }
 
-  private updateOcclusion() {
+  private updateOcclusion(delta: number) {
+    const step = .55 * delta / 180;
+    const fade = (alpha: number, hidden: boolean) => {
+      const target = hidden ? .45 : 1;
+      return alpha < target ? Math.min(target, alpha + step) : Math.max(target, alpha - step);
+    };
     const actor = this.actor;
     const canvas = this.occlusionCanvas;
     canvas.width = 16; canvas.height = 32;
@@ -554,14 +559,15 @@ export class CampusScene extends Phaser.Scene {
           const crop = part.getData('occlusionCrop') as {x:number;y:number;width:number;height:number};
           return overlaps(part.texture.getSourceImage() as CanvasImageSource,Math.round(part.x)+crop.x,Math.round(part.y)+crop.y,crop.x,crop.y,crop.width,crop.height,false);
         }));
-        for (const part of parts) part.setAlpha(hidden ? .45 : 1);
+        const alpha = fade(parts[0].alpha, hidden);
+        for (const part of parts) part.setAlpha(alpha);
       } else if (key.startsWith('plant:')) {
         const plant = object as Phaser.GameObjects.Container;
         const hidden = Boolean(actor && plant.depth>actor.depth && plant.list.some(child => {
           const tile = child as Phaser.GameObjects.TileSprite;
           return overlaps(tile.texture.getSourceImage() as CanvasImageSource,Math.round(plant.x+tile.x),Math.round(plant.y+tile.y),0,0,tile.width,tile.height,true);
         }));
-        plant.setAlpha(hidden ? .45 : 1);
+        plant.setAlpha(fade(plant.alpha, hidden));
       }
     }
   }
