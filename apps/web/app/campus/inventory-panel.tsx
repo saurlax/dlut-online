@@ -10,6 +10,23 @@ export const equipmentSlots = [
   ["feet", "鞋子"], ["backpack", "背包"],
 ] as const;
 
+export type CarriedItem = { id:string; x:number; y:number };
+
+export function PointerItem({ carried, state, items, host }: { carried:CarriedItem;state:CharacterState;items:Item[];host:HTMLElement }) {
+  const cursor = useRef<HTMLDivElement>(null);
+  const owned = state.inventory.find(v=>v.id===carried.id)!;
+  useEffect(()=>{
+    function move(point:{clientX:number;clientY:number}) {
+      const bounds=host.getBoundingClientRect(),scale=bounds.width/host.clientWidth;
+      cursor.current!.style.transform=`translate(${Math.round((point.clientX-bounds.left)/scale)-8}px,${Math.round((point.clientY-bounds.top)/scale)-8}px)`;
+    }
+    move({clientX:carried.x,clientY:carried.y});
+    window.addEventListener("pointermove",move);
+    return ()=>window.removeEventListener("pointermove",move);
+  },[carried,host]);
+  return <div ref={cursor} className="inventory-pointer" aria-label="拿起的物品"><ItemIcon item={items.find(i=>i.id===owned.itemId)!} color={owned.color} /></div>;
+}
+
 function ItemIcon({ item, color }: { item: Item; color: number }) {
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -52,63 +69,61 @@ function Shortcut({ value }: { value:string }) {
   </svg>;
 }
 
-export function InventorySlot({ slot, owned, items, locked=false, selected=false, label, shortcut, disabled, onClick, onDoubleClick, onDropItem }: {
+export function InventorySlot({ slot, owned, items, placeholder, locked=false, selected=false, label, shortcut, disabled, onClick }: {
   slot:string; owned?:Owned; items:Item[]; locked?:boolean; selected?:boolean; label:string; shortcut?:string;
-  disabled?:boolean; onClick:()=>void; onDoubleClick?:()=>void; onDropItem?:(id:string)=>void;
+  placeholder?:Item;disabled?:boolean; onClick:(event:React.MouseEvent<HTMLButtonElement>)=>void;
 }) {
   const item=owned ? items.find(i=>i.id===owned.itemId)! : undefined;
   return <button type="button" className={`inventory-slot${locked?" is-locked":""}${selected?" is-selected":""}`}
     aria-label={`${label}${locked?" 未解锁":item?` ${item.name}`:" 空"}`} aria-pressed={selected} disabled={locked||disabled}
-    title={item?.name||label} data-slot={slot} onClick={onClick} onDoubleClick={onDoubleClick}
-    draggable={Boolean(owned)&&!disabled} onDragStart={e=>e.dataTransfer.setData("text/plain",owned!.id)}
-    onDragOver={e=>{if(onDropItem&&!locked)e.preventDefault();}} onDrop={e=>{e.preventDefault();onDropItem?.(e.dataTransfer.getData("text/plain"));}}>
-    {item ? <ItemIcon item={item} color={owned!.color} /> : locked ? <LockedSlot /> : null}
+    data-slot={slot} onClick={onClick}>
+    {item ? <ItemIcon item={item} color={owned!.color} /> : locked ? <LockedSlot /> : placeholder ? <span className="equipment-placeholder"><ItemIcon item={placeholder} color={0} /></span> : null}
     {shortcut&&<Shortcut value={shortcut} />}
   </button>;
 }
 
-export function InventoryPanel({ state, items, selected, setSelected, busy, onAction, preview, active, onActivate }: {
+export function InventoryPanel({ state, items, selected, setSelected, busy, onMove, preview, onActivate, carried, onCarry }: {
   state:CharacterState;items:Item[];selected:string;setSelected:(slot:string)=>void;busy:boolean;
-  onAction:(action:"wear"|"move",id:string,slotId?:string)=>void; preview:React.ReactNode;
-  active:string;onActivate:(slot:string)=>void;
+  onMove:(id:string,slotId:string)=>Promise<boolean>; preview:React.ReactNode;
+  onActivate:(slot:string)=>void;
+  carried:CarriedItem|null;onCarry:(item:CarriedItem|null)=>void;
 }) {
-  const owned=state.inventory.find(v=>v.slotId===selected),item=owned&&items.find(i=>i.id===owned.itemId)!;
-  const quick=selected.startsWith("hotbar:");
-  const storage=quick||selected.startsWith("bag:");
-  const destinations=quick ? Array.from({length:state.capacity},(_,i)=>`bag:${i}`) : Array.from({length:10},(_,i)=>`hotbar:${i}`);
-  const destination=destinations.find(slot=>!state.inventory.some(v=>v.slotId===slot));
-  function drop(id:string,slot:string) {
-    const moving=state.inventory.find(v=>v.id===id);
-    if(!moving)return;
-    if(equipmentSlots.some(([key])=>key===slot)) {
-      if(items.find(i=>i.id===moving.itemId)!.slotId===slot && moving.slotId!==slot)onAction("wear",id);
-    } else onAction("move",id,slot);
+  async function click(slotId:string,event:React.MouseEvent<HTMLButtonElement>) {
+    setSelected(slotId);
+    if(slotId.startsWith("hotbar:"))onActivate(slotId);
+    const owned=state.inventory.find(v=>v.slotId===slotId);
+    if(!carried) {
+      if(owned)onCarry({id:owned.id,x:event.clientX,y:event.clientY});
+    } else if(owned?.id===carried.id) {
+      onCarry(null);
+    } else {
+      const point={x:event.clientX,y:event.clientY};
+      if(await onMove(carried.id,slotId))onCarry(owned?{id:owned.id,...point}:null);
+    }
   }
   const slot=(key:string,label:string,locked=false,shortcut?:string)=><InventorySlot key={key} slot={key} label={label} items={items}
-    owned={state.inventory.find(v=>v.slotId===key)} locked={locked} selected={selected===key} disabled={busy} shortcut={shortcut}
-    onClick={()=>{setSelected(key);if(key.startsWith("hotbar:"))onActivate(key);}} onDoubleClick={()=>{const v=state.inventory.find(v=>v.slotId===key);if(v)onAction("wear",v.id);}}
-    onDropItem={id=>drop(id,key)} />;
+    placeholder={items.find(item=>item.slotId===key)}
+    owned={state.inventory.find(v=>v.slotId===key&&v.id!==carried?.id)} locked={locked} selected={selected===key} disabled={busy} shortcut={shortcut}
+    onClick={event=>void click(key,event)} />;
   return <>
     <div className="inventory-character-row">
-      <div className="inventory-character"><PixelText>{state.profile!.name}</PixelText><div className="character-stage">{preview}</div></div>
-      <div className="equipment-grid">{equipmentSlots.map(([key,label])=><div className="equipment-cell" key={key}>{slot(key,label)}<PixelText>{label}</PixelText></div>)}<div className="equipment-cell">{slot(active,"手持")}<PixelText>手持</PixelText></div></div>
+      <PixelText>{state.profile!.name}</PixelText>
+      <div className="equipment-grid">
+        <div className="character-stage">{preview}</div>
+        {equipmentSlots.map(([key,label])=><div className={`equipment-cell equipment-cell--${key}`} key={key}>{slot(key,label)}</div>)}
+      </div>
     </div>
     <div className="inventory-capacity"><PixelText>{`背包 ${state.inventory.filter(v=>v.slotId.startsWith("bag:")).length}/${state.capacity}`}</PixelText></div>
     <div className="inventory-grid" aria-label="背包格子">{Array.from({length:30},(_,i)=>slot(`bag:${i}`,`背包格 ${i+1}`,i>=state.capacity))}</div>
     <div className="inventory-capacity"><PixelText>物品栏</PixelText></div>
     <div className="inventory-grid inventory-quickbar" aria-label="物品栏">{Array.from({length:10},(_,i)=>slot(`hotbar:${i}`,`物品栏 ${i+1}`,false,String((i+1)%10)))}</div>
-    <div className="inventory-actions">
-      <div className="inventory-selection"><PixelText>{item?.name||"选择物品"}</PixelText></div>
-      {owned&&<GameButton disabled={busy} onClick={()=>onAction("wear",owned.id)}>{storage?"穿上":"脱下"}</GameButton>}
-      {owned&&storage&&destination&&<GameButton disabled={busy} onClick={()=>onAction("move",owned.id,destination)}>{quick?"放入背包":"移至物品栏"}</GameButton>}
-    </div>
   </>;
 }
 
-export function Hotbar({state,items,active,onSelect,onOpen}:{state:CharacterState;items:Item[];active:string;onSelect:(slot:string)=>void;onOpen:()=>void}) {
+export function Hotbar({state,items,active,onSelect,onOpen,carriedId}:{state:CharacterState;items:Item[];active:string;onSelect:(slot:string)=>void;onOpen:()=>void;carriedId?:string}) {
   return <div className="inventory-hotbar" aria-label="快捷物品栏">
     <div className="hotbar-slots">{Array.from({length:10},(_,i)=><InventorySlot key={i} slot={`hotbar:${i}`} label={`快捷栏 ${i+1}`} items={items}
-      owned={state.inventory.find(v=>v.slotId===`hotbar:${i}`)} selected={active===`hotbar:${i}`} shortcut={String((i+1)%10)} onClick={()=>onSelect(`hotbar:${i}`)} />)}</div>
+      owned={state.inventory.find(v=>v.slotId===`hotbar:${i}`&&v.id!==carriedId)} selected={active===`hotbar:${i}`} shortcut={String((i+1)%10)} onClick={()=>onSelect(`hotbar:${i}`)} />)}</div>
     <GameButton aria-label="背包 (I)" onClick={onOpen}>I</GameButton>
   </div>;
 }

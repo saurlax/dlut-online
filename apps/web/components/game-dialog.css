@@ -1,7 +1,10 @@
 .game-dialog-overlay { position: absolute; left: 0; top: 0; width: calc(100% + var(--pixel)); height: calc(100% + var(--pixel)); z-index: 20; background: #10283b70; pointer-events: auto; }
-.game-dialog { position: absolute; left: var(--center-x); top: var(--center-y); z-index: 21; transform: translate(-50%, -50%); width: var(--panel-width); max-height: var(--panel-max-height); overflow-y: auto; border: var(--pixel) solid #123e70; background: #fff3d0; color: #123e70; box-shadow: var(--pixel) var(--pixel) 0 #0b2d50; font: inherit; pointer-events: auto; }
-.game-dialog-header { display: flex; align-items: center; justify-content: center; gap: calc(6 * var(--pixel)); height: calc(24 * var(--pixel)); flex-shrink: 0; background: #2166a4; color: #fff3d0; }
+.game-dialog { position: absolute; left: var(--center-x); top: var(--center-y); z-index: 21; transform: translate(-50%, -50%); width: var(--dialog-width); max-height: var(--panel-max-height); overflow-y: auto; border: var(--pixel) solid #123e70; background: #fff3d0; color: #123e70; box-shadow: var(--pixel) var(--pixel) 0 #0b2d50; font: inherit; pointer-events: auto; }
+.game-dialog-header { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: center; gap: calc(6 * var(--pixel)); height: calc(24 * var(--pixel)); padding: 0 24px; flex-shrink: 0; background: #2166a4; color: #fff3d0; }
 .game-dialog-header h2 { display: flex; margin: 0; font: inherit; }
+.game-dialog-close { position: absolute; right: 3px; top: 3px; display: grid; place-items: center; width: 18px; height: 18px; padding: 0; border: 1px solid #80c7e3; background: #2166a4; color: #fff3d0; font: inherit; cursor: pointer; }
+.game-dialog-close:hover { background: #174779; }
+.game-dialog-close:focus-visible { outline: 1px solid #fff3d0; outline-offset: 1px; }
 .game-dialog::-webkit-scrollbar, .game-dialog ::-webkit-scrollbar { width: calc(3 * var(--pixel)); height: calc(3 * var(--pixel)); }
 .game-dialog::-webkit-scrollbar-track, .game-dialog ::-webkit-scrollbar-track { background: #e5d6a4; }
 .game-dialog::-webkit-scrollbar-thumb, .game-dialog ::-webkit-scrollbar-thumb { background: #2166a4; }
@@ -9,3 +12,4 @@
   .game-dialog, .game-dialog * { scrollbar-width: thin; scrollbar-color: #2166a4 #e5d6a4; }
 }
 :root[data-pixel-compact="true"] .game-dialog-header { height: calc(18 * var(--pixel)); }
+:root[data-pixel-compact="true"] .game-dialog-close { top: 2px; right: 2px; width: 14px; height: 14px; }

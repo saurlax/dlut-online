@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { GameButton, GameLink } from '../../components/game-button';
 import PixelText from '../../components/pixel-text';
+import GameDialogClose from '../../components/game-dialog-close';
 import '../../components/game-dialog.css';
 
 export default function GameHud({ portal }: { portal: HTMLElement | null }) {
@@ -51,14 +52,12 @@ export default function GameHud({ portal }: { portal: HTMLElement | null }) {
         <Dialog.Content className="game-dialog game-settings" aria-describedby={undefined}>
           <header className="game-dialog-header">
             <Dialog.Title><PixelText>设置</PixelText></Dialog.Title>
+            <GameDialogClose />
           </header>
           <div className="settings-content">
             <GameButton onClick={toggleFullscreen}>{fullscreen ? '退出全屏' : '进入全屏'}</GameButton>
             {fullscreenError && <p className="settings-error" role="alert"><PixelText wrap>无法切换全屏</PixelText></p>}
             <GameLink appearance="secondary" href="/">返回标题</GameLink>
-            <Dialog.Close asChild>
-              <GameButton appearance="primary">继续游戏</GameButton>
-            </Dialog.Close>
           </div>
         </Dialog.Content>
       </Dialog.Portal>
