@@ -8,27 +8,28 @@
 
 ## 本地运行
 
-先构建静态网页：
+以下命令从仓库根目录执行。先构建静态网页：
 
 ```sh
-cd apps/web
-pnpm install --frozen-lockfile
-pnpm build
+pnpm --dir apps/web install --frozen-lockfile
+pnpm --dir apps/web build
 ```
 
-再从 `apps/api/` 启动后端，显式提供静态网页路径：
+后端固定读取运行目录下的 `public/`。本地将它链接到静态导出目录，链接只需创建一次；`apps/api/public/` 不提交。
+
+POSIX shell：
 
 ```sh
+ln -s ../web/out apps/api/public
 cd apps/api
-# POSIX shell
-DO_WEB_ROOT=../web/out go run . serve --http=127.0.0.1:8415
+go run . serve --http=127.0.0.1:8415
 ```
 
-PowerShell 使用：
+PowerShell：
 
 ```powershell
+New-Item -ItemType Junction -Path apps/api/public -Target (Resolve-Path apps/web/out)
 Set-Location apps/api
-$env:DO_WEB_ROOT = '../web/out'
 go run . serve --http=127.0.0.1:8415
 ```
 

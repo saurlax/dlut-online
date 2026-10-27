@@ -15,14 +15,13 @@ jobs:
         env:
           VERSION: ${{ github.ref_name }}
         run: '[[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]'
-  build:
+  checks:
     needs: version
     permissions:
       contents: read
-      packages: write
     uses: ./.github/workflows/build.yml
   release:
-    needs: build
+    needs: checks
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -32,4 +31,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
           VERSION: ${{ github.ref_name }}
-        run: gh release create "$VERSION" --title "$VERSION" --notes "镜像已发布至 ghcr.io/${GH_REPO,,}:$VERSION。部署与迁移要求见该标签的 docs/deployment.md。"
+        run: gh release create "$VERSION" --title "$VERSION" --notes "部署与迁移要求见该标签的 docs/deployment.md。"

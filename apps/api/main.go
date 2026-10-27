@@ -15,11 +15,7 @@ func main() {
 	app := pocketbase.New()
 	app.OnServe().BindFunc(func(event *core.ServeEvent) error {
 		characters.Register(event)
-		root := os.Getenv("DO_WEB_ROOT")
-		if root == "" {
-			root = "./public"
-		}
-		if err := site.Register(event, os.DirFS(root)); err != nil {
+		if err := site.Register(event, os.DirFS("public")); err != nil {
 			return err
 		}
 		return event.Next()

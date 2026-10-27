@@ -23,7 +23,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 WORKDIR /app
 COPY --from=backend /out/dlut-online /app/dlut-online
 COPY --from=frontend /src/apps/web/out/ /app/public/
-ENV DO_WEB_ROOT=/app/public
 USER 10001:10001
 EXPOSE 8415
 VOLUME ["/data/pb_data"]
