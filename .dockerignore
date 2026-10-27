@@ -4,6 +4,7 @@
 **/.next
 **/out
 **/pb_data
+apps/api/public
 **/*.tsbuildinfo
 .env
 .env.*

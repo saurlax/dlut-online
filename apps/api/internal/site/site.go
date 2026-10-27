@@ -15,7 +15,7 @@ import (
 func Register(event *core.ServeEvent, public fs.FS) error {
 	info, err := fs.Stat(public, "index.html")
 	if err != nil {
-		return fmt.Errorf("static frontend missing; build apps/web and set DO_WEB_ROOT: %w", err)
+		return fmt.Errorf("static frontend missing; build apps/web and place the export in ./public: %w", err)
 	}
 	if info.IsDir() {
 		return fmt.Errorf("static frontend index.html must be a file")

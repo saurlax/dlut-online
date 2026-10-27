@@ -25,7 +25,7 @@ docker compose exec dlut-online /app/dlut-online superuser create <email> <passw
 
 该命令参数可能被本机进程列表和 shell 历史记录；在受控终端执行，不把实际密码写进仓库、工单或日志。生产环境限制管理入口访问，配置 SMTP 与邮箱策略后再开放注册。
 
-PocketBase 命令行参数管理监听和数据路径。`DO_WEB_ROOT` 指向构建静态文件，容器默认 `/app/public`。程序启动时检查首页存在，缺少前端构建则直接失败，不静默运行残缺发行包。
+PocketBase 命令行参数管理监听和数据路径。网页静态文件固定从运行目录的 `public/` 读取，容器中为 `/app/public`，无需配置环境变量。程序启动时检查首页存在，缺少前端构建则直接失败，不静默运行残缺发行包。
 
 ## 发布与回滚
 

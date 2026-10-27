@@ -23,7 +23,7 @@ Next.js 使用 `output: "export"` 和 `trailingSlash: true`，构建输出 `apps
 
 SQLite 数据放在 `/data/pb_data` 持久卷，运行用户为非 root。当前镜像仅开放 HTTP 8415；未实现 WebRTC 时不发布虚假的 UDP 服务端口。
 
-test.yml 提供可复用的前端类型检查与 Go test/vet。build.yml 在主线 push、PR、手动和发布复用时先调用测试，再构建统一镜像。PR 仅构建，主线发布 latest 和提交标签。release.yml 接收版本标签并调用同一构建流程，不绕过测试门禁。
+test.yml 提供可复用的前端类型检查与 Go test/vet。build.yml 保留为检查入口，在主线 push、PR、手动和发布复用时调用测试，不构建或推送容器镜像。release.yml 接收版本标签，版本校验与测试通过后创建 GitHub Release，不宣称镜像已发布。根 Dockerfile 保留，镜像按需手动构建与发布。
 
 ## 状态
 
