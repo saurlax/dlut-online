@@ -1,7 +1,3 @@
-.world-map-dialog {
-  width: fit-content;
-  max-width: calc(var(--view-width) - 8px);
-}
 .world-map-content {
   display: flex;
   flex-direction: column;
@@ -42,6 +38,8 @@
 }
 .world-map-caption {
   height: 12px;
-  max-width: 156px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   overflow: hidden;
 }

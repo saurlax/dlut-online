@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { GameButton } from "../../components/game-button";
 import PixelText from "../../components/pixel-text";
+import GameDialogClose from "../../components/game-dialog-close";
 import {
   drawCharacter,
   initialAppearance,
@@ -12,7 +13,7 @@ import {
 } from "../../game/character";
 import "../../components/game-dialog.css";
 import "./wardrobe.css";
-import { Hotbar, InventoryPanel } from "./inventory-panel";
+import { Hotbar, InventoryPanel, PointerItem, type CarriedItem } from "./inventory-panel";
 
 async function request(path: string, token: string, body?: unknown) {
   const r = await fetch(path, {
@@ -51,6 +52,8 @@ export default function Wardrobe({
     [busy, setBusy] = useState(false);
   const [selected, setSelected] = useState("hotbar:0");
   const [active, setActive] = useState("hotbar:0");
+  const [carried, setCarried] = useState<CarriedItem | null>(null);
+  function changeOpen(next:boolean) { setCarried(null);setOpen(next); }
   const preview = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const saved = sessionStorage.getItem("do-session");
@@ -91,7 +94,7 @@ export default function Wardrobe({
     if (!preview.current || (state.profile && !items.length)) return;
     const wear = state.profile
       ? state.inventory
-          .filter((v) => !v.slotId.startsWith("hotbar:") && !v.slotId.startsWith("bag:"))
+          .filter((v) => v.id !== (open ? carried?.id : undefined) && !v.slotId.startsWith("hotbar:") && !v.slotId.startsWith("bag:"))
           .map((v) => ({
             key: items.find((i) => i.id === v.itemId)!.key,
             color: v.color,
@@ -107,14 +110,16 @@ export default function Wardrobe({
       state.profile?.appearance || appearance,
       wear,
     );
-  }, [open, appearance, state, items, color, bottom, hat]);
+  }, [open, appearance, state, items, color, bottom, hat, carried]);
   async function run(fn: () => Promise<void>) {
     setBusy(true);
     setError("");
     try {
       await fn();
+      return true;
     } catch (e) {
       setError((e as Error).message);
+      return false;
     } finally {
       setBusy(false);
     }
@@ -144,7 +149,7 @@ export default function Wardrobe({
       if (e.repeat || e.ctrlKey || e.metaKey || e.altKey || (e.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]')) return;
       if (e.code === "KeyI") {
         if (!open && document.querySelector('[role="dialog"]')) return;
-        e.preventDefault(); if (!open) setSelected(active); setOpen(!open);
+        e.preventDefault(); if (!open) setSelected(active); changeOpen(!open);
       } else if (!document.querySelector('[role="dialog"]') && /^Digit[0-9]$/.test(e.code)) {
         const index = (Number(e.code.slice(-1)) + 9) % 10;
         e.preventDefault(); setActive(`hotbar:${index}`);
@@ -154,8 +159,8 @@ export default function Wardrobe({
     return () => document.removeEventListener("keydown",keydown);
   },[open,active]);
   const previewCanvas = <canvas ref={preview} className="character-preview" aria-label="角色预览" />;
-  function itemAction(action:"wear"|"move",id:string,slotId?:string) {
-    void run(async()=>publish(await request(`/api/v1/character/${action}`,token,{id,slotId}),items));
+  function moveItem(id:string,slotId:string) {
+    return run(async()=>publish(await request("/api/v1/character/move",token,{id,slotId}),items));
   }
   const choices: [keyof Appearance, string, number][] = [
     ["skin", "肤色", 4],
@@ -170,12 +175,13 @@ export default function Wardrobe({
     ["freckles", "雀斑", 2],
   ];
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Hotbar state={state} items={items} active={active} onSelect={setActive} onOpen={()=>{setSelected(active);setOpen(true);}} />
+    <Dialog.Root open={open} onOpenChange={changeOpen}>
+      <Hotbar carriedId={open ? carried?.id : undefined} state={state} items={items} active={active} onSelect={setActive} onOpen={()=>{setSelected(active);changeOpen(true);}} />
+      {open && carried && portal && <PointerItem carried={carried} state={state} items={items} host={portal} />}
       <Dialog.Portal container={portal}>
-        <Dialog.Overlay className="game-dialog-overlay" />
+        <Dialog.Overlay className={`game-dialog-overlay${carried ? " inventory-carrying" : ""}`} />
         <Dialog.Content
-          className={`game-dialog wardrobe${state.profile ? " wardrobe-inventory" : ""}`}
+          className={`game-dialog wardrobe${state.profile ? " wardrobe-inventory" : ""}${carried ? " inventory-carrying" : ""}`}
           aria-describedby={undefined}
         >
           <header className="game-dialog-header">
@@ -184,6 +190,7 @@ export default function Wardrobe({
                 {!token ? "账号" : state.profile ? "背包" : "创建角色"}
               </PixelText>
             </Dialog.Title>
+            <GameDialogClose />
           </header>
           <div className="wardrobe-content">
             {!token ? (
@@ -289,7 +296,7 @@ export default function Wardrobe({
                   </>
                 ) : (
                   <>
-                    <InventoryPanel state={state} items={items} selected={selected} setSelected={setSelected} busy={busy} onAction={itemAction} active={active} onActivate={setActive}
+                    <InventoryPanel state={state} items={items} selected={selected} setSelected={setSelected} busy={busy} onMove={moveItem} carried={carried} onCarry={setCarried} onActivate={setActive}
                       preview={previewCanvas} />
                   </>
                 )}

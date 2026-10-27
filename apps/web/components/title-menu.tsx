@@ -4,6 +4,7 @@ import { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { GameButton, GameLink } from './game-button';
 import PixelText from './pixel-text';
+import GameDialogClose from './game-dialog-close';
 import './game-dialog.css';
 import './title-menu.css';
 
@@ -25,6 +26,7 @@ export default function TitleMenu() {
           <Dialog.Content className="game-dialog about-dialog" aria-describedby={undefined}>
             <header className="game-dialog-header">
               <Dialog.Title><PixelText>关于</PixelText></Dialog.Title>
+              <GameDialogClose />
             </header>
             <div className="about-body" onScroll={(event) => { event.currentTarget.scrollTop = Math.round(event.currentTarget.scrollTop); }}>
               <p><PixelText wrap>DLUT Online</PixelText></p>
@@ -61,9 +63,6 @@ export default function TitleMenu() {
                 <CreditLink href="https://github.com/radix-ui/primitives/blob/main/LICENSE">MIT License</CreditLink>
               </section>
             </div>
-            <footer className="about-footer">
-              <Dialog.Close asChild><GameButton appearance="primary">返回</GameButton></Dialog.Close>
-            </footer>
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>

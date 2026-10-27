@@ -34,17 +34,19 @@
   height: 32px;
   image-rendering: pixelated;
 }
-.wardrobe { width:var(--about-width); }
 
 @media (max-width:600px) { .wardrobe-content form { grid-template-columns:1fr; } }
 
-.wardrobe-inventory { width: min(286px, calc(var(--view-width) - 8px)); }
 .wardrobe-inventory .wardrobe-content { gap: 6px; }
-.inventory-character-row { display: grid; grid-template-columns: 90px 1fr; gap: 12px; width: 100%; align-items: center; }
-.inventory-character { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
-.character-stage { width: 60px; height: 60px; display: grid; place-items: center; border: 1px solid #a6b7aa; background: #ceddba; box-shadow: inset 0 -8px #adc298; }
-.equipment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px 8px; }
-.equipment-cell { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.inventory-character-row { display: flex; flex-direction: column; gap: 4px; width: 100%; align-items: center; }
+.character-stage { grid-column: 2; grid-row: 1 / 4; width: 48px; display: grid; place-items: center; border: 1px solid #a6b7aa; background: #ceddba; box-shadow: inset 0 -8px #adc298; }
+.equipment-grid { display: grid; grid-template-columns: var(--inventory-slot-size) 48px var(--inventory-slot-size); grid-template-rows: repeat(3, var(--inventory-slot-size)); gap: 2px 4px; }
+.equipment-cell--head { grid-column: 1; grid-row: 1; }
+.equipment-cell--top { grid-column: 1; grid-row: 2; }
+.equipment-cell--bottom { grid-column: 1; grid-row: 3; }
+.equipment-cell--backpack { grid-column: 3; grid-row: 1; }
+.equipment-cell--feet { grid-column: 3; grid-row: 3; }
+.equipment-placeholder { opacity: .25; filter: grayscale(1); pointer-events: none; }
 .wardrobe-inventory, .inventory-hotbar { --inventory-slot-size: 24px; }
 .inventory-slot { position: relative; display: grid; place-items: center; flex: 0 0 var(--inventory-slot-size); width: var(--inventory-slot-size); height: var(--inventory-slot-size); padding: 0; border: 1px solid; border-color: #56686b #fff9e8 #fff9e8 #56686b; background: #a4b1ad; color: #697975; cursor: pointer; }
 .inventory-slot canvas { display: block; width: 16px; height: 16px; image-rendering: pixelated; }
@@ -58,8 +60,6 @@
 .is-selected .slot-shortcut { color: #184f80; }
 .inventory-capacity { width: 100%; padding-top: 4px; border-top: 1px solid #b9c0a4; }
 .inventory-grid { display: grid; grid-template-columns: repeat(10, var(--inventory-slot-size)); gap: 2px; align-self: center; }
-.inventory-actions { width: 100%; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; min-height: 24px; }
-.inventory-selection { flex: 1; min-width: 72px; }
 .inventory-hotbar { position: absolute; left: var(--center-x); bottom: 5px; transform: translateX(-50%); display: flex; align-items: center; gap: 5px; padding: 3px; background: #fff3d0; border: 1px solid #184f80; box-shadow: 1px 1px #0b2d50; pointer-events: auto; }
 .hotbar-slots { display: flex; gap: 2px; }
 .inventory-hotbar > .game-button { width: var(--inventory-slot-size); height: var(--inventory-slot-size); padding: 0; }
@@ -68,5 +68,8 @@
   .inventory-grid { gap: 1px; }
   .inventory-hotbar { gap: 3px; }
   .hotbar-slots { gap: 1px; }
-  .inventory-character-row { grid-template-columns: 70px 1fr; gap: 6px; }
 }
+
+.inventory-pointer { position: absolute; left: 0; top: 0; width: 16px; height: 16px; z-index: 30; pointer-events: none; }
+.inventory-pointer canvas { display: block; width: 16px; height: 16px; image-rendering: pixelated; }
+.inventory-carrying, .inventory-carrying button { cursor: none; }

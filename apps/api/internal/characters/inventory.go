@@ -210,15 +210,37 @@ func moveItem(app core.App, user, id, target string) error {
 	if err != nil {
 		return err
 	}
-	if !quickbarSlot(target) {
+	storage := quickbarSlot(target)
+	if !storage {
 		i, ok := bagIndex(target)
-		if !ok || i >= capacity {
+		storage = ok
+		if ok && i >= capacity {
 			return apis.NewBadRequestError("该背包格尚未解锁", nil)
 		}
 	}
 	old := item.GetString("slotId")
+	if !storage {
+		definition, err := app.FindRecordById("items", item.GetString("itemId"))
+		if err != nil {
+			return err
+		}
+		if target != definition.GetString("slotId") {
+			return apis.NewBadRequestError("该物品不能放入这个槽位", nil)
+		}
+	}
 	if !quickbarSlot(old) && !strings.HasPrefix(old, "bag:") {
-		return apis.NewBadRequestError("请先脱下装备", nil)
+		for _, other := range owned {
+			if other.Id == item.Id || other.GetString("slotId") != target {
+				continue
+			}
+			definition, err := app.FindRecordById("items", other.GetString("itemId"))
+			if err != nil {
+				return err
+			}
+			if definition.GetString("slotId") != old {
+				return apis.NewBadRequestError("请将装备放入空格或与同类装备交换", nil)
+			}
+		}
 	}
 	return transfer(app, owned, item, target)
 }

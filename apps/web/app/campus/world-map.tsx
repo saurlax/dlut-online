@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import PixelText from "../../components/pixel-text";
+import GameDialogClose from "../../components/game-dialog-close";
 import { GameButton } from "../../components/game-button";
 import type { CampusScene } from "../../game/campus-scene";
 import "../../components/game-dialog.css";
@@ -68,8 +69,9 @@ export default function WorldMap({
         >
           <header className="game-dialog-header">
             <Dialog.Title>
-              <PixelText>校园地图</PixelText>
+              <PixelText>地图</PixelText>
             </Dialog.Title>
+            <GameDialogClose />
           </header>
           {snapshot && (
             <div className="world-map-content">
@@ -125,9 +127,6 @@ export default function WorldMap({
                 }}
               >快速前往</GameButton>
               {error && <p role="alert"><PixelText wrap>{error}</PixelText></p>}
-              <Dialog.Close asChild>
-                <GameButton>返回</GameButton>
-              </Dialog.Close>
             </div>
           )}
         </Dialog.Content>

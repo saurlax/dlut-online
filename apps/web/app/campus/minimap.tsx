@@ -60,7 +60,7 @@ export default function Minimap({ scene }: { scene: () => CampusScene }) {
   return (
     <button
       className="pixel-minimap"
-      aria-label="打开校园地图"
+      aria-label="打开地图"
       onClick={() => window.dispatchEvent(new Event("do:open-map"))}
     >
       <canvas ref={canvas} width={64} height={64} aria-hidden="true" />

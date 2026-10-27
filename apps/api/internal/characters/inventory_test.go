@@ -143,4 +143,25 @@ func TestInventoryCapacityAndAtomicEquipment(t *testing.T) {
 	}
 	position(shirt.Id, "hotbar:0")
 	position(large.Id, "bag:1")
+	if err := move(shirt.Id, "top"); err != nil {
+		t.Fatal(err)
+	}
+	position(shirt.Id, "top")
+	position(second.Id, "hotbar:0")
+	if err := move(shirt.Id, "hotbar:1"); err != nil {
+		t.Fatal(err)
+	}
+	position(shirt.Id, "hotbar:1")
+	if err := move(shirt.Id, "top"); err != nil {
+		t.Fatal(err)
+	}
+	if err := move(shirt.Id, "bag:1"); err == nil {
+		t.Fatal("swapped a backpack into the shirt equipment slot")
+	}
+	position(shirt.Id, "top")
+	position(large.Id, "bag:1")
+	if err := move(pack.Id, "hotbar:2"); err == nil {
+		t.Fatal("removed backpack with occupied extension slots")
+	}
+	position(pack.Id, "backpack")
 }
