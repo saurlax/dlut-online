@@ -47,7 +47,6 @@ export default function Wardrobe({
     [bottom, setBottom] = useState("trousers"),
     [hat, setHat] = useState(false),
     [color, setColor] = useState(0),
-    [direction, setDirection] = useState(0),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false);
   const [selected, setSelected] = useState("hotbar:0");
@@ -107,9 +106,8 @@ export default function Wardrobe({
       preview.current,
       state.profile?.appearance || appearance,
       wear,
-      direction,
     );
-  }, [open, appearance, state, items, color, bottom, hat, direction]);
+  }, [open, appearance, state, items, color, bottom, hat]);
   async function run(fn: () => Promise<void>) {
     setBusy(true);
     setError("");
@@ -232,7 +230,6 @@ export default function Wardrobe({
                 {!state.profile ? (
                   <>
                   {previewCanvas}
-                  <GameButton onClick={() => setDirection((direction + 1) % 4)}>转身</GameButton>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -293,7 +290,7 @@ export default function Wardrobe({
                 ) : (
                   <>
                     <InventoryPanel state={state} items={items} selected={selected} setSelected={setSelected} busy={busy} onAction={itemAction} active={active} onActivate={setActive}
-                      preview={previewCanvas} onTurn={()=>setDirection((direction+1)%4)} />
+                      preview={previewCanvas} />
                   </>
                 )}
               </>

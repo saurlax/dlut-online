@@ -67,9 +67,9 @@ export function InventorySlot({ slot, owned, items, locked=false, selected=false
   </button>;
 }
 
-export function InventoryPanel({ state, items, selected, setSelected, busy, onAction, preview, onTurn, active, onActivate }: {
+export function InventoryPanel({ state, items, selected, setSelected, busy, onAction, preview, active, onActivate }: {
   state:CharacterState;items:Item[];selected:string;setSelected:(slot:string)=>void;busy:boolean;
-  onAction:(action:"wear"|"move",id:string,slotId?:string)=>void; preview:React.ReactNode; onTurn:()=>void;
+  onAction:(action:"wear"|"move",id:string,slotId?:string)=>void; preview:React.ReactNode;
   active:string;onActivate:(slot:string)=>void;
 }) {
   const owned=state.inventory.find(v=>v.slotId===selected),item=owned&&items.find(i=>i.id===owned.itemId)!;
@@ -90,7 +90,7 @@ export function InventoryPanel({ state, items, selected, setSelected, busy, onAc
     onDropItem={id=>drop(id,key)} />;
   return <>
     <div className="inventory-character-row">
-      <div className="inventory-character"><PixelText>{state.profile!.name}</PixelText><div className="character-stage">{preview}</div><GameButton onClick={onTurn}>转身</GameButton></div>
+      <div className="inventory-character"><PixelText>{state.profile!.name}</PixelText><div className="character-stage">{preview}</div></div>
       <div className="equipment-grid">{equipmentSlots.map(([key,label])=><div className="equipment-cell" key={key}>{slot(key,label)}<PixelText>{label}</PixelText></div>)}<div className="equipment-cell">{slot(active,"手持")}<PixelText>手持</PixelText></div></div>
     </div>
     <div className="inventory-capacity"><PixelText>{`背包 ${state.inventory.filter(v=>v.slotId.startsWith("bag:")).length}/${state.capacity}`}</PixelText></div>
