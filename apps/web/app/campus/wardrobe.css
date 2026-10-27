@@ -17,6 +17,7 @@
   flex-direction: column;
   gap: 3px;
 }
+.wardrobe-content .sso-login { grid-column: 1 / -1; }
 .wardrobe-content input {
   width: 100%;
   min-width: 0;

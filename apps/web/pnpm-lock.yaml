@@ -17,6 +17,9 @@ importers:
       phaser:
         specifier: 4.2.1
         version: 4.2.1
+      pocketbase:
+        specifier: 0.28.1
+        version: 0.28.1
       react:
         specifier: 19.3.1
         version: 19.3.1
@@ -483,6 +486,9 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
+  pocketbase@0.28.1:
+    resolution: {integrity: sha512-/3ihkq+rvfcs0MQgrK4sEElOg6gfenHW9S/O+3BSO+V1yT+4B10+9aT22uTQUPqze9ItwNtwWyY5ZmdgVCTdVA==}
+
   postcss@8.5.23:
     resolution: {integrity: sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -938,6 +944,8 @@ snapshots:
       eventemitter3: 5.0.4
 
   picocolors@1.1.1: {}
+
+  pocketbase@0.28.1: {}
 
   postcss@8.5.23:
     dependencies:

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import PocketBase, { BaseAuthStore } from "pocketbase";
 import { GameButton } from "../../components/game-button";
 import PixelText from "../../components/pixel-text";
 import GameDialogClose from "../../components/game-dialog-close";
@@ -53,6 +54,7 @@ export default function Wardrobe({
   const [selected, setSelected] = useState("hotbar:0");
   const [active, setActive] = useState("hotbar:0");
   const [carried, setCarried] = useState<CarriedItem | null>(null);
+  const [oidcEnabled, setOidcEnabled] = useState(false);
   function changeOpen(next:boolean) { setCarried(null);setOpen(next); }
   const preview = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -88,6 +90,9 @@ export default function Wardrobe({
     if (!open) return;
     void request("/api/collections/items/records?perPage=100", "")
       .then((r) => setItems(r.items))
+      .catch((e) => setError(e.message));
+    void request("/api/collections/users/auth-methods", "")
+      .then((methods) => setOidcEnabled(methods.oauth2.providers.some((provider: {name:string}) => provider.name === "oidc")))
       .catch((e) => setError(e.message));
   }, [open]);
   useEffect(() => {
@@ -138,10 +143,19 @@ export default function Wardrobe({
         { identity: email, password },
       );
       setPassword("");
-      setToken(auth.token);
-      sessionStorage.setItem("do-session", auth.token);
-      const s = await request("/api/v1/character", auth.token);
-      publish(s, items);
+      await acceptLogin(auth.token);
+    });
+  }
+  async function acceptLogin(authToken: string) {
+    setToken(authToken);
+    sessionStorage.setItem("do-session", authToken);
+    publish(await request("/api/v1/character", authToken), items);
+  }
+  function loginOIDC() {
+    const pb = new PocketBase(window.location.origin, new BaseAuthStore());
+    void run(async () => {
+      const auth = await pb.collection("users").authWithOAuth2({provider: "oidc"});
+      await acceptLogin(auth.token);
     });
   }
   useEffect(() => {
@@ -200,6 +214,7 @@ export default function Wardrobe({
                   void login();
                 }}
               >
+                {oidcEnabled && <GameButton className="sso-login" appearance="primary" disabled={busy} onClick={loginOIDC}>大工统一认证</GameButton>}
                 <label>
                   <PixelText>邮箱</PixelText>
                   <input

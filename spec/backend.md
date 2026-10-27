@@ -26,3 +26,13 @@ GET /api/v1/character 返回本人角色、物品和由已穿背包计算的 cap
 | `--dir` | PocketBase 数据目录，容器为 `/data/pb_data` |
 
 网页静态文件固定读取运行目录下的 `public/`，容器中为 `/app/public`，不通过环境变量覆盖。未使用的环境变量不提前加入。任何管理员密码、账号令牌和后续 TURN 凭据均不打入前端或镜像层。
+
+## 大工统一认证
+
+`users` 支持 PocketBase 内置 OIDC，提供商为 `https://dlutsso.saurlax.com`，授权、Token 和 UserInfo 端点分别为 `/authorize`、`/token`、`/userinfo`。客户端通过官方 JavaScript SDK 的 PKCE 弹窗流程登录，回调为当前源的 `/api/oauth2-redirect`；成功后使用 PocketBase 签发的账号令牌访问现有角色接口，不将学校 Token 当作游戏令牌。
+
+开发客户端 ID 为 `dlut-online-local`，登记 `localhost` 和 `127.0.0.1` 的 8415、18415 端口；正式客户端 ID 为 `dlut-online`，登记 `https://dlut.online/api/oauth2-redirect`。两个客户端使用独立密钥，密钥只存于对应环境的 PocketBase OAuth2 配置和 SSO 客户端配置，不进入浏览器、Git 或日志。不增加 OIDC 环境变量。
+
+学校身份按 OIDC `sub` 关联 PocketBase 用户。`users.email` 允许为空，支持 CAS 仅返回身份、不返回邮箱的账号；不生成假邮箱。SSO 返回已验证且与已有账号匹配的邮箱时，沿用 PocketBase 的账号关联规则；没有可信邮箱时不凭姓名猜测账号归属。原有密码登录与其他 OAuth2 提供商配置保留。
+
+可信操作员可通过 `configure-oidc --file <私密配置.json> --dir <pb_data目录>` 更新 OIDC 提供商；文件格式为 PocketBase OAuth2ProviderConfig，命令仅更新 `oidc`、启用 OAuth2 并允许空邮箱，不覆盖其他提供商。配置持久化至 PocketBase；运行中的服务需重启以刷新集合缓存。

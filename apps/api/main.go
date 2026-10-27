@@ -8,11 +8,13 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 
 	"github.com/saurlax/dlut-online/apps/api/internal/characters"
+	"github.com/saurlax/dlut-online/apps/api/internal/oidc"
 	"github.com/saurlax/dlut-online/apps/api/internal/site"
 )
 
 func main() {
 	app := pocketbase.New()
+	app.RootCmd.AddCommand(oidc.Command(app))
 	app.OnServe().BindFunc(func(event *core.ServeEvent) error {
 		characters.Register(event)
 		if err := site.Register(event, os.DirFS("public")); err != nil {
