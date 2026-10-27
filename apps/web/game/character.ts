@@ -15,6 +15,7 @@ export interface Item {
   key: string;
   name: string;
   slotId: string;
+  capacity: number;
 }
 export interface Owned {
   id: string;
@@ -25,6 +26,7 @@ export interface Owned {
 export interface CharacterState {
   profile: { name: string; appearance: Appearance } | null;
   inventory: Owned[];
+  capacity: number;
 }
 export const initialAppearance: Appearance = {
   brows: 0,
@@ -130,6 +132,21 @@ export function drawCharacter(
     rect(4, 1, 8, 1, clothes[hat.color]);
     rect(side ? 8 : 2, 6, side ? 7 : 12, 1, "#194975");
     if (!back) rect(7, 3, 2, 2, "#e8dfae");
+  }
+  const pack = wear.find(v => v.key.startsWith("backpack_"));
+  if (pack) {
+    if (back) {
+      rect(4, 16, 8, 10, "#183c59");
+      rect(5, 17, 6, 8, clothes[pack.color]);
+      rect(5, 21, 6, 1, "#183c59");
+      rect(7, 18, 2, 2, "#e8dfae");
+    } else if (side) {
+      rect(2, 17, 3, 8, "#183c59");
+      rect(2, 18, 2, 6, clothes[pack.color]);
+    } else {
+      rect(4, 16, 1, 7, "#183c59");
+      rect(11, 16, 1, 7, "#183c59");
+    }
   }
   if (direction === 3) {
     const copy = document.createElement("canvas");
