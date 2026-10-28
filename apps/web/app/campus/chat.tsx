@@ -6,13 +6,18 @@ import PixelText from "../../components/pixel-text";
 import "./chat.css";
 
 type ChatEvent = {type:"join"|"leave"|"message";name:string;text?:string};
+type Message = {line:string; receivedAt:number};
 
 export default function Chat({token}:{token:string}) {
-  const [messages,setMessages]=useState<string[]>([]);
+  const [messages,setMessages]=useState<Message[]>([]);
+  const [now,setNow]=useState(Date.now());
   const [open,setOpen]=useState(false);
   const [text,setText]=useState("");
   const [error,setError]=useState("");
   const input=useRef<HTMLInputElement>(null);
+  const history=useRef<HTMLDivElement>(null);
+  useEffect(()=>{const timer=window.setInterval(()=>setNow(Date.now()),1000);return ()=>window.clearInterval(timer);},[]);
+  useEffect(()=>{if(history.current)history.current.scrollTop=history.current.scrollHeight;},[messages,open]);
   useEffect(()=>{
     const abort=new AbortController();
     async function connect() {
@@ -29,7 +34,7 @@ export default function Chat({token}:{token:string}) {
           if(!entry.startsWith('data: ')) continue;
           const event:ChatEvent=JSON.parse(entry.slice(6));
           const line=event.type==='message' ? `${event.name}：${event.text}` : `${event.name} ${event.type==='join'?'进入了服务器':'离开了服务器'}`;
-          setMessages(current=>[...current.slice(-49),line]);
+          setMessages(current=>[...current.slice(-49),{line,receivedAt:Date.now()}]);
         }
       }
       if(!abort.signal.aborted) setError('聊天连接断开');
@@ -53,7 +58,7 @@ export default function Chat({token}:{token:string}) {
     catch(e){setError((e as Error).message);}
   }
   return <div className="game-chat">
-    <div className="chat-messages" aria-live="polite">{messages.slice(-6).map((line,index)=><PixelText key={index} wrap>{line}</PixelText>)}</div>
+    <div ref={history} className={`chat-messages${open?' is-open':''}`} aria-live="polite">{messages.filter(message=>open || now-message.receivedAt<10000).map((message,index)=><PixelText key={index} wrap>{message.line}</PixelText>)}</div>
     {open && <form onSubmit={event=>void submit(event)}><input ref={input} aria-label="聊天消息" maxLength={200} value={text} onChange={event=>setText(event.target.value)} onKeyDown={event=>{event.stopPropagation();if(event.key==='Escape'){setOpen(false);setError('');}}} /></form>}
     {error && <PixelText wrap>{error}</PixelText>}
   </div>;

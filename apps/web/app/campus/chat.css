@@ -1,5 +1,6 @@
-.game-chat { position:absolute; left:4px; bottom:38px; width:190px; color:#fff3d0; pointer-events:auto; }
-.chat-messages { display:flex; flex-direction:column; gap:2px; max-height:96px; overflow:hidden; }
-.chat-messages .pixel-text { background:rgba(19,40,52,.65); }
-.game-chat form { margin-top:3px; }
-.game-chat input { width:100%; border:1px solid #184f80; padding:3px; background:#fff3d0; color:#123e70; font:inherit; }
+.game-chat { position:absolute; left:4px; bottom:38px; width:190px; height:14px; color:#fff3d0; pointer-events:auto; }
+.chat-messages { position:absolute; bottom:18px; left:0; width:100%; display:flex; flex-direction:column; gap:2px; max-height:96px; overflow:hidden; }
+.chat-messages.is-open { max-height:160px; overflow-y:auto; }
+.chat-messages:not(:empty) { background:rgba(19,40,52,.65); }
+.game-chat form { position:absolute; inset:0; margin:0; }
+.game-chat input { box-sizing:border-box; width:100%; height:14px; border:0; padding:0; background:rgba(19,40,52,.65); color:#fff3d0; font:inherit; line-height:14px; }
