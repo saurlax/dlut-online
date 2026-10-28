@@ -1,0 +1,4 @@
+.mobile-joystick { display:none; position:absolute; left:8px; bottom:42px; width:64px; height:64px; pointer-events:auto; touch-action:none; user-select:none; background:rgba(24,60,89,.55); border:2px solid #b5d2d4; clip-path:polygon(25% 0,75% 0,75% 6%,94% 6%,94% 25%,100% 25%,100% 75%,94% 75%,94% 94%,75% 94%,75% 100%,25% 100%,25% 94%,6% 94%,6% 75%,0 75%,0 25%,6% 25%,6% 6%,25% 6%); }
+.mobile-joystick-knob { position:absolute; left:21px; top:21px; width:18px; height:18px; background:#d7e4d6; border:2px solid #236495; pointer-events:none; }
+.mobile-joystick.is-active .mobile-joystick-knob { background:#fff3d0; }
+@media (any-pointer: coarse) { .mobile-joystick { display:block; } .game-chat { bottom:112px; } }

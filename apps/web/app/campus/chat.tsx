@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { request } from "../../game/game-session";
 import PixelText from "../../components/pixel-text";
+import { GameButton } from "../../components/game-button";
 import "./chat.css";
 
 type ChatEvent = {type:"join"|"leave"|"message";name:string;text?:string};
@@ -64,8 +66,14 @@ export default function Chat({token}:{token:string}) {
     }
     catch(e){addMessages([(e as Error).message]);}
   }
-  return <div className="game-chat">
+  return <>
+  <GameButton className="mobile-chat-button" aria-label={open ? "关闭聊天" : "打开聊天"} onClick={()=>{
+    if(open) {setOpen(false);return;}
+    flushSync(()=>setOpen(true));input.current?.focus();
+  }}>{open ? "×" : "聊"}</GameButton>
+  <div className="game-chat">
     <div ref={history} className={`chat-messages${open?' is-open':''}`} aria-live="polite">{messages.filter(message=>open || now-message.receivedAt<10000).map((message,index)=><PixelText key={index} wrap>{message.line}</PixelText>)}</div>
-    {open && <form onSubmit={event=>void submit(event)}><input ref={input} aria-label="聊天消息" maxLength={200} value={text} onChange={event=>setText(event.target.value)} onKeyDown={event=>{event.stopPropagation();if(event.key==='Escape')setOpen(false);}} /></form>}
-  </div>;
+    {open && <form onSubmit={event=>void submit(event)}><input ref={input} aria-label="聊天消息" enterKeyHint="send" maxLength={200} value={text} onChange={event=>setText(event.target.value)} onKeyDown={event=>{event.stopPropagation();if(event.key==='Escape')setOpen(false);}} /></form>}
+  </div>
+  </>;
 }
