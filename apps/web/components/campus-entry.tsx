@@ -113,6 +113,14 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
       if(!entering.current && !manageAccount.current) setOpen(false);
     });
   }
+  function enterGuest() {
+    void run(async()=>{
+      const guest=await request('/api/v1/guest','',{});
+      const catalog:Item[]=[{id:'shirt',key:'shirt',name:'校园衬衫',slotId:'top',capacity:0},{id:'trousers',key:'trousers',name:'长裤',slotId:'bottom',capacity:0},{id:'sneakers',key:'sneakers',name:'运动鞋',slotId:'feet',capacity:0}];
+      saveGameSession({token:guest.token,guest:{expiresAt:guest.expiresAt},items:catalog,state:{profile:{name:guest.name,gender:'unspecified',appearance:initialAppearance},inventory:catalog.map(item=>({id:item.id,itemId:item.id,slotId:item.slotId,color:0})),capacity:0}});
+      window.location.assign('/game/');
+    });
+  }
   async function login() {
     await run(async()=>{
       if(register) {
@@ -181,6 +189,7 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
     setOpen(next);
   }}>
     <GameButton className="campus-entry" appearance="primary" disabled={busy} onClick={()=>begin(false)}>{authenticated ? "进入校园" : "登录"}</GameButton>
+    {!authenticated && <GameButton disabled={busy} onClick={enterGuest}>游客进入</GameButton>}
     {authenticated && <GameButton disabled={busy} onClick={()=>begin(true)}>账号</GameButton>}
     <Dialog.Portal container={portal}>
       <Dialog.Overlay className="game-dialog-overlay" />

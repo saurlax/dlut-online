@@ -4,6 +4,7 @@ export type GameSession = {
   token: string;
   state: CharacterState & { profile: NonNullable<CharacterState["profile"]> };
   items: Item[];
+  guest?: {expiresAt:number};
 };
 
 export class ApiError extends Error {
@@ -24,7 +25,7 @@ export async function request(path: string, token: string, body?: unknown) {
 }
 
 export function saveGameSession(session: GameSession) {
-  sessionStorage.setItem("do-session", session.token);
+  if(!session.guest) sessionStorage.setItem("do-session", session.token);
   sessionStorage.setItem("do-game-session", JSON.stringify({...session, version: 2}));
 }
 

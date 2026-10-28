@@ -79,7 +79,7 @@ export default function Wardrobe({portal,onCharacter,session}:{
           <GameDialogClose />
         </header>
         <div className="wardrobe-content">
-          <InventoryPanel state={state} items={items} selected={selected} setSelected={setSelected} busy={busy} onMove={moveItem} carried={carried} onCarry={setCarried} onActivate={setActive} preview={previewCanvas} />
+          <InventoryPanel state={state} items={items} selected={selected} setSelected={setSelected} busy={busy || !!session.guest} onMove={moveItem} carried={carried} onCarry={setCarried} onActivate={setActive} preview={previewCanvas} />
           {error && <p role="alert"><PixelText wrap>{error}</PixelText></p>}
         </div>
       </Dialog.Content>

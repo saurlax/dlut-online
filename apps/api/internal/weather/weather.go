@@ -3,8 +3,8 @@ package weather
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/saurlax/dlut-online/apps/api/internal/guest"
 	"net/http"
 	"sync"
 	"time"
@@ -88,14 +88,20 @@ func (s *Service) Start() {
 		}
 	}()
 }
-func (s *Service) Register(e *core.ServeEvent) {
+func (s *Service) Register(e *core.ServeEvent, guests *guest.Service) {
 	e.Router.GET("/api/v1/weather", func(r *core.RequestEvent) error {
+		if _, ok := guests.Resolve(r); !ok {
+			return r.UnauthorizedError("请先登录", nil)
+		}
 		s.mu.Lock()
 		v := s.snapshot()
 		s.mu.Unlock()
 		return r.JSON(http.StatusOK, v)
-	}).Bind(apis.RequireAuth("users"))
+	})
 	e.Router.GET("/api/v1/weather/events", func(r *core.RequestEvent) error {
+		if _, ok := guests.Resolve(r); !ok {
+			return r.UnauthorizedError("请先登录", nil)
+		}
 		c := make(chan Snapshot, 16)
 		s.mu.Lock()
 		s.listeners[c] = true
@@ -129,5 +135,5 @@ func (s *Service) Register(e *core.ServeEvent) {
 				return nil
 			}
 		}
-	}).Bind(apis.RequireAuth("users"))
+	})
 }

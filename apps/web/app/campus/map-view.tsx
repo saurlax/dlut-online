@@ -12,8 +12,8 @@ export default function MapView() {
   useEffect(() => {
     const prepared = readGameSession();
     const auth = new BaseAuthStore();
-    if (prepared) auth.save(prepared.token);
-    if (!prepared || !auth.isValid) {
+    if (prepared && !prepared.guest) auth.save(prepared.token);
+    if (!prepared || (prepared.guest ? prepared.guest.expiresAt<=Date.now() : !auth.isValid)) {
       window.location.replace('/');
       return;
     }

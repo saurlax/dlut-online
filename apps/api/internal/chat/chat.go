@@ -10,8 +10,8 @@ import (
 	"unicode/utf8"
 
 	"github.com/pocketbase/dbx"
-	"github.com/pocketbase/pocketbase/apis"
 	"github.com/pocketbase/pocketbase/core"
+	"github.com/saurlax/dlut-online/apps/api/internal/guest"
 )
 
 type event struct {
@@ -39,14 +39,21 @@ func (h *hub) broadcast(e event) {
 	}
 }
 
-func Register(e *core.ServeEvent) {
+func Register(e *core.ServeEvent, guests *guest.Service) {
 	h := &hub{clients: map[*client]bool{}, last: map[string]time.Time{}}
 	e.Router.GET("/api/v1/chat/events", func(r *core.RequestEvent) error {
-		profile, err := r.App.FindFirstRecordByFilter("profiles", "userId = {:id}", dbx.Params{"id": r.Auth.Id})
-		if err != nil {
-			return r.BadRequestError("请先创建角色", nil)
+		identity, ok := guests.Resolve(r)
+		if !ok {
+			return r.UnauthorizedError("请先登录", nil)
 		}
-		c := &client{user: r.Auth.Id, name: profile.GetString("name"), events: make(chan event, 64)}
+		if identity.Name == "" {
+			profile, err := r.App.FindFirstRecordByFilter("profiles", "userId = {:id}", dbx.Params{"id": identity.ID})
+			if err != nil {
+				return r.BadRequestError("请先创建角色", nil)
+			}
+			identity.Name = profile.GetString("name")
+		}
+		c := &client{user: identity.ID, name: identity.Name, events: make(chan event, 64)}
 		r.Response.Header().Set("Content-Type", "text/event-stream")
 		r.Response.Header().Set("Cache-Control", "no-cache")
 		r.Response.Header().Set("X-Accel-Buffering", "no")
@@ -84,8 +91,12 @@ func Register(e *core.ServeEvent) {
 				return nil
 			}
 		}
-	}).Bind(apis.RequireAuth("users"))
+	})
 	e.Router.POST("/api/v1/chat/messages", func(r *core.RequestEvent) error {
+		identity, ok := guests.Resolve(r)
+		if !ok {
+			return r.UnauthorizedError("请先登录", nil)
+		}
 		var body struct {
 			Text string `json:"text"`
 		}
@@ -100,7 +111,7 @@ func Register(e *core.ServeEvent) {
 		defer h.mu.Unlock()
 		var connected *client
 		for c := range h.clients {
-			if c.user == r.Auth.Id {
+			if c.user == identity.ID {
 				connected = c
 				break
 			}
@@ -109,11 +120,11 @@ func Register(e *core.ServeEvent) {
 			return r.BadRequestError("请先连接游戏", nil)
 		}
 		now := time.Now()
-		if now.Sub(h.last[r.Auth.Id]) < time.Second {
+		if now.Sub(h.last[identity.ID]) < time.Second {
 			return r.TooManyRequestsError("发送太快，请稍后再试", nil)
 		}
-		h.last[r.Auth.Id] = now
+		h.last[identity.ID] = now
 		h.broadcast(event{Type: "message", Name: connected.name, Text: text})
 		return r.JSON(http.StatusOK, map[string]bool{"sent": true})
-	}).Bind(apis.RequireAuth("users"))
+	})
 }
