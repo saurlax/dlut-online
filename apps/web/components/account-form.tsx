@@ -3,13 +3,14 @@
 import { GameButton } from "./game-button";
 import PixelText from "./pixel-text";
 
-export default function AccountForm({email,password,passwordConfirm,code,cooldown,register,disabled,onEmail,onPassword,onPasswordConfirm,onCode,onSendCode,onToggle,onSubmit,onOIDC,onboarding=false}:{
+export default function AccountForm({email,password,passwordConfirm,code,cooldown,register,disabled,onEmail,onPassword,onPasswordConfirm,onCode,onSendCode,onToggle,onSubmit,onOIDC,onGuest,onboarding=false}:{
   email:string; password:string; passwordConfirm:string; code:string; cooldown:number; register:boolean; disabled:boolean;
   onEmail:(value:string)=>void; onPassword:(value:string)=>void;
   onPasswordConfirm:(value:string)=>void; onCode:(value:string)=>void; onSendCode:()=>void;
-  onToggle:()=>void; onSubmit:()=>void; onOIDC?:()=>void; onboarding?:boolean;
+  onToggle:()=>void; onSubmit:()=>void; onOIDC?:()=>void; onGuest?:()=>void; onboarding?:boolean;
 }) {
   return <form onSubmit={event=>{event.preventDefault();onSubmit();}}>
+    {onGuest && !register && <GameButton className="sso-login" disabled={disabled} onClick={onGuest}>游客登录</GameButton>}
     {onOIDC && <GameButton className="sso-login" appearance="primary" disabled={disabled} onClick={onOIDC}>大工统一认证</GameButton>}
     <label>
       <PixelText>邮箱</PixelText>

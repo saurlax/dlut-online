@@ -4,7 +4,6 @@ import { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { GameButton } from './game-button';
 import CampusEntry from './campus-entry';
-import GameSettings from './game-settings';
 import PixelText from './pixel-text';
 import GameDialogClose from './game-dialog-close';
 import './game-dialog.css';
@@ -21,7 +20,6 @@ export default function TitleMenu() {
       <Dialog.Root>
         <div className="title-actions">
           <CampusEntry portal={portal} />
-          <GameSettings portal={portal} />
           <Dialog.Trigger asChild><GameButton>关于</GameButton></Dialog.Trigger>
         </div>
         <Dialog.Portal container={portal}>
