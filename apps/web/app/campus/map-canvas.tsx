@@ -9,6 +9,7 @@ import WorldMap from "./world-map";
 import Minimap from "./minimap";
 import Chat from "./chat";
 import Environment from "./environment";
+import Joystick from "./joystick";
 import { pixelGrid, watchPixelGrid } from "../../game/pixel-grid";
 import PixelText from "../../components/pixel-text";
 import type { GameSession } from "../../game/game-session";
@@ -107,6 +108,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
         {loaded && (
           <>
             <GameHud portal={interfaceHost} />
+            <Joystick onMove={(x,y)=>scene.current!.setTouchMovement(x,y)} />
             <Chat token={session.token} />
             <Minimap scene={()=>scene.current!} />
             <WorldMap portal={interfaceHost} scene={()=>scene.current!} />

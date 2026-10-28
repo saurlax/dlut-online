@@ -114,9 +114,12 @@ export class CampusScene extends Phaser.Scene {
   private itemCatalog: Item[] = [];
   private direction = 0;
   private keys = new Set<string>();
+  private touchMovement = {x:0,y:0};
   private pose = "";
   private environmentTick = "";
   private readonly occlusionCanvas = document.createElement('canvas');
+
+  setTouchMovement(x:number,y:number) { this.touchMovement = {x,y}; }
 
   minimapTerrain() {
     const palette: Record<string, string> = {
@@ -388,7 +391,7 @@ export class CampusScene extends Phaser.Scene {
     };
     const up = (event: KeyboardEvent) =>
       this.keys.delete(event.key.toLowerCase());
-    const blur = () => this.keys.clear();
+    const blur = () => {this.keys.clear();this.setTouchMovement(0,0);};
     const focus = (event: FocusEvent) => { if ((event.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]')) this.keys.clear(); };
     window.addEventListener("keydown", down);
     window.addEventListener("keyup", up);
@@ -448,18 +451,20 @@ export class CampusScene extends Phaser.Scene {
       const paused =
         Boolean(document.querySelector('[role="dialog"]')) ||
         !document.hasFocus();
-      if (paused) this.keys.clear();
-      const dx =
+      if (paused) {this.keys.clear();this.setTouchMovement(0,0);}
+      const keyboardX =
         Number(this.keys.has("d") || this.keys.has("arrowright")) -
         Number(this.keys.has("a") || this.keys.has("arrowleft"));
-      const dy =
+      const keyboardY =
         Number(this.keys.has("s") || this.keys.has("arrowdown")) -
         Number(this.keys.has("w") || this.keys.has("arrowup"));
+      const dx = this.touchMovement.x || keyboardX;
+      const dy = this.touchMovement.y || keyboardY;
       const sprinting = this.keys.has("shift");
       if (dx || dy) {
-        this.direction = dx ? (dx > 0 ? 1 : 3) : dy > 0 ? 0 : 2;
+        this.direction = Math.abs(dx)>Math.abs(dy) ? (dx > 0 ? 1 : 3) : dy > 0 ? 0 : 2;
         const speed = sprinting ? 64 : 32;
-        const distance = (speed * Math.min(delta, 50)) / 1000 / Math.hypot(dx, dy);
+        const distance = (speed * Math.min(delta, 50)) / 1000 / Math.max(1,Math.hypot(dx, dy));
         const x = this.actor.x + dx * distance,
           y = this.actor.y + dy * distance;
         if (

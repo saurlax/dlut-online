@@ -5,3 +5,5 @@
 .chat-messages:not(:empty) { background:rgba(19,40,52,.65); }
 .game-chat form { position:absolute; inset:0; margin:0; }
 .game-chat input { box-sizing:border-box; width:100%; height:14px; border:0; padding:0; background:rgba(19,40,52,.65); color:#fff3d0; font:inherit; line-height:14px; }
+.mobile-chat-button { display:none; position:absolute; left:4px; bottom:5px; width:24px; height:24px; }
+@media (any-pointer: coarse) { .mobile-chat-button { display:flex; } .inventory-hotbar { left:calc(var(--center-x) + 16px); max-width:calc(100% - 40px); } }
