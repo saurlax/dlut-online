@@ -1,5 +1,7 @@
 # 素材与数据来源
 
+开发区校区实时天气使用 [Open-Meteo](https://open-meteo.com/) 天气数据，按 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 署名。
+
 ## 界面交互
 
 设置与关于弹窗使用 [Radix Primitives](https://www.radix-ui.com/primitives/docs/overview/introduction) 的 `@radix-ui/react-dialog` 1.3.1，按 [MIT License](https://github.com/radix-ui/primitives/blob/main/LICENSE) 授权。按钮外观及书籍、禾苗等像素图标由本项目制作，沿用标题标志的大工意象。

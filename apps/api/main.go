@@ -11,6 +11,7 @@ import (
 	"github.com/saurlax/dlut-online/apps/api/internal/chat"
 	"github.com/saurlax/dlut-online/apps/api/internal/oidc"
 	"github.com/saurlax/dlut-online/apps/api/internal/site"
+	"github.com/saurlax/dlut-online/apps/api/internal/weather"
 )
 
 func main() {
@@ -20,6 +21,7 @@ func main() {
 	app.OnServe().BindFunc(func(event *core.ServeEvent) error {
 		characters.Register(event)
 		chat.Register(event)
+		weather.Register(event)
 		if err := site.Register(event, os.DirFS("public")); err != nil {
 			return err
 		}
