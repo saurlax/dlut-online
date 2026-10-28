@@ -73,7 +73,7 @@ export default function Wardrobe({portal,onCharacter,session}:{
     {open && carried && portal && <PointerItem carried={carried} state={state} items={items} host={portal} />}
     <Dialog.Portal container={portal}>
       <Dialog.Overlay className={`game-dialog-overlay${carried ? " inventory-carrying" : ""}`} />
-      <Dialog.Content className={`game-dialog wardrobe wardrobe-inventory${carried ? " inventory-carrying" : ""}`} aria-describedby={undefined}>
+      <Dialog.Content className={`game-dialog wardrobe wardrobe-inventory${session.guest ? " inventory-readonly" : ""}${carried ? " inventory-carrying" : ""}`} aria-describedby={undefined}>
         <header className="game-dialog-header">
           <Dialog.Title><PixelText>背包</PixelText></Dialog.Title>
           <GameDialogClose />
