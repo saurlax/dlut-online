@@ -74,7 +74,7 @@ func TestCommandPermissionsAndArguments(t *testing.T) {
 	if call("/weather set snow").Code != http.StatusOK {
 		t.Fatal("authorized command failed")
 	}
-	if call("/time set 中午").Code != http.StatusOK {
+	if call("/time set noon").Code != http.StatusOK {
 		t.Fatal("noon command failed")
 	}
 	if !strings.Contains(call("/help").Body.String(), "/weather set") {
