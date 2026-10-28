@@ -13,7 +13,7 @@ export default function Chat({token}:{token:string}) {
   const [now,setNow]=useState(Date.now());
   const [open,setOpen]=useState(false);
   const [text,setText]=useState("");
-  const [error,setError]=useState("");
+  function addMessages(lines:string[]) {setMessages(current=>[...current,...lines.map(line=>({line,receivedAt:Date.now()}))].slice(-50));}
   const input=useRef<HTMLInputElement>(null);
   const history=useRef<HTMLDivElement>(null);
   useEffect(()=>{const timer=window.setInterval(()=>setNow(Date.now()),1000);return ()=>window.clearInterval(timer);},[]);
@@ -37,14 +37,15 @@ export default function Chat({token}:{token:string}) {
           setMessages(current=>[...current.slice(-49),{line,receivedAt:Date.now()}]);
         }
       }
-      if(!abort.signal.aborted) setError('聊天连接断开');
+      if(!abort.signal.aborted) addMessages(['聊天连接断开']);
     }
-    void connect().catch(()=>{if(!abort.signal.aborted)setError('聊天连接断开');});
+    void connect().catch(()=>{if(!abort.signal.aborted)addMessages(['聊天连接断开']);});
     return ()=>abort.abort();
   },[token]);
   useEffect(()=>{
     function keydown(event:KeyboardEvent) {
-      if(event.key!=='Enter' || event.repeat || event.ctrlKey || event.metaKey || event.altKey || (event.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]') || document.querySelector('[role="dialog"]')) return;
+      if((event.key!=='Enter' && event.key!=='/') || event.repeat || event.ctrlKey || event.metaKey || event.altKey || (event.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]') || document.querySelector('[role="dialog"]')) return;
+      if(event.key==='/') setText('/');
       event.preventDefault();setOpen(true);
     }
     document.addEventListener('keydown',keydown);
@@ -57,15 +58,14 @@ export default function Chat({token}:{token:string}) {
     try {
       if(text.trim().startsWith('/')) {
         const result=await request('/api/v1/commands',token,{command:text.trim()});
-        setMessages(current=>[...current,...result.message.split('\n').map((line:string)=>({line,receivedAt:Date.now()}))].slice(-50));
+        addMessages(result.message.split('\n'));
       } else await request('/api/v1/chat/messages',token,{text});
-      setText('');setError('');setOpen(false);
+      setText('');setOpen(false);
     }
-    catch(e){setError((e as Error).message);}
+    catch(e){addMessages([(e as Error).message]);}
   }
   return <div className="game-chat">
     <div ref={history} className={`chat-messages${open?' is-open':''}`} aria-live="polite">{messages.filter(message=>open || now-message.receivedAt<10000).map((message,index)=><PixelText key={index} wrap>{message.line}</PixelText>)}</div>
-    {open && <form onSubmit={event=>void submit(event)}><input ref={input} aria-label="聊天消息" maxLength={200} value={text} onChange={event=>setText(event.target.value)} onKeyDown={event=>{event.stopPropagation();if(event.key==='Escape'){setOpen(false);setError('');}}} /></form>}
-    {error && <PixelText wrap>{error}</PixelText>}
+    {open && <form onSubmit={event=>void submit(event)}><input ref={input} aria-label="聊天消息" maxLength={200} value={text} onChange={event=>setText(event.target.value)} onKeyDown={event=>{event.stopPropagation();if(event.key==='Escape')setOpen(false);}} /></form>}
   </div>;
 }

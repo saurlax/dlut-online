@@ -1,4 +1,5 @@
-.game-chat { position:absolute; left:4px; bottom:38px; width:190px; height:14px; color:#fff3d0; pointer-events:auto; }
+.game-chat { position:absolute; left:4px; bottom:38px; width:min(285px, calc(100% - 8px)); height:14px; color:#fff3d0; pointer-events:auto; }
+@media (max-width: 480px) { .game-chat { width:calc(100% - 8px); } }
 .chat-messages { position:absolute; bottom:18px; left:0; width:100%; display:flex; flex-direction:column; gap:2px; max-height:96px; overflow:hidden; }
 .chat-messages.is-open { max-height:160px; overflow-y:auto; }
 .chat-messages:not(:empty) { background:rgba(19,40,52,.65); }
