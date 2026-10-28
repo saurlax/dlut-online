@@ -7,6 +7,7 @@ import GameHud from "./game-hud";
 import Wardrobe from "./wardrobe";
 import WorldMap from "./world-map";
 import Minimap from "./minimap";
+import Chat from "./chat";
 import { pixelGrid, watchPixelGrid } from "../../game/pixel-grid";
 import PixelText from "../../components/pixel-text";
 import type { GameSession } from "../../game/game-session";
@@ -104,6 +105,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
         {loaded && (
           <>
             <GameHud portal={interfaceHost} />
+            <Chat token={session.token} />
             <Minimap scene={()=>scene.current!} />
             <WorldMap portal={interfaceHost} scene={()=>scene.current!} />
             <Wardrobe

@@ -386,18 +386,22 @@ export class CampusScene extends Phaser.Scene {
       this.activeRegions.clear();
     });
     const down = (event: KeyboardEvent) => {
+      if ((event.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]')) return;
       if (!event.repeat) this.keys.add(event.key.toLowerCase());
     };
     const up = (event: KeyboardEvent) =>
       this.keys.delete(event.key.toLowerCase());
     const blur = () => this.keys.clear();
+    const focus = (event: FocusEvent) => { if ((event.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]')) this.keys.clear(); };
     window.addEventListener("keydown", down);
     window.addEventListener("keyup", up);
     window.addEventListener("blur", blur);
+    document.addEventListener("focusin", focus);
     this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
       window.removeEventListener("keydown", down);
       window.removeEventListener("keyup", up);
       window.removeEventListener("blur", blur);
+      document.removeEventListener("focusin", focus);
     });
     this.onReady();
   }
