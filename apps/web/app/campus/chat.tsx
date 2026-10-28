@@ -54,7 +54,13 @@ export default function Chat({token}:{token:string}) {
   async function submit(event:React.FormEvent) {
     event.preventDefault();
     if(!text.trim()){setOpen(false);return;}
-    try {await request('/api/v1/chat/messages',token,{text});setText('');setError('');setOpen(false);}
+    try {
+      if(text.trim().startsWith('/')) {
+        const result=await request('/api/v1/commands',token,{command:text.trim()});
+        setMessages(current=>[...current,...result.message.split('\n').map((line:string)=>({line,receivedAt:Date.now()}))].slice(-50));
+      } else await request('/api/v1/chat/messages',token,{text});
+      setText('');setError('');setOpen(false);
+    }
     catch(e){setError((e as Error).message);}
   }
   return <div className="game-chat">
