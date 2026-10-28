@@ -70,6 +70,8 @@ def main():
                 if part['role'] == 'podium':
                     podium = {**source, 'id':source['id']+'-podium', 'points':part['points'], 'height':8.2, 'height_source':'photo proportion estimate', 'style':'academic', 'storeys':2, 'osm_id':part['osm_id']}
                     build_building(podium, manifest['offset'], directory / 'buildings')
+        from build_tile_atlas import build as build_tile_atlas
+        build_tile_atlas()
         print('Refreshed four native grass tiles and seventeen building textures; geometry unchanged.')
 
 if __name__ == '__main__':

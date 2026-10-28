@@ -170,6 +170,8 @@ def main():
     keep=set(catalog.names)
     for file in catalog.directory.glob("*.png"):
         if file.stem not in keep:file.unlink()
+    from build_tile_atlas import build as build_tile_atlas
+    build_tile_atlas()
     print(f"Generated {len(buildings)} building objects, {len(plants)} plants, {len(catalog.names)} native tiles",flush=True)
 
 
