@@ -60,6 +60,7 @@
 .inventory-slot.is-locked { background: #a6a99c; border-color: #7d857b #e6e3cf #e6e3cf #7d857b; color: #7d857b; cursor: default; }
 .inventory-slot:hover:not(:disabled) { background: #c5d1c9; }
 .inventory-slot:disabled:not(.is-locked) { cursor: wait; }
+.inventory-readonly .inventory-slot:disabled { cursor: not-allowed; }
 .slot-shortcut { position: absolute; right: 1px; bottom: 1px; color: #536c74; pointer-events: none; }
 .is-locked .slot-shortcut { color: #8e927f; }
 .is-selected .slot-shortcut { color: #184f80; }
