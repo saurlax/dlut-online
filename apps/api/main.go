@@ -14,6 +14,7 @@ import (
 
 func main() {
 	app := pocketbase.New()
+	characters.BindIdentity(app)
 	app.RootCmd.AddCommand(oidc.Command(app))
 	app.OnServe().BindFunc(func(event *core.ServeEvent) error {
 		characters.Register(event)

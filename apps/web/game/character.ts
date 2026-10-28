@@ -23,8 +23,10 @@ export interface Owned {
   slotId: string;
   color: number;
 }
+export type Gender = "male" | "female" | "unspecified";
 export interface CharacterState {
-  profile: { name: string; appearance: Appearance } | null;
+  profile: { name: string; gender: Gender; appearance: Appearance } | null;
+  defaults?: { name: string; gender: Gender };
   inventory: Owned[];
   capacity: number;
 }
@@ -49,6 +51,7 @@ export function drawCharacter(
   wear: { key: string; color: number }[],
   direction = 0,
   step = 0,
+  gender: Gender = "unspecified",
 ) {
   canvas.width = 16;
   canvas.height = 32;
@@ -87,16 +90,18 @@ export function drawCharacter(
     rect(3, 31 + sway, 4, 1, "#dce5dd");
     rect(9, 31 - sway, 4, 1, "#dce5dd");
   }
-  rect(4, 15, 8, 8, top ? clothes[top.color] : "#f4e3cc");
+  const female = gender === "female";
+  rect(female ? 5 : 4, 15, female ? 6 : 8, 8, top ? clothes[top.color] : "#f4e3cc");
   if (top) {
     rect(7, 16, 2, 5, "#a4ced8");
     rect(7, 21, 1, 1, "#163c66");
   }
-  rect(side ? 5 : 2, 17, 2, 6 + sway, skin);
-  rect(12, 17, 2, 6 - sway, skin);
+  const leftArm = side ? 5 : female ? 3 : 2, rightArm = female ? 11 : 12;
+  rect(leftArm, 17, 2, 6 + sway, skin);
+  rect(rightArm, 17, 2, 6 - sway, skin);
   if (top) {
-    rect(side ? 5 : 2, 16, 2, 3, clothes[top.color]);
-    rect(12, 16, 2, 3, clothes[top.color]);
+    rect(leftArm, 16, 2, 3, clothes[top.color]);
+    rect(rightArm, 16, 2, 3, clothes[top.color]);
   }
   rect(a.face === 0 ? 4 : 3, 4, a.face === 0 ? 8 : 10, 9, skin);
   rect(5, 12, 6, 3, skin);

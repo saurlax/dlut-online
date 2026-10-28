@@ -109,6 +109,7 @@ export class CampusScene extends Phaser.Scene {
   >();
   private viewKey = "";
   private actor?: Phaser.GameObjects.Image;
+  private nameTag?: Phaser.GameObjects.Image;
   private characterState?: CharacterState;
   private itemCatalog: Item[] = [];
   private direction = 0;
@@ -244,6 +245,7 @@ export class CampusScene extends Phaser.Scene {
         })),
       this.direction,
       step,
+      state.profile!.gender,
     );
     texture.refresh();
   }
@@ -255,6 +257,8 @@ export class CampusScene extends Phaser.Scene {
     if (!state.profile) {
       this.cameras.main.stopFollow();
       this.actor?.destroy();
+      this.nameTag?.destroy();
+      this.nameTag = undefined;
       this.actor = undefined;
       return;
     }
@@ -268,12 +272,15 @@ export class CampusScene extends Phaser.Scene {
           key: items.find((i) => i.id === v.itemId)!.key,
           color: v.color,
         })),
+      0, 0, state.profile.gender,
     );
+    this.setNameTag(state.profile.name);
     if (this.actor) {
       const texture = this.textures.get("player") as Phaser.Textures.CanvasTexture;
       texture.context.clearRect(0, 0, 16, 32);
       texture.context.drawImage(canvas, 0, 0);
       texture.refresh();
+      this.nameTag!.setPosition(this.actor.x, this.actor.y - 35);
       return;
     }
     if (this.textures.exists("player")) this.textures.remove("player");
@@ -301,6 +308,26 @@ export class CampusScene extends Phaser.Scene {
       .setOrigin(0.5, 1)
       .setDepth(100 + y / 16);
     this.cameras.main.startFollow(this.actor, true, 1, 1);
+    this.nameTag!.setPosition(x, y - 35);
+  }
+
+  private setNameTag(username: string) {
+    this.nameTag?.destroy();
+    if (this.textures.exists("player-name")) this.textures.remove("player-name");
+    const canvas = document.createElement("canvas"), context = canvas.getContext("2d")!;
+    context.font = '12px "Fusion Pixel"';
+    canvas.width = 2 * Math.ceil((context.measureText(username).width + 2) / 2);
+    canvas.height = 14;
+    context.font = '12px "Fusion Pixel"';
+    context.fillStyle = "#183c59";
+    context.fillText(username, 1, 11);
+    context.fillStyle = "#fff3d0";
+    context.fillText(username, 0, 10);
+    const pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+    for (let i = 3; i < pixels.data.length; i += 4) pixels.data[i] = pixels.data[i] >= 128 ? 255 : 0;
+    context.putImageData(pixels, 0, 0);
+    this.textures.addCanvas("player-name", canvas);
+    this.nameTag = this.add.image(0, 0, "player-name").setOrigin(0.5, 1).setDepth(100000);
   }
 
   constructor(
@@ -444,6 +471,7 @@ export class CampusScene extends Phaser.Scene {
         this.animateCharacter(step);
         this.pose = pose;
       }
+      this.nameTag!.setPosition(Math.round(this.actor.x), Math.round(this.actor.y) - 35);
     }
 
     const camera = this.cameras.main;

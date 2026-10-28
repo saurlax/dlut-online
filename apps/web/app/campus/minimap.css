@@ -16,7 +16,3 @@
   height: 64px;
   image-rendering: pixelated;
 }
-.pixel-minimap:focus-visible {
-  outline: 1px solid #d19735;
-  outline-offset: 2px;
-}

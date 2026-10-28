@@ -47,7 +47,7 @@ func Configure(app core.App, provider core.OAuth2ProviderConfig) error {
 			return err
 		}
 		users.OAuth2.Enabled = true
-		users.Fields.GetByName("email").(*core.EmailField).Required = false
+		users.Fields.GetByName("email").(*core.EmailField).Required = true
 		for i, existing := range users.OAuth2.Providers {
 			if existing.Name == provider.Name {
 				users.OAuth2.Providers[i] = provider

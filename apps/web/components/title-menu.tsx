@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
-import { GameButton, GameLink } from './game-button';
+import { GameButton } from './game-button';
+import CampusEntry from './campus-entry';
+import GameSettings from './game-settings';
 import PixelText from './pixel-text';
 import GameDialogClose from './game-dialog-close';
 import './game-dialog.css';
@@ -18,7 +20,8 @@ export default function TitleMenu() {
     <section className="title-menu pixel-interface" aria-label="游戏主菜单" ref={setPortal}>
       <Dialog.Root>
         <div className="title-actions">
-          <GameLink className="campus-entry" href="/campus/">进入校园</GameLink>
+          <CampusEntry portal={portal} />
+          <GameSettings portal={portal} />
           <Dialog.Trigger asChild><GameButton>关于</GameButton></Dialog.Trigger>
         </div>
         <Dialog.Portal container={portal}>

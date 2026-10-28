@@ -8,7 +8,7 @@
 
 :root {
   --pixel: 1px;
-  --pixel-scale: 2;
+  --interface-scale: 1.5;
   color-scheme: light;
   background: #71b7de;
   color: #123e70;
@@ -16,11 +16,11 @@
   font-synthesis: none;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; outline: none; }
 body { margin: 0; font-size: calc(12 * var(--pixel)); line-height: 1; }
 .title-screen { position: relative; isolation: isolate; height: 100svh; overflow: hidden; }
 .title-landscape { position: absolute; left: 0; top: 0; display: block; transform-origin: 0 0; image-rendering: pixelated; pointer-events: none; }
-.pixel-interface { position: fixed; left: 0; top: 0; width: var(--view-width); height: var(--view-height); transform: scale(var(--pixel-scale)); transform-origin: 0 0; pointer-events: none; }
+.pixel-interface { position: fixed; left: 0; top: 0; width: var(--view-width); height: var(--view-height); transform: scale(var(--interface-scale)); transform-origin: 0 0; pointer-events: none; }
 .pixel-interface a, .pixel-interface button { pointer-events: auto; }
 .pixel-text { position: relative; display: inline-flex; vertical-align: top; }
 .pixel-text canvas { display: block; image-rendering: pixelated; }
@@ -31,4 +31,3 @@ body { margin: 0; font-size: calc(12 * var(--pixel)); line-height: 1; }
 .title-logo { position: absolute; left: 50%; top: 24px; transform: translateX(-50%); width: 320px; height: 160px; margin: 0; line-height: 0; pointer-events: none; }
 .title-logo img { display: block; width: 320px; height: 160px; image-rendering: pixelated; }
 a { color: inherit; text-underline-offset: calc(2 * var(--pixel)); }
-a:focus-visible { outline: var(--pixel) solid currentColor; outline-offset: calc(2 * var(--pixel)); }
