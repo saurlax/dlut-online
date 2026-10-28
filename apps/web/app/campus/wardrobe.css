@@ -18,6 +18,8 @@
   gap: 3px;
 }
 .wardrobe-content .sso-login { grid-column: 1 / -1; }
+.verification-code-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px; }
+.account-details { width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 .character-gender { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
 .character-gender .game-button[aria-pressed="true"] { background: #c9ded6; }
 .wardrobe-content input {
@@ -41,7 +43,8 @@
 @media (max-width:600px) { .wardrobe-content form { grid-template-columns:1fr; } }
 
 .wardrobe-inventory .wardrobe-content { gap: 6px; }
-.inventory-character-row { display: flex; flex-direction: column; gap: 4px; width: 100%; align-items: center; }
+.inventory-character-row { display: flex; width: 100%; justify-content: flex-start; }
+.inventory-character-group { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .character-stage { grid-column: 2; grid-row: 1 / 4; width: 48px; display: grid; place-items: center; border: 1px solid #a6b7aa; background: #ceddba; box-shadow: inset 0 -8px #adc298; }
 .equipment-grid { display: grid; grid-template-columns: var(--inventory-slot-size) 48px var(--inventory-slot-size); grid-template-rows: repeat(3, var(--inventory-slot-size)); gap: 2px 4px; }
 .equipment-cell--head { grid-column: 1; grid-row: 1; }

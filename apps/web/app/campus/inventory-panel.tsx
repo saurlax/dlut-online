@@ -107,15 +107,16 @@ export function InventoryPanel({ state, items, selected, setSelected, busy, onMo
     onClick={event=>void click(key,event)} />;
   return <>
     <div className="inventory-character-row">
+      <div className="inventory-character-group">
       <PixelText>{state.profile!.name}</PixelText>
       <div className="equipment-grid">
         <div className="character-stage">{preview}</div>
         {equipmentSlots.map(([key,label])=><div className={`equipment-cell equipment-cell--${key}`} key={key}>{slot(key,label)}</div>)}
       </div>
+      </div>
     </div>
     <div className="inventory-capacity"><PixelText>{`背包 ${state.inventory.filter(v=>v.slotId.startsWith("bag:")).length}/${state.capacity}`}</PixelText></div>
     <div className="inventory-grid" aria-label="背包格子">{Array.from({length:30},(_,i)=>slot(`bag:${i}`,`背包格 ${i+1}`,i>=state.capacity))}</div>
-    <div className="inventory-capacity"><PixelText>物品栏</PixelText></div>
     <div className="inventory-grid inventory-quickbar" aria-label="物品栏">{Array.from({length:10},(_,i)=>slot(`hotbar:${i}`,`物品栏 ${i+1}`,false,String((i+1)%10)))}</div>
   </>;
 }
