@@ -1,0 +1,5 @@
+.game-chat { position:absolute; left:4px; bottom:38px; width:190px; color:#fff3d0; pointer-events:auto; }
+.chat-messages { display:flex; flex-direction:column; gap:2px; max-height:96px; overflow:hidden; }
+.chat-messages .pixel-text { background:rgba(19,40,52,.65); }
+.game-chat form { margin-top:3px; }
+.game-chat input { width:100%; border:1px solid #184f80; padding:3px; background:#fff3d0; color:#123e70; font:inherit; }

@@ -8,6 +8,7 @@ import (
 	"github.com/pocketbase/pocketbase/core"
 
 	"github.com/saurlax/dlut-online/apps/api/internal/characters"
+	"github.com/saurlax/dlut-online/apps/api/internal/chat"
 	"github.com/saurlax/dlut-online/apps/api/internal/oidc"
 	"github.com/saurlax/dlut-online/apps/api/internal/site"
 )
@@ -18,6 +19,7 @@ func main() {
 	app.RootCmd.AddCommand(oidc.Command(app))
 	app.OnServe().BindFunc(func(event *core.ServeEvent) error {
 		characters.Register(event)
+		chat.Register(event)
 		if err := site.Register(event, os.DirFS("public")); err != nil {
 			return err
 		}
