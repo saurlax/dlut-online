@@ -121,6 +121,12 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
       window.location.assign('/game/');
     });
   }
+  function logout() {
+    clearGameSession();
+    setToken("");setAuthenticated(false);setAccount(null);setCharacter(null);
+    setEmail("");setPassword("");setPasswordConfirm("");setCode("");setError("");
+    manageAccount.current=false;entering.current=false;setAccountMode(false);setOpen(false);
+  }
   async function login() {
     await run(async()=>{
       if(register) {
@@ -189,7 +195,6 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
     setOpen(next);
   }}>
     <GameButton className="campus-entry" appearance="primary" disabled={busy} onClick={()=>begin(false)}>{authenticated ? "进入校园" : "登录"}</GameButton>
-    {!authenticated && <GameButton disabled={busy} onClick={enterGuest}>游客进入</GameButton>}
     {authenticated && <GameButton disabled={busy} onClick={()=>begin(true)}>账号</GameButton>}
     <Dialog.Portal container={portal}>
       <Dialog.Overlay className="game-dialog-overlay" />
@@ -202,12 +207,14 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
           {!token ? (
             <AccountForm email={email} password={password} passwordConfirm={passwordConfirm} code={code} cooldown={cooldown} register={register} disabled={busy || !ready}
               onEmail={value=>{setEmail(value);setCode("");setCooldown(0);}} onPassword={setPassword} onPasswordConfirm={setPasswordConfirm} onCode={setCode} onSendCode={sendCode} onToggle={()=>setRegister(!register)} onSubmit={()=>void login()}
-              onOIDC={oidcEnabled && !onboarding ? ()=>loginOIDC() : undefined} onboarding={onboarding} />
+              onOIDC={oidcEnabled && !onboarding ? ()=>loginOIDC() : undefined} onGuest={!authenticated && !onboarding ? enterGuest : undefined} onboarding={onboarding} />
           ) : accountMode ? (<>
             <div className="account-details">
+              <PixelText wrap>{`用户名：${character?.profile?.name ?? "未创建"}`}</PixelText>
               <PixelText wrap>{`邮箱：${account!.email}`}</PixelText>
               <PixelText wrap>{`大工统一认证：${account!.oidcBound ? account!.oidcSubject ? `已绑定(${account!.oidcSubject})` : "已绑定" : "未绑定"}`}</PixelText>
               {!account!.oidcBound && oidcEnabled && <GameButton disabled={busy} onClick={()=>loginOIDC(true)}>绑定统一认证</GameButton>}
+              <GameButton disabled={busy} onClick={logout}>退出登录</GameButton>
             </div>
           </>) : (<>
                   {oidcEnabled && (account!.oidcBound ? <PixelText>统一认证已绑定</PixelText> : <GameButton disabled={busy} onClick={()=>loginOIDC(true)}>绑定统一认证</GameButton>)}
