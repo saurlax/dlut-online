@@ -1,18 +1,22 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { request } from "../../game/game-session";
 import "./environment.css";
 
 export default function Environment({token}:{token:string}) {
   const canvas=useRef<HTMLCanvasElement>(null);
   useEffect(()=>{
     const surface=canvas.current!, context=surface.getContext('2d')!;
-    let weatherCode:number|null=null, serverOffset=0, active=true, frame=0;
+    let weatherCode:number|null=null, serverOffset=0, frame=0;
+    const abort=new AbortController();
     function resize(){surface.width=Math.ceil(window.innerWidth/4);surface.height=Math.ceil(window.innerHeight/4);}
-    async function refresh(){
-      try {const result=await request('/api/v1/weather',token);if(active){weatherCode=result.weather.weather_code;serverOffset=result.serverTime-Date.now();}}
-      catch {if(active)weatherCode=null;}
+    async function connect(){
+      const response=await fetch('/api/v1/weather/events',{headers:{Authorization:token},signal:abort.signal});
+      if(!response.ok || !response.body) throw new Error('天气连接失败');
+      const reader=response.body.pipeThrough(new TextDecoderStream()).getReader();let buffer='';
+      while(true){const {value,done}=await reader.read();if(done)break;buffer+=value;let end:number;
+        while((end=buffer.indexOf('\n\n'))>=0){const entry=buffer.slice(0,end);buffer=buffer.slice(end+2);if(!entry.startsWith('data: '))continue;const result=JSON.parse(entry.slice(6));weatherCode=result.available?result.weather.weather_code:null;serverOffset=result.serverTime-Date.now();}
+      }
     }
     function draw(time:number){
       const w=surface.width,h=surface.height;
@@ -38,10 +42,9 @@ export default function Environment({token}:{token:string}) {
       }
       frame=requestAnimationFrame(draw);
     }
-    resize();window.addEventListener('resize',resize);void refresh();
-    const timer=window.setInterval(()=>void refresh(),5*60*1000);
+    resize();window.addEventListener('resize',resize);void connect().catch(()=>{});
     frame=requestAnimationFrame(draw);
-    return ()=>{active=false;cancelAnimationFrame(frame);clearInterval(timer);window.removeEventListener('resize',resize);};
+    return ()=>{abort.abort();cancelAnimationFrame(frame);window.removeEventListener('resize',resize);};
   },[token]);
   return <canvas ref={canvas} className="environment-overlay" aria-hidden="true" />;
 }
