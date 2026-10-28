@@ -8,6 +8,7 @@ import Wardrobe from "./wardrobe";
 import WorldMap from "./world-map";
 import Minimap from "./minimap";
 import Chat from "./chat";
+import Environment from "./environment";
 import { pixelGrid, watchPixelGrid } from "../../game/pixel-grid";
 import PixelText from "../../components/pixel-text";
 import type { GameSession } from "../../game/game-session";
@@ -88,6 +89,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
         ref={host}
         aria-label="开发区校区像素地图"
       />
+      {loaded && <Environment token={session.token} />}
       <div className="pixel-interface" ref={setInterfaceHost}>
         {!loaded && !error && (
           <div
