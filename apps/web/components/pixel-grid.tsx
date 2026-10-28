@@ -1,12 +1,12 @@
 'use client';
 
 import { useLayoutEffect } from 'react';
-import { watchPixelGrid } from '../game/pixel-grid';
+import { watchInterfaceGrid } from '../game/interface-scale';
 
 export default function PixelGrid() {
-  useLayoutEffect(() => watchPixelGrid(({ pixel, width, height, compact }) => {
+  useLayoutEffect(() => watchInterfaceGrid(({ scale, width, height, compact }) => {
     const root = document.documentElement;
-    root.style.setProperty('--pixel-scale', String(pixel));
+    root.style.setProperty('--interface-scale', String(scale));
     root.style.setProperty('--view-width', `${width}px`);
     root.style.setProperty('--view-height', `${height}px`);
     root.style.setProperty('--center-x', `${Math.floor(width / 2)}px`);

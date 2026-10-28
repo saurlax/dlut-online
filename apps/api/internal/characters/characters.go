@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"errors"
 	"net/http"
+	"strings"
 
 	"github.com/pocketbase/dbx"
 	"github.com/pocketbase/pocketbase/apis"
@@ -77,7 +78,15 @@ func init() {
 func state(app core.App, user string) (map[string]any, error) {
 	p, err := app.FindFirstRecordByFilter("profiles", "userId = {:u}", dbx.Params{"u": user})
 	if errors.Is(err, sql.ErrNoRows) {
-		return map[string]any{"profile": nil, "inventory": []any{}, "capacity": 0}, nil
+		account, err := app.FindRecordById("users", user)
+		if err != nil {
+			return nil, err
+		}
+		defaults := CharacterDefaults{Gender: "unspecified"}
+		if err := account.UnmarshalJSONField("characterDefaults", &defaults); err != nil {
+			return nil, err
+		}
+		return map[string]any{"profile": nil, "inventory": []any{}, "capacity": 0, "defaults": defaults}, nil
 	}
 	if err != nil {
 		return nil, err
@@ -90,6 +99,7 @@ func state(app core.App, user string) (map[string]any, error) {
 	return map[string]any{"profile": p, "inventory": items, "capacity": capacity}, err
 }
 func Register(e *core.ServeEvent) {
+	registerAccount(e)
 	e.Router.GET("/api/v1/character", func(r *core.RequestEvent) error {
 		s, err := state(r.App, r.Auth.Id)
 		if err != nil {
@@ -100,6 +110,7 @@ func Register(e *core.ServeEvent) {
 	e.Router.POST("/api/v1/character", func(r *core.RequestEvent) error {
 		var b struct {
 			Name       string     `json:"name"`
+			Gender     string     `json:"gender"`
 			Appearance Appearance `json:"appearance"`
 			Bottom     string     `json:"bottom"`
 			Hat        bool       `json:"hat"`
@@ -107,6 +118,13 @@ func Register(e *core.ServeEvent) {
 		}
 		if err := r.BindBody(&b); err != nil {
 			return r.BadRequestError("无效角色数据", err)
+		}
+		b.Name = strings.TrimSpace(b.Name)
+		if !validUsername(b.Name) {
+			return r.BadRequestError("用户名须为 1–20 个字符，不能包含换行或控制字符", nil)
+		}
+		if b.Gender != "male" && b.Gender != "female" && b.Gender != "unspecified" {
+			return r.BadRequestError("无效角色性别", nil)
 		}
 		if !b.Appearance.valid() || b.Color < 0 || b.Color > 3 || (b.Bottom != "trousers" && b.Bottom != "skirt") {
 			return r.BadRequestError("无效外观选项", nil)
@@ -126,6 +144,7 @@ func Register(e *core.ServeEvent) {
 			p := core.NewRecord(c)
 			p.Set("userId", r.Auth.Id)
 			p.Set("name", b.Name)
+			p.Set("gender", b.Gender)
 			p.Set("appearance", b.Appearance)
 			if err = tx.Save(p); err != nil {
 				return err

@@ -121,8 +121,12 @@ export function InventoryPanel({ state, items, selected, setSelected, busy, onMo
 }
 
 export function Hotbar({state,items,active,onSelect,onOpen,carriedId}:{state:CharacterState;items:Item[];active:string;onSelect:(slot:string)=>void;onOpen:()=>void;carriedId?:string}) {
+  const slots = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    slots.current!.querySelector<HTMLButtonElement>(`[data-slot="${active}"]`)!.scrollIntoView({block:"nearest",inline:"nearest"});
+  }, [active]);
   return <div className="inventory-hotbar" aria-label="快捷物品栏">
-    <div className="hotbar-slots">{Array.from({length:10},(_,i)=><InventorySlot key={i} slot={`hotbar:${i}`} label={`快捷栏 ${i+1}`} items={items}
+    <div className="hotbar-slots" ref={slots}>{Array.from({length:10},(_,i)=><InventorySlot key={i} slot={`hotbar:${i}`} label={`快捷栏 ${i+1}`} items={items}
       owned={state.inventory.find(v=>v.slotId===`hotbar:${i}`&&v.id!==carriedId)} selected={active===`hotbar:${i}`} shortcut={String((i+1)%10)} onClick={()=>onSelect(`hotbar:${i}`)} />)}</div>
     <GameButton aria-label="背包 (I)" onClick={onOpen}>I</GameButton>
   </div>;

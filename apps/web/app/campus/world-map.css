@@ -24,7 +24,6 @@
 .world-map-landmark:hover,
 .world-map-landmark[aria-pressed="true"],
 .world-map-landmark:focus-visible {
-  outline: 1px solid #fff3d0;
   background: #f2d16a55;
 }
 .world-map-player {

@@ -9,9 +9,10 @@ import WorldMap from "./world-map";
 import Minimap from "./minimap";
 import { pixelGrid, watchPixelGrid } from "../../game/pixel-grid";
 import PixelText from "../../components/pixel-text";
+import type { GameSession } from "../../game/game-session";
 import "./map.css";
 
-export default function MapCanvas() {
+export default function MapCanvas({session}: {session:GameSession}) {
   const scene = useRef<CampusScene | null>(null);
   const host = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
@@ -32,8 +33,12 @@ export default function MapCanvas() {
       if (!response.ok || !animationResponse.ok) throw new Error("Map request failed");
       const data: CampusMap = await response.json();
       const animations: EnvironmentAnimations = await animationResponse.json();
+      await document.fonts.load('12px "Fusion Pixel"', session.state.profile.name);
       if (abort.signal.aborted) return;
-      const campus = new CampusScene(data, () => setLoaded(true), animations);
+      const campus = new CampusScene(data, () => {
+        campus.setCharacter(session.state, session.items);
+        setLoaded(true);
+      }, animations);
       scene.current = campus;
       const grid = pixelGrid();
       game = new Phaser.Game({
@@ -69,7 +74,7 @@ export default function MapCanvas() {
       stop?.();
       game?.destroy(true);
     };
-  }, []);
+  }, [session]);
 
   return (
     <div className="campus-map">
@@ -97,6 +102,7 @@ export default function MapCanvas() {
             <Minimap scene={()=>scene.current!} />
             <WorldMap portal={interfaceHost} scene={()=>scene.current!} />
             <Wardrobe
+              session={session}
               portal={interfaceHost}
               onCharacter={(state, items) =>
                 scene.current!.setCharacter(state, items)

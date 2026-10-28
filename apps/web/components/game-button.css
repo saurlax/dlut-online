@@ -28,5 +28,4 @@
 .game-button--icon .game-button-icon { background: none; color: #fff3d0; box-shadow: none; }
 .game-button:hover { filter: brightness(1.08); }
 .game-button:active { transform: translateY(var(--pixel)); box-shadow: 0 var(--pixel) 0 #0b2d50, inset 0 var(--pixel) 0 var(--button-shade), inset 0 calc(-1 * var(--pixel)) 0 var(--button-highlight); }
-.game-button:focus-visible { outline: var(--pixel) solid #d19735; outline-offset: calc(2 * var(--pixel)); }
 :root[data-pixel-narrow="true"] .game-button:not(.game-button--icon) { padding-left: var(--pixel); padding-right: var(--pixel); }

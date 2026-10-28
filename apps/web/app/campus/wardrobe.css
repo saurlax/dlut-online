@@ -18,6 +18,8 @@
   gap: 3px;
 }
 .wardrobe-content .sso-login { grid-column: 1 / -1; }
+.character-gender { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+.character-gender .game-button[aria-pressed="true"] { background: #c9ded6; }
 .wardrobe-content input {
   width: 100%;
   min-width: 0;
@@ -54,16 +56,16 @@
 .inventory-slot.is-selected { border-color: #fff9e8; background: #b9cbc5; box-shadow: 0 0 0 1px #184f80; }
 .inventory-slot.is-locked { background: #a6a99c; border-color: #7d857b #e6e3cf #e6e3cf #7d857b; color: #7d857b; cursor: default; }
 .inventory-slot:hover:not(:disabled) { background: #c5d1c9; }
-.inventory-slot:focus-visible { outline: 1px solid #184f80; outline-offset: 1px; }
 .inventory-slot:disabled:not(.is-locked) { cursor: wait; }
 .slot-shortcut { position: absolute; right: 1px; bottom: 1px; color: #536c74; pointer-events: none; }
 .is-locked .slot-shortcut { color: #8e927f; }
 .is-selected .slot-shortcut { color: #184f80; }
 .inventory-capacity { width: 100%; padding-top: 4px; border-top: 1px solid #b9c0a4; }
-.inventory-grid { display: grid; grid-template-columns: repeat(10, var(--inventory-slot-size)); gap: 2px; align-self: center; }
-.inventory-hotbar { position: absolute; left: var(--center-x); bottom: 5px; transform: translateX(-50%); display: flex; align-items: center; gap: 5px; padding: 3px; background: #fff3d0; border: 1px solid #184f80; box-shadow: 1px 1px #0b2d50; pointer-events: auto; }
-.hotbar-slots { display: flex; gap: 2px; }
-.inventory-hotbar > .game-button { width: var(--inventory-slot-size); height: var(--inventory-slot-size); padding: 0; }
+.inventory-grid { display: grid; grid-template-columns: repeat(10, var(--inventory-slot-size)); gap: 2px; align-self: flex-start; margin-inline: auto; }
+.inventory-hotbar { position: absolute; left: var(--center-x); bottom: 5px; transform: translateX(-50%); display: flex; align-items: center; max-width: calc(100% - 8px); gap: 5px; padding: 3px; background: #fff3d0; border: 1px solid #184f80; box-shadow: 1px 1px #0b2d50; pointer-events: auto; }
+.hotbar-slots { display: flex; min-width: 0; gap: 2px; padding: 1px; overflow-x: auto; scrollbar-width: none; }
+.hotbar-slots::-webkit-scrollbar { display: none; }
+.inventory-hotbar > .game-button { flex-shrink: 0; width: var(--inventory-slot-size); height: var(--inventory-slot-size); padding: 0; }
 @media (max-width: 650px) {
   .wardrobe-inventory, .inventory-hotbar { --inventory-slot-size: 20px; }
   .inventory-grid { gap: 1px; }

@@ -4,7 +4,6 @@
 .game-dialog-header h2 { display: flex; margin: 0; font: inherit; }
 .game-dialog-close { position: absolute; right: 3px; top: 3px; display: grid; place-items: center; width: 18px; height: 18px; padding: 0; border: 1px solid #80c7e3; background: #2166a4; color: #fff3d0; font: inherit; cursor: pointer; }
 .game-dialog-close:hover { background: #174779; }
-.game-dialog-close:focus-visible { outline: 1px solid #fff3d0; outline-offset: 1px; }
 .game-dialog::-webkit-scrollbar, .game-dialog ::-webkit-scrollbar { width: calc(3 * var(--pixel)); height: calc(3 * var(--pixel)); }
 .game-dialog::-webkit-scrollbar-track, .game-dialog ::-webkit-scrollbar-track { background: #e5d6a4; }
 .game-dialog::-webkit-scrollbar-thumb, .game-dialog ::-webkit-scrollbar-thumb { background: #2166a4; }

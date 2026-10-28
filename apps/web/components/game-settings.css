@@ -1,0 +1,9 @@
+.settings-content { display: flex; flex-direction: column; gap: calc(6 * var(--pixel)); padding: calc(8 * var(--pixel)); }
+.settings-content .game-button { width: 100%; flex-shrink: 0; }
+.settings-interface-size { display: flex; flex-direction: column; gap: 4px; }
+.interface-size-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+.interface-size-options .game-button[aria-pressed="true"] { background: #c9ded6; }
+.settings-error { margin: 0; color: #9b423c; }
+:root[data-pixel-compact="true"] .settings-content { padding: calc(4 * var(--pixel)); gap: calc(2 * var(--pixel)); }
+:root[data-pixel-compact="true"] .settings-content .game-button { height: calc(18 * var(--pixel)); padding-top: calc(2 * var(--pixel)); padding-bottom: calc(2 * var(--pixel)); }
+:root[data-pixel-narrow="true"] .settings-content { padding-left: calc(2 * var(--pixel)); padding-right: calc(2 * var(--pixel)); }
