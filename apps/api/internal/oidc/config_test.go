@@ -203,6 +203,28 @@ func TestOIDCRequiresExplicitBindingAndIgnoresEmail(t *testing.T) {
 	call("student-two", bobToken, http.StatusOK, bob.Id)
 	call("student-one", aliceToken, http.StatusOK, alice.Id)
 	call("missing-sub", aliceToken, http.StatusBadRequest, "")
+	start := httptest.NewRecorder()
+	mux.ServeHTTP(start, httptest.NewRequest("POST", "/api/v1/sso/onboarding/start", strings.NewReader(`{}`)))
+	cookies := start.Result().Cookies()
+	if start.Code != http.StatusOK || len(cookies) != 1 || !cookies[0].HttpOnly {
+		t.Fatal("missing browser proof cookie")
+	}
+	firstSSO := httptest.NewRequest("POST", "/api/collections/users/auth-with-oauth2", strings.NewReader(`{"provider":"oidc","code":"unbound-student","codeVerifier":"abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGH","redirectURL":"http://localhost/api/oauth2-redirect"}`))
+	firstSSO.Header.Set("Content-Type", "application/json")
+	firstSSO.AddCookie(cookies[0])
+	guide := httptest.NewRecorder()
+	mux.ServeHTTP(guide, firstSSO)
+	var pending struct {
+		Code  string
+		Token string
+		Data  struct{ Ticket string }
+	}
+	if err := json.Unmarshal(guide.Body.Bytes(), &pending); err != nil {
+		t.Fatal(err)
+	}
+	if guide.Code != http.StatusConflict || pending.Code != "sso_onboarding_required" || len(pending.Data.Ticket) != 48 || pending.Token != "" {
+		t.Fatal("unbound SSO did not issue an onboarding-only ticket")
+	}
 	all, err := app.FindAllRecords("users")
 	if err != nil || len(all) != 2 {
 		t.Fatal("SSO created an account", err)

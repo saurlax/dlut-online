@@ -22,43 +22,70 @@ func init() {
 	}, nil)
 }
 
-func boundAccount(app core.App, e *core.RecordAuthWithOAuth2RequestEvent) (*core.Record, *core.ExternalAuth, error) {
-	link, err := app.FindFirstExternalAuthByExpr(dbx.HashExp{"collectionRef": e.Collection.Id, "provider": "oidc", "providerId": e.OAuth2User.Id})
+var errSSOUnbound = errors.New("unbound SSO identity")
+
+func resolveIdentity(app core.App, account *core.Record, collection *core.Collection, subject string) (*core.Record, *core.ExternalAuth, error) {
+	link, err := app.FindFirstExternalAuthByExpr(dbx.HashExp{"collectionRef": collection.Id, "provider": "oidc", "providerId": subject})
 	if err != nil && !errors.Is(err, sql.ErrNoRows) {
 		return nil, nil, err
 	}
 	if err == nil {
-		if e.Auth != nil && (e.Auth.Collection().Id != e.Collection.Id || e.Auth.Id != link.RecordRef()) {
-			return nil, nil, e.BadRequestError("该统一认证已绑定其他账号", nil)
+		if account != nil && (account.Collection().Id != collection.Id || account.Id != link.RecordRef()) {
+			return nil, nil, apis.NewBadRequestError("该统一认证已绑定其他账号", nil)
 		}
-		account, err := app.FindRecordById(e.Collection.Id, link.RecordRef())
+		account, err := app.FindRecordById(collection.Id, link.RecordRef())
 		return account, link, err
 	}
-	if e.Auth == nil || e.Auth.Collection().Id != e.Collection.Id || e.Auth.Email() == "" {
-		return nil, nil, e.BadRequestError("统一认证尚未绑定，请先用邮箱注册或登录，再绑定统一认证", nil)
+	if account == nil {
+		return nil, nil, errSSOUnbound
 	}
-	previous, err := app.FindFirstExternalAuthByExpr(dbx.HashExp{"collectionRef": e.Collection.Id, "provider": "oidc", "recordRef": e.Auth.Id})
+	if account.Collection().Id != collection.Id || account.Email() == "" {
+		return nil, nil, apis.NewBadRequestError("请使用已注册的邮箱账号绑定统一认证", nil)
+	}
+	previous, err := app.FindFirstExternalAuthByExpr(dbx.HashExp{"collectionRef": collection.Id, "provider": "oidc", "recordRef": account.Id})
 	if err != nil && !errors.Is(err, sql.ErrNoRows) {
 		return nil, nil, err
 	}
 	if previous != nil {
-		return nil, nil, e.BadRequestError("当前账号已绑定其他统一认证身份", nil)
+		return nil, nil, apis.NewBadRequestError("当前账号已绑定其他统一认证身份", nil)
 	}
-	return e.Auth, nil, nil
+	return account, nil, nil
+}
+
+func saveIdentity(app core.App, account *core.Record, link *core.ExternalAuth, subject string, defaults CharacterDefaults) error {
+	if account.Email() == "" {
+		return apis.NewBadRequestError("该统一认证未绑定邮箱注册账号", nil)
+	}
+	account.Set("characterDefaults", defaults)
+	if err := app.Save(account); err != nil {
+		return err
+	}
+	if link == nil {
+		link = core.NewExternalAuth(app)
+		link.SetCollectionRef(account.Collection().Id)
+		link.SetRecordRef(account.Id)
+		link.SetProvider("oidc")
+		link.SetProviderId(subject)
+		return app.Save(link)
+	}
+	return nil
 }
 
 func registerAccount(e *core.ServeEvent) {
+	registerOnboarding(e)
 	e.Router.GET("/api/v1/account", func(r *core.RequestEvent) error {
 		links, err := r.App.FindAllExternalAuthsByRecord(r.Auth)
 		if err != nil {
 			return err
 		}
 		bound := false
+		subject := ""
 		for _, link := range links {
 			if link.Provider() == "oidc" {
 				bound = true
+				subject = link.ProviderId()
 			}
 		}
-		return r.JSON(http.StatusOK, map[string]any{"email": r.Auth.Email(), "oidcBound": bound})
+		return r.JSON(http.StatusOK, map[string]any{"email": r.Auth.Email(), "oidcBound": bound, "oidcSubject": subject})
 	}).Bind(apis.RequireAuth("users"))
 }

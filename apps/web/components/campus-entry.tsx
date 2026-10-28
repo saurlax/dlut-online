@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import PocketBase, { BaseAuthStore } from "pocketbase";
+import PocketBase, { BaseAuthStore, ClientResponseError } from "pocketbase";
 import { GameButton } from "./game-button";
 import PixelText from "./pixel-text";
+import AccountForm from "./account-form";
 import GameDialogClose from "./game-dialog-close";
 import { drawCharacter, initialAppearance, type Appearance, type CharacterState, type Gender, type Item } from "../game/character";
 import { request, ApiError, clearGameSession, saveGameSession } from "../game/game-session";
@@ -17,15 +18,21 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
   const [authenticated,setAuthenticated]=useState(false);
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
+  const [passwordConfirm,setPasswordConfirm]=useState("");
+  const [code,setCode]=useState("");
+  const [cooldown,setCooldown]=useState(0);
   const [register,setRegister]=useState(false);
+  const [onboardingTicket,setOnboardingTicket]=useState("");
+  const [onboarding,setOnboarding]=useState(false);
   const [items,setItems]=useState<Item[]>([]);
   const [oidcEnabled,setOidcEnabled]=useState(false);
   const [ready,setReady]=useState(false);
   const [accountMode,setAccountMode]=useState(false);
   const manageAccount=useRef(false);
-  const [account,setAccount]=useState<{email:string;oidcBound:boolean}|null>(null);
+  const [account,setAccount]=useState<{email:string;oidcBound:boolean;oidcSubject:string}|null>(null);
   const [character,setCharacter]=useState<CharacterState|null>(null);
   const entering=useRef(false);
+  useEffect(()=>{ if(cooldown<=0) return; const timer=window.setTimeout(()=>setCooldown(cooldown-1),1000); return ()=>window.clearTimeout(timer); },[cooldown]);
   const [appearance,setAppearance]=useState<Appearance>(initialAppearance);
   const [name,setName]=useState("");
   const [gender,setGender]=useState<Gender>("unspecified");
@@ -37,6 +44,17 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
   }} />;
 
   useEffect(()=>{
+    const ticket=sessionStorage.getItem("do-sso-onboarding-ticket");
+    if(ticket) {
+      setOnboarding(true);
+      setOpen(true);setRegister(true);
+      setOnboardingTicket(ticket);
+      void run(async()=>{
+        await request("/api/v1/sso/onboarding/inspect","",{ticket});
+        await loadEntryData();
+      });
+      return;
+    }
     const saved=sessionStorage.getItem("do-session");
     if(!saved) return;
     void run(async()=>{
@@ -59,12 +77,12 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
   function finish(state:CharacterState,catalog:Item[],authToken:string) {
     if(!state.profile || !entering.current || manageAccount.current) return;
     saveGameSession({token:authToken,state:{...state,profile:state.profile},items:catalog});
-    window.location.assign("/campus/");
+    window.location.assign("/game/");
   }
   async function acceptLogin(authToken:string,catalog:Item[]=items) {
     sessionStorage.setItem("do-session",authToken);
     setAuthenticated(true);
-    const [state,details]:[CharacterState,{email:string;oidcBound:boolean}]=await Promise.all([
+    const [state,details]:[CharacterState,{email:string;oidcBound:boolean;oidcSubject:string}]=await Promise.all([
       request("/api/v1/character",authToken),request("/api/v1/account",authToken),
     ]);
     setToken(authToken);
@@ -72,33 +90,53 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
     if(!state.profile) {setGender(state.defaults!.gender);setName(Array.from(state.defaults!.name).slice(0,20).join(""));}
     finish(state,catalog,authToken);
   }
+  async function loadEntryData() {
+    const [catalog,methods]=await Promise.all([
+      request("/api/collections/items/records?perPage=100",""),
+      request("/api/collections/users/auth-methods",""),
+    ]);
+    setItems(catalog.items);setReady(true);
+    setOidcEnabled(methods.oauth2.providers.some((provider:{name:string})=>provider.name==="oidc"));
+    return catalog.items as Item[];
+  }
   function begin(manage:boolean) {
     manageAccount.current=manage;setAccountMode(manage);
     entering.current=authenticated && !manage;
     setOpen(true);setToken("");setReady(false);
     void run(async()=>{
       sessionStorage.removeItem("do-game-session");
-      const [catalog,methods]=await Promise.all([
-        request("/api/collections/items/records?perPage=100",""),
-        request("/api/collections/users/auth-methods",""),
-      ]);
-      setItems(catalog.items);setReady(true);
-      setOidcEnabled(methods.oauth2.providers.some((provider:{name:string})=>provider.name==="oidc"));
+      const catalog=await loadEntryData();
       const saved=sessionStorage.getItem("do-session");
       if(!saved) return;
       const auth=await request("/api/collections/users/auth-refresh",saved,{});
-      await acceptLogin(auth.token,catalog.items);
+      await acceptLogin(auth.token,catalog);
       if(!entering.current && !manageAccount.current) setOpen(false);
     });
   }
   async function login() {
     await run(async()=>{
-      if(register) await request("/api/collections/users/records","",{email,password,passwordConfirm:password});
+      if(register) {
+        if(password!==passwordConfirm) throw new Error("两次输入的密码不一致");
+        await request("/api/v1/registration","",{email,password,passwordConfirm,code});
+      }
       const auth=await request("/api/collections/users/auth-with-password","",{identity:email,password});
-      setPassword("");
+      setPassword("");setPasswordConfirm("");setCode("");
+      if(onboardingTicket) {
+        await request("/api/v1/sso/onboarding/complete",auth.token,{ticket:onboardingTicket});
+        sessionStorage.removeItem("do-sso-onboarding-ticket");
+        setOnboardingTicket("");setOnboarding(false);
+        await acceptLogin(auth.token);
+        setOpen(false);
+        return;
+      }
       await acceptLogin(auth.token);
       if(!manageAccount.current) {entering.current=false;setOpen(false);}
     });
+  }
+  function sendCode() {
+    const input=document.querySelector<HTMLInputElement>('input[aria-label="邮箱"]');
+    if(!input?.reportValidity()) return;
+    void run(async()=>{await request("/api/v1/registration/code","",{email});setCooldown(60);});
   }
   function loginOIDC(bind=false) {
     const authorizationTab=window.open("about:blank","_blank");
@@ -108,9 +146,18 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
     if(bind) pb.authStore.save(token);
     void run(async()=>{
       try {
+        if(!bind) await request("/api/v1/sso/onboarding/start","",{});
         const auth=await pb.collection("users").authWithOAuth2({provider:"oidc",urlCallback:url=>{authorizationTab.location.replace(url);}});
         await acceptLogin(auth.token);
         if(!bind && !manageAccount.current) {entering.current=false;setOpen(false);}
+      } catch(e) {
+        if(e instanceof ClientResponseError && e.response.code==="sso_onboarding_required") {
+          const ticket=e.response.data.ticket as string;
+          sessionStorage.setItem("do-sso-onboarding-ticket",ticket);
+          setOnboardingTicket(ticket);setOnboarding(true);setRegister(true);setOpen(true);
+          return;
+        }
+        throw e;
       } finally {authorizationTab.close();}
     });
   }
@@ -126,61 +173,33 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
     ["beard", "胡须", 2],
     ["freckles", "雀斑", 2],
   ];
-  return <Dialog.Root open={open} onOpenChange={next=>{if(!next) entering.current=false;setOpen(next);}}>
+  return <Dialog.Root open={open} onOpenChange={next=>{
+    if(!next) {
+      entering.current=false;
+      if(onboarding) {sessionStorage.removeItem("do-sso-onboarding-ticket");setOnboardingTicket("");setOnboarding(false);setRegister(false);setError("");}
+    }
+    setOpen(next);
+  }}>
     <GameButton className="campus-entry" appearance="primary" disabled={busy} onClick={()=>begin(false)}>{authenticated ? "进入校园" : "登录"}</GameButton>
     {authenticated && <GameButton disabled={busy} onClick={()=>begin(true)}>账号</GameButton>}
     <Dialog.Portal container={portal}>
       <Dialog.Overlay className="game-dialog-overlay" />
       <Dialog.Content className="game-dialog wardrobe" aria-describedby={undefined}>
         <header className="game-dialog-header">
-          <Dialog.Title><PixelText>{token && !accountMode ? "创建角色" : "账号"}</PixelText></Dialog.Title>
+          <Dialog.Title><PixelText>{onboarding ? register ? "完成统一认证注册" : "绑定已有账号" : token && !accountMode ? "创建角色" : "账号"}</PixelText></Dialog.Title>
           <GameDialogClose />
         </header>
         <div className="wardrobe-content" aria-busy={busy}>
           {!token ? (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  void login();
-                }}
-              >
-                {oidcEnabled && <GameButton className="sso-login" appearance="primary" disabled={busy || !ready} onClick={()=>loginOIDC()}>大工统一认证</GameButton>}
-                <label>
-                  <PixelText>邮箱</PixelText>
-                  <input
-                    aria-label="邮箱"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </label>
-                <label>
-                  <PixelText>密码</PixelText>
-                  <input
-                    aria-label="密码"
-                    type="password"
-                    autoComplete={
-                      register ? "new-password" : "current-password"
-                    }
-                    minLength={8}
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </label>
-                <GameButton type="submit" disabled={busy || !ready}>
-                  {register ? "注册并登录" : "登录"}
-                </GameButton>
-                <GameButton disabled={busy || !ready} onClick={() => setRegister(!register)}>
-                  {register ? "已有账号" : "注册账号"}
-                </GameButton>
-              </form>
+            <AccountForm email={email} password={password} passwordConfirm={passwordConfirm} code={code} cooldown={cooldown} register={register} disabled={busy || !ready}
+              onEmail={value=>{setEmail(value);setCode("");setCooldown(0);}} onPassword={setPassword} onPasswordConfirm={setPasswordConfirm} onCode={setCode} onSendCode={sendCode} onToggle={()=>setRegister(!register)} onSubmit={()=>void login()}
+              onOIDC={oidcEnabled && !onboarding ? ()=>loginOIDC() : undefined} onboarding={onboarding} />
           ) : accountMode ? (<>
-            <PixelText wrap>{account!.email}</PixelText>
-            {oidcEnabled && (account!.oidcBound ? <PixelText>统一认证已绑定</PixelText> : <GameButton disabled={busy} onClick={()=>loginOIDC(true)}>绑定统一认证</GameButton>)}
-            <GameButton disabled={busy} onClick={()=>{manageAccount.current=false;setAccountMode(false);finish(character!,items,token);}}>进入校园</GameButton>
+            <div className="account-details">
+              <PixelText wrap>{`邮箱：${account!.email}`}</PixelText>
+              <PixelText wrap>{`大工统一认证：${account!.oidcBound ? account!.oidcSubject ? `已绑定(${account!.oidcSubject})` : "已绑定" : "未绑定"}`}</PixelText>
+              {!account!.oidcBound && oidcEnabled && <GameButton disabled={busy} onClick={()=>loginOIDC(true)}>绑定统一认证</GameButton>}
+            </div>
           </>) : (<>
                   {oidcEnabled && (account!.oidcBound ? <PixelText>统一认证已绑定</PixelText> : <GameButton disabled={busy} onClick={()=>loginOIDC(true)}>绑定统一认证</GameButton>)}
                   {previewCanvas}

@@ -16,6 +16,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
   const scene = useRef<CampusScene | null>(null);
   const host = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [error, setError] = useState(false);
   const [interfaceHost, setInterfaceHost] = useState<HTMLDivElement | null>(
     null,
@@ -25,6 +26,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
     const abort = new AbortController();
     let game: Phaser.Game | undefined;
     let stop: (() => void) | undefined;
+    let loadFailed = false;
     async function start() {
       const [response, animationResponse] = await Promise.all([
         fetch("/campuses/eda/map.json", { signal: abort.signal }),
@@ -35,10 +37,12 @@ export default function MapCanvas({session}: {session:GameSession}) {
       const animations: EnvironmentAnimations = await animationResponse.json();
       await document.fonts.load('12px "Fusion Pixel"', session.state.profile.name);
       if (abort.signal.aborted) return;
+      setProgress(20);
       const campus = new CampusScene(data, () => {
+        if (loadFailed) return;
         campus.setCharacter(session.state, session.items);
         setLoaded(true);
-      }, animations);
+      }, animations, value => setProgress(20 + Math.round(value * 75)), () => {loadFailed=true;setError(true);});
       scene.current = campus;
       const grid = pixelGrid();
       game = new Phaser.Game({
@@ -89,7 +93,8 @@ export default function MapCanvas({session}: {session:GameSession}) {
             className="map-progress"
             role="progressbar"
             aria-label="地图加载中"
-          />
+            aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress}
+          ><div className="map-progress-fill" style={{width:`${progress}%`}} /></div>
         )}
         {error && (
           <p className="map-error" role="alert">

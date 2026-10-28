@@ -3,4 +3,5 @@
 .campus-canvas canvas { display: block; transform-origin: 0 0; image-rendering: pixelated; }
 .game-hud { position: absolute; top: calc(4 * var(--pixel)); right: calc(4 * var(--pixel)); }
 .map-error { position: absolute; left: calc(4 * var(--pixel)); right: calc(4 * var(--pixel)); top: var(--center-y); margin: 0; padding: calc(4 * var(--pixel)); background: #f6f4eb; }
-.map-progress { position: absolute; bottom: 0; height: var(--pixel); width: 100%; background: #e4d6a7; }
+.map-progress { position: absolute; bottom: 0; height: calc(3 * var(--pixel)); width: 100%; background: #e4d6a7; }
+.map-progress-fill { height: 100%; background: #25649b; }
