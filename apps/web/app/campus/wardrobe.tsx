@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import PixelText from "../../components/pixel-text";
 import GameDialogClose from "../../components/game-dialog-close";
@@ -22,19 +22,18 @@ export default function Wardrobe({portal,onCharacter,session}:{
   const [selected,setSelected]=useState("hotbar:0");
   const [active,setActive]=useState("hotbar:0");
   const [carried,setCarried]=useState<CarriedItem|null>(null);
-  const preview=useRef<HTMLCanvasElement>(null);
   function changeOpen(next:boolean) {setCarried(null);setOpen(next);}
   function publish(next:GameSession["state"],catalog:Item[]) {
     saveGameSession({...session,state:next});
     setState(next);onCharacter(next,catalog);
   }
-  useEffect(() => {
-    if (!preview.current) return;
+  const drawPreview=useCallback((canvas:HTMLCanvasElement|null) => {
+    if (!canvas) return;
     const wear = state.inventory
       .filter(v=>v.id !== (open ? carried?.id : undefined) && !v.slotId.startsWith("hotbar:") && !v.slotId.startsWith("bag:"))
       .map(v=>({key:items.find(i=>i.id===v.itemId)!.key,color:v.color}));
     drawCharacter(
-      preview.current,
+      canvas,
       state.profile.appearance,
       wear,
       0, 0, state.profile.gender,
@@ -65,7 +64,7 @@ export default function Wardrobe({portal,onCharacter,session}:{
     document.addEventListener("keydown",keydown);
     return () => document.removeEventListener("keydown",keydown);
   },[open,active]);
-  const previewCanvas = <canvas ref={preview} className="character-preview" aria-label="角色预览" />;
+  const previewCanvas = <canvas ref={drawPreview} className="character-preview" aria-label="角色预览" />;
   function moveItem(id:string,slotId:string) {
     return run(async()=>publish(await request("/api/v1/character/move",session.token,{id,slotId}),items));
   }
