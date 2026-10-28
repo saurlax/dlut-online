@@ -1,6 +1,7 @@
 package characters
 
 import (
+	"errors"
 	"strings"
 	"unicode"
 	"unicode/utf8"
@@ -77,30 +78,20 @@ func BindIdentity(app core.App) {
 		defaults := CharacterDefaults{Name: strings.TrimSpace(preferred), Gender: normalizeGender(e.OAuth2User.RawUser["gender"])}
 		var account *core.Record
 		err := e.App.RunInTransaction(func(tx core.App) error {
-			record, link, err := boundAccount(tx, e)
+			record, link, err := resolveIdentity(tx, e.Auth, e.Collection, e.OAuth2User.Id)
 			if err != nil {
 				return err
 			}
-			if record.Email() == "" {
-				return e.BadRequestError("该统一认证未绑定邮箱注册账号", nil)
-			}
-			record.Set("characterDefaults", defaults)
-			if err := tx.Save(record); err != nil {
+			if err := saveIdentity(tx, record, link, e.OAuth2User.Id, defaults); err != nil {
 				return err
 			}
-			if link == nil {
-				link = core.NewExternalAuth(tx)
-				link.SetCollectionRef(e.Collection.Id)
-				link.SetRecordRef(record.Id)
-				link.SetProvider("oidc")
-				link.SetProviderId(e.OAuth2User.Id)
-				if err := tx.Save(link); err != nil {
-					return err
-				}
-			}
+
 			account = record
 			return nil
 		})
+		if errors.Is(err, errSSOUnbound) {
+			return issueOnboarding(e, defaults)
+		}
 		if err != nil {
 			return err
 		}

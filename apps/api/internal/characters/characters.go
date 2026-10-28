@@ -100,6 +100,7 @@ func state(app core.App, user string) (map[string]any, error) {
 }
 func Register(e *core.ServeEvent) {
 	registerAccount(e)
+	registerRegistration(e)
 	e.Router.GET("/api/v1/character", func(r *core.RequestEvent) error {
 		s, err := state(r.App, r.Auth.Id)
 		if err != nil {

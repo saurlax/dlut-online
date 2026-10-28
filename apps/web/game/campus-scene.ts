@@ -319,8 +319,6 @@ export class CampusScene extends Phaser.Scene {
     canvas.width = 2 * Math.ceil((context.measureText(username).width + 2) / 2);
     canvas.height = 14;
     context.font = '12px "Fusion Pixel"';
-    context.fillStyle = "#183c59";
-    context.fillText(username, 1, 11);
     context.fillStyle = "#fff3d0";
     context.fillText(username, 0, 10);
     const pixels = context.getImageData(0, 0, canvas.width, canvas.height);
@@ -334,11 +332,15 @@ export class CampusScene extends Phaser.Scene {
     private readonly campus: CampusMap,
     private readonly onReady: () => void,
     private readonly environment: EnvironmentAnimations,
+    private readonly onProgress: (progress:number)=>void,
+    private readonly onLoadError: ()=>void,
   ) {
     super("campus");
   }
 
   preload() {
+    this.load.on('progress', this.onProgress);
+    this.load.on('loaderror', this.onLoadError);
     this.load.spritesheet('water-animation', `/campuses/eda/${this.environment.water.image}`, {
       frameWidth: this.environment.water.frameWidth,
       frameHeight: this.environment.water.frameHeight,
