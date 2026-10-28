@@ -77,6 +77,8 @@ def refresh():
     manifest['plantPrototypes'] = plant_prototypes(catalog,encode)
     manifest['textures'] = catalog.names
     save(CAMPUS/'map.json',manifest)
+    from build_tile_atlas import build as build_tile_atlas
+    build_tile_atlas()
     keep = set(catalog.names)
     for path in (CAMPUS/'tiles').glob('plant-*.png'):
         if path.stem not in keep: path.unlink()

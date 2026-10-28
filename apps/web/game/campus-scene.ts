@@ -66,7 +66,7 @@ interface Rectangle {
 }
 
 // Merge identical horizontal runs vertically. TileSprites repeat the original
-// 16px image; large generated map textures or atlases are never created.
+// 16px image; no large generated map textures are created.
 function rectangles(region: TileRegion): Rectangle[] {
   const result: Rectangle[] = [];
   let previous = new Map<string, Rectangle>();
@@ -345,10 +345,7 @@ export class CampusScene extends Phaser.Scene {
       frameWidth: this.environment.water.frameWidth,
       frameHeight: this.environment.water.frameHeight,
     });
-    for (const texture of this.campus.textures) {
-      if (this.environment.water.framesByTile[texture]) continue;
-      this.load.image(texture, `/campuses/eda/tiles/${texture}.png`);
-    }
+    this.load.spritesheet('campus-tiles', '/campuses/eda/tile-atlas.png', {frameWidth:16, frameHeight:16});
     for (const building of this.campus.buildings) {
       this.load.image(
         `building:${building.id}`,
@@ -428,8 +425,8 @@ export class CampusScene extends Phaser.Scene {
           rectangle.y * 16,
           rectangle.width * 16,
           rectangle.height * 16,
-          frames ? 'water-animation' : this.campus.textures[rectangle.tile],
-          frames ? frames[Math.floor(this.time.now / this.environment.water.frameDurationMs) % frames.length] : undefined,
+          frames ? 'water-animation' : 'campus-tiles',
+          frames ? frames[Math.floor(this.time.now / this.environment.water.frameDurationMs) % frames.length] : rectangle.tile,
         )
         .setOrigin(0);
       if (frames) tile.setData('waterFrames', frames);
