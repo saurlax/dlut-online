@@ -17,9 +17,9 @@ type command struct {
 
 func Register(e *core.ServeEvent, environment *weather.Service) {
 	commands := map[string]command{
-		"time": {resource: "command.time", usage: "/time set day|night|noon|中午|HH:MM", run: func(args []string) (string, error) {
+		"time": {resource: "command.time", usage: "/time set day|night|noon|HH:MM", run: func(args []string) (string, error) {
 			if len(args) != 2 || args[0] != "set" {
-				return "", fmt.Errorf("用法：/time set day|night|noon|中午|HH:MM")
+				return "", fmt.Errorf("用法：/time set day|night|noon|HH:MM")
 			}
 			hour, minute := 0, 0
 			switch args[1] {
@@ -27,7 +27,7 @@ func Register(e *core.ServeEvent, environment *weather.Service) {
 				hour = 8
 			case "night":
 				hour = 22
-			case "noon", "中午":
+			case "noon":
 				hour = 12
 			default:
 				parts := strings.Split(args[1], ":")
