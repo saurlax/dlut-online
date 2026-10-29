@@ -70,7 +70,7 @@ export default function Wardrobe({portal,onCharacter,session}:{
   }
   return <Dialog.Root open={open} onOpenChange={changeOpen}>
     <Hotbar carriedId={open ? carried?.id : undefined} state={state} items={items} active={active} onSelect={setActive} onOpen={()=>{setSelected(active);changeOpen(true);}} />
-    {open && carried && portal && <PointerItem carried={carried} state={state} items={items} host={portal} />}
+    {open && carried && !carried.touch && portal && <PointerItem carried={carried} state={state} items={items} host={portal} />}
     <Dialog.Portal container={portal}>
       <Dialog.Overlay className={`game-dialog-overlay${carried ? " inventory-carrying" : ""}`} />
       <Dialog.Content className={`game-dialog wardrobe wardrobe-inventory${session.guest ? " inventory-readonly" : ""}${carried ? " inventory-carrying" : ""}`} aria-describedby={undefined}>
