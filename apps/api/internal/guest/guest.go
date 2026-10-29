@@ -27,7 +27,10 @@ func (s *Service) Resolve(r *core.RequestEvent) (Identity, bool) {
 	if r.Auth != nil && r.Auth.Collection().Name == "users" {
 		return Identity{ID: r.Auth.Id}, true
 	}
-	hash := sha256.Sum256([]byte(r.Request.Header.Get("Authorization")))
+	return s.ResolveToken(r.Request.Header.Get("Authorization"))
+}
+func (s *Service) ResolveToken(token string) (Identity, bool) {
+	hash := sha256.Sum256([]byte(token))
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	identity, ok := s.sessions[hash]

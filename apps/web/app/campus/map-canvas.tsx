@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Phaser from "phaser";
 import { CampusScene, type CampusMap, type EnvironmentAnimations } from "../../game/campus-scene";
 import GameHud from "./game-hud";
@@ -13,10 +13,12 @@ import Joystick from "./joystick";
 import { pixelGrid, watchPixelGrid } from "../../game/pixel-grid";
 import PixelText from "../../components/pixel-text";
 import type { GameSession } from "../../game/game-session";
+import { RealtimeConnection } from "../../game/realtime";
 import "./map.css";
 
 export default function MapCanvas({session}: {session:GameSession}) {
   const scene = useRef<CampusScene | null>(null);
+  const realtime=useMemo(()=>new RealtimeConnection(session.token),[session.token]);
   const host = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -24,6 +26,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
   const [interfaceHost, setInterfaceHost] = useState<HTMLDivElement | null>(
     null,
   );
+  useEffect(()=>{if(!loaded)return;realtime.start();return ()=>realtime.stop();},[loaded,realtime]);
 
   useEffect(() => {
     const abort = new AbortController();
@@ -90,7 +93,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
         ref={host}
         aria-label="开发区校区像素地图"
       />
-      {loaded && <Environment token={session.token} />}
+      {loaded && <Environment realtime={realtime} />}
       <div className="pixel-interface" ref={setInterfaceHost}>
         {!loaded && !error && (
           <div
@@ -109,7 +112,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
           <>
             <GameHud portal={interfaceHost} />
             <Joystick onMove={(x,y)=>scene.current!.setTouchMovement(x,y)} />
-            <Chat token={session.token} />
+            <Chat realtime={realtime} />
             <Minimap scene={()=>scene.current!} />
             <WorldMap portal={interfaceHost} scene={()=>scene.current!} />
             <Wardrobe

@@ -1,23 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { RealtimeConnection } from "../../game/realtime";
 import "./environment.css";
 
-export default function Environment({token}:{token:string}) {
+export default function Environment({realtime}:{realtime:RealtimeConnection}) {
   const canvas=useRef<HTMLCanvasElement>(null);
   useEffect(()=>{
     const surface=canvas.current!, context=surface.getContext('2d')!;
     let weatherCode:number|null=null, serverOffset=0, frame=0;
-    const abort=new AbortController();
     function resize(){surface.width=Math.ceil(window.innerWidth/4);surface.height=Math.ceil(window.innerHeight/4);}
-    async function connect(){
-      const response=await fetch('/api/v1/weather/events',{headers:{Authorization:token},signal:abort.signal});
-      if(!response.ok || !response.body) throw new Error('天气连接失败');
-      const reader=response.body.pipeThrough(new TextDecoderStream()).getReader();let buffer='';
-      while(true){const {value,done}=await reader.read();if(done)break;buffer+=value;let end:number;
-        while((end=buffer.indexOf('\n\n'))>=0){const entry=buffer.slice(0,end);buffer=buffer.slice(end+2);if(!entry.startsWith('data: '))continue;const result=JSON.parse(entry.slice(6));weatherCode=result.available?result.weather.weather_code:null;serverOffset=result.serverTime-Date.now();}
-      }
-    }
+    const unsubscribe=realtime.subscribe(event=>{if(event.type==='weather'){const result=event.data as {available:boolean;weather:{weather_code:number};serverTime:number};weatherCode=result.available?result.weather.weather_code:null;serverOffset=result.serverTime-Date.now();}});
     function draw(time:number){
       const w=surface.width,h=surface.height;
       context.clearRect(0,0,w,h);
@@ -42,9 +35,9 @@ export default function Environment({token}:{token:string}) {
       }
       frame=requestAnimationFrame(draw);
     }
-    resize();window.addEventListener('resize',resize);void connect().catch(()=>{});
+    resize();window.addEventListener('resize',resize);
     frame=requestAnimationFrame(draw);
-    return ()=>{abort.abort();cancelAnimationFrame(frame);window.removeEventListener('resize',resize);};
-  },[token]);
+    return ()=>{unsubscribe();cancelAnimationFrame(frame);window.removeEventListener('resize',resize);};
+  },[realtime]);
   return <canvas ref={canvas} className="environment-overlay" aria-hidden="true" />;
 }

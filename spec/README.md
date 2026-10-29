@@ -13,7 +13,7 @@ flowchart LR
   RTC[Pion：WebRTC 数据通道]
   World[Go：权威世界]
   DB[(PocketBase / SQLite)]
-  Browser -->|HTTPS| HTTP
+  Browser -->|HTTPS 与 WebSocket| HTTP
   Browser -. WebRTC，待实现 .-> RTC
   RTC -. 输入与快照，待实现 .-> World
   HTTP --> DB
@@ -29,10 +29,10 @@ flowchart LR
 | [地理网格与瓦片生成](map-generation.md) | 地理坐标、材质格、连接变体与独立物件 |
 | [角色外观与穿戴](characters.md) | 身体定制、衣物物品、初始穿搭发放与像素分层 |
 | [账号与持久化](backend.md) | PocketBase、API、数据权威和运行配置 |
-| [多人通信](networking.md) | WebRTC、可靠性、模拟、恢复与部署目标 |
+| [多人通信](networking.md) | WebSocket 实时通信及后续多人同步目标 |
 
 ## 当前实现
 
-已实现基础网页、静态导出、PocketBase 服务、单镜像、校园地图与设置，以及账号、角色创建、初始衣物、背包穿脱和本地人物移动与基础碰撞。WebRTC 游戏会话尚未实现。
+已实现基础网页、静态导出、PocketBase 服务、单镜像、校园地图与设置，以及账号、角色创建、初始衣物、背包穿脱和本地人物移动与基础碰撞。聊天、指令和天气使用 WebSocket；玩家移动同步及 WebRTC 游戏会话尚未实现。
 
 规范与代码在同一次变更内更新；未实现的需求保持明确状态，不用过程日志替代长期契约。
