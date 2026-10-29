@@ -43,6 +43,14 @@ func (s *Service) broadcast() {
 		}
 	}
 }
+func (s *Service) Subscribe() (<-chan Snapshot, func()) {
+	c := make(chan Snapshot, 16)
+	s.mu.Lock()
+	s.listeners[c] = true
+	c <- s.snapshot()
+	s.mu.Unlock()
+	return c, func() { s.mu.Lock(); delete(s.listeners, c); s.mu.Unlock() }
+}
 func (s *Service) SetTime(hour, minute int) {
 	s.mu.Lock()
 	defer s.mu.Unlock()

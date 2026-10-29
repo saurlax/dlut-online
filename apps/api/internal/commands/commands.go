@@ -15,7 +15,9 @@ type command struct {
 	run             func([]string) (string, error)
 }
 
-func Register(e *core.ServeEvent, environment *weather.Service) {
+type Executor func(core.App, string, string) (string, error)
+
+func Register(e *core.ServeEvent, environment *weather.Service) Executor {
 	commands := map[string]command{
 		"time": {resource: "command.time", usage: "/time set day|night|noon|HH:MM", run: func(args []string) (string, error) {
 			if len(args) != 2 || args[0] != "set" {
@@ -60,25 +62,19 @@ func Register(e *core.ServeEvent, environment *weather.Service) {
 			return "天气已设置为 " + args[1], nil
 		}},
 	}
-	e.Router.POST("/api/v1/commands", func(r *core.RequestEvent) error {
-		var body struct {
-			Command string `json:"command"`
-		}
-		if err := r.BindBody(&body); err != nil {
-			return r.BadRequestError("指令无效", nil)
-		}
-		fields := strings.Fields(body.Command)
+	execute := func(app core.App, user string, input string) (string, error) {
+		fields := strings.Fields(input)
 		if len(fields) == 0 || !strings.HasPrefix(fields[0], "/") {
-			return r.BadRequestError("指令须以 / 开头", nil)
+			return "", apis.NewBadRequestError("指令须以 / 开头", nil)
 		}
 		name := strings.TrimPrefix(fields[0], "/")
 		if name == "help" {
 			var lines []string
 			for _, key := range []string{"time", "weather"} {
 				c := commands[key]
-				allowed, err := permitted(r.App, r.Auth.Id, c.resource)
+				allowed, err := permitted(app, user, c.resource)
 				if err != nil {
-					return err
+					return "", err
 				}
 				if allowed {
 					lines = append(lines, c.usage)
@@ -87,23 +83,37 @@ func Register(e *core.ServeEvent, environment *weather.Service) {
 			if len(lines) == 0 {
 				lines = append(lines, "没有可用指令")
 			}
-			return r.JSON(http.StatusOK, map[string]any{"message": strings.Join(lines, "\n")})
+			return strings.Join(lines, "\n"), nil
 		}
 		c, ok := commands[name]
 		if !ok {
-			return r.BadRequestError("未知指令，输入 /help 查看", nil)
+			return "", apis.NewBadRequestError("未知指令，输入 /help 查看", nil)
 		}
-		allowed, err := permitted(r.App, r.Auth.Id, c.resource)
+		allowed, err := permitted(app, user, c.resource)
 		if err != nil {
-			return err
+			return "", err
 		}
 		if !allowed {
-			return r.ForbiddenError("没有权限使用此指令", nil)
+			return "", apis.NewForbiddenError("没有权限使用此指令", nil)
 		}
 		message, err := c.run(fields[1:])
 		if err != nil {
-			return r.BadRequestError(err.Error(), nil)
+			return "", apis.NewBadRequestError(err.Error(), nil)
+		}
+		return message, nil
+	}
+	e.Router.POST("/api/v1/commands", func(r *core.RequestEvent) error {
+		var body struct {
+			Command string `json:"command"`
+		}
+		if err := r.BindBody(&body); err != nil {
+			return r.BadRequestError("指令无效", nil)
+		}
+		message, err := execute(r.App, r.Auth.Id, body.Command)
+		if err != nil {
+			return err
 		}
 		return r.JSON(http.StatusOK, map[string]any{"message": message})
 	}).Bind(apis.RequireAuth("users"))
+	return execute
 }

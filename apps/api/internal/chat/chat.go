@@ -14,7 +14,7 @@ import (
 	"github.com/saurlax/dlut-online/apps/api/internal/guest"
 )
 
-type event struct {
+type Event struct {
 	Type string `json:"type"`
 	Name string `json:"name"`
 	Text string `json:"text,omitempty"`
@@ -22,15 +22,15 @@ type event struct {
 type client struct {
 	user   string
 	name   string
-	events chan event
+	events chan Event
 }
-type hub struct {
+type Hub struct {
 	mu      sync.Mutex
 	clients map[*client]bool
 	last    map[string]time.Time
 }
 
-func (h *hub) broadcast(e event) {
+func (h *Hub) broadcast(e Event) {
 	for c := range h.clients {
 		select {
 		case c.events <- e:
@@ -39,8 +39,8 @@ func (h *hub) broadcast(e event) {
 	}
 }
 
-func Register(e *core.ServeEvent, guests *guest.Service) {
-	h := &hub{clients: map[*client]bool{}, last: map[string]time.Time{}}
+func Register(e *core.ServeEvent, guests *guest.Service) *Hub {
+	h := &Hub{clients: map[*client]bool{}, last: map[string]time.Time{}}
 	e.Router.GET("/api/v1/chat/events", func(r *core.RequestEvent) error {
 		identity, ok := guests.Resolve(r)
 		if !ok {
@@ -53,18 +53,18 @@ func Register(e *core.ServeEvent, guests *guest.Service) {
 			}
 			identity.Name = profile.GetString("name")
 		}
-		c := &client{user: identity.ID, name: identity.Name, events: make(chan event, 64)}
+		c := &client{user: identity.ID, name: identity.Name, events: make(chan Event, 64)}
 		r.Response.Header().Set("Content-Type", "text/event-stream")
 		r.Response.Header().Set("Cache-Control", "no-cache")
 		r.Response.Header().Set("X-Accel-Buffering", "no")
 		h.mu.Lock()
 		h.clients[c] = true
-		h.broadcast(event{Type: "join", Name: c.name})
+		h.broadcast(Event{Type: "join", Name: c.name})
 		h.mu.Unlock()
 		defer func() {
 			h.mu.Lock()
 			delete(h.clients, c)
-			h.broadcast(event{Type: "leave", Name: c.name})
+			h.broadcast(Event{Type: "leave", Name: c.name})
 			h.mu.Unlock()
 		}()
 		controller := http.NewResponseController(r.Response)
@@ -124,7 +124,48 @@ func Register(e *core.ServeEvent, guests *guest.Service) {
 			return r.TooManyRequestsError("发送太快，请稍后再试", nil)
 		}
 		h.last[identity.ID] = now
-		h.broadcast(event{Type: "message", Name: connected.name, Text: text})
+		h.broadcast(Event{Type: "message", Name: connected.name, Text: text})
 		return r.JSON(http.StatusOK, map[string]bool{"sent": true})
 	})
+	return h
+}
+
+func (h *Hub) Join(user, name string) (<-chan Event, func()) {
+	c := &client{user: user, name: name, events: make(chan Event, 64)}
+	h.mu.Lock()
+	h.clients[c] = true
+	h.broadcast(Event{Type: "join", Name: name})
+	h.mu.Unlock()
+	return c.events, func() {
+		h.mu.Lock()
+		delete(h.clients, c)
+		h.broadcast(Event{Type: "leave", Name: name})
+		h.mu.Unlock()
+	}
+}
+
+func (h *Hub) Send(user, text string) error {
+	text = strings.TrimSpace(text)
+	if text == "" || utf8.RuneCountInString(text) > 200 || strings.ContainsAny(text, "\r\n") {
+		return fmt.Errorf("消息须为 1–200 个字符")
+	}
+	h.mu.Lock()
+	defer h.mu.Unlock()
+	var connected *client
+	for c := range h.clients {
+		if c.user == user {
+			connected = c
+			break
+		}
+	}
+	if connected == nil {
+		return fmt.Errorf("请先连接游戏")
+	}
+	now := time.Now()
+	if now.Sub(h.last[user]) < time.Second {
+		return fmt.Errorf("发送太快，请稍后再试")
+	}
+	h.last[user] = now
+	h.broadcast(Event{Type: "message", Name: connected.name, Text: text})
+	return nil
 }
