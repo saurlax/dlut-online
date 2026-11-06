@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useRef } from "react";
 import type { CampusScene } from "../../game/campus-scene";
 import "./minimap.css";

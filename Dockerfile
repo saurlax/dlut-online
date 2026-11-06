@@ -1,5 +1,4 @@
 FROM node:24-bookworm-slim AS frontend
-ENV NEXT_TELEMETRY_DISABLED=1
 WORKDIR /src/apps/web
 RUN npm install --global pnpm@11.6.0
 COPY apps/web/package.json apps/web/pnpm-lock.yaml ./

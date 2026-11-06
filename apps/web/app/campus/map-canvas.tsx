@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CampusScene, type CampusMap, type EnvironmentAnimations } from "../../game/campus-scene";
 import type { SiteFixtureData } from "../../game/site-fixtures";

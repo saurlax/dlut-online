@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import PixelText from "../../components/pixel-text";

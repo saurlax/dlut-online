@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import PixelText from "../../components/pixel-text";

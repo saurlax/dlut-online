@@ -1,5 +1,3 @@
-'use client';
-
 import { useLayoutEffect } from 'react';
 import { watchInterfaceGrid } from '../game/interface-scale';
 

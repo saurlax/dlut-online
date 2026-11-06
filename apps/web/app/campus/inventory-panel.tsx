@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef } from "react";
 import PixelText from "../../components/pixel-text";
 import { GameButton } from "../../components/game-button";
