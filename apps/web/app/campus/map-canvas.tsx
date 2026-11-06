@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Phaser from "phaser";
 import { CampusScene, type CampusMap, type EnvironmentAnimations } from "../../game/campus-scene";
+import type { SiteFixtureData } from "../../game/site-fixtures";
 import GameHud from "./game-hud";
 import Wardrobe from "./wardrobe";
 import WorldMap from "./world-map";
 import Minimap from "./minimap";
+import PerformanceHud from "./performance-hud";
 import Chat from "./chat";
 import Environment from "./environment";
 import Joystick from "./joystick";
-import { pixelGrid, watchPixelGrid } from "../../game/pixel-grid";
 import PixelText from "../../components/pixel-text";
 import type { GameSession } from "../../game/game-session";
 import { RealtimeConnection } from "../../game/realtime";
@@ -26,63 +26,46 @@ export default function MapCanvas({session}: {session:GameSession}) {
   const [interfaceHost, setInterfaceHost] = useState<HTMLDivElement | null>(
     null,
   );
-  useEffect(()=>{if(!loaded)return;realtime.start();return ()=>realtime.stop();},[loaded,realtime]);
+  useEffect(() => {
+    if (!loaded) return;
+    const unsubscribe = realtime.subscribe(event => {
+      if (event.type !== "weather") return;
+      const result = event.data as { available: boolean; weather: { weather_code: number }; serverTime: number };
+      scene.current!.setEnvironment(result.serverTime, result.available ? result.weather.weather_code : null);
+    });
+    realtime.start();
+    return () => { unsubscribe(); realtime.stop(); };
+  }, [loaded, realtime]);
 
   useEffect(() => {
     const abort = new AbortController();
-    let game: Phaser.Game | undefined;
-    let stop: (() => void) | undefined;
-    let loadFailed = false;
+    let campus: CampusScene | undefined;
     async function start() {
-      const [response, animationResponse] = await Promise.all([
+      const [response, animationResponse, fixtureResponse] = await Promise.all([
         fetch("/campuses/eda/map.json", { signal: abort.signal }),
         fetch("/campuses/eda/animations/manifest.json", { signal: abort.signal }),
+        fetch("/campuses/eda/site-fixtures.json", { signal: abort.signal }),
       ]);
-      if (!response.ok || !animationResponse.ok) throw new Error("Map request failed");
+      if (!response.ok || !animationResponse.ok || !fixtureResponse.ok) throw new Error("Map request failed");
       const data: CampusMap = await response.json();
       const animations: EnvironmentAnimations = await animationResponse.json();
+      const fixtures: SiteFixtureData = await fixtureResponse.json();
       await document.fonts.load('12px "Fusion Pixel"', session.state.profile.name);
       if (abort.signal.aborted) return;
       setProgress(20);
-      const campus = new CampusScene(data, () => {
-        if (loadFailed) return;
-        campus.setCharacter(session.state, session.items);
-        setLoaded(true);
-      }, animations, value => setProgress(20 + Math.round(value * 75)), () => {loadFailed=true;setError(true);});
+      campus = new CampusScene(data, animations, fixtures);
       scene.current = campus;
-      const grid = pixelGrid();
-      game = new Phaser.Game({
-        type: Phaser.WEBGL,
-        parent: host.current!,
-        pixelArt: true,
-        backgroundColor: "#737d61",
-        scale: {
-          mode: Phaser.Scale.NONE,
-          width: grid.width + 1,
-          height: grid.height + 1,
-          autoRound: false,
-        },
-        callbacks: {
-          postBoot: (instance) => {
-            stop = watchPixelGrid(({ pixel, width, height }) => {
-              instance.canvas.style.width = `${width + 1}px`;
-              instance.canvas.style.height = `${height + 1}px`;
-              instance.canvas.style.transform = `scale(${pixel})`;
-              instance.scale.resize(width + 1, height + 1);
-            });
-          },
-        },
-        scene: campus,
-        render: { antialias: false, roundPixels: true },
-      });
+      await campus.start(host.current!, abort.signal, value => setProgress(20 + Math.round(value * 75)));
+      if (abort.signal.aborted) return;
+      campus.setCharacter(session.state, session.items);
+      setLoaded(true);
     }
     start().catch(() => {
-      if (!abort.signal.aborted) setError(true);
+      if (!abort.signal.aborted) { abort.abort(); campus?.destroy(); setError(true); }
     });
     return () => {
       abort.abort();
-      stop?.();
-      game?.destroy(true);
+      campus?.destroy();
     };
   }, [session]);
 
@@ -111,6 +94,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
         {loaded && (
           <>
             <GameHud portal={interfaceHost} />
+            <PerformanceHud scene={()=>scene.current!} />
             <Joystick onMove={(x,y)=>scene.current!.setTouchMovement(x,y)} />
             <Chat realtime={realtime} />
             <Minimap scene={()=>scene.current!} />

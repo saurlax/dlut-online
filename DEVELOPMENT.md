@@ -4,7 +4,7 @@
 
 `spec/` 是当前产品与技术契约的入口。前端负责显示和输入，后端负责身份、规则与权威状态。业务代码按职责组织，不提前构造通用仓储、管理器或微服务层。
 
-Next.js 仅静态导出，不使用 API Routes、Server Actions、请求时 SSR、ISR 或 Node 运行服务。浏览器专属游戏模块按需导入，模块顶层不在构建环境访问 window、document 或 WebGL。React 负责界面生命周期，Phaser 负责游戏帧循环；逐帧状态不通过 React 重渲染驱动。
+Next.js 仅静态导出，不使用 API Routes、Server Actions、请求时 SSR、ISR 或 Node 运行服务。浏览器专属游戏模块按需导入，模块顶层不在构建环境访问 window、document 或 WebGL。React 负责界面生命周期，Three.js 场景负责游戏帧循环；逐帧状态不通过 React 重渲染驱动。
 
 PocketBase 作为 Go 依赖集成，沿用其 Router、认证、迁移和数据库能力。世界模拟与传输按独立模块演进，不在数据库回调中执行模拟，不在世界时间步内等待磁盘或网络。初始化阶段不提前创建空的游戏模块。
 

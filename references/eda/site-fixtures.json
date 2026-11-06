@@ -1,0 +1,400 @@
+{
+  "sourceCommit": "1e4466e78e009d1e9fed12882551a5990059f626",
+  "coordinateFrame": "shared WGS84 local meters; x east, z south; rendering uses the current flat ground",
+  "sources": [
+    "references/eda/mapping/exterior-details.json",
+    "apps/game/assets/campuses/eda/data/site_fixtures.json",
+    "apps/game/tools/build_eda_exterior.gd",
+    "apps/game/tools/build_eda_courtyard_lamp.gd",
+    "references/eda/structures/xueyuan_bridge.json"
+  ],
+  "sourceUrls": [
+    "https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/vr/pano_d.jpg",
+    "https://news.dlut.edu.cn/info/1292/147345.htm"
+  ],
+  "precision": "Historical visible fixtures with road-relative estimated stations and dimensions; not a survey or a complete current inventory. Illumination is an artistic night-readability setting. No arbitrary repeated rows or unplaced lake benches.",
+  "lamps": [
+    {
+      "id": "lake-1076344082-0",
+      "kind": "street",
+      "position": [
+        -18.983870198291605,
+        236.01809688272442
+      ],
+      "direction": [
+        0.9870386814299105,
+        0.16048252665353893
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 25,
+        "fraction": 0.4,
+        "side": 1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344082-1",
+      "kind": "street",
+      "position": [
+        -18.473228982696963,
+        199.56412695722474
+      ],
+      "direction": [
+        0.9933315869765824,
+        -0.11529249027835456
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 28,
+        "fraction": 0.3,
+        "side": 1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344082-2",
+      "kind": "street",
+      "position": [
+        -24.334533175394647,
+        163.32414298084126
+      ],
+      "direction": [
+        0.9639370853169655,
+        -0.26613022291846766
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 30,
+        "fraction": 0.3,
+        "side": 1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344082-3",
+      "kind": "street",
+      "position": [
+        -33.95722317353202,
+        134.72164743727032
+      ],
+      "direction": [
+        0.894891630348187,
+        -0.44628350847052806
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 32,
+        "fraction": 0.2,
+        "side": 1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344082-4",
+      "kind": "street",
+      "position": [
+        -48.40330121325805,
+        108.16538269389106
+      ],
+      "direction": [
+        0.861613912104102,
+        -0.5075642486116066
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 34,
+        "fraction": 0.5,
+        "side": 1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344082-5",
+      "kind": "street",
+      "position": [
+        -51.40821381450756,
+        315.2409137546909
+      ],
+      "direction": [
+        0.7266281396608102,
+        0.6870309648429755
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 17,
+        "fraction": 0.5,
+        "side": 1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344082-6",
+      "kind": "street",
+      "position": [
+        -28.178545090167354,
+        276.93161826824934
+      ],
+      "direction": [
+        0.9556352477653067,
+        0.2945526663069627
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 20,
+        "fraction": 0.5,
+        "side": 1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344082-7",
+      "kind": "street",
+      "position": [
+        -23.591041767664628,
+        261.0833259055632
+      ],
+      "direction": [
+        0.9636572199237785,
+        0.26714183964473687
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 23,
+        "fraction": 0.5,
+        "side": 1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344082-8",
+      "kind": "street",
+      "position": [
+        -86.48264790729205,
+        348.99860631714915
+      ],
+      "direction": [
+        -0.4228243392518056,
+        -0.9062116629884401
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 13,
+        "fraction": 0.25,
+        "side": -1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344082-9",
+      "kind": "street",
+      "position": [
+        -108.9303212545151,
+        382.6458026091261
+      ],
+      "direction": [
+        -0.9999997148829293,
+        -0.0007551384377563346
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344082,
+        "version": 2,
+        "segment": 8,
+        "fraction": 0.6,
+        "side": -1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344089-0",
+      "kind": "street",
+      "position": [
+        -245.9666032513229,
+        182.40388005812792
+      ],
+      "direction": [
+        0.9846257389370214,
+        -0.17467728593816728
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344089,
+        "version": 3,
+        "segment": 19,
+        "fraction": 0.5,
+        "side": -1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344089-1",
+      "kind": "street",
+      "position": [
+        -230.30417689931235,
+        245.70931620524877
+      ],
+      "direction": [
+        0.9549152043891669,
+        -0.2968786830110837
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344089,
+        "version": 3,
+        "segment": 23,
+        "fraction": 0.5,
+        "side": -1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344089-2",
+      "kind": "street",
+      "position": [
+        -211.0610125021618,
+        288.64481605206265
+      ],
+      "direction": [
+        0.8606164777640468,
+        -0.5092536481960692
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344089,
+        "version": 3,
+        "segment": 27,
+        "fraction": 0.5,
+        "side": -1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "lake-1076344089-3",
+      "kind": "street",
+      "position": [
+        -188.30535193092854,
+        320.34716798966383
+      ],
+      "direction": [
+        0.7191595297564825,
+        -0.6948449976508682
+      ],
+      "height": 6.0,
+      "anchor": {
+        "wayId": 1076344089,
+        "version": 3,
+        "segment": 30,
+        "fraction": 0.5,
+        "side": -1
+      },
+      "positionIsEstimated": true
+    },
+    {
+      "id": "academic-c-path-west",
+      "kind": "ring",
+      "position": [
+        152.56496611312514,
+        118.06818140756947
+      ],
+      "direction": [
+        0.8761538976698653,
+        -0.48203147988269723
+      ],
+      "height": 3.6,
+      "positionIsEstimated": true,
+      "limits": "Single visible fixture only. Station and offset are proportional estimates relative to the existing path; no repeated spacing or additional fixtures are implied."
+    },
+    {
+      "id": "bridge-west-ring-0",
+      "kind": "ring",
+      "position": [
+        211.52882039163916,
+        172.83997420732018
+      ],
+      "direction": [
+        -0.22791657721671296,
+        0.9736806631693053
+      ],
+      "height": 3.6,
+      "positionIsEstimated": true,
+      "limits": "Only the nearest pair. Relative placement uses the existing approximate west stair toe; longitudinal position remains uncertain within -1.5 to +0.3 m. No repeated row or garden boundary is implied."
+    },
+    {
+      "id": "bridge-west-ring-1",
+      "kind": "ring",
+      "position": [
+        208.88498809592528,
+        184.1346699000841
+      ],
+      "direction": [
+        0.22791657721671296,
+        -0.9736806631693053
+      ],
+      "height": 3.6,
+      "positionIsEstimated": true,
+      "limits": "Only the nearest pair. Relative placement uses the existing approximate west stair toe; longitudinal position remains uncertain within -1.5 to +0.3 m. No repeated row or garden boundary is implied."
+    }
+  ],
+  "noticeboards": [
+    {
+      "id": "bridge-west-noticeboard-0",
+      "position": [
+        212.85057735606378,
+        172.01963371277233
+      ],
+      "direction": [
+        -0.22791657721671296,
+        0.9736806631693053
+      ],
+      "width": 3.7,
+      "height": 2.5,
+      "topBarWidth": 4.3,
+      "panelBottom": 0.8,
+      "panelHeight": 1.2,
+      "positionIsEstimated": true,
+      "limits": "Two nearest pairs of side-by-side panels only. Longitudinal offset is approximate within 0 to 1.5 m from the existing west toe. Poster content and unverified rear displays are not reproduced."
+    },
+    {
+      "id": "bridge-west-noticeboard-1",
+      "position": [
+        209.70532859047316,
+        185.45642686450876
+      ],
+      "direction": [
+        -0.22791657721671296,
+        0.9736806631693053
+      ],
+      "width": 3.7,
+      "height": 2.5,
+      "topBarWidth": 4.3,
+      "panelBottom": 0.8,
+      "panelHeight": 1.2,
+      "positionIsEstimated": true,
+      "limits": "Two nearest pairs of side-by-side panels only. Longitudinal offset is approximate within 0 to 1.5 m from the existing west toe. Poster content and unverified rear displays are not reproduced."
+    }
+  ],
+  "sourcePhotos": [
+    "references/eda/imagery/panoramas/KFQ00-down.jpg",
+    "references/eda/vegetation/photos/eda-lake-2.jpg",
+    "references/eda/structures/xiang-plaza/user-aerial.png"
+  ]
+}

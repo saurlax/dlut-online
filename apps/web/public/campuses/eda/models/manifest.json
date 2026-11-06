@@ -1,0 +1,464 @@
+{
+  "sourceCommit": "1e4466e78e009d1e9fed12882551a5990059f626",
+  "coordinateFrame": "meters; x east, y up, z south",
+  "ground": "Existing flat grid; archived terrain elevation is not applied.",
+  "method": "Rebuilt structural shells; unlit facade-color bake at native pixel resolution; 48-color UV atlases.",
+  "buildings": [
+    {
+      "id": "77914",
+      "file": "models/77914.glb",
+      "origin": [
+        -0.013071537,
+        2.796,
+        480.537994
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77914.glb",
+        "sha256": "77614dba1130a962e1db9ffa3c1a446305d361d3fecbd5732d186a50ef212f8d",
+        "objects": [
+          "Building",
+          "InformationEntry"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77914.glb",
+        "sha256": "77614dba1130a962e1db9ffa3c1a446305d361d3fecbd5732d186a50ef212f8d"
+      },
+      "triangles": 46,
+      "bytes": 4372,
+      "texture": "models/textures/77914.png",
+      "textureSize": [
+        1216,
+        1216
+      ],
+      "textureBytes": 59437,
+      "paletteColors": 48
+    },
+    {
+      "id": "77917",
+      "file": "models/77917.glb",
+      "origin": [
+        99.059555,
+        5.9084,
+        369.131134
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77917.glb",
+        "sha256": "1146c8729e665ddf3516f4132caa8ed44621e2669d299be0633980174407d11c",
+        "objects": [
+          "Rotunda",
+          "LibraryHighWing",
+          "Library_connector_render_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77917.glb",
+        "sha256": "1146c8729e665ddf3516f4132caa8ed44621e2669d299be0633980174407d11c"
+      },
+      "triangles": 392,
+      "bytes": 24616,
+      "texture": "models/textures/77917.png",
+      "textureSize": [
+        1536,
+        1536
+      ],
+      "textureBytes": 140550,
+      "paletteColors": 48,
+      "profileSource": "references/eda/buildings/library_information_profiles.json"
+    },
+    {
+      "id": "77921",
+      "file": "models/77921.glb",
+      "origin": [
+        -301.527618,
+        13.9502,
+        281.728668
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77921.glb",
+        "sha256": "4f7bc514afef92c01c9d81d27fc2d4ddd75444c5ec5a6e780103f07e364a6d5b",
+        "objects": [
+          "EDA_comprehensive_grey_masonry_Solid",
+          "ComprehensiveAnnexLower",
+          "ComprehensiveAnnexUpper",
+          "ComprehensiveAnnexRoof"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77921.glb",
+        "sha256": "4f7bc514afef92c01c9d81d27fc2d4ddd75444c5ec5a6e780103f07e364a6d5b"
+      },
+      "triangles": 1097,
+      "bytes": 58536,
+      "texture": "models/textures/77921.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 36959,
+      "paletteColors": 48
+    },
+    {
+      "id": "77923",
+      "file": "models/77923.glb",
+      "origin": [
+        -350.667603,
+        19.1605,
+        137.324356
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77923.glb",
+        "sha256": "f51ad3ca9ff89576514a8fa1d978db3d674d066248af5342717220a6a5a5898f",
+        "objects": [
+          "EDA_gym_stone_Solid",
+          "EDA_gym_pale_wall_Solid",
+          "EDA_gym_metal_roof_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77923.glb",
+        "sha256": "f51ad3ca9ff89576514a8fa1d978db3d674d066248af5342717220a6a5a5898f"
+      },
+      "triangles": 184,
+      "bytes": 10100,
+      "texture": "models/textures/77923.png",
+      "textureSize": [
+        1664,
+        1664
+      ],
+      "textureBytes": 76023,
+      "paletteColors": 48
+    },
+    {
+      "id": "77925",
+      "file": "models/77925.glb",
+      "origin": [
+        94.138824,
+        0.1824,
+        -38.769974
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77925.glb",
+        "sha256": "e475f5a8b566bc65b84ffacfca840b72a00fc188e23d8e41b0f0df0b6d9a295a",
+        "objects": [
+          "EDA_academic_77796f_Solid",
+          "EDA_A_atrium_floor_Solid",
+          "EDA_A_atrium_wall_Solid",
+          "EDA_A_atrium_glass_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77925.glb",
+        "sha256": "e475f5a8b566bc65b84ffacfca840b72a00fc188e23d8e41b0f0df0b6d9a295a"
+      },
+      "triangles": 1984,
+      "bytes": 102996,
+      "texture": "models/textures/77925.png",
+      "textureSize": [
+        1728,
+        1728
+      ],
+      "textureBytes": 179913,
+      "paletteColors": 48
+    },
+    {
+      "id": "77927",
+      "file": "models/77927.glb",
+      "origin": [
+        148.642822,
+        -1.2355,
+        73.151306
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77927.glb",
+        "sha256": "def23b1c688a443a1735470a97c8659a44c94481fc02eaca7ae3401576f7f65b",
+        "objects": [
+          "EDA_academic_74776e_registered_curve_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77927.glb",
+        "sha256": "def23b1c688a443a1735470a97c8659a44c94481fc02eaca7ae3401576f7f65b"
+      },
+      "triangles": 280,
+      "bytes": 16852,
+      "texture": "models/textures/77927.png",
+      "textureSize": [
+        1344,
+        1344
+      ],
+      "textureBytes": 69252,
+      "paletteColors": 47,
+      "profileSource": "references/eda/buildings/academic_facades.json"
+    },
+    {
+      "id": "77928",
+      "file": "models/77928.glb",
+      "origin": [
+        48.579258,
+        1.4057,
+        25.305515
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77928.glb",
+        "sha256": "cdc15dd900d7e39a862e23e2351edb98a89a82cb94c288a9076812f88a655f79",
+        "objects": [
+          "EDA_academic_656c66_Solid",
+          "EDA_B_courtyard_brick_Solid",
+          "EDA_B_courtyard_pale_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77928.glb",
+        "sha256": "cdc15dd900d7e39a862e23e2351edb98a89a82cb94c288a9076812f88a655f79"
+      },
+      "triangles": 603,
+      "bytes": 40416,
+      "texture": "models/textures/77928.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 37199,
+      "paletteColors": 48
+    },
+    {
+      "id": "77931",
+      "file": "models/77931.glb",
+      "origin": [
+        507.841125,
+        -14.7784,
+        -48.974121
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77931.glb",
+        "sha256": "f1a0a1ff166cfe7857fdebf8086f033059b88db1372db00dea0e8c2708b8d480",
+        "objects": [
+          "EDA_residence_pale_tile_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77931.glb",
+        "sha256": "f1a0a1ff166cfe7857fdebf8086f033059b88db1372db00dea0e8c2708b8d480"
+      },
+      "triangles": 238,
+      "bytes": 18040,
+      "texture": "models/textures/77931.png",
+      "textureSize": [
+        704,
+        704
+      ],
+      "textureBytes": 16270,
+      "paletteColors": 48
+    },
+    {
+      "id": "77933",
+      "file": "models/77933.glb",
+      "origin": [
+        449.908325,
+        -13.9339,
+        -48.524387
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77933.glb",
+        "sha256": "11cf7169301721470ede6d18a18c061a6eae6fc1ba50c49216e78657018cbbd4",
+        "objects": [
+          "EDA_residence_pale_tile_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77933.glb",
+        "sha256": "11cf7169301721470ede6d18a18c061a6eae6fc1ba50c49216e78657018cbbd4"
+      },
+      "triangles": 241,
+      "bytes": 18220,
+      "texture": "models/textures/77933.png",
+      "textureSize": [
+        704,
+        704
+      ],
+      "textureBytes": 15374,
+      "paletteColors": 48
+    },
+    {
+      "id": "77935",
+      "file": "models/77935.glb",
+      "origin": [
+        403.592194,
+        -12.1548,
+        -10.350534
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77935.glb",
+        "sha256": "b3d3c044568648990c9cb3e9339d8359683d86472eb1c0f30d53bdc2d8e8b4c5",
+        "objects": [
+          "EDA_residence_pale_tile_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77935.glb",
+        "sha256": "b3d3c044568648990c9cb3e9339d8359683d86472eb1c0f30d53bdc2d8e8b4c5"
+      },
+      "triangles": 339,
+      "bytes": 24284,
+      "texture": "models/textures/77935.png",
+      "textureSize": [
+        896,
+        896
+      ],
+      "textureBytes": 22376,
+      "paletteColors": 48
+    },
+    {
+      "id": "77937",
+      "file": "models/77937.glb",
+      "origin": [
+        405.57959,
+        -11.8591,
+        35.221649
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77937.glb",
+        "sha256": "cebf50d5501afee1de37add5ad2d0cf8a797d7d021bf2220b06020498ab20c6d",
+        "objects": [
+          "EDA_residence_pale_tile_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77937.glb",
+        "sha256": "cebf50d5501afee1de37add5ad2d0cf8a797d7d021bf2220b06020498ab20c6d"
+      },
+      "triangles": 178,
+      "bytes": 13856,
+      "texture": "models/textures/77937.png",
+      "textureSize": [
+        640,
+        640
+      ],
+      "textureBytes": 15955,
+      "paletteColors": 48
+    },
+    {
+      "id": "77938",
+      "file": "models/77938.glb",
+      "origin": [
+        458.276031,
+        -14.0348,
+        44.924301
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77938.glb",
+        "sha256": "802b4b677cbf8cc446302e4b855020b53797b4b6bd580cf2da0cfcc09397eecf",
+        "objects": [
+          "EDA_residence_pale_tile_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77938.glb",
+        "sha256": "802b4b677cbf8cc446302e4b855020b53797b4b6bd580cf2da0cfcc09397eecf"
+      },
+      "triangles": 166,
+      "bytes": 13016,
+      "texture": "models/textures/77938.png",
+      "textureSize": [
+        640,
+        640
+      ],
+      "textureBytes": 16727,
+      "paletteColors": 47
+    },
+    {
+      "id": "77941",
+      "file": "models/77941.glb",
+      "origin": [
+        332.680786,
+        -0.8215,
+        296.324097
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77941.glb",
+        "sha256": "e70859e4714ecf72f97337b477d9e82d96142ca164945c99ca6bfb40884ee29c",
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77941.glb",
+        "sha256": "e70859e4714ecf72f97337b477d9e82d96142ca164945c99ca6bfb40884ee29c"
+      },
+      "triangles": 28,
+      "bytes": 3092,
+      "texture": "models/textures/77941.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 9032,
+      "paletteColors": 48
+    },
+    {
+      "id": "77943",
+      "file": "models/77943.glb",
+      "origin": [
+        353.21936,
+        -2.774,
+        222.696243
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77943.glb",
+        "sha256": "080d556c1a090e3cc884d7f66ecfa19b811890578a22f03a90eb08dbc288bb16",
+        "objects": [
+          "EDA_dining_buff_masonry_Solid"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/77943.glb",
+        "sha256": "080d556c1a090e3cc884d7f66ecfa19b811890578a22f03a90eb08dbc288bb16"
+      },
+      "triangles": 400,
+      "bytes": 22796,
+      "texture": "models/textures/77943.png",
+      "textureSize": [
+        960,
+        960
+      ],
+      "textureBytes": 16884,
+      "paletteColors": 48
+    },
+    {
+      "id": "2304982",
+      "file": "models/2304982.glb",
+      "origin": [
+        391.055115,
+        -9.6297,
+        116.940804
+      ],
+      "baseSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/2304982.glb",
+        "sha256": "648e1a244c63504eb905a3074aeb4a8b1c5b38ea5bf0b77f3247eeebcb85afe1",
+        "objects": [
+          "Seventh_white_cladding_Solid",
+          "LowPodiumParapet"
+        ]
+      },
+      "detailSource": {
+        "path": "apps/game/assets/campuses/eda/models/buildings/lod1/2304982.glb",
+        "sha256": "648e1a244c63504eb905a3074aeb4a8b1c5b38ea5bf0b77f3247eeebcb85afe1"
+      },
+      "triangles": 256,
+      "bytes": 18336,
+      "texture": "models/textures/2304982.png",
+      "textureSize": [
+        1600,
+        1600
+      ],
+      "textureBytes": 95419,
+      "paletteColors": 48
+    }
+  ],
+  "geometrySource": {
+    "path": "references/eda/geometry.json",
+    "sha256": "bc0701d75c82d157711af6a1965f6ec0f671a2381b00d4a7907b48458701e877"
+  }
+}

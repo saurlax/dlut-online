@@ -63,6 +63,11 @@ export default function TitleMenu() {
                 <CreditLink href="https://www.radix-ui.com/primitives">Radix Primitives</CreditLink>
                 <CreditLink href="https://github.com/radix-ui/primitives/blob/main/LICENSE">MIT License</CreditLink>
               </section>
+              <section>
+                <h3><PixelText>场景渲染</PixelText></h3>
+                <CreditLink href="https://threejs.org/">Three.js</CreditLink>
+                <CreditLink href="https://github.com/mrdoob/three.js/blob/dev/LICENSE">MIT License</CreditLink>
+              </section>
             </div>
           </Dialog.Content>
         </Dialog.Portal>
