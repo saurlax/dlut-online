@@ -22,7 +22,7 @@ POSIX shell：
 ```sh
 ln -s ../web/out apps/api/public
 cd apps/api
-go run . serve --http=127.0.0.1:8415
+go run . serve --http=127.0.0.1:8415 --dir=../../.local/pb_data
 ```
 
 PowerShell：
@@ -30,8 +30,10 @@ PowerShell：
 ```powershell
 New-Item -ItemType Junction -Path apps/api/public -Target (Resolve-Path apps/web/out)
 Set-Location apps/api
-go run . serve --http=127.0.0.1:8415
+go run . serve --http=127.0.0.1:8415 --dir=../../.local/pb_data
 ```
+
+本地数据目录固定为仓库下的 `.local/pb_data/`，启动时显式指定 `--dir`，避免切换可执行文件或工作目录后误用空数据库。账号和 OIDC 配置均保存在该目录，不提交到 Git。
 
 访问 http://127.0.0.1:8415 。前端单独开发可在 `apps/web/` 运行 `pnpm dev`；该开发服务不代理 PocketBase API，涉及后端的联调使用上述静态构建路径。
 
@@ -47,6 +49,16 @@ python tools/generate_eda_map.py
 生成工具读取仓库 `references/eda/` 中的来源记录，不需要原始照片或另一个项目目录。地面和植被输出为原生 16×16 PNG；建筑为与地面保持同一像素密度的独立透明整图。预览湖岸连接可运行 `python tools/generate_lakeside_grid.py`，结果位于忽略的 `.local/`。
 
 资源或来源更新后先核对北朝上坐标、建筑落地点、原生尺寸及连接接缝，再执行前端类型检查、生产构建和浏览器检查。原始照片只作离线参考，不进入 `public/`。
+
+## 像素建筑重建
+
+常规前端构建直接读取已生成的 GLB 与配套 PNG。需要重新烘焙建筑时，安装上述 Python 依赖与 Blender，并保留登记归档的本地模型缓存，然后从仓库根目录运行：
+
+```sh
+python tools/build_pixel_buildings.py origin/3d
+```
+
+可用 `--blender <可执行文件>` 指定 Blender；`--only <建筑ID...>` 与 `--output .local/<目录>` 用于局部检查。源模型只在离线烘焙中使用，不进入游戏。生成方法、来源及约束见 `spec/map-generation.md`。
 
 ## 代码检查
 

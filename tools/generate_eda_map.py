@@ -172,6 +172,8 @@ def main():
         if file.stem not in keep:file.unlink()
     from build_tile_atlas import build as build_tile_atlas
     build_tile_atlas()
+    from build_site_fixtures import build as build_site_fixtures
+    build_site_fixtures()
     print(f"Generated {len(buildings)} building objects, {len(plants)} plants, {len(catalog.names)} native tiles",flush=True)
 
 

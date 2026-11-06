@@ -8,7 +8,7 @@ DLUT Online 是以大连理工大学为主题、通过浏览器访问的俯视�
 
 ```mermaid
 flowchart LR
-  Browser[浏览器：Next.js 静态页面与 Phaser]
+  Browser[浏览器：Next.js 静态页面与 Three.js]
   HTTP[Go / PocketBase：账号、API、静态文件]
   RTC[Pion：WebRTC 数据通道]
   World[Go：权威世界]
@@ -25,7 +25,7 @@ flowchart LR
 | 文档 | 负责内容 |
 | --- | --- |
 | [仓库与构建](repository.md) | 源码布局、SSG、单镜像与分支边界 |
-| [前端与像素世界](frontend.md) | 页面、Phaser 生命周期、美术与输入 |
+| [前端与像素世界](frontend.md) | 页面、Three.js 生命周期、美术与输入 |
 | [地理网格与瓦片生成](map-generation.md) | 地理坐标、材质格、连接变体与独立物件 |
 | [角色外观与穿戴](characters.md) | 身体定制、衣物物品、初始穿搭发放与像素分层 |
 | [账号与持久化](backend.md) | PocketBase、API、数据权威和运行配置 |

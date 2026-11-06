@@ -57,3 +57,13 @@
 ## 树木与灌木
 
 阔叶树、柳树、针叶树及灌木由 imagegen 生成，每类两种变体，参考[星露谷物语](https://www.stardewvalley.net/)的像素美术层次，未使用其游戏素材。经 tools/prepare_vegetation.py 缩到登记的原生画布、量化为最多 16 色和二值透明，并拆成 16×16 游戏图块。形象为物种类别的风格化表达，种植位置仍采用已有来源区域与估计布置；来源、提示词和处理约定见 references/eda/vegetation-art.json。
+
+## HD-2D 场景与建筑
+
+校园渲染使用 [Three.js](https://threejs.org/)，按 [MIT 许可](https://github.com/mrdoob/three.js/blob/dev/LICENSE)使用。像素人物、地面及植被沿用本文已有来源；泛光和景深仅为视觉效果。
+
+15 栋建筑以本项目旧版 3D 分支的登记体块、地理轮廓及分区高度重建简化底模，并将既有模型的窗格、楼层线和基础色烘焙为逐栋 48 色以内的像素 UV 贴图。原始提交、路径、校验值、主体对象与贴图尺寸见 `apps/web/public/campuses/eda/models/manifest.json`。表面颗粒复用本文已登记的墙面像素原片；图书馆和 C 区圆体采用旧版登记的近似椭圆。结构依据仍为已有 OSM 与学校建筑照片记录，不新增室内，不代表完整测绘。照片、旧 PBR 贴图和细节高模未随新建筑发布。
+
+## 室外路灯与公告栏
+
+开发区弯臂路灯、圆环灯与桥头公告栏根据本项目旧版已登记资料重新绘制简化体块。来源提交、原始工具与配置路径、照片引用及估计落点见 `references/eda/site-fixtures.json`。环湖道路以 [OpenStreetMap](https://www.openstreetmap.org/copyright) 为坐标底稿，灯具外形与历史相对位置参考已归档的 [KFQ00 航拍](https://imgs.toowtech.com/dalian/DUT/panos/DUT_KFQ00.tiles/vr/pano_d.jpg) 和[大连理工大学湖区照片](https://news.dlut.edu.cn/info/1292/147345.htm)，不分发原照片。夜间灯罩、自发光光晕及照射范围为游戏美术表达，不是实测照度。

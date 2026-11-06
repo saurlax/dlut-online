@@ -8,16 +8,12 @@ export default function Environment({realtime}:{realtime:RealtimeConnection}) {
   const canvas=useRef<HTMLCanvasElement>(null);
   useEffect(()=>{
     const surface=canvas.current!, context=surface.getContext('2d')!;
-    let weatherCode:number|null=null, serverOffset=0, frame=0;
+    let weatherCode:number|null=null, frame=0;
     function resize(){surface.width=Math.ceil(window.innerWidth/4);surface.height=Math.ceil(window.innerHeight/4);}
-    const unsubscribe=realtime.subscribe(event=>{if(event.type==='weather'){const result=event.data as {available:boolean;weather:{weather_code:number};serverTime:number};weatherCode=result.available?result.weather.weather_code:null;serverOffset=result.serverTime-Date.now();}});
+    const unsubscribe=realtime.subscribe(event=>{if(event.type==='weather'){const result=event.data as {available:boolean;weather:{weather_code:number};serverTime:number};weatherCode=result.available?result.weather.weather_code:null;}});
     function draw(time:number){
       const w=surface.width,h=surface.height;
       context.clearRect(0,0,w,h);
-      const date=new Date(Date.now()+serverOffset+8*3600000);
-      const hour=date.getUTCHours()+date.getUTCMinutes()/60;
-      const daylight=Math.max(0,Math.min(1,Math.sin((hour-6)*Math.PI/12)*2));
-      context.fillStyle=`rgba(15,30,65,${(1-daylight)*0.36})`;context.fillRect(0,0,w,h);
       if(weatherCode!==null){
         const rain=(weatherCode>=51 && weatherCode<=67)||(weatherCode>=80 && weatherCode<=82)||weatherCode>=95;
         const snow=(weatherCode>=71 && weatherCode<=77)||(weatherCode>=85 && weatherCode<=86);
