@@ -1,5 +1,3 @@
-"use client";
-
 import { GameButton } from "./game-button";
 import PixelText from "./pixel-text";
 

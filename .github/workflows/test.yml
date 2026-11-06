@@ -19,6 +19,8 @@ jobs:
         working-directory: apps/web
       - run: pnpm typecheck
         working-directory: apps/web
+      - run: pnpm build
+        working-directory: apps/web
   go:
     runs-on: ubuntu-latest
     steps:
@@ -30,4 +32,6 @@ jobs:
       - run: go test -timeout 60s ./...
         working-directory: apps/api
       - run: go vet ./...
+        working-directory: apps/api
+      - run: go build ./...
         working-directory: apps/api

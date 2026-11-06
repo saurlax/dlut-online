@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import type { CampusScene } from "../../game/campus-scene";
 import PixelText from "../../components/pixel-text";

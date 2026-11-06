@@ -11,7 +11,7 @@ import (
 	"github.com/pocketbase/pocketbase/tools/router"
 )
 
-func TestRegisterRejectsIncompleteExport(t *testing.T) {
+func TestRegisterRejectsIncompleteBuild(t *testing.T) {
 	for name, files := range map[string]fstest.MapFS{
 		"missing":   {},
 		"directory": {"index.html/nested.txt": {Data: []byte("invalid")}},
@@ -34,10 +34,10 @@ func TestStaticRoutesPreserveBackendAndMissingPaths(t *testing.T) {
 	r.GET("/api/health", func(e *core.RequestEvent) error { return e.JSON(200, map[string]bool{"healthy": true}) })
 	r.GET("/_/{path...}", func(e *core.RequestEvent) error { return e.String(200, "admin") })
 	files := fstest.MapFS{
-		"index.html":          {Data: []byte("homepage")},
-		"404.html":            {Data: []byte("page not found")},
-		"guide/index.html":    {Data: []byte("guide")},
-		"_next/static/app.js": {Data: []byte("script")},
+		"index.html":       {Data: []byte("homepage")},
+		"404.html":         {Data: []byte("page not found")},
+		"guide/index.html": {Data: []byte("guide")},
+		"assets/app.js":    {Data: []byte("script")},
 	}
 	if err := Register(&core.ServeEvent{Router: r}, files); err != nil {
 		t.Fatal(err)
@@ -53,7 +53,7 @@ func TestStaticRoutesPreserveBackendAndMissingPaths(t *testing.T) {
 	}{
 		{"/", 200, "homepage"},
 		{"/guide/", 200, "guide"},
-		{"/_next/static/app.js", 200, "script"},
+		{"/assets/app.js", 200, "script"},
 		{"/api/health", 200, "healthy"},
 		{"/_/", 200, "admin"},
 		{"/missing", 404, "page not found"},

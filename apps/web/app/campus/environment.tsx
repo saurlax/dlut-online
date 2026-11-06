@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef } from "react";
 import type { RealtimeConnection } from "../../game/realtime";
 import "./environment.css";

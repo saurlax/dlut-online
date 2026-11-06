@@ -15,7 +15,7 @@ pnpm --dir apps/web install --frozen-lockfile
 pnpm --dir apps/web build
 ```
 
-后端固定读取运行目录下的 `public/`。本地将它链接到静态导出目录，链接只需创建一次；`apps/api/public/` 不提交。
+Vite 构建首页、游戏和 404 的静态多页面到 `apps/web/out/`。后端固定读取运行目录下的 `public/`。本地将它链接到构建目录，链接只需创建一次；`apps/api/public/` 不提交。
 
 POSIX shell：
 
@@ -35,7 +35,7 @@ go run . serve --http=127.0.0.1:8415 --dir=../../.local/pb_data
 
 本地数据目录固定为仓库下的 `.local/pb_data/`，启动时显式指定 `--dir`，避免切换可执行文件或工作目录后误用空数据库。账号和 OIDC 配置均保存在该目录，不提交到 Git。
 
-访问 http://127.0.0.1:8415 。前端单独开发可在 `apps/web/` 运行 `pnpm dev`；该开发服务不代理 PocketBase API，涉及后端的联调使用上述静态构建路径。
+访问 http://127.0.0.1:8415 。前端开发可在 `apps/web/` 运行 `pnpm dev`，访问 http://127.0.0.1:5173 。Vite 将 `/api`（包括 WebSocket）和 `/_` 代理到本地 Go 服务 `127.0.0.1:8415`，联调时同时启动后端；SSO 回调地址仍需与身份服务登记一致，现有本地 SSO 使用 8415 入口验证。
 
 ## 像素地图资源
 

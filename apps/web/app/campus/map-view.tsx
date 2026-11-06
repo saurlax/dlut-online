@@ -1,11 +1,8 @@
-'use client';
-
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { readGameSession, type GameSession } from '../../game/game-session';
 import { BaseAuthStore } from 'pocketbase';
 
-const MapCanvas = dynamic(() => import('./map-canvas'), { ssr: false });
+const MapCanvas = lazy(() => import('./map-canvas'));
 
 export default function MapView() {
   const [session, setSession] = useState<GameSession | null>(null);
@@ -19,5 +16,5 @@ export default function MapView() {
     }
     setSession(prepared);
   }, []);
-  return session && <MapCanvas session={session} />;
+  return session && <Suspense fallback={null}><MapCanvas session={session} /></Suspense>;
 }

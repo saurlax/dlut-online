@@ -1,5 +1,3 @@
-'use client';
-
 import { useLayoutEffect, useRef } from 'react';
 
 // Rasterize once at the font's native size, then let the shared grid scale it.
