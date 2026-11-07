@@ -9,3 +9,6 @@ apps/api/public
 .env
 .env.*
 build
+**/*.exe
+**/*.log
+**/__pycache__

@@ -1,17 +1,21 @@
+# syntax=docker/dockerfile:1
+
 FROM node:24-bookworm-slim AS frontend
 WORKDIR /src/apps/web
 RUN npm install --global pnpm@11.6.0
 COPY apps/web/package.json apps/web/pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY apps/web/ ./
-RUN pnpm build
+RUN pnpm typecheck && pnpm build
 
 FROM golang:1.27-bookworm AS backend
 WORKDIR /src/apps/api
 COPY apps/api/go.mod apps/api/go.sum ./
-RUN go mod download
+RUN --mount=type=cache,target=/go/pkg/mod go mod download
 COPY apps/api/ ./
-RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/dlut-online .
+RUN --mount=type=cache,target=/go/pkg/mod \
+    --mount=type=cache,target=/root/.cache/go-build \
+    CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/dlut-online .
 
 FROM debian:bookworm-slim
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \

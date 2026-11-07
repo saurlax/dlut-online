@@ -2,7 +2,7 @@
 .campus-canvas { width: 100%; height: 100%; touch-action: none; }
 .campus-canvas canvas { display: block; transform-origin: 0 0; image-rendering: pixelated; }
 .game-hud { position: absolute; top: calc(4 * var(--pixel)); right: calc(4 * var(--pixel)); }
-.performance-hud { position: absolute; top: calc(30 * var(--pixel)); right: calc(4 * var(--pixel)); padding: calc(2 * var(--pixel)) calc(3 * var(--pixel)); color: #fff3d0; background: #122b40b8; pointer-events: none; }
+.performance-hud { position: absolute; bottom: calc(4 * var(--pixel)); right: calc(4 * var(--pixel)); padding: calc(2 * var(--pixel)) calc(3 * var(--pixel)); color: #fff3d0; background: #122b40b8; pointer-events: none; }
 .map-error { position: absolute; left: calc(4 * var(--pixel)); right: calc(4 * var(--pixel)); top: var(--center-y); margin: 0; padding: calc(4 * var(--pixel)); background: #f6f4eb; }
 .map-progress { position: absolute; bottom: 0; height: calc(3 * var(--pixel)); width: 100%; background: #e4d6a7; }
 .map-progress-fill { height: 100%; background: #25649b; }

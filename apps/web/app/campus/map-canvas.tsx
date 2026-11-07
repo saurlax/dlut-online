@@ -11,6 +11,7 @@ import Environment from "./environment";
 import Joystick from "./joystick";
 import PixelText from "../../components/pixel-text";
 import type { GameSession } from "../../game/game-session";
+import type { WorldSnapshot } from "../../game/players";
 import { RealtimeConnection } from "../../game/realtime";
 import "./map.css";
 
@@ -26,13 +27,20 @@ export default function MapCanvas({session}: {session:GameSession}) {
   );
   useEffect(() => {
     if (!loaded) return;
+    scene.current!.connectMovement((inputs, revision) => realtime.movement(inputs, revision), id => realtime.travel(id));
     const unsubscribe = realtime.subscribe(event => {
+      if (event.type === "world" || event.type === "connected") {
+        scene.current!.receiveWorld(event.data as WorldSnapshot); return;
+      }
+      if (event.type === "disconnected" || event.type === "auth_error") {
+        scene.current!.disconnectMovement(); return;
+      }
       if (event.type !== "weather") return;
       const result = event.data as { available: boolean; weather: { weather_code: number }; serverTime: number };
       scene.current!.setEnvironment(result.serverTime, result.available ? result.weather.weather_code : null);
     });
     realtime.start();
-    return () => { unsubscribe(); realtime.stop(); };
+    return () => { unsubscribe(); realtime.stop(); scene.current!.disconnectMovement(); };
   }, [loaded, realtime]);
 
   useEffect(() => {
@@ -92,7 +100,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
         {loaded && (
           <>
             <GameHud portal={interfaceHost} />
-            <PerformanceHud scene={()=>scene.current!} />
+            <PerformanceHud scene={()=>scene.current!} realtime={realtime} name={session.state.profile.name} />
             <Joystick onMove={(x,y)=>scene.current!.setTouchMovement(x,y)} />
             <Chat realtime={realtime} />
             <Minimap scene={()=>scene.current!} />
@@ -100,9 +108,10 @@ export default function MapCanvas({session}: {session:GameSession}) {
             <Wardrobe
               session={session}
               portal={interfaceHost}
-              onCharacter={(state, items) =>
-                scene.current!.setCharacter(state, items)
-              }
+              onCharacter={(state, items) => {
+                scene.current!.setCharacter(state, items);
+                realtime.appearance();
+              }}
             />
           </>
         )}

@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import PixelText from "../../components/pixel-text";
+import { GameButton } from "../../components/game-button";
 import GameDialogClose from "../../components/game-dialog-close";
 import { drawCharacter, type CharacterState, type Item } from "../../game/character";
 import { request, ApiError, clearGameSession, saveGameSession, type GameSession } from "../../game/game-session";
 import "../../components/game-dialog.css";
 import "./wardrobe.css";
-import { Hotbar, InventoryPanel, PointerItem, type CarriedItem } from "./inventory-panel";
+import { InventoryPanel, PointerItem, type CarriedItem } from "./inventory-panel";
 
 export default function Wardrobe({portal,onCharacter,session}:{
   portal:HTMLElement|null;
@@ -55,9 +56,6 @@ export default function Wardrobe({portal,onCharacter,session}:{
       if (e.code === "KeyI") {
         if (!open && document.querySelector('[role="dialog"]')) return;
         e.preventDefault(); if (!open) setSelected(active); changeOpen(!open);
-      } else if (!document.querySelector('[role="dialog"]') && /^Digit[0-9]$/.test(e.code)) {
-        const index = (Number(e.code.slice(-1)) + 9) % 10;
-        e.preventDefault(); setActive(`hotbar:${index}`);
       }
     }
     document.addEventListener("keydown",keydown);
@@ -68,7 +66,7 @@ export default function Wardrobe({portal,onCharacter,session}:{
     return run(async()=>publish(await request("/api/v1/character/move",session.token,{id,slotId}),items));
   }
   return <Dialog.Root open={open} onOpenChange={changeOpen}>
-    <Hotbar carriedId={open ? carried?.id : undefined} state={state} items={items} active={active} onSelect={setActive} onOpen={()=>{setSelected(active);changeOpen(true);}} />
+    <GameButton className="inventory-button" aria-label="背包 (I)" onClick={()=>{setSelected(active);changeOpen(true);}}>I</GameButton>
     {open && carried && !carried.touch && portal && <PointerItem carried={carried} state={state} items={items} host={portal} />}
     <Dialog.Portal container={portal}>
       <Dialog.Overlay className={`game-dialog-overlay${carried ? " inventory-carrying" : ""}`} />

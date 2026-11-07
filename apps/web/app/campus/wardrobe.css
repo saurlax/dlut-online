@@ -55,7 +55,7 @@
 .equipment-cell--backpack { grid-column: 3; grid-row: 1; }
 .equipment-cell--feet { grid-column: 3; grid-row: 3; }
 .equipment-placeholder { opacity: .25; filter: grayscale(1); pointer-events: none; }
-.wardrobe-inventory, .inventory-hotbar { --inventory-slot-size: 24px; }
+.wardrobe-inventory { --inventory-slot-size: 24px; }
 .inventory-slot { position: relative; display: grid; place-items: center; flex: 0 0 var(--inventory-slot-size); width: var(--inventory-slot-size); height: var(--inventory-slot-size); padding: 0; border: 1px solid; border-color: #56686b #fff9e8 #fff9e8 #56686b; background: #a4b1ad; color: #697975; cursor: pointer; }
 .inventory-slot canvas { display: block; width: 16px; height: 16px; image-rendering: pixelated; }
 .inventory-slot.is-selected { border-color: #fff9e8; background: #b9cbc5; box-shadow: 0 0 0 1px #184f80; }
@@ -68,15 +68,10 @@
 .is-selected .slot-shortcut { color: #184f80; }
 .inventory-capacity { width: 100%; padding-top: 4px; border-top: 1px solid #b9c0a4; }
 .inventory-grid { display: grid; grid-template-columns: repeat(10, var(--inventory-slot-size)); gap: 2px; align-self: flex-start; margin-inline: auto; }
-.inventory-hotbar { position: absolute; left: var(--center-x); bottom: 5px; transform: translateX(-50%); display: flex; align-items: center; max-width: calc(100% - 8px); gap: 5px; padding: 3px; background: #fff3d0; border: 1px solid #184f80; box-shadow: 1px 1px #0b2d50; pointer-events: auto; }
-.hotbar-slots { display: flex; min-width: 0; gap: 2px; padding: 1px; overflow-x: auto; scrollbar-width: none; }
-.hotbar-slots::-webkit-scrollbar { display: none; }
-.inventory-hotbar > .game-button { flex-shrink: 0; width: var(--inventory-slot-size); height: var(--inventory-slot-size); padding: 0; }
+.inventory-button { position: absolute; left: calc(var(--center-x) - 12px); bottom: 5px; width: 24px; height: 24px; padding: 0; pointer-events: auto; }
 @media (max-width: 650px) {
-  .wardrobe-inventory, .inventory-hotbar { --inventory-slot-size: 20px; }
+  .wardrobe-inventory { --inventory-slot-size: 20px; }
   .inventory-grid { gap: 1px; }
-  .inventory-hotbar { gap: 3px; }
-  .hotbar-slots { gap: 1px; }
 }
 @media (any-pointer: coarse) { .wardrobe-inventory .inventory-slot { touch-action:none; } }
 
