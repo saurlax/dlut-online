@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import PixelText from "../../components/pixel-text";
-import { GameButton } from "../../components/game-button";
 import type { CharacterState, Item, Owned } from "../../game/character";
 
 export const equipmentSlots = [
@@ -151,16 +150,4 @@ export function InventoryPanel({ state, items, selected, setSelected, busy, onMo
     <div className="inventory-grid" aria-label="背包格子">{Array.from({length:30},(_,i)=>slot(`bag:${i}`,`背包格 ${i+1}`,i>=state.capacity))}</div>
     <div className="inventory-grid inventory-quickbar" aria-label="物品栏">{Array.from({length:10},(_,i)=>slot(`hotbar:${i}`,`物品栏 ${i+1}`,false,String((i+1)%10)))}</div>
   </>;
-}
-
-export function Hotbar({state,items,active,onSelect,onOpen,carriedId}:{state:CharacterState;items:Item[];active:string;onSelect:(slot:string)=>void;onOpen:()=>void;carriedId?:string}) {
-  const slots = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    slots.current!.querySelector<HTMLButtonElement>(`[data-slot="${active}"]`)!.scrollIntoView({block:"nearest",inline:"nearest"});
-  }, [active]);
-  return <div className="inventory-hotbar" aria-label="快捷物品栏">
-    <div className="hotbar-slots" ref={slots}>{Array.from({length:10},(_,i)=><InventorySlot key={i} slot={`hotbar:${i}`} label={`快捷栏 ${i+1}`} items={items}
-      owned={state.inventory.find(v=>v.slotId===`hotbar:${i}`&&v.id!==carriedId)} selected={active===`hotbar:${i}`} shortcut={String((i+1)%10)} onClick={()=>onSelect(`hotbar:${i}`)} />)}</div>
-    <GameButton aria-label="背包 (I)" onClick={onOpen}>I</GameButton>
-  </div>;
 }

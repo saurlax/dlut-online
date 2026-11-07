@@ -9,9 +9,32 @@ docker build -t dlut-online:local .
 docker compose up -d
 ```
 
-访问 http://127.0.0.1:8415 ，健康检查为 `/api/health`，管理后台为 `/_/`。Compose 默认只绑定本机地址，公网部署通过 HTTPS 反向代理接入。当前镜像提供基础入口和 PocketBase 后端，尚无可玩的校园或游戏传输。
+访问 http://127.0.0.1:8415 ，健康检查为 `/api/health`，管理后台为 `/_/`。Compose 默认只绑定本机地址。镜像包含 Vite / React 页面、Three.js 校园、PocketBase 账号及 WebSocket 玩家移动、外观、聊天与天气。
 
-正式镜像地址为 `ghcr.io/saurlax/dlut-online`，主线标签 `latest`，版本标签如 `v0.1.0`。部署时使用对应标签下的文档与发布说明。
+Actions 仅运行测试与编译验证，不发布镜像或 Release。正式部署使用根 Dockerfile 手动构建带版本标识的镜像；当前 Tokyo 使用节点本地镜像，不依赖 GHCR。
+
+## Tokyo / k3s / EdgeOne
+
+部署清单位于 `deploy/k3s.yaml`，固定调度到 `example-worker`。单副本 Deployment 使用 Recreate 更新，避免两个进程同时写 SQLite；`local-path` 的 2 GiB PVC 保存 `/data/pb_data`。PVC 与节点绑定，更新时保留，迁移节点前需单独备份与恢复数据。
+
+构建并导入清单指定的镜像，然后应用部署：
+
+```sh
+docker build -t docker.io/local/dlut-online:hud-20261107-v1 .
+docker save docker.io/local/dlut-online:hud-20261107-v1 -o dlut-online.tar
+# 在 Tokyo 节点执行
+sudo k3s ctr images import dlut-online.tar
+kubectl --context example-worker apply -f deploy/k3s.yaml
+kubectl --context example-worker -n dlut-online rollout status deployment/dlut-online
+```
+
+后续更新同时修改主容器与初始化容器的镜像标签，导入新镜像后再应用。镜像为节点本地资源，清单使用 `imagePullPolicy: Never`，不向注册表发起拉取。
+
+生产 OIDC 使用独立的 `dlut-online` 客户端，回调为 `https://dlut.online/api/oauth2-redirect`。部署前在 `dlut-online` namespace 创建 Secret `dlut-online-oidc`，其中 `provider.json` 使用本文后续的提供商配置格式。初始化容器读取 Secret 并配置持久化数据库；Secret 不进入仓库，不复用本地客户端。
+
+流量路径为浏览器 HTTPS → EdgeOne → Tokyo `192.0.2.1:80` → Traefik HTTP `web` → Service `8415`。`dlut.online` 的 DNS 保留现有 EdgeOne CNAME `edge.example.com`；EdgeOne 源站设为 Tokyo IP，回源协议固定 `HTTP`、端口 `80`、Host 为 `dlut.online`。
+
+k3s Ingress 不配置 TLS 或 HTTPS 重定向；边缘证书由 EdgeOne 管理。Ingress 复用集群已有的 `external-https@file` 中间件向应用传递外部 HTTPS 协议信息，该中间件不终止 TLS。WebSocket 沿同一入口升级连接。
 
 ## 数据与管理
 

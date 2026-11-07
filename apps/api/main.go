@@ -30,7 +30,11 @@ func main() {
 		hub := chat.Register(event, guests)
 		environment.Register(event, guests)
 		executeCommand := commands.Register(event, environment)
-		realtime.Register(event, guests, hub, environment, executeCommand)
+		world, err := realtime.LoadWorld(os.DirFS("public"))
+		if err != nil {
+			return err
+		}
+		realtime.Register(event, guests, hub, environment, executeCommand, world)
 		if err := site.Register(event, os.DirFS("public")); err != nil {
 			return err
 		}

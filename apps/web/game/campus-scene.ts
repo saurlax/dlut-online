@@ -6,6 +6,7 @@ import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { drawCharacter, type CharacterState, type Item } from "./character";
+import { RemotePlayers, nameCanvas, type MovementInput, type WorldSnapshot } from "./players";
 import { watchPixelGrid } from "./pixel-grid";
 import { SiteFixtures, type SiteFixtureData } from "./site-fixtures";
 
@@ -95,6 +96,15 @@ export class CampusScene {
   private readonly screenPoint = new THREE.Vector3();
   private readonly keys = new Set<string>();
   private touchMovement = { x: 0, y: 0 };
+  private readonly remotePlayers = new RemotePlayers(this.world, this.labels, this.camera);
+  private networkReady = false;
+  private networkRevision = -1;
+  private inputSequence = 0;
+  private pendingInputs: MovementInput[] = [];
+  private outgoingInputs: MovementInput[] = [];
+  private lastInputSend = 0;
+  private sendInputs?: (inputs: MovementInput[], revision: number) => void;
+  private sendTravel?: (landmark: string) => boolean;
   private actor?: { x: number; y: number };
   private characterState?: CharacterState;
   private itemCatalog: Item[] = [];
@@ -335,21 +345,43 @@ export class CampusScene {
       this.updateCamera(true);
     }
     this.animateCharacter(0);
-    const canvas = document.createElement("canvas"), context = canvas.getContext("2d")!;
-    context.font = '12px "Fusion Pixel"';
-    canvas.width = 2 * Math.ceil((context.measureText(state.profile.name).width + 2) / 2);
-    canvas.height = 14;
-    context.font = '12px "Fusion Pixel"';
-    context.fillStyle = "#fff3d0";
-    context.fillText(state.profile.name, 0, 10);
-    const pixels = context.getImageData(0, 0, canvas.width, canvas.height);
-    for (let i = 3; i < pixels.data.length; i += 4) pixels.data[i] = pixels.data[i] >= 128 ? 255 : 0;
-    context.putImageData(pixels, 0, 0);
+    const canvas = nameCanvas(state.profile.name);
     const previous = this.name.material.map;
     if (previous) { previous.dispose(); this.textures.delete(previous); }
     this.name.material.map = this.texture(canvas);
     this.name.material.needsUpdate = true;
     this.name.scale.set(canvas.width / WORLD_PIXELS_PER_METER, canvas.height / WORLD_PIXELS_PER_METER, 1);
+  }
+
+  connectMovement(send: (inputs: MovementInput[], revision: number) => void, travel: (landmark: string) => boolean) {
+    this.sendInputs = send; this.sendTravel = travel;
+  }
+
+  disconnectMovement() {
+    this.networkReady = false; this.networkRevision = -1;
+    this.pendingInputs = []; this.outgoingInputs = [];
+    this.clearInput(); this.remotePlayers.clear();
+  }
+
+  receiveWorld(snapshot: WorldSnapshot) {
+    const self = snapshot.players.find(p => p.id === snapshot.selfId)!;
+    const relocated = !this.networkReady || self.revision !== this.networkRevision;
+    if (relocated) {
+      this.inputSequence = self.ack; this.pendingInputs = []; this.outgoingInputs = [];
+      this.networkRevision = self.revision;
+    }
+    this.networkReady = true;
+    this.pendingInputs = this.pendingInputs.filter(input => input.seq > self.ack);
+    this.actor = { x: self.x, y: self.y };
+    for (const input of this.pendingInputs) this.predictMovement(input);
+    if (relocated) this.updateCamera(true);
+    this.remotePlayers.receive(snapshot);
+  }
+
+  private predictMovement(input: MovementInput) {
+    const distance = (input.sprint ? 96 : 48) * input.ms / 1000 / Math.max(1, Math.hypot(input.x, input.y));
+    const x = this.actor!.x + input.x * distance, y = this.actor!.y + input.y * distance;
+    if (this.canStand(x, y)) { this.actor!.x = x; this.actor!.y = y; }
   }
 
   private animateCharacter(step: number) {
@@ -596,11 +628,19 @@ export class CampusScene {
     if (this.actor) {
       if (dx || dy) {
         this.direction = Math.abs(dx) > Math.abs(dy) ? dx > 0 ? 1 : 3 : dy > 0 ? 0 : 2;
-        const distance = (sprinting ? 64 : 32) * delta / 1000 / Math.max(1, Math.hypot(dx, dy));
-        const x = this.actor.x + dx * distance, y = this.actor.y + dy * distance;
-        if (this.canStand(x, y)) { this.actor.x = x; this.actor.y = y; }
       }
-      const step = dx || dy ? Math.floor(time / (sprinting ? 80 : 160)) % 3 : 0;
+      if (this.networkReady && delta > 0) {
+        const input: MovementInput = { seq: ++this.inputSequence, x: dx, y: dy, ms: delta, sprint: sprinting };
+        this.predictMovement(input);
+        this.pendingInputs.push(input); this.outgoingInputs.push(input);
+        if (this.pendingInputs.length >= 240) { this.disconnectMovement(); }
+        if (this.networkReady && (time - this.lastInputSend >= 50 || this.outgoingInputs.length >= 10)) {
+          this.lastInputSend = time;
+          this.sendInputs!(this.outgoingInputs, this.networkRevision);
+          this.outgoingInputs = [];
+        }
+      }
+      const step = this.networkReady && (dx || dy) ? Math.floor(time / (sprinting ? 80 : 120)) % 3 : 0;
       const pose = `${this.direction}:${step}`;
       if (pose !== this.pose) { this.animateCharacter(step); this.pose = pose; }
       this.character.position.set(this.actor.x / 16, 0, this.actor.y / 16);
@@ -609,6 +649,7 @@ export class CampusScene {
       this.name.position.copy(this.character.position).add(new THREE.Vector3(0, 1.7, 0).applyQuaternion(this.camera.quaternion));
     }
     this.updateCamera(false);
+    this.remotePlayers.update(time);
     if (this.actor) this.focusPass.uniforms.focus.value = -this.screenPoint.copy(this.character.position).applyMatrix4(this.camera.matrixWorldInverse).z;
     this.updateLighting();
     this.fixtures.update(time, this.cameraTarget, Math.sin(this.solarAngle));
@@ -692,6 +733,7 @@ export class CampusScene {
     this.atlas?.close();
     this.disposeResources();
     this.fixtures.destroy();
+    this.remotePlayers.destroy();
     this.plantGroups.forEach(group => group.mesh.dispose());
     this.composer.passes.forEach(pass => pass.dispose());
     this.composer.dispose();
@@ -749,29 +791,8 @@ export class CampusScene {
   }
 
   travelToLandmark(id: string) {
-    const building = this.campus.buildings.find(b => b.id === id)!;
-    const xs = building.footprint.map(p => p[0]);
-    const ys = building.footprint.map(p => p[1]);
-    // Prefer open ground just south of the footprint; this is not an inferred entrance.
-    const targetX = Math.floor((Math.min(...xs) + Math.max(...xs)) / 2);
-    const targetY = Math.ceil(Math.max(...ys)) + 2;
-    for (let radius = 0; radius <= 32; radius++) {
-      for (let dy = -radius; dy <= radius; dy++) {
-        for (let dx = -radius; dx <= radius; dx++) {
-          if (Math.max(Math.abs(dx), Math.abs(dy)) !== radius) continue;
-          const x = (targetX + dx) * 16 + 8;
-          const y = (targetY + dy) * 16 + 8;
-          if (!this.canStand(x, y)) continue;
-          this.keys.clear();
-          this.actor!.x = x;
-          this.actor!.y = y;
-          this.touchMovement = { x: 0, y: 0 };
-          this.updateCamera(true);
-          return true;
-        }
-      }
-    }
-    return false;
+    this.clearInput();
+    return this.networkReady && this.sendTravel!(id);
   }
 
   private canStand(x: number, y: number) {

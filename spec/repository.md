@@ -19,7 +19,7 @@
 
 Vite 使用多页面模式，首页 `index.html`、游戏 `game/index.html` 和 `404.html` 分别挂载 React；构建输出 `apps/web/out/`，游戏场景通过 React.lazy 按需加载。Go 通过文件系统提供完整构建目录，未知页面返回静态 404 页及 HTTP 404，不用 SPA 首页兜底，也不覆盖 PocketBase `/api/` 与 `/_/`。
 
-根 Dockerfile 分别构建前端和 Go，最终阶段只包含 Go 可执行文件、静态网页、证书及必要系统文件，无 Node 服务。镜像名统一为 `dlut-online`，仓库发行地址为 `ghcr.io/saurlax/dlut-online`。
+根 Dockerfile 分别构建前端和 Go，最终阶段只包含 Go 可执行文件、静态网页、证书及必要系统文件，无 Node 服务。镜像名统一为 `dlut-online`，手动构建；Tokyo 使用导入节点 containerd 的本地镜像，不依赖镜像注册表。
 
 SQLite 数据放在 `/data/pb_data` 持久卷，运行用户为非 root。当前镜像仅开放 HTTP 8415；未实现 WebRTC 时不发布虚假的 UDP 服务端口。
 
@@ -27,4 +27,4 @@ test.yml 提供可复用的前端类型检查、Vite 生产构建与 Go test/vet
 
 ## 状态
 
-镜像提供产品入口、开发区校区 HD-2D 场景、账号与角色、背包、本地人物移动和碰撞，以及 WebSocket 聊天与天气；玩家位置同步和 WebRTC 尚未实现。生成资源随静态构建复制进镜像；生成工具和原始照片不进入运行进程。
+镜像提供产品入口、开发区校区 HD-2D 场景、账号与角色、背包，以及 WebSocket 玩家移动、外观、聊天与天气；Go 校验移动与碰撞，WebRTC 尚未实现。生成资源随静态构建复制进镜像；生成工具和原始照片不进入运行进程。

@@ -16,6 +16,7 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+	"testing/fstest"
 	"time"
 )
 
@@ -37,7 +38,14 @@ func TestGuestSocketChatWeatherAndAuthorization(t *testing.T) {
 	guests.Register(e)
 	hub := chat.Register(e, guests)
 	env := weather.New()
-	Register(e, guests, hub, env, commands.Register(e, env))
+	world, err := LoadWorld(fstest.MapFS{
+		"campuses/eda/map.json":           {Data: []byte(`{"focus":[1,1],"chunkSize":4,"textures":["grass-0"],"chunks":[{"x":0,"y":0,"layers":[[16,0]]}]}`)},
+		"campuses/eda/site-fixtures.json": {Data: []byte(`{"lamps":[],"noticeboards":[]}`)},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	Register(e, guests, hub, env, commands.Register(e, env), world)
 	mux, err := router.BuildMux()
 	if err != nil {
 		t.Fatal(err)
@@ -81,6 +89,21 @@ func TestGuestSocketChatWeatherAndAuthorization(t *testing.T) {
 			gotJoin = strings.Contains(string(v.Data), session.Name)
 		case "weather":
 			gotWeather = true
+		}
+	}
+	if err := socket.WriteJSON(message{Type: "ping", ID: "latency-probe"}); err != nil {
+		t.Fatal(err)
+	}
+	for {
+		var v envelope
+		if err := socket.ReadJSON(&v); err != nil {
+			t.Fatal(err)
+		}
+		if v.Type == "pong" {
+			if v.ID != "latency-probe" {
+				t.Fatalf("pong id = %q", v.ID)
+			}
+			break
 		}
 	}
 	if err := socket.WriteJSON(message{Type: "chat", ID: "1", Text: "hello"}); err != nil {
@@ -127,8 +150,13 @@ func TestGuestSocketChatWeatherAndAuthorization(t *testing.T) {
 		Type string          `json:"type"`
 		Data json.RawMessage `json:"data"`
 	}
-	if err := socket.ReadJSON(&v); err != nil || v.Type != "weather" || !strings.Contains(string(v.Data), `"weather_code":73`) {
-		t.Fatal("weather update missing", err)
+	for {
+		if err := socket.ReadJSON(&v); err != nil {
+			t.Fatal("weather update missing", err)
+		}
+		if v.Type == "weather" && strings.Contains(string(v.Data), `"weather_code":73`) {
+			break
+		}
 	}
 	bad, _, err := websocket.DefaultDialer.Dial("ws"+strings.TrimPrefix(server.URL, "http")+"/api/v1/game/socket", nil)
 	if err != nil {
