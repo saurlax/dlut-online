@@ -33,6 +33,8 @@ export default function TitleMenu() {
                 <h3><PixelText>地图数据</PixelText></h3>
                 <CreditLink href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</CreditLink>
                 <CreditLink href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</CreditLink>
+                <CreditLink href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth · Public Domain</CreditLink>
+                <CreditLink href="/world/atlas/NOTICE.txt">Mapzen · USGS · NOAA</CreditLink>
               </section>
               <section>
                 <h3><PixelText>字体</PixelText></h3>
@@ -65,6 +67,8 @@ export default function TitleMenu() {
                 <h3><PixelText>场景渲染</PixelText></h3>
                 <CreditLink href="https://threejs.org/">Three.js</CreditLink>
                 <CreditLink href="https://github.com/mrdoob/three.js/blob/dev/LICENSE">MIT License</CreditLink>
+                <CreditLink href="https://maplibre.org/">MapLibre GL JS</CreditLink>
+                <CreditLink href="/world/atlas/MapLibre-LICENSE.txt">BSD 3-Clause</CreditLink>
               </section>
             </div>
           </Dialog.Content>

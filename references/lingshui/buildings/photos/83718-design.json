@@ -1,0 +1,56 @@
+{
+  "official_id": "83718",
+  "source": "https://www.aatu.com.cn/project/post/301/",
+  "publisher": "天津大学建筑设计规划研究总院有限公司",
+  "retrieved": "2026-09-17T11:36:52.069286+00:00",
+  "page_sha256": "ad22ac4b4b03f612569d2e74eb702ae81b631d33383e57e9616ee7e9998968d3",
+  "project_completion_year_as_published": 2019,
+  "published_project_area_m2": 68700,
+  "purpose": "Exterior ground-access and massing evidence for OSM/road conflict; no interior or clearance model generated.",
+  "photos": [
+    {
+      "index": 0,
+      "url": "https://www.aatu.com.cn/upload/202001/157797316452.jpg",
+      "file": "references/lingshui/buildings/photos/83718-design-0.jpg",
+      "sha256": "226e437b1496db1917c2726399a58ff4a0b3897d6048254d71239b190ba38cec",
+      "retrieved": "2026-09-17T11:36:51.302677+00:00",
+      "capture_date": null
+    },
+    {
+      "index": 1,
+      "url": "https://www.aatu.com.cn/upload/202001/1577973163249.jpg",
+      "file": "references/lingshui/buildings/photos/83718-design-1.jpg",
+      "sha256": "596a6e1454c9eb0d1a6254fbfe582a186953c4d5bf7fec81df9020999b2da7a8",
+      "retrieved": "2026-09-17T11:36:52.068822+00:00",
+      "capture_date": null
+    },
+    {
+      "index": 2,
+      "url": "https://www.aatu.com.cn/upload/202001/1577973164869.jpg",
+      "file": "references/lingshui/buildings/photos/83718-design-2.jpg",
+      "sha256": "a307f49128b686759c4738490b264cef2f73d74dc520c9d63347f709027c4b50",
+      "retrieved": "2026-09-17T11:36:51.742032+00:00",
+      "capture_date": null
+    },
+    {
+      "index": 3,
+      "url": "https://www.aatu.com.cn/upload/202001/1577973167916.jpg",
+      "file": "references/lingshui/buildings/photos/83718-design-3.jpg",
+      "sha256": "1d331e1439bd9891d95c1025d02b900c3c2884fb097e98ed6021632ff39c3ec9",
+      "retrieved": "2026-09-17T11:36:52.029463+00:00",
+      "capture_date": null
+    }
+  ],
+  "observations": [
+    "设计单位明确说明三侧场地高差，并以飞廊、室外台阶和景观平台衔接空间。",
+    "第0张可见连续长轴与中段开空，第1/2张可见西向外部台阶与飞廊，第3张可见橙色体量及旁侧车行铺装。",
+    "原OSM整片矩形不能区分地面墙脚、架空连廊、柱脚和屋盖；layer=1不能换算为净高。"
+  ],
+  "limits": [
+    "页面7张照片已目视浏览，其中4张外观原图归档，3张室内图不用于推断室外通道。",
+    "项目竣工年份是页面文字，不等于每张照片拍摄日期；不以道路way编辑年份推定其共享节点未更新或道路已废弃。",
+    "没有带比例首层平面、剖面、地面配准控制点或净高，尚不能生成正确通道、柱位或室外台阶。",
+    "图片来源保留版权，未发现再分发许可；仅离线研究，不打入客户端。"
+  ],
+  "runtime_geometry_changed": false
+}

@@ -12,7 +12,7 @@ func testWorld(t *testing.T) *World {
 	w, err := LoadWorld(fstest.MapFS{
 		"campuses/eda/map.json":           {Data: []byte(`{"focus":[3,3],"offset":[0,0],"chunkSize":8,"textures":["grass-0","water-0"],"chunks":[{"x":0,"y":0,"layers":[[56,0,8,1]]}],"buildings":[{"id":"library","footprint":[[5,1],[6,1],[6,2],[5,2]]}]}`)},
 		"campuses/eda/site-fixtures.json": {Data: []byte(`{"lamps":[{"position":[1.5,1.5]}],"noticeboards":[{"position":[2.5,1.5],"direction":[1,0],"width":1}]}`)},
-	})
+	}, "eda")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -41,6 +41,45 @@ func TestWorldPlayersJoinAndLeaveWithoutSharingIdentity(t *testing.T) {
 	}
 }
 
+func TestSpawnRegionRespectsCollisionsAndPlayerSpacing(t *testing.T) {
+	w := testWorld(t)
+	for i := 0; i < 16; i++ {
+		id, err := w.join(playerLook{Name: "Guest"})
+		if err != nil {
+			t.Fatal(err)
+		}
+		p := w.players[id]
+		if math.Abs(p.X-w.spawn[0]) > 120 || math.Abs(p.Y-w.spawn[1]) > 120 || !w.canStand(p.X, p.Y) {
+			t.Fatal("spawn left its walkable local region")
+		}
+		for otherID, other := range w.players {
+			if otherID != id && math.Hypot(p.X-other.X, p.Y-other.Y) < 16 {
+				t.Fatal("spawn overlaps another player")
+			}
+		}
+	}
+}
+
+func TestBuildingCourtyardRemainsWalkable(t *testing.T) {
+	w := testWorld(t)
+	b := &w.campus.Buildings[0]
+	b.Footprint = [][2]float64{{3, 1}, {7, 1}, {7, 5}, {3, 5}}
+	b.Holes = [][][2]float64{{{4, 2}, {6, 2}, {6, 4}, {4, 4}}}
+	if !w.canStand(80, 48) || w.canStand(56, 48) {
+		t.Fatal("courtyard opening and solid building walls must have different collision")
+	}
+}
+
+func TestSportsCollisionUsesStructuresInsteadOfWholeField(t *testing.T) {
+	w := testWorld(t)
+	b := &w.campus.Buildings[0]
+	b.Footprint = [][2]float64{{3, 1}, {7, 1}, {7, 5}, {3, 5}}
+	b.CollisionPolygons = [][][2]float64{{{3, 1}, {4, 1}, {3, 5}}}
+	if !w.canStand(80, 48) || w.canStand(52.8, 32) {
+		t.Fatal("field must remain open while registered stand geometry blocks movement")
+	}
+}
+
 func TestWorldLimitsSpeedAndRejectsStaleOrInvalidInputs(t *testing.T) {
 	w := testWorld(t)
 	id, err := w.join(playerLook{Name: "Alice"})
@@ -48,6 +87,7 @@ func TestWorldLimitsSpeedAndRejectsStaleOrInvalidInputs(t *testing.T) {
 		t.Fatal(err)
 	}
 	p := w.players[id]
+	p.X, p.Y = w.spawn[0], w.spawn[1]
 	now := p.clock
 	x, y := p.X, p.Y
 	input := movementInput{Seq: 1, X: 1, Y: 1, MS: 50}

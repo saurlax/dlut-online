@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "campus_id": "lingshui",
+  "references": [
+    {
+      "id": "81821",
+      "part": 0,
+      "reference_type": "traffic-counter",
+      "source": "http://map.dlut.edu.cn/openmap/mapi/place/v1/detail?uid=81821",
+      "retrieved": "2026-09-17",
+      "response_sha256": "6af0e16c28253d1c40811c0205b9d92c0d17562f3755e17895a79eec7fd08301",
+      "source_description": "统计日期:2018-06-25<br/>出口: 556辆<br/>入口: 546辆<br/>",
+      "source_place_type": "BUILDING",
+      "expected_reference_points": [
+        [
+          -104.849,
+          -7.166
+        ],
+        [
+          -78.024,
+          -9.869
+        ],
+        [
+          -76.798,
+          3.299
+        ],
+        [
+          -100.975,
+          6.313
+        ]
+      ],
+      "basis": [
+        "官网详情只有2018-06-25车辆进出口统计，不提供公寓建筑层数或结构。",
+        "相册为空，lm30所示该bound附近是道路、停车设施和开放地面，没有对应的18米宿舍体块。",
+        "原始接口仍标BUILDING；此显式人工核对覆盖仅限81821，不按统计文字批量删除其他楼体。"
+      ],
+      "limits": [
+        "保留ID和原始bound供回溯，不据统计数量推断道路宽度或车行闸口尺寸。",
+        "未生成岗亭、栏杆、门洞或室内。"
+      ],
+      "topview_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439127&y=200596&z=19",
+          "retrieved": "2026-09-17T06:10:03.332377+00:00",
+          "sha256": "088632bc60770ea671b1511ca91c5b350a0bf3bfa90422c0fd85a4b60dcff899"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439127&y=200597&z=19",
+          "retrieved": "2026-09-17T06:10:03.275762+00:00",
+          "sha256": "c8f46d6adbf51be3ae7f132f0193ec74639b7eab4c355b6ce6f2327d53ae898f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439127&y=200598&z=19",
+          "retrieved": "2026-09-17T09:25:11.643468+00:00",
+          "sha256": "4dde8b9ecc5893fb30ed0d35e69aba50c562331870c48c3f10527c6a18c7f66a"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439127&y=200599&z=19",
+          "retrieved": "2026-09-17T09:25:12.156512+00:00",
+          "sha256": "71448d205e221e9beede73ceedb12f3bb2358f4dc53049e3e6974635d7da7c5c"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439128&y=200596&z=19",
+          "retrieved": "2026-09-17T06:10:03.367375+00:00",
+          "sha256": "ef37067b76fb0852c88b12746c48f1a50fa9a66a548f8e4194879fcb9845c06b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439128&y=200597&z=19",
+          "retrieved": "2026-09-17T06:10:03.318523+00:00",
+          "sha256": "beedea1124a3b6fa8ec720794a2d8e548e39e26ea8a3f063a48d6b74d46b8f3c"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439128&y=200598&z=19",
+          "retrieved": "2026-09-17T09:25:12.716512+00:00",
+          "sha256": "446dadaf5b09a3e0cba0b40f019b213305cf1c2ac7152fa7134b21c962078a54"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439128&y=200599&z=19",
+          "retrieved": "2026-09-17T09:25:13.208050+00:00",
+          "sha256": "f7c5aa65868f058088fe03e5cf931b47005a6ffb89aa0e6e8a89fd79acc7e647"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439129&y=200596&z=19",
+          "retrieved": "2026-09-17T09:25:13.779708+00:00",
+          "sha256": "354ebc50a378a385d1ae1c30b0e9f44b456414c174738e16a64a6e19107bafda"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439129&y=200597&z=19",
+          "retrieved": "2026-09-17T09:25:14.336044+00:00",
+          "sha256": "e0fe62ce14bb9c3fb6d64147d87b925b38d09f730128053c1da5d091a3c9d781"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439129&y=200598&z=19",
+          "retrieved": "2026-09-17T09:25:14.837264+00:00",
+          "sha256": "03eb374c41adbde2ff991817c91e29d77d31c5876dd4f17a0976ad60f1f342ce"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439129&y=200599&z=19",
+          "retrieved": "2026-09-17T09:25:15.431230+00:00",
+          "sha256": "f83b7783e53491f2672d1547e34577079823f0d99180fdf0ab2ea12cf68ec953"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439130&y=200596&z=19",
+          "retrieved": "2026-09-17T09:25:16.147481+00:00",
+          "sha256": "b15cdcf301172caa7564159ceed8459501a2ec1e3fe4589845575048a7b134ea"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439130&y=200597&z=19",
+          "retrieved": "2026-09-17T09:25:17.139957+00:00",
+          "sha256": "d84285b244ac0b6362668e2a7a83a9ae98f058ce9c670179ca433c58fab2133c"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439130&y=200598&z=19",
+          "retrieved": "2026-09-17T09:25:18.320857+00:00",
+          "sha256": "0e8acec4ea366416e39bd25f691870afa27fcd2f66fba4f7f4d3bd4fbbc675fe"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439130&y=200599&z=19",
+          "retrieved": "2026-09-17T09:25:19.181089+00:00",
+          "sha256": "7ae54f29e8e3bbaab06fea62d3814874479477997e609366e00cc2be7ff4e6d7"
+        }
+      ]
+    }
+  ]
+}

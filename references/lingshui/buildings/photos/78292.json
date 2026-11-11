@@ -1,0 +1,29 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 2,
+  "result": [
+    {
+      "id": 78326,
+      "name": "IMG_0309",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/78292_20160225110138899.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/78292_20160225110138899.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/78292_20160225110138899.jpg"
+    },
+    {
+      "id": 273996151,
+      "name": "A331",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/78292_2017091310570184.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/78292_2017091310570184.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/78292_2017091310570184.jpg"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=78292",
+  "retrieved": "2026-09-11"
+}

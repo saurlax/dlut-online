@@ -1,0 +1,2890 @@
+{
+  "palette": 48,
+  "alpha": [
+    0,
+    255
+  ],
+  "projection": "Buildings: south-facing orthographic view at 26 degrees; open sports facilities: north-up plan view. Frame fitted using Camera.view_frame(scene) to preserve all model bounds; native 1.5 pixels/m capped at 256 pixels.",
+  "objects": [
+    {
+      "id": "lingshui-77355-0",
+      "model": "apps/web/public/campuses/lingshui/models/77355-0.glb",
+      "nativeSize": [
+        112,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "b18e9ad068cf22e7035a98a3c80dfbc9f568b33936ebfeac884b268e03f5a06a",
+      "image": ".local/city-map/model-sprites/lingshui-77355-0.png",
+      "sha256": "dbf3c3ed251b2e2fed4be8902ca3fda0ffdf209d780b679d54a8aa7b5317c497"
+    },
+    {
+      "id": "lingshui-77356-0",
+      "model": "apps/web/public/campuses/lingshui/models/77356-0.glb",
+      "nativeSize": [
+        128,
+        96
+      ],
+      "elevation": 26,
+      "modelSha256": "6c45452237517dc3f95405f19afe42f84b5d1ae73054c9798f1c0b7c50eb030e",
+      "image": ".local/city-map/model-sprites/lingshui-77356-0.png",
+      "sha256": "dd2387395943af6dfee25cea3667804c9188d237e6e0d154fba216f05b391e13"
+    },
+    {
+      "id": "lingshui-77357-0",
+      "model": "apps/web/public/campuses/lingshui/models/77357-0.glb",
+      "nativeSize": [
+        128,
+        136
+      ],
+      "elevation": 26,
+      "modelSha256": "1ae499e3e0e8aec7c967990382c10a9618e2149d6727c46e8777ba125bfd376e",
+      "image": ".local/city-map/model-sprites/lingshui-77357-0.png",
+      "sha256": "9dc80642eb759e9222beec011f6dbe4d5df335a3894a47f4e69327ebc1c254aa"
+    },
+    {
+      "id": "lingshui-77358-0",
+      "model": "apps/web/public/campuses/lingshui/models/77358-0.glb",
+      "nativeSize": [
+        256,
+        176
+      ],
+      "elevation": 26,
+      "modelSha256": "18b88290cebc33dfdf3642974b84cf2565a3834645c1a99564a2da257d05e11c",
+      "image": ".local/city-map/model-sprites/lingshui-77358-0.png",
+      "sha256": "bb3729c55b231e2f1562071962447ca5712a7b4a7ca28123dd2592bb75bb80eb"
+    },
+    {
+      "id": "lingshui-77371-0",
+      "model": "apps/web/public/campuses/lingshui/models/77371-0.glb",
+      "nativeSize": [
+        152,
+        104
+      ],
+      "elevation": 26,
+      "modelSha256": "d888024bb910f64ad2beaa3a5f412c518a9ac06e36246395f6ac97ebe6c37e3c",
+      "image": ".local/city-map/model-sprites/lingshui-77371-0.png",
+      "sha256": "e25e607ed01c191eabc0e752a6b0b71727d9694898df7a430e204c06fe479b3c"
+    },
+    {
+      "id": "lingshui-77376-0",
+      "model": "apps/web/public/campuses/lingshui/models/77376-0.glb",
+      "nativeSize": [
+        88,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "a19a86026509a7ddb92fb611d71ffc0e5a7e10570da7d40b56c487a7ce02a1f5",
+      "image": ".local/city-map/model-sprites/lingshui-77376-0.png",
+      "sha256": "be38eb8a84d59bb26735f8ec1955d0e14f7f827aacb913e6f94c31a260752e8f"
+    },
+    {
+      "id": "lingshui-77377-0",
+      "model": "apps/web/public/campuses/lingshui/models/77377-0.glb",
+      "nativeSize": [
+        104,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "3d505371cdff8fa8a9350a29e97b1c39b3538c37de8d69c077046e2942ec5b1c",
+      "image": ".local/city-map/model-sprites/lingshui-77377-0.png",
+      "sha256": "50c04d43dda3573b4c825f05a224ac9eca0d20345a88d06568da748c884c585a"
+    },
+    {
+      "id": "lingshui-77378-0",
+      "model": "apps/web/public/campuses/lingshui/models/77378-0.glb",
+      "nativeSize": [
+        208,
+        104
+      ],
+      "elevation": 26,
+      "modelSha256": "94fa6599fdd6fd501448de5febf06b6b151611bced589990f397a327143c0b5d",
+      "image": ".local/city-map/model-sprites/lingshui-77378-0.png",
+      "sha256": "bee510b3fa476dfcfc740fa6d23bfec32a51322491aefd443f48d1dba954c659"
+    },
+    {
+      "id": "lingshui-77379-0",
+      "model": "apps/web/public/campuses/lingshui/models/77379-0.glb",
+      "nativeSize": [
+        104,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "0890ee329c66a2f8cb47432744bc7fdb774941026d0560c13649c9d3e685a3c6",
+      "image": ".local/city-map/model-sprites/lingshui-77379-0.png",
+      "sha256": "0a8af3401157367ae4b406df37dc39df05a2d8e498944d9b0701b58d742f3313"
+    },
+    {
+      "id": "lingshui-77380-0",
+      "model": "apps/web/public/campuses/lingshui/models/77380-0.glb",
+      "nativeSize": [
+        64,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "58c65f596032990b48e328b67d7820d66c40693bc8bc74b8668f02088e62b5ec",
+      "image": ".local/city-map/model-sprites/lingshui-77380-0.png",
+      "sha256": "4ad03d5b447ec443b0ca9fa197d58f3ba3389c5bcecb6e2e6d0069d6c1e558fc"
+    },
+    {
+      "id": "lingshui-77381-0",
+      "model": "apps/web/public/campuses/lingshui/models/77381-0.glb",
+      "nativeSize": [
+        88,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "cccfc920a6b4530affd2c7cae7c081df8b0eceec5f1e2d80012a01cf168f2905",
+      "image": ".local/city-map/model-sprites/lingshui-77381-0.png",
+      "sha256": "e2016a441c0b373124cf609e7bfba4d4b145580dc59a08186b6cf58d776f9ccc"
+    },
+    {
+      "id": "lingshui-77382-0",
+      "model": "apps/web/public/campuses/lingshui/models/77382-0.glb",
+      "nativeSize": [
+        80,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "2a792a4fdc4bd64774ffbf3d53e71953b2ac6c6a780c27f5703832462ebea6eb",
+      "image": ".local/city-map/model-sprites/lingshui-77382-0.png",
+      "sha256": "983f7adeaae40d02f70ccbc6120a1a17be5419c2505bc063bb0159457c749c42"
+    },
+    {
+      "id": "lingshui-77383-0",
+      "model": "apps/web/public/campuses/lingshui/models/77383-0.glb",
+      "nativeSize": [
+        176,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "cadf53600f326941c9da3c9789abba2fbaf82cb15e2165c2e51b4d83e4a78347",
+      "image": ".local/city-map/model-sprites/lingshui-77383-0.png",
+      "sha256": "97841ad70c53d279f142e6ed8392b6f3842e4d14060e4d6febb48ec4a3a94710"
+    },
+    {
+      "id": "lingshui-77384-0",
+      "model": "apps/web/public/campuses/lingshui/models/77384-0.glb",
+      "nativeSize": [
+        96,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "a6f25e1bf2d7e6f6a622418527061168fc94b57886cea874f57b35f06ce218a2",
+      "image": ".local/city-map/model-sprites/lingshui-77384-0.png",
+      "sha256": "16808a6f8d4caac4d7a6d8e02e9a7035bf6f364c9768b9a3ee41da2f60383eea"
+    },
+    {
+      "id": "lingshui-77385-0",
+      "model": "apps/web/public/campuses/lingshui/models/77385-0.glb",
+      "nativeSize": [
+        176,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "9791ec8b53bc6118c89511aa0e4c2ee9e8364b2d25427377d5cf61828b2a56b5",
+      "image": ".local/city-map/model-sprites/lingshui-77385-0.png",
+      "sha256": "918de93af8b9f32a2e4ea459958a10bed416169cf30c8af99ad8de14177b5d1f"
+    },
+    {
+      "id": "lingshui-77386-0",
+      "model": "apps/web/public/campuses/lingshui/models/77386-0.glb",
+      "nativeSize": [
+        184,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "44429f1ea8694b935975d44101db06e0dc0e0dd5dda92a8a07be75006b04919f",
+      "image": ".local/city-map/model-sprites/lingshui-77386-0.png",
+      "sha256": "6065f72b4aef22df917e312a8fc3b8b4abc4257529bb8064e6820ec2e5e132d2"
+    },
+    {
+      "id": "lingshui-77387-0",
+      "model": "apps/web/public/campuses/lingshui/models/77387-0.glb",
+      "nativeSize": [
+        32,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "e1b5a5901755568d21df8b1450f27c5d9a5fd6514c49797b8d7d9ff4903328d9",
+      "image": ".local/city-map/model-sprites/lingshui-77387-0.png",
+      "sha256": "c249c801f69601c1ddaff5b5ca9c031a3bdd19aa6b936733637207a438630634"
+    },
+    {
+      "id": "lingshui-77394-0",
+      "model": "apps/web/public/campuses/lingshui/models/77394-0.glb",
+      "nativeSize": [
+        136,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "26cda5cbc58bdcd4114975f843e2a9932b1714fddf585dd17f8a3b029ca4f898",
+      "image": ".local/city-map/model-sprites/lingshui-77394-0.png",
+      "sha256": "011dc11cb35355022cf5fd1e761285c26a41809878943a20737db5e184e91c9e"
+    },
+    {
+      "id": "lingshui-77395-0",
+      "model": "apps/web/public/campuses/lingshui/models/77395-0.glb",
+      "nativeSize": [
+        64,
+        96
+      ],
+      "elevation": 26,
+      "modelSha256": "378cc529bf1328b294ffa69933d461efa75d7e7372b2bb7e2d1aba9c9750979c",
+      "image": ".local/city-map/model-sprites/lingshui-77395-0.png",
+      "sha256": "1253d21021fdd3b7d33576ab7053ed5bbaa3e6def390c26bbb535bafb62621e6"
+    },
+    {
+      "id": "lingshui-77396-0",
+      "model": "apps/web/public/campuses/lingshui/models/77396-0.glb",
+      "nativeSize": [
+        48,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "47194d78a0e716bd32e6a3dd1a4117ddafae583a33d1fab7ba7ae0de82a82883",
+      "image": ".local/city-map/model-sprites/lingshui-77396-0.png",
+      "sha256": "03319dae58508c3cfb3e5a49b5570837207f90fd259f61e4c52b5ce03d811b7e"
+    },
+    {
+      "id": "lingshui-77397-0",
+      "model": "apps/web/public/campuses/lingshui/models/77397-0.glb",
+      "nativeSize": [
+        152,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "38d275c18b9040bccefaca8d88a01a6bc56c175afa5b9c6b5579b8b7227f3a21",
+      "image": ".local/city-map/model-sprites/lingshui-77397-0.png",
+      "sha256": "dda0ec18331dc13238ee7142eca886959a720c5946dbc46ebb671bbb051c6701"
+    },
+    {
+      "id": "lingshui-77398-0",
+      "model": "apps/web/public/campuses/lingshui/models/77398-0.glb",
+      "nativeSize": [
+        48,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "36f4e3378f3c65912b8c7c3cd28e9e0949a1b8fca18f0310cac544c5b28d6720",
+      "image": ".local/city-map/model-sprites/lingshui-77398-0.png",
+      "sha256": "e3c8f2f7f21a8396addf81e61887752fcf95ec833a6d297a4322725b174ebd3e"
+    },
+    {
+      "id": "lingshui-77402-0",
+      "model": "apps/web/public/campuses/lingshui/models/77402-0.glb",
+      "nativeSize": [
+        136,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "b08e98beed30969172b4c118f29ef17bbb8e26ca36a05f1cc75a4f641659c130",
+      "image": ".local/city-map/model-sprites/lingshui-77402-0.png",
+      "sha256": "37bfe75459011abcc827316a8d52431215c350b8686563929e04ff695a6222bb"
+    },
+    {
+      "id": "lingshui-77403-0",
+      "model": "apps/web/public/campuses/lingshui/models/77403-0.glb",
+      "nativeSize": [
+        112,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "fd8b6240a0358df76391a5e230536c404f4159b20958feab44e3543c03e7d2fd",
+      "image": ".local/city-map/model-sprites/lingshui-77403-0.png",
+      "sha256": "a553c15176f933e47ea7fd26e74c7705c162af7397d0b129ec38abdd093aadf9"
+    },
+    {
+      "id": "lingshui-77410-0",
+      "model": "apps/web/public/campuses/lingshui/models/77410-0.glb",
+      "nativeSize": [
+        104,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "206f250a5cd565c53d83d422692af03dd9ca26963289b02728210993577c435f",
+      "image": ".local/city-map/model-sprites/lingshui-77410-0.png",
+      "sha256": "8271b6b524be92f156e9d47a2ac2c27cb587bd98d4d2e0117187802eafcf9f4e"
+    },
+    {
+      "id": "lingshui-77411-0",
+      "model": "apps/web/public/campuses/lingshui/models/77411-0.glb",
+      "nativeSize": [
+        112,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "ef57a994e64c337c2fd33fb0e07ca806a017b676bb66da5f1907ab031b54856a",
+      "image": ".local/city-map/model-sprites/lingshui-77411-0.png",
+      "sha256": "9164b5764472305990a6f7805f66a55ba59dee639e718a9fd65200961431b4da"
+    },
+    {
+      "id": "lingshui-77412-0",
+      "model": "apps/web/public/campuses/lingshui/models/77412-0.glb",
+      "nativeSize": [
+        64,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "d31175a26ab68e72606d295444130ad6f864411ca2f975f4cb10b27880a76c83",
+      "image": ".local/city-map/model-sprites/lingshui-77412-0.png",
+      "sha256": "d34ad7b0bba9da59ff8f6481b1d49bddb5be74c991f19d1213c12f19dda1e6b2"
+    },
+    {
+      "id": "lingshui-77413-0",
+      "model": "apps/web/public/campuses/lingshui/models/77413-0.glb",
+      "nativeSize": [
+        64,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "abc70d94d93117b33ab19e54d20bd8697844b2062cfea04bbb9c3e75190b8ef8",
+      "image": ".local/city-map/model-sprites/lingshui-77413-0.png",
+      "sha256": "31cb96f7d0317a1e81d4a53d9649f3971519b87f45b5a278c648666d4c3c6b78"
+    },
+    {
+      "id": "lingshui-77414-0",
+      "model": "apps/web/public/campuses/lingshui/models/77414-0.glb",
+      "nativeSize": [
+        200,
+        128
+      ],
+      "elevation": 26,
+      "modelSha256": "afce9f866c08f837f14153db6d81b307172eafdc69a9b42c44945d05e5b13c8b",
+      "image": ".local/city-map/model-sprites/lingshui-77414-0.png",
+      "sha256": "abf211ea2527070c786ee5864b49cb7ce8f29a65f453fc3f51ccc901535684f9"
+    },
+    {
+      "id": "lingshui-77415-0",
+      "model": "apps/web/public/campuses/lingshui/models/77415-0.glb",
+      "nativeSize": [
+        160,
+        104
+      ],
+      "elevation": 26,
+      "modelSha256": "1278b0be3c899eb93975763344578c82cb7a391ad00b37c804093d9e1a4a8097",
+      "image": ".local/city-map/model-sprites/lingshui-77415-0.png",
+      "sha256": "86f8b309d90f8906a6ed43ff1ad98b6d8f2bc6e6202d362d05b9b27ca5041edc"
+    },
+    {
+      "id": "lingshui-77416-0",
+      "model": "apps/web/public/campuses/lingshui/models/77416-0.glb",
+      "nativeSize": [
+        88,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "2deaf3a8757b3bb69367c9ec0debe978433026a162ffd90686d7dcded6408f14",
+      "image": ".local/city-map/model-sprites/lingshui-77416-0.png",
+      "sha256": "4c3a842d531563a0889e4a4d97814dc44b1f7d621d6cce65d1c418be2c4837a9"
+    },
+    {
+      "id": "lingshui-77418-0",
+      "model": "apps/web/public/campuses/lingshui/models/77418-0.glb",
+      "nativeSize": [
+        104,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "c5486e74bd95589021c5ff0d0f4e7d329df21298f50453310ff8abc70b830e93",
+      "image": ".local/city-map/model-sprites/lingshui-77418-0.png",
+      "sha256": "965c3d6f779c46e839210d01827cd5df48f73bf1ad7754a1e21eb53fb68d7c9b"
+    },
+    {
+      "id": "lingshui-77420-0",
+      "model": "apps/web/public/campuses/lingshui/models/77420-0.glb",
+      "nativeSize": [
+        120,
+        96
+      ],
+      "elevation": 26,
+      "modelSha256": "4760817c7378ebc210428495f81e925f83998f0bc641ca028acd64224666540c",
+      "image": ".local/city-map/model-sprites/lingshui-77420-0.png",
+      "sha256": "a7740bd3baa2d05564659d1a5a6c7c474caef41c133967db11ab3632ef2c00fa"
+    },
+    {
+      "id": "lingshui-77421-0",
+      "model": "apps/web/public/campuses/lingshui/models/77421-0.glb",
+      "nativeSize": [
+        32,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "d3c38830f072229e40f3d1efbd3a808fcefcbcd51cb10cc478ef73764729f5f9",
+      "image": ".local/city-map/model-sprites/lingshui-77421-0.png",
+      "sha256": "f5ac4dc81bb9473450716ed7a1795e4c37aaadd12685698bc545f3dca5e22727"
+    },
+    {
+      "id": "lingshui-77422-0",
+      "model": "apps/web/public/campuses/lingshui/models/77422-0.glb",
+      "nativeSize": [
+        96,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "c99dfa03a82d1805ccffec306dc0db622c831adc30083b8d717b2ef7de2804bf",
+      "image": ".local/city-map/model-sprites/lingshui-77422-0.png",
+      "sha256": "0dee658604c5953c4655d05c8e7d83bd2843d62fb73a26e5f64f37c019248a40"
+    },
+    {
+      "id": "lingshui-77423-0",
+      "model": "apps/web/public/campuses/lingshui/models/77423-0.glb",
+      "nativeSize": [
+        88,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "ca9b0271ceb766b100bb38a1ad8f154173bd8581c32ea1e2d675456f7ed21f41",
+      "image": ".local/city-map/model-sprites/lingshui-77423-0.png",
+      "sha256": "fb88be2ddf50ae50f19784a2a1354937381ec087306afa8c3c1cda2f0933459f"
+    },
+    {
+      "id": "lingshui-77426-0",
+      "model": "apps/web/public/campuses/lingshui/models/77426-0.glb",
+      "nativeSize": [
+        56,
+        96
+      ],
+      "elevation": 26,
+      "modelSha256": "58e79efaf7bbf662d6ce0e5951ec769d004b3169cda2780f4ebed66abc473985",
+      "image": ".local/city-map/model-sprites/lingshui-77426-0.png",
+      "sha256": "206ac02243ccb879433fef5cb0ad4aed7a928a266ef959f67987b437acc0530f"
+    },
+    {
+      "id": "lingshui-77427-0",
+      "model": "apps/web/public/campuses/lingshui/models/77427-0.glb",
+      "nativeSize": [
+        32,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "7c57a1f2a05d83efd6e871db75e304c28631994920424d9b1285a4549c8b1ac3",
+      "image": ".local/city-map/model-sprites/lingshui-77427-0.png",
+      "sha256": "b501ad0dd77b76536946d06f152f1eecac21c61e6f39b17ce74b96410dd17048"
+    },
+    {
+      "id": "lingshui-77428-0",
+      "model": "apps/web/public/campuses/lingshui/models/77428-0.glb",
+      "nativeSize": [
+        152,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "467e49b4da1185167827238521bcc68030cedf9d6af914c3b4303c84a9222994",
+      "image": ".local/city-map/model-sprites/lingshui-77428-0.png",
+      "sha256": "f26a0f3f9941cb26f9864b15abb436695df043b97d522a9fa8f9f92f0f53aff6"
+    },
+    {
+      "id": "lingshui-77429-0",
+      "model": "apps/web/public/campuses/lingshui/models/77429-0.glb",
+      "nativeSize": [
+        48,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "10395b4bede715e96805aec2bd3ca6eb4dd24a9ffe7c23def46474ee9ccdf338",
+      "image": ".local/city-map/model-sprites/lingshui-77429-0.png",
+      "sha256": "049c789a048df2522fb640e962eab190aea060150e04d3c52678a949b25d3c32"
+    },
+    {
+      "id": "lingshui-77430-0",
+      "model": "apps/web/public/campuses/lingshui/models/77430-0.glb",
+      "nativeSize": [
+        32,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "f19696af4b6dff52683382ce113f383f66d5b2d812329a040b685dc7181390c1",
+      "image": ".local/city-map/model-sprites/lingshui-77430-0.png",
+      "sha256": "992c5ac5ec1c0698bef3583cc538dfb52613c690c8b42697121f9fd063c2c938"
+    },
+    {
+      "id": "lingshui-77431-0",
+      "model": "apps/web/public/campuses/lingshui/models/77431-0.glb",
+      "nativeSize": [
+        88,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "83c197ad0c3536b9cfd87cd5e111535f8df882e15b38e3c0ecaefec82d70025a",
+      "image": ".local/city-map/model-sprites/lingshui-77431-0.png",
+      "sha256": "ca1ed3cd1b340bc93928d700a3b3f59b4d6795364f0f6fe8339a11597a1efc67"
+    },
+    {
+      "id": "lingshui-77438-0",
+      "model": "apps/web/public/campuses/lingshui/models/77438-0.glb",
+      "nativeSize": [
+        168,
+        184
+      ],
+      "elevation": 26,
+      "modelSha256": "beb9a20e37d20533aaeb04582f5ba9189171a80a2aadb3880a9897dcd1982095",
+      "image": ".local/city-map/model-sprites/lingshui-77438-0.png",
+      "sha256": "0540b427e40a53387cedd4ed90fe735803586a58d3caa95fab15c8984066f8e5"
+    },
+    {
+      "id": "lingshui-77439-0",
+      "model": "apps/web/public/campuses/lingshui/models/77439-0.glb",
+      "nativeSize": [
+        64,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "4a16dd91ef3a133efcc4d3a668c64df3ad09269081019e29ad6bb4cfd3aa52f9",
+      "image": ".local/city-map/model-sprites/lingshui-77439-0.png",
+      "sha256": "39960e5fa01fe81991b206b3c7cae69e1eaa631b4d179457df0149e8c293ab26"
+    },
+    {
+      "id": "lingshui-77440-0",
+      "model": "apps/web/public/campuses/lingshui/models/77440-0.glb",
+      "nativeSize": [
+        96,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "685c7dfb375576a2ba7971c60294fddff2c1d0dd31f5be6bf594d8aa591e6abb",
+      "image": ".local/city-map/model-sprites/lingshui-77440-0.png",
+      "sha256": "acf2115284acc7d7ac9cf9073a29d61beeb1ef5336f470ea822135cd40fa2d21"
+    },
+    {
+      "id": "lingshui-77441-0",
+      "model": "apps/web/public/campuses/lingshui/models/77441-0.glb",
+      "nativeSize": [
+        136,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "6a6fa0e3e98957b714f9b7c58857e0966680e03567e4846626cafa70fb876f18",
+      "image": ".local/city-map/model-sprites/lingshui-77441-0.png",
+      "sha256": "50456666319efecda2226df290351324493a4d2d2cc84d2956c4b8210bff799d"
+    },
+    {
+      "id": "lingshui-77442-0",
+      "model": "apps/web/public/campuses/lingshui/models/77442-0.glb",
+      "nativeSize": [
+        24,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "899aa7a1629e59916cc344c18e4ed3777f78ec2b492c90623a483432baefd196",
+      "image": ".local/city-map/model-sprites/lingshui-77442-0.png",
+      "sha256": "7c90ff55d73c6736a2ce057c023ab66d94736d77c59a1cda619870f5326c22b3"
+    },
+    {
+      "id": "lingshui-77443-0",
+      "model": "apps/web/public/campuses/lingshui/models/77443-0.glb",
+      "nativeSize": [
+        208,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "5829fe75b55a2dcfdda867059efdb30c0f05369475534edb3f22a8160ff3a3c3",
+      "image": ".local/city-map/model-sprites/lingshui-77443-0.png",
+      "sha256": "b87a50fb3742611a6df180c6f873f5d169a4c550160cee804ee003b9cf338441"
+    },
+    {
+      "id": "lingshui-77444-0",
+      "model": "apps/web/public/campuses/lingshui/models/77444-0.glb",
+      "nativeSize": [
+        120,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "d7799faea61e2218b3f09786207b0668d23667d57733efd10ea6fe1e2a20a79c",
+      "image": ".local/city-map/model-sprites/lingshui-77444-0.png",
+      "sha256": "25fb106ef9d59189816ac8cce8973a13909ac09ae22bf8e8d3a04f0dab5d9953"
+    },
+    {
+      "id": "lingshui-77446-0",
+      "model": "apps/web/public/campuses/lingshui/models/77446-0.glb",
+      "nativeSize": [
+        96,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "48f84271e0a5d266b9ac864ad3e9bde37152d2d05ca81291a082a0b58e9c32a6",
+      "image": ".local/city-map/model-sprites/lingshui-77446-0.png",
+      "sha256": "c202805046f03e61a063361cdff235a0df45d96ff4796dc1334021e20fba25fc"
+    },
+    {
+      "id": "lingshui-77447-0",
+      "model": "apps/web/public/campuses/lingshui/models/77447-0.glb",
+      "nativeSize": [
+        144,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "0071228bcdb6a9535932900cd281842afbfaf866285cb8921f4c670eb9322107",
+      "image": ".local/city-map/model-sprites/lingshui-77447-0.png",
+      "sha256": "f571320ff77026bb3298b22fce910f98f23a5026fadb667628002c69aafcd99a"
+    },
+    {
+      "id": "lingshui-77448-0",
+      "model": "apps/web/public/campuses/lingshui/models/77448-0.glb",
+      "nativeSize": [
+        64,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "f77ce0472d99e4f12a04f82ca4c5783718ec19b565b8bef880830516bc51a48d",
+      "image": ".local/city-map/model-sprites/lingshui-77448-0.png",
+      "sha256": "93717c7d3998032a5b466159313e3e1f5c3e0436307071aff1e53fa9f088c841"
+    },
+    {
+      "id": "lingshui-77449-0",
+      "model": "apps/web/public/campuses/lingshui/models/77449-0.glb",
+      "nativeSize": [
+        72,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "cc826aaee5db7433632a27b0255fc3f2de48fa0c31ab189290e7541cb3fb9ed7",
+      "image": ".local/city-map/model-sprites/lingshui-77449-0.png",
+      "sha256": "f61a23b0668d8cee5ba8bf83a7d984456492e14bb14d1d0de58505657b27f876"
+    },
+    {
+      "id": "lingshui-77450-0",
+      "model": "apps/web/public/campuses/lingshui/models/77450-0.glb",
+      "nativeSize": [
+        72,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "06b034b67b810f57f8e75f604a0cc42ff2fc49e06606b93c62ffe7a5ce20d610",
+      "image": ".local/city-map/model-sprites/lingshui-77450-0.png",
+      "sha256": "f702951e484918daa649742bc0b59d8366a44e8c9b87543ba41141d49ff94369"
+    },
+    {
+      "id": "lingshui-77451-0",
+      "model": "apps/web/public/campuses/lingshui/models/77451-0.glb",
+      "nativeSize": [
+        64,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "e5b8cbfba2495e6993123664b4555acf966be7850606a124e2951dbb2e9c3314",
+      "image": ".local/city-map/model-sprites/lingshui-77451-0.png",
+      "sha256": "1b727a359d8cbcb89de590cb964a9a5b55e85d1365b712c8a8c8f9d13b0f3b22"
+    },
+    {
+      "id": "lingshui-77453-0",
+      "model": "apps/web/public/campuses/lingshui/models/77453-0.glb",
+      "nativeSize": [
+        120,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "a0cdb528e73baff25fce36f03f9835a7facf1a48c50227ca35d4d7e3ee362fcd",
+      "image": ".local/city-map/model-sprites/lingshui-77453-0.png",
+      "sha256": "54809e4df04203ccb4fbdde755bd792dfa55bff57f98e83590209d50f77283a1"
+    },
+    {
+      "id": "lingshui-77454-0",
+      "model": "apps/web/public/campuses/lingshui/models/77454-0.glb",
+      "nativeSize": [
+        88,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "8a9acfa77c70303aceb0533d3b7bf4b3c5e0bb356f800e0df7e9314d098e2618",
+      "image": ".local/city-map/model-sprites/lingshui-77454-0.png",
+      "sha256": "185eea5e9556ab7d8700132674803f5f5f79c7435ce375a2691dabe4c13d5485"
+    },
+    {
+      "id": "lingshui-77456-0",
+      "model": "apps/web/public/campuses/lingshui/models/77456-0.glb",
+      "nativeSize": [
+        80,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "1cffd6c0dccf1225674e57b7338b3b7a911dc83a78782d15cbeebb06ee3e9f5a",
+      "image": ".local/city-map/model-sprites/lingshui-77456-0.png",
+      "sha256": "8ab66a09ce67c82de18ddb0b5dc17d648f55cc3044c47715befc7dda05c70008"
+    },
+    {
+      "id": "lingshui-77457-0",
+      "model": "apps/web/public/campuses/lingshui/models/77457-0.glb",
+      "nativeSize": [
+        88,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "c3811c6de746aa1d44f7298b62ad2597b163b3d98851c56ff20518b92a0c7f97",
+      "image": ".local/city-map/model-sprites/lingshui-77457-0.png",
+      "sha256": "6a78d47d70894773b34df9be53ee37791967701fcc34625058d5281e85baffe8"
+    },
+    {
+      "id": "lingshui-77458-0",
+      "model": "apps/web/public/campuses/lingshui/models/77458-0.glb",
+      "nativeSize": [
+        64,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "863db3556a214dc299655460302401ede6e0e5737bea6c6b3adc6f4f3debb88c",
+      "image": ".local/city-map/model-sprites/lingshui-77458-0.png",
+      "sha256": "83a350080eb5d45b0ab3c8c459a347c6e49c05f53064a576056d0bff45ae18b0"
+    },
+    {
+      "id": "lingshui-77459-0",
+      "model": "apps/web/public/campuses/lingshui/models/77459-0.glb",
+      "nativeSize": [
+        96,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "0dab13e53a10e0af0dce1eb91b15d9f525aa05a1a5b5cae4300f832a105aa2ee",
+      "image": ".local/city-map/model-sprites/lingshui-77459-0.png",
+      "sha256": "df329d1020cf97cede22d5bfa4251cc41a96d79f508b0150f3efc1f8bb55b7f4"
+    },
+    {
+      "id": "lingshui-77460-0",
+      "model": "apps/web/public/campuses/lingshui/models/77460-0.glb",
+      "nativeSize": [
+        96,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "a6e137c0436c677bc400bc4f776fa34f241581d95e35acce440a075da93c16d3",
+      "image": ".local/city-map/model-sprites/lingshui-77460-0.png",
+      "sha256": "4ab5361361aba71e7a15c609e6ad5c8153c021824e18f71e533a820b41163fa9"
+    },
+    {
+      "id": "lingshui-77461-0",
+      "model": "apps/web/public/campuses/lingshui/models/77461-0.glb",
+      "nativeSize": [
+        144,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "4e0ba8ad759f395ada661ab67ee1f602de4f1e123e809403dedffa5b3fe39d6a",
+      "image": ".local/city-map/model-sprites/lingshui-77461-0.png",
+      "sha256": "53e5799c5b1d168ae25900821045c305972309336f0a5ab0ad6accc938caacb6"
+    },
+    {
+      "id": "lingshui-77462-0",
+      "model": "apps/web/public/campuses/lingshui/models/77462-0.glb",
+      "nativeSize": [
+        88,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "dd323e5a0473f91ca364e15d51e48bc536f9583492af9c799a23115bcdc08a69",
+      "image": ".local/city-map/model-sprites/lingshui-77462-0.png",
+      "sha256": "5590194e77f196c256f44ce70ecf51054b05dc236eb80c745f2c68dea5c18a3d"
+    },
+    {
+      "id": "lingshui-77463-0",
+      "model": "apps/web/public/campuses/lingshui/models/77463-0.glb",
+      "nativeSize": [
+        112,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "c62b72f7283cb73787f6c2b10d84a7380f43f21b7631ff129c7d11fa4787c85d",
+      "image": ".local/city-map/model-sprites/lingshui-77463-0.png",
+      "sha256": "478b678605ce6fd247bfb52c16154431ad224b7f066383a6c9c27aa9790ea703"
+    },
+    {
+      "id": "lingshui-77464-0",
+      "model": "apps/web/public/campuses/lingshui/models/77464-0.glb",
+      "nativeSize": [
+        136,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "ee3218db50e8897bc06342433a33ddd3724c23b3a640473a8e665376d0f5c606",
+      "image": ".local/city-map/model-sprites/lingshui-77464-0.png",
+      "sha256": "b1c4e694e3d76e932d730dc7330669f712427fe272ee71592c0ef11b071a521c"
+    },
+    {
+      "id": "lingshui-77465-0",
+      "model": "apps/web/public/campuses/lingshui/models/77465-0.glb",
+      "nativeSize": [
+        104,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "328b702935b44dab407a76fddf795050bafd554486ec46757619ae15965737dd",
+      "image": ".local/city-map/model-sprites/lingshui-77465-0.png",
+      "sha256": "a149d4f3eb7cf94666a31465d21b190c033ce64eaa944494a8bb340cf6375a60"
+    },
+    {
+      "id": "lingshui-77466-0",
+      "model": "apps/web/public/campuses/lingshui/models/77466-0.glb",
+      "nativeSize": [
+        120,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "e4897d4fca0844307a7cce54059c1ad886871cee18f27eb54c33589c92b500a9",
+      "image": ".local/city-map/model-sprites/lingshui-77466-0.png",
+      "sha256": "05b617672feca2c28e3c39b19a0d37de8af0b2df04bd79d19b616eacc0ab8e91"
+    },
+    {
+      "id": "lingshui-77467-0",
+      "model": "apps/web/public/campuses/lingshui/models/77467-0.glb",
+      "nativeSize": [
+        104,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "7239a0042027e412fde0716aef6ba46d00c0cba663a6d1ed4d99f6ffb70d1443",
+      "image": ".local/city-map/model-sprites/lingshui-77467-0.png",
+      "sha256": "212279f33ddb8592e380925c3ad7a3bc7662137aecf4eb2477be5e11b1472caf"
+    },
+    {
+      "id": "lingshui-77468-0",
+      "model": "apps/web/public/campuses/lingshui/models/77468-0.glb",
+      "nativeSize": [
+        96,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "a486b59474b7630eb994080cde2ee5d8e665bd8d289f863f4b5a347e36b516fa",
+      "image": ".local/city-map/model-sprites/lingshui-77468-0.png",
+      "sha256": "54444e223b42539c622985eae7d28de43019be9539e08ae824b7c260290cf473"
+    },
+    {
+      "id": "lingshui-77472-0",
+      "model": "apps/web/public/campuses/lingshui/models/77472-0.glb",
+      "nativeSize": [
+        40,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "1354bf1fc5b05f0c90b3fa43cabe0bc90db528094456c771690c1ddd9835f628",
+      "image": ".local/city-map/model-sprites/lingshui-77472-0.png",
+      "sha256": "58d7d81ddf7d97d70b26a477dbd18345e0c71099658ad44d49e1431f03b80219"
+    },
+    {
+      "id": "lingshui-77474-0",
+      "model": "apps/web/public/campuses/lingshui/models/77474-0.glb",
+      "nativeSize": [
+        80,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "c01728d971130d4ebc6c4445cc29b4f5fb74248a28357d2ce4c11c9d7978ede8",
+      "image": ".local/city-map/model-sprites/lingshui-77474-0.png",
+      "sha256": "ec6e90147d3a7e27a08624c2203fddca25b3c853ef5a69c7e7cab4460f383ee4"
+    },
+    {
+      "id": "lingshui-77479-0",
+      "model": "apps/web/public/campuses/lingshui/models/77479-0.glb",
+      "nativeSize": [
+        32,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "ccab2b96b8637ec941f4822ff753df0ab28fe189ab6b9d0a6ea3759fab54c762",
+      "image": ".local/city-map/model-sprites/lingshui-77479-0.png",
+      "sha256": "1b25c1471a6a953a6641ab09aa491faad40f84b61aa85903a9451acfae80bec6"
+    },
+    {
+      "id": "lingshui-77481-0",
+      "model": "apps/web/public/campuses/lingshui/models/77481-0.glb",
+      "nativeSize": [
+        48,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "27e5bad091f6d04a93bb0ca7a36c2cabc9077f837f6bdd8f7f617949d9914901",
+      "image": ".local/city-map/model-sprites/lingshui-77481-0.png",
+      "sha256": "381e43318b6f4127b93a1453a661cf66753488f1b64a097a002d02714c95fcfe"
+    },
+    {
+      "id": "lingshui-77483-0",
+      "model": "apps/web/public/campuses/lingshui/models/77483-0.glb",
+      "nativeSize": [
+        32,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "b211c947df405497b6d741ac6127f122759a0d8195e5a768525faa6cde009666",
+      "image": ".local/city-map/model-sprites/lingshui-77483-0.png",
+      "sha256": "98e40990c447498b4d720e1b329ea297cef8863ebc459d97bc7d4a4f9bac0243"
+    },
+    {
+      "id": "lingshui-77484-0",
+      "model": "apps/web/public/campuses/lingshui/models/77484-0.glb",
+      "nativeSize": [
+        96,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "657498eea2db886eb518baed02b22d4611cc4e864d005e1b1f60c4a3e0c3be0d",
+      "image": ".local/city-map/model-sprites/lingshui-77484-0.png",
+      "sha256": "f380146f8e7841b2438724ab7b59f3449a6fc17e33490fb4057ba6fce3207e3f"
+    },
+    {
+      "id": "lingshui-77485-0",
+      "model": "apps/web/public/campuses/lingshui/models/77485-0.glb",
+      "nativeSize": [
+        96,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "c79598dcde50fe2a2074ee14b4df21028135b921e6f4e7555226dd96d50d2ca4",
+      "image": ".local/city-map/model-sprites/lingshui-77485-0.png",
+      "sha256": "619774ba36e94deac404d4da57aa07b0e26706322963fbf4e51dac6f481a92b4"
+    },
+    {
+      "id": "lingshui-77486-0",
+      "model": "apps/web/public/campuses/lingshui/models/77486-0.glb",
+      "nativeSize": [
+        40,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "3b21ce44d55b296ae0670e190d655d18fa015c83c8bfe699db0743e247136bd7",
+      "image": ".local/city-map/model-sprites/lingshui-77486-0.png",
+      "sha256": "e758e8b6e175a869f14fdb3669e7dc85d2e7fd73942f4fcd565879c88982049b"
+    },
+    {
+      "id": "lingshui-77487-0",
+      "model": "apps/web/public/campuses/lingshui/models/77487-0.glb",
+      "nativeSize": [
+        56,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "f08718be8227d7f6853f54d39de6f58d493927258a77ea1ead4faa06648a17de",
+      "image": ".local/city-map/model-sprites/lingshui-77487-0.png",
+      "sha256": "90172c0cba11c7119f5db2b16b7c4826d73b9069b0ce1413232fef8c0c5b3239"
+    },
+    {
+      "id": "lingshui-77489-0",
+      "model": "apps/web/public/campuses/lingshui/models/77489-0.glb",
+      "nativeSize": [
+        80,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "80d5121f134435fcc104d276bf0f4ff7cbc0784beba6fb37c650eb339521b94a",
+      "image": ".local/city-map/model-sprites/lingshui-77489-0.png",
+      "sha256": "d885317746a4cd20ab610c92abd753586c85363cd3d453564d2d1400ada47489"
+    },
+    {
+      "id": "lingshui-77490-0",
+      "model": "apps/web/public/campuses/lingshui/models/77490-0.glb",
+      "nativeSize": [
+        128,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "24269a3f93b9219e92ae8bd48af9868238f627e75008ea0c09fa2df5c5e52aa1",
+      "image": ".local/city-map/model-sprites/lingshui-77490-0.png",
+      "sha256": "c14089e0a7e94670705d717462a28f2bef6d99c7bbb88016f653f93afa999f70"
+    },
+    {
+      "id": "lingshui-77491-0",
+      "model": "apps/web/public/campuses/lingshui/models/77491-0.glb",
+      "nativeSize": [
+        88,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "c3a158ea3146fc0563de59bc38c8858866a036c4e45073e1bc8e7c6a134c14ab",
+      "image": ".local/city-map/model-sprites/lingshui-77491-0.png",
+      "sha256": "0373508f5a89b093023442e86159e7dcc85f9c0186006b81f4b4978764ff3d94"
+    },
+    {
+      "id": "lingshui-77492-0",
+      "model": "apps/web/public/campuses/lingshui/models/77492-0.glb",
+      "nativeSize": [
+        88,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "715e61ea24ce8093a3275b08a2503eed7b7c7dda1ccce18f3cbe34d37b240810",
+      "image": ".local/city-map/model-sprites/lingshui-77492-0.png",
+      "sha256": "8e1bc2913e76765ca817d313309b6b0b16cc68f927d2eead766df9439e15c26d"
+    },
+    {
+      "id": "lingshui-77493-0",
+      "model": "apps/web/public/campuses/lingshui/models/77493-0.glb",
+      "nativeSize": [
+        40,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "aacbf633ace95c8bfd6c6195a175d9cd1c098c834f9396b163fb80a72c344931",
+      "image": ".local/city-map/model-sprites/lingshui-77493-0.png",
+      "sha256": "9daedeaf635c844d4e185e877c7a4fd2d80933d485e7af3da684effafe924111"
+    },
+    {
+      "id": "lingshui-77494-0",
+      "model": "apps/web/public/campuses/lingshui/models/77494-0.glb",
+      "nativeSize": [
+        32,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "48e1cdda3e4573ed4d36127d5ea76be390e7b2baa2339609583568bb0cb13c41",
+      "image": ".local/city-map/model-sprites/lingshui-77494-0.png",
+      "sha256": "a2e9a9b888f9651f162d761bb83cc7048e345e37d00c48fbe9cdc63fd147bcf3"
+    },
+    {
+      "id": "lingshui-77495-0",
+      "model": "apps/web/public/campuses/lingshui/models/77495-0.glb",
+      "nativeSize": [
+        32,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "4bd9eac4d30cfc9916e66ae6d74fec8fa29766f87e14b4dd0ded1dd84bba5d4a",
+      "image": ".local/city-map/model-sprites/lingshui-77495-0.png",
+      "sha256": "76b23ed7121b7bd2865c5a53f3d475e45e2fa0a7cecdab6b30707bd191e9d231"
+    },
+    {
+      "id": "lingshui-77496-0",
+      "model": "apps/web/public/campuses/lingshui/models/77496-0.glb",
+      "nativeSize": [
+        32,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "5f0ceb4643e997c500aa676bd653b2c8401536a1aa494f4053316c2e2861d78d",
+      "image": ".local/city-map/model-sprites/lingshui-77496-0.png",
+      "sha256": "2d21910bbfa2da3fb06a3ae5b718da6a1ed66d2c38dfd330fe57c941f303de0b"
+    },
+    {
+      "id": "lingshui-77497-0",
+      "model": "apps/web/public/campuses/lingshui/models/77497-0.glb",
+      "nativeSize": [
+        40,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "04bb2a365147e7bb7c39ec0cdf74c0e28441aed37c889a6e72ff037d29333278",
+      "image": ".local/city-map/model-sprites/lingshui-77497-0.png",
+      "sha256": "b3bc7394c00fece625a8c654df2fe8ca17a3481f2b7cf064164e86f8e4dcf244"
+    },
+    {
+      "id": "lingshui-77498-0",
+      "model": "apps/web/public/campuses/lingshui/models/77498-0.glb",
+      "nativeSize": [
+        40,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "d773f4f67817ee746f1af4d932f93cd6529145cfcbae439951aa34a34e9598fb",
+      "image": ".local/city-map/model-sprites/lingshui-77498-0.png",
+      "sha256": "b3bc7394c00fece625a8c654df2fe8ca17a3481f2b7cf064164e86f8e4dcf244"
+    },
+    {
+      "id": "lingshui-77499-0",
+      "model": "apps/web/public/campuses/lingshui/models/77499-0.glb",
+      "nativeSize": [
+        48,
+        112
+      ],
+      "elevation": 26,
+      "modelSha256": "2e5244b978036c77f21a2738efcd7cc4e070ec6c1a464e08e18255e1ef200d4b",
+      "image": ".local/city-map/model-sprites/lingshui-77499-0.png",
+      "sha256": "3f9b9b5b929c9782fef384d29e359a7af2922a10726ea26f1074a8b0c36569bb"
+    },
+    {
+      "id": "lingshui-77500-0",
+      "model": "apps/web/public/campuses/lingshui/models/77500-0.glb",
+      "nativeSize": [
+        48,
+        112
+      ],
+      "elevation": 26,
+      "modelSha256": "7e0b741b76cf6aace9466cad4c2458a8e73f940c26fb6d9c54ce6632313a8aea",
+      "image": ".local/city-map/model-sprites/lingshui-77500-0.png",
+      "sha256": "f8202ab9da81918b54a3353c03db7344bc770f172780b3963273b2d6862f2e27"
+    },
+    {
+      "id": "lingshui-77501-0",
+      "model": "apps/web/public/campuses/lingshui/models/77501-0.glb",
+      "nativeSize": [
+        56,
+        104
+      ],
+      "elevation": 26,
+      "modelSha256": "4d2cd29eba13f5087840a2be0e788f37a9d6f10102febfd5f6fc28d6a6abb9df",
+      "image": ".local/city-map/model-sprites/lingshui-77501-0.png",
+      "sha256": "0075fb3c5e73ea9f06a91bdae9c59c1859e658dd723ae5605c39a56b08ee8258"
+    },
+    {
+      "id": "lingshui-77502-0",
+      "model": "apps/web/public/campuses/lingshui/models/77502-0.glb",
+      "nativeSize": [
+        48,
+        104
+      ],
+      "elevation": 26,
+      "modelSha256": "f0e1f0d181c3fc6723d2aff8a654ab8ec2b476c7a91db43c589f1c37323e5d06",
+      "image": ".local/city-map/model-sprites/lingshui-77502-0.png",
+      "sha256": "7dd306ef84c839205b7e286a20d309b62bcb4620a60b6e50647e3ef346f791b8"
+    },
+    {
+      "id": "lingshui-77503-0",
+      "model": "apps/web/public/campuses/lingshui/models/77503-0.glb",
+      "nativeSize": [
+        48,
+        96
+      ],
+      "elevation": 26,
+      "modelSha256": "89e478d0adb448d575fe7fa2b09315d2c7631db692444fb1ce63414010494795",
+      "image": ".local/city-map/model-sprites/lingshui-77503-0.png",
+      "sha256": "4632f354c46e67b52a9f192a685a9b2f7328a83a0d73f064d75a40d70335847f"
+    },
+    {
+      "id": "lingshui-77504-0",
+      "model": "apps/web/public/campuses/lingshui/models/77504-0.glb",
+      "nativeSize": [
+        48,
+        120
+      ],
+      "elevation": 26,
+      "modelSha256": "f139961722fe9cbd1a35e48eb3297c5671f74b1b138a373699b424c8ad925f56",
+      "image": ".local/city-map/model-sprites/lingshui-77504-0.png",
+      "sha256": "8d0b9aa5a783a0e76f4b69100084d469c95cd0de411fca14675b5be8ad49e06c"
+    },
+    {
+      "id": "lingshui-77505-0",
+      "model": "apps/web/public/campuses/lingshui/models/77505-0.glb",
+      "nativeSize": [
+        48,
+        96
+      ],
+      "elevation": 26,
+      "modelSha256": "808aaa62a65da611ec801bd353add56dbf35e44e8aaab8ddd2f50c33c5f6aa96",
+      "image": ".local/city-map/model-sprites/lingshui-77505-0.png",
+      "sha256": "e79ea678977f2317c52be995b38cf88afd8847b8a5aefc6971773eb44b90b998"
+    },
+    {
+      "id": "lingshui-77506-0",
+      "model": "apps/web/public/campuses/lingshui/models/77506-0.glb",
+      "nativeSize": [
+        56,
+        112
+      ],
+      "elevation": 26,
+      "modelSha256": "f2bfd31d8501a17c6667d22a0b1aa6abd18abd604493aa71eea0ca0fb47579a5",
+      "image": ".local/city-map/model-sprites/lingshui-77506-0.png",
+      "sha256": "6f641d73fdd66db5ad2079739d0977dfc9b5a79a2d946e0df7541b82b80805f5"
+    },
+    {
+      "id": "lingshui-77507-0",
+      "model": "apps/web/public/campuses/lingshui/models/77507-0.glb",
+      "nativeSize": [
+        40,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "1226bbe0884233ed834e51f7705821a483e34ffd19581382ccb847a72df32cf9",
+      "image": ".local/city-map/model-sprites/lingshui-77507-0.png",
+      "sha256": "b531d8e97732dc7fa838319688fe620d784e18d1b34b889c31d3a38b35efd968"
+    },
+    {
+      "id": "lingshui-77508-0",
+      "model": "apps/web/public/campuses/lingshui/models/77508-0.glb",
+      "nativeSize": [
+        40,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "3cf9c313f923f41d6d24612b9480cc20fd415a19c99021a1c78e59a9e436450f",
+      "image": ".local/city-map/model-sprites/lingshui-77508-0.png",
+      "sha256": "71e34bbd68eeda881dfa1966d36aa94157e4c53e2253575aa075b333f7d700af"
+    },
+    {
+      "id": "lingshui-77509-0",
+      "model": "apps/web/public/campuses/lingshui/models/77509-0.glb",
+      "nativeSize": [
+        64,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "67f305fb503d4b1b9ceaa0599422e07b7e6b3db432ad9bf09509841a907e3338",
+      "image": ".local/city-map/model-sprites/lingshui-77509-0.png",
+      "sha256": "dbaadf5b1b008b543912812f9c21ed1eac621cc1cb8aea094c126af92f129d18"
+    },
+    {
+      "id": "lingshui-77510-0",
+      "model": "apps/web/public/campuses/lingshui/models/77510-0.glb",
+      "nativeSize": [
+        40,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "570f0bfd1c7ef433f22228f52c49f424cd34c40acd056185e885f04e74010416",
+      "image": ".local/city-map/model-sprites/lingshui-77510-0.png",
+      "sha256": "39327f586d55fb3890c99435cb59cec387fa80496adf2d79a627b72df4936dfe"
+    },
+    {
+      "id": "lingshui-77511-0",
+      "model": "apps/web/public/campuses/lingshui/models/77511-0.glb",
+      "nativeSize": [
+        40,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "74a55180c6ac8e617b2bfd1cfc468046b1f573d054ff5ddbf5703698eb254b41",
+      "image": ".local/city-map/model-sprites/lingshui-77511-0.png",
+      "sha256": "caa531707d3126a176239c1aeb4d6e3e44ee3fedf05ad786073de7f81ec602c8"
+    },
+    {
+      "id": "lingshui-77512-0",
+      "model": "apps/web/public/campuses/lingshui/models/77512-0.glb",
+      "nativeSize": [
+        40,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "07d5ab18de31cd9717247fea5c90d1de8300e52bf508c4d5ed43fecabed1ff42",
+      "image": ".local/city-map/model-sprites/lingshui-77512-0.png",
+      "sha256": "87f4381af6f55f8e8165198fccbea38ad477c13ab171d8971e666aa801dd38f1"
+    },
+    {
+      "id": "lingshui-77513-0",
+      "model": "apps/web/public/campuses/lingshui/models/77513-0.glb",
+      "nativeSize": [
+        48,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "793886e53f573266a964bed1480b7e0a1b208e7ba30b335962b21a7124922bd1",
+      "image": ".local/city-map/model-sprites/lingshui-77513-0.png",
+      "sha256": "d4afdba577ee7875163fcd1d1fe439559f2f36310f9e4317ecd734dca16e7e2c"
+    },
+    {
+      "id": "lingshui-77514-0",
+      "model": "apps/web/public/campuses/lingshui/models/77514-0.glb",
+      "nativeSize": [
+        40,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "e74845b8a0623cd4d476ec32b685e12d1dbe7f71791fc51b0763dd948af96bf9",
+      "image": ".local/city-map/model-sprites/lingshui-77514-0.png",
+      "sha256": "f55dd254ea46f651e814c7da831fc0df17da646f6c6933b75b8679aa4154e7a7"
+    },
+    {
+      "id": "lingshui-77515-0",
+      "model": "apps/web/public/campuses/lingshui/models/77515-0.glb",
+      "nativeSize": [
+        64,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "2f4fda26df54c74ef273722cacbd5d2ef6a52fe75057677aec7f324df3bc6da7",
+      "image": ".local/city-map/model-sprites/lingshui-77515-0.png",
+      "sha256": "656ff4ca63a1abc42dc98e1a18243fa019a05daef6588422b106642e5fd768c5"
+    },
+    {
+      "id": "lingshui-77516-0",
+      "model": "apps/web/public/campuses/lingshui/models/77516-0.glb",
+      "nativeSize": [
+        32,
+        24
+      ],
+      "elevation": 26,
+      "modelSha256": "c0b9d28e7828b84ef977fb5ac61213be19e5bd77f5b42fcdc307f9c230622e80",
+      "image": ".local/city-map/model-sprites/lingshui-77516-0.png",
+      "sha256": "80dfd272119493fa3d00eda065d68209211c7c846f70c3d7ed8c022ad3dc1964"
+    },
+    {
+      "id": "lingshui-77519-0",
+      "model": "apps/web/public/campuses/lingshui/models/77519-0.glb",
+      "nativeSize": [
+        56,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "4894e81d28db76fdfffc1d49200ed4cd9130a03fc2448947e8428ebd423d205e",
+      "image": ".local/city-map/model-sprites/lingshui-77519-0.png",
+      "sha256": "4cde77da7b9a23182634d513432e73a643817e3be67419643fe5de6c6e7f4481"
+    },
+    {
+      "id": "lingshui-77539-0",
+      "model": "apps/web/public/campuses/lingshui/models/77539-0.glb",
+      "nativeSize": [
+        80,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "accca7628533790cd8b34b24c5f08f0b86ed21cca638c0b55a9c91fd9e7537ff",
+      "image": ".local/city-map/model-sprites/lingshui-77539-0.png",
+      "sha256": "b38a82bc0104ff384dcdf747683e1ca2b6c9a429a1e05a18e1c35879654d5c06"
+    },
+    {
+      "id": "lingshui-77540-0",
+      "model": "apps/web/public/campuses/lingshui/models/77540-0.glb",
+      "nativeSize": [
+        80,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "454cf523495b6fe8bdcac5e84b1534d45d4dac70284b0db4f689de23494a9871",
+      "image": ".local/city-map/model-sprites/lingshui-77540-0.png",
+      "sha256": "d6c96ab77d009f7a65690eddd1b750fb32db1d85c3344ff3a45f4f73f8031923"
+    },
+    {
+      "id": "lingshui-77541-0",
+      "model": "apps/web/public/campuses/lingshui/models/77541-0.glb",
+      "nativeSize": [
+        80,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "9f95acabb19fb62a02fb9f6194de3f0e33fb6f9656a8db0a68da0120a939f01b",
+      "image": ".local/city-map/model-sprites/lingshui-77541-0.png",
+      "sha256": "a53a56ef2aba71a9b11a59abd9938f60ecae7fd20f9b91bfdad4467bc5bdccd1"
+    },
+    {
+      "id": "lingshui-77542-0",
+      "model": "apps/web/public/campuses/lingshui/models/77542-0.glb",
+      "nativeSize": [
+        104,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "5190f6e414512e0ad2de61b463a1814fbb51572c9ddd53cc17421c1ffa9dae7b",
+      "image": ".local/city-map/model-sprites/lingshui-77542-0.png",
+      "sha256": "684974c7a02f7939172631c5f0ae91996baea8ed493971b3251add533d327ec1"
+    },
+    {
+      "id": "lingshui-77543-0",
+      "model": "apps/web/public/campuses/lingshui/models/77543-0.glb",
+      "nativeSize": [
+        32,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "0361689e1f90c79b7f59528b3d170015d713f06203f6ebbb55659be31282c1ed",
+      "image": ".local/city-map/model-sprites/lingshui-77543-0.png",
+      "sha256": "811f50530dda60b81671d95edb4991b621811b4411f38c1cf328f0d95bdddfbc"
+    },
+    {
+      "id": "lingshui-77544-0",
+      "model": "apps/web/public/campuses/lingshui/models/77544-0.glb",
+      "nativeSize": [
+        32,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "7426b3baccdb22ca893ea0d4d3d9ffb68c24ff0990fc6738981b5ff75e753221",
+      "image": ".local/city-map/model-sprites/lingshui-77544-0.png",
+      "sha256": "1b6201f50ad24b6897fe9b782ce388ffc82fe8f37924c845505fd1a1757758e2"
+    },
+    {
+      "id": "lingshui-77545-0",
+      "model": "apps/web/public/campuses/lingshui/models/77545-0.glb",
+      "nativeSize": [
+        48,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "b44dfbea4be44b186097c021d6831f4723bf5cbfec9d7a5f1d2226dad4d9917a",
+      "image": ".local/city-map/model-sprites/lingshui-77545-0.png",
+      "sha256": "857c440b992872e5e9f83172dd1908b0e2a4ba71837b56c6d5a6fe68a9576019"
+    },
+    {
+      "id": "lingshui-77546-0",
+      "model": "apps/web/public/campuses/lingshui/models/77546-0.glb",
+      "nativeSize": [
+        32,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "1de3d0ea646429699947ffaa73250b1abd845a6233a380429f6d0127ad8ddf0a",
+      "image": ".local/city-map/model-sprites/lingshui-77546-0.png",
+      "sha256": "48ef6b71c943ff0aa9552c689686a7daa829ad77cf0333797dbda93177b70683"
+    },
+    {
+      "id": "lingshui-77547-0",
+      "model": "apps/web/public/campuses/lingshui/models/77547-0.glb",
+      "nativeSize": [
+        32,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "30b085ee7ca35e65283f9ae8ee3370e43733d09c2ca1a63defba1b6aba469d40",
+      "image": ".local/city-map/model-sprites/lingshui-77547-0.png",
+      "sha256": "c833e820cffc1c56763d4e79a6664afdac7ff685a49c0d4d84c6b5c044556c76"
+    },
+    {
+      "id": "lingshui-77548-0",
+      "model": "apps/web/public/campuses/lingshui/models/77548-0.glb",
+      "nativeSize": [
+        32,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "f0686353aacfa472a3479d84adf99cfb9b9923c27904627565bc9679b6db56a1",
+      "image": ".local/city-map/model-sprites/lingshui-77548-0.png",
+      "sha256": "f698b6b7be29fe223a2af0a10ec6f0e3c95c1ef050e5464f47fd22a2ce8e7e05"
+    },
+    {
+      "id": "lingshui-77549-0",
+      "model": "apps/web/public/campuses/lingshui/models/77549-0.glb",
+      "nativeSize": [
+        32,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "d1d4ec761e87439a48e7194d9d788d1999aa85028d4b5d7295b2144c1b0bde40",
+      "image": ".local/city-map/model-sprites/lingshui-77549-0.png",
+      "sha256": "c833e820cffc1c56763d4e79a6664afdac7ff685a49c0d4d84c6b5c044556c76"
+    },
+    {
+      "id": "lingshui-77550-0",
+      "model": "apps/web/public/campuses/lingshui/models/77550-0.glb",
+      "nativeSize": [
+        32,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "c8ba485d115dd6402bccc4ebef64018589a81142341b4ed9de1ead8719b13a28",
+      "image": ".local/city-map/model-sprites/lingshui-77550-0.png",
+      "sha256": "811f50530dda60b81671d95edb4991b621811b4411f38c1cf328f0d95bdddfbc"
+    },
+    {
+      "id": "lingshui-77551-0",
+      "model": "apps/web/public/campuses/lingshui/models/77551-0.glb",
+      "nativeSize": [
+        32,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "26f0f48778752ab692320f52420522de743d4141ff6365935ad0bf1599b8262b",
+      "image": ".local/city-map/model-sprites/lingshui-77551-0.png",
+      "sha256": "9b244dc27d9f99accefe29d03b38bf5595880964f2614664639bd6ba05f29f83"
+    },
+    {
+      "id": "lingshui-77552-0",
+      "model": "apps/web/public/campuses/lingshui/models/77552-0.glb",
+      "nativeSize": [
+        32,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "2dbf1d63059bdaf5a42de382001a9ce89e5b95f9a44ed0ce1f8aa1324c072ec8",
+      "image": ".local/city-map/model-sprites/lingshui-77552-0.png",
+      "sha256": "45b028ca243a58c3d7b1bb04ab9e4305f181b4fb963d129719284b13601e42e0"
+    },
+    {
+      "id": "lingshui-77553-0",
+      "model": "apps/web/public/campuses/lingshui/models/77553-0.glb",
+      "nativeSize": [
+        104,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "9b1439dd999f332d7c54a0232e2c0e6261a0b3214d5ded6024b57ac97edc7807",
+      "image": ".local/city-map/model-sprites/lingshui-77553-0.png",
+      "sha256": "cff09e0e0b41f44c6b24bbc3d19c1637c1f9d63ec221f7a9d6f2eab18ff3b1f4"
+    },
+    {
+      "id": "lingshui-77555-0",
+      "model": "apps/web/public/campuses/lingshui/models/77555-0.glb",
+      "nativeSize": [
+        56,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "330d581216c886784ef682174b6b3e05f634794cbfbf04a7a1c8a49fa74995c0",
+      "image": ".local/city-map/model-sprites/lingshui-77555-0.png",
+      "sha256": "a6bc50d9b76361cde7822222074171b56e74246934c01d8a817edb6ff3bd7125"
+    },
+    {
+      "id": "lingshui-77556-0",
+      "model": "apps/web/public/campuses/lingshui/models/77556-0.glb",
+      "nativeSize": [
+        48,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "08d9d8a85492c6e432705dc9426cc4d2571777bf41c095ffa80f936f3383203a",
+      "image": ".local/city-map/model-sprites/lingshui-77556-0.png",
+      "sha256": "fe71fdb4273709c0b7e077495a3e9789fd51142f5978f5edef828ceaeed37eef"
+    },
+    {
+      "id": "lingshui-77557-0",
+      "model": "apps/web/public/campuses/lingshui/models/77557-0.glb",
+      "nativeSize": [
+        48,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "59fa7dd0307ed090a276bd5935640884fbda74a45f3a03145f811d0b9e613f39",
+      "image": ".local/city-map/model-sprites/lingshui-77557-0.png",
+      "sha256": "4b10ccd83a7839f386afc17a13fb60a58ffacf6f9fe34969f7b835117c00b5ec"
+    },
+    {
+      "id": "lingshui-77558-0",
+      "model": "apps/web/public/campuses/lingshui/models/77558-0.glb",
+      "nativeSize": [
+        48,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "cf1918cf0da3ef5390a6a9368505bdad97a60f276be7d9f466934b024317b128",
+      "image": ".local/city-map/model-sprites/lingshui-77558-0.png",
+      "sha256": "8a3fc26981442249f1004d09a6e79e611ea3ba56640679c07b1e05347164661f"
+    },
+    {
+      "id": "lingshui-77559-0",
+      "model": "apps/web/public/campuses/lingshui/models/77559-0.glb",
+      "nativeSize": [
+        48,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "34a56dca1c76597de6cdde8685f430559cc99b462237437288f8b09105ffa68c",
+      "image": ".local/city-map/model-sprites/lingshui-77559-0.png",
+      "sha256": "ffaadeadf81ec949d2affa8e99da0166152f495bef7c5bdb941ec6a1c08598af"
+    },
+    {
+      "id": "lingshui-77560-0",
+      "model": "apps/web/public/campuses/lingshui/models/77560-0.glb",
+      "nativeSize": [
+        48,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "8579a11fe748a8a0f01fff6054346c2012ea9eaff70b41d7a119c95b40b46f45",
+      "image": ".local/city-map/model-sprites/lingshui-77560-0.png",
+      "sha256": "10ee96deb2e009c8c00c49f333319b9545345850d5c342a493488819685e17e6"
+    },
+    {
+      "id": "lingshui-77561-0",
+      "model": "apps/web/public/campuses/lingshui/models/77561-0.glb",
+      "nativeSize": [
+        48,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "e68d1a6d38c6dcd3e503a363aab7633050aba95be395124e28e7864020b2ff6f",
+      "image": ".local/city-map/model-sprites/lingshui-77561-0.png",
+      "sha256": "648433d0ab57ecdec63a3ac9dcc27117401ae0f8fe7e4d81bacf774f1903cb40"
+    },
+    {
+      "id": "lingshui-77562-0",
+      "model": "apps/web/public/campuses/lingshui/models/77562-0.glb",
+      "nativeSize": [
+        48,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "f46b3c00fde573f772517f0781bc29e571818682fef6af34e0b6c202cb6e7297",
+      "image": ".local/city-map/model-sprites/lingshui-77562-0.png",
+      "sha256": "58fb312a561894173fcd0d157ae386a521795b5fc2f8b6af4f27cf2966907696"
+    },
+    {
+      "id": "lingshui-77563-0",
+      "model": "apps/web/public/campuses/lingshui/models/77563-0.glb",
+      "nativeSize": [
+        48,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "d3fb8b5399d1c8fe8b280772d0c29d599ff08e1380ea1a454559d8040de3bf14",
+      "image": ".local/city-map/model-sprites/lingshui-77563-0.png",
+      "sha256": "8ab87b2b987f710f4dd2cd23f876ef6f367cc887298e79502b5308ae53ba34a3"
+    },
+    {
+      "id": "lingshui-77564-0",
+      "model": "apps/web/public/campuses/lingshui/models/77564-0.glb",
+      "nativeSize": [
+        48,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "232ebcaa4f57d27b50be6852e2a68d61873b18a49e64825f2802f770a8c0900c",
+      "image": ".local/city-map/model-sprites/lingshui-77564-0.png",
+      "sha256": "8ce86f497e8b8cac6b02918c826b57fc7c3d8fd771db7548a4cb033ca1b0f7d9"
+    },
+    {
+      "id": "lingshui-77565-0",
+      "model": "apps/web/public/campuses/lingshui/models/77565-0.glb",
+      "nativeSize": [
+        48,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "cd3ac3745a45840ca054887f79de8171bd15bedd18246d0ed90d4f4706708843",
+      "image": ".local/city-map/model-sprites/lingshui-77565-0.png",
+      "sha256": "6f95f1c7e012e9dcbc162832cbfc244d27228d1fa8fcfbde4d4d0ce85b06feec"
+    },
+    {
+      "id": "lingshui-77566-0",
+      "model": "apps/web/public/campuses/lingshui/models/77566-0.glb",
+      "nativeSize": [
+        48,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "3bbd16d9a272c5ea59ddd68ddb2bfadec1bdbdde741cb6f44a1500fbd447dc5f",
+      "image": ".local/city-map/model-sprites/lingshui-77566-0.png",
+      "sha256": "c9dfc112d1e5a4d363a66e265dbd8959af7d624250e9ef1174d1648e370e323e"
+    },
+    {
+      "id": "lingshui-77567-0",
+      "model": "apps/web/public/campuses/lingshui/models/77567-0.glb",
+      "nativeSize": [
+        48,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "f6a6d72c6262e9206c4a5612c3adb15da0a01ea586d5c975d800d37113f97312",
+      "image": ".local/city-map/model-sprites/lingshui-77567-0.png",
+      "sha256": "8f7af1d0cdf3cbc988ad60cf43da3a0a0d66d35768598a44a76fb6b88f3e2c3b"
+    },
+    {
+      "id": "lingshui-77568-0",
+      "model": "apps/web/public/campuses/lingshui/models/77568-0.glb",
+      "nativeSize": [
+        48,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "aff8ec572123a8170a845c4556e3db39dd44001c3a9286fbaa86ef71d4eec083",
+      "image": ".local/city-map/model-sprites/lingshui-77568-0.png",
+      "sha256": "c8aa917edee6a2ff4605c285179c680d7953349175da0a2b80e9c91af88c4a54"
+    },
+    {
+      "id": "lingshui-77569-0",
+      "model": "apps/web/public/campuses/lingshui/models/77569-0.glb",
+      "nativeSize": [
+        48,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "3ff40a529239a1d0644f5fba4661babbbb062874a090585f51792fbf4f2de823",
+      "image": ".local/city-map/model-sprites/lingshui-77569-0.png",
+      "sha256": "857c440b992872e5e9f83172dd1908b0e2a4ba71837b56c6d5a6fe68a9576019"
+    },
+    {
+      "id": "lingshui-77570-0",
+      "model": "apps/web/public/campuses/lingshui/models/77570-0.glb",
+      "nativeSize": [
+        72,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "ead37818e832ab6779145143775abc134a09cbbc560f825caf9f213bc36e39b2",
+      "image": ".local/city-map/model-sprites/lingshui-77570-0.png",
+      "sha256": "f8e020ccf9145ccbc17a6c3349ec56b8f28624e16a5a6ffe0b0e6d19f76371b2"
+    },
+    {
+      "id": "lingshui-77571-0",
+      "model": "apps/web/public/campuses/lingshui/models/77571-0.glb",
+      "nativeSize": [
+        64,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "a1244c9842fd7c6ea349d11c5bdcefaa3d036d82d65f31eea649d6cf44fd4aad",
+      "image": ".local/city-map/model-sprites/lingshui-77571-0.png",
+      "sha256": "8de649eaac5ea2b54f56529c52dea9c1b2b89bf0b4fedd1adf91091bed0b6403"
+    },
+    {
+      "id": "lingshui-77572-0",
+      "model": "apps/web/public/campuses/lingshui/models/77572-0.glb",
+      "nativeSize": [
+        32,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "e4118641b3909608eeac16d2c5183245624fd05e7357cc22e6f51e23a79fa325",
+      "image": ".local/city-map/model-sprites/lingshui-77572-0.png",
+      "sha256": "86cb1b5cb558e9b6bb8c32491cca592f4ccf18a276e30cb77d3cb5f69a19928f"
+    },
+    {
+      "id": "lingshui-78148-0",
+      "model": "apps/web/public/campuses/lingshui/models/78148-0.glb",
+      "nativeSize": [
+        32,
+        32
+      ],
+      "elevation": 26,
+      "modelSha256": "087391dbc0d37558375a99b15802f7784dbb71931e367d7f269b4a1d7725039c",
+      "image": ".local/city-map/model-sprites/lingshui-78148-0.png",
+      "sha256": "1032339919d98a085292773e99d004d17d10662b0a98599692a20f46382d0708"
+    },
+    {
+      "id": "lingshui-78292-0",
+      "model": "apps/web/public/campuses/lingshui/models/78292-0.glb",
+      "nativeSize": [
+        96,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "af389242010f2d782247931cea37c180df98463ad4b21fd7626317945e20f7c7",
+      "image": ".local/city-map/model-sprites/lingshui-78292-0.png",
+      "sha256": "e7b42f9ae1f338c3ec2557b3365ecda6e427c23b0995e8c431be272f807b71e6"
+    },
+    {
+      "id": "lingshui-78473-0",
+      "model": "apps/web/public/campuses/lingshui/models/78473-0.glb",
+      "nativeSize": [
+        168,
+        256
+      ],
+      "elevation": 90,
+      "modelSha256": "4e2c80efd5765e981429e8693c6d6bd172b48d3e9cb735578ae1658e7ed879d4",
+      "image": ".local/city-map/model-sprites/lingshui-78473-0.png",
+      "sha256": "12f768733bccd032147a986f61817152599787be77c0bcae9906007801eee674"
+    },
+    {
+      "id": "lingshui-83718-0",
+      "model": "apps/web/public/campuses/lingshui/models/83718-0.glb",
+      "nativeSize": [
+        88,
+        192
+      ],
+      "elevation": 26,
+      "modelSha256": "7101cdfb6b8e22403841289c468942f876e61f783842db081407a7b2eb2130cd",
+      "image": ".local/city-map/model-sprites/lingshui-83718-0.png",
+      "sha256": "b284da252f1ac85a0c03059ada0028c45bb9eeb3b7978cdc67bd5e1b810d7eaf"
+    },
+    {
+      "id": "lingshui-83977-0",
+      "model": "apps/web/public/campuses/lingshui/models/83977-0.glb",
+      "nativeSize": [
+        160,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "a97d280094f6d0cf0b4ec817f6798de786aa6fa01c445bb6839fdbe07bd926dd",
+      "image": ".local/city-map/model-sprites/lingshui-83977-0.png",
+      "sha256": "15575b574e9c1babf49795b79d8f465c0e231da39182ea9bc1ebf1990a874e99"
+    },
+    {
+      "id": "lingshui-83979-0",
+      "model": "apps/web/public/campuses/lingshui/models/83979-0.glb",
+      "nativeSize": [
+        112,
+        96
+      ],
+      "elevation": 26,
+      "modelSha256": "6b420553d03398e95eaad016cfe0b7d46d618e4a9684f3d2419066b44532ece3",
+      "image": ".local/city-map/model-sprites/lingshui-83979-0.png",
+      "sha256": "382fe7ffe13d678798b7727a0376553790b88bdea300fbea95e3e969342d8b16"
+    },
+    {
+      "id": "lingshui-625864-0",
+      "model": "apps/web/public/campuses/lingshui/models/625864-0.glb",
+      "nativeSize": [
+        56,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "01c3dcedcafbfe315f1109fe0947c2d8937c07b4ab54b173aac0812f0140a7a8",
+      "image": ".local/city-map/model-sprites/lingshui-625864-0.png",
+      "sha256": "bf19de1cf901f030a801c054a782e63d8797cf83337c241bba0d3c27470bd95f"
+    },
+    {
+      "id": "lingshui-1337464-0",
+      "model": "apps/web/public/campuses/lingshui/models/1337464-0.glb",
+      "nativeSize": [
+        144,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "08b29fc8cc1fa0ac811ebec9f05d863a29df1443086dcf388c8131b7cb54a088",
+      "image": ".local/city-map/model-sprites/lingshui-1337464-0.png",
+      "sha256": "a1154a90e45dce71256d7dbf31b8977b48a60c1d4d665ad702754b5439a68b72"
+    },
+    {
+      "id": "lingshui-1502851-0",
+      "model": "apps/web/public/campuses/lingshui/models/1502851-0.glb",
+      "nativeSize": [
+        128,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "0680627e7a82688d252d2014f227fe66a5f40f30bafe251ff2fbaac8d77c2a54",
+      "image": ".local/city-map/model-sprites/lingshui-1502851-0.png",
+      "sha256": "e3ad9a6a0533b5c70203e87552e17fa8f47fde44e6b5a7b3eff34c6a246ea384"
+    },
+    {
+      "id": "lingshui-1503000-0",
+      "model": "apps/web/public/campuses/lingshui/models/1503000-0.glb",
+      "nativeSize": [
+        256,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "688fe8142225b5834cfbb391de8ff4cefb5a2259cfead297fa0225fe6a0117b8",
+      "image": ".local/city-map/model-sprites/lingshui-1503000-0.png",
+      "sha256": "e29e827744c65043fda41782e593b92fa43dcfa01396e5e46c9be66e3caab334"
+    },
+    {
+      "id": "lingshui-1512962-0",
+      "model": "apps/web/public/campuses/lingshui/models/1512962-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "2e5f60ab152a6d9e1ffd08d769b9f9bb65aac743dd1ce8ea8cfcd09e82cc53fc",
+      "image": ".local/city-map/model-sprites/lingshui-1512962-0.png",
+      "sha256": "6b89e1a6b7f15b8a101e08e34e64e7b3f075040491c7ca63ebcf9ef0917ecb90"
+    },
+    {
+      "id": "lingshui-1512970-0",
+      "model": "apps/web/public/campuses/lingshui/models/1512970-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "a5edab066cc847eb3c1ee402503bb18dc04515e4262e2027f22eb081a81ab538",
+      "image": ".local/city-map/model-sprites/lingshui-1512970-0.png",
+      "sha256": "e79f588a8232580d95ef85b0cb46790aee22ad8726dc8137cf83bcd4e70c1de4"
+    },
+    {
+      "id": "lingshui-1512976-0",
+      "model": "apps/web/public/campuses/lingshui/models/1512976-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "bf4ea44db91d612d65c177da14f2a6b0aef7ba3f3027ceeb6f241283a7ed2fcc",
+      "image": ".local/city-map/model-sprites/lingshui-1512976-0.png",
+      "sha256": "53b5f9ba1a3434d7fc7a9ae37c57bd2abaef5b4e94d6dac5d0290de7b57001f4"
+    },
+    {
+      "id": "lingshui-1512982-0",
+      "model": "apps/web/public/campuses/lingshui/models/1512982-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "bd258440c2bda04c15ba78035f0cb7a4a6c90a45aa7cff1fa3da66c8389532ad",
+      "image": ".local/city-map/model-sprites/lingshui-1512982-0.png",
+      "sha256": "892a329efa30b91dea85d670b8935bdd3e684ab5c79592c4264b87ae0f3491a9"
+    },
+    {
+      "id": "lingshui-1512984-0",
+      "model": "apps/web/public/campuses/lingshui/models/1512984-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "42a464bd5987bf5401c297fd1c91de681ee16b0caa617481e2e8f4cb2feb785e",
+      "image": ".local/city-map/model-sprites/lingshui-1512984-0.png",
+      "sha256": "892a329efa30b91dea85d670b8935bdd3e684ab5c79592c4264b87ae0f3491a9"
+    },
+    {
+      "id": "lingshui-1512987-0",
+      "model": "apps/web/public/campuses/lingshui/models/1512987-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "050498c1b1f72b75e06066d78cd0bf8e7449efbe42ef07afc366e0ef71fa8418",
+      "image": ".local/city-map/model-sprites/lingshui-1512987-0.png",
+      "sha256": "5cb393ff5ebb1c35b218c1313a258fafb3e11da6c537ac2e3e0d5750372e8750"
+    },
+    {
+      "id": "lingshui-1512992-0",
+      "model": "apps/web/public/campuses/lingshui/models/1512992-0.glb",
+      "nativeSize": [
+        40,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "5a8867e03e339ed04947f22da6aae93c764e19de367c6ff6e34045a540f97f6f",
+      "image": ".local/city-map/model-sprites/lingshui-1512992-0.png",
+      "sha256": "3afc2af49ff72e2948c836d01755d12d2710f2025d9c603b12de4b96e6f9b299"
+    },
+    {
+      "id": "lingshui-1512994-0",
+      "model": "apps/web/public/campuses/lingshui/models/1512994-0.glb",
+      "nativeSize": [
+        40,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "f6a7a0953869dd2fc890d7ff838f43ec1a4b60113691118d96fe6dabb4b91a9d",
+      "image": ".local/city-map/model-sprites/lingshui-1512994-0.png",
+      "sha256": "b9f3f184a3cd6fad4e260d052b11eaae398e8443cb582c2e64eab5408cf45222"
+    },
+    {
+      "id": "lingshui-1512998-0",
+      "model": "apps/web/public/campuses/lingshui/models/1512998-0.glb",
+      "nativeSize": [
+        40,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "2dda3ffa1ac6d53cc471ec3fe26cb7cf331d5a785b5293e1d97b93f84ede1c59",
+      "image": ".local/city-map/model-sprites/lingshui-1512998-0.png",
+      "sha256": "c2a46d1134e13acbb77da2fd1c8756e63123b92088b9f5ab7e0501dcd2b48e75"
+    },
+    {
+      "id": "lingshui-1513002-0",
+      "model": "apps/web/public/campuses/lingshui/models/1513002-0.glb",
+      "nativeSize": [
+        40,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "e4ddf6a0b195737bf03c47b79b4adf313f69e422de43ae6d55b22e5c868e004c",
+      "image": ".local/city-map/model-sprites/lingshui-1513002-0.png",
+      "sha256": "6fcc22fc1d66e3156d29bf08706233ab50291cb4ea14cd6185229f38ad216d8c"
+    },
+    {
+      "id": "lingshui-1513009-0",
+      "model": "apps/web/public/campuses/lingshui/models/1513009-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "eb4360aa9c7fa4665bdcbe5c12a8a01087d3e956131da532b85196b6849b3bdf",
+      "image": ".local/city-map/model-sprites/lingshui-1513009-0.png",
+      "sha256": "1bf329cfbf77aa1633a471deb30eaa1780453fdb5df5a820ae5d2c6e422c1dff"
+    },
+    {
+      "id": "lingshui-1513018-0",
+      "model": "apps/web/public/campuses/lingshui/models/1513018-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "0f9451241d97d69a12342a495df241b26476e42474989addb5778ba6f0c0da58",
+      "image": ".local/city-map/model-sprites/lingshui-1513018-0.png",
+      "sha256": "d4c99478ee3f2bf83db5ba1b38cb81ab420d780127363c54550215ccfe97646f"
+    },
+    {
+      "id": "lingshui-1513022-0",
+      "model": "apps/web/public/campuses/lingshui/models/1513022-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "457a3d68cdacb3463a0756e2bc0e66089df3cad3e68c80ee29d842cb4ed19767",
+      "image": ".local/city-map/model-sprites/lingshui-1513022-0.png",
+      "sha256": "2502d6163002c18285ab0aaabeac017ae022caaa22b12762c77ffa0af844b293"
+    },
+    {
+      "id": "lingshui-1513025-0",
+      "model": "apps/web/public/campuses/lingshui/models/1513025-0.glb",
+      "nativeSize": [
+        104,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "583fa465ff9425bf8147d3c9aa604c50f6cb8cb9357145b9ab9db32635efb46a",
+      "image": ".local/city-map/model-sprites/lingshui-1513025-0.png",
+      "sha256": "53b5f9ba1a3434d7fc7a9ae37c57bd2abaef5b4e94d6dac5d0290de7b57001f4"
+    },
+    {
+      "id": "lingshui-1513030-0",
+      "model": "apps/web/public/campuses/lingshui/models/1513030-0.glb",
+      "nativeSize": [
+        56,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "02cebee82c940d255ff9cbf725c5ddbf8a804b4a96c88ad999d0334821088441",
+      "image": ".local/city-map/model-sprites/lingshui-1513030-0.png",
+      "sha256": "f2474dbf5d24e814551ce34313aa3c30b4243742ee6221a7721394d6d0855227"
+    },
+    {
+      "id": "lingshui-1582228-0",
+      "model": "apps/web/public/campuses/lingshui/models/1582228-0.glb",
+      "nativeSize": [
+        72,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "2bd99f563a7143e1b9565ec1048e96ceca5e9a05d0b968d2094d820d94c1b629",
+      "image": ".local/city-map/model-sprites/lingshui-1582228-0.png",
+      "sha256": "f7933b8c4bbaadd1e4c03cc546f711a6260246fe57279898f262d607d6070f23"
+    },
+    {
+      "id": "lingshui-2145390-0",
+      "model": "apps/web/public/campuses/lingshui/models/2145390-0.glb",
+      "nativeSize": [
+        112,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "d8add09f50f040a432a08900297a3d9c5188acbe89917e2253205674e84cd8e2",
+      "image": ".local/city-map/model-sprites/lingshui-2145390-0.png",
+      "sha256": "d15777ec3e5f9d7673033f52f0ce5249599ca889b09b35639c9a2cfb5a393243"
+    },
+    {
+      "id": "lingshui-2283165-0",
+      "model": "apps/web/public/campuses/lingshui/models/2283165-0.glb",
+      "nativeSize": [
+        48,
+        152
+      ],
+      "elevation": 26,
+      "modelSha256": "70c6db7b7d6ccca48c5aeb9bc094b482a1923b61cdd89eb1b3a489d128c737f3",
+      "image": ".local/city-map/model-sprites/lingshui-2283165-0.png",
+      "sha256": "46a8144df23d1baf31f637881e25218ca25193a2327285090f69fe3d7789587c"
+    },
+    {
+      "id": "lingshui-2283170-0",
+      "model": "apps/web/public/campuses/lingshui/models/2283170-0.glb",
+      "nativeSize": [
+        32,
+        104
+      ],
+      "elevation": 26,
+      "modelSha256": "bc2ab42484a1d1fd254742dc0b2839f382f974b23a28d7c344be61e9b9fca42f",
+      "image": ".local/city-map/model-sprites/lingshui-2283170-0.png",
+      "sha256": "475cf08d8289fa281c9e1bc1e668b0dacee52f7a643828705263090f7ec33b98"
+    },
+    {
+      "id": "lingshui-17913925-0",
+      "model": "apps/web/public/campuses/lingshui/models/17913925-0.glb",
+      "nativeSize": [
+        144,
+        256
+      ],
+      "elevation": 90,
+      "modelSha256": "b17d0d41319788dcc6edce8953c0e3e31a15177e055ed0a1e1a88005acacf57c",
+      "image": ".local/city-map/model-sprites/lingshui-17913925-0.png",
+      "sha256": "5c84d728a0ceefeda88ba124e21fc40a7548cc5b05ab80534ebfcd20d4c7d139"
+    },
+    {
+      "id": "lingshui-17927511-0",
+      "model": "apps/web/public/campuses/lingshui/models/17927511-0.glb",
+      "nativeSize": [
+        32,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "9f7a9cd8c842d31f863cb36245301301ba2d659fdf67ff5e4fa2dd65dd74f699",
+      "image": ".local/city-map/model-sprites/lingshui-17927511-0.png",
+      "sha256": "20fb9552804e205393a38fa3e81f023331a7588b5b64fbe47d483325ccd655d9"
+    },
+    {
+      "id": "lingshui-17937827-0",
+      "model": "apps/web/public/campuses/lingshui/models/17937827-0.glb",
+      "nativeSize": [
+        40,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "40393c88b1620119f82b06b588be5197f2200e22140fda75fa93472965822afe",
+      "image": ".local/city-map/model-sprites/lingshui-17937827-0.png",
+      "sha256": "ade5a6916628ac604fb4463c0bb0e57118edf3122c12cdd942603d83f474cf03"
+    },
+    {
+      "id": "lingshui-18820417-0",
+      "model": "apps/web/public/campuses/lingshui/models/18820417-0.glb",
+      "nativeSize": [
+        80,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "d89ba87ef946000b082695b38d4ea06ccc6f80cda4f0e05b137ba01e31f40579",
+      "image": ".local/city-map/model-sprites/lingshui-18820417-0.png",
+      "sha256": "57e4706a9eb4cb14700b741ebc90adfad4b3dd3bdc5939aecc69db672b57131e"
+    },
+    {
+      "id": "lingshui-29813247-0",
+      "model": "apps/web/public/campuses/lingshui/models/29813247-0.glb",
+      "nativeSize": [
+        40,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "e8180987a007b5a734a1dcfd9ddcc90283aa8856cfd57036bfaafde1344be288",
+      "image": ".local/city-map/model-sprites/lingshui-29813247-0.png",
+      "sha256": "49db0143a71f304cffee8332b51bab0602972b40aa017f295ebf07d1aff05f29"
+    },
+    {
+      "id": "lingshui-34785233-0",
+      "model": "apps/web/public/campuses/lingshui/models/34785233-0.glb",
+      "nativeSize": [
+        48,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "c0e7e3b2c8c31fee9099cd2eb6a9de9ce4c5386ea1c4c281fc5e3a25bfa8365b",
+      "image": ".local/city-map/model-sprites/lingshui-34785233-0.png",
+      "sha256": "746a895891b00589ab536d15ddad359e9ebb8d4ee4553acdae3b159d6864ed32"
+    },
+    {
+      "id": "lingshui-35995473-0",
+      "model": "apps/web/public/campuses/lingshui/models/35995473-0.glb",
+      "nativeSize": [
+        56,
+        40
+      ],
+      "elevation": 26,
+      "modelSha256": "8b17c74a95682ec23a71e9c7bc26749b7a449fed66846880b71f3b2153941b64",
+      "image": ".local/city-map/model-sprites/lingshui-35995473-0.png",
+      "sha256": "4c996222df5ed3d415e2c0bdf2cf7aa062cf94381ff9d219532c5276d2c9c028"
+    },
+    {
+      "id": "lingshui-237205620-0",
+      "model": "apps/web/public/campuses/lingshui/models/237205620-0.glb",
+      "nativeSize": [
+        192,
+        112
+      ],
+      "elevation": 26,
+      "modelSha256": "63c43fa15094a41d2c12d786e59ec9b23f21d340abe38d5c0956ab7e7d0eff60",
+      "image": ".local/city-map/model-sprites/lingshui-237205620-0.png",
+      "sha256": "fb1564182311e6153362496b6195f83360ea63442e017b320a5921abcee9cdc2"
+    },
+    {
+      "id": "eda-77914",
+      "model": "apps/web/public/campuses/eda/models/77914.glb",
+      "nativeSize": [
+        256,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "9787ca9a49415966fe20cb0c04b762770e496a58358b6f4c4fb5c40cca6cbcc4",
+      "image": ".local/city-map/model-sprites/eda-77914.png",
+      "sha256": "eb7aab39e4ea0c6d8f4ccc1754c6dd5f9eaaa388be1b358ebd243f10a1fee7d5"
+    },
+    {
+      "id": "eda-77917",
+      "model": "apps/web/public/campuses/eda/models/77917.glb",
+      "nativeSize": [
+        136,
+        144
+      ],
+      "elevation": 26,
+      "modelSha256": "f4212b4609aced83ba1c4fc59c22522a2c8341af0e98a9e0e1458dc997c27208",
+      "image": ".local/city-map/model-sprites/eda-77917.png",
+      "sha256": "57f3cb22d7be702c2b857d3a37dab1e0cc805c836fb9a9966ddbd0e80df87c68"
+    },
+    {
+      "id": "eda-77921",
+      "model": "apps/web/public/campuses/eda/models/77921.glb",
+      "nativeSize": [
+        152,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "33beca94294251a0bf10f683b523888d9833a31033f44814c6c9ced7dafac585",
+      "image": ".local/city-map/model-sprites/eda-77921.png",
+      "sha256": "024d7f13c796c9168a2693d4cbeaf1449b73cd893e41a368507b3fee4a05ae50"
+    },
+    {
+      "id": "eda-77923",
+      "model": "apps/web/public/campuses/eda/models/77923.glb",
+      "nativeSize": [
+        192,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "eab723a3e29fc982da886a5c04f3b2c629bc045af46a916183fbb530eda22c4e",
+      "image": ".local/city-map/model-sprites/eda-77923.png",
+      "sha256": "4d4d40bfa72634ef0d9fafc84ed0fab4d137c5bcf58226a81cc32ce58f18998e"
+    },
+    {
+      "id": "eda-77925",
+      "model": "apps/web/public/campuses/eda/models/77925.glb",
+      "nativeSize": [
+        208,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "090b9c444f5f0ce34e8ebc0185e41aa0308a7cc1b2a6f5c7e1ac1cadf124f0c8",
+      "image": ".local/city-map/model-sprites/eda-77925.png",
+      "sha256": "9862ad069c29fef36483673fe5f11abf958cec77393b9aa3ca19e6bb1bbb57cf"
+    },
+    {
+      "id": "eda-77927",
+      "model": "apps/web/public/campuses/eda/models/77927.glb",
+      "nativeSize": [
+        64,
+        128
+      ],
+      "elevation": 26,
+      "modelSha256": "e6a1d1fd603f64e0f3e6d85ba1c6a964d6dd3af322c0454b5716f4b8a299d77d",
+      "image": ".local/city-map/model-sprites/eda-77927.png",
+      "sha256": "e586b466706e43c48eee6adee88848ac9e9bd8c2b8d01a77d7b3c1eee41aed33"
+    },
+    {
+      "id": "eda-77928",
+      "model": "apps/web/public/campuses/eda/models/77928.glb",
+      "nativeSize": [
+        120,
+        112
+      ],
+      "elevation": 26,
+      "modelSha256": "ce20fa6fa8511dd2a421c5f7cd44d968b137150743d3b28219647427a7efc0b3",
+      "image": ".local/city-map/model-sprites/eda-77928.png",
+      "sha256": "ed969cdd9d9a0c25e665d6b5d5b4cfe7b5e37346bbddf85fe820eda92a34afb8"
+    },
+    {
+      "id": "eda-77931",
+      "model": "apps/web/public/campuses/eda/models/77931.glb",
+      "nativeSize": [
+        88,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "93117654f847f7535c5f1ad2a3f4502c089ca5bac678071ef420e1615ca5ef69",
+      "image": ".local/city-map/model-sprites/eda-77931.png",
+      "sha256": "34f2252295ccc9ef812c0f92837e12f190751f63b7e9408430ff0ffd8305e22f"
+    },
+    {
+      "id": "eda-77933",
+      "model": "apps/web/public/campuses/eda/models/77933.glb",
+      "nativeSize": [
+        96,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "01fa5e834a6894356636b50afa5654bd3c57fc4b5c42097f71ffc787694eb635",
+      "image": ".local/city-map/model-sprites/eda-77933.png",
+      "sha256": "189724bb0b00c576b8e1273b03158312c401220a8a0411ca4664cc23ad97b2e5"
+    },
+    {
+      "id": "eda-77935",
+      "model": "apps/web/public/campuses/eda/models/77935.glb",
+      "nativeSize": [
+        64,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "627f56b614d292792f593d50e34c15a412eb915b5c7747db7610847c0ce45a44",
+      "image": ".local/city-map/model-sprites/eda-77935.png",
+      "sha256": "eef424eb8bbe6defbb9ea7be26902d904b8fc7a02020af03488eacb92eec9c00"
+    },
+    {
+      "id": "eda-77937",
+      "model": "apps/web/public/campuses/eda/models/77937.glb",
+      "nativeSize": [
+        88,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "b392d4bfe7e0ad86c68c46b64870c8312193ea6357aaad4c4a97b9631b8cd18a",
+      "image": ".local/city-map/model-sprites/eda-77937.png",
+      "sha256": "73afa3c4a1e8abb70bcf7e4a12ca429dd9fbe1a352aa70e9fcb18a171eb6904a"
+    },
+    {
+      "id": "eda-77938",
+      "model": "apps/web/public/campuses/eda/models/77938.glb",
+      "nativeSize": [
+        72,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "ef5627efe90355e88bca0fdc54999d9bf7b40ee1588afb406d58d2edcc3afb8a",
+      "image": ".local/city-map/model-sprites/eda-77938.png",
+      "sha256": "3270c8e72c2123c74ce80d7f09d8c7801219a89ecb1573f7e7d4642e6e83b7df"
+    },
+    {
+      "id": "eda-77941",
+      "model": "apps/web/public/campuses/eda/models/77941.glb",
+      "nativeSize": [
+        88,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "ee95222bf94709d930d09297fa018d69856d8a7c7cb4cc30abf7dc26fbe3319d",
+      "image": ".local/city-map/model-sprites/eda-77941.png",
+      "sha256": "9e9c1be275c88677fd1df6f0d74f76752e664f36f5530ebf84b1c4e5ce65e3d4"
+    },
+    {
+      "id": "eda-77943",
+      "model": "apps/web/public/campuses/eda/models/77943.glb",
+      "nativeSize": [
+        96,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "7c02be24d6385b85e2710b2b2785794234dee9d8f5cb231db21aba9b5d99e9ed",
+      "image": ".local/city-map/model-sprites/eda-77943.png",
+      "sha256": "7d2de2e7f85b626c842b0d328e3d09ce515430e77ec8723ca4097f787fbc9814"
+    },
+    {
+      "id": "eda-2304982",
+      "model": "apps/web/public/campuses/eda/models/2304982.glb",
+      "nativeSize": [
+        144,
+        152
+      ],
+      "elevation": 26,
+      "modelSha256": "403c49d95b9570611aa221d4874e610548cb3ec22a4f36775260775f0bf856a1",
+      "image": ".local/city-map/model-sprites/eda-2304982.png",
+      "sha256": "e2a6f4c87a0ddc51aabf546e1e0134211a0a5233fef9b5eace79afb715c71ab3"
+    },
+    {
+      "id": "panjin-77949-0",
+      "model": "apps/web/public/campuses/panjin/models/77949-0.glb",
+      "nativeSize": [
+        104,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "e16b1f6a181ce59bc8ad1b93ba210689595df0ef01d6121ea5b006a2c905b3ab",
+      "image": ".local/city-map/model-sprites/panjin-77949-0.png",
+      "sha256": "ad1faf28350ab208b681c817b400b3de27f1dccab28c9d7e90e127d6cb8c752c"
+    },
+    {
+      "id": "panjin-77950-0",
+      "model": "apps/web/public/campuses/panjin/models/77950-0.glb",
+      "nativeSize": [
+        96,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "c194680c6006f5637d7daaab9143a6d64ffd092f9e6a9b9cfb84ad5f203b2a41",
+      "image": ".local/city-map/model-sprites/panjin-77950-0.png",
+      "sha256": "d330ff3760ed62fc645ced30f664c626bf3dcf9ebdfca4463dd4a9b36e1bbdb2"
+    },
+    {
+      "id": "panjin-77951-0",
+      "model": "apps/web/public/campuses/panjin/models/77951-0.glb",
+      "nativeSize": [
+        88,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "e736a4d752c785667ac6629cdf0f30a80206e11eae9f8cb8f658c7f5d4d13985",
+      "image": ".local/city-map/model-sprites/panjin-77951-0.png",
+      "sha256": "f6ab8a98819cbe25e51193f2673ca8a5a68c94038ed456b9c6e87edea3901824"
+    },
+    {
+      "id": "panjin-77952-0",
+      "model": "apps/web/public/campuses/panjin/models/77952-0.glb",
+      "nativeSize": [
+        96,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "014c0146e518fe5681157a8172b6b7a6e9def6a0148bbed857e5b88e455165c1",
+      "image": ".local/city-map/model-sprites/panjin-77952-0.png",
+      "sha256": "c2da3edd8c61a84a343f8a745a604625253bb1a1a094a87a9edee688afab1656"
+    },
+    {
+      "id": "panjin-77953-0",
+      "model": "apps/web/public/campuses/panjin/models/77953-0.glb",
+      "nativeSize": [
+        80,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "b1922f3c9e2977713ba72632c2704909d166802105eb8f7a9f798afaceb2a71b",
+      "image": ".local/city-map/model-sprites/panjin-77953-0.png",
+      "sha256": "ec8c76de9721d8d1dcf00cdd9a5ef9b156b1e198509aefebe7c13395d3132bc1"
+    },
+    {
+      "id": "panjin-77954-0",
+      "model": "apps/web/public/campuses/panjin/models/77954-0.glb",
+      "nativeSize": [
+        96,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "f73a9ac6dfb2eadc9d97d8d858c19cc5192fb346d0b02c85258281f96521dd30",
+      "image": ".local/city-map/model-sprites/panjin-77954-0.png",
+      "sha256": "c500b569fb5ff865ae27ea1a447756edd588afa3d0e693607cabcf1ebad365ff"
+    },
+    {
+      "id": "panjin-77955-0",
+      "model": "apps/web/public/campuses/panjin/models/77955-0.glb",
+      "nativeSize": [
+        232,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "52735106d79ef377944e8510328e0d29989a9365fe8e152408b055269f61920e",
+      "image": ".local/city-map/model-sprites/panjin-77955-0.png",
+      "sha256": "1e9ad45d98a75855274b954e531401bbf3a2359e5d10f39ea629f0dd148468ad"
+    },
+    {
+      "id": "panjin-77956-0",
+      "model": "apps/web/public/campuses/panjin/models/77956-0.glb",
+      "nativeSize": [
+        232,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "978442afb81d632fddc88d22fb3114fbd279f2fa9c997d2e33491dbb7e7f482d",
+      "image": ".local/city-map/model-sprites/panjin-77956-0.png",
+      "sha256": "c7b38ecbb4ee026d166a06bd2f03344f7c04841befb99f2a77a4b25f672e782c"
+    },
+    {
+      "id": "panjin-77957-0",
+      "model": "apps/web/public/campuses/panjin/models/77957-0.glb",
+      "nativeSize": [
+        168,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "4f95a35f7a3ea527694ffe37056c8d7659ac7fa6954a101c49ea57a75780a878",
+      "image": ".local/city-map/model-sprites/panjin-77957-0.png",
+      "sha256": "2b99ef2ecb9eeca6607e9c11f8c860b04828a6389e33e5a9067bed415289dc64"
+    },
+    {
+      "id": "panjin-77958-0",
+      "model": "apps/web/public/campuses/panjin/models/77958-0.glb",
+      "nativeSize": [
+        168,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "618645ca9b431b3d4d86b8c83f3a0f7cf47febceceacae16a8003072c2495c92",
+      "image": ".local/city-map/model-sprites/panjin-77958-0.png",
+      "sha256": "f775c8d5a8abda91e860f969639770b99fd086a071dc3117c169ac97c1a9e111"
+    },
+    {
+      "id": "panjin-77959-0",
+      "model": "apps/web/public/campuses/panjin/models/77959-0.glb",
+      "nativeSize": [
+        168,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "7d3233d9e5edcc202eaa3f08c964cc9a9f89011c81a2e5b7af56420e8798189c",
+      "image": ".local/city-map/model-sprites/panjin-77959-0.png",
+      "sha256": "225fe18708387e39a4ebed85d07b021ab08761c9dc7b078bd6d6a783017bac52"
+    },
+    {
+      "id": "panjin-77960-0",
+      "model": "apps/web/public/campuses/panjin/models/77960-0.glb",
+      "nativeSize": [
+        168,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "8a67bde0f800c6dc1af692978356b3d25e827dd6845806950e95352851566951",
+      "image": ".local/city-map/model-sprites/panjin-77960-0.png",
+      "sha256": "9070dd7849c14bd94d68a213f1dc6258c4059cc28930e671921e55b72c7bb397"
+    },
+    {
+      "id": "panjin-77961-0",
+      "model": "apps/web/public/campuses/panjin/models/77961-0.glb",
+      "nativeSize": [
+        112,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "3ee91b7282c57f1fd4e6478672eaddee2adc6ee4b96fa2f8b5f60538db210173",
+      "image": ".local/city-map/model-sprites/panjin-77961-0.png",
+      "sha256": "3eddc393e31a11168a5f85bc4442e7ce3e6e16c449ce52d18bca13f30aff8f2c"
+    },
+    {
+      "id": "panjin-77962-0",
+      "model": "apps/web/public/campuses/panjin/models/77962-0.glb",
+      "nativeSize": [
+        112,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "807d43799b48d650175342b5d93b76c9b39eca5bb1cf36654e825aa0ef3683f5",
+      "image": ".local/city-map/model-sprites/panjin-77962-0.png",
+      "sha256": "ba4b71db023ea7c4b2739f13801100628dc722fbed14ad43140d7a723ca5ea12"
+    },
+    {
+      "id": "panjin-77963-0",
+      "model": "apps/web/public/campuses/panjin/models/77963-0.glb",
+      "nativeSize": [
+        168,
+        88
+      ],
+      "elevation": 26,
+      "modelSha256": "06461534b5641d0bb734382781b3530d2a9482ae5371b603943af3770ae93d8b",
+      "image": ".local/city-map/model-sprites/panjin-77963-0.png",
+      "sha256": "83febbe217a2c9e571ce66b181ae0d00050bfeb368f3b9f09f4d69757fddf00b"
+    },
+    {
+      "id": "panjin-77964-0",
+      "model": "apps/web/public/campuses/panjin/models/77964-0.glb",
+      "nativeSize": [
+        80,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "ff4d891842ed8e50bcd6866635ca6495d129c2a67eb89acd574aa800adf5ae9f",
+      "image": ".local/city-map/model-sprites/panjin-77964-0.png",
+      "sha256": "aa3543b490bfe0b26fbb250ddaaf26e0ce0f3a92667e7746070d4a9823208a25"
+    },
+    {
+      "id": "panjin-77965-0",
+      "model": "apps/web/public/campuses/panjin/models/77965-0.glb",
+      "nativeSize": [
+        40,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "00a81cf1e6d4f53153d011fe47a20a3991f447b945aa7e62eb69da3885ca5127",
+      "image": ".local/city-map/model-sprites/panjin-77965-0.png",
+      "sha256": "944e8d1f9de348bf21888840cef61ff0766c0ac680a492b487c06a7e0c02dad7"
+    },
+    {
+      "id": "panjin-77966-0",
+      "model": "apps/web/public/campuses/panjin/models/77966-0.glb",
+      "nativeSize": [
+        64,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "42b0554a05f4958c372f169d4082ba72a19a0fa2ba003707997403e3c030b6dd",
+      "image": ".local/city-map/model-sprites/panjin-77966-0.png",
+      "sha256": "342d9cf14e4a43c36da0004271ec5cf9879d759092c3636eb32937194b5f7f84"
+    },
+    {
+      "id": "panjin-77976-0",
+      "model": "apps/web/public/campuses/panjin/models/77976-0.glb",
+      "nativeSize": [
+        136,
+        128
+      ],
+      "elevation": 26,
+      "modelSha256": "9018e5a0748d15a26f4dcd3757cb2390092f6f0185c7aa82130cba460dde0f3f",
+      "image": ".local/city-map/model-sprites/panjin-77976-0.png",
+      "sha256": "4228db587e1b6571ce15b89372a7da22b62cd66ac51a577f4e174af88ef023ce"
+    },
+    {
+      "id": "panjin-77977-0",
+      "model": "apps/web/public/campuses/panjin/models/77977-0.glb",
+      "nativeSize": [
+        104,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "6a5c6c968807727ef33baad68f87869c4d35f45e7de307c0185a89ee1bcc6f55",
+      "image": ".local/city-map/model-sprites/panjin-77977-0.png",
+      "sha256": "c481acaabe5b76d0a5e3872cecbf37dddbf80f35af97a47795023b2fc9ad6b31"
+    },
+    {
+      "id": "panjin-77978-0",
+      "model": "apps/web/public/campuses/panjin/models/77978-0.glb",
+      "nativeSize": [
+        104,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "afa109b9c7b53054df543db6f7ae9566cd7a7526d478cf9685b87c77faadc1c0",
+      "image": ".local/city-map/model-sprites/panjin-77978-0.png",
+      "sha256": "6de2b77d1174b0093256ab1ca9adb056cc435f57da55e1d789569b270ef10e0f"
+    },
+    {
+      "id": "panjin-77979-0",
+      "model": "apps/web/public/campuses/panjin/models/77979-0.glb",
+      "nativeSize": [
+        104,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "5b28a7a06214308cfba7259cd2278aa2722f247d01ecfb156abdd780180d06db",
+      "image": ".local/city-map/model-sprites/panjin-77979-0.png",
+      "sha256": "3e0ac4ee996d8def324c29f5f50e76e671fd48da312f8423e5fa415a7068c555"
+    },
+    {
+      "id": "panjin-77980-0",
+      "model": "apps/web/public/campuses/panjin/models/77980-0.glb",
+      "nativeSize": [
+        48,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "db26b6565584e80d440222378dc3e3ebddde6770eb031fb9e577eb4b974f85f2",
+      "image": ".local/city-map/model-sprites/panjin-77980-0.png",
+      "sha256": "98d2e7371619ee37da79645a5352cd272722541fd84fe4d5b10eb9851910db73"
+    },
+    {
+      "id": "panjin-77981-0",
+      "model": "apps/web/public/campuses/panjin/models/77981-0.glb",
+      "nativeSize": [
+        232,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "2a52aece7e2fa1913d8a509b4eefae21f39e0b013ca8c839f0163f13bdb6d7e9",
+      "image": ".local/city-map/model-sprites/panjin-77981-0.png",
+      "sha256": "7fa63a9b0d3698491056d2122a5023b4e8619147c71728d8d9b8b68a632576fc"
+    },
+    {
+      "id": "panjin-77982-0",
+      "model": "apps/web/public/campuses/panjin/models/77982-0.glb",
+      "nativeSize": [
+        232,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "4b93c5f61c203d589b46dbcf7e6421874b587836a6abb8cb7244d5bbf9b9028e",
+      "image": ".local/city-map/model-sprites/panjin-77982-0.png",
+      "sha256": "e3787f48891f7623151e6f920d4e88595f836bfff2a47b7eddc00b885af08d58"
+    },
+    {
+      "id": "panjin-77983-0",
+      "model": "apps/web/public/campuses/panjin/models/77983-0.glb",
+      "nativeSize": [
+        168,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "96b5f5c146d17ccff2c6604306ee57124d6ae2def5a227873ca5905cc77d022c",
+      "image": ".local/city-map/model-sprites/panjin-77983-0.png",
+      "sha256": "e6e879b21fd79da3789eb2532596c9fa67c8a87430d77c6be08390fd23a50a88"
+    },
+    {
+      "id": "panjin-77984-0",
+      "model": "apps/web/public/campuses/panjin/models/77984-0.glb",
+      "nativeSize": [
+        104,
+        48
+      ],
+      "elevation": 26,
+      "modelSha256": "7d8a4ff71d904cf6282978e981917067b6520f40ee8fb09a6ceb2e18c38703dc",
+      "image": ".local/city-map/model-sprites/panjin-77984-0.png",
+      "sha256": "4971110c18f8f808dab8768fb76cf24fb72fefc3ae7c309b1f0a3c580df2bcad"
+    },
+    {
+      "id": "panjin-77985-0",
+      "model": "apps/web/public/campuses/panjin/models/77985-0.glb",
+      "nativeSize": [
+        232,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "052a976c581f527f8f82086a9a6e7487448443860ff49d8019c50a628e3112f8",
+      "image": ".local/city-map/model-sprites/panjin-77985-0.png",
+      "sha256": "68b7fa3059a88eb9638fbdd3a9af4f2082604afe81010f4d7f3ecc678e1b8fbc"
+    },
+    {
+      "id": "panjin-77986-0",
+      "model": "apps/web/public/campuses/panjin/models/77986-0.glb",
+      "nativeSize": [
+        176,
+        120
+      ],
+      "elevation": 26,
+      "modelSha256": "11f069fdc6153491dfefa8f7529e176d1a3ac022d9fee951650a790f5ee1700e",
+      "image": ".local/city-map/model-sprites/panjin-77986-0.png",
+      "sha256": "02358275748f83c6aada02e25ab513d2f2c6268d22920d661e65a563ae863755"
+    },
+    {
+      "id": "panjin-77987-0",
+      "model": "apps/web/public/campuses/panjin/models/77987-0.glb",
+      "nativeSize": [
+        232,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "2f1f5dabe394f691f682bacfd768a16d3b6f53636f0d9cd5874e10fda5fd889c",
+      "image": ".local/city-map/model-sprites/panjin-77987-0.png",
+      "sha256": "9edd79ceede126d560f4c5e91c115db916184514849196945e676024277344d3"
+    },
+    {
+      "id": "panjin-77988-0",
+      "model": "apps/web/public/campuses/panjin/models/77988-0.glb",
+      "nativeSize": [
+        232,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "ebf961394c0a1e6654375877ae2d13bfd9a19527e5a32ab39ab0d29a998ef1d9",
+      "image": ".local/city-map/model-sprites/panjin-77988-0.png",
+      "sha256": "e5cddeaebfa42ab4ac940eb7da59e7f718b43f2219cfbbc06d4a55e3a91a0fbd"
+    },
+    {
+      "id": "panjin-77989-0",
+      "model": "apps/web/public/campuses/panjin/models/77989-0.glb",
+      "nativeSize": [
+        104,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "8c318585e9003df0fa606dfae62007270c76a4ed3b28756d53b010eb9df1d904",
+      "image": ".local/city-map/model-sprites/panjin-77989-0.png",
+      "sha256": "c39991d7c4ef90e7b4ecbb881b4fbea4622852eba2d7495ef206281ea3e6617b"
+    },
+    {
+      "id": "panjin-77990-0",
+      "model": "apps/web/public/campuses/panjin/models/77990-0.glb",
+      "nativeSize": [
+        104,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "c72ac2bc723dddccf7652906451b939ce85a4e1a5d264c781972b31b2255a02f",
+      "image": ".local/city-map/model-sprites/panjin-77990-0.png",
+      "sha256": "5c137a44b6da4dea5d104a008a31c6b519dfc7a3555b5f700092b10e6892d393"
+    },
+    {
+      "id": "panjin-77991-0",
+      "model": "apps/web/public/campuses/panjin/models/77991-0.glb",
+      "nativeSize": [
+        104,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "e3ea0da0da45025f2ade4f401843d6de9ac554d7ac270ddbe23dbf926b1dcef1",
+      "image": ".local/city-map/model-sprites/panjin-77991-0.png",
+      "sha256": "44c0fb7df31ca95e21013d7f53885e67bcaff2f81f057e4804b8c7b8e2609144"
+    },
+    {
+      "id": "panjin-77992-0",
+      "model": "apps/web/public/campuses/panjin/models/77992-0.glb",
+      "nativeSize": [
+        104,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "3e7b5994b4e88617b3990238ff7a53844220070f7430f5f3a1d2d77bcc679359",
+      "image": ".local/city-map/model-sprites/panjin-77992-0.png",
+      "sha256": "45345862c0b85c3eaf12e715f1fb9ddf68009c579bb0441539e92048c2c61dec"
+    },
+    {
+      "id": "panjin-77993-0",
+      "model": "apps/web/public/campuses/panjin/models/77993-0.glb",
+      "nativeSize": [
+        104,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "82fcf10b138a7be04e6f8fac59b29bc6727f35cc1707dfedac5ad258e7f9f681",
+      "image": ".local/city-map/model-sprites/panjin-77993-0.png",
+      "sha256": "6d79f3ef8ac34e88da9704a57f8a2f4bfdd74600c0dc72154779111be2766ef3"
+    },
+    {
+      "id": "panjin-77995-0",
+      "model": "apps/web/public/campuses/panjin/models/77995-0.glb",
+      "nativeSize": [
+        96,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "6b888b935c867e942e19ee82bdfdc4475d9715cec341f2084956fb41c2401a7b",
+      "image": ".local/city-map/model-sprites/panjin-77995-0.png",
+      "sha256": "1f612b010f6e3e4495cf476718c0b23959959f10a4d360ccb04842b02dfb5328"
+    },
+    {
+      "id": "panjin-77996-0",
+      "model": "apps/web/public/campuses/panjin/models/77996-0.glb",
+      "nativeSize": [
+        88,
+        72
+      ],
+      "elevation": 26,
+      "modelSha256": "765b1c82814aa3f1666fc72e0365ca76c86fca50ab7d3a45b81ddf9d1e57d675",
+      "image": ".local/city-map/model-sprites/panjin-77996-0.png",
+      "sha256": "bca0d688b616e877080ab86e5eaa5af5d0bcd3fa9240321f99b52968a10cc0c0"
+    },
+    {
+      "id": "panjin-77997-0",
+      "model": "apps/web/public/campuses/panjin/models/77997-0.glb",
+      "nativeSize": [
+        168,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "9739a2cafb4543afdc071bca1ee48119ef29a7cac54a1563f4e7a35f4281d0be",
+      "image": ".local/city-map/model-sprites/panjin-77997-0.png",
+      "sha256": "f2fbea0645e42f71b0d59e36f38c7267ae96fb4f4ad28068aabdaff88246dbce"
+    },
+    {
+      "id": "panjin-77998-0",
+      "model": "apps/web/public/campuses/panjin/models/77998-0.glb",
+      "nativeSize": [
+        96,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "b8de8da0ea5d64d4f612e429923cf52c180768addb135966fdeaab30c26495c2",
+      "image": ".local/city-map/model-sprites/panjin-77998-0.png",
+      "sha256": "2598e1250f2b15ef00046d1cfced5038608b86037936ad6617cbf79d8f9be145"
+    },
+    {
+      "id": "panjin-77999-0",
+      "model": "apps/web/public/campuses/panjin/models/77999-0.glb",
+      "nativeSize": [
+        104,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "98748178521e70f1f3a4f8a8323341a00197436f71e1eab044a67bb6bd914610",
+      "image": ".local/city-map/model-sprites/panjin-77999-0.png",
+      "sha256": "10966677469f31d490fed0e4ff4377b3b45afb81518e21ef21b1235dd57d14e4"
+    },
+    {
+      "id": "panjin-78000-0",
+      "model": "apps/web/public/campuses/panjin/models/78000-0.glb",
+      "nativeSize": [
+        88,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "f9fd09d1e6451d7739bb5cdcbc67fb4d98e9b27fa570257b8b3598b36a563cc3",
+      "image": ".local/city-map/model-sprites/panjin-78000-0.png",
+      "sha256": "1cc2722ebb447a433d9f08115e11376b12bc5f69540a1790101d88d0933a70e7"
+    },
+    {
+      "id": "panjin-78001-0",
+      "model": "apps/web/public/campuses/panjin/models/78001-0.glb",
+      "nativeSize": [
+        104,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "a57db5562068847969b464a863c3899f8f00a91b2cc214d207282911edda1c71",
+      "image": ".local/city-map/model-sprites/panjin-78001-0.png",
+      "sha256": "60e75346e38c5cd714bf3459bb29fe9bf5aa96e5d0812ae41050913d22837d00"
+    },
+    {
+      "id": "panjin-78003-0",
+      "model": "apps/web/public/campuses/panjin/models/78003-0.glb",
+      "nativeSize": [
+        96,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "66efca486bd590b7c3c7dbc89eaeca66557a056a39fbd0627f130f018bc07e51",
+      "image": ".local/city-map/model-sprites/panjin-78003-0.png",
+      "sha256": "3463d1f88a978c1a8b6349a30f9654c708cdf71a114ad16f4d63c4424f19c508"
+    },
+    {
+      "id": "panjin-78004-0",
+      "model": "apps/web/public/campuses/panjin/models/78004-0.glb",
+      "nativeSize": [
+        96,
+        56
+      ],
+      "elevation": 26,
+      "modelSha256": "181d9049db6094a6ae6275ab927a4d178ed58ac3f8d2ce9831de3df6645c1f3e",
+      "image": ".local/city-map/model-sprites/panjin-78004-0.png",
+      "sha256": "b08eb374d7ee81bb26cd4ef44092d76819db6390b4e21212138139a9c6be4755"
+    },
+    {
+      "id": "panjin-78005-0",
+      "model": "apps/web/public/campuses/panjin/models/78005-0.glb",
+      "nativeSize": [
+        96,
+        64
+      ],
+      "elevation": 26,
+      "modelSha256": "06f24bd7893e1b60d29fa28129b5600c7869dbff8625ef5ec8282a3e95af65c1",
+      "image": ".local/city-map/model-sprites/panjin-78005-0.png",
+      "sha256": "155aa0de6f4a6876a87c3fbd43085083fd2b44bb4431d822ab274c006d5685d1"
+    },
+    {
+      "id": "panjin-78006-0",
+      "model": "apps/web/public/campuses/panjin/models/78006-0.glb",
+      "nativeSize": [
+        96,
+        80
+      ],
+      "elevation": 26,
+      "modelSha256": "9bfdc236d0ec0d2b1eadf64cbb9788e821f39fa390dddf1f034e9326fddb6538",
+      "image": ".local/city-map/model-sprites/panjin-78006-0.png",
+      "sha256": "206c236acbd0e2486643e53519222342240a3cf9fecd472f4f790af62d9ed2d7"
+    }
+  ]
+}

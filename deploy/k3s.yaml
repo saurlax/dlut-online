@@ -43,7 +43,7 @@ spec:
       terminationGracePeriodSeconds: 30
       initContainers:
         - name: configure-oidc
-          image: docker.io/local/dlut-online:hud-20261107-v1
+          image: docker.io/local/dlut-online:campuses-20261111-v1
           imagePullPolicy: Never
           command: [/app/dlut-online]
           args: [configure-oidc, --file=/run/oidc/provider.json, --dir=/data/pb_data]
@@ -55,7 +55,7 @@ spec:
               readOnly: true
       containers:
         - name: dlut-online
-          image: docker.io/local/dlut-online:hud-20261107-v1
+          image: docker.io/local/dlut-online:campuses-20261111-v1
           imagePullPolicy: Never
           ports:
             - name: http

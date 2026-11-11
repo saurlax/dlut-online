@@ -1,0 +1,1188 @@
+{
+  "campus": "panjin",
+  "source": {
+    "commit": "1e4466e78e009d1e9fed12882551a5990059f626",
+    "scene": "apps/game/assets/campuses/panjin/models/panjin_campus.tscn",
+    "sceneSha256": "5b09be99f54db8fbad58946e607947e5d6ee21d73ca61d13af3a8723a2d2f326",
+    "method": "Local Git archive and verified existing object cache; no network or LFS fetch."
+  },
+  "ground": "Flat shared pixel ground; archived terrain Y is omitted.",
+  "method": "Registered structural meshes; unlit native 8px/m color bake, at most 48 colors; no photo or PBR textures.",
+  "buildings": [
+    {
+      "id": "77949-0",
+      "file": "models/77949-0.glb",
+      "origin": [
+        -66.0131454467773,
+        0,
+        -192.894287109375
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 40,
+      "bytes": 3748,
+      "texture": "models/textures/77949-0.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 6662,
+      "paletteColors": 48
+    },
+    {
+      "id": "77950-0",
+      "file": "models/77950-0.glb",
+      "origin": [
+        -66.6819305419922,
+        0,
+        -237.547607421875
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 20,
+      "bytes": 2664,
+      "texture": "models/textures/77950-0.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 5140,
+      "paletteColors": 48
+    },
+    {
+      "id": "77951-0",
+      "file": "models/77951-0.glb",
+      "origin": [
+        -151.05256652832,
+        0,
+        -255.275314331055
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 20,
+      "bytes": 2664,
+      "texture": "models/textures/77951-0.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 5229,
+      "paletteColors": 47
+    },
+    {
+      "id": "77952-0",
+      "file": "models/77952-0.glb",
+      "origin": [
+        -55.8205261230469,
+        0,
+        -306.143371582031
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 36,
+      "bytes": 3536,
+      "texture": "models/textures/77952-0.png",
+      "textureSize": [
+        960,
+        960
+      ],
+      "textureBytes": 7183,
+      "paletteColors": 48
+    },
+    {
+      "id": "77953-0",
+      "file": "models/77953-0.glb",
+      "origin": [
+        -146.365539550781,
+        0,
+        -303.790893554688
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 28,
+      "bytes": 3100,
+      "texture": "models/textures/77953-0.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 5957,
+      "paletteColors": 47
+    },
+    {
+      "id": "77954-0",
+      "file": "models/77954-0.glb",
+      "origin": [
+        -133.488159179688,
+        0,
+        -368.014831542969
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 84,
+      "bytes": 6128,
+      "texture": "models/textures/77954-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 11604,
+      "paletteColors": 47
+    },
+    {
+      "id": "77955-0",
+      "file": "models/77955-0.glb",
+      "origin": [
+        79.8855056762695,
+        0,
+        -202.711853027344
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77955-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 20113,
+      "paletteColors": 48
+    },
+    {
+      "id": "77956-0",
+      "file": "models/77956-0.glb",
+      "origin": [
+        88.1171646118164,
+        0,
+        -245.66096496582
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77956-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 8121,
+      "paletteColors": 39
+    },
+    {
+      "id": "77957-0",
+      "file": "models/77957-0.glb",
+      "origin": [
+        126.933006286621,
+        0,
+        -290.576751708984
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77957-0.png",
+      "textureSize": [
+        896,
+        896
+      ],
+      "textureBytes": 6154,
+      "paletteColors": 42
+    },
+    {
+      "id": "77958-0",
+      "file": "models/77958-0.glb",
+      "origin": [
+        135.275802612305,
+        0,
+        -332.182586669922
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77958-0.png",
+      "textureSize": [
+        896,
+        896
+      ],
+      "textureBytes": 6201,
+      "paletteColors": 41
+    },
+    {
+      "id": "77959-0",
+      "file": "models/77959-0.glb",
+      "origin": [
+        106.712615966797,
+        0,
+        -387.165405273438
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77959-0.png",
+      "textureSize": [
+        896,
+        896
+      ],
+      "textureBytes": 6150,
+      "paletteColors": 43
+    },
+    {
+      "id": "77960-0",
+      "file": "models/77960-0.glb",
+      "origin": [
+        115.765884399414,
+        0,
+        -433.905883789063
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77960-0.png",
+      "textureSize": [
+        896,
+        896
+      ],
+      "textureBytes": 6620,
+      "paletteColors": 47
+    },
+    {
+      "id": "77961-0",
+      "file": "models/77961-0.glb",
+      "origin": [
+        310.151885986328,
+        0,
+        -361.166107177734
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 84,
+      "bytes": 6128,
+      "texture": "models/textures/77961-0.png",
+      "textureSize": [
+        1088,
+        1088
+      ],
+      "textureBytes": 27403,
+      "paletteColors": 48
+    },
+    {
+      "id": "77962-0",
+      "file": "models/77962-0.glb",
+      "origin": [
+        287.377227783203,
+        0,
+        -292.337463378906
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 88,
+      "bytes": 6348,
+      "texture": "models/textures/77962-0.png",
+      "textureSize": [
+        960,
+        960
+      ],
+      "textureBytes": 13187,
+      "paletteColors": 48
+    },
+    {
+      "id": "77963-0",
+      "file": "models/77963-0.glb",
+      "origin": [
+        281.599029541016,
+        0,
+        -185.373931884766
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 84,
+      "bytes": 6128,
+      "texture": "models/textures/77963-0.png",
+      "textureSize": [
+        1344,
+        1344
+      ],
+      "textureBytes": 52604,
+      "paletteColors": 48
+    },
+    {
+      "id": "77964-0",
+      "file": "models/77964-0.glb",
+      "origin": [
+        -111.927215576172,
+        0,
+        -481.685394287109
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 20,
+      "bytes": 2668,
+      "texture": "models/textures/77964-0.png",
+      "textureSize": [
+        576,
+        576
+      ],
+      "textureBytes": 3758,
+      "paletteColors": 48
+    },
+    {
+      "id": "77965-0",
+      "file": "models/77965-0.glb",
+      "origin": [
+        -30.4156379699707,
+        0,
+        -418.540924072266
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 16,
+      "bytes": 2448,
+      "texture": "models/textures/77965-0.png",
+      "textureSize": [
+        640,
+        640
+      ],
+      "textureBytes": 6068,
+      "paletteColors": 48
+    },
+    {
+      "id": "77966-0",
+      "file": "models/77966-0.glb",
+      "origin": [
+        -35.6095581054688,
+        0,
+        -464.40478515625
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2224,
+      "texture": "models/textures/77966-0.png",
+      "textureSize": [
+        576,
+        576
+      ],
+      "textureBytes": 4427,
+      "paletteColors": 47
+    },
+    {
+      "id": "77976-0",
+      "file": "models/77976-0.glb",
+      "origin": [
+        208.729751586914,
+        0,
+        433.087677001953
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77976-0.png",
+      "textureSize": [
+        1536,
+        1536
+      ],
+      "textureBytes": 36534,
+      "paletteColors": 48
+    },
+    {
+      "id": "77977-0",
+      "file": "models/77977-0.glb",
+      "origin": [
+        -139.057510375977,
+        0,
+        363.412506103516
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77977-0.png",
+      "textureSize": [
+        704,
+        704
+      ],
+      "textureBytes": 4352,
+      "paletteColors": 39
+    },
+    {
+      "id": "77978-0",
+      "file": "models/77978-0.glb",
+      "origin": [
+        -130.932769775391,
+        0,
+        316.374206542969
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77978-0.png",
+      "textureSize": [
+        704,
+        704
+      ],
+      "textureBytes": 4180,
+      "paletteColors": 43
+    },
+    {
+      "id": "77979-0",
+      "file": "models/77979-0.glb",
+      "origin": [
+        -121.024810791016,
+        0,
+        269.040954589844
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77979-0.png",
+      "textureSize": [
+        704,
+        704
+      ],
+      "textureBytes": 4176,
+      "paletteColors": 42
+    },
+    {
+      "id": "77980-0",
+      "file": "models/77980-0.glb",
+      "origin": [
+        -97.7732925415039,
+        0,
+        224.999984741211
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77980-0.png",
+      "textureSize": [
+        512,
+        512
+      ],
+      "textureBytes": 2826,
+      "paletteColors": 46
+    },
+    {
+      "id": "77981-0",
+      "file": "models/77981-0.glb",
+      "origin": [
+        67.5112838745117,
+        0,
+        403.465454101563
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77981-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 8336,
+      "paletteColors": 48
+    },
+    {
+      "id": "77982-0",
+      "file": "models/77982-0.glb",
+      "origin": [
+        77.1448974609375,
+        0,
+        356.109893798828
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77982-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 8376,
+      "paletteColors": 48
+    },
+    {
+      "id": "77983-0",
+      "file": "models/77983-0.glb",
+      "origin": [
+        63.7950096130371,
+        0,
+        305.264465332031
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77983-0.png",
+      "textureSize": [
+        896,
+        896
+      ],
+      "textureBytes": 6158,
+      "paletteColors": 43
+    },
+    {
+      "id": "77984-0",
+      "file": "models/77984-0.glb",
+      "origin": [
+        50.1285667419434,
+        0,
+        253.923721313477
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77984-0.png",
+      "textureSize": [
+        704,
+        704
+      ],
+      "textureBytes": 4132,
+      "paletteColors": 37
+    },
+    {
+      "id": "77985-0",
+      "file": "models/77985-0.glb",
+      "origin": [
+        94.9531936645508,
+        0,
+        209.639663696289
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 20,
+      "bytes": 2668,
+      "texture": "models/textures/77985-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 8836,
+      "paletteColors": 47
+    },
+    {
+      "id": "77986-0",
+      "file": "models/77986-0.glb",
+      "origin": [
+        19.9444522857666,
+        0,
+        80.9670867919922
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 36,
+      "bytes": 3532,
+      "texture": "models/textures/77986-0.png",
+      "textureSize": [
+        1664,
+        1664
+      ],
+      "textureBytes": 67261,
+      "paletteColors": 47
+    },
+    {
+      "id": "77987-0",
+      "file": "models/77987-0.glb",
+      "origin": [
+        65.4600524902344,
+        0,
+        -57.090461730957
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77987-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 9151,
+      "paletteColors": 48
+    },
+    {
+      "id": "77988-0",
+      "file": "models/77988-0.glb",
+      "origin": [
+        75.5136260986328,
+        0,
+        -104.295707702637
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77988-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 8936,
+      "paletteColors": 47
+    },
+    {
+      "id": "77989-0",
+      "file": "models/77989-0.glb",
+      "origin": [
+        214.769485473633,
+        0,
+        -56.400276184082
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77989-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 9285,
+      "paletteColors": 48
+    },
+    {
+      "id": "77990-0",
+      "file": "models/77990-0.glb",
+      "origin": [
+        303.858795166016,
+        0,
+        -35.8005104064941
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77990-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 8861,
+      "paletteColors": 48
+    },
+    {
+      "id": "77991-0",
+      "file": "models/77991-0.glb",
+      "origin": [
+        286.514068603516,
+        0,
+        52.1033248901367
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2228,
+      "texture": "models/textures/77991-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 10187,
+      "paletteColors": 48
+    },
+    {
+      "id": "77992-0",
+      "file": "models/77992-0.glb",
+      "origin": [
+        264.243835449219,
+        0,
+        176.87077331543
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77992-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 8950,
+      "paletteColors": 48
+    },
+    {
+      "id": "77993-0",
+      "file": "models/77993-0.glb",
+      "origin": [
+        247.015197753906,
+        0,
+        265.901733398438
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77993-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 7574,
+      "paletteColors": 46
+    },
+    {
+      "id": "77995-0",
+      "file": "models/77995-0.glb",
+      "origin": [
+        -86.1812896728516,
+        0,
+        -120.97144317627
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 12,
+      "bytes": 2232,
+      "texture": "models/textures/77995-0.png",
+      "textureSize": [
+        896,
+        896
+      ],
+      "textureBytes": 5917,
+      "paletteColors": 46
+    },
+    {
+      "id": "77996-0",
+      "file": "models/77996-0.glb",
+      "origin": [
+        -161.60417175293,
+        0,
+        179.284561157227
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 20,
+      "bytes": 2668,
+      "texture": "models/textures/77996-0.png",
+      "textureSize": [
+        832,
+        832
+      ],
+      "textureBytes": 8424,
+      "paletteColors": 48
+    },
+    {
+      "id": "77997-0",
+      "file": "models/77997-0.glb",
+      "origin": [
+        -283.862457275391,
+        0,
+        291.843444824219
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 28,
+      "bytes": 3100,
+      "texture": "models/textures/77997-0.png",
+      "textureSize": [
+        1216,
+        1216
+      ],
+      "textureBytes": 34164,
+      "paletteColors": 48
+    },
+    {
+      "id": "77998-0",
+      "file": "models/77998-0.glb",
+      "origin": [
+        -304.713500976563,
+        0,
+        170.056610107422
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 28,
+      "bytes": 3100,
+      "texture": "models/textures/77998-0.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 5921,
+      "paletteColors": 48
+    },
+    {
+      "id": "77999-0",
+      "file": "models/77999-0.glb",
+      "origin": [
+        -303.544372558594,
+        0,
+        106.626472473145
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 28,
+      "bytes": 3100,
+      "texture": "models/textures/77999-0.png",
+      "textureSize": [
+        960,
+        960
+      ],
+      "textureBytes": 7276,
+      "paletteColors": 48
+    },
+    {
+      "id": "78000-0",
+      "file": "models/78000-0.glb",
+      "origin": [
+        -225.694625854492,
+        0,
+        135.00146484375
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 20,
+      "bytes": 2664,
+      "texture": "models/textures/78000-0.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 5270,
+      "paletteColors": 48
+    },
+    {
+      "id": "78001-0",
+      "file": "models/78001-0.glb",
+      "origin": [
+        -207.602844238281,
+        0,
+        74.8571319580078
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 28,
+      "bytes": 3096,
+      "texture": "models/textures/78001-0.png",
+      "textureSize": [
+        1024,
+        1024
+      ],
+      "textureBytes": 8649,
+      "paletteColors": 48
+    },
+    {
+      "id": "78003-0",
+      "file": "models/78003-0.glb",
+      "origin": [
+        -129.434432983398,
+        0,
+        104.150993347168
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 28,
+      "bytes": 3100,
+      "texture": "models/textures/78003-0.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 5999,
+      "paletteColors": 48
+    },
+    {
+      "id": "78004-0",
+      "file": "models/78004-0.glb",
+      "origin": [
+        -119.434684753418,
+        0,
+        56.1651153564453
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 28,
+      "bytes": 3100,
+      "texture": "models/textures/78004-0.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 6908,
+      "paletteColors": 48
+    },
+    {
+      "id": "78005-0",
+      "file": "models/78005-0.glb",
+      "origin": [
+        -110.059577941895,
+        0,
+        7.7409143447876
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 28,
+      "bytes": 3100,
+      "texture": "models/textures/78005-0.png",
+      "textureSize": [
+        768,
+        768
+      ],
+      "textureBytes": 6704,
+      "paletteColors": 48
+    },
+    {
+      "id": "78006-0",
+      "file": "models/78006-0.glb",
+      "origin": [
+        -109.823226928711,
+        0,
+        -55.4331893920898
+      ],
+      "baseSource": {
+        "objects": [
+          "Building",
+          "Roof"
+        ]
+      },
+      "facility": false,
+      "triangles": 28,
+      "bytes": 3100,
+      "texture": "models/textures/78006-0.png",
+      "textureSize": [
+        960,
+        960
+      ],
+      "textureBytes": 6789,
+      "paletteColors": 48
+    }
+  ]
+}

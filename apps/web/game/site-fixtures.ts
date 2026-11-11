@@ -68,7 +68,7 @@ export class SiteFixtures {
       this.boards.push({ center: new THREE.Vector2(group.position.x, group.position.z), axis: new THREE.Vector2(...board.direction), halfWidth: board.width / 2 });
     }
     // A fixed pool keeps shader light counts stable and limits per-pixel cost.
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < Math.min(4, this.lamps.length); i++) {
       const light = new THREE.SpotLight(0xffd3a1, 0, 16, Math.PI / 3, 0.75, 2);
       light.castShadow = false;
       this.lights.push(light);

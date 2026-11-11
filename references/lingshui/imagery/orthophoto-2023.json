@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "title": "大连理工大学校园 正射影像图",
+  "publisher": "辽宁省生态环境厅（报告公开平台）",
+  "image_author": "校园管理与修缮中心（图内署名）",
+  "document_title": "大连理工大学三维X射线CT系统应用项目环境影响报告表（报批稿）",
+  "document_date": "2024-05",
+  "source_url": "https://sthj.ln.gov.cn/sthj/zfxxgk/fdzdgknr/xzxkxxgk/czzj/hbzxzjxm/2024092515455333124/2024092515450714943.pdf",
+  "publication_url": "https://sthj.ln.gov.cn/sthj/zfxxgk/fdzdgknr/xzxkxxgk/czzj/hbzxzjxm/2024092515455333124/index.shtml",
+  "retrieved": "2026-09-17",
+  "capture_date": "2023-05",
+  "pdf_page_one_based": 22,
+  "printed_page": 18,
+  "figure": "附图1-3 本项目位置示意图",
+  "pdf_sha256": "14e4295930fb0e55770167a65352fd15feb675d47710406bafee41e4e2346a22",
+  "embedded_image": {
+    "name": "IM144.jp2",
+    "size_pixels": [
+      927,
+      899
+    ],
+    "sha256": "ecfb0d08945c3e0f6f21d5e4a7465b5423a065e64afbcf4df97482c890fd8c54"
+  },
+  "coverage": "凌水主校区中东部，图中可识别图书馆、教学馆、学生文化中心及东山部分住宅；不是完整校区影像。",
+  "horizontal_crs": "未核实",
+  "vertical_datum": "未提供",
+  "georeferencing": "未配准，无可读坐标网格或控制点表",
+  "ground_sample_distance": "未提供；附件像素尺寸不等于原始航测分辨率",
+  "accuracy": "未提供独立精度报告",
+  "status": "已用于离线来源核对，未用于生成几何",
+  "use": "交叉核对可见布局和对象身份；后续配准须选取同一地面位置的控制点并报告残差。",
+  "limits": [
+    "报告标注为正射影像，但仍不能把可见屋顶外缘直接当作墙脚。",
+    "原图压缩、文字覆盖和树冠遮挡影响描边。",
+    "不覆盖西山8舍、博留6舍及海映楼争议区域，不能独立核准这些道路修正。",
+    "学生文化中心屋顶不能证明道路贯通楼底的位置或净高。",
+    "2023年影像不自动代表当前现状。"
+  ],
+  "license": {
+    "name": "未发现明确的第三方复制或再分发许可",
+    "terms_url": null,
+    "authorization_status": "仅离线核对；原PDF及图片不纳入发行资源"
+  }
+}

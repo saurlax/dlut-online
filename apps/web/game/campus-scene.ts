@@ -30,6 +30,7 @@ export interface EnvironmentAnimations {
 }
 
 export interface CampusMap {
+  origin: [number, number];
   tileSize: number;
   offset: [number, number];
   chunkSize: number;
@@ -49,6 +50,8 @@ export interface CampusMap {
     width: number;
     height: number;
     footprint: [number, number][];
+    holes?: [number, number][][];
+    collisionPolygons?: [number, number][][];
     depth: number;
     heightMeters: number;
     style: string;
@@ -129,7 +132,7 @@ export class CampusScene {
   private stopResize?: () => void;
   private disposed = false;
 
-  constructor(private readonly campus: CampusMap, private readonly environment: EnvironmentAnimations, fixtureData: SiteFixtureData) {
+  constructor(private readonly campus: CampusMap, private readonly environment: EnvironmentAnimations, fixtureData: SiteFixtureData, private readonly assetBase: string) {
     this.renderer.setPixelRatio(1);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.autoUpdate = false;
@@ -212,11 +215,11 @@ export class CampusScene {
   async start(host: HTMLElement, signal: AbortSignal, progress: (value: number) => void) {
     host.append(this.renderer.domElement);
     const image = async (path: string) => {
-      const response = await fetch(`/campuses/eda/${path}`, { signal });
+      const response = await fetch(`${this.assetBase}/${path}`, { signal });
       if (!response.ok) throw new Error(`Image request failed: ${path}`);
       return createImageBitmap(await response.blob());
     };
-    const response = await fetch("/campuses/eda/models/manifest.json", { signal });
+    const response = await fetch(`${this.assetBase}/models/manifest.json`, { signal });
     if (!response.ok) throw new Error("Model manifest request failed");
     const manifest: ModelManifest = await response.json();
     const images = await Promise.all([image("tile-atlas.png"), image(this.environment.water.image)]);
@@ -236,9 +239,9 @@ export class CampusScene {
     const worker = async () => {
       while (pending.length) {
         const asset = pending.shift()!;
-        const response = await fetch(`/campuses/eda/${asset.file}`, { signal });
+        const response = await fetch(`${this.assetBase}/${asset.file}`, { signal });
         if (!response.ok) throw new Error(`Model request failed: ${asset.id}`);
-        const gltf = await loader.parseAsync(await response.arrayBuffer(), "/campuses/eda/models/");
+        const gltf = await loader.parseAsync(await response.arrayBuffer(), `${this.assetBase}/models/`);
         const group = gltf.scene;
         group.traverse(object => {
           if (!(object instanceof THREE.Mesh)) return;
@@ -765,8 +768,13 @@ export class CampusScene {
     context.fillStyle = '#e2d5b4';
     for (const building of this.campus.buildings) {
       context.beginPath();
-      building.footprint.forEach(([x,y], i) => i === 0 ? context.moveTo(x/2,y/2) : context.lineTo(x/2,y/2));
-      context.closePath(); context.fill();
+      for (const ring of building.collisionPolygons ?? [building.footprint, ...(building.holes ?? [])]) {
+        if (building.collisionPolygons) context.beginPath();
+        ring.forEach(([x,y], i) => i === 0 ? context.moveTo(x/2,y/2) : context.lineTo(x/2,y/2));
+        context.closePath();
+        if (building.collisionPolygons) context.fill();
+      }
+      if (!building.collisionPolygons) context.fill("evenodd");
     }
     return canvas;
   }
@@ -777,17 +785,11 @@ export class CampusScene {
       : { x: this.campus.focus[0] / 2, y: this.campus.focus[1] / 2, direction: 0, active: false };
   }
 
-  mapSnapshot() {
-    return {
-      width: Math.ceil(this.campus.width / 10),
-      height: Math.ceil(this.campus.height / 10),
-      player: this.actor ? { x: Math.round(this.actor.x / 160), y: Math.round(this.actor.y / 160) } : null,
-      landmarks: this.campus.buildings.filter(b=>!b.id.endsWith('-podium')).map(b=>{
-        const xs=b.footprint.map(p=>p[0]),ys=b.footprint.map(p=>p[1]);
-        const x=Math.floor(Math.min(...xs)/10),y=Math.floor(Math.min(...ys)/10);
-        return {id:b.id,name:b.name,x,y,width:Math.max(1,Math.ceil(Math.max(...xs)/10)-x),height:Math.max(1,Math.ceil(Math.max(...ys)/10)-y)};
-      }),
-    };
+  geographicPosition(): [number, number] | null {
+    if (!this.actor) return null;
+    const [lon,lat]=this.campus.origin;
+    return [lon+(this.actor.x/16+this.campus.offset[0])/(111320*Math.cos(lat*Math.PI/180)),
+      lat-(this.actor.y/16+this.campus.offset[1])/111320];
   }
 
   travelToLandmark(id: string) {
@@ -822,20 +824,25 @@ export class CampusScene {
     if (!/^(grass|woodland|field|path|asphalt|red-walk|track|court|paving|bridge)-/.test(material))
       return false;
     for (const b of this.campus.buildings) {
+      if (b.collisionPolygons) {
+        if (b.collisionPolygons.some(ring => this.insideFootprint(x / 16, y / 16, ring))) return false;
+        continue;
+      }
       let inside = false;
-      const p = b.footprint;
-      for (let i = 0, j = p.length - 1; i < p.length; j = i++) {
-        if (
-          p[i][1] > y / 16 !== p[j][1] > y / 16 &&
-          x / 16 <
-            ((p[j][0] - p[i][0]) * (y / 16 - p[i][1])) / (p[j][1] - p[i][1]) +
-              p[i][0]
-        )
-          inside = !inside;
+      for (const p of [b.footprint, ...(b.holes ?? [])]) {
+        if (this.insideFootprint(x/16,y/16,p)) inside = !inside;
       }
       if (inside) return false;
     }
     return true;
+  }
+
+  private insideFootprint(x: number, y: number, ring: [number, number][]) {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      if ((ring[i][1] > y) !== (ring[j][1] > y) && x < (ring[j][0] - ring[i][0]) * (y - ring[i][1]) / (ring[j][1] - ring[i][1]) + ring[i][0]) inside = !inside;
+    }
+    return inside;
   }
 
 }

@@ -55,12 +55,16 @@ class Catalog:
         return self.ids[name]
 
 
-def main():
+def main(campus="eda"):
+    global SOURCE, OUTPUT
+    SOURCE=ROOT/"references"/campus
+    OUTPUT=ROOT/"apps/web/public/campuses"/campus
+    OUTPUT.mkdir(parents=True,exist_ok=True)
     geometry=read(SOURCE/"geometry.json")
     planting=read(SOURCE/"planting.json")
     origin=geometry["origin"]
     root,ways,points=load_osm(SOURCE/"osm.osm.gz",origin)
-    boundary=points(ways["215560705"])
+    boundary=points(ways[str(geometry.get("boundary_osm_way_id", "215560705"))])
     all_points=boundary+[p for b in geometry["buildings"] for p in b["points"]]
     left=math.floor((min(x for x,y in all_points)-48)/CHUNK)*CHUNK
     top=math.floor((min(y for x,y in all_points)-80)/CHUNK)*CHUNK
@@ -123,7 +127,18 @@ def main():
     print("Building independent exteriors",flush=True)
     buildings=[]
     for source in geometry["buildings"]:
-        buildings.append(build_building(source,(left,top),OUTPUT/"buildings"))
+        if campus=="eda":
+            buildings.append(build_building(source,(left,top),OUTPUT/"buildings"))
+        else:
+            footprint=[[x-left,y-top] for x,y in source["points"]]
+            xs,ys=zip(*footprint)
+            buildings.append({"id":source["id"],"name":source["name"],"footprint":footprint,
+                "holes":[[[x-left,y-top] for x,y in ring] for ring in source.get("holes",[])],
+                "x":min(xs),"y":min(ys),"width":max(xs)-min(xs),"height":max(ys)-min(ys),
+                "heightMeters":source["height"],"heightBasis":source["height_source"],
+                "depth":max(ys),"style":"registered","osmId":source["osm_id"]})
+            if "collisionPolygons" in source:
+                buildings[-1]["collisionPolygons"]=[[[x-left,y-top] for x,y in ring] for ring in source["collisionPolygons"]]
         for part in source.get("parts",[]):
             if part["role"]=="podium":
                 podium={**source,"id":source["id"]+"-podium","points":part["points"],"height":8.2,
@@ -138,8 +153,8 @@ def main():
         p=points(way)
         if inside_polygon(sum(x for x,y in p)/len(p),sum(y for x,y in p)/len(p),boundary):
             unresolved.append({"id":"way/"+way.attrib['id'],"name":tags.get("name",""),
-                               "reason":"unregistered compound boundary overlaps verified building footprints; withheld pending photo registration"})
-    prototypes=plant_prototypes(catalog,encode)
+                               "reason":"unregistered compound boundary overlaps verified building footprints; withheld pending photo registration" if campus=="eda" else "OSM building has no registered campus identity; omitted"})
+    prototypes=plant_prototypes(catalog,encode) if planting["instances"] else {}
     plants=[];skipped=0
     for i,source in enumerate(planting["instances"]):
         x,y=source["x"]-left,source["y"]-top
@@ -151,10 +166,10 @@ def main():
         sprite=prototypes[key]
         plants.append({"id":i,"prototype":key,"x":round(x-sprite['width']/2,3),
                        "y":round(y-sprite['height']+.2,3),"depth":round(y,3),"zone":source["zone"]})
-    manifest={"campus":"eda","tileSize":16,"metersPerTile":1,"chunkSize":CHUNK,
+    manifest={"campus":campus,"tileSize":16,"metersPerTile":1,"chunkSize":CHUNK,
               "orientation":"north-up","origin":origin,"offset":[left,top],"width":width,"height":height,
               "boundary":[[x-left,y-top] for x,y in boundary],"textures":catalog.names,
-              "focus":[-62-left,194-top],"chunks":chunks,"buildings":buildings,
+              "focus":[geometry.get("spawn_xz",[-62,194])[0]-left,geometry.get("spawn_xz",[-62,194])[1]-top],"chunks":chunks,"buildings":buildings,
               "plantPrototypes":prototypes,"plants":plants,
               "materials":MATERIALS,"materialRuns":encode(material_cells),
               "sources":sources,"attribution":"© OpenStreetMap contributors, ODbL 1.0"}
@@ -166,15 +181,27 @@ def main():
          "sourceSha256":hashlib.sha256((SOURCE/"osm.osm.gz").read_bytes()).hexdigest(),
          "limits":["building exteriors simplified from photographs; no interiors",
                    "registered planting positions and heights are estimates, not surveyed trees",
-                   "unverified buildings retain footprint-only roofs"]})
+                   "unverified buildings retain footprint-only roofs"] if campus=="eda" else [
+                   "registered exterior shells only; no interiors; unmeasured heights remain estimates",
+                   "unregistered legacy silhouettes, planting and fixtures are withheld",
+                   "flat ground; archived DSM elevation is not applied"]})
     keep=set(catalog.names)
     for file in catalog.directory.glob("*.png"):
         if file.stem not in keep:file.unlink()
     from build_tile_atlas import build as build_tile_atlas
-    build_tile_atlas()
-    from build_site_fixtures import build as build_site_fixtures
-    build_site_fixtures()
+    build_tile_atlas(OUTPUT)
+    if campus=="eda":
+        from build_site_fixtures import build as build_site_fixtures
+        build_site_fixtures()
+    else:
+        save(OUTPUT/"site-fixtures.json",{"lamps":[],"noticeboards":[]})
+        from generate_environment_animations import main as animations
+        animations(OUTPUT)
     print(f"Generated {len(buildings)} building objects, {len(plants)} plants, {len(catalog.names)} native tiles",flush=True)
 
 
-if __name__=="__main__":main()
+if __name__=="__main__":
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--campus",choices=("eda","lingshui","panjin"),default="eda")
+    main(parser.parse_args().campus)

@@ -14,10 +14,18 @@ import type { GameSession } from "../../game/game-session";
 import type { WorldSnapshot } from "../../game/players";
 import { RealtimeConnection } from "../../game/realtime";
 import "./map.css";
+import { campuses, type Campus } from "../../game/campuses";
 
 export default function MapCanvas({session}: {session:GameSession}) {
+  const [destination, setDestination] = useState<{campus:Campus; landmark:string}>({campus:campuses[0], landmark:""});
+  useEffect(() => { history.replaceState(null, "", "/game/"); }, []);
+  return <CampusRegion key={destination.campus.id} session={session} currentCampus={destination.campus} landmark={destination.landmark} onTravel={(campus, landmark) => setDestination({campus, landmark})} />;
+}
+
+function CampusRegion({session, currentCampus, landmark, onTravel}: {session:GameSession; currentCampus:Campus; landmark:string; onTravel:(campus:Campus, landmark:string)=>void}) {
+  const campusAssets = `/campuses/${currentCampus.id}`;
   const scene = useRef<CampusScene | null>(null);
-  const realtime=useMemo(()=>new RealtimeConnection(session.token),[session.token]);
+  const realtime=useMemo(()=>new RealtimeConnection(session.token, currentCampus.id, landmark),[session.token, currentCampus.id, landmark]);
   const host = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -29,6 +37,9 @@ export default function MapCanvas({session}: {session:GameSession}) {
     if (!loaded) return;
     scene.current!.connectMovement((inputs, revision) => realtime.movement(inputs, revision), id => realtime.travel(id));
     const unsubscribe = realtime.subscribe(event => {
+      if (event.type === "travel_error") {
+        setError(true); setLoaded(false); return;
+      }
       if (event.type === "world" || event.type === "connected") {
         scene.current!.receiveWorld(event.data as WorldSnapshot); return;
       }
@@ -48,9 +59,9 @@ export default function MapCanvas({session}: {session:GameSession}) {
     let campus: CampusScene | undefined;
     async function start() {
       const [response, animationResponse, fixtureResponse] = await Promise.all([
-        fetch("/campuses/eda/map.json", { signal: abort.signal }),
-        fetch("/campuses/eda/animations/manifest.json", { signal: abort.signal }),
-        fetch("/campuses/eda/site-fixtures.json", { signal: abort.signal }),
+        fetch(`${campusAssets}/map.json`, { signal: abort.signal }),
+        fetch(`${campusAssets}/animations/manifest.json`, { signal: abort.signal }),
+        fetch(`${campusAssets}/site-fixtures.json`, { signal: abort.signal }),
       ]);
       if (!response.ok || !animationResponse.ok || !fixtureResponse.ok) throw new Error("Map request failed");
       const data: CampusMap = await response.json();
@@ -59,7 +70,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
       await document.fonts.load('12px "Fusion Pixel"', session.state.profile.name);
       if (abort.signal.aborted) return;
       setProgress(20);
-      campus = new CampusScene(data, animations, fixtures);
+      campus = new CampusScene(data, animations, fixtures, campusAssets);
       scene.current = campus;
       await campus.start(host.current!, abort.signal, value => setProgress(20 + Math.round(value * 75)));
       if (abort.signal.aborted) return;
@@ -73,14 +84,14 @@ export default function MapCanvas({session}: {session:GameSession}) {
       abort.abort();
       campus?.destroy();
     };
-  }, [session]);
+  }, [session, campusAssets]);
 
   return (
     <div className="campus-map">
       <div
         className="campus-canvas"
         ref={host}
-        aria-label="开发区校区像素地图"
+        aria-label={`${currentCampus.name}像素地图`}
       />
       {loaded && <Environment realtime={realtime} />}
       <div className="pixel-interface" ref={setInterfaceHost}>
@@ -104,7 +115,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
             <Joystick onMove={(x,y)=>scene.current!.setTouchMovement(x,y)} />
             <Chat realtime={realtime} />
             <Minimap scene={()=>scene.current!} />
-            <WorldMap portal={interfaceHost} scene={()=>scene.current!} />
+            <WorldMap portal={interfaceHost} scene={()=>scene.current!} currentCampus={currentCampus} onTravel={onTravel} />
             <Wardrobe
               session={session}
               portal={interfaceHost}

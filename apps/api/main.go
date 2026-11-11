@@ -30,11 +30,25 @@ func main() {
 		hub := chat.Register(event, guests)
 		environment.Register(event, guests)
 		executeCommand := commands.Register(event, environment)
-		world, err := realtime.LoadWorld(os.DirFS("public"))
-		if err != nil {
-			return err
+		campuses := map[string]realtime.Campus{}
+		for _, campus := range []string{"eda", "lingshui", "panjin"} {
+			world, err := realtime.LoadWorld(os.DirFS("public"), campus)
+			if err != nil {
+				return err
+			}
+			localEnvironment, execute := environment, executeCommand
+			if campus != "eda" {
+				latitude, longitude := 38.881499, 121.520186
+				if campus == "panjin" {
+					latitude, longitude = 40.686319, 122.11917
+				}
+				localEnvironment = weather.NewAt(latitude, longitude)
+				localEnvironment.Start()
+				execute = commands.NewExecutor(localEnvironment)
+			}
+			campuses[campus] = realtime.Campus{World: world, Environment: localEnvironment, Execute: execute}
 		}
-		realtime.Register(event, guests, hub, environment, executeCommand, world)
+		realtime.Register(event, guests, hub, campuses)
 		if err := site.Register(event, os.DirFS("public")); err != nil {
 			return err
 		}

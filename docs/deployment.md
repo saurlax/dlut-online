@@ -20,8 +20,8 @@ Actions 仅运行测试与编译验证，不发布镜像或 Release。正式部�
 构建并导入清单指定的镜像，然后应用部署：
 
 ```sh
-docker build -t docker.io/local/dlut-online:hud-20261107-v1 .
-docker save docker.io/local/dlut-online:hud-20261107-v1 -o dlut-online.tar
+docker build -t docker.io/local/dlut-online:campuses-20261111-v1 .
+docker save docker.io/local/dlut-online:campuses-20261111-v1 -o dlut-online.tar
 # 在 Tokyo 节点执行
 sudo k3s ctr images import dlut-online.tar
 kubectl --context example-worker apply -f deploy/k3s.yaml

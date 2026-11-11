@@ -1,0 +1,26 @@
+[
+  {
+    "file": "references/panjin/vegetation/photos/pj-2025-5.jpg",
+    "url": "https://pjxqzwb.dlut.edu.cn/virtual_attach_file.vsb?afc=4nzv8YMmffLmWVLi8W7nNMRnm7aU8QDRoRT7oznkn7C8M4N0gihFp2hmCIa0U1hRUYhRMYyDUmC4Lz9sLRQRL4-bMzffnl7bnmr2LRUPolQFMNLiLmCPLzWFLmC4nmlDgtXaQ4Oeo4xaqjXsCtbT6YhXptQ0g47aM470L4NaLSbw62s8c&oid=2122008054&tid=1071&nid=3901&e=.jpg",
+    "source_page": "https://pjxqzwb.dlut.edu.cn/info/1071/3901.htm",
+    "object_id": "pj-2025:5",
+    "retrieved": "2026-09-16",
+    "original_sha256": "3451e3fd7e644865d8d44a004c7f7981aea2ea4c9aa8c783d8c0647d10a84643",
+    "sha256": "ed654fdd3cc801b43487fc01d95a1f2d4313c8b7d1dacc9f4c1cdfa508878c13",
+    "processing": "max 1600x1200 JPEG quality 82",
+    "usage": "offline vegetation reference",
+    "license": "Not confirmed; no runtime redistribution"
+  },
+  {
+    "file": "references/panjin/vegetation/photos/pj-2025-6.jpg",
+    "url": "https://pjxqzwb.dlut.edu.cn/virtual_attach_file.vsb?afc=4M7l8YLmTVMlVkniR-DM7nVoRM2Lz9D4UmQ2nzNDnl-bM7U0gihFp2hmCIa0MSh7nkybLYyinR-ZU8LDUlU8MR7inzW7LNWVMll8MzlinRnFozUanRNboRQFLmA7M4nkgtXaQ4Oeo4xaqjXsCtbT6YhXptQ0g47aM470L4NaLSbw62s8c&oid=2122008054&tid=1071&nid=3901&e=.jpg",
+    "source_page": "https://pjxqzwb.dlut.edu.cn/info/1071/3901.htm",
+    "object_id": "pj-2025:6",
+    "retrieved": "2026-09-16",
+    "original_sha256": "e8191dd172fdfab1730afc9e6d2d5ff9b520386d7eecab5e51b3c7f29a175937",
+    "sha256": "e582d169c0c925dc9ace76a02fb1459d6cf3fdec1543c3bfbc72f592d88516d2",
+    "processing": "max 1600x1200 JPEG quality 82",
+    "usage": "offline vegetation reference",
+    "license": "Not confirmed; no runtime redistribution"
+  }
+]

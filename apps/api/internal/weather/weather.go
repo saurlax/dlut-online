@@ -21,15 +21,19 @@ type Snapshot struct {
 	Available  bool    `json:"available"`
 }
 type Service struct {
-	mu         sync.Mutex
-	value      current
-	timeOffset time.Duration
-	listeners  map[chan Snapshot]bool
-	client     http.Client
+	mu                  sync.Mutex
+	value               current
+	timeOffset          time.Duration
+	listeners           map[chan Snapshot]bool
+	client              http.Client
+	latitude, longitude float64
 }
 
 func New() *Service {
-	return &Service{client: http.Client{Timeout: 8 * time.Second}, listeners: map[chan Snapshot]bool{}}
+	return NewAt(39.084522, 121.816327)
+}
+func NewAt(latitude, longitude float64) *Service {
+	return &Service{client: http.Client{Timeout: 8 * time.Second}, listeners: map[chan Snapshot]bool{}, latitude: latitude, longitude: longitude}
 }
 func (s *Service) snapshot() Snapshot {
 	return Snapshot{Weather: s.value, ServerTime: time.Now().Add(s.timeOffset).UnixMilli(), Available: s.value.Time != 0}
@@ -67,7 +71,7 @@ func (s *Service) SetWeather(code int) {
 	s.broadcast()
 }
 func (s *Service) sync() {
-	response, err := s.client.Get("https://api.open-meteo.com/v1/forecast?latitude=39.084522&longitude=121.816327&current=weather_code%2Ccloud_cover&timezone=Asia%2FShanghai&timeformat=unixtime&forecast_days=1")
+	response, err := s.client.Get(fmt.Sprintf("https://api.open-meteo.com/v1/forecast?latitude=%f&longitude=%f&current=weather_code%%2Ccloud_cover&timezone=Asia%%2FShanghai&timeformat=unixtime&forecast_days=1", s.latitude, s.longitude))
 	var v current
 	if err == nil {
 		defer response.Body.Close()

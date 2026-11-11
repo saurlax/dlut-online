@@ -1,134 +1,54 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import PixelText from "../../components/pixel-text";
 import GameDialogClose from "../../components/game-dialog-close";
-import { GameButton } from "../../components/game-button";
 import type { CampusScene } from "../../game/campus-scene";
+import { campuses, type Campus } from "../../game/campuses";
 import "../../components/game-dialog.css";
 import "./world-map.css";
 
-type Snapshot = ReturnType<CampusScene["mapSnapshot"]>;
-export default function WorldMap({
-  portal,
-  scene,
-}: {
+const AtlasMap = lazy(() => import("./atlas-map"));
+
+export default function WorldMap({portal, scene, currentCampus, onTravel}: {
   portal: HTMLElement | null;
   scene: () => CampusScene;
+  currentCampus: Campus;
+  onTravel: (campus: Campus, landmark: string) => void;
 }) {
-  const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
-  const [landmark, setLandmark] = useState("");
-  const [selected, setSelected] = useState("");
-  const [error, setError] = useState("");
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-    function keydown(e: KeyboardEvent) {
-      if (
-        e.key.toLowerCase() !== "m" ||
-        e.repeat ||
-        e.ctrlKey ||
-        e.metaKey ||
-        e.altKey
-      )
-        return;
-      const target = e.target as HTMLElement;
-      if (target.closest('input,textarea,select,[contenteditable="true"]'))
-        return;
-      if (!snapshot && document.querySelector('[role="dialog"]')) return;
-      e.preventDefault();
-      setSnapshot(snapshot ? null : scene().mapSnapshot());
-      setLandmark("");
-      setSelected("");
-      setError("");
+    function keydown(event: KeyboardEvent) {
+      if (event.key.toLowerCase() !== "m" || event.repeat || event.ctrlKey || event.metaKey || event.altKey) return;
+      if ((event.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]')) return;
+      if (!open && document.querySelector('[role="dialog"]')) return;
+      event.preventDefault(); setOpen(!open);
+    }
+    function show() {
+      if (!document.querySelector('[role="dialog"]')) setOpen(true);
     }
     document.addEventListener("keydown", keydown);
-    function openMap() {
-      if (document.querySelector('[role="dialog"]')) return;
-      setSnapshot(scene().mapSnapshot());
-      setLandmark(""); setSelected(""); setError("");
-    }
-    window.addEventListener('do:open-map', openMap);
-    return () => {
-      document.removeEventListener("keydown", keydown);
-      window.removeEventListener('do:open-map', openMap);
-    };
-  }, [snapshot, scene]);
-  return (
-    <Dialog.Root
-      open={snapshot !== null}
-      onOpenChange={(open) => {
-        if (!open) setSnapshot(null);
-      }}
-    >
-      <Dialog.Portal container={portal}>
-        <Dialog.Overlay className="game-dialog-overlay" />
-        <Dialog.Content
-          className="game-dialog world-map-dialog"
-          aria-describedby={undefined}
-          onCloseAutoFocus={(e) => e.preventDefault()}
-        >
-          <header className="game-dialog-header">
-            <Dialog.Title>
-              <PixelText>地图</PixelText>
-            </Dialog.Title>
-            <GameDialogClose />
-          </header>
-          {snapshot && (
-            <div className="world-map-content">
-              <div
-                className="world-map-art"
-                style={{ width: snapshot.width, height: snapshot.height }}
-              >
-                <img
-                  src="/campuses/eda/world-map.png"
-                  width={snapshot.width}
-                  height={snapshot.height}
-                  alt="北朝上的开发区校区地图"
-                  draggable={false}
-                />
-                {snapshot.landmarks.map((b) => (
-                  <button
-                    key={b.id}
-                    className="world-map-landmark"
-                    aria-pressed={selected === b.id}
-                    aria-label={b.name}
-                    title={b.name}
-                    style={{
-                      left: b.x,
-                      top: b.y,
-                      width: b.width,
-                      height: b.height,
-                    }}
-                    onMouseEnter={() => setLandmark(b.name)}
-                    onMouseLeave={() => setLandmark("")}
-                    onFocus={() => setLandmark(b.name)}
-                    onBlur={() => setLandmark("")}
-                    onClick={() => { setSelected(b.id); setError(""); }}
-                  />
-                ))}
-                {snapshot.player && (
-                  <span
-                    className="world-map-player"
-                    role="img"
-                    aria-label="你的位置"
-                    style={{ left: snapshot.player.x, top: snapshot.player.y }}
-                  />
-                )}
-              </div>
-              <div className="world-map-caption">
-                <PixelText>{snapshot.landmarks.find(b => b.id === selected)?.name || landmark || "北 ↑"}</PixelText>
-              </div>
-              <GameButton
-                appearance="primary"
-                disabled={!selected || !snapshot.player}
-                onClick={() => {
-                  if (scene().travelToLandmark(selected)) setSnapshot(null);
-                  else setError("附近没有可通行落点");
-                }}
-              >快速前往</GameButton>
-              {error && <p role="alert"><PixelText wrap>{error}</PixelText></p>}
-            </div>
-          )}
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
-  );
+    window.addEventListener("do:open-map", show);
+    return () => { document.removeEventListener("keydown", keydown); window.removeEventListener("do:open-map", show); };
+  }, [open]);
+  return <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Portal container={portal}>
+      <Dialog.Overlay className="game-dialog-overlay" />
+      <Dialog.Content className="world-map-dialog" aria-describedby={undefined} onCloseAutoFocus={event => event.preventDefault()}>
+        <header className="game-dialog-header">
+          <Dialog.Title><PixelText>地图</PixelText></Dialog.Title>
+          <GameDialogClose />
+        </header>
+        {open && <Suspense fallback={<div className="atlas-loading" role="progressbar" aria-label="地图加载中" />}>
+          <AtlasMap player={scene().geographicPosition()} onTravel={landmark => {
+            if (landmark.campus === currentCampus.id) {
+              if (!scene().travelToLandmark(landmark.id)) return false;
+            } else {
+              onTravel(campuses.find(campus => campus.id === landmark.campus)!, landmark.id);
+            }
+            setOpen(false); return true;
+          }} />
+        </Suspense>}
+      </Dialog.Content>
+    </Dialog.Portal>
+  </Dialog.Root>;
 }

@@ -1,0 +1,510 @@
+{
+  "schema_version": 1,
+  "campus_id": "panjin",
+  "reviewed": "2026-09-17",
+  "coordinate_frame": "references/shared/mapping/osm-world-frame.json",
+  "sources": [
+    {
+      "campus": "panjin",
+      "provider": "tianditu",
+      "zoom": 18,
+      "pixel_origin": [
+        56318697,
+        25236786
+      ],
+      "size": [
+        950,
+        950
+      ],
+      "native_tile_sizes": [
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          256,
+          256
+        ]
+      ],
+      "sources": [
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98581&TILECOL=219994&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.354773+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "1b00d097a92622763fe56e50cb3a2437b104f4af74c332e35cac7950c91e5322"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98582&TILECOL=219994&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.347239+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "eb1c24113e20822550a08b71f56df950027cedc44f3c0713195f1f6fceeed2ba"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98583&TILECOL=219994&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.354514+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "e3d131d0a6e438d362dd9d766c0b122ef2d29b121c277d0de1cff0c54f278198"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98584&TILECOL=219994&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.507257+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "9e09103cfa5133fa60a250943fc49f1a6b2dd309ce1a9075c351e8244f2f91a3"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98581&TILECOL=219995&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.538708+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "ced94389aa3645a44ebd12f2be6f829cbf5d1fb7034542e3457a5db024a2d461"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98582&TILECOL=219995&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.515465+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "9c6492d734b2ea97c18747e9aedde5df2cd45b0179901ba1eaa6851d1da742ba"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98583&TILECOL=219995&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.692443+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "513e85648cfef9e33c26ff8bc198cb08814a1853d71f1fbc553912602ae4aa4a"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98584&TILECOL=219995&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.702797+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "0318cda86823e7146cfba699592e28f97f8cfea97972472f1baa51a30c79e119"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98581&TILECOL=219996&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.692624+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "8eb16e236ba97148488444f8b9e542566919d732b198da64399e9dd89d02dff2"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98582&TILECOL=219996&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.850094+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "d595997ef9642bbdde8b7b24d2e9e15084d8512971026898d19891c0ff306dbc"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98583&TILECOL=219996&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:08.122910+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "f7ea39b9fcfe8cb3d9aa66754fc98bbc799c3934bbeab01b795f9b44e4610888"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98584&TILECOL=219996&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:07.895785+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "2c303150b9159951f2bcf391c2941d1ef068a9a46897084ed6de36b1d71a0a79"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98581&TILECOL=219997&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:08.013229+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "e40ea1da0c0936e9a4922e391ed372d80904e3802b50341e4949466d1190916d"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98582&TILECOL=219997&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:08.074367+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "2fa666d4f90bf6c357d976073b2bd61204b39c75313b4510087b478ae84a4604"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98583&TILECOL=219997&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:08.207315+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "683941c350fac0a9b257096d2171823c2518ea35a93e9d7ab5b1b48e0dee43f3"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98584&TILECOL=219997&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:08.273435+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "e0de827a06795068f1c62261c61c6f555241c8ca24c98e2e65f8820f708248a1"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98581&TILECOL=219998&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:08.299747+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "d03e26da3224a1a588b2ba1c7566b440da376696994481d7e4cdbd7aa3d5e70e"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98582&TILECOL=219998&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:08.362394+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "3cd4c40a3a4274b6a4786e3a4369d7871fc34149864bb940e0c4f97f956c59b2"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98583&TILECOL=219998&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:08.490253+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "c85302b3a2123a30000258f4dade90adaf0f0aa3b54e865fd0d47abfb2a04810"
+        },
+        {
+          "url": "https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX=18&TILEROW=98584&TILECOL=219998&tk=REDACTED",
+          "retrieved": "2026-09-17T12:54:08.480402+00:00",
+          "status": 200,
+          "content_type": "image/jpg",
+          "sha256": "b216e5e45d050cb21ebbfb967779bcf3de9e4d0523288c8fb3a55bc5c78abf6e"
+        }
+      ]
+    },
+    {
+      "campus": "panjin",
+      "provider": "maptiler",
+      "zoom": 18,
+      "pixel_origin": [
+        56318697,
+        25236786
+      ],
+      "size": [
+        950,
+        950
+      ],
+      "native_tile_sizes": [
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ],
+        [
+          512,
+          512
+        ]
+      ],
+      "sources": [
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219994/98581.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:09.638366+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "3b4a55f4cd56444d14219f73189d1c9ad2c2e998efa044fe9c38817cd0c664c6"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219994/98582.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:10.533342+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "ccbfe12e97f3b9d195973b882ae0498d87e946299bcf57601a2ddd3df0096446"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219994/98583.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:10.767468+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "5d76ccdec8030c700bb93c8e7b70992b4043b4b5280c84b99e36736682198606"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219994/98584.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:10.838019+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "39a0a5e6226eb01244fa9e0a6132e9e158161369025b155a87d163aa28d1c486"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219995/98581.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:13.910618+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "fc68be343320a2144e4d5031d9c91bf4d942e1d1d6a19abafdb6006626ffb3ea"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219995/98582.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:12.035736+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "60d642e7051315a75846c729bffa312fc3d03e184228d4dadfc6d857ad27fccb"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219995/98583.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:12.972984+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "66538b02cd179e2b2d541779f73e5f57978aad4ca64da9968aa1ee0f2a41d2d8"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219995/98584.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:13.376356+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "11e27285abddfe9115d897253d7a49c68641d0cdcedd61e3c0e04ee15128655d"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219996/98581.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:14.599883+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "4223c505678a5eca6ad57abc35f6ba17b7a2973cd298fb64d6ace850f04eabc3"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219996/98582.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:15.618832+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "25af44e959b3fe12ddd0ce3278d99db48e5cc73191da79c95f4c78c54470c33f"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219996/98583.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:16.569713+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "902ba05633ca7ab6425bdad7ae3745811ed25d208a4bac1030023b9a9de46764"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219996/98584.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:16.418598+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "f452823f36b63e4cf4c37f44a78e8808f4e9ae2a9523185dada9912357102342"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219997/98581.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:16.499217+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "4e1ad4d3bc778f1d385377dee0bbb8d919c038fd8194dd87627649f0219ec619"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219997/98582.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:17.862119+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "6bf7c23bdcb98e4f19d875353755a7abf19207c47bc358af368865caf3424750"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219997/98583.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:17.823242+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "eff6a8ab129186d214428ddbb91114e97c26f59accb12dfda7f0c9b8651dbea5"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219997/98584.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:18.161652+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "7356363b0f5a528928a3fcea571ace4f6eddd74fcbc2f53251617213997e446c"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219998/98581.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:18.846370+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "cc0a0cfa5b6b1494db9caf5c3cf5ad827a211bd2fc9c26d7e58105bbb39d4da3"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219998/98582.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:18.538319+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "ddba37f6a8ac0fe89beab89305c1bd9f5c53ae6425ebfc71950bbbaea6335c17"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219998/98583.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:19.579591+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "57ca6f3fa13f8e912d1726257ae940f496e59e4e1a557f7e1fd7205a5c510ff1"
+        },
+        {
+          "url": "https://api.maptiler.com/tiles/satellite-v2/18/219998/98584.jpg?key=REDACTED",
+          "retrieved": "2026-09-17T12:54:19.881577+00:00",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "df7f4af93f0b9d8525e7d4c8c164e7a892ba11aa5a1beeef772b50de0b61d340"
+        }
+      ]
+    }
+  ],
+  "surfaces": [
+    {
+      "id": "parking-1263777289",
+      "osm_id": "way/1263777289",
+      "osm_version": 1,
+      "polygon_sha256": "7acc1808d27c72cd434a5f9b62c9ec4568321f67ef8be5782c03918e135e153a",
+      "surface_type": "paving",
+      "review": "天地图和MapTiler可见邻楼西侧狭长停车地面与北侧凹口，OSM作为基础范围直接采用，不用屋顶或旧bound配准。",
+      "limits": "影像采集日期未知，OSM边界非实测墙脚/路缘；颜色和0.02米通行间隙为渲染近似。不生成未知车位线、车辆、树木、路沿或入口细节。",
+      "render_lift_m": 0.02
+    }
+  ],
+  "withheld": [
+    {
+      "osm_id": "way/1263797245",
+      "reason": "影像可见内部树带/绿岛，尚无逐项地面边界，不能整框铺满。"
+    },
+    {
+      "osm_id": "way/1318388522",
+      "reason": "影像可见多条内部树带/绿岛，范围尚未配准，不能整框铺满。"
+    },
+    {
+      "osm_id": "way/1318388523",
+      "reason": "本次北侧核对影像不覆盖该停车场，保留未核对。"
+    }
+  ],
+  "official_identity": "不以旧三维bound推断80699/80701/80703对应关系，保留这些空参考，独立使用OSM身份。",
+  "imagery_limits": "天地图与MapTiler可能共享底层旧影像，不视为两套独立测量；本次Esri z19返回Map data not yet available占位图，不作为证据。"
+}

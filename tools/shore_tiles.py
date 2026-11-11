@@ -26,6 +26,13 @@ def assemble_shores(material_at, bounds, directory, water_material="water"):
     tiles, cells = {}, []
     for y in range(height):
         for x in range(width):
+            # Only cells containing a north-facing water edge can expose soil.
+            # Include the full profile above this cell, keeping identical pixels.
+            region = water.crop(((x+1)*16, (y+1)*16-len(PROFILE), (x+2)*16, (y+2)*16))
+            low, high = region.getextrema()
+            if low == high:
+                cells.append(None)
+                continue
             face = Image.new("RGBA", (16,16))
             for py in range(16):
                 for px in range(16):

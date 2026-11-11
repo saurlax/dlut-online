@@ -42,6 +42,16 @@
 
 ## 全校生成与发布
 
+三个校区共用本节的地面和 HD-2D 流水线。开发区使用下述原入口；凌水与盘锦运行 `python tools/prepare_campus_maps.py`，随后用 `python tools/prepare_world_map.py --campus <lingshui|panjin> --native --output apps/web/public/campuses/<campus>/world-map.png` 生成地理配准的地图窗口原片，每像素对应 10 米。
+
+凌水原点为 WGS84 `(121.520186, 38.881499)`，裁切 2176×1920 米，接入 176 个建筑体块及两处照片配准体育设施；盘锦原点为 `(122.11917, 40.686319)`，裁切 1024×1216 米，接入 47 个建筑体块。裁切覆盖登记楼栋与 OSM 校界，不代表矩形校园红线。道路、水体、运动区和已登记铺装沿用各校区来源，不复用开发区地理数据。
+
+来源为本地旧 3D 提交 `1e4466e78e009d1e9fed12882551a5990059f626`。`references/<campus>/campus.json`、`osm_roads.json`、`vegetation.json` 保留归档运行记录，`mapping/`、`buildings/` 与共享来源保留地面身份及照片配准；`archive.json` 记录原提交、场景路径和摘要。建筑保留有效凹轮廓、分区高度与已有立面，未知立面不补通用窗格；两处凌水内孔同时保留在模型、地图和前后端碰撞中。凌水体育场与西校区体育场迁入登记的场内结构及划线；看台地面碰撞来自旧场景实体三角形的投影，写入 `sports-models.json`，不阻挡整个运动场。
+
+两校区沿用平面地面，不应用旧 DSM 高程。旧档案已撤下的斜视轮廓和未配准植被继续暂缓，室外设施层为空；不补缺乏依据的室内、B12/B20、完整喷泉、架空长廊或灯位。`pixel-layout.json` 将游戏出生点设在已登记主楼南侧，属于游戏站位，不是实测入口。`geometry.json` 和 `planting.json` 为生成适配数据；完整地面重生成仅需仓库记录及 Pillow，不依赖归档场景或外部目录。
+
+仅重建两校区模型时需要 Godot、Blender 和原提交的本地缓存：先运行 `python tools/import_campus_references.py <commit>`，导入器会在 `.local/campus-models/` 建立最小 `project.godot`。用 Godot headless 执行 `tools/export_campus_buildings.gd -- <绝对临时校区目录> <绝对 campus.json 路径>`，再运行 `python tools/build_campus_buildings.py <campus>`。导出删除旧照片、程序噪声与 PBR 纹理引用，将登记结构与颜色交给共享原生像素烘焙器，生成单材质 GLB、外置最多 48 色 PNG 及逐栋清单。工具仅读取本地 Git 对象及校验后的已有对象缓存，不调用 LFS 或网络。正式资源使用普通 Git 文件；地面重生成不覆盖模型。
+
 运行 `python tools/generate_eda_map.py`，从仓库已保存的几何、照片记录、植被点与 OSM 档案生成 `apps/web/public/campuses/eda/`。常规生成不需要外部项目目录或在线服务。只有更新已授权档案时才使用 `tools/import_eda_references.py <archive>`，导入已登记几何和照片元数据，不复制照片进客户端。
 
 地图包含地面多层 RLE 数据、64 米分块、4 米总览数据、独立建筑 PNG 和植被原型及落地点。不生成全校大贴图；浏览器只创建视野内的精细格子与物件。地面支持水面、林地、道路、红步道、普通步道、铺装、桥面、田径场、球场和草坪，路线宽度中的估计标记保留在来源字段中。
@@ -79,3 +89,17 @@ python tools/prepare_vegetation.py --refresh 重建植被模块和 plantPrototyp
 `references/eda/site-fixtures.json` 保存旧版登记的室外设施、来源提交、源文件、照片引用、路段锚点及估计边界。14 盏弯臂灯来自 `exterior-details.json` 的道路顶点、沿段比例及侧向偏移；庭院 1 盏、学苑桥西侧 2 盏圆环灯和 2 组公告栏沿用 `site_fixtures.json` 的独立锚点。道路对应当前 `geometry.json` 的同版本 OSM 记录，桥头使用旧版登记的桥西端及相对站位，不将端点当作测得的台阶落点。
 
 运行 `python tools/build_site_fixtures.py` 发布 `apps/web/public/campuses/eda/site-fixtures.json`；全校地面生成也调用此步骤。运行数据仍以共享 WGS84 原点下的 X 向东、Z 向南米制坐标记录，渲染时减去地图 offset，落在当前平面地面。生成不移动道路、湖岸、绿地或建筑，也不推断其余灯位、长椅位置及现状设施总数。
+
+## 区域像素地图集
+
+全屏大地图使用 `apps/web/public/world/atlas/`。浏览器只加载本地静态区域原片、校园图层、图标与配准清单，MapLibre GL JS 负责平移、缩放、地理投影及命中选择；不是游戏地面或碰撞来源。
+
+区域覆盖 WGS84 东经 120.7–124.2、北纬 38.4–41.15，包括大连全域概览及盘锦校区。`references/city/geography.json` 保存裁切后的 Natural Earth 1:10m 海陆、城镇、道路、河流及地名；Mapzen Terrarium 高程原片和来源在同目录。工具按 Web Mercator z9 的原生像素格着色，生成 1275×1304、最多 48 色原片，北纬 40 度处约 234 米/像素，不通过高清缩图伪装像素地图。海岸与道路取来源几何，高程色带是视觉表达，不能推断林地类别。粗岸线上的校园陆地以已有 OSM 边界为准；这不是新增海岸测绘。
+
+校园图层现使用三张完整 imagegen 插画，位于 `apps/web/public/world/atlas/illustrations/`。主要位置对照为学校地图的 lm30 二维图，last 斜视图补充建筑造型，《大连理工大学手绘四季》只作离线风格参考。完整提示词、来源与原片摘要见 `references/city/campus-art.json`。三校区按主楼广场像素样片重绘。Retro Diffusion Pixel Art Fixer Standard 以 1×1 原片像素格保留重绘分辨率，每校区量化到最多 48 色。依插画校园轮廓保留校内区域，校外背景与路网设为透明；运行时最近邻采样，建筑、道路和植被作为同一图层一起缩放，不再叠加逐栋图标或应用最小屏幕尺寸。此前逐栋素材与模型参考仍保留在来源档案中。本文游戏地面瓦片规则不约束这个独立的全屏地图插画层。
+
+`references/city/campus-registration.json` 记录 11 个人工选择的插画地标中心，与现有 WGS84 地标占地包围盒中心配对。在 Web Mercator 平面拟合单一缩放、旋转和平移，将图像四角写入 MapLibre 图层；不局部拉伸图片，不修改校园地理数据、标签坐标、传送坐标或碰撞。当前为本地近似配准预览，控制点最大拟合残差分别约 37、12、11 米，不代表测绘精度；主校区局部道路和建筑仍有偏移。地图四角按透明裁切后的图像范围重新计算，保持原配准比例和位置。官网斜视点击框不作为建筑基底，图中额外片区不自动成为可行走区域。
+
+更新插画或配准选点后运行 `python tools/register_campus_atlas.py`，它读取来源档案中的本地原片，调用登记版本的 Retro Diffusion Standard Python API，发布三张透明插画并更新配准记录。常规地图重建直接读取已发布图片和配准记录，不依赖原片缓存。地图点选仍使用 242 个已有地标的 WGS84 几何，像素标签独立叠加；局部美术偏移可能使图片中的建筑与命中范围不完全重合。
+
+首次更新区域来源运行 `python tools/import_city_references.py`；常规生成运行 `python tools/build_city_atlas.py`，只读取仓库资料与已安装 MapLibre 许可。重新生成模型参考时加 `--render-landmarks`，输出仅到 `.local/city-map/model-sprites/`，需要 Blender，可用 `--blender` 指定路径；相机通过 `view_frame(scene)` 计算纵横画幅，保留完整模型边界，不会覆盖正式 imagegen 美术。生成原片和逐栋提示词缓存到 `.local/city-map/imagegen/`，运行 `python tools/prepare_atlas_art.py` 标准化全部原片，或加 `--asset <id>` 处理单栋；可用 `--source-dir` 指定原片目录。原始全球下载仅保存在忽略的 `.local/city-map/downloads/`，仓库只保留区域提取数据、所需高程与来源。正式静态构建不依赖 Blender 或在线地图服务。旧单校区 `world-map.png` 保留为生成资源，不再作为全屏大地图入口。

@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "reviewed": "2026-09-17",
+  "coordinate_frame": "references/shared/mapping/osm-world-frame.json",
+  "objects": {
+    "81106": {
+      "name": "七七足球场",
+      "osm_id": "way/894092911",
+      "osm_version": 4,
+      "expected_vertices": 4
+    },
+    "81107": {
+      "name": "福佳足球场",
+      "osm_id": "way/543818291",
+      "osm_version": 2,
+      "expected_vertices": 4
+    },
+    "81675": {
+      "name": "西校区网球场",
+      "osm_id": "way/544331542",
+      "osm_version": 1,
+      "expected_vertices": 5,
+      "basis": "与体育场南边共享边界的独立球场；官方称网球场，OSM sport=tennis，17913925-0前景可见篮架，故只采用外围，不据标签生成网球划线。"
+    },
+    "81654": {
+      "name": "北山网球场",
+      "osm_id": "way/1381605757",
+      "osm_version": 3,
+      "expected_vertices": 4,
+      "basis": "北山组团中北侧、教学楼东侧的场地。官方名称及lm30图面为两块网球场，OSM标为北山篮球场（hoops=2），记录用途冲突；仅采用同地点外围，不生成篮球线。",
+      "map_tiles": [
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200583&z=19",
+          "retrieved": "2026-09-16T16:56:49.933138+00:00",
+          "sha256": "f97a64d11ebc41c0cd7a4317618942f2d1bfd1349cc7ada0138771968a0c1a8f"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200584&z=19",
+          "retrieved": "2026-09-16T16:56:50.182973+00:00",
+          "sha256": "ed2139096d08a6a3a9cde93323b1d5d439c376e50b33e232a12627ecf8b17301"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200585&z=19",
+          "retrieved": "2026-09-16T16:56:50.219247+00:00",
+          "sha256": "2c2dc24fe7462c2e047b3a0fb58ec11e0f95e43c66e70ec8ecaf34059387ea77"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439133&y=200586&z=19",
+          "retrieved": "2026-09-16T16:56:50.201091+00:00",
+          "sha256": "b135541b1830dc425b38ac84192c980fe4964ad09aac9f5ca9cf3dcce668e7fe"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200583&z=19",
+          "retrieved": "2026-09-16T17:54:01.295122+00:00",
+          "sha256": "afe9d788fcaa0674d12956efb747a1e43749d144509f7599af5685661128d6aa"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200584&z=19",
+          "retrieved": "2026-09-16T17:54:01.221112+00:00",
+          "sha256": "e6fc29ced52fdf92406ee624392f68474554e049d5b6fd559ef5e708a3f660da"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200585&z=19",
+          "retrieved": "2026-09-16T17:54:01.310528+00:00",
+          "sha256": "a963a4f18cce9cd3318473141c410139d08702c1eb4f027c2e6ad753b4b7635b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439134&y=200586&z=19",
+          "retrieved": "2026-09-16T17:54:01.266026+00:00",
+          "sha256": "f8a7ca758c361bf461830613c4bec6477d6327cc489c90157add357e438cf0c1"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200583&z=19",
+          "retrieved": "2026-09-16T17:54:01.770503+00:00",
+          "sha256": "050d0b3a1b43322dcaf5cf871b60e12e0424bc5fa9d8989d6968f80a9c05659b"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200584&z=19",
+          "retrieved": "2026-09-16T17:54:01.816999+00:00",
+          "sha256": "5bf621359a4525aee7f8fb73cbf350d530acc5ed6feda03fb10342bf97e86528"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200585&z=19",
+          "retrieved": "2026-09-16T17:54:01.810770+00:00",
+          "sha256": "7fd9b182632792766cb4ae55b00798998337f6851ea35886c67334283b462c8c"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439135&y=200586&z=19",
+          "retrieved": "2026-09-16T17:54:01.937410+00:00",
+          "sha256": "7056d70badd10f1abc66fecdac9b2471c718e005ad39e2e0b457adaa67c25c5d"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200583&z=19",
+          "retrieved": "2026-09-16T17:54:02.287151+00:00",
+          "sha256": "8ab8cab39712e3b93b998066097b07894a5c99202f16a538325e90ac7c424dc5"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200584&z=19",
+          "retrieved": "2026-09-16T17:54:02.374606+00:00",
+          "sha256": "434de77ece940ebbb7e9d8069b494068255173e1e5f6066d0e079dfedfd2209c"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200585&z=19",
+          "retrieved": "2026-09-16T17:54:02.293025+00:00",
+          "sha256": "628087babf0c97f7f9174444b841da31ccee08c63549e2d1532dad19e92067dd"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439136&y=200586&z=19",
+          "retrieved": "2026-09-16T17:54:02.485553+00:00",
+          "sha256": "315e44df8a94de6825661b64b9c8796431a864d692aa06d320c74aee467118d9"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200583&z=19",
+          "retrieved": "2026-09-16T17:54:02.899853+00:00",
+          "sha256": "b91ba96d7901ef4773670c03eb96258272970ac1f5c6a5db9c647acce5e7b565"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200584&z=19",
+          "retrieved": "2026-09-16T17:54:02.847683+00:00",
+          "sha256": "37de3c48fed6f08e9acdcf585a3c23e78609b65e7444edb37db87596777fbd39"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200585&z=19",
+          "retrieved": "2026-09-16T17:54:02.907141+00:00",
+          "sha256": "37d1786e2029ac3127dc4fe34e643c8d384d3bf799846611ffd0c60c81388135"
+        },
+        {
+          "url": "http://map.dlut.edu.cn/map?lyrs=lm30&x=439137&y=200586&z=19",
+          "retrieved": "2026-09-16T17:54:02.963517+00:00",
+          "sha256": "ac73785cc50ab17b3d0ee7887881fd43e1900151a76a7fa1dbfe26762802cafe"
+        }
+      ],
+      "limits": "图面预览平移未独立校准，不据像素差改动OSM坐标，场地用途与现状仍待照片确认。"
+    },
+    "81656": {
+      "name": "北山篮球场",
+      "osm_id": "way/894092912",
+      "osm_version": 3,
+      "expected_vertices": 4,
+      "basis": "七七足球场东侧的同名场地，与北面约120米处way/1381605757为两个独立区域；不因同名而合并。"
+    }
+  },
+  "basis": "七七与福佳足球场为同名同地点的OSM leisure=pitch、sport=soccer闭合区域，均标注artificial_turf；西校区南侧球场按与体育场的共享边及照片相对位置登记，具体依据见对象记录。",
+  "limits": "仅迁移场地外边界。原场景没有这两场的内部划线或设施注册，不添加标准比赛尺寸、球门、灯柱及围栏；材质类型取自OSM，绿色为近似表达。OSM不是实测边界或现状测绘。"
+}

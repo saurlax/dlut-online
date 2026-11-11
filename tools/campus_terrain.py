@@ -38,7 +38,7 @@ def rasterize(root,ways,points,geometry,bounds):
         for y in range(ay,by):
             for x in range(ax,bx):
                 if inside_polygon(x+.5,y+.5,vertices):cells[x-left+2,y-top+2]=IDS[material]
-    polygon(points(ways["215560705"]),"grass")
+    polygon(points(ways[str(geometry.get("boundary_osm_way_id", "215560705"))]),"grass")
     for way in ways.values():
         tags={t.attrib["k"]:t.attrib["v"] for t in way.findall("tag")}
         material=None
@@ -63,8 +63,9 @@ def rasterize(root,ways,points,geometry,bounds):
                     polygon(points(ways[member.attrib["ref"]]),material)
         sources.append({"id":"relation/"+relation.attrib["id"],"version":relation.attrib["version"],"material":"track-ring"})
     for road in geometry["roads"]:
-        material="asphalt" if road["highway"] in ("secondary","tertiary","residential","service","unclassified") else "path"
-        if road["osm_way_id"] in RED_WALKS:material="red-walk"
+        paved=road["highway"] in ("secondary","tertiary","residential","service","unclassified") or (geometry.get("campus","eda")!="eda" and road["highway"]=="living_street")
+        material="asphalt" if paved else "path"
+        if geometry.get("campus", "eda")=="eda" and road["osm_way_id"] in RED_WALKS:material="red-walk"
         if road.get("bridge"):material="bridge"
         radius=road["width"]/2
         for (ax,ay),(bx,by) in zip(road["points"],road["points"][1:]):
@@ -76,4 +77,7 @@ def rasterize(root,ways,points,geometry,bounds):
                         cells[x-left+2,y-top+2]=IDS[material]
         sources.append({"id":"way/"+str(road["osm_way_id"]),"version":road["osm_version"],
                         "material":material,"widthMeters":road["width"],"widthBasis":road["width_basis"]})
+    for surface in geometry.get("ground_overlays", []):
+        polygon(surface["outer"], surface["surface_type"])
+        sources.append({"id":surface["osm_id"],"version":surface["osm_version"],"material":surface["surface_type"]})
     return raster,sources,lakes

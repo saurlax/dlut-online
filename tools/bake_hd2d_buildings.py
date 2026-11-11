@@ -99,7 +99,7 @@ def main():
         bpy.ops.import_scene.gltf(filepath=str(directory / "details.glb"))
         detailed = [obj for obj in bpy.context.scene.objects if obj.type == "MESH"]
         opaque_colors(job["colors"])
-        bodies = {obj["dlut_original_name"]: obj for obj in detailed}
+        bodies = {obj.get("dlut_original_name", obj.name): obj for obj in detailed}
         shells = []
         if job["id"] in {"77917", "77927"}:
             shells = curved_shells(job)

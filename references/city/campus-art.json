@@ -1,0 +1,219 @@
+{
+  "date": "2026-11-10",
+  "status": "three-full-campus-illustrations-in-local-map-preview",
+  "tool": "built-in image_gen",
+  "scope": "Three full campus illustration drafts for the fullscreen atlas; not game terrain or collision geometry.",
+  "primaryPositionSource": "http://map.dlut.edu.cn/",
+  "officialManifest": ".local/campus-map-research/2026-11-10/official/manifest.json",
+  "officialFeatureTotal": 554,
+  "tileCount": 499,
+  "styleReference": {
+    "title": "大连理工大学手绘四季",
+    "author": "umasou / 莫卡设计工作室",
+    "source": "https://www.zcool.com.cn/work/ZMjgyNjc4Mjg=.html",
+    "file": ".local/campus-map-research/2026-11-10/dlut-four-seasons.jpg",
+    "sha256": "6449c1df13f85e519c46eb3c3c8bf9ae796f99ad0aa2201d8d31e021136121e9",
+    "use": "Offline visual reference only; not copied into runtime assets."
+  },
+  "constraints": [
+    "Keep official map layout, full campus coverage and north-up orientation.",
+    "Official 3D selection polygons are not building ground footprints.",
+    "Existing WGS84 geometry and authoritative game collision remain separately sourced.",
+    "Generated illustrations need placement review before replacing runtime map layers.",
+    "Do not bake labels into the illustration; application adds pixel labels and click targets."
+  ],
+  "campuses": [
+    {
+      "campus": "lingshui",
+      "name": "主校区",
+      "status": "approximately-registered-local-preview",
+      "positionReference": ".local/campus-map-research/2026-11-10/official/lingshui-lm30-z17.png",
+      "positionReferenceSha256": "7956ddae3f236e6361d071d9abcda26a04f2fb2f5277139c99e005a478eb7d00",
+      "architectureReference": ".local/campus-map-research/2026-11-10/official/lingshui-last-z15.png",
+      "architectureReferenceSha256": "30e702900cc91bffb08a675b98c1b835b4bee7a4631a7729d56a6b8dbc39438c",
+      "prompt": "Use case: stylized-concept. Asset type: one complete illustrated campus map for a zoomable pixel-art game atlas, NOT separate building sprites.\nInput image 1 is the PRIMARY and authoritative campus POSITION AND ROAD LAYOUT reference, a downloaded official map.dlut.edu.cn lm30 map. Preserve its north-up orientation, full crop, campus extent, relative positions, road junctions, paths, courtyards, sports fields, ponds and every major building group. Do not rotate or rearrange the campus for composition. Keep all major ground-contact positions in the same normalized image positions as image 1.\nInput image 2 is the official map.dlut.edu.cn oblique architectural map: use ONLY to understand building silhouettes, heights, roofs, facade colors and differences, not as a new layout or direction. Input image 3 is the DLUT Four Seasons illustrated map: reference only its coherent campus storytelling through architecture, readable near-front facades, varied building identities, trees and plazas. Do not copy its text, people, seasonal quadrants or decorative composition.\nPrimary request: redraw this entire campus as one beautiful original cohesive farming-RPG/SNES pixel-art campus scene. Ground plane remains true north-up, overhead, flat and geographically arranged; buildings rise slightly toward north, revealing distinct almost frontal south facades with short roof depth, without isometric rotation. Scale all structures consistently with surrounding roads; preserve individual building proportions. Recognizable landmarks must retain their characteristic massing, materials, different roof shapes and height hierarchy. Ordinary dormitories and laboratories retain their actual block layouts and appearance; avoid making everything the same cream facade and blue window grid. Integrated mature trees, lawns, ponds, sports tracks, plazas and streets connect everything naturally. Warm restrained colors, rich greens, warm stone and brick, blue-gray glass where present, subtle dark colored outlines, sun from upper left, crisp readable clustered pixels, clear silhouettes, clean shading, detailed but calm. No smooth gradients, blur, photoreal textures or pseudo-3D render look.\nComposition: output the EXACT same rectangular framing and aspect ratio as input image 1, fill edge to edge. Keep every campus part and any detached section. Outside-campus context stays quiet and low-detail. Never crop off campus edges, duplicate buildings, invent towers, move buildings to fill space or replace road layout. No posters, paper borders, inset maps, title, compass, legend, text, labels, numbers, logos, watermark, UI or characters. Road and place labels will be added by the application. Produce deliberate clean pixel-art clusters with a consistent pixel grid suitable for nearest-neighbor scaling. The final image must work as ONE map texture with everything scaling together.\nCampus: Dalian University of Technology Lingshui MAIN campus, including the western campus and detached northern section visible in image 1. Preserve central 主楼 and its flanking wings, south-central 伯川图书馆, western 令希图书馆, southeastern 刘长春体育馆 and stadium, central water and green spaces, and all dense dormitory blocks. Their locations come ONLY from image 1; the hand-drawn map is an older artistic reference. Preserve the distinctive broad main-building silhouette, different libraries, sports hall long roof structure and stadium oval.",
+      "promptFile": ".local/campus-map-research/2026-11-10/prompts/lingshui.txt",
+      "knownReviewItems": [],
+      "outputDirectory": ".local/campus-map-research/2026-11-10/generated",
+      "outputs": [
+        {
+          "kind": "generated-original",
+          "file": ".local/campus-map-research/2026-11-10/generated/lingshui-imagegen.png",
+          "size": [
+            1306,
+            1205
+          ],
+          "sha256": "a5b3e9f449e4f4def26b358906e36a9c254f8b8fbd94fc5da8990f1846f36e69"
+        },
+        {
+          "kind": "shared-palette-pixel-draft",
+          "file": ".local/campus-map-research/2026-11-10/generated/lingshui-pixel.png",
+          "size": [
+            1306,
+            1205
+          ],
+          "sha256": "785d825a055408bd9a7b96221a1622b650a1ba858b07240da9fdb71f34fb1517"
+        },
+        {
+          "kind": "integer-nearest-neighbor-preview",
+          "file": ".local/campus-map-research/2026-11-10/generated/lingshui-preview.png",
+          "size": [
+            2612,
+            2410
+          ],
+          "sha256": "a2975f2396e709c18edc5c8190499b5e8f123e1e9bf79059be9e5bd916ab7986"
+        },
+        {
+          "kind": "crisp-redraw",
+          "file": ".local/campus-map-research/2026-11-10/generated/lingshui-crisp-redraw.png",
+          "size": [
+            1306,
+            1205
+          ],
+          "sha256": "0136dcc1e79b93e9c71e1789a455fdd9d49a415d760767bde73545362050fe63"
+        }
+      ],
+      "review": {
+        "fullCampusFraming": "visually-reviewed",
+        "mainRoadAndLandmarkGroups": "visually-compared-to-official-reference",
+        "groundControlRegistration": "pending; source hit-area centroids must not be treated as measured ground control points",
+        "runtimeIntegration": "local preview: one georeferenced raster per campus, shared scaling; existing WGS84 hit geometry unchanged"
+      }
+    },
+    {
+      "campus": "eda",
+      "name": "开发区校区",
+      "status": "approximately-registered-local-preview",
+      "positionReference": ".local/campus-map-research/2026-11-10/official/eda-lm30-z17.png",
+      "positionReferenceSha256": "a6c56f5c80db9ff98015371d68a3040ae5b63d25c6872b489de84c9f5fa4d202",
+      "architectureReference": ".local/campus-map-research/2026-11-10/official/eda-last-z15.png",
+      "architectureReferenceSha256": "c69814ca59e2fcb7de5046c154bdf3f95a84c165a32e6a58fa47ee332fa8f9f0",
+      "prompt": "Use case: stylized-concept. Asset type: one complete illustrated campus map for a zoomable pixel-art game atlas, NOT separate building sprites.\nInput image 1 is the PRIMARY and authoritative campus POSITION AND ROAD LAYOUT reference, a downloaded official map.dlut.edu.cn lm30 map. Preserve its north-up orientation, full crop, campus extent, relative positions, road junctions, paths, courtyards, sports fields, ponds and every major building group. Do not rotate or rearrange the campus for composition. Keep all major ground-contact positions in the same normalized image positions as image 1.\nInput image 2 is the official map.dlut.edu.cn oblique architectural map: use ONLY to understand building silhouettes, heights, roofs, facade colors and differences, not as a new layout or direction. Input image 3 is the DLUT Four Seasons illustrated map: reference only its coherent campus storytelling through architecture, readable near-front facades, varied building identities, trees and plazas. Do not copy its text, people, seasonal quadrants or decorative composition.\nPrimary request: redraw this entire campus as one beautiful original cohesive farming-RPG/SNES pixel-art campus scene. Ground plane remains true north-up, overhead, flat and geographically arranged; buildings rise slightly toward north, revealing distinct almost frontal south facades with short roof depth, without isometric rotation. Scale all structures consistently with surrounding roads; preserve individual building proportions. Recognizable landmarks must retain their characteristic massing, materials, different roof shapes and height hierarchy. Ordinary dormitories and laboratories retain their actual block layouts and appearance; avoid making everything the same cream facade and blue window grid. Integrated mature trees, lawns, ponds, sports tracks, plazas and streets connect everything naturally. Warm restrained colors, rich greens, warm stone and brick, blue-gray glass where present, subtle dark colored outlines, sun from upper left, crisp readable clustered pixels, clear silhouettes, clean shading, detailed but calm. No smooth gradients, blur, photoreal textures or pseudo-3D render look.\nComposition: output the EXACT same rectangular framing and aspect ratio as input image 1, fill edge to edge. Keep every campus part and any detached section. Outside-campus context stays quiet and low-detail. Never crop off campus edges, duplicate buildings, invent towers, move buildings to fill space or replace road layout. No posters, paper borders, inset maps, title, compass, legend, text, labels, numbers, logos, watermark, UI or characters. Road and place labels will be added by the application. Produce deliberate clean pixel-art clusters with a consistent pixel grid suitable for nearest-neighbor scaling. The final image must work as ONE map texture with everything scaling together.\nCampus: Dalian University of Technology DEVELOPMENT ZONE campus. Preserve the separate west academic zone and east 憩苑 living zone, the intervening 学府大街 and the connecting 学苑桥, their true positions from image 1. Preserve both registered ponds/lakes, information building, library, teaching complex, gymnasium, dining building and seven dormitory blocks as visible. The seventh dorm has a tall mostly ivory tower and low podium; do not turn it into a low generic classroom block. Do not merge the two campus zones or lose the connecting bridge.",
+      "promptFile": ".local/campus-map-research/2026-11-10/prompts/eda.txt",
+      "knownReviewItems": [
+        "七舍塔楼与第六食堂分别表达；接入前仍需核对落地点和标签位置。"
+      ],
+      "outputDirectory": ".local/campus-map-research/2026-11-10/generated",
+      "outputs": [
+        {
+          "kind": "generated-original",
+          "file": ".local/campus-map-research/2026-11-10/generated/eda-imagegen.png",
+          "size": [
+            1448,
+            1086
+          ],
+          "sha256": "597772225ce2dbaea2910f93c875744d6143f3d7be152992e585f764fdfd7d32"
+        },
+        {
+          "kind": "shared-palette-pixel-draft",
+          "file": ".local/campus-map-research/2026-11-10/generated/eda-pixel.png",
+          "size": [
+            1448,
+            1086
+          ],
+          "sha256": "f525986148734f0d3707fb44c1c841bc78153815362a425bad07083350b4e5e0"
+        },
+        {
+          "kind": "integer-nearest-neighbor-preview",
+          "file": ".local/campus-map-research/2026-11-10/generated/eda-preview.png",
+          "size": [
+            2896,
+            2172
+          ],
+          "sha256": "50e16a9a1ac87e518dafbf633f073e3aa8c65092b34192752c3dcd87cd5c1e42"
+        },
+        {
+          "kind": "crisp-redraw",
+          "file": ".local/campus-map-research/2026-11-10/generated/eda-crisp-redraw.png",
+          "size": [
+            1448,
+            1086
+          ],
+          "sha256": "c0c64e951dfe7ed648f4a194dc304744e215e21ad6d77ff6dede96193916f8e1"
+        }
+      ],
+      "edits": [
+        {
+          "prompt": "Use case: precise-object-edit. Image 1 is the complete generated development-zone campus map. Preserve its exact canvas, full north-up road layout, crop, every other building, two lakes, trees, bridge, sports fields, color palette and pixel style unchanged. Correct ONLY the seventh dormitory tower and low podium in the eastern living district. The official seventh-dorm hit-area center is at normalized image x=0.714, y=0.336 (71.4% from left, 33.6% from top), on the east side of the separating north-south avenue, north of the dining hall. Use image 2 as the registered distinctive architectural identity: a tall ivory-white asymmetric tower, mostly blank south facade, localized dark-blue window patches at lower right, attached low white podium. It must visibly rise higher than the neighboring low pink dormitories, while retaining plausible ground footprint and map scale. South-facing near-front facade, roof depth short, the visible tower extends north/up from its ground contact so no neighboring roads or bridge are moved. Image 3 is the official oblique map for context, not a new orientation. Replace the generic low building at that one location with the tower and podium. Do not paste a floating icon, add any outline button or ground pedestal; integrate it naturally with ground shadow and neighboring paths. No labels, text or other changes.",
+          "status": "superseded: dining hall overlap"
+        },
+        {
+          "prompt": "Use case: precise-object-edit. Image 1 is the original complete north-up EDA campus illustration; keep its exact canvas, crop, roads, bridge, lakes, all other buildings, trees and style. Image 2 is the ivory seventh-dormitory tower identity. Image 3 is the official oblique campus map. Correct only seventh dormitory. IMPORTANT exact placement constraints in normalized IMAGE-1 coordinates: its registered reference area is x=0.684..0.750, y=0.304..0.372. Draw an ivory tower with mostly blank south facade and localized lower-right dark windows and low podium entirely within or immediately NORTH of that area. The tower ground-contact BASE is at y=0.365, never below y=0.372; the tower rises UP/north from that base to about y=0.295. Tower width about 0.045 of canvas, height about 0.070 of canvas, at center x=0.714. Integrate naturally as a building, not floating icon. CRITICAL: preserve completely the dining hall SOUTH of the tower at x=0.687..0.719, y=0.374..0.435, including its round pink/gray roof and its rectangular attached wing visible in image 1. These are TWO separate buildings. Do not enlarge the tower over the dining hall, erase dining hall, shift the bridge or change any surrounding structures. Maintain a visible gap between tower and circular dining hall. Do not add labels, text, outlines, UI or any unrelated changes.\n",
+          "status": "selected: separate tower and dining hall"
+        }
+      ],
+      "review": {
+        "fullCampusFraming": "visually-reviewed",
+        "mainRoadAndLandmarkGroups": "visually-compared-to-official-reference",
+        "groundControlRegistration": "pending; source hit-area centroids must not be treated as measured ground control points",
+        "runtimeIntegration": "local preview: one georeferenced raster per campus, shared scaling; existing WGS84 hit geometry unchanged"
+      }
+    },
+    {
+      "campus": "panjin",
+      "name": "盘锦校区",
+      "status": "approximately-registered-local-preview",
+      "positionReference": ".local/campus-map-research/2026-11-10/official/panjin-lm30-z17.png",
+      "positionReferenceSha256": "38dad79b0afc4c293817ac5792a74cf5d3ea52df84204e8dec049bc19e07f556",
+      "architectureReference": ".local/campus-map-research/2026-11-10/official/panjin-last-z15.png",
+      "architectureReferenceSha256": "06f2bcddf80db2c56910d55ffd0a20a197533afdc1d445f7f7015c4553dd6f3e",
+      "prompt": "Use case: stylized-concept. Asset type: one complete illustrated campus map for a zoomable pixel-art game atlas, NOT separate building sprites.\nInput image 1 is the PRIMARY and authoritative campus POSITION AND ROAD LAYOUT reference, a downloaded official map.dlut.edu.cn lm30 map. Preserve its north-up orientation, full crop, campus extent, relative positions, road junctions, paths, courtyards, sports fields, ponds and every major building group. Do not rotate or rearrange the campus for composition. Keep all major ground-contact positions in the same normalized image positions as image 1.\nInput image 2 is the official map.dlut.edu.cn oblique architectural map: use ONLY to understand building silhouettes, heights, roofs, facade colors and differences, not as a new layout or direction. Input image 3 is the DLUT Four Seasons illustrated map: reference only its coherent campus storytelling through architecture, readable near-front facades, varied building identities, trees and plazas. Do not copy its text, people, seasonal quadrants or decorative composition.\nPrimary request: redraw this entire campus as one beautiful original cohesive farming-RPG/SNES pixel-art campus scene. Ground plane remains true north-up, overhead, flat and geographically arranged; buildings rise slightly toward north, revealing distinct almost frontal south facades with short roof depth, without isometric rotation. Scale all structures consistently with surrounding roads; preserve individual building proportions. Recognizable landmarks must retain their characteristic massing, materials, different roof shapes and height hierarchy. Ordinary dormitories and laboratories retain their actual block layouts and appearance; avoid making everything the same cream facade and blue window grid. Integrated mature trees, lawns, ponds, sports tracks, plazas and streets connect everything naturally. Warm restrained colors, rich greens, warm stone and brick, blue-gray glass where present, subtle dark colored outlines, sun from upper left, crisp readable clustered pixels, clear silhouettes, clean shading, detailed but calm. No smooth gradients, blur, photoreal textures or pseudo-3D render look.\nComposition: output the EXACT same rectangular framing and aspect ratio as input image 1, fill edge to edge. Keep every campus part and any detached section. Outside-campus context stays quiet and low-detail. Never crop off campus edges, duplicate buildings, invent towers, move buildings to fill space or replace road layout. No posters, paper borders, inset maps, title, compass, legend, text, labels, numbers, logos, watermark, UI or characters. Road and place labels will be added by the application. Produce deliberate clean pixel-art clusters with a consistent pixel grid suitable for nearest-neighbor scaling. The final image must work as ONE map texture with everything scaling together.\nCampus: Dalian University of Technology PANJIN campus. Preserve its complete actual campus arrangement: large northern/southern blocks, internal road grid and curved routes, library E01 with the characteristic massing shown in the official reference, main academic complex, distinct D-series laboratories, B-series residential blocks, water and sports areas at their exact reference positions. Preserve the broad open spaces and different building masses, without turning every block into the same generic building.",
+      "promptFile": ".local/campus-map-research/2026-11-10/prompts/panjin.txt",
+      "knownReviewItems": [],
+      "outputDirectory": ".local/campus-map-research/2026-11-10/generated",
+      "outputs": [
+        {
+          "kind": "generated-original",
+          "file": ".local/campus-map-research/2026-11-10/generated/panjin-imagegen.png",
+          "size": [
+            1050,
+            1498
+          ],
+          "sha256": "6c85c41dec0e1de198c7f6af60557646ef8b942337cccd811a49e3f1c2174f9b"
+        },
+        {
+          "kind": "shared-palette-pixel-draft",
+          "file": ".local/campus-map-research/2026-11-10/generated/panjin-pixel.png",
+          "size": [
+            1050,
+            1498
+          ],
+          "sha256": "9bc83af4db2d4e6b8af3f3c2d9e88e012df496d7f1b955138420a1327c204f55"
+        },
+        {
+          "kind": "integer-nearest-neighbor-preview",
+          "file": ".local/campus-map-research/2026-11-10/generated/panjin-preview.png",
+          "size": [
+            2100,
+            2996
+          ],
+          "sha256": "5c91606919553a32c2a6e3ddbc978e07ff5f3be4150e01c7d9af4cea51b0c7ac"
+        },
+        {
+          "kind": "crisp-redraw",
+          "file": ".local/campus-map-research/2026-11-10/generated/panjin-crisp-redraw.png",
+          "size": [
+            1050,
+            1498
+          ],
+          "sha256": "56797b8c9caffdae2bb7230a5b6df040633a1038d4430be8df052240c69b305d"
+        }
+      ],
+      "review": {
+        "fullCampusFraming": "visually-reviewed",
+        "mainRoadAndLandmarkGroups": "visually-compared-to-official-reference",
+        "groundControlRegistration": "pending; source hit-area centroids must not be treated as measured ground control points",
+        "runtimeIntegration": "local preview: one georeferenced raster per campus, shared scaling; existing WGS84 hit geometry unchanged"
+      }
+    }
+  ],
+  "registrationCandidates": ".local/campus-map-research/2026-11-10/registration-candidates.json",
+  "pixelProcessing": "Preserve generated pixel grid, one shared 96-color median-cut palette, no dithering or filtered resampling; preview at integer 2x nearest-neighbor",
+  "registration": "references/city/campus-registration.json",
+  "crispRedraw": {
+    "tool": "built-in image_gen",
+    "prompt": "Redraw the whole campus illustration in reference 1 as sharp game-ready 16-bit farming RPG pixel art, matching the clean deliberate pixel clusters, clearly drawn architecture and large flat shadow shapes of reference 2. Reference 1 defines the exact map, full framing and aspect ratio. Keep the campus boundaries and every building group, athletic track, distinct roof, lake, courtyard, road edge and junction in the exact same place and proportions. Reference 2 is a small section's pixel-art style guide only, its buildings must not be copied into the scene. Aim for very high detail and high output resolution, so individual small windows and thin paths remain distinctly drawn when this full map is zoomed in. Use uniform square logical pixels, high-contrast crisp facade/roof silhouettes, clean blocks of 2–3 tones per material, distinguish individual canopies with large deliberate clusters, restrained textures, no fine-grained noise, antialiasing, painterly blending or soft gradients. Keep exterior as quiet as the first reference since the game masks it off. Keep the original north-up overhead terrain and the modest south-facing visible facades. Do not recenter, rotate, zoom, crop, stretch, simplify the layout, remove detached campus parts, add buildings, text, borders or labels.",
+    "styleReference": ".local/campus-map-research/2026-11-10/pixel-trials/rd-local-gpt-fixed4-48.png",
+    "layoutReferenceKind": "generated-original"
+  }
+}

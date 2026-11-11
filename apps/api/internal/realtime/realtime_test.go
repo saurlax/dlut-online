@@ -41,11 +41,17 @@ func TestGuestSocketChatWeatherAndAuthorization(t *testing.T) {
 	world, err := LoadWorld(fstest.MapFS{
 		"campuses/eda/map.json":           {Data: []byte(`{"focus":[1,1],"chunkSize":4,"textures":["grass-0"],"chunks":[{"x":0,"y":0,"layers":[[16,0]]}]}`)},
 		"campuses/eda/site-fixtures.json": {Data: []byte(`{"lamps":[],"noticeboards":[]}`)},
-	})
+	}, "eda")
 	if err != nil {
 		t.Fatal(err)
 	}
-	Register(e, guests, hub, env, commands.Register(e, env), world)
+	otherWorld := testWorld(t)
+	otherEnv := weather.NewAt(40.686319, 122.11917)
+	otherEnv.SetWeather(63)
+	Register(e, guests, hub, map[string]Campus{
+		"lingshui": {World: world, Environment: env, Execute: commands.Register(e, env)},
+		"panjin":   {World: otherWorld, Environment: otherEnv, Execute: commands.NewExecutor(otherEnv)},
+	})
 	mux, err := router.BuildMux()
 	if err != nil {
 		t.Fatal(err)
@@ -64,6 +70,19 @@ func TestGuestSocketChatWeatherAndAuthorization(t *testing.T) {
 		t.Fatal(err)
 	}
 	res.Body.Close()
+	unknown, _, err := websocket.DefaultDialer.Dial("ws"+strings.TrimPrefix(server.URL, "http")+"/api/v1/game/socket", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer unknown.Close()
+	if err := unknown.WriteJSON(message{Type: "auth", Token: session.Token, Campus: "unknown"}); err != nil {
+		t.Fatal(err)
+	}
+	if _, _, err := unknown.ReadMessage(); err == nil {
+		t.Fatal("unknown campus accepted")
+	} else if closeError, ok := err.(*websocket.CloseError); !ok || closeError.Code != 4002 {
+		t.Fatal("unexpected campus rejection", err)
+	}
 	socket, _, err := websocket.DefaultDialer.Dial("ws"+strings.TrimPrefix(server.URL, "http")+"/api/v1/game/socket", nil)
 	if err != nil {
 		t.Fatal(err)
@@ -168,5 +187,43 @@ func TestGuestSocketChatWeatherAndAuthorization(t *testing.T) {
 	closeErr, ok := err.(*websocket.CloseError)
 	if !ok || closeErr.Code != 4001 {
 		t.Fatal("invalid token accepted", err)
+	}
+	other, _, err := websocket.DefaultDialer.Dial("ws"+strings.TrimPrefix(server.URL, "http")+"/api/v1/game/socket", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer other.Close()
+	other.SetReadDeadline(time.Now().Add(5 * time.Second))
+	if err := other.WriteJSON(message{Type: "auth", Token: session.Token, Campus: "panjin", Landmark: "library"}); err != nil {
+		t.Fatal(err)
+	}
+	var otherReady, otherWeather bool
+	for !otherReady || !otherWeather {
+		var v struct {
+			Type string          `json:"type"`
+			Data json.RawMessage `json:"data"`
+		}
+		if err := other.ReadJSON(&v); err != nil {
+			t.Fatal(err)
+		}
+		if v.Type == "ready" {
+			var snapshot worldSnapshot
+			if err := json.Unmarshal(v.Data, &snapshot); err != nil {
+				t.Fatal(err)
+			}
+			if len(snapshot.Players) != 1 || snapshot.Players[0].ID != snapshot.SelfID {
+				t.Fatal("players leaked across campus worlds")
+			}
+			if snapshot.Players[0].Revision != 1 {
+				t.Fatal("cross-campus arrival did not travel to the requested landmark")
+			}
+			otherReady = true
+		}
+		if v.Type == "weather" {
+			if !strings.Contains(string(v.Data), `"weather_code":63`) {
+				t.Fatal("weather leaked across campuses")
+			}
+			otherWeather = true
+		}
 	}
 }

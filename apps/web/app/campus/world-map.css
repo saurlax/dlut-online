@@ -1,44 +1,29 @@
-.world-map-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  padding: 6px;
-}
-.world-map-art {
-  position: relative;
-  flex-shrink: 0;
-}
-.world-map-art img {
-  display: block;
-  image-rendering: pixelated;
-}
-.world-map-landmark {
-  position: absolute;
-  appearance: none;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  cursor: pointer;
-}
-.world-map-landmark:hover,
-.world-map-landmark[aria-pressed="true"],
-.world-map-landmark:focus-visible {
-  background: #f2d16a55;
-}
-.world-map-player {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  border: 1px solid #123e70;
-  background: #fff3d0;
-  transform: translate(-1px, -1px);
-  pointer-events: none;
-}
-.world-map-caption {
-  height: 12px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-}
+/* Lay out the map at the interface scale so the compositor displays the
+   device-resolution canvas without resampling a transformed surface. */
+.pixel-interface:has(> .world-map-dialog) { transform: none; zoom: var(--interface-scale); }
+.world-map-dialog { position: absolute; inset: 0; z-index: 21; display: flex; flex-direction: column; background: #5094a8; color: #123e70; pointer-events: auto; }
+.world-map-dialog .game-dialog-header { position: relative; }
+.atlas-view { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+.atlas-view .atlas-canvas { position: absolute; inset: 0; z-index: 0; font: inherit; }
+.atlas-navigation, .atlas-zoom, .atlas-selection, .atlas-attribution, .atlas-loading, .atlas-error { z-index: 1; }
+.atlas-canvas canvas { image-rendering: pixelated; }
+.atlas-navigation { position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 5px; }
+.atlas-navigation .game-button { min-width: 88px; }
+.atlas-zoom { position: absolute; right: 8px; bottom: 24px; display: flex; flex-direction: column; gap: 4px; }
+.atlas-zoom .game-button { width: 24px; min-width: 24px; padding: 4px; }
+.atlas-selection { position: absolute; bottom: 28px; left: 8px; display: flex; flex-direction: column; gap: 6px; width: 180px; max-width: calc(100% - 52px); padding: 8px; border: 1px solid #123e70; background: #fff3d0; }
+.atlas-selection .game-button { align-self: flex-start; }
+.atlas-campus-label { z-index: 10000; appearance: none; border: 1px solid #123e70; padding: 3px 5px; background: #fff3d0; color: #123e70; cursor: pointer; font: inherit; }
+.atlas-place-label { z-index: 10000; padding: 2px 3px; color: #3a574f; background: #e2dabaaa; pointer-events: none; }
+.atlas-detail-label { visibility: hidden; z-index: 10000; appearance: none; border: 0; padding: 2px 3px; font: inherit; white-space: nowrap; color: #294c50; background: #fff3d0df; pointer-events: none; }
+button.atlas-detail-label { cursor: pointer; pointer-events: auto; }
+button.atlas-detail-label:hover { background: #ffe6a3; }
+.atlas-label-road { color: #685b40; background: #eee2bfe6; }
+.atlas-label-area { color: #355e56; background: #d9e4bce6; }
+.atlas-label-place { color: #5c4b68; }
+.atlas-player { z-index: 10001; width: 5px; height: 5px; border: 1px solid #123e70; background: #fff3d0; box-shadow: 0 0 0 1px #fff3d0; pointer-events: none; }
+.atlas-attribution { position: absolute; left: 6px; bottom: 3px; right: 40px; display: flex; gap: 6px; flex-wrap: wrap; pointer-events: none; }
+.atlas-attribution a { pointer-events: auto; color: #123e70; background: #fff3d0da; text-decoration: none; }
+.atlas-loading { position: absolute; left: 50%; top: 50%; width: 48px; height: 5px; transform: translate(-50%,-50%); background: #fff3d0; animation: atlas-pulse 1s steps(2) infinite; }
+.atlas-error { position: absolute; left: 8px; top: 8px; margin: 0; padding: 5px; background: #fff3d0; }
+@keyframes atlas-pulse { to { opacity: .4; } }

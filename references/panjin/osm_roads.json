@@ -1,0 +1,636 @@
+{
+  "source": "https://www.openstreetmap.org",
+  "license": "ODbL-1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "retrieved": "2026-09-16",
+  "archive": "references/panjin/mapping/osm-roads.json",
+  "alignment": "references/shared/mapping/osm-world-frame.json",
+  "boundary_osm_way_id": 463862869,
+  "roads": [
+    {
+      "osm_way_id": 1189609232,
+      "osm_version": 2,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -245.8335,
+          -198.5805
+        ],
+        [
+          -130.2912,
+          -176.1416
+        ],
+        [
+          175.317,
+          -116.7969
+        ],
+        [
+          247.0595,
+          -102.8597
+        ],
+        [
+          263.9336,
+          -99.5869
+        ],
+        [
+          337.3475,
+          -85.3268
+        ],
+        [
+          342.0831,
+          -83.4009
+        ],
+        [
+          344.5226,
+          -80.3285
+        ],
+        [
+          346.0589,
+          -77.3897
+        ],
+        [
+          345.7972,
+          -71.3673
+        ],
+        [
+          319.4098,
+          69.6863
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189609233,
+      "osm_version": 3,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -214.9995,
+          261.4684
+        ],
+        [
+          -189.0426,
+          127.4057
+        ],
+        [
+          -130.2912,
+          -176.1416
+        ],
+        [
+          -111.2392,
+          -265.5205
+        ],
+        [
+          -93.5801,
+          -359.007
+        ],
+        [
+          -85.5018,
+          -401.7984
+        ],
+        [
+          -74.7645,
+          -458.6384
+        ],
+        [
+          -68.3069,
+          -491.4889
+        ],
+        [
+          -66.4751,
+          -495.5855
+        ],
+        [
+          -64.1031,
+          -497.4112
+        ],
+        [
+          -60.8701,
+          -498.3796
+        ],
+        [
+          -56.9956,
+          -498.2795
+        ],
+        [
+          230.9282,
+          -441.7957
+        ],
+        [
+          233.4606,
+          -440.7938
+        ],
+        [
+          235.0054,
+          -439.1685
+        ],
+        [
+          236.0858,
+          -436.6304
+        ],
+        [
+          236.2716,
+          -433.6471
+        ],
+        [
+          175.317,
+          -116.7969
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189609234,
+      "osm_version": 3,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          263.9336,
+          -99.5869
+        ],
+        [
+          246.342,
+          -9.2062
+        ],
+        [
+          229.4341,
+          77.668
+        ],
+        [
+          221.9551,
+          116.1402
+        ],
+        [
+          213.421,
+          152.4193
+        ],
+        [
+          204.6083,
+          205.2629
+        ],
+        [
+          159.9623,
+          434.6823
+        ],
+        [
+          147.3187,
+          498.9075
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189609235,
+      "osm_version": 2,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          159.9623,
+          434.6823
+        ],
+        [
+          -11.2607,
+          402.2103
+        ],
+        [
+          -19.0267,
+          399.6165
+        ],
+        [
+          -26.9361,
+          392.1024
+        ],
+        [
+          -28.1686,
+          390.9336
+        ],
+        [
+          -34.1112,
+          388.9632
+        ],
+        [
+          -49.4153,
+          386.2581
+        ],
+        [
+          -84.0077,
+          380.1244
+        ],
+        [
+          -102.0382,
+          376.9295
+        ],
+        [
+          -106.9173,
+          374.3358
+        ],
+        [
+          -107.9809,
+          371.742
+        ],
+        [
+          -107.9809,
+          367.7901
+        ],
+        [
+          -107.8205,
+          362.4802
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189609236,
+      "osm_version": 2,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -189.0426,
+          127.4057
+        ],
+        [
+          20.7149,
+          168.8947
+        ],
+        [
+          204.6083,
+          205.2629
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189610047,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -87.2491,
+          401.7205
+        ],
+        [
+          -70.8055,
+          404.5591
+        ],
+        [
+          -53.0535,
+          407.6093
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189610048,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -53.0535,
+          407.6093
+        ],
+        [
+          -49.4153,
+          386.2581
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189610049,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -84.0077,
+          380.1244
+        ],
+        [
+          -87.2491,
+          401.7205
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189610052,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          221.9551,
+          116.1402
+        ],
+        [
+          310.1424,
+          133.769
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189610053,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          317.6055,
+          95.0336
+        ],
+        [
+          229.4341,
+          77.668
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1189610054,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "service",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -26.9361,
+          392.1024
+        ],
+        [
+          -21.0441,
+          383.3193
+        ],
+        [
+          20.7149,
+          168.8947
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1263777291,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "unclassified",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -74.7645,
+          -458.6384
+        ],
+        [
+          -87.0887,
+          -461.0318
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1263777292,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "unclassified",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -74.7645,
+          -458.6384
+        ],
+        [
+          -55.493,
+          -455.1763
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1263798365,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "unclassified",
+      "width": 6,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -93.5801,
+          -359.007
+        ],
+        [
+          -29.1478,
+          -346.3277
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1263798366,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "track",
+      "width": 3,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          -85.5018,
+          -401.7984
+        ],
+        [
+          -152.4496,
+          -413.2087
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1318388512,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "living_street",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          7.5634,
+          7.5364
+        ],
+        [
+          18.4864,
+          -53.8455
+        ],
+        [
+          246.342,
+          -9.2062
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1318388513,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "living_street",
+      "width": 5,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          18.4864,
+          -53.8455
+        ],
+        [
+          -26.244,
+          -61.9051
+        ],
+        [
+          -16.106,
+          -117.8211
+        ],
+        [
+          -3.3596,
+          -115.2162
+        ],
+        [
+          -6.9978,
+          -94.4105
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1318388514,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "footway",
+      "width": 2,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          247.0595,
+          -102.8597
+        ],
+        [
+          254.5385,
+          -146.9424
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1318388517,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "footway",
+      "width": 2,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          79.1117,
+          -242.377
+        ],
+        [
+          73.4223,
+          -208.4912
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1318388518,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "footway",
+      "width": 2,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          35.3352,
+          -250.637
+        ],
+        [
+          29.1731,
+          -216.5619
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1318388519,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "footway",
+      "width": 2,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          97.3955,
+          -334.0157
+        ],
+        [
+          91.5879,
+          -302.5121
+        ]
+      ]
+    },
+    {
+      "osm_way_id": 1318388520,
+      "osm_version": 1,
+      "part": 0,
+      "name": "",
+      "highway": "footway",
+      "width": 2,
+      "width_basis": "estimated:highway-class",
+      "points": [
+        [
+          142.6493,
+          -325.5776
+        ],
+        [
+          136.791,
+          -293.7067
+        ]
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "osm_way_id": 1189610050,
+      "tags": {
+        "bridge": "yes",
+        "highway": "service",
+        "layer": "1"
+      },
+      "reason": "unsupported area, steps, construction or non-ground-level way"
+    }
+  ]
+}

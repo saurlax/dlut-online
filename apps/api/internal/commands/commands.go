@@ -17,7 +17,7 @@ type command struct {
 
 type Executor func(core.App, string, string) (string, error)
 
-func Register(e *core.ServeEvent, environment *weather.Service) Executor {
+func NewExecutor(environment *weather.Service) Executor {
 	commands := map[string]command{
 		"time": {resource: "command.time", usage: "/time set day|night|noon|HH:MM", run: func(args []string) (string, error) {
 			if len(args) != 2 || args[0] != "set" {
@@ -102,6 +102,11 @@ func Register(e *core.ServeEvent, environment *weather.Service) Executor {
 		}
 		return message, nil
 	}
+	return execute
+}
+
+func Register(e *core.ServeEvent, environment *weather.Service) Executor {
+	execute := NewExecutor(environment)
 	e.Router.POST("/api/v1/commands", func(r *core.RequestEvent) error {
 		var body struct {
 			Command string `json:"command"`

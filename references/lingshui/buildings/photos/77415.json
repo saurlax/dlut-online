@@ -1,0 +1,39 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 3,
+  "result": [
+    {
+      "id": 78542,
+      "name": "s_177",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77415_20160226151654401.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77415_20160226151654401.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77415_20160226151654401.jpg"
+    },
+    {
+      "id": 78543,
+      "name": "s_178",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77415_2016022615170945.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77415_2016022615170945.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77415_2016022615170945.jpg"
+    },
+    {
+      "id": 78549,
+      "name": "s_309",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77415_20160226152749663.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77415_20160226152749663.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77415_20160226152749663.jpg"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77415",
+  "retrieved": "2026-09-09"
+}

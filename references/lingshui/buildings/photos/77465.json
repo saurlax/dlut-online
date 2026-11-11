@@ -1,0 +1,19 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 1,
+  "result": [
+    {
+      "id": 78143,
+      "name": "s_080",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77465_20160224145112613.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77465_20160224145112613.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77465_20160224145112613.jpg"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77465",
+  "retrieved": "2026-09-11"
+}

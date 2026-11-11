@@ -18,6 +18,7 @@ type message struct {
 	Inputs   []movementInput `json:"inputs,omitempty"`
 	Revision int             `json:"revision,omitempty"`
 	Landmark string          `json:"landmark,omitempty"`
+	Campus   string          `json:"campus,omitempty"`
 }
 type envelope struct {
 	Type  string `json:"type"`
@@ -26,7 +27,13 @@ type envelope struct {
 	Error string `json:"error,omitempty"`
 }
 
-func Register(e *core.ServeEvent, guests *guest.Service, hub *chat.Hub, environment *weather.Service, execute commands.Executor, world *World) {
+type Campus struct {
+	World       *World
+	Environment *weather.Service
+	Execute     commands.Executor
+}
+
+func Register(e *core.ServeEvent, guests *guest.Service, hub *chat.Hub, campuses map[string]Campus) {
 	upgrader := websocket.Upgrader{}
 	e.Router.GET("/api/v1/game/socket", func(r *core.RequestEvent) error {
 		conn, err := upgrader.Upgrade(r.Response, r.Request, nil)
@@ -40,6 +47,16 @@ func Register(e *core.ServeEvent, guests *guest.Service, hub *chat.Hub, environm
 		if err := conn.ReadJSON(&auth); err != nil || auth.Type != "auth" {
 			return nil
 		}
+		campus := auth.Campus
+		if campus == "" {
+			campus = "lingshui"
+		}
+		selected, ok := campuses[campus]
+		if !ok {
+			_ = conn.WriteControl(websocket.CloseMessage, websocket.FormatCloseMessage(4002, "campus unavailable"), time.Now().Add(time.Second))
+			return nil
+		}
+		world, environment, execute := selected.World, selected.Environment, selected.Execute
 		identity, ok := guests.ResolveToken(auth.Token)
 		if !ok {
 			record, err := r.App.FindAuthRecordByToken(auth.Token, core.TokenTypeAuth)
@@ -59,6 +76,10 @@ func Register(e *core.ServeEvent, guests *guest.Service, hub *chat.Hub, environm
 			return err
 		}
 		defer world.leave(playerID)
+		if auth.Landmark != "" && !world.travel(playerID, auth.Landmark) {
+			_ = conn.WriteControl(websocket.CloseMessage, websocket.FormatCloseMessage(4002, "landmark unavailable"), time.Now().Add(time.Second))
+			return nil
+		}
 		lookIdentity := identity
 		identity.Name = look.Name
 		chatEvents, leave := hub.Join(identity.ID, identity.Name)

@@ -1,0 +1,252 @@
+{
+  "retrieved": "2026-11-08T12:32:03.154731+00:00",
+  "scope": "Dalian municipality with northward coverage to Panjin campus; regional atlas, not a surveyed street map",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_land.geojson",
+      "sha256": "1ac90796408bc6ad6911d69448485d3c4dbf2190370080368a09976e1c9f7416",
+      "provider": "Natural Earth",
+      "license": "Public Domain"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_urban_areas.geojson",
+      "sha256": "5136ffd816a9b28c0f295e6797b4c03eaa421be80d78b90f542db4a932dd4497",
+      "provider": "Natural Earth",
+      "license": "Public Domain"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_populated_places.geojson",
+      "sha256": "9b8e3de09048ef00dfc70357dbb9fa324493f214b5e0ae4daf1aa79a8d10116b",
+      "provider": "Natural Earth",
+      "license": "Public Domain"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_rivers_lake_centerlines.geojson",
+      "sha256": "bb854a900ecbd3b408df46d5e16e3e0f974ba55993f9d8b5c26e855273c0905a",
+      "provider": "Natural Earth",
+      "license": "Public Domain"
+    },
+    {
+      "url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_roads.zip",
+      "sha256": "880b235383a1e1ccf33f4ea6f82b6755a2ffbce07e3974e412b43e88fe954ae9",
+      "provider": "Natural Earth",
+      "license": "Public Domain"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/427/191.png",
+      "sha256": "c3afaa196cceaca16afeee021831d4842b33a0856e60f193f1e5695c81150c51",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/428/191.png",
+      "sha256": "44a26747b158eb257f17a8ca4745e65bd1de83fb58a3e198de88da6270a7f833",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/429/191.png",
+      "sha256": "0b69b2cf5c4c8fc9a509bdc7c9d1fabdba96ef678d8da2b90174cac1d15ec239",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/430/191.png",
+      "sha256": "de8a72296f6b85bc942332b25c17643f33495e09afa2e8c3b1806554e62c5da4",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/431/191.png",
+      "sha256": "7164ee21ac98ccf4abcb1c7f8214719eb058b514834b065ba83f8bfd16b389e7",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/432/191.png",
+      "sha256": "ed3e0e434640c2e1e3d8d9ff38040a91213d6fcd903b8222434378fc0865617f",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/427/192.png",
+      "sha256": "3585f39c4012c73f78969a3f17ed4a2971e8590ecfb9e1895c4ea7e968351858",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/428/192.png",
+      "sha256": "edc6c1b583a2158049f2cfac6b02383e6312545f54187947334e79ef00706177",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/429/192.png",
+      "sha256": "940bbc21011f506550909a57f55c416f8233311ed2a251979e7c0d77a55a7d58",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/430/192.png",
+      "sha256": "0d52e167c16a5943da74502da7c5bc0c95a7b9008459f69e8bb4ee5c3b87ec3a",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/431/192.png",
+      "sha256": "42daa354e7f8c71e735c4b140e61993b8f3bbcc46c73350b010552a912137290",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/432/192.png",
+      "sha256": "a5840fb3e0a75decf91217eba55c98f3961a4e3993ec3a9c5e798d1d34a43955",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/427/193.png",
+      "sha256": "d130b4131468874caca620f718d6a8b3838a8adc5b316339efbdfdb84961cdc3",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/428/193.png",
+      "sha256": "61b4294ace218952144e877b5a34b2d98ab433a98289de5013afe44237c9e75d",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/429/193.png",
+      "sha256": "4ff9aef3c4b1f2c7862c0aed7c63670aeb9d2e71d0814b72eef7aa0f60360874",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/430/193.png",
+      "sha256": "ccb0db37998d8bd80c530041688ee9d87aaaab10820906441b73f3440a155505",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/431/193.png",
+      "sha256": "e4ab0570292681a71ef0d25d38554446b1a1890083b1876cc0e6ad0de8e6d9b3",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/432/193.png",
+      "sha256": "3ebafa3cb52e9c80ac95c8054787cdf1efa21cf83c0809da489246444da8a386",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/427/194.png",
+      "sha256": "b1930495cb8a54c4c6ccb8f69d45519c060ad3347086fdec38b5389154128204",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/428/194.png",
+      "sha256": "875769959681ef140d6479de9ca8a45d22f5bd92dc5c78264e4054d3b870aedd",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/429/194.png",
+      "sha256": "6f497e1ad779e0334a4dca97e3080b35ddb3fee5ea2974cf02a7c4563fc15cbc",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/430/194.png",
+      "sha256": "9a6a19ca1b950c71abe66bbf50c30c3bcd014bbecd19a3c590c04cb04e4beb80",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/431/194.png",
+      "sha256": "7a340c77da0e6666f27711c68b1c48c24cb43aa85c11bb0df03df6f5383c9bd9",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/432/194.png",
+      "sha256": "d4a8963d86e599687a723de8868b6eaca9865e2f6458a7129a807c8d5235d39f",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/427/195.png",
+      "sha256": "8d12cc89f3da32ecac3b408c35c0d27fca84857c95bf5942521db720d2501f18",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/428/195.png",
+      "sha256": "b0f738de156525e9e4394f996511cfd0c524bc600399871242606e2271d22814",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/429/195.png",
+      "sha256": "e70010f521e81e71097c612bfce83ab2641624e85414be7a670c1fc7009a7430",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/430/195.png",
+      "sha256": "013028d07e6735de6f55569e9f3004a352573ff4d093ecadf73f9f431c070f71",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/431/195.png",
+      "sha256": "11734975579dc5427a17ce70edc7659d22ac012ef4a989d9561ef852f243d01f",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/432/195.png",
+      "sha256": "370a922a35f8d4828b386ab8aa78b2329218717b94d97c15ac534fbb1a51ad66",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/427/196.png",
+      "sha256": "04debe05c177b8ccd20f76bb8a75b2a729ff595979730370f54b40a54f8a4611",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/428/196.png",
+      "sha256": "b3fad852c43c01f8a0fe71eaa5bd471d4b634fffff9364e13c49c902949bd982",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/429/196.png",
+      "sha256": "0b8782860dd7d06676c32d272dbf405fa12e00d95b2fdc48bb5d105d8ebe2eba",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/430/196.png",
+      "sha256": "113b202415165aca32bd9f0c4643042574a1fa22b630a3866da4e8c0a03850e0",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/431/196.png",
+      "sha256": "a67a4d7916ee397ca9f226a2102c147517e06b9d76bd50877c8f0a46b8dd007c",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    },
+    {
+      "url": "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/9/432/196.png",
+      "sha256": "033010d56028778158abe1fc9daa6d18dd1c83c0cf464f7c485a81166873d94d",
+      "provider": "Mapzen terrain tiles",
+      "license": "Source attribution at https://github.com/tilezen/joerd/blob/master/docs/attribution.md"
+    }
+  ]
+}

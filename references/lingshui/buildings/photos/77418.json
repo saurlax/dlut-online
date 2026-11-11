@@ -1,0 +1,49 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 4,
+  "result": [
+    {
+      "id": 273995984,
+      "name": "A303",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77418_20170913092550484.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77418_20170913092550484.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77418_20170913092550484.jpg"
+    },
+    {
+      "id": 273995985,
+      "name": "A303",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77418_2017091309262072.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77418_2017091309262072.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77418_2017091309262072.jpg"
+    },
+    {
+      "id": 78303,
+      "name": "IMG_0085",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77418_20160225104552661.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77418_20160225104552661.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77418_20160225104552661.jpg"
+    },
+    {
+      "id": 78304,
+      "name": "IMG_0091",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77418_20160225104602867.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77418_20160225104602867.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77418_20160225104602867.jpg"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77418",
+  "retrieved": "2026-09-11"
+}

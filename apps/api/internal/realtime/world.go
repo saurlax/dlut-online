@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/fs"
 	"math"
+	random "math/rand/v2"
 	"strings"
 	"sync"
 	"time"
@@ -69,8 +70,10 @@ type campusData struct {
 		Layers [][]int
 	} `json:"chunks"`
 	Buildings []struct {
-		ID        string       `json:"id"`
-		Footprint [][2]float64 `json:"footprint"`
+		ID                string         `json:"id"`
+		Footprint         [][2]float64   `json:"footprint"`
+		Holes             [][][2]float64 `json:"holes"`
+		CollisionPolygons [][][2]float64 `json:"collisionPolygons"`
 	} `json:"buildings"`
 }
 
@@ -91,10 +94,10 @@ type World struct {
 	spawn    [2]float64
 }
 
-func LoadWorld(public fs.FS) (*World, error) {
+func LoadWorld(public fs.FS, campus string) (*World, error) {
 	w := &World{players: map[string]*playerState{}, ground: map[[2]int][]bool{}}
 	for name, target := range map[string]any{"map.json": &w.campus, "site-fixtures.json": &w.fixtures} {
-		data, err := fs.ReadFile(public, "campuses/eda/"+name)
+		data, err := fs.ReadFile(public, "campuses/"+campus+"/"+name)
 		if err != nil {
 			return nil, fmt.Errorf("load multiplayer %s: %w", name, err)
 		}
@@ -177,28 +180,31 @@ func (w *World) join(look playerLook) (string, error) {
 	id := hex.EncodeToString(key[:])
 	w.mu.Lock()
 	defer w.mu.Unlock()
-	x, y := w.spawn[0], w.spawn[1]
-spawn:
-	for radius := 0; radius <= 6; radius++ {
-		for dy := -radius; dy <= radius; dy++ {
-			for dx := -radius; dx <= radius; dx++ {
-				px, py := w.spawn[0]+float64(dx)*20, w.spawn[1]+float64(dy)*20
-				if !w.canStand(px, py) {
-					continue
-				}
-				occupied := false
-				for _, player := range w.players {
-					if math.Hypot(px-player.X, py-player.Y) < 16 {
-						occupied = true
-						break
-					}
-				}
-				if !occupied {
-					x, y = px, py
-					break spawn
+	x, y, candidates := 0.0, 0.0, 0
+	for dy := -6; dy <= 6; dy++ {
+		for dx := -6; dx <= 6; dx++ {
+			px, py := w.spawn[0]+float64(dx)*20, w.spawn[1]+float64(dy)*20
+			if !w.canStand(px, py) {
+				continue
+			}
+			occupied := false
+			for _, player := range w.players {
+				if math.Hypot(px-player.X, py-player.Y) < 16 {
+					occupied = true
+					break
 				}
 			}
+			if occupied {
+				continue
+			}
+			candidates++
+			if random.IntN(candidates) == 0 {
+				x, y = px, py
+			}
 		}
+	}
+	if candidates == 0 {
+		return "", fmt.Errorf("no free campus spawn")
 	}
 	w.players[id] = &playerState{ID: id, X: x, Y: y, Look: look, clock: time.Now(), credit: 150}
 	return id, nil
@@ -345,6 +351,16 @@ func (w *World) canStand(x, y float64) bool {
 	return true
 }
 
+func insideFootprint(x, y float64, ring [][2]float64) bool {
+	inside := false
+	for i, j := 0, len(ring)-1; i < len(ring); j, i = i, i+1 {
+		if (ring[i][1] > y) != (ring[j][1] > y) && x < (ring[j][0]-ring[i][0])*(y-ring[i][1])/(ring[j][1]-ring[i][1])+ring[i][0] {
+			inside = !inside
+		}
+	}
+	return inside
+}
+
 func (w *World) walkable(x, y float64) bool {
 	tx, ty := int(math.Floor(x/16)), int(math.Floor(y/16))
 	size := w.campus.ChunkSize
@@ -354,10 +370,17 @@ func (w *World) walkable(x, y float64) bool {
 		return false
 	}
 	for _, b := range w.campus.Buildings {
+		if b.CollisionPolygons != nil {
+			for _, ring := range b.CollisionPolygons {
+				if insideFootprint(x/16, y/16, ring) {
+					return false
+				}
+			}
+			continue
+		}
 		inside := false
-		p := b.Footprint
-		for i, j := 0, len(p)-1; i < len(p); j, i = i, i+1 {
-			if (p[i][1] > y/16) != (p[j][1] > y/16) && x/16 < (p[j][0]-p[i][0])*(y/16-p[i][1])/(p[j][1]-p[i][1])+p[i][0] {
+		for _, p := range append([][][2]float64{b.Footprint}, b.Holes...) {
+			if insideFootprint(x/16, y/16, p) {
 				inside = !inside
 			}
 		}

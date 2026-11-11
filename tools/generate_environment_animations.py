@@ -27,20 +27,20 @@ def water_frames(source, seed):
         frames.append(image)
     return frames
 
-def main():
-    campus = json.loads((CAMPUS/'map.json').read_text(encoding='utf-8'))
+def main(directory=CAMPUS):
+    campus = json.loads((directory/'map.json').read_text(encoding='utf-8'))
     names = [name for name in campus['textures'] if name.startswith('water-')]
     sheet = Image.new('RGBA',(16*16,16*((len(names)*16+15)//16)))
     mapping = {}
     for index,name in enumerate(names):
-        source = Image.open(CAMPUS/'tiles'/f'{name}.png').convert('RGBA')
+        source = Image.open(directory/'tiles'/f'{name}.png').convert('RGBA')
         frames = water_frames(source,index%4)
         mapping[name] = []
         for phase,image in enumerate(frames):
             frame = index*16+phase
             sheet.paste(image,((frame%16)*16,(frame//16)*16))
             mapping[name].append(frame)
-    directory = CAMPUS/'animations'
+    directory = directory/'animations'
     directory.mkdir(parents=True,exist_ok=True)
     sheet.save(directory/'water.png',optimize=True)
     manifest = {'water':{'image':'animations/water.png','frameWidth':16,'frameHeight':16,'frameDurationMs':120,'framesByTile':mapping},'trees':{'frameDurationMs':220,'offsets':[0,0,1,1,0,0,-1,-1],'fixedRootPixels':32}}

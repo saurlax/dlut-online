@@ -14,9 +14,11 @@
 
 ## OpenStreetMap
 
+凌水主校区与盘锦校区同样使用 © OpenStreetMap contributors 的 ODbL 1.0 数据。原始归档、请求范围、版本、读取时间与摘要分别见 `references/lingshui/mapping/osm-world-source.json` 与 `references/panjin/mapping/osm-world-source.json`，身份配准及照片来源保留在对应 `mapping/`、`buildings/` 与 `references/shared/` 中。学校照片与航拍仅作离线参考，不随客户端分发。两校区的像素建筑和体育设施由本项目旧版已登记体块与立面重建，逐对象模型路径和摘要见各校区 `models/manifest.json`；地面材质复用本项目已有原生像素原片，大地图直接按地理网格绘制。未引入旧照片或旧 PBR 贴图作为游戏纹理。
+
 开发区校区地图来源于 © OpenStreetMap contributors，采用 [Open Database License 1.0](https://opendatacommons.org/licenses/odbl/1-0/)。来源及署名信息见 [OpenStreetMap Copyright](https://www.openstreetmap.org/copyright)。
 
-游戏内署名与许可入口集中于首页“关于”，不占用地图画面；采用 OSMF [署名指南中游戏与模拟](https://osmfoundation.org/wiki/Licence/Attribution_Guidelines#Computer_games_and_simulations)允许的菜单署名位置。
+校园行走画面的署名与许可入口集中于首页“关于”；全屏大地图另保留来源链接。游戏采用 OSMF [署名指南中游戏与模拟](https://osmfoundation.org/wiki/Licence/Attribution_Guidelines#Computer_games_and_simulations)允许的菜单署名位置。
 
 `references/eda/osm.osm.gz` 保存 2026-09-16 下载的原始数据；请求范围、版本与校验值见 `references/eda/osm-source.json`。涌泉湖生成工具使用其中的水面和步道几何，导出的材质网格保留来源对象 ID、版本与署名。数据库及其派生数据遵循 ODbL；像素贴图与数据库分开维护。
 
@@ -42,9 +44,13 @@
 
 背景以学校官网的[主楼广场照片](https://www.dlut.edu.cn/__local/F/15/C0/3CF32C7A03F1F6164F28544D708_61DC62F5_5F904.jpg)、校园地图建筑 77386 的正面照片和[主楼介绍](https://news.dlut.edu.cn/info/1261/83254.htm)为地域参考。照片版权归原权利人，仅离线参考；插画不用于测绘。构图与像素氛围参考星露谷官方[游戏页面](https://store.playstation.com/en-au/product/EP2319-CUSA26625_00-2010147637670638)的标题美术，未使用其贴图或标志。生成提示词、来源与处理参数见 `references/branding/title-screen.json`。
 
-## 校园大地图
+## 全屏大地图
 
-大地图由 imagegen 参考本项目 OSM 地理底稿与登记建筑生成，采用原创屋顶与地貌表达，参考[星露谷物语](https://www.stardewvalley.net/)的地图窗口风格，未使用其地图贴图。通过 tools/prepare_world_map.py 缩为 128×148 像素、64 色；来源与比例记录见 references/eda/world-map.json。OSM 数据署名与许可同本文前述约定。
+全屏地图使用 [MapLibre GL JS](https://maplibre.org/) 6.16.0，按 BSD 3-Clause 许可使用；许可随静态资源保存在 `world/atlas/MapLibre-LICENSE.txt`。它只负责地图交互和图层渲染，不使用 MapLibre 在线演示底图。
+
+大连及盘锦周边的区域海陆轮廓、城镇范围、道路、河流和地名使用 [Natural Earth](https://www.naturalearthdata.com/) 的 1:10m 数据，按 [Public Domain](https://www.naturalearthdata.com/about/terms-of-use/) 使用。区域高程使用 [Mapzen Terrain Tiles](https://registry.opendata.aws/terrain-tiles/) 的 Terrarium 数据；USGS 的 SRTM/GMTED2010 与 NOAA ETOPO1 等来源署名依上游 [attribution](https://github.com/tilezen/joerd/blob/master/docs/attribution.md) 保留在 `references/city/terrain-attribution.md` 和随客户端提供的 `world/atlas/NOTICE.txt`。
+
+区域范围、源 URL、下载日期和 SHA-256 记录在 `references/city/sources.json`，已裁切地理数据与高程原片位于同目录。像素颜色和纹理由本项目直接绘制，区域概览不作为校园精确轮廓或场景碰撞依据。校园图层由内置 imagegen 按[学校官方校园地图](http://map.dlut.edu.cn/)的二维位置图与斜视建筑图生成，构图与建筑辨识度参考 umasou／莫卡设计工作室的[《大连理工大学手绘四季》](https://www.zcool.com.cn/work/ZMjgyNjc4Mjg%3D.html)；参考图片仅离线使用，未作为原图分发。三张插画由 [Retro Diffusion Pixel Art Fixer Standard](https://github.com/Retro-Diffusion/pixel-art-fixer)（MIT）整理像素网格，量化为每校区最多 48 色并裁切校园范围，并按现有 WGS84 地标近似配准，用于全屏地图本地预览，不是新增建筑测绘或碰撞依据。提示词、来源和输出摘要见 `references/city/campus-art.json`，人工选点及配准误差见 `references/city/campus-registration.json`。此前逐栋建筑与运动场美术及其模型来源继续保留在 `landmarks.json` 和 `building-art.json`，运行时不再作为独立建筑图标叠加。
 
 ## 场景材质
 

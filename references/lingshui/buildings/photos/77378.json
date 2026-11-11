@@ -1,0 +1,89 @@
+{
+  "status": 0,
+  "message": "ok",
+  "total": 8,
+  "result": [
+    {
+      "id": 78246,
+      "name": "IMG_0220",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77378_2016022416502986.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77378_2016022416502986.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77378_2016022416502986.jpg"
+    },
+    {
+      "id": 78247,
+      "name": "IMG_0219",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77378_20160224165101897.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77378_20160224165101897.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77378_20160224165101897.jpg"
+    },
+    {
+      "id": 78248,
+      "name": "IMG_0223",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77378_20160224165136614.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77378_20160224165136614.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77378_20160224165136614.jpg"
+    },
+    {
+      "id": 78249,
+      "name": "IMG_0229",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77378_20160224165146292.jpg",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77378_20160224165146292.jpg",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77378_20160224165146292.jpg"
+    },
+    {
+      "id": 875282,
+      "name": "综合教学1号楼",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77378_20200108090440600.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77378_20200108090440600.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77378_20200108090440600.png"
+    },
+    {
+      "id": 875283,
+      "name": "418d6835cb4efdd351da1989d6323f5",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77378_20200108090449934.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77378_20200108090449934.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77378_20200108090449934.png"
+    },
+    {
+      "id": 875285,
+      "name": "6207d0538aa82546ce2938377ed1e33",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77378_20200108090506208.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77378_20200108090506208.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77378_20200108090506208.png"
+    },
+    {
+      "id": 875286,
+      "name": "dca1c492e6f5b67bd3d7a0277b84f68",
+      "description": null,
+      "takeTime": null,
+      "thePeriod": "last",
+      "imageURL": "/images/resize_1280x1024//BUILDING/77378_2020010809051462.png",
+      "size100ImageURL": "/images/resize_100x100//BUILDING/77378_2020010809051462.png",
+      "size200ImageURL": "/images/resize_200x200//BUILDING/77378_2020010809051462.png"
+    }
+  ],
+  "source": "http://map.dlut.edu.cn/openmap/mapi/image/v1?ownerType=building&ownerId=77378",
+  "retrieved": "2026-09-09"
+}
