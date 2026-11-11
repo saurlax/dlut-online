@@ -207,14 +207,6 @@ def main():
                     "polygon":[campus_point(campus,x,y) for x,y in ring],
                     "holes":[[campus_point(campus,x,y) for x,y in hole] for hole in building.get("holes",[])]}
             if building["id"] in models:
-                sprite_ring=ring
-                if ident=="eda" and building["id"]=="2304982":
-                    sprite_ring=ring+next(b["footprint"] for b in campus["buildings"] if b["id"]=="2304982-podium")
-                sprite_x,sprite_y=zip(*sprite_ring)
-                record["image"]=f"/world/atlas/landmarks/{key}.png"
-                record["view"]="plan" if "collisionPolygons" in building else "front"
-                record["spritePoint"]=campus_point(campus,(min(sprite_x)+max(sprite_x))/2,max(sprite_y))
-                record["widthMeters"]=max(sprite_x)-min(sprite_x)
                 jobs.append({"id":key,"file":str(PUBLIC/f"campuses/{ident}"/models[building["id"]]["file"]),"elevation":90 if "collisionPolygons" in building else 26,"output":str(ROOT/f".local/city-map/model-sprites/{key}.png")})
             result["landmarks"].append(record)
             # Remove catalog prefixes and long parenthetical descriptions only from the map label.

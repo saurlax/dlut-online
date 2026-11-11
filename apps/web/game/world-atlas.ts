@@ -10,10 +10,6 @@ export interface AtlasLandmark {
   point: Coordinate;
   polygon: Coordinate[];
   holes: Coordinate[][];
-  image?: string;
-  view?: "front" | "plan";
-  spritePoint?: Coordinate;
-  widthMeters?: number;
 }
 export interface AtlasCampus {
   id: Campus["id"];
