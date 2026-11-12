@@ -32,8 +32,6 @@ spec:
       labels:
         app: dlut-online
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: example-worker
       automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
@@ -43,7 +41,7 @@ spec:
       terminationGracePeriodSeconds: 30
       initContainers:
         - name: configure-oidc
-          image: docker.io/local/dlut-online:campuses-20261111-v1
+          image: docker.io/local/dlut-online:example
           imagePullPolicy: Never
           command: [/app/dlut-online]
           args: [configure-oidc, --file=/run/oidc/provider.json, --dir=/data/pb_data]
@@ -55,7 +53,7 @@ spec:
               readOnly: true
       containers:
         - name: dlut-online
-          image: docker.io/local/dlut-online:campuses-20261111-v1
+          image: docker.io/local/dlut-online:example
           imagePullPolicy: Never
           ports:
             - name: http
@@ -108,11 +106,10 @@ metadata:
   namespace: dlut-online
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
-    traefik.ingress.kubernetes.io/router.middlewares: external-https@file
 spec:
   ingressClassName: traefik
   rules:
-    - host: dlut.online
+    - host: game.example.com
       http:
         paths:
           - path: /

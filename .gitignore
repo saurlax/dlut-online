@@ -7,6 +7,16 @@ node_modules/
 out/
 *.tsbuildinfo
 pb_data/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.pem
+*.key
+*.p12
+*.pfx
 apps/api/public/
 build/
 *.exe

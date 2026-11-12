@@ -6,7 +6,7 @@
 
 游客使用服务端内存中的临时身份加入实时连接，和账号共用消息速率限制；游客凭据不能访问角色、背包修改或管理员指令接口。
 
-聊天输入 `/help` 查询有权使用的指令；`/time set day|night|noon|HH:MM` 和 `/weather set clear|rain|snow|fog` 由服务端校验参数及对应权限并广播临时世界设置。账号通过 user_roles 关联 roles，roles 通过 role_permissions 关联 permissions；集合仅供管理员管理。初始化 admin 角色拥有时间与天气指令权限，并在目标邮箱已存在时绑定该账号。同步实际时间与天气每 15 分钟执行一次。
+聊天输入 `/help` 查询有权使用的指令；`/time set day|night|noon|HH:MM` 和 `/weather set clear|rain|snow|fog` 由服务端校验参数及对应权限并广播临时世界设置。账号通过 user_roles 关联 roles，roles 通过 role_permissions 关联 permissions；集合仅供管理员管理。初始化 admin 角色拥有时间与天气指令权限。部署管理员在 PocketBase 后台通过 user_roles 将角色分配给所选账号。同步实际时间与天气每 15 分钟执行一次。
 
 服务端每 10 秒发送 WebSocket Ping，客户端断线后按指数退避重连；失效凭据停止重连。未确认的消息不自动重发。原聊天和天气 HTTP 接口暂时保留兼容。
 
