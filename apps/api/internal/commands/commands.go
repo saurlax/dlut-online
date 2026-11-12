@@ -15,7 +15,12 @@ type command struct {
 	run             func([]string) (string, error)
 }
 
-type Executor func(core.App, string, string) (string, error)
+type WorldCommands struct {
+	Entities func() string
+	Teleport func(string) (string, error)
+}
+
+type Executor func(core.App, string, string, *WorldCommands) (string, error)
 
 func NewExecutor(environment *weather.Service) Executor {
 	commands := map[string]command{
@@ -62,7 +67,7 @@ func NewExecutor(environment *weather.Service) Executor {
 			return "天气已设置为 " + args[1], nil
 		}},
 	}
-	execute := func(app core.App, user string, input string) (string, error) {
+	execute := func(app core.App, user string, input string, world *WorldCommands) (string, error) {
 		fields := strings.Fields(input)
 		if len(fields) == 0 || !strings.HasPrefix(fields[0], "/") {
 			return "", apis.NewBadRequestError("指令须以 / 开头", nil)
@@ -70,6 +75,9 @@ func NewExecutor(environment *weather.Service) Executor {
 		name := strings.TrimPrefix(fields[0], "/")
 		if name == "help" {
 			var lines []string
+			if world != nil {
+				lines = append(lines, "/entity", "/tp <名字或ID>")
+			}
 			for _, key := range []string{"time", "weather"} {
 				c := commands[key]
 				allowed, err := permitted(app, user, c.resource)
@@ -84,6 +92,24 @@ func NewExecutor(environment *weather.Service) Executor {
 				lines = append(lines, "没有可用指令")
 			}
 			return strings.Join(lines, "\n"), nil
+		}
+		if world != nil {
+			switch name {
+			case "entity":
+				if len(fields) != 1 {
+					return "", apis.NewBadRequestError("用法：/entity", nil)
+				}
+				return world.Entities(), nil
+			case "tp":
+				if len(fields) < 2 {
+					return "", apis.NewBadRequestError("用法：/tp <名字或ID>", nil)
+				}
+				value, err := world.Teleport(strings.Join(fields[1:], " "))
+				if err != nil {
+					return "", apis.NewBadRequestError(err.Error(), nil)
+				}
+				return value, nil
+			}
 		}
 		c, ok := commands[name]
 		if !ok {
@@ -114,7 +140,7 @@ func Register(e *core.ServeEvent, environment *weather.Service) Executor {
 		if err := r.BindBody(&body); err != nil {
 			return r.BadRequestError("指令无效", nil)
 		}
-		message, err := execute(r.App, r.Auth.Id, body.Command)
+		message, err := execute(r.App, r.Auth.Id, body.Command, nil)
 		if err != nil {
 			return err
 		}

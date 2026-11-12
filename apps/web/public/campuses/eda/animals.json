@@ -1,0 +1,9 @@
+[
+  {"id": "eda-jimi","name": "吉米","kind": "cat","temperament": "friendly","route": [[680,1100],[685,1108],[680,1115],[672,1107]]},
+  {"id": "eda-miju","name": "蜜桔","kind": "cat","temperament": "friendly","route": [[684,1161],[690,1168],[687,1177],[680,1170]]},
+  {"id": "eda-xiao-sha-mao","name": "小傻猫","kind": "cat","temperament": "wary","route": [[624,1195],[636,1196],[643,1201],[633,1203]]},
+  {"id": "eda-la-ma","name": "辣妈","kind": "cat","temperament": "friendly","route": [[365,1023],[377,1021],[386,1025],[380,1031]]},
+  {"id": "eda-gogo","name": "gogo","kind": "cat","temperament": "shy","route": [[354,1076],[363,1080],[371,1076],[365,1072]]},
+  {"id": "eda-duanwei","name": "断尾","kind": "cat","temperament": "shy","route": [[697,839],[706,844],[714,849],[702,852]]},
+  {"id": "eda-teaching-cat","name": "","kind": "cat","temperament": "wary","route": [[748,861],[754,866],[762,872],[751,874]]}
+]

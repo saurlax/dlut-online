@@ -12,6 +12,7 @@ func testWorld(t *testing.T) *World {
 	w, err := LoadWorld(fstest.MapFS{
 		"campuses/eda/map.json":           {Data: []byte(`{"focus":[3,3],"offset":[0,0],"chunkSize":8,"textures":["grass-0","water-0"],"chunks":[{"x":0,"y":0,"layers":[[56,0,8,1]]}],"buildings":[{"id":"library","footprint":[[5,1],[6,1],[6,2],[5,2]]}]}`)},
 		"campuses/eda/site-fixtures.json": {Data: []byte(`{"lamps":[{"position":[1.5,1.5]}],"noticeboards":[{"position":[2.5,1.5],"direction":[1,0],"width":1}]}`)},
+		"campuses/eda/animals.json":       {Data: []byte(`[]`)},
 	}, "eda")
 	if err != nil {
 		t.Fatal(err)
@@ -38,6 +39,34 @@ func TestWorldPlayersJoinAndLeaveWithoutSharingIdentity(t *testing.T) {
 	w.leave(b)
 	if len(w.snapshot(a).Players) != 1 {
 		t.Fatal("disconnected player remains visible")
+	}
+}
+
+func TestEntityTeleportUsesSafeLandings(t *testing.T) {
+	w := testWorld(t)
+	now := time.Now()
+	w.loadAnimals([]animalDefinition{
+		{ID: "eda-duck", Kind: "duck", Route: [][2]float64{{3.5, 7.5}, {4.5, 7.5}}},
+	}, now)
+	self, err := w.join(playerLook{Name: "Alice"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	target, err := w.join(playerLook{Name: "Bob"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	w.players[target].X, w.players[target].Y = 56, 56
+	player := w.players[self]
+	if !w.travelToEntity(self, target) || player.Revision != 1 ||
+		math.Hypot(player.X-56, player.Y-56) != 16 || !w.canStand(player.X, player.Y) {
+		t.Fatalf("did not arrive on walkable ground next to player: %+v", player)
+	}
+	if !w.travelToEntity(self, "eda-duck") || player.Revision != 2 || player.Y != 6.5*16 {
+		t.Fatalf("did not arrive on the shore: %+v", player)
+	}
+	if w.travelToEntity(self, "missing") || w.travelToEntity(self, self) || player.Revision != 2 {
+		t.Fatal("failed teleport changed the player")
 	}
 }
 

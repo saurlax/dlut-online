@@ -41,10 +41,16 @@ type playerLook struct {
 }
 
 // Public IDs are connection IDs; account IDs and guest tokens never leave the server.
+type entityState struct {
+	ID   string  `json:"id"`
+	Kind string  `json:"kind"`
+	Name string  `json:"name"`
+	X    float64 `json:"x"`
+	Y    float64 `json:"y"`
+}
+
 type playerState struct {
-	ID        string     `json:"id"`
-	X         float64    `json:"x"`
-	Y         float64    `json:"y"`
+	entityState
 	Direction int        `json:"direction"`
 	Moving    bool       `json:"moving"`
 	Sprint    bool       `json:"sprint"`
@@ -57,7 +63,9 @@ type playerState struct {
 
 type worldSnapshot struct {
 	SelfID  string        `json:"selfId"`
+	Time    int64         `json:"time"`
 	Players []playerState `json:"players"`
+	Animals []animalState `json:"animals"`
 }
 
 type campusData struct {
@@ -86,17 +94,20 @@ type fixtureData struct {
 }
 
 type World struct {
-	mu       sync.Mutex
-	players  map[string]*playerState
-	campus   campusData
-	fixtures fixtureData
-	ground   map[[2]int][]bool
-	spawn    [2]float64
+	mu         sync.Mutex
+	players    map[string]*playerState
+	animals    []animal
+	animalTick time.Time
+	campus     campusData
+	fixtures   fixtureData
+	ground     map[[2]int][]bool
+	spawn      [2]float64
 }
 
 func LoadWorld(public fs.FS, campus string) (*World, error) {
 	w := &World{players: map[string]*playerState{}, ground: map[[2]int][]bool{}}
-	for name, target := range map[string]any{"map.json": &w.campus, "site-fixtures.json": &w.fixtures} {
+	var definitions []animalDefinition
+	for name, target := range map[string]any{"map.json": &w.campus, "site-fixtures.json": &w.fixtures, "animals.json": &definitions} {
 		data, err := fs.ReadFile(public, "campuses/"+campus+"/"+name)
 		if err != nil {
 			return nil, fmt.Errorf("load multiplayer %s: %w", name, err)
@@ -105,6 +116,7 @@ func LoadWorld(public fs.FS, campus string) (*World, error) {
 			return nil, err
 		}
 	}
+	w.loadAnimals(definitions, time.Now())
 	for _, chunk := range w.campus.Chunks {
 		cells := make([]bool, w.campus.ChunkSize*w.campus.ChunkSize)
 		for _, runs := range chunk.Layers {
@@ -206,7 +218,7 @@ func (w *World) join(look playerLook) (string, error) {
 	if candidates == 0 {
 		return "", fmt.Errorf("no free campus spawn")
 	}
-	w.players[id] = &playerState{ID: id, X: x, Y: y, Look: look, clock: time.Now(), credit: 150}
+	w.players[id] = &playerState{entityState: entityState{ID: id, Kind: "player", Name: look.Name, X: x, Y: y}, Look: look, clock: time.Now(), credit: 150}
 	return id, nil
 }
 
@@ -268,7 +280,12 @@ func (w *World) snapshot(id string) worldSnapshot {
 	w.mu.Lock()
 	defer w.mu.Unlock()
 	self := w.players[id]
-	snapshot := worldSnapshot{SelfID: id, Players: []playerState{}}
+	now := time.Now()
+	w.advanceAnimals(now)
+	snapshot := worldSnapshot{SelfID: id, Time: now.UnixMilli(), Players: []playerState{}, Animals: make([]animalState, 0, len(w.animals))}
+	for _, a := range w.animals {
+		snapshot.Animals = append(snapshot.Animals, a.animalState)
+	}
 	for _, p := range w.players {
 		if p.ID != id && math.Hypot(p.X-self.X, p.Y-self.Y) > 160*16 {
 			continue
@@ -286,6 +303,7 @@ func (w *World) appearance(id string, look playerLook) {
 	w.mu.Lock()
 	defer w.mu.Unlock()
 	w.players[id].Look = look
+	w.players[id].Name = look.Name
 }
 
 func (w *World) travel(id, landmark string) bool {
@@ -310,11 +328,7 @@ func (w *World) travel(id, landmark string) bool {
 					}
 					x, y := (tx+float64(dx))*16+8, (ty+float64(dy))*16+8
 					if w.canStand(x, y) {
-						p := w.players[id]
-						p.X = x
-						p.Y = y
-						p.Moving = false
-						p.Revision++
+						w.relocate(id, x, y)
 						return true
 					}
 				}
@@ -322,6 +336,13 @@ func (w *World) travel(id, landmark string) bool {
 		}
 	}
 	return false
+}
+
+func (w *World) relocate(id string, x, y float64) {
+	p := w.players[id]
+	p.X, p.Y = x, y
+	p.Moving, p.Sprint = false, false
+	p.Revision++
 }
 
 func abs(n int) int {

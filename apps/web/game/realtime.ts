@@ -16,7 +16,7 @@ export class RealtimeConnection {
   private pingTimer=0;
   private pingSentAt=0;
   latencyMs:number|null=null;
-  constructor(private readonly token:string, private readonly campus = "lingshui", private landmark = "") {}
+  constructor(private readonly token:string, private readonly campus = "lingshui", private landmark = "", private entity = "") {}
   subscribe(listener:Listener) {this.listeners.add(listener);return ()=>{this.listeners.delete(listener);};}
   private emit(event:Event) {this.listeners.forEach(listener=>listener(event));}
   start() {this.stopped=false;this.connect();}
@@ -30,11 +30,11 @@ export class RealtimeConnection {
   private connect() {
     const socket=new WebSocket(`${location.protocol==='https:'?'wss':'ws'}://${location.host}/api/v1/game/socket`);
     this.socket=socket;
-    socket.onopen=()=>socket.send(JSON.stringify({type:'auth',token:this.token,campus:this.campus,landmark:this.landmark}));
+    socket.onopen=()=>socket.send(JSON.stringify({type:'auth',token:this.token,campus:this.campus,landmark:this.landmark,entity:this.entity}));
     socket.onmessage=message=>{
       if(this.socket!==socket)return;
       const event:Event=JSON.parse(message.data);
-      if(event.type==='ready'){this.landmark='';this.ready=true;this.attempt=0;this.ping();this.pingTimer=window.setInterval(()=>this.ping(),2000);this.emit({type:'connected',data:event.data});return;}
+      if(event.type==='ready'){this.landmark='';this.entity='';this.ready=true;this.attempt=0;this.ping();this.pingTimer=window.setInterval(()=>this.ping(),2000);this.emit({type:'connected',data:event.data});return;}
       if(event.type==='pong'){if(event.id===String(this.pingSentAt))this.latencyMs=Math.round(performance.now()-this.pingSentAt);return;}
       if(event.type==='result' && event.id) {
         const item=this.pending.get(event.id);if(item){window.clearTimeout(item.timer);this.pending.delete(event.id);if(event.error)item.reject(new Error(event.error));else item.resolve(String(event.data ?? ''));}return;
@@ -61,6 +61,9 @@ export class RealtimeConnection {
   travel(landmark: string) {
     if (!this.ready || this.socket?.readyState !== WebSocket.OPEN) return false;
     this.socket.send(JSON.stringify({type:'travel',landmark})); return true;
+  }
+  interact(entity: string) {
+    if (this.ready && this.socket?.readyState === WebSocket.OPEN) this.socket.send(JSON.stringify({type:'interact',entity}));
   }
   appearance() {
     window.clearTimeout(this.appearanceTimer);

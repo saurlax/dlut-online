@@ -25,32 +25,7 @@ export function PointerItem({ carried, state, items, host }: { carried:CarriedIt
 }
 
 function ItemIcon({ item, color }: { item: Item; color: number }) {
-  const canvas = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const c = canvas.current!.getContext("2d")!;
-    c.clearRect(0,0,16,16);
-    const ink = "#183c59", fabric = ["#2877b4","#ac5a65","#53976d","#d2a255"][color];
-    const rect = (x:number,y:number,w:number,h:number,fill:string) => { c.fillStyle=fill; c.fillRect(x,y,w,h); };
-    switch (item.slotId) {
-      case "top":
-        rect(4,2,8,12,ink); rect(1,3,14,5,ink); rect(5,3,6,10,fabric); rect(2,4,12,3,fabric);
-        rect(6,2,4,2,"#fff3d0"); rect(8,5,1,7,"#a4ced8"); break;
-      case "bottom":
-        if(item.key==="skirt") { rect(4,3,8,4,ink);rect(3,7,10,3,ink);rect(2,10,12,4,ink);rect(5,4,6,3,fabric);rect(4,7,8,3,fabric);rect(3,10,10,3,fabric); }
-        else {rect(3,2,10,12,ink);rect(4,3,8,10,fabric);rect(7,7,2,7,"#fff3d0");rect(4,4,8,1,"#194975");} break;
-      case "feet":
-        rect(2,3,4,7,ink);rect(9,3,4,7,ink);rect(1,9,6,4,ink);rect(8,9,6,4,ink);
-        rect(3,4,2,5,fabric);rect(10,4,2,5,fabric);rect(2,10,4,1,"#dce5dd");rect(9,10,4,1,"#dce5dd"); break;
-      case "head":
-        rect(4,3,8,1,ink);rect(3,4,10,6,ink);rect(1,10,14,2,ink);rect(4,4,8,5,fabric);rect(7,5,2,2,"#e8dfae"); break;
-      case "backpack":
-        rect(6,1,4,3,ink);rect(7,2,2,2,"#fff3d0");rect(4,3,8,1,ink);rect(3,4,10,10,ink);rect(4,5,8,8,fabric);
-        rect(5,8,6,4,ink);rect(6,9,4,2,"#a4ced8");rect(7,5,2,2,"#e8dfae");
-        if(item.capacity>=20) {rect(1,7,2,5,ink);rect(13,7,2,5,ink);}
-        if(item.capacity===30) rect(4,3,8,2,"#d2a255"); break;
-    }
-  },[item,color]);
-  return <canvas ref={canvas} width={16} height={16} aria-hidden="true" />;
+  return <img src={`/sprites/items/${item.key}-${color}.png`} width={16} height={16} alt="" draggable={false} />;
 }
 
 function LockedSlot() {

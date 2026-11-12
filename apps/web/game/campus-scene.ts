@@ -9,8 +9,11 @@ import { drawCharacter, type CharacterState, type Item } from "./character";
 import { RemotePlayers, nameCanvas, type MovementInput, type WorldSnapshot } from "./players";
 import { watchPixelGrid } from "./pixel-grid";
 import { SiteFixtures, type SiteFixtureData } from "./site-fixtures";
+import { CampusAnimals, type AnimalSprites } from "./campus-animals";
+import type { NearbyAction } from "./nearby-action";
 
 const WORLD_PIXELS_PER_METER = 12;
+const INTERACTION_RANGE = 2.75;
 
 interface ModelManifest {
   buildings: { id: string; file: string; origin: [number, number, number] }[];
@@ -86,6 +89,9 @@ export class CampusScene {
   private readonly plantGroups: { mesh: THREE.InstancedMesh; instances: PlantInstance[]; visible: PlantInstance[]; pixels: Uint8ClampedArray; width: number; height: number }[] = [];
   private readonly buildings: THREE.Group[] = [];
   private readonly fixtures: SiteFixtures;
+  private readonly animals: CampusAnimals;
+  private readonly nearbyActions: NearbyAction[] = [];
+  private actionLabel: string | null = null;
   private readonly characterCanvas = document.createElement("canvas");
   private characterPixels: THREE.Vector3[] = [];
   private readonly characterTexture = this.texture(this.characterCanvas);
@@ -108,6 +114,7 @@ export class CampusScene {
   private lastInputSend = 0;
   private sendInputs?: (inputs: MovementInput[], revision: number) => void;
   private sendTravel?: (landmark: string) => boolean;
+  private sendInteraction?: (entity: string) => void;
   private actor?: { x: number; y: number };
   private characterState?: CharacterState;
   private itemCatalog: Item[] = [];
@@ -132,7 +139,10 @@ export class CampusScene {
   private stopResize?: () => void;
   private disposed = false;
 
-  constructor(private readonly campus: CampusMap, private readonly environment: EnvironmentAnimations, fixtureData: SiteFixtureData, private readonly assetBase: string) {
+  constructor(
+    private readonly campus: CampusMap, private readonly environment: EnvironmentAnimations, fixtureData: SiteFixtureData,
+    private readonly assetBase: string, animals: AnimalSprites, private readonly onActionChange: (label: string | null) => void,
+  ) {
     this.renderer.setPixelRatio(1);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.autoUpdate = false;
@@ -144,6 +154,8 @@ export class CampusScene {
     this.world.add(this.sky, this.sun, this.sun.target);
     this.fixtures = new SiteFixtures(fixtureData, campus.offset);
     this.world.add(this.fixtures.root);
+    this.animals = new CampusAnimals(animals, this.world, this.labels, id => this.sendInteraction!(id));
+    this.nearbyActions.push(...this.animals.actions);
     this.sun.castShadow = true;
     this.sun.shadow.mapSize.set(2048, 2048);
     Object.assign(this.sun.shadow.camera, { left: -85, right: 85, top: 85, bottom: -85, near: 1, far: 300 });
@@ -317,6 +329,10 @@ export class CampusScene {
 
   private readonly keydown = (event: KeyboardEvent) => {
     if ((event.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]') || event.ctrlKey || event.metaKey || event.altKey) return;
+    if (event.code === "KeyF") {
+      if (!event.repeat && this.interact()) event.preventDefault();
+      return;
+    }
     if (event.key.startsWith("Arrow")) event.preventDefault();
     this.keys.add(event.key.toLowerCase());
   };
@@ -325,6 +341,47 @@ export class CampusScene {
   private readonly focusInput = (event: FocusEvent) => {
     if ((event.target as HTMLElement).closest('input,textarea,select,[contenteditable="true"]')) this.clearInput();
   };
+
+  private gameInputBlocked() {
+    return !document.hasFocus() || document.querySelector('[role="dialog"]') !== null
+      || Boolean(document.activeElement?.closest('input,textarea,select,[contenteditable="true"]'));
+  }
+
+  private readonly clearInteractionPath = (x: number, z: number) => {
+    const { x: startX, y: startZ } = this.actor!;
+    const dx = x * 16 - startX, dz = z * 16 - startZ;
+    const steps = Math.ceil(Math.hypot(dx, dz) / 8);
+    for (let step = 1; step <= steps; step++) {
+      if (!this.canStand(startX + dx * step / steps, startZ + dz * step / steps)) return false;
+    }
+    return true;
+  };
+
+  private nearbyAction() {
+    if (!this.actor || !this.networkReady) return;
+    let nearest = INTERACTION_RANGE;
+    let target: NearbyAction | undefined;
+    for (const action of this.nearbyActions) {
+      if (!action.available) continue;
+      const distance = Math.hypot(action.x - this.actor.x / 16, action.z - this.actor.y / 16);
+      if (distance < nearest && this.clearInteractionPath(action.x, action.z)) {
+        nearest = distance;
+        target = action;
+      }
+    }
+    return target;
+  }
+
+  actionLabels() {
+    return [...new Set(this.nearbyActions.map(action => action.label))];
+  }
+
+  interact() {
+    const action = this.gameInputBlocked() ? undefined : this.nearbyAction();
+    if (!action) return false;
+    action.run();
+    return true;
+  }
 
   setCharacter(state: CharacterState, items: Item[]) {
     this.characterState = state;
@@ -356,14 +413,14 @@ export class CampusScene {
     this.name.scale.set(canvas.width / WORLD_PIXELS_PER_METER, canvas.height / WORLD_PIXELS_PER_METER, 1);
   }
 
-  connectMovement(send: (inputs: MovementInput[], revision: number) => void, travel: (landmark: string) => boolean) {
-    this.sendInputs = send; this.sendTravel = travel;
+  connectMovement(send: (inputs: MovementInput[], revision: number) => void, travel: (landmark: string) => boolean, interact: (entity: string) => void) {
+    this.sendInputs = send; this.sendTravel = travel; this.sendInteraction = interact;
   }
 
   disconnectMovement() {
     this.networkReady = false; this.networkRevision = -1;
     this.pendingInputs = []; this.outgoingInputs = [];
-    this.clearInput(); this.remotePlayers.clear();
+    this.clearInput(); this.remotePlayers.clear(); this.animals.clear();
   }
 
   receiveWorld(snapshot: WorldSnapshot) {
@@ -379,6 +436,7 @@ export class CampusScene {
     for (const input of this.pendingInputs) this.predictMovement(input);
     if (relocated) this.updateCamera(true);
     this.remotePlayers.receive(snapshot);
+    this.animals.receive(snapshot.animals, snapshot.time);
   }
 
   private predictMovement(input: MovementInput) {
@@ -624,7 +682,8 @@ export class CampusScene {
     }
     const delta = Math.min(frameMs, 50);
     this.lastTime = time;
-    if (document.querySelector('[role="dialog"]') || document.activeElement?.closest('input,textarea,select,[contenteditable="true"]') || !document.hasFocus()) this.clearInput();
+    const inputBlocked = this.gameInputBlocked();
+    if (inputBlocked) this.clearInput();
     const dx = this.touchMovement.x || Number(this.keys.has("d") || this.keys.has("arrowright")) - Number(this.keys.has("a") || this.keys.has("arrowleft"));
     const dy = this.touchMovement.y || Number(this.keys.has("s") || this.keys.has("arrowdown")) - Number(this.keys.has("w") || this.keys.has("arrowup"));
     const sprinting = this.keys.has("shift");
@@ -653,6 +712,12 @@ export class CampusScene {
     }
     this.updateCamera(false);
     this.remotePlayers.update(time);
+    this.animals.update(time, this.camera, this.cameraTarget);
+    const label = inputBlocked ? null : this.nearbyAction()?.label ?? null;
+    if (label !== this.actionLabel) {
+      this.actionLabel = label;
+      this.onActionChange(label);
+    }
     if (this.actor) this.focusPass.uniforms.focus.value = -this.screenPoint.copy(this.character.position).applyMatrix4(this.camera.matrixWorldInverse).z;
     this.updateLighting();
     this.fixtures.update(time, this.cameraTarget, Math.sin(this.solarAngle));
@@ -736,6 +801,7 @@ export class CampusScene {
     this.atlas?.close();
     this.disposeResources();
     this.fixtures.destroy();
+    this.animals.destroy();
     this.remotePlayers.destroy();
     this.plantGroups.forEach(group => group.mesh.dispose());
     this.composer.passes.forEach(pass => pass.dispose());

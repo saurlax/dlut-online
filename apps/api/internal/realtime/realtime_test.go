@@ -12,6 +12,7 @@ import (
 	"github.com/saurlax/dlut-online/apps/api/internal/commands"
 	"github.com/saurlax/dlut-online/apps/api/internal/guest"
 	"github.com/saurlax/dlut-online/apps/api/internal/weather"
+	"math"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -41,11 +42,15 @@ func TestGuestSocketChatWeatherAndAuthorization(t *testing.T) {
 	world, err := LoadWorld(fstest.MapFS{
 		"campuses/eda/map.json":           {Data: []byte(`{"focus":[1,1],"chunkSize":4,"textures":["grass-0"],"chunks":[{"x":0,"y":0,"layers":[[16,0]]}]}`)},
 		"campuses/eda/site-fixtures.json": {Data: []byte(`{"lamps":[],"noticeboards":[]}`)},
+		"campuses/eda/animals.json":       {Data: []byte(`[]`)},
 	}, "eda")
 	if err != nil {
 		t.Fatal(err)
 	}
 	otherWorld := testWorld(t)
+	otherWorld.loadAnimals([]animalDefinition{
+		{ID: "panjin-jimi", Name: "吉米", Kind: "cat", Temperament: "friendly", Route: [][2]float64{{3, 3}, {4, 3}}},
+	}, time.Now())
 	otherEnv := weather.NewAt(40.686319, 122.11917)
 	otherEnv.SetWeather(63)
 	Register(e, guests, hub, map[string]Campus{
@@ -224,6 +229,88 @@ func TestGuestSocketChatWeatherAndAuthorization(t *testing.T) {
 				t.Fatal("weather leaked across campuses")
 			}
 			otherWeather = true
+		}
+	}
+
+	sendCommand := func(text string) {
+		t.Helper()
+		if err := socket.WriteJSON(message{Type: "command", ID: text, Text: text}); err != nil {
+			t.Fatal(err)
+		}
+	}
+	readEvent := func(conn *websocket.Conn, kind, id string) json.RawMessage {
+		t.Helper()
+		for {
+			var event struct {
+				Type  string
+				ID    string
+				Error string
+				Data  json.RawMessage
+			}
+			if err := conn.ReadJSON(&event); err != nil {
+				t.Fatal(err)
+			}
+			if event.Type == kind && event.ID == id {
+				if event.Error != "" {
+					t.Fatal(event.Error)
+				}
+				return event.Data
+			}
+		}
+	}
+	sendCommand("/entity")
+	var list string
+	if err := json.Unmarshal(readEvent(socket, "result", "/entity"), &list); err != nil {
+		t.Fatal(err)
+	}
+	if want := session.Name + ", 吉米, " + session.Name; list != want {
+		t.Fatalf("entity names = %q, want %q", list, want)
+	}
+	sendCommand("/tp 吉米")
+	readEvent(socket, "result", "/tp 吉米")
+	var destination message
+	if err := json.Unmarshal(readEvent(socket, "transfer", ""), &destination); err != nil {
+		t.Fatal(err)
+	}
+	if destination.Campus != "panjin" || destination.Entity != "panjin-jimi" {
+		t.Fatalf("unexpected destination: %+v", destination)
+	}
+	other.Close()
+	arrived, _, err := websocket.DefaultDialer.Dial("ws"+strings.TrimPrefix(server.URL, "http")+"/api/v1/game/socket", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer arrived.Close()
+	arrived.SetReadDeadline(time.Now().Add(5 * time.Second))
+	destination.Type, destination.Token = "auth", session.Token
+	if err := arrived.WriteJSON(destination); err != nil {
+		t.Fatal(err)
+	}
+	var snapshot worldSnapshot
+	if err := json.Unmarshal(readEvent(arrived, "ready", ""), &snapshot); err != nil {
+		t.Fatal(err)
+	}
+	if len(snapshot.Animals) != 1 || snapshot.Animals[0].ID != destination.Entity {
+		t.Fatalf("missing shared animal snapshot: %+v", snapshot.Animals)
+	}
+	for _, player := range snapshot.Players {
+		if player.ID == snapshot.SelfID && (player.Revision != 1 ||
+			math.Hypot(player.X-snapshot.Animals[0].X, player.Y-snapshot.Animals[0].Y) >= interactionRange) {
+			t.Fatalf("player did not arrive near cat: %+v", player)
+		}
+	}
+	if err := arrived.WriteJSON(message{Type: "interact", Entity: destination.Entity}); err != nil {
+		t.Fatal(err)
+	}
+	for {
+		if err := json.Unmarshal(readEvent(arrived, "world", ""), &snapshot); err != nil {
+			t.Fatal(err)
+		}
+		if snapshot.Animals[0].PetAt != 0 {
+			if snapshot.Animals[0].Pose != "happy" {
+				t.Fatalf("petting was not synchronized: %+v", snapshot.Animals[0])
+			}
+			break
 		}
 	}
 }

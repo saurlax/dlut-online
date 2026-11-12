@@ -4,7 +4,7 @@ import PixelText from "../../components/pixel-text";
 import { GameButton } from "../../components/game-button";
 import GameDialogClose from "../../components/game-dialog-close";
 import { drawCharacter, type CharacterState, type Item } from "../../game/character";
-import { request, ApiError, clearGameSession, saveGameSession, type GameSession } from "../../game/game-session";
+import { request, ApiError, returnToLogin, saveGameSession, type GameSession } from "../../game/game-session";
 import "../../components/game-dialog.css";
 import "./wardrobe.css";
 import { InventoryPanel, PointerItem, type CarriedItem } from "./inventory-panel";
@@ -44,7 +44,7 @@ export default function Wardrobe({portal,onCharacter,session}:{
     try {await action();return true;}
     catch(e) {
       if(e instanceof ApiError && e.status===401) {
-        clearGameSession();window.location.replace("/");return false;
+        returnToLogin();return false;
       }
       setError((e as Error).message);
       return false;

@@ -2,11 +2,17 @@ import * as THREE from "three";
 import { drawCharacter, type Appearance, type Gender } from "./character";
 
 export interface MovementInput { seq: number; x: number; y: number; ms: number; sprint: boolean }
-export interface PlayerState {
-  id: string; x: number; y: number; direction: number; moving: boolean; sprint: boolean; ack: number; revision: number;
+export interface EntityState {
+  id: string; kind: string; name: string; x: number; y: number;
+}
+export interface PlayerState extends EntityState {
+  direction: number; moving: boolean; sprint: boolean; ack: number; revision: number;
   look: { name: string; gender: Gender; appearance: Appearance; wear: { key: string; color: number }[] };
 }
-export interface WorldSnapshot { selfId: string; players: PlayerState[] }
+export interface AnimalState extends EntityState {
+  facing: number; pose: "idle" | "walk" | "flee" | "sleep" | "groom" | "happy"; petAt?: number;
+}
+export interface WorldSnapshot { selfId: string; time: number; players: PlayerState[]; animals: AnimalState[] }
 
 export function nameCanvas(name: string) {
   const canvas = document.createElement("canvas"), context = canvas.getContext("2d")!;

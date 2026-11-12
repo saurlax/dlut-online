@@ -5,7 +5,7 @@ import { GameButton } from "./game-button";
 import PixelText from "./pixel-text";
 import AccountForm from "./account-form";
 import GameDialogClose from "./game-dialog-close";
-import { drawCharacter, initialAppearance, type Appearance, type CharacterState, type Gender, type Item } from "../game/character";
+import { drawCharacter, initialAppearance, loadCharacterSprites, type Appearance, type CharacterState, type Gender, type Item } from "../game/character";
 import { request, ApiError, clearGameSession, saveGameSession } from "../game/game-session";
 import "../app/campus/wardrobe.css";
 
@@ -39,7 +39,7 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
   const [hat,setHat]=useState(false);
   const [color,setColor]=useState(0);
   const previewCanvas=<canvas className="character-preview" aria-label="角色预览" ref={canvas=>{
-    if(canvas) drawCharacter(canvas,appearance,[{key:"shirt",color},{key:bottom,color},{key:"sneakers",color},...(hat?[{key:"cap",color}]:[])],0,0,gender);
+    if(canvas && ready) drawCharacter(canvas,appearance,[{key:"shirt",color},{key:bottom,color},{key:"sneakers",color},...(hat?[{key:"cap",color}]:[])],0,0,gender);
   }} />;
 
   useEffect(()=>{
@@ -93,6 +93,7 @@ export default function CampusEntry({portal}:{portal:HTMLElement|null}) {
     const [catalog,methods]=await Promise.all([
       request("/api/collections/items/records?perPage=100",""),
       request("/api/collections/users/auth-methods",""),
+      loadCharacterSprites(),
     ]);
     setItems(catalog.items);setReady(true);
     setOidcEnabled(methods.oauth2.providers.some((provider:{name:string})=>provider.name==="oidc"));

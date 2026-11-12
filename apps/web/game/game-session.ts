@@ -40,3 +40,8 @@ export function clearGameSession() {
   sessionStorage.removeItem("do-session");
   sessionStorage.removeItem("do-game-session");
 }
+
+export function returnToLogin() {
+  clearGameSession();
+  window.location.replace("/");
+}

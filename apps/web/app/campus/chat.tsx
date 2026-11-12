@@ -6,14 +6,14 @@ import type { RealtimeConnection } from "../../game/realtime";
 import "./chat.css";
 
 type ChatEvent = {type:"join"|"leave"|"message";name:string;text?:string};
-type Message = {line:string; receivedAt:number};
+type Message = {lines:string[]; receivedAt:number};
 
 export default function Chat({realtime}:{realtime:RealtimeConnection}) {
   const [messages,setMessages]=useState<Message[]>([]);
   const [now,setNow]=useState(Date.now());
   const [open,setOpen]=useState(false);
   const [text,setText]=useState("");
-  function addMessages(lines:string[]) {setMessages(current=>[...current,...lines.map(line=>({line,receivedAt:Date.now()}))].slice(-50));}
+  function addMessages(lines:string[]) {setMessages(current=>[...current,{lines,receivedAt:Date.now()}].slice(-50));}
   const input=useRef<HTMLInputElement>(null);
   const history=useRef<HTMLDivElement>(null);
   useEffect(()=>{const timer=window.setInterval(()=>setNow(Date.now()),1000);return ()=>window.clearInterval(timer);},[]);
@@ -45,6 +45,10 @@ export default function Chat({realtime}:{realtime:RealtimeConnection}) {
       if(text.trim().startsWith('/')) {
         const result=await realtime.send('command',text.trim());
         addMessages(result.split('\n'));
+        if (text.trim() === '/entity') {
+          setText('');
+          return;
+        }
       } else await realtime.send('chat',text);
       setText('');setOpen(false);
     }
@@ -56,7 +60,7 @@ export default function Chat({realtime}:{realtime:RealtimeConnection}) {
     flushSync(()=>setOpen(true));input.current?.focus();
   }}>{open ? "×" : "聊"}</GameButton>
   <div className="game-chat">
-    <div ref={history} className={`chat-messages${open?' is-open':''}`} aria-live="polite">{messages.filter(message=>open || now-message.receivedAt<10000).map((message,index)=><PixelText key={index} wrap>{message.line}</PixelText>)}</div>
+    <div ref={history} className={`chat-messages${open?' is-open':''}`} aria-live="polite">{messages.filter(message=>open || now-message.receivedAt<10000).flatMap((message,index)=>message.lines.map((line,i)=><PixelText key={`${index}:${i}`} wrap>{line}</PixelText>))}</div>
     {open && <form onSubmit={event=>void submit(event)}><input ref={input} aria-label="聊天消息" enterKeyHint="send" maxLength={200} value={text} onChange={event=>setText(event.target.value)} onKeyDown={event=>{event.stopPropagation();if(event.key==='Escape')setOpen(false);}} /></form>}
   </div>
   </>;

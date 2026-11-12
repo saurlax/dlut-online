@@ -34,7 +34,8 @@ export default function AtlasMap({player, onTravel}: {player: Coordinate | null;
       setAtlas(data);
       const pixelRatio = () => window.devicePixelRatio * interfaceGrid().scale;
       const instance = new LibreMap({container:host.current!, pixelRatio:pixelRatio(), renderWorldCopies:false,
-        minZoom:6, maxZoom:18, maxPitch:0, bounds:data.bounds,
+        minZoom:6, maxZoom:18, maxPitch:0,
+        ...(player ? {center:player, zoom:17} : {bounds:data.bounds}),
         maxBounds:[[data.bounds[0][0]-2,data.bounds[0][1]-2],[data.bounds[1][0]+2,data.bounds[1][1]+2]],
         attributionControl:false, dragRotate:false, pitchWithRotate:false, touchPitch:false,
         style:{version:8, sources:{region:{type:"image",url:data.image,coordinates:data.coordinates}},

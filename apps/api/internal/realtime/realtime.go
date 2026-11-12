@@ -1,13 +1,15 @@
 package realtime
 
 import (
+	"fmt"
+	"time"
+
 	"github.com/gorilla/websocket"
 	"github.com/pocketbase/pocketbase/core"
 	"github.com/saurlax/dlut-online/apps/api/internal/chat"
 	"github.com/saurlax/dlut-online/apps/api/internal/commands"
 	"github.com/saurlax/dlut-online/apps/api/internal/guest"
 	"github.com/saurlax/dlut-online/apps/api/internal/weather"
-	"time"
 )
 
 type message struct {
@@ -19,6 +21,7 @@ type message struct {
 	Revision int             `json:"revision,omitempty"`
 	Landmark string          `json:"landmark,omitempty"`
 	Campus   string          `json:"campus,omitempty"`
+	Entity   string          `json:"entity,omitempty"`
 }
 type envelope struct {
 	Type  string `json:"type"`
@@ -76,7 +79,8 @@ func Register(e *core.ServeEvent, guests *guest.Service, hub *chat.Hub, campuses
 			return err
 		}
 		defer world.leave(playerID)
-		if auth.Landmark != "" && !world.travel(playerID, auth.Landmark) {
+		if (auth.Landmark != "" && !world.travel(playerID, auth.Landmark)) ||
+			(auth.Entity != "" && !world.travelToEntity(playerID, auth.Entity)) {
 			_ = conn.WriteControl(websocket.CloseMessage, websocket.FormatCloseMessage(4002, "landmark unavailable"), time.Now().Add(time.Second))
 			return nil
 		}
@@ -130,15 +134,42 @@ func Register(e *core.ServeEvent, guests *guest.Service, hub *chat.Hub, campuses
 					lastTravel = time.Now()
 					world.travel(playerID, m.Landmark)
 					continue
+				case "interact":
+					world.petAnimal(playerID, m.Entity, time.Now())
+					continue
 				}
 				if m.Type == "chat" || m.Type == "command" {
 					result := envelope{Type: "result", ID: m.ID}
+					var transfer *campusEntity
 					if m.Type == "chat" {
 						if err := hub.Send(identity.ID, m.Text); err != nil {
 							result.Error = err.Error()
 						}
 					} else {
-						value, err := execute(r.App, identity.ID, m.Text)
+						value, err := execute(r.App, identity.ID, m.Text, &commands.WorldCommands{
+							Entities: func() string { return entityList(campuses) },
+							Teleport: func(target string) (string, error) {
+								if time.Since(lastTravel) < time.Second {
+									return "", fmt.Errorf("传送过于频繁")
+								}
+								entity, err := resolveEntity(campuses, target)
+								if err != nil {
+									return "", err
+								}
+								if entity.ID == playerID {
+									return "", fmt.Errorf("目标是你自己")
+								}
+								lastTravel = time.Now()
+								if entity.Campus != campus {
+									transfer = &entity
+									return "正在前往 " + entityName(entity.entityState), nil
+								}
+								if !world.travelToEntity(playerID, entity.ID) {
+									return "", fmt.Errorf("目标已离开或附近没有可站立位置")
+								}
+								return "已传送到 " + entityName(entity.entityState) + " 附近", nil
+							},
+						})
 						if err != nil {
 							result.Error = err.Error()
 						} else {
@@ -149,6 +180,13 @@ func Register(e *core.ServeEvent, guests *guest.Service, hub *chat.Hub, campuses
 					case outgoing <- result:
 					case <-stopping:
 						return
+					}
+					if transfer != nil {
+						select {
+						case outgoing <- envelope{Type: "transfer", Data: map[string]string{"campus": transfer.Campus, "entity": transfer.ID}}:
+						case <-stopping:
+							return
+						}
 					}
 				}
 			}

@@ -6,3 +6,31 @@
 .map-error { position: absolute; left: calc(4 * var(--pixel)); right: calc(4 * var(--pixel)); top: var(--center-y); margin: 0; padding: calc(4 * var(--pixel)); background: #f6f4eb; }
 .map-progress { position: absolute; bottom: 0; height: calc(3 * var(--pixel)); width: 100%; background: #e4d6a7; }
 .map-progress-fill { height: 100%; background: #25649b; }
+.nearby-action {
+  position: absolute;
+  left: var(--center-x);
+  bottom: 35px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 10px 3px 4px;
+  border: 1px solid #6b91a6;
+  background: #122b40eb;
+  color: #fff3d0;
+  font: inherit;
+  cursor: pointer;
+}
+.nearby-action:not([data-active]) { visibility: hidden; }
+.nearby-action kbd {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  background: #fff3d0;
+  color: #123e70;
+  font: inherit;
+  box-shadow: inset 0 -1px 0 #b2c9ce;
+}
+.nearby-action:hover { background: #194365; }
+.nearby-action:active { transform: translate(-50%, 1px); }
