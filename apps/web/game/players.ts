@@ -1,18 +1,21 @@
 import * as THREE from "three";
 import { drawCharacter, type Appearance, type Gender } from "./character";
+import { posePlayer } from "./player-death";
 
 export interface MovementInput { seq: number; x: number; y: number; ms: number; sprint: boolean }
 export interface EntityState {
-  id: string; kind: string; name: string; x: number; y: number;
+  id: string; kind: string; name: string; x: number; y: number; hp: number;
 }
 export interface PlayerState extends EntityState {
   direction: number; moving: boolean; sprint: boolean; ack: number; revision: number;
+  deathAt?: number; respawnAt?: number; deathCause?: string; protectedUntil?: number;
   look: { name: string; gender: Gender; appearance: Appearance; wear: { key: string; color: number }[] };
 }
 export interface AnimalState extends EntityState {
-  facing: number; pose: "idle" | "walk" | "flee" | "chase" | "sleep" | "groom" | "happy"; petAt?: number;
+  facing: number; pose: "idle" | "walk" | "flee" | "chase" | "sleep" | "groom" | "happy"; petAt?: number; attackAt?: number;
 }
-export interface WorldSnapshot { selfId: string; time: number; players: PlayerState[]; animals: AnimalState[] }
+export interface DamageHit { id: number; at: number; x: number; y: number }
+export interface WorldSnapshot { selfId: string; time: number; players: PlayerState[]; animals: AnimalState[]; hits?: DamageHit[] }
 
 export function nameCanvas(name: string) {
   const canvas = document.createElement("canvas"), context = canvas.getContext("2d")!;
@@ -42,7 +45,7 @@ interface RemotePlayer {
   label: THREE.Sprite;
   canvas: HTMLCanvasElement;
   from: THREE.Vector2; to: THREE.Vector2; position: THREE.Vector2;
-  received: number; pose: string; look: string;
+  received: number; pose: string; look: string; deathStart: number | null; protectionEnd: number;
 }
 
 export class RemotePlayers {
@@ -63,7 +66,7 @@ export class RemotePlayers {
         const mesh = new THREE.Mesh(this.geometry, new THREE.MeshStandardMaterial({ map: texture(canvas), alphaTest: 0.5, side: THREE.DoubleSide, roughness: 1 }));
         mesh.castShadow = mesh.receiveShadow = true;
         const label = new THREE.Sprite(new THREE.SpriteMaterial({ depthTest: false, toneMapped: false }));
-        remote = { state, mesh, label, canvas, from: new THREE.Vector2(state.x, state.y), to: new THREE.Vector2(state.x, state.y), position: new THREE.Vector2(state.x, state.y), received: performance.now(), pose: "", look: "" };
+        remote = { state, mesh, label, canvas, from: new THREE.Vector2(state.x, state.y), to: new THREE.Vector2(state.x, state.y), position: new THREE.Vector2(state.x, state.y), received: performance.now(), pose: "", look: "", deathStart: null, protectionEnd: 0 };
         this.players.set(state.id, remote);
         this.world.add(mesh); this.labels.add(label);
       }
@@ -71,6 +74,9 @@ export class RemotePlayers {
       remote.to.set(state.x, state.y);
       if (state.revision !== remote.state.revision) { remote.position.copy(remote.to); remote.from.copy(remote.to); }
       remote.received = performance.now();
+      if (!state.deathAt) remote.deathStart = null;
+      else if (remote.deathStart === null) remote.deathStart = remote.received - (snapshot.time - state.deathAt);
+      remote.protectionEnd = remote.received + (state.protectedUntil ?? 0) - snapshot.time;
       remote.state = state;
       const look = JSON.stringify(state.look);
       if (look !== remote.look) {
@@ -89,8 +95,8 @@ export class RemotePlayers {
     for (const remote of this.players.values()) {
       const state = remote.state;
       remote.position.lerpVectors(remote.from, remote.to, Math.min(1, (time - remote.received) / 100));
-      remote.mesh.position.set(remote.position.x / 16, 0, remote.position.y / 16).add(this.up);
-      remote.mesh.quaternion.copy(this.camera.quaternion);
+      remote.mesh.position.set(remote.position.x / 16, 0, remote.position.y / 16);
+      posePlayer(remote.mesh, this.camera.quaternion, this.up, remote.deathStart, remote.protectionEnd, time);
       remote.label.position.copy(remote.mesh.position).addScaledVector(this.up, 1.7);
       const step = state.moving ? Math.floor(time / (state.sprint ? 80 : 120)) % 3 : 0;
       const pose = `${state.direction}:${step}`;

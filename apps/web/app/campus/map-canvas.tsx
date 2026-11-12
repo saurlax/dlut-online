@@ -8,12 +8,14 @@ import Wardrobe from "./wardrobe";
 import WorldMap from "./world-map";
 import Minimap from "./minimap";
 import PerformanceHud from "./performance-hud";
+import HealthHud from "./health-hud";
 import Chat from "./chat";
 import Environment from "./environment";
 import Joystick from "./joystick";
 import PixelText from "../../components/pixel-text";
 import { returnToLogin, type GameSession } from "../../game/game-session";
 import type { WorldSnapshot } from "../../game/players";
+import { loadSprite } from "../../game/sprite-image";
 import { RealtimeConnection } from "../../game/realtime";
 import "./map.css";
 import { campuses, type Campus } from "../../game/campuses";
@@ -28,6 +30,7 @@ export default function MapCanvas({session}: {session:GameSession}) {
 function CampusRegion({session, currentCampus, landmark, entity, onTravel}: {session:GameSession; currentCampus:Campus; landmark:string; entity:string; onTravel:(campus:Campus, landmark:string, entity?:string)=>void}) {
   const campusAssets = `/campuses/${currentCampus.id}`;
   const scene = useRef<CampusScene | null>(null);
+  const currentScene = useCallback(() => scene.current!, []);
   const realtime=useMemo(()=>new RealtimeConnection(session.token, currentCampus.id, landmark, entity),[session.token, currentCampus.id, landmark, entity]);
   const host = useRef<HTMLDivElement>(null);
   const actionBar = useRef<HTMLDivElement>(null);
@@ -51,7 +54,8 @@ function CampusRegion({session, currentCampus, landmark, entity, onTravel}: {ses
         setError(true); setLoaded(false); return;
       }
       if (event.type === "world" || event.type === "connected") {
-        scene.current!.receiveWorld(event.data as WorldSnapshot); return;
+        currentScene().receiveWorld(event.data as WorldSnapshot);
+        return;
       }
       if (event.type === "auth_error") {
         returnToLogin();
@@ -66,7 +70,7 @@ function CampusRegion({session, currentCampus, landmark, entity, onTravel}: {ses
     });
     realtime.start();
     return () => { unsubscribe(); realtime.stop(); scene.current!.disconnectMovement(); };
-  }, [loaded, realtime, onTravel]);
+  }, [loaded, realtime, onTravel, currentScene]);
 
   useEffect(() => {
     const abort = new AbortController();
@@ -83,14 +87,15 @@ function CampusRegion({session, currentCampus, landmark, entity, onTravel}: {ses
       const animations: EnvironmentAnimations = await animationResponse.json();
       const fixtures: SiteFixtureData = await fixtureResponse.json();
       const animals: AnimalArt[] = await animalResponse.json();
-      const [animalSprites] = await Promise.all([
+      const [animalSprites, smoke] = await Promise.all([
         loadAnimalSprites(animals),
+        loadSprite("/sprites/effects/death-smoke.png"),
         loadCharacterSprites(),
         document.fonts.load('12px "Fusion Pixel"', session.state.profile.name),
       ]);
       if (abort.signal.aborted) return;
       setProgress(20);
-      campus = new CampusScene(data, animations, fixtures, campusAssets, animalSprites, label => {
+      campus = new CampusScene(data, animations, fixtures, campusAssets, animalSprites, smoke, label => {
         const bar = actionBar.current;
         if (!bar) return;
         for (const button of bar.children) {
@@ -146,11 +151,12 @@ function CampusRegion({session, currentCampus, landmark, entity, onTravel}: {ses
                 </button>
               ))}
             </div>
-            <PerformanceHud scene={()=>scene.current!} realtime={realtime} name={session.state.profile.name} />
+            <PerformanceHud scene={currentScene} realtime={realtime} name={session.state.profile.name} />
             <Joystick onMove={(x,y)=>scene.current!.setTouchMovement(x,y)} />
             <Chat realtime={realtime} />
-            <Minimap scene={()=>scene.current!} />
-            <WorldMap portal={interfaceHost} scene={()=>scene.current!} currentCampus={currentCampus} onTravel={onTravel} />
+            <Minimap scene={currentScene} />
+            <HealthHud realtime={realtime} scene={currentScene} />
+            <WorldMap portal={interfaceHost} scene={currentScene} currentCampus={currentCampus} onTravel={onTravel} />
             <Wardrobe
               session={session}
               portal={interfaceHost}

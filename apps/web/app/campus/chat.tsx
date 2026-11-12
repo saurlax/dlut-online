@@ -5,7 +5,7 @@ import { GameButton } from "../../components/game-button";
 import type { RealtimeConnection } from "../../game/realtime";
 import "./chat.css";
 
-type ChatEvent = {type:"join"|"leave"|"message";name:string;text?:string};
+type ChatEvent = {type:"join"|"leave"|"message"|"death";name:string;text?:string};
 type Message = {lines:string[]; receivedAt:number};
 
 export default function Chat({realtime}:{realtime:RealtimeConnection}) {
@@ -24,7 +24,7 @@ export default function Chat({realtime}:{realtime:RealtimeConnection}) {
       if(message.type==='auth_error'){addMessages(['登录已失效，请返回首页']);return;}
       if(message.type!=='chat')return;
       const event=message.data as ChatEvent;
-      const line=event.type==='message' ? `${event.name}：${event.text}` : `${event.name} ${event.type==='join'?'进入了服务器':'离开了服务器'}`;
+      const line=event.type==='message' ? `${event.name}：${event.text}` : `${event.name} ${event.type==='death' ? event.text : event.type==='join'?'进入了服务器':'离开了服务器'}`;
       addMessages([line]);
     });
   },[realtime]);

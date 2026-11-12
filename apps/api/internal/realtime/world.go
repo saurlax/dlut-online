@@ -19,6 +19,7 @@ import (
 )
 
 const walkSpeed = 48.0 // Native pixels per second; 16 pixels = 1 meter.
+const maxHealth = 100
 
 type movementInput struct {
 	Seq    int     `json:"seq"`
@@ -47,18 +48,25 @@ type entityState struct {
 	Name string  `json:"name"`
 	X    float64 `json:"x"`
 	Y    float64 `json:"y"`
+	HP   int     `json:"hp"`
 }
 
 type playerState struct {
 	entityState
-	Direction int        `json:"direction"`
-	Moving    bool       `json:"moving"`
-	Sprint    bool       `json:"sprint"`
-	Ack       int        `json:"ack"`
-	Revision  int        `json:"revision"`
-	Look      playerLook `json:"look"`
-	clock     time.Time
-	credit    float64
+	Direction      int        `json:"direction"`
+	Moving         bool       `json:"moving"`
+	Sprint         bool       `json:"sprint"`
+	Ack            int        `json:"ack"`
+	Revision       int        `json:"revision"`
+	Look           playerLook `json:"look"`
+	DeathAt        int64      `json:"deathAt,omitempty"`
+	RespawnAt      int64      `json:"respawnAt,omitempty"`
+	DeathCause     string     `json:"deathCause,omitempty"`
+	clock          time.Time
+	credit         float64
+	ProtectedUntil int64 `json:"protectedUntil,omitempty"`
+	hitSequence    int
+	hits           []damageHit
 }
 
 type worldSnapshot struct {
@@ -66,6 +74,7 @@ type worldSnapshot struct {
 	Time    int64         `json:"time"`
 	Players []playerState `json:"players"`
 	Animals []animalState `json:"animals"`
+	Hits    []damageHit   `json:"hits,omitempty"`
 }
 
 type campusData struct {
@@ -103,6 +112,7 @@ type World struct {
 	fixtures   fixtureData
 	ground     map[[2]int][]groundType
 	spawn      [2]float64
+	onDeath    func(name, cause string)
 }
 
 type groundType uint8
@@ -234,7 +244,7 @@ func (w *World) join(look playerLook) (string, error) {
 	if candidates == 0 {
 		return "", fmt.Errorf("no free campus spawn")
 	}
-	w.players[id] = &playerState{entityState: entityState{ID: id, Kind: "player", Name: look.Name, X: x, Y: y}, Look: look, clock: time.Now(), credit: 150}
+	w.players[id] = &playerState{entityState: entityState{ID: id, Kind: "player", Name: look.Name, X: x, Y: y, HP: maxHealth}, Look: look, clock: time.Now(), credit: 150}
 	return id, nil
 }
 
@@ -247,7 +257,7 @@ func (w *World) input(id string, revision int, commands []movementInput, now tim
 	w.mu.Lock()
 	defer w.mu.Unlock()
 	p := w.players[id]
-	if revision != p.Revision {
+	if p.HP == 0 || revision != p.Revision {
 		return nil
 	}
 	p.credit = math.Min(200, p.credit+now.Sub(p.clock).Seconds()*1000)
@@ -299,6 +309,11 @@ func (w *World) snapshot(id string) worldSnapshot {
 	now := time.Now()
 	w.advanceAnimals(now)
 	snapshot := worldSnapshot{SelfID: id, Time: now.UnixMilli(), Players: []playerState{}, Animals: make([]animalState, 0, len(w.animals))}
+	for _, hit := range self.hits {
+		if snapshot.Time-hit.At < damageFeedbackTTL.Milliseconds() {
+			snapshot.Hits = append(snapshot.Hits, hit)
+		}
+	}
 	for _, a := range w.animals {
 		snapshot.Animals = append(snapshot.Animals, a.animalState)
 	}
@@ -325,6 +340,9 @@ func (w *World) appearance(id string, look playerLook) {
 func (w *World) travel(id, landmark string) bool {
 	w.mu.Lock()
 	defer w.mu.Unlock()
+	if w.players[id].HP == 0 {
+		return false
+	}
 	for _, b := range w.campus.Buildings {
 		if b.ID != landmark {
 			continue

@@ -53,6 +53,7 @@ function pixelTexture(map: THREE.Texture) {
 export class CampusAnimals {
   private readonly geometry = new THREE.PlaneGeometry(20 / 16, 1);
   private readonly lift = new THREE.Vector3();
+  private readonly right = new THREE.Vector3();
   private readonly hearts: THREE.Texture;
   private readonly anger: THREE.Texture;
   private readonly residents;
@@ -114,7 +115,7 @@ export class CampusAnimals {
         map, frameCount, mesh, label, anger, size, action, particles, phase: index * 73,
         state: undefined as AnimalState | undefined,
         from: new THREE.Vector2(), to: new THREE.Vector2(), position: new THREE.Vector2(),
-        received: 0, petStart: -Infinity, chaseStart: -Infinity,
+        received: 0, petStart: -Infinity, chaseStart: -Infinity, attackStart: -Infinity,
       };
       return [animal.id, resident] as const;
     }));
@@ -131,6 +132,9 @@ export class CampusAnimals {
         resident.petStart = now - (serverTime - state.petAt);
       }
       if (state.pose === "chase" && resident.state?.pose !== "chase") resident.chaseStart = now;
+      if (state.attackAt && state.attackAt !== resident.state?.attackAt) {
+        resident.attackStart = now - (serverTime - state.attackAt);
+      }
       resident.state = state;
       resident.received = now;
     }
@@ -150,11 +154,17 @@ export class CampusAnimals {
 
   update(time: number, camera: THREE.Camera, target: THREE.Vector3) {
     this.lift.set(0, 1, 0).applyQuaternion(camera.quaternion);
-    for (const { mesh, label, anger, size, map, frameCount, state, action, particles, phase, position, from, to, received, petStart, chaseStart } of this.residents.values()) {
+    this.right.set(1, 0, 0).applyQuaternion(camera.quaternion);
+    for (const { mesh, label, anger, size, map, frameCount, state, action, particles, phase, position, from, to, received, petStart, chaseStart, attackStart } of this.residents.values()) {
       if (!state) continue;
       position.lerpVectors(from, to, THREE.MathUtils.clamp((time - received) / 100, 0, 1));
       const { x, y: z } = position;
-      const pose = spritePose(state.pose, time + phase);
+      const attackAge = time - attackStart;
+      const windingUp = attackAge >= 0 && attackAge < 240;
+      const striking = attackAge >= 240 && attackAge < 470;
+      const strike = striking ? 1 - (attackAge - 240) / 230 : 0;
+      const windup = windingUp ? attackAge / 240 : 0;
+      const pose = striking ? "walk2" : windingUp ? "idle" : spritePose(state.pose, time + phase);
       if (action) {
         action.x = x;
         action.z = z;
@@ -165,8 +175,10 @@ export class CampusAnimals {
       if (anger) anger.visible = mesh.visible && state.pose === "chase";
       if (mesh.visible) {
         mesh.quaternion.copy(camera.quaternion);
-        mesh.scale.x = state.facing * size;
-        mesh.position.set(x, 0.025, z).addScaledVector(this.lift, size / 2);
+        mesh.rotateZ(state.facing * (0.1 * windup - 0.13 * strike));
+        mesh.scale.set(state.facing * size * (1 + strike * 0.13), size * (1 - windup * 0.13), size);
+        mesh.position.set(x, 0.025, z).addScaledVector(this.lift, size / 2 - windup * 0.1)
+          .addScaledVector(this.right, state.facing * (0.42 * strike - 0.13 * windup));
         const frame = catPoses.indexOf(pose);
         map.offset.x = frame < frameCount ? frame / frameCount : 0;
         if (label) label.position.copy(mesh.position).addScaledVector(this.lift, size / 2 + 0.35);

@@ -37,6 +37,9 @@ type Campus struct {
 }
 
 func Register(e *core.ServeEvent, guests *guest.Service, hub *chat.Hub, campuses map[string]Campus) {
+	for _, campus := range campuses {
+		campus.World.onDeath = hub.AnnounceDeath
+	}
 	upgrader := websocket.Upgrader{}
 	e.Router.GET("/api/v1/game/socket", func(r *core.RequestEvent) error {
 		conn, err := upgrader.Upgrade(r.Response, r.Request, nil)
@@ -149,6 +152,12 @@ func Register(e *core.ServeEvent, guests *guest.Service, hub *chat.Hub, campuses
 						value, err := execute(r.App, identity.ID, m.Text, &commands.WorldCommands{
 							Entities: func() string { return entityList(campuses) },
 							Teleport: func(target string) (string, error) {
+								world.mu.Lock()
+								dead := world.players[playerID].HP == 0
+								world.mu.Unlock()
+								if dead {
+									return "", fmt.Errorf("复活后才能传送")
+								}
 								if time.Since(lastTravel) < time.Second {
 									return "", fmt.Errorf("传送过于频繁")
 								}

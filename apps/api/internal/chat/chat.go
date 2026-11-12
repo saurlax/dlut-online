@@ -169,3 +169,9 @@ func (h *Hub) Send(user, text string) error {
 	h.broadcast(Event{Type: "message", Name: connected.name, Text: text})
 	return nil
 }
+
+func (h *Hub) AnnounceDeath(name, cause string) {
+	h.mu.Lock()
+	defer h.mu.Unlock()
+	h.broadcast(Event{Type: "death", Name: name, Text: cause})
+}

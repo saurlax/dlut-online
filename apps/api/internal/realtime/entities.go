@@ -102,6 +102,9 @@ func (w *World) travelToEntity(playerID, targetID string) bool {
 	w.mu.Lock()
 	defer w.mu.Unlock()
 	w.advanceAnimals(time.Now())
+	if w.players[playerID].HP == 0 {
+		return false
+	}
 	var target entityState
 	if p := w.players[targetID]; p != nil {
 		target = p.entityState

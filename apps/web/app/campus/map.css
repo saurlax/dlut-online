@@ -34,3 +34,35 @@
 }
 .nearby-action:hover { background: #194365; }
 .nearby-action:active { transform: translate(-50%, 1px); }
+.health-meter {
+  position: absolute; left: 6px; top: 73px; width: 64px; height: 14px;
+  display: grid; place-items: center; isolation: isolate; overflow: hidden;
+  border: 1px solid #6b91a6; background: #122b40eb; color: #fff3d0;
+  pointer-events: none; font-size: 12px; line-height: 1; white-space: nowrap;
+}
+.health-fill { position: absolute; inset: 0; z-index: -1; background: #a83a49; transform-origin: left; }
+.damage-feedback { position: absolute; inset: 0; z-index: 16; pointer-events: none; }
+.damage-flash {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse, #df252424 10%, #df252479 75%, #df2524b8);
+  animation: damage-flash 280ms ease-out both;
+}
+.damage-indicator {
+  position: absolute; left: calc(var(--center-x) - 9px); top: calc(var(--center-y) - 7px);
+  width: 18px; height: 14px;
+  background: #64283b;
+  clip-path: polygon(50% 0, 100% 64%, 100% 100%, 50% 60%, 0 100%, 0 64%);
+  animation: damage-indicator 950ms ease-out both;
+}
+.damage-indicator::after {
+  content: ""; position: absolute; inset: 2px; background: #ff776b;
+  clip-path: polygon(50% 0, 100% 70%, 100% 100%, 50% 54%, 0 100%, 0 70%);
+}
+@keyframes damage-flash { from { opacity: 0.9; } to { opacity: 0; } }
+@keyframes damage-indicator { 0%, 55% { opacity: 1; } 100% { opacity: 0; } }
+.death-screen {
+  position: absolute; left: var(--center-x); top: var(--center-y); z-index: 19;
+  transform: translate(-50%, 35px); display: grid; justify-items: center; gap: 5px;
+  padding: 8px 14px; border: 1px solid #b97675; background: #301e28eb; color: #fff3d0;
+  white-space: nowrap; pointer-events: none;
+}

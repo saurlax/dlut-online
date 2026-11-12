@@ -17,25 +17,28 @@ type animalDefinition struct {
 
 type animalState struct {
 	entityState
-	Facing int    `json:"facing"`
-	Pose   string `json:"pose"`
-	PetAt  int64  `json:"petAt,omitempty"`
+	Facing   int    `json:"facing"`
+	Pose     string `json:"pose"`
+	PetAt    int64  `json:"petAt,omitempty"`
+	AttackAt int64  `json:"attackAt,omitempty"`
 }
 
 type routeLeg struct{ x, y, dx, dy, length float64 }
 
 type animal struct {
 	animalState
-	temperament     string
-	legs            []routeLeg
-	index, leg      int
-	progress        float64
-	rest, flee, pet time.Time
-	fleeDirection   int
-	flocking        bool
-	vx, vy          float64
-	chaseTarget     string
-	returning       bool
+	temperament          string
+	legs                 []routeLeg
+	index, leg           int
+	progress             float64
+	rest, flee, pet      time.Time
+	fleeDirection        int
+	flocking             bool
+	vx, vy               float64
+	chaseTarget          string
+	returning            bool
+	attackTarget         string
+	strikeAt, nextAttack time.Time
 }
 
 func (w *World) loadAnimals(definitions []animalDefinition, now time.Time) error {
@@ -44,7 +47,7 @@ func (w *World) loadAnimals(definitions []animalDefinition, now time.Time) error
 	groups := make(map[string]int)
 	for i, d := range definitions {
 		a := animal{
-			animalState: animalState{entityState: entityState{ID: d.ID, Kind: d.Kind, Name: d.Name}, Facing: 1, Pose: "idle"},
+			animalState: animalState{entityState: entityState{ID: d.ID, Kind: d.Kind, Name: d.Name, HP: maxHealth}, Facing: 1, Pose: "idle"},
 			temperament: d.Temperament, index: i, rest: now.Add(2200 * time.Millisecond),
 		}
 		if d.Follow != "" {
@@ -100,6 +103,7 @@ func (w *World) advanceAnimals(now time.Time) {
 	}
 	w.animalTick = now
 	delta := min(elapsed, 100*time.Millisecond).Seconds()
+	w.respawnPlayers(now)
 	for i := range w.animals {
 		a := &w.animals[i]
 		switch {
@@ -114,7 +118,7 @@ func (w *World) advanceAnimals(now time.Time) {
 		}
 	}
 	for i := range w.flocks {
-		w.advanceFlock(&w.flocks[i], delta)
+		w.advanceFlock(&w.flocks[i], now, delta)
 	}
 }
 
@@ -138,9 +142,13 @@ func (a *animal) move(direction int, speed, delta float64) bool {
 	return arrived
 }
 
-func (w *World) nearestAnimalPlayer(a *animal, radius float64) *playerState {
+func (w *World) nearestAnimalPlayer(a *animal, radius float64, now time.Time) *playerState {
 	var nearest *playerState
+	_, hostile := animalAttacks[a.Kind]
 	for _, p := range w.players {
+		if p.HP == 0 || hostile && now.UnixMilli() < p.ProtectedUntil {
+			continue
+		}
 		d := math.Hypot(p.X-a.X, p.Y-a.Y)
 		if d < radius && w.clearAnimalPath(p, a) {
 			radius, nearest = d, p
@@ -161,7 +169,7 @@ func (w *World) updateCat(a *animal, now time.Time, delta float64) {
 	case "shy":
 		radius, speed = 4.5, 3
 	}
-	nearby := w.nearestAnimalPlayer(a, radius*16)
+	nearby := w.nearestAnimalPlayer(a, radius*16, now)
 	if nearby != nil && speed > 0 {
 		if !now.Before(a.flee) {
 			forward, back := a.legs[a.leg], a.legs[a.leg]
@@ -217,6 +225,9 @@ func (w *World) petAnimal(playerID, targetID string, now time.Time) {
 	defer w.mu.Unlock()
 	w.advanceAnimals(now)
 	p := w.players[playerID]
+	if p.HP == 0 {
+		return
+	}
 	for i := range w.animals {
 		a := &w.animals[i]
 		if a.ID == targetID && a.temperament == "friendly" && now.Sub(a.pet) >= petDuration &&

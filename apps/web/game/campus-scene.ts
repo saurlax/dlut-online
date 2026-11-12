@@ -11,9 +11,11 @@ import { watchPixelGrid } from "./pixel-grid";
 import { SiteFixtures, type SiteFixtureData } from "./site-fixtures";
 import { CampusAnimals, type AnimalSprites } from "./campus-animals";
 import type { NearbyAction } from "./nearby-action";
+import { DeathSmoke, posePlayer } from "./player-death";
 
 const WORLD_PIXELS_PER_METER = 12;
 const INTERACTION_RANGE = 2.75;
+const CAMERA_DEAD_ZONE = 0.2;
 
 interface ModelManifest {
   buildings: { id: string; file: string; origin: [number, number, number] }[];
@@ -90,6 +92,10 @@ export class CampusScene {
   private readonly buildings: THREE.Group[] = [];
   private readonly fixtures: SiteFixtures;
   private readonly animals: CampusAnimals;
+  private readonly deathSmoke: DeathSmoke;
+  private deathStart: number | null = null;
+  private protectionEnd = 0;
+  private readonly playerUp = new THREE.Vector3();
   private readonly nearbyActions: NearbyAction[] = [];
   private actionLabel: string | null = null;
   private readonly characterCanvas = document.createElement("canvas");
@@ -141,7 +147,7 @@ export class CampusScene {
 
   constructor(
     private readonly campus: CampusMap, private readonly environment: EnvironmentAnimations, fixtureData: SiteFixtureData,
-    private readonly assetBase: string, animals: AnimalSprites, private readonly onActionChange: (label: string | null) => void,
+    private readonly assetBase: string, animals: AnimalSprites, smoke: HTMLImageElement, private readonly onActionChange: (label: string | null) => void,
   ) {
     this.renderer.setPixelRatio(1);
     this.renderer.shadowMap.enabled = true;
@@ -155,6 +161,7 @@ export class CampusScene {
     this.fixtures = new SiteFixtures(fixtureData, campus.offset);
     this.world.add(this.fixtures.root);
     this.animals = new CampusAnimals(animals, this.world, this.labels, id => this.sendInteraction!(id));
+    this.deathSmoke = new DeathSmoke(this.labels, smoke);
     this.nearbyActions.push(...this.animals.actions);
     this.sun.castShadow = true;
     this.sun.shadow.mapSize.set(2048, 2048);
@@ -321,6 +328,11 @@ export class CampusScene {
 
   performanceSnapshot() { return this.frameSample; }
 
+  damageAngle(x: number, z: number) {
+    this.screenPoint.set(x, 0, z).transformDirection(this.camera.matrixWorldInverse);
+    return Math.atan2(this.screenPoint.x, this.screenPoint.y);
+  }
+
   setEnvironment(serverTime: number, code: number | null) {
     this.serverOffset = serverTime - Date.now();
     this.weatherCode = code;
@@ -343,7 +355,7 @@ export class CampusScene {
   };
 
   private gameInputBlocked() {
-    return !document.hasFocus() || document.querySelector('[role="dialog"]') !== null
+    return this.deathStart !== null || !document.hasFocus() || document.querySelector('[role="dialog"]') !== null
       || Boolean(document.activeElement?.closest('input,textarea,select,[contenteditable="true"]'));
   }
 
@@ -420,7 +432,7 @@ export class CampusScene {
   disconnectMovement() {
     this.networkReady = false; this.networkRevision = -1;
     this.pendingInputs = []; this.outgoingInputs = [];
-    this.clearInput(); this.remotePlayers.clear(); this.animals.clear();
+    this.clearInput(); this.remotePlayers.clear(); this.animals.clear(); this.deathSmoke.clear();
   }
 
   receiveWorld(snapshot: WorldSnapshot) {
@@ -430,6 +442,13 @@ export class CampusScene {
       this.inputSequence = self.ack; this.pendingInputs = []; this.outgoingInputs = [];
       this.networkRevision = self.revision;
     }
+    const now = performance.now();
+    this.protectionEnd = now + (self.protectedUntil ?? 0) - snapshot.time;
+    if (!self.deathAt) this.deathStart = null;
+    else if (this.deathStart === null) {
+      this.deathStart = now - (snapshot.time - self.deathAt);
+      this.clearInput();
+    }
     this.networkReady = true;
     this.pendingInputs = this.pendingInputs.filter(input => input.seq > self.ack);
     this.actor = { x: self.x, y: self.y };
@@ -437,9 +456,11 @@ export class CampusScene {
     if (relocated) this.updateCamera(true);
     this.remotePlayers.receive(snapshot);
     this.animals.receive(snapshot.animals, snapshot.time);
+    this.deathSmoke.receive(snapshot);
   }
 
   private predictMovement(input: MovementInput) {
+    if (input.x === 0 && input.y === 0) return;
     const distance = (input.sprint ? 96 : 48) * input.ms / 1000 / Math.max(1, Math.hypot(input.x, input.y));
     const x = this.actor!.x + input.x * distance, y = this.actor!.y + input.y * distance;
     if (this.canStand(x, y)) { this.actor!.x = x; this.actor!.y = y; }
@@ -603,8 +624,8 @@ export class CampusScene {
   private updateCamera(center: boolean) {
     const x = this.actor ? this.actor.x / 16 : this.campus.focus[0];
     const z = this.actor ? this.actor.y / 16 : this.campus.focus[1];
-    const halfX = this.camera.right / 2;
-    const halfZ = this.camera.top / 2 / Math.sin(Math.atan2(90, 75));
+    const halfX = this.camera.right * CAMERA_DEAD_ZONE;
+    const halfZ = this.camera.top * CAMERA_DEAD_ZONE / Math.sin(Math.atan2(90, 75));
     if (center) this.cameraTarget.set(x, 0, z);
     else {
       this.cameraTarget.x = THREE.MathUtils.clamp(this.cameraTarget.x, x - halfX, x + halfX);
@@ -615,7 +636,6 @@ export class CampusScene {
     this.camera.position.copy(this.cameraTarget).add(new THREE.Vector3(0, 90, 75));
     this.camera.lookAt(this.cameraTarget);
     this.camera.updateMatrixWorld();
-    this.character.quaternion.copy(this.camera.quaternion);
     const radiusX = this.camera.right + 40, radiusZ = this.camera.top * 1.4 + 70;
     const minX = Math.max(0, Math.floor((this.cameraTarget.x - radiusX) / this.campus.chunkSize) * this.campus.chunkSize);
     const maxX = Math.min(this.campus.width, Math.ceil((this.cameraTarget.x + radiusX) / this.campus.chunkSize) * this.campus.chunkSize);
@@ -691,7 +711,7 @@ export class CampusScene {
       if (dx || dy) {
         this.direction = Math.abs(dx) > Math.abs(dy) ? dx > 0 ? 1 : 3 : dy > 0 ? 0 : 2;
       }
-      if (this.networkReady && delta > 0) {
+      if (this.networkReady && this.deathStart === null && delta > 0) {
         const input: MovementInput = { seq: ++this.inputSequence, x: dx, y: dy, ms: delta, sprint: sprinting };
         this.predictMovement(input);
         this.pendingInputs.push(input); this.outgoingInputs.push(input);
@@ -706,13 +726,14 @@ export class CampusScene {
       const pose = `${this.direction}:${step}`;
       if (pose !== this.pose) { this.animateCharacter(step); this.pose = pose; }
       this.character.position.set(this.actor.x / 16, 0, this.actor.y / 16);
-      // Put the bottom of the billboard at the geographic foot point.
-      this.character.position.add(new THREE.Vector3(0, 1, 0).applyQuaternion(this.camera.quaternion));
-      this.name.position.copy(this.character.position).add(new THREE.Vector3(0, 1.7, 0).applyQuaternion(this.camera.quaternion));
+      this.playerUp.set(0, 1, 0).applyQuaternion(this.camera.quaternion);
+      posePlayer(this.character, this.camera.quaternion, this.playerUp, this.deathStart, this.protectionEnd, time);
+      this.name.position.copy(this.character.position).addScaledVector(this.playerUp, 1.7);
     }
     this.updateCamera(false);
     this.remotePlayers.update(time);
     this.animals.update(time, this.camera, this.cameraTarget);
+    this.deathSmoke.update(time, this.camera.quaternion);
     const label = inputBlocked ? null : this.nearbyAction()?.label ?? null;
     if (label !== this.actionLabel) {
       this.actionLabel = label;
@@ -802,6 +823,7 @@ export class CampusScene {
     this.disposeResources();
     this.fixtures.destroy();
     this.animals.destroy();
+    this.deathSmoke.destroy();
     this.remotePlayers.destroy();
     this.plantGroups.forEach(group => group.mesh.dispose());
     this.composer.passes.forEach(pass => pass.dispose());

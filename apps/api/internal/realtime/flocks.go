@@ -3,6 +3,7 @@ package realtime
 import (
 	"math"
 	random "math/rand/v2"
+	"time"
 )
 
 type animalFlock struct {
@@ -32,7 +33,7 @@ func (flock *animalFlock) updateScatter(delta float64) {
 
 // The route guides the flock as a whole. Each animal steers from the previous
 // positions and velocities, so changing the update order cannot change the flock.
-func (w *World) advanceFlock(flock *animalFlock, delta float64) {
+func (w *World) advanceFlock(flock *animalFlock, now time.Time, delta float64) {
 	const meters = 16
 	water := flock.guide.Kind == "swan" || flock.guide.Kind == "duck"
 	boar := flock.guide.Kind == "boar"
@@ -94,7 +95,9 @@ func (w *World) advanceFlock(flock *animalFlock, delta float64) {
 		}
 		maxSpeed := speed * (1.4 + 0.18*math.Sin(flock.elapsed*0.62+phase))
 		if pursuesPlayers {
-			if player := w.pursuitTarget(a, guide); player != nil {
+			player := w.pursuitTarget(a, guide, now)
+			windingUp := w.attackPlayer(a, player, now)
+			if player != nil && player.HP > 0 {
 				dx, dy := (player.X-a.X)/meters, (player.Y-a.Y)/meters
 				distance := math.Hypot(dx, dy)
 				// Keep room both around the target and between pursuing animals.
@@ -103,6 +106,9 @@ func (w *World) advanceFlock(flock *animalFlock, delta float64) {
 				maxSpeed = 3.65
 				if boar {
 					maxSpeed = 4.25
+				}
+				if windingUp {
+					targetX, targetY = 0, 0
 				}
 			} else if a.returning {
 				targetX, targetY = (guide.X-a.X)/meters, (guide.Y-a.Y)/meters
@@ -127,6 +133,9 @@ func (w *World) advanceFlock(flock *animalFlock, delta float64) {
 		if a.chaseTarget != "" {
 			a.Pose = "chase"
 		}
+		if a.attackTarget != "" {
+			continue
+		}
 		if a.vx > 0.08 {
 			a.Facing = 1
 		} else if a.vx < -0.08 {
@@ -135,12 +144,13 @@ func (w *World) advanceFlock(flock *animalFlock, delta float64) {
 	}
 }
 
-func (w *World) pursuitTarget(a, guide *animal) *playerState {
+func (w *World) pursuitTarget(a, guide *animal, now time.Time) *playerState {
 	const territory = 18 * 16
 	const pursuitDistance = 15 * 16
 	if a.chaseTarget != "" {
 		player := w.players[a.chaseTarget]
-		if player != nil && math.Hypot(player.X-a.X, player.Y-a.Y) < pursuitDistance &&
+		if player != nil && player.HP > 0 && now.UnixMilli() >= player.ProtectedUntil &&
+			math.Hypot(player.X-a.X, player.Y-a.Y) < pursuitDistance &&
 			nearAnimalRoute(player.X, player.Y, guide.legs, territory) &&
 			nearAnimalRoute(a.X, a.Y, guide.legs, territory) {
 			return player
@@ -159,7 +169,7 @@ func (w *World) pursuitTarget(a, guide *animal) *playerState {
 	if a.Kind == "boar" {
 		sight = 8 * 16
 	}
-	player := w.nearestAnimalPlayer(a, sight)
+	player := w.nearestAnimalPlayer(a, sight, now)
 	if player != nil && nearAnimalRoute(player.X, player.Y, guide.legs, territory) {
 		a.chaseTarget, a.returning = player.ID, false
 		return player
