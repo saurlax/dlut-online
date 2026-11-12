@@ -1,5 +1,12 @@
 [
   {"id": "lingshui-cat-01","name": "","kind": "cat","temperament": "wary","route": [[1320.5,1300.5],[1328.5,1301.5],[1329.5,1308.5],[1322.5,1307.5]]},
-  {"id": "lingshui-first-swan","name": "嫡长鹅","kind": "swan","route": [[952,872],[977,856],[991,884],[980,927],[957,906]]},
-  {"id": "lingshui-duck","name": "","kind": "duck","route": [[934,876],[950,880],[961,897],[949,908]]}
+  {"id": "lingshui-first-swan","name": "嫡长鹅","kind": "swan","route": [[961.5,881.5],[974.5,879.5],[977.5,888.5],[965.5,891.5]]},
+  {"id": "lingshui-swan-02","name": "","kind": "swan","sprite": "lingshui-first-swan","follow": "lingshui-first-swan","offset": [-2.5,2.5]},
+  {"id": "lingshui-swan-03","name": "","kind": "swan","sprite": "lingshui-first-swan","follow": "lingshui-first-swan","offset": [2.5,2]},
+  {"id": "lingshui-swan-04","name": "","kind": "swan","sprite": "lingshui-first-swan","follow": "lingshui-first-swan","offset": [0,4.75]},
+  {"id": "lingshui-duck","name": "","kind": "duck","route": [[934.5,892.5],[942.5,890.5],[945.5,895.5],[938.5,898.5]]},
+  {"id": "lingshui-duck-02","name": "","kind": "duck","sprite": "lingshui-duck","follow": "lingshui-duck","offset": [-1.75,1.75]},
+  {"id": "lingshui-duck-03","name": "","kind": "duck","sprite": "lingshui-duck","follow": "lingshui-duck","offset": [1.75,1.5]},
+  {"id": "lingshui-duck-04","name": "","kind": "duck","sprite": "lingshui-duck","follow": "lingshui-duck","offset": [0,3.5]},
+  {"id": "lingshui-duck-05","name": "","kind": "duck","sprite": "lingshui-duck","follow": "lingshui-duck","offset": [2.25,4]}
 ]

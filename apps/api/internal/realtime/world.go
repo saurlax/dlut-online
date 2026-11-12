@@ -97,15 +97,24 @@ type World struct {
 	mu         sync.Mutex
 	players    map[string]*playerState
 	animals    []animal
+	flocks     []animalFlock
 	animalTick time.Time
 	campus     campusData
 	fixtures   fixtureData
-	ground     map[[2]int][]bool
+	ground     map[[2]int][]groundType
 	spawn      [2]float64
 }
 
+type groundType uint8
+
+const (
+	blockedGround groundType = iota
+	walkableGround
+	waterGround
+)
+
 func LoadWorld(public fs.FS, campus string) (*World, error) {
-	w := &World{players: map[string]*playerState{}, ground: map[[2]int][]bool{}}
+	w := &World{players: map[string]*playerState{}, ground: map[[2]int][]groundType{}}
 	var definitions []animalDefinition
 	for name, target := range map[string]any{"map.json": &w.campus, "site-fixtures.json": &w.fixtures, "animals.json": &definitions} {
 		data, err := fs.ReadFile(public, "campuses/"+campus+"/"+name)
@@ -116,19 +125,26 @@ func LoadWorld(public fs.FS, campus string) (*World, error) {
 			return nil, err
 		}
 	}
-	w.loadAnimals(definitions, time.Now())
+	if err := w.loadAnimals(definitions, time.Now()); err != nil {
+		return nil, fmt.Errorf("load multiplayer %s: %w", campus, err)
+	}
 	for _, chunk := range w.campus.Chunks {
-		cells := make([]bool, w.campus.ChunkSize*w.campus.ChunkSize)
+		cells := make([]groundType, w.campus.ChunkSize*w.campus.ChunkSize)
 		for _, runs := range chunk.Layers {
 			offset := 0
 			for i := 0; i < len(runs); i += 2 {
 				count, index := runs[i], runs[i+1]
 				if index >= 0 {
 					material := strings.SplitN(w.campus.Textures[index], "-", 2)[0]
-					// red-walk has a two-word material prefix.
-					walkable := material == "grass" || material == "woodland" || material == "field" || material == "path" || material == "asphalt" || material == "red" || material == "track" || material == "court" || material == "paving" || material == "bridge"
+					surface := blockedGround
+					switch material {
+					case "grass", "woodland", "field", "path", "asphalt", "red", "track", "court", "paving", "bridge":
+						surface = walkableGround
+					case "water":
+						surface = waterGround
+					}
 					for j := offset; j < offset+count; j++ {
-						cells[j] = walkable
+						cells[j] = surface
 					}
 				}
 				offset += count
@@ -382,12 +398,19 @@ func insideFootprint(x, y float64, ring [][2]float64) bool {
 	return inside
 }
 
-func (w *World) walkable(x, y float64) bool {
+func (w *World) groundAt(x, y float64) groundType {
 	tx, ty := int(math.Floor(x/16)), int(math.Floor(y/16))
 	size := w.campus.ChunkSize
 	cx, cy := int(math.Floor(float64(tx)/float64(size)))*size, int(math.Floor(float64(ty)/float64(size)))*size
 	cells, ok := w.ground[[2]int{cx, cy}]
-	if !ok || !cells[(ty-cy)*size+tx-cx] {
+	if !ok {
+		return blockedGround
+	}
+	return cells[(ty-cy)*size+tx-cx]
+}
+
+func (w *World) walkable(x, y float64) bool {
+	if w.groundAt(x, y) != walkableGround {
 		return false
 	}
 	for _, b := range w.campus.Buildings {

@@ -10,7 +10,7 @@ export interface PlayerState extends EntityState {
   look: { name: string; gender: Gender; appearance: Appearance; wear: { key: string; color: number }[] };
 }
 export interface AnimalState extends EntityState {
-  facing: number; pose: "idle" | "walk" | "flee" | "sleep" | "groom" | "happy"; petAt?: number;
+  facing: number; pose: "idle" | "walk" | "flee" | "chase" | "sleep" | "groom" | "happy"; petAt?: number;
 }
 export interface WorldSnapshot { selfId: string; time: number; players: PlayerState[]; animals: AnimalState[] }
 

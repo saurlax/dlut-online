@@ -1,6 +1,7 @@
 package realtime
 
 import (
+	"fmt"
 	"math"
 	"time"
 )
@@ -9,8 +10,9 @@ const interactionRange = 2.75 * 16
 const petDuration = 1450 * time.Millisecond
 
 type animalDefinition struct {
-	ID, Kind, Name, Temperament string
-	Route                       [][2]float64
+	ID, Kind, Name, Temperament, Follow string
+	Route                               [][2]float64
+	Offset                              [2]float64
 }
 
 type animalState struct {
@@ -30,15 +32,46 @@ type animal struct {
 	progress        float64
 	rest, flee, pet time.Time
 	fleeDirection   int
+	flocking        bool
+	vx, vy          float64
+	chaseTarget     string
+	returning       bool
 }
 
-func (w *World) loadAnimals(definitions []animalDefinition, now time.Time) {
+func (w *World) loadAnimals(definitions []animalDefinition, now time.Time) error {
 	w.animalTick = now
+	leaders := make(map[string]int)
+	groups := make(map[string]int)
 	for i, d := range definitions {
 		a := animal{
 			animalState: animalState{entityState: entityState{ID: d.ID, Kind: d.Kind, Name: d.Name}, Facing: 1, Pose: "idle"},
-			temperament: d.Temperament, index: i, leg: i % len(d.Route), rest: now.Add(2200 * time.Millisecond),
+			temperament: d.Temperament, index: i, rest: now.Add(2200 * time.Millisecond),
 		}
+		if d.Follow != "" {
+			leader, ok := leaders[d.Follow]
+			if !ok || w.animals[leader].Kind != d.Kind || d.Kind == "cat" {
+				return fmt.Errorf("animal %s has invalid group leader %s", d.ID, d.Follow)
+			}
+			routeAnimal := &w.animals[leader]
+			group, exists := groups[d.Follow]
+			if !exists {
+				group = len(w.flocks)
+				groups[d.Follow] = group
+				w.flocks = append(w.flocks, animalFlock{guide: *routeAnimal, members: []int{leader}, next: make([][2]float64, 1)})
+				routeAnimal.flocking = true
+			}
+			a.X, a.Y = routeAnimal.X+d.Offset[0]*16, routeAnimal.Y+d.Offset[1]*16
+			a.Pose, a.flocking = "walk", true
+			flock := &w.flocks[group]
+			flock.members = append(flock.members, len(w.animals))
+			flock.next = append(flock.next, [2]float64{})
+			w.animals = append(w.animals, a)
+			continue
+		}
+		if len(d.Route) < 2 {
+			return fmt.Errorf("animal %s needs a route with at least two points", d.ID)
+		}
+		a.leg = i % len(d.Route)
 		for j, point := range d.Route {
 			next := d.Route[(j+1)%len(d.Route)]
 			dx, dy := (next[0]-point[0])*16, (next[1]-point[1])*16
@@ -48,8 +81,10 @@ func (w *World) loadAnimals(definitions []animalDefinition, now time.Time) {
 		if a.Kind != "cat" {
 			a.Pose = "walk"
 		}
+		leaders[d.ID] = len(w.animals)
 		w.animals = append(w.animals, a)
 	}
+	return nil
 }
 
 func (a *animal) place() {
@@ -67,12 +102,19 @@ func (w *World) advanceAnimals(now time.Time) {
 	delta := min(elapsed, 100*time.Millisecond).Seconds()
 	for i := range w.animals {
 		a := &w.animals[i]
-		if a.Kind != "cat" {
-			a.move(1, 0.65, delta)
-			a.Pose = "walk"
+		switch {
+		case a.flocking:
 			continue
+		case a.Kind == "cat":
+			w.updateCat(a, now, delta)
+		case a.Kind == "dog" || a.Kind == "boar":
+			a.move(1, 1.05, delta)
+		default:
+			a.move(1, 0.65, delta)
 		}
-		w.updateCat(a, now, delta)
+	}
+	for i := range w.flocks {
+		w.advanceFlock(&w.flocks[i], delta)
 	}
 }
 

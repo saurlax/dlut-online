@@ -5,5 +5,19 @@
   {"id": "eda-la-ma","name": "辣妈","kind": "cat","temperament": "friendly","route": [[365,1023],[377,1021],[386,1025],[380,1031]]},
   {"id": "eda-gogo","name": "gogo","kind": "cat","temperament": "shy","route": [[354,1076],[363,1080],[371,1076],[365,1072]]},
   {"id": "eda-duanwei","name": "断尾","kind": "cat","temperament": "shy","route": [[697,839],[706,844],[714,849],[702,852]]},
-  {"id": "eda-teaching-cat","name": "","kind": "cat","temperament": "wary","route": [[748,861],[754,866],[762,872],[751,874]]}
+  {"id": "eda-teaching-cat","name": "","kind": "cat","temperament": "wary","route": [[748,861],[754,866],[762,872],[751,874]]},
+  {"id": "eda-swan-01","name": "","kind": "swan","sprite": "lingshui-first-swan","route": [[518.5,903.5],[529.5,901.5],[532.5,907.5],[522.5,910.5]]},
+  {"id": "eda-swan-02","name": "","kind": "swan","sprite": "lingshui-first-swan","follow": "eda-swan-01","offset": [-2.5,2.5]},
+  {"id": "eda-swan-03","name": "","kind": "swan","sprite": "lingshui-first-swan","follow": "eda-swan-01","offset": [2.5,2]},
+  {"id": "eda-swan-04","name": "","kind": "swan","sprite": "lingshui-first-swan","follow": "eda-swan-01","offset": [0,4.75]},
+  {"id": "eda-track-boar-01","name": "","kind": "boar","sprite": "boar","route": [[334.5,731.5],[344.5,729.5],[347.5,735.5],[338.5,738.5]]},
+  {"id": "eda-track-boar-02","name": "","kind": "boar","sprite": "boar","follow": "eda-track-boar-01","offset": [-2.5,2.5]},
+  {"id": "eda-track-boar-03","name": "","kind": "boar","sprite": "boar","follow": "eda-track-boar-01","offset": [2.5,2]},
+  {"id": "eda-hill-boar-01","name": "","kind": "boar","sprite": "boar","route": [[556.5,497.5],[568.5,495.5],[571.5,504.5],[560.5,507.5]]},
+  {"id": "eda-hill-boar-02","name": "","kind": "boar","sprite": "boar","follow": "eda-hill-boar-01","offset": [-2.5,2.5]},
+  {"id": "eda-hill-boar-03","name": "","kind": "boar","sprite": "boar","follow": "eda-hill-boar-01","offset": [2.5,2]},
+  {"id": "eda-hill-boar-04","name": "","kind": "boar","sprite": "boar","follow": "eda-hill-boar-01","offset": [0,4.75]},
+  {"id": "eda-plaza-dog-01","name": "","kind": "dog","sprite": "dog","route": [[646.5,1161.5],[654.5,1159.5],[657.5,1164.5],[650.5,1167.5]]},
+  {"id": "eda-plaza-dog-02","name": "","kind": "dog","sprite": "dog","follow": "eda-plaza-dog-01","offset": [-2.5,2.5]},
+  {"id": "eda-plaza-dog-03","name": "","kind": "dog","sprite": "dog","follow": "eda-plaza-dog-01","offset": [2.5,2]}
 ]

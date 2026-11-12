@@ -6,7 +6,8 @@ import { loadSprite } from "./sprite-image";
 export interface AnimalArt {
   id: string;
   name: string;
-  kind: "cat" | "swan" | "duck";
+  kind: "cat" | "swan" | "duck" | "dog" | "boar";
+  sprite?: string;
   temperament?: "friendly" | "wary" | "shy";
 }
 
@@ -17,7 +18,8 @@ function spritePose(pose: AnimalState["pose"], time: number): Pose {
   switch (pose) {
     case "walk":
     case "flee":
-      return Math.floor(time / (pose === "flee" ? 95 : 180)) % 2 ? "walk1" : "walk2";
+    case "chase":
+      return Math.floor(time / (pose === "walk" ? 180 : 95)) % 2 ? "walk1" : "walk2";
     case "sleep": return Math.floor(time / 600) % 2 ? "sleep" : "breathe";
     case "groom": return Math.floor(time / 250) % 2 ? "groom" : "lick";
     case "happy": return "happy";
@@ -26,14 +28,17 @@ function spritePose(pose: AnimalState["pose"], time: number): Pose {
 }
 
 export async function loadAnimalSprites(art: AnimalArt[]) {
-  const [heart, animals] = await Promise.all([
+  const images = new Map<string, Promise<HTMLImageElement>>();
+  const [heart, anger, animals] = await Promise.all([
     loadSprite("/sprites/animals/heart.png"),
-    Promise.all(art.map(async animal => ({
-      ...animal,
-      image: await loadSprite(`/sprites/animals/${animal.id}.png`),
-    }))),
+    loadSprite("/sprites/animals/anger.png"),
+    Promise.all(art.map(async animal => {
+      const key = animal.sprite ?? animal.id;
+      if (!images.has(key)) images.set(key, loadSprite(`/sprites/animals/${key}.png`));
+      return { ...animal, image: await images.get(key)! };
+    })),
   ]);
-  return { heart, animals };
+  return { heart, anger, animals };
 }
 
 export type AnimalSprites = Awaited<ReturnType<typeof loadAnimalSprites>>;
@@ -49,20 +54,23 @@ export class CampusAnimals {
   private readonly geometry = new THREE.PlaneGeometry(20 / 16, 1);
   private readonly lift = new THREE.Vector3();
   private readonly hearts: THREE.Texture;
+  private readonly anger: THREE.Texture;
   private readonly residents;
   readonly actions: NearbyAction[] = [];
 
   constructor(sprites: AnimalSprites, world: THREE.Scene, labels: THREE.Scene, interact: (id: string) => void) {
     this.hearts = pixelTexture(new THREE.Texture(sprites.heart));
     this.hearts.needsUpdate = true;
-    this.residents = new Map(sprites.animals.map(animal => {
+    this.anger = pixelTexture(new THREE.Texture(sprites.anger));
+    this.anger.needsUpdate = true;
+    this.residents = new Map(sprites.animals.map((animal, index) => {
       const frameCount = animal.kind === "cat" ? catPoses.length : 3;
       const map = pixelTexture(new THREE.Texture(animal.image));
       map.repeat.x = 1 / frameCount;
       map.needsUpdate = true;
       const material = new THREE.MeshStandardMaterial({ map, alphaTest: 0.5, roughness: 1 });
       const mesh = new THREE.Mesh(this.geometry, material);
-      const size = animal.kind === "swan" ? 1.4 : 1;
+      const size = animal.kind === "dog" || animal.kind === "boar" ? 1.8 : animal.kind === "swan" ? 1.4 : 1;
       mesh.scale.setScalar(size);
       world.add(mesh);
       let label: THREE.Sprite | undefined;
@@ -73,6 +81,15 @@ export class CampusAnimals {
         }));
         label.scale.set(canvas.width / 12, canvas.height / 12, 1);
         labels.add(label);
+      }
+      let anger: THREE.Sprite | undefined;
+      if (animal.kind === "dog" || animal.kind === "boar") {
+        anger = new THREE.Sprite(new THREE.SpriteMaterial({
+          map: this.anger, alphaTest: 0.5, depthTest: false, depthWrite: false, toneMapped: false,
+        }));
+        anger.visible = false;
+        anger.renderOrder = 110;
+        labels.add(anger);
       }
       const action: NearbyAction | undefined = animal.temperament === "friendly"
         ? { label: "抚摸", x: 0, z: 0, available: false, run: () => interact(animal.id) }
@@ -94,10 +111,10 @@ export class CampusAnimals {
       mesh.visible = false;
       if (label) label.visible = false;
       const resident = {
-        map, frameCount, mesh, label, size, action, particles,
+        map, frameCount, mesh, label, anger, size, action, particles, phase: index * 73,
         state: undefined as AnimalState | undefined,
         from: new THREE.Vector2(), to: new THREE.Vector2(), position: new THREE.Vector2(),
-        received: 0, petStart: -Infinity,
+        received: 0, petStart: -Infinity, chaseStart: -Infinity,
       };
       return [animal.id, resident] as const;
     }));
@@ -113,6 +130,7 @@ export class CampusAnimals {
       if (state.petAt && state.petAt !== resident.state?.petAt) {
         resident.petStart = now - (serverTime - state.petAt);
       }
+      if (state.pose === "chase" && resident.state?.pose !== "chase") resident.chaseStart = now;
       resident.state = state;
       resident.received = now;
     }
@@ -124,6 +142,7 @@ export class CampusAnimals {
       resident.petStart = -Infinity;
       resident.mesh.visible = false;
       if (resident.label) resident.label.visible = false;
+      if (resident.anger) resident.anger.visible = false;
       if (resident.action) resident.action.available = false;
       for (const heart of resident.particles) heart.visible = false;
     }
@@ -131,11 +150,11 @@ export class CampusAnimals {
 
   update(time: number, camera: THREE.Camera, target: THREE.Vector3) {
     this.lift.set(0, 1, 0).applyQuaternion(camera.quaternion);
-    for (const { mesh, label, size, map, frameCount, state, action, particles, position, from, to, received, petStart } of this.residents.values()) {
+    for (const { mesh, label, anger, size, map, frameCount, state, action, particles, phase, position, from, to, received, petStart, chaseStart } of this.residents.values()) {
       if (!state) continue;
       position.lerpVectors(from, to, THREE.MathUtils.clamp((time - received) / 100, 0, 1));
       const { x, y: z } = position;
-      const pose = spritePose(state.pose, time);
+      const pose = spritePose(state.pose, time + phase);
       if (action) {
         action.x = x;
         action.z = z;
@@ -143,6 +162,7 @@ export class CampusAnimals {
       }
       mesh.visible = Math.hypot(x - target.x, z - target.z) < 95;
       if (label) label.visible = mesh.visible;
+      if (anger) anger.visible = mesh.visible && state.pose === "chase";
       if (mesh.visible) {
         mesh.quaternion.copy(camera.quaternion);
         mesh.scale.x = state.facing * size;
@@ -150,6 +170,11 @@ export class CampusAnimals {
         const frame = catPoses.indexOf(pose);
         map.offset.x = frame < frameCount ? frame / frameCount : 0;
         if (label) label.position.copy(mesh.position).addScaledVector(this.lift, size / 2 + 0.35);
+        if (anger?.visible) {
+          const pop = 1 - Math.min(1, (time - chaseStart) / 220);
+          anger.position.copy(mesh.position).addScaledVector(this.lift, size / 2 + 0.37 + 0.2 * pop);
+          anger.scale.set(0.72 + 0.24 * pop, 0.72 + 0.24 * pop, 1);
+        }
       }
       for (const [i, heart] of particles.entries()) {
         const age = (time - petStart - i * 140) / 1000;
@@ -166,11 +191,13 @@ export class CampusAnimals {
   destroy() {
     this.geometry.dispose();
     this.hearts.dispose();
-    for (const { map, mesh, label, particles } of this.residents.values()) {
+    this.anger.dispose();
+    for (const { map, mesh, label, anger, particles } of this.residents.values()) {
       map.dispose();
       mesh.material.dispose();
       label?.material.map?.dispose();
       label?.material.dispose();
+      anger?.material.dispose();
       for (const heart of particles) heart.material.dispose();
     }
   }

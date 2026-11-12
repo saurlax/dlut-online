@@ -32,7 +32,7 @@
 
 原创人物和物品图标以透明 PNG 存放在 `apps/web/public/sprites/characters/` 和 `apps/web/public/sprites/items/`。人物帧为 16×32，比例与分层参考[星露谷人物精灵说明](https://wiki.stardewvalley.net/Modding%3AFarmer_sprite)，未使用其角色贴图。
 
-校园动物使用 `apps/web/public/sprites/animals/` 中的原创透明 PNG，每帧 20×16。公开参考资料与采用情况见[校园动物来源](references/campus-animals.md)。参考影像版权归原权利人，仅作离线参考。
+校园动物使用 `apps/web/public/sprites/animals/` 中的原创透明 PNG，每帧 20×16。野猪和大狗的像素动作图由 ImageGen 生成后裁切为游戏帧。公开参考资料与采用情况见[校园动物来源](references/campus-animals.md)。参考影像版权归原权利人，仅作离线参考。
 
 [大连理工大学校园地图](http://map.dlut.edu.cn)及既有七舍照片用于建筑颜色、楼层和可见立面参考，原始 URL、对象 ID、读取日期及用途保留在 `references/eda/building-photos.json`。照片版权归原权利人，原图只作离线参考，不随项目分发。独立建筑透明 PNG 由 `tools/campus_objects.py` 在原生像素画布绘制，属于简化外观，不代表完整立面测绘。
 
